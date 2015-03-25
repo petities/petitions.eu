@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to new_petition_path,  class: 'btn btn-success' do %>
+  <i class="glyphicon glyphicon-plus"></i> New Petition
+<% end %>
+
+<h1>Listing Petitions</h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @petitions.each do |petition| %>
+      <tr>
+        <td><%= petition.title %></td>
+        <td><%= petition.text %></td>
+        <td><%= link_to 'Show', petition, class: 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_petition_path(petition), class: 'btn btn-primary btn-xs'  %></td>
+        <td><%= link_to 'Destroy', petition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-xs' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

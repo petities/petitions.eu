@@ -1,0 +1,12 @@
+<h1>New Petition</h1>
+
+<% content_for :head do %>
+    <div class="jumbotron">
+      <h1>Create a new petition</h1>
+      new?
+    </div>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', petitions_path %>
