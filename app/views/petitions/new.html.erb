@@ -7,6 +7,21 @@
     </div>
 <% end %>
 
+
+<% content_for :sidebar do %>
+
+  <h3>steps</h3>
+
+  <ul class="nav nav-sidebar">
+    <li class="active"><a href="#">a petition<span class="sr-only">(current)</span></a></li>
+    <li><a href="#">adressed to?</a></li>
+    <li><a href="#">for whom?</a></li>
+    <li><a href="#">we notice that</a></li>
+    <li><a href="#">By whom?</a></li>
+  </ul>
+
+<% end %>
+
 <%= render 'form' %>
 
 <%= link_to 'Back', petitions_path %>
