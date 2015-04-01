@@ -69,6 +69,7 @@ class PetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.require(:petition).permit(:title, :text, :name, :email, :email2, :password1)
+      params.require(:petition).permit(
+          :name, :description, :request, :petitioner_email, :password1)
     end
 end

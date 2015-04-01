@@ -5,12 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-#
-
-
-Petition.create!(title: 'test', text: 'hell yhea!')
-Petition.create!(title: 'witte fietsen', text: 'overal fietsen!')
-Petition.create!(title: 'kleuren piet', text: 'maar geen zwart')
-Petition.create!(title: 'blauw piet', text: 'maar geen zwart')
-Petition.create!(title: 'zeur piet', text: 'maar geen zwart')
-Petition.create!(title: 'groene piet', text: 'maar geen zwart')

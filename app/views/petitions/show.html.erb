@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @petition.title %>
+  <strong>Name:</strong>
+  <%= @petition.name %>
 </p>
 
 <p>
-  <strong>Text:</strong>
-  <%= @petition.text %>
+  <strong>Description:</strong>
+  <%= @petition.description %>
 </p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @petition.request %>
+</p>
+
+
 
 <%= link_to 'Edit', edit_petition_path(@petition) %> |
 <%= link_to 'Back', petitions_path %>

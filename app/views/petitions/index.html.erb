@@ -4,14 +4,13 @@
   <i class="glyphicon glyphicon-plus"></i> New Petition
 <% end %>
 
-<h1>Listing Petitions</h1>
-
+<h1>Listing  <%= @petitions.count %> Petitions</h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Text</th>
+        <th><%= t('name') %></th>
+        <th><%= t('signatures') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,8 +18,16 @@
   <tbody>
     <% @petitions.each do |petition| %>
       <tr>
-        <td><%= petition.title %></td>
-        <td><%= petition.text %></td>
+        <td><%= petition.name %></td>
+        <% if false %>
+
+            <td><%= petition.description %></td>
+            <td><%= petition.request %></td>
+
+        <% end %>
+
+        <td><%= petition.signatures_count %></td>
+
         <td><%= link_to 'Show', petition, class: 'btn btn-primary btn-xs' %></td>
         <td><%= link_to 'Edit', edit_petition_path(petition), class: 'btn btn-primary btn-xs'  %></td>
         <td><%= link_to 'Destroy', petition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-xs' %></td>
