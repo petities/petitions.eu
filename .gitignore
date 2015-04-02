@@ -23,6 +23,8 @@ doc/app
 *~
 .DS_Store
 
+database.yml
+
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
