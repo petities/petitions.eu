@@ -1,0 +1,79 @@
+
+
+class Signature < ActiveRecord::Base
+
+  belongs_to :petition #, :counter_cache => true
+  has_one :petition_type, :through => :petition
+  
+  has_many :reminders, :class_name => 'SignaturesReminder'
+  has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
+
+
+
+  validates_length_of :person_name, :within => 3..255
+  validates_format_of :person_name, :with => /\A.+( |\.).+\z/
+
+  # validates_format_of :person_email, :with => EmailValidation::EmailAddress
+  # Some petitions require a full address
+  #
+  # validates_format_of :person_postalcode, :with => /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/, :on => :update, :if => :require_full_address?
+  # validates_length_of :person_city, :within => 3..255, :on => :update, :if => :require_full_address?
+  # validates_length_of :person_street, :within => 3..255, :on => :update, :if => :require_full_address?
+  # validates_numericality_of :person_street_number, :only_integer => true, :on => :update, :if => :require_full_address?
+  # validates_length_of :person_street_number_suffix, :within => 1..255, :allow_blank => true, :on => :update, :if => :require_full_address?
+
+
+  scope :confirmed, -> { where(confirmed: true) }
+  scope :hidden, -> { where(visible: false) }
+  scope :subscribe, -> { where(confirmed: true, subscribe: true) }
+  scope :special, -> { where(special: true, confirmed: true) }
+  scope :visible, -> { where(visible: true, confirmed: true) }
+
+
+  before_save :generate_unique_key, :fill_confirmed_at
+  before_create :fill_signed_at
+  after_save :update_petition
+
+  protected
+
+  def generate_unique_key
+    self.unique_key = SecureRandom.urlsafe_base64(16) if self.unique_key.nil?
+  end
+
+  def fill_confirmed_at
+    self.confirmed_at = Time.now.utc if self.confirmed_at.nil? && self.confirmed?
+  end
+
+  def fill_signed_at
+    self.signed_at = Time.now.utc if self.signed_at.nil?
+  end
+
+  def update_petition
+    petition.last_confirmed_at = Time.now.utc if self.confirmed?
+  end
+
+  def require_full_address?
+    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_signature_full_address?
+    return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
+  end
+
+  def require_born_at?
+    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_born_at?
+    return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_born_at?
+  end
+
+  def require_minimum_age?
+    return true if petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
+    return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.required_minimum_age.present?
+  end
+
+  def require_person_birth_city?
+    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
+    return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
+  end
+
+
+
+
+end
+

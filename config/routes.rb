@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :e_users
   resources :petitions
 
   root 'petitions#index'
