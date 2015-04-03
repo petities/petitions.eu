@@ -7,6 +7,9 @@ gem 'rails', '4.2.0'
 # gem 'sqlite3'
 gem 'mysql2'
 
+# authentication
+gem 'devise'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -25,6 +28,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_config'
+
+gem 'activeadmin', github: 'activeadmin'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -45,6 +50,8 @@ group :development, :test do
   gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # create fake data
+  gem 'faker'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
