@@ -4,37 +4,61 @@
   <i class="glyphicon glyphicon-plus"></i> New Petition
 <% end %>
 
+<% cache [cache_key_for_petitions, @page] do %>
+
 <h1>Listing  <%= @petitions.count %> Petitions</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-        <th><%= t('name') %></th>
-        <th><%= t('signatures') %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th><%= t('name') %></th>
+            <th><%= t('signatures') %></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @petitions.each do |petition| %>
-      <tr>
-        <td><%= petition.name %></td>
-        <% if false %>
+      <tbody>
+        <% @petitions.each do |petition| %>
+            <% cache petition do%>
+              <tr>
 
-            <td><%= petition.description %></td>
-            <td><%= petition.request %></td>
+                  <td>
+                  <%= link_to petition_path(petition) do %>
+                      <%= petition.name %>
+                  <% end %>
+                  </td>
 
+                <% if false %>
+
+                    <td><%= petition.description %></td>
+                    <td><%= petition.request %></td>
+
+                <% end %>
+
+                <td><div class="label label-success">
+                        <%= petition.signatures_count %>
+                    </div>
+                </td>
+
+
+                <% if false %>
+                    <td><%= link_to 'Show', petition, class: 'btn btn-primary btn-xs' %></td>
+                    <td><%= link_to 'Edit', edit_petition_path(petition), class: 'btn btn-primary btn-xs'  %></td>
+                    <td><%= link_to 'Destroy', petition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-xs' %></td>
+                <% end %>
+
+              </tr>
+            <% end %>
         <% end %>
 
-        <td><%= petition.signatures_count %></td>
+      </tbody>
 
-        <td><%= link_to 'Show', petition, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_petition_path(petition), class: 'btn btn-primary btn-xs'  %></td>
-        <td><%= link_to 'Destroy', petition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-xs' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </table>
+
+    <%= will_paginate @petitions, renderer: BootstrapPagination::Rails %>
+
+<%end%>
 
 <br>
+
 

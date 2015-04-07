@@ -4,7 +4,8 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
-    @petitions = Petition.all
+    @page = params[:page]
+    @petitions = Petition.paginate(:page => params[:page])
   end
 
   # GET /petitions/1

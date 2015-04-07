@@ -9,6 +9,13 @@ gem 'mysql2'
 
 # authentication
 gem 'devise'
+# cache
+gem 'dalli'
+
+# will_paginate
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+#
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
