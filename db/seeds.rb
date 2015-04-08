@@ -17,10 +17,10 @@ start = Time.now
 puts 'adding signatures..'
 
 10000.times do |count|
-  if count.modulo(100).zero? 
+  if count.modulo(100).zero?
     puts count
   end
-  # puts Petition.order("RAND()").first()[:id]
+  #puts Petition.order("RAND()").first()[:id]
   signature = Signature.create({
     :petition_id => random_petition[:id],
     :person_name => Faker::Name.name,
@@ -40,4 +40,4 @@ puts 'adding signatures..'
   signature.save
 end
 
-puts Time.now - start 
+puts Time.now - start

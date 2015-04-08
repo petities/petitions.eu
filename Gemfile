@@ -61,7 +61,7 @@ group :development, :test do
   gem 'binding_of_caller'
   # create fake data
   gem 'faker'
-
+  gem 'mailcatcher'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
