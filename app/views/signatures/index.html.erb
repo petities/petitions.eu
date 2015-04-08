@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Signatures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @signatures.each do |signature| %>
+      <tr>
+        <td><%= link_to 'Show', signature %></td>
+        <td><%= link_to 'Edit', edit_signature_path(signature) %></td>
+        <td><%= link_to 'Destroy', signature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Signature', new_signature_path %>

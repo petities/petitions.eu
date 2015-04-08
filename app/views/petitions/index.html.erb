@@ -4,20 +4,64 @@
   <i class="glyphicon glyphicon-plus"></i> New Petition
 <% end %>
 
-<% cache [cache_key_for_petitions, @page] do %>
-
-<h1>Listing  <%= @petitions.count %> Petitions</h1>
+<h1> Active </h1>
 
     <table class="table table-striped">
       <thead>
         <tr>
             <th><%= t('name') %></th>
             <th><%= t('signatures') %></th>
+            <th><%= t('active') %></th>
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
+
+        <% Petition.live.show_on_home.each do |petition| %>
+
+            <tr>
+                <td>
+                  <%= link_to petition_path(petition) do %>
+                      <%= petition.name %>
+                  <% end %>
+                </td>
+
+                <td>
+                    <div class="label label-success">
+                        <%= petition.signatures_count %>
+                    </div>
+                </td>
+
+                <td><%= petition.last_confirmed_at %></td>
+
+            </tr>
+
+         <% end %>
+
+      </tbody>
+
+    </table>
+
+
+<% cache [cache_key_for_petitions, @page, @sorting, @order] do %>
+
+<h1>Listing  <%= @petitions.count %> Petitions</h1>
+
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+            <th><%= link_to t('name'), controller: "petitions" ,
+                            sort: 'name', order: @order %></th>
+            <th><%= link_to t('signatures'), controller: "petitions" ,
+                            sort: 'signatures_count', order: @order %></th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
         <% @petitions.each do |petition| %>
             <% cache petition do%>
               <tr>

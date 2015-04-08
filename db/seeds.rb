@@ -20,6 +20,7 @@ puts 'adding signatures..'
   if count.modulo(100).zero?
     puts count
   end
+
   #puts Petition.order("RAND()").first()[:id]
   signature = Signature.create({
     :petition_id => random_petition[:id],
@@ -37,7 +38,9 @@ puts 'adding signatures..'
     #:description => Faker::Lorem.sentence,
 
   })
+
   signature.save
+
 end
 
 puts Time.now - start

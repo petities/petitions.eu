@@ -35,6 +35,10 @@ class Signature < ActiveRecord::Base
   before_create :fill_signed_at
   after_save :update_petition
 
+  #define_index do
+  #  has last_confirmed_at, :as => :last_confirmed_at, :sortable=>true
+  #end
+
   protected
 
   def generate_unique_key
@@ -51,6 +55,7 @@ class Signature < ActiveRecord::Base
 
   def update_petition
     petition.last_confirmed_at = Time.now.utc if self.confirmed?
+    petition.save
   end
 
   def require_full_address?
@@ -73,8 +78,4 @@ class Signature < ActiveRecord::Base
     return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
   end
 
-
-
-
 end
-

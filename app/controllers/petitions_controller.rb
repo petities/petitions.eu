@@ -5,7 +5,25 @@ class PetitionsController < ApplicationController
   # GET /petitions.json
   def index
     @page = params[:page]
-    @petitions = Petition.paginate(:page => params[:page])
+    order = params[:order] || 0 
+    @sorting = params[:sort]
+
+    petitions = Petition  
+
+    if @sorting then
+        direction = [:desc, :asc][order.to_i] 
+        if @sorting == 'name' then
+          petitions = Petition.order(name: direction)
+        else 
+          petitions = Petition.order(signatures_count: direction)
+        end
+    end
+
+    @petitions = petitions.paginate(:page => params[:page])
+    puts(order, @sorting)
+    @order = order == '1'? 0 : 1 
+    puts @order
+
   end
 
   # GET /petitions/1
