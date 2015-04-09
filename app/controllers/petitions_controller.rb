@@ -10,19 +10,27 @@ class PetitionsController < ApplicationController
 
     petitions = Petition  
 
+    # enable search on petition title. TODO ransack?
+    @search = 0
+    if params[:search]
+      petitions = Petition.findbyname(params[:search])
+      @search = params[:search]
+    end
+
+    # enable sorting..
     if @sorting then
         direction = [:desc, :asc][order.to_i] 
         if @sorting == 'name' then
-          petitions = Petition.order(name: direction)
+          petitions = petitions.order(name: direction)
         else 
-          petitions = Petition.order(signatures_count: direction)
+          petitions = petitions.order(signatures_count: direction)
         end
     end
 
+
+    
     @petitions = petitions.paginate(:page => params[:page])
-    puts(order, @sorting)
     @order = order == '1'? 0 : 1 
-    puts @order
 
   end
 

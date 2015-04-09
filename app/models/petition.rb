@@ -31,6 +31,14 @@ class Petition < ActiveRecord::Base
     end
   end
 
+  def elapsed_time
+      Time.now - (self.last_confirmed_at || Time.now)
+  end
+
+  def self.findbyname(query)
+    where("name like ?", "%#{query}%")
+  end
+
 end
 
 
