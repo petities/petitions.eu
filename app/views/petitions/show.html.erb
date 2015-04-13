@@ -1,19 +1,75 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @petition.name %>
-</p>
+<p class="well well-lg">
 
-<p>
-  <strong>Description:</strong>
+  <strong><%= t "name" %>:</strong>
+
+  <%= @petition.name %>
+
+  </p>
+
+<p class="well">
+  <strong><%= t "description" %>:</strong>
   <%= @petition.description %>
 </p>
 
-<p>
-  <strong>Request:</strong>
+<p class="well">
+  <strong><%= t "request" %>:</strong>
   <%= @petition.request %>
 </p>
+
+
+
+
+
+<div class="well">
+    <%= t "signatures" %>: <%= @petition.signatures.count %>
+</div>
+
+
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+
+            <th class="col-md-9"><%= t "name" %></th>
+
+            <th class="col-md-1"><%= t "place" %> </th>
+
+            <th class="col-md-2"><%= t "when" %> </th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <% @signatures.each do |signature| %>
+
+              <tr>
+                <td>
+                    <% if signature.visible? %>
+                        <%= signature.person_name %>
+                    <% else %> 
+                        <%= t "anonymous" %>
+                    <% end %>
+                </td>
+  
+                <td>
+                    <%= signature.person_city %>
+                </td>
+                   
+                <td>
+                  <%= distance_of_time_in_words_to_now(signature.signed_at) %>
+                </td>
+  
+              </tr>
+        <% end %>
+
+      </tbody>
+
+    </table>
+
+    <%= will_paginate @signatures, renderer: BootstrapPagination::Rails %>
 
 
 

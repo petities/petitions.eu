@@ -37,6 +37,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
+    @signatures = @petition.signatures.paginate(:page => params[:page])
+    @prominenten = @signatures
   end
 
   # GET /petitions/new
@@ -97,6 +99,6 @@ class PetitionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
       params.require(:petition).permit(
-          :name, :description, :request, :petitioner_email, :password1)
+          :name, :description, :request, :petitioner_email, :password)
     end
 end
