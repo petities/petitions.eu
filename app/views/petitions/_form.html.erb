@@ -1,5 +1,5 @@
 
-<%= form_for(@petition, html: {class: 'form-horizontal', autocomplete: 'on'}) do |f| %>
+<%= form_for(@petition, html: {class: "form-horizontal", autocomplete: "on"}) do |f| %>
 
   <% if @petition.errors.any? %>
     <div id="error_explanation">
@@ -29,6 +29,14 @@
 
     <div class="col-sm-10">
     <%= f.text_area :description, class: 'form-control', rows:"6" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "statement", class:'col-sm-2 control-label'  %>
+
+    <div class="col-sm-10">
+    <%= f.text_area "statement", class: 'form-control', rows:"6" %>
     </div>
   </div>
 

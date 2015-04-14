@@ -14,7 +14,9 @@ class SignaturesController < ApplicationController
 
   # GET /signatures/new
   def new
-    @signature = Signature.new
+    puts 'new??'
+    #@@petition = 
+    @signature = Petition.signatures.new
   end
 
   # GET /signatures/1/edit
@@ -24,11 +26,13 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-    @signature = Signature.new(signature_params)
+    @petition = Petition.find(params[:petition_id])
+    @signature = @petition.signatures.new(signature_params)
 
     respond_to do |format|
       if @signature.save
-        format.html { redirect_to @signature, notice: 'Signature was successfully created.' }
+        #format.html { redirect_to @signature, notice: 'Signature was successfully created.' }
+        format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
         format.json { render :show, status: :created, location: @signature }
       else
         format.html { render :new }
@@ -53,13 +57,13 @@ class SignaturesController < ApplicationController
 
   # DELETE /signatures/1
   # DELETE /signatures/1.json
-  def destroy
-    @signature.destroy
-    respond_to do |format|
-      format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @signature.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +73,9 @@ class SignaturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def signature_params
-      params[:signature]
+      params.require(:signature).permit(
+          :person_city, :person_name, :person_email,
+          :subscribe, :visible,
+      )
     end
 end

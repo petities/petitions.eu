@@ -5,10 +5,10 @@ class PetitionsController < ApplicationController
   # GET /petitions.json
   def index
     @page = params[:page]
-    order = params[:order] || 0 
+    order = params[:order] || 0
     @sorting = params[:sort]
 
-    petitions = Petition  
+    petitions = Petition
 
     # enable search on petition title. TODO ransack?
     @search = 0
@@ -19,25 +19,28 @@ class PetitionsController < ApplicationController
 
     # enable sorting..
     if @sorting then
-        direction = [:desc, :asc][order.to_i] 
+        direction = [:desc, :asc][order.to_i]
         if @sorting == 'name' then
           petitions = petitions.order(name: direction)
-        else 
+        else
           petitions = petitions.order(signatures_count: direction)
         end
     end
 
-
-    
     @petitions = petitions.paginate(:page => params[:page])
-    @order = order == '1'? 0 : 1 
+    @order = order == '1'? 0 : 1
 
   end
 
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-    @signatures = @petition.signatures.paginate(:page => params[:page])
+    @signature = @petition.signatures.new
+
+    @signatures = @petition.signatures
+    @signatures = @signatures.order(created_at: :desc)
+    @signatures = @signatures.paginate(:page => params[:page])
+
     @prominenten = @signatures
   end
 
@@ -57,11 +60,14 @@ class PetitionsController < ApplicationController
 
     respond_to do |format|
       if @petition.save
-        format.html { redirect_to @petition, :flash => {:success => t('petition.created')} }
-        format.json { render :show, status: :created, location: @petition }
+        format.html { redirect_to @petition, :flash => {
+            :success => t('petition.created')} }
+        format.json {
+            render :show, status: :created, location: @petition }
       else
         format.html { render :new }
-        format.json { render json: @petition.errors, status: :unprocessable_entity }
+        format.json {
+            render json: @petition.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,7 +77,8 @@ class PetitionsController < ApplicationController
   def update
     respond_to do |format|
       if @petition.update(petition_params)
-        format.html { redirect_to @petition, :flash => {:success => 'Petition was successfully updated.' }}
+        format.html { redirect_to @petition, :flash => {
+            :success => 'Petition was successfully updated.' }}
         format.json { render :show, status: :ok, location: @petition }
       else
         format.html { render :edit }
@@ -82,13 +89,13 @@ class PetitionsController < ApplicationController
 
   # DELETE /petitions/1
   # DELETE /petitions/1.json
-  def destroy
-    @petition.destroy
-    respond_to do |format|
-      format.html { redirect_to petitions_url, notice: 'Petition was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+  #  @petition.destroy
+  #  respond_to do |format|
+  #    format.html { redirect_to petitions_url, notice: 'Petition was successfully destroyed.' }
+  #    format.json { head :no_content }
+  #  end
+  #end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -99,6 +106,9 @@ class PetitionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
       params.require(:petition).permit(
-          :name, :description, :request, :petitioner_email, :password)
+        :name, :description, :request, :petitioner_email, :password,
+        :statement, :initiators, :petition_id, 
+        #:subscribe, :visible,
+      )
     end
 end

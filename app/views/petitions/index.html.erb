@@ -4,6 +4,9 @@
   <i class="glyphicon glyphicon-plus"></i> New Petition
 <% end %>
 
+
+<% if params["search"].blank? %> 
+
 <h1><%= t "active" %> </h1>
 
     <table class="table table-striped">
@@ -41,6 +44,8 @@
       </tbody>
 
     </table>
+
+<% end %>
 
 
 <% cache [cache_key_for_petitions, @page, @sorting, @order, @search] do %>

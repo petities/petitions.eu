@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  resources :petitions
-  resources :signatures
+  resources :petitions do
+    resources :signatures
+  end
 
   root 'petitions#index'
   # The priority is based upon order of creation: first created -> highest priority.

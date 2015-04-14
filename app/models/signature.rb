@@ -54,8 +54,8 @@ class Signature < ActiveRecord::Base
   end
 
   def update_petition
-    petition.last_confirmed_at = Time.now.utc if self.confirmed?
-    petition.save
+    self.petition.last_confirmed_at = Time.now.utc if self.confirmed?
+    self.petition.save
   end
 
   def require_full_address?
