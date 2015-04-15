@@ -13,34 +13,41 @@ def random_petition
 end
 
 start = Time.now
+total_signatures = 0
 
-puts 'adding signatures..'
+100.times do |petition|
+    signature_count = rand(10000)
+    petition = random_petition
+    puts "Adding #{signature_count} signatures to #{petition.name}"
+    total_signatures += signature_count
 
-10000.times do |count|
-  if count.modulo(100).zero?
-    puts count
-  end
+    puts petition.status
+    #  Only add signatures to live
+    next if not petition.status == "live"
 
-  #puts Petition.order("RAND()").first()[:id]
-  signature = Signature.create({
-    :petition_id => random_petition[:id],
-    :person_name => Faker::Name.name,
-    :person_email => Faker::Internet.free_email(@person_name),
-    :person_city => Faker::Address.city,
-    :visible => rand(10) > 8 ? true: false,
-    :special => rand(100000) > 99990 ? true: false,
-    :subscribe => rand(2) > 1 ? true: false,
-    :created_at => Faker::Time.between(20.days.ago, Time.now, :morning),
-    :updated_at => Faker::Time.between(10.days.ago, Time.now, :afternoon),
-    :signed_at => Faker::Time.between(20.days.ago, Time.now, :evening),
-    :confirmed_at => Faker::Time.between(20.days.ago, Time.now),
-    :confirmed => rand(10) > 8 ? true: false,
-    #:description => Faker::Lorem.sentence,
+    signature_count.times do |count|
 
-  })
+      if count.modulo(100).zero?
+        puts count
+      end
 
-  signature.save
-
+      signature = Signature.create({
+        :petition_id => petition[:id],
+        :person_name => Faker::Name.name,
+        :person_email => Faker::Internet.free_email(@person_name),
+        :person_city => Faker::Address.city,
+        :visible => rand(10) > 8 ? true: false,
+        :special => rand(100000) > 99990 ? true: false,
+        :subscribe => rand(2) > 1 ? true: false,
+        :created_at => Faker::Time.between(20.days.ago, Time.now, :morning),
+        :updated_at => Faker::Time.between(10.days.ago, Time.now, :afternoon),
+        :signed_at => Faker::Time.between(20.days.ago, Time.now, :evening),
+        :confirmed_at => Faker::Time.between(20.days.ago, Time.now),
+        :confirmed => rand(10) > 8 ? true: false,
+        #:description => Faker::Lorem.sentence,
+      })
+      #signature.save
+    end
 end
 
-puts Time.now - start
+puts Time.now - start, total_signatures
