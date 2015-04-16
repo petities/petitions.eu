@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="pull-right">
-    <%= image_tag( @petition.images.first.upload.url, :class => 'image_responsive') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil? %>
+    <%= image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil? %>
 </div>
 
 <p class="well well-lg">

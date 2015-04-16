@@ -7,6 +7,8 @@ class Petition < ActiveRecord::Base
   belongs_to :petition_type
   belongs_to :organisation
 
+  has_many :images, :as => :imageable, :dependent => :destroy
+
   def self.show_on_home
     Petition.order(last_confirmed_at: :desc).limit(25)
   end
@@ -39,6 +41,17 @@ class Petition < ActiveRecord::Base
     where("name like ?", "%#{query}%")
   end
 
+
+  validates_presence_of :name
+  validates_presence_of :description
+  validates_presence_of :initiators
+  validates_presence_of :statement
+  validates_presence_of :request
+ 
+  validates_format_of :subdomain, :with => /\A[A-Za-z0-9-]+\z/, :allow_blank => true
+  validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
+  validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
+ 
 end
 
 

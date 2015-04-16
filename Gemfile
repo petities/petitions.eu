@@ -12,6 +12,9 @@ gem 'devise'
 # cache
 gem 'dalli'
 
+# minimal template language
+gem 'slim'
+
 # will_paginate
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
@@ -28,6 +31,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'sprockets'
 gem 'sprockets-rails'
+
+# image file upload made easypeasy
+gem 'paperclip'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

@@ -1,23 +1,23 @@
-<h1>New Petition</h1>
+<h1><%= t "peition.new" %> </h1>
 
 <% content_for :head do %>
     <div class="jumbotron">
       <h1>Create a new petition</h1>
-      new?
     </div>
 <% end %>
 
 
 <% content_for :sidebar do %>
 
-  <h3>steps</h3>
+  <h3><%= t('sidebar.steps') %></h3>
 
   <ul class="nav nav-sidebar">
-    <li class="active"><a href="#">a petition<span class="sr-only">(current)</span></a></li>
-    <li><a href="#">adressed to?</a></li>
-    <li><a href="#">for whom?</a></li>
-    <li><a href="#">we notice that</a></li>
-    <li><a href="#">By whom?</a></li>
+    <li><a href="#description"><%= t "petition.step.description" %></a></li>
+    <li><a href="#target"> <%= t "petition.step.target" %></a></li>
+    <li><a href="#initiators"> <%= t "petition.step.we" %></a></li>
+    <li><a href="#statement"><%= t "petition.step.notice" %></a></li>
+    <li><a href="#request"> <%= t "petition.step.request" %></a></li>
+    <li><a href="#petitioner"> <%= t "petition.step.petitioner" %> </a></li>
   </ul>
 
 <% end %>
