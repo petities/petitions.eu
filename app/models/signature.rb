@@ -31,7 +31,7 @@ class Signature < ActiveRecord::Base
 
   before_save :generate_unique_key, :fill_confirmed_at
   before_create :fill_signed_at
-  after_save :update_petition
+  after_save :update_petition, :confirm_by_mail
 
   #define_index do
   #  has last_confirmed_at, :as => :last_confirmed_at, :sortable=>true

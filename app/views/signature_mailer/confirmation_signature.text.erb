@@ -1,0 +1,14 @@
+
+<%= t("signature.dear") %> <%= @signature.person_name %> 
+
+<%= t("signature.linkinstruction") %>
+
+<%= t("petition.title") %>
+
+<%= @url %>
+
+<%= url_for(controller: 'signatures',
+            action: 'confirm',
+            only_path: false) %>
+
+<%= t("signature.tanks") %>
