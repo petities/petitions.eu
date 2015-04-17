@@ -15,20 +15,22 @@
   div id="description" class="form-group"
     = f.label :name, class:'col-sm-2 control-label'
 
-    div class="col-sm-10"
-      = f.text_field :name, class:'form-control'
+    div class="col-sm-10" title="80"
+      = f.text_field :name, class:"form-control countit"
 
       span class="help-block" id="helpBlock"
         = t('petition.help.title')
+        span<>id="rem_petition_name" class="heko-block label label-success" title=80
 
 
   div class="form-group"
     = f.label :description, class:'col-sm-2 control-label'
 
     div class="col-sm-10"
-      = f.text_area :description, class: 'form-control', rows:"6"
+      = f.text_area :description, class: 'form-control countit', rows:"6"
       span class="help-block" id="helpBlock"
          = t('petition.help.description')
+         span<>id="rem_petition_description" class="heko-block label label-success" title=300
 
 
   div id="target" class="form-group"

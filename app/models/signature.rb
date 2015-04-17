@@ -39,6 +39,13 @@ class Signature < ActiveRecord::Base
 
   protected
 
+  def confirm_by_mail
+    if not self.confirmed? 
+      # if not created with an existing account.
+      SignatureMailer.confirmation_signature(self)
+    end
+  end
+
   def generate_unique_key
     self.unique_key = SecureRandom.urlsafe_base64(16) if self.unique_key.nil?
   end
