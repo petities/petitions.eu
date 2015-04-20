@@ -8,9 +8,7 @@ class SignaturesController < ApplicationController
   end
 
   # GET /signatures/1
-  # GET /signatures/1.json
-  def show
-  end
+  # GET /signatures/1.json def show end
 
   # GET /signatures/new
   def new
