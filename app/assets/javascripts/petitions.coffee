@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 
-$(document).ready ->
+$ ->
   $(".countit").keyup (e) ->
     cmax = $("#rem_" + $(this).attr("id")).attr("title")
     if $(this).val().length >= cmax

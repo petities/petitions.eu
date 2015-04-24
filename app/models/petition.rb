@@ -14,6 +14,7 @@ class Petition < ActiveRecord::Base
   end
 
   #default_scope :order => 'petitions.name ASC'
+  has_many :new_signatures
 
   has_many :signatures do
     def confirmed

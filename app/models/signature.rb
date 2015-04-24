@@ -21,7 +21,6 @@ class Signature < ActiveRecord::Base
   validates :person_street_number, numericality: {only_integer: true}, on: :update, if: :require_full_address?
   validates :person_street_number_suffix, length: {in: 1..255}, allow_blank: true, on: :update, if: :require_full_address?
 
-
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
   scope :subscribe, -> { where(confirmed: true, subscribe: true) }
@@ -29,38 +28,26 @@ class Signature < ActiveRecord::Base
   scope :visible, -> { where(visible: true, confirmed: true) }
 
 
-  before_save :generate_unique_key, :fill_confirmed_at
+  before_save :fill_confirmed_at
   before_create :fill_signed_at
-  after_save :update_petition, :confirm_by_mail
-
-  #define_index do
-  #  has last_confirmed_at, :as => :last_confirmed_at, :sortable=>true
-  #end
+  after_save :update_petition
 
   protected
 
-  def confirm_by_mail
-    if not self.confirmed? 
-      # if not created with an existing account.
-      SignatureMailer.confirmation_signature(self)
-    end
-  end
-
-  def generate_unique_key
-    self.unique_key = SecureRandom.urlsafe_base64(16) if self.unique_key.nil?
-  end
-
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if self.confirmed_at.nil? && self.confirmed?
+    return true
   end
 
   def fill_signed_at
     self.signed_at = Time.now.utc if self.signed_at.nil?
+    return true
   end
 
   def update_petition
     self.petition.last_confirmed_at = Time.now.utc if self.confirmed?
     self.petition.save
+    return true
   end
 
   def require_full_address?

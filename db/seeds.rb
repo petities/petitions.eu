@@ -31,6 +31,7 @@ total_signatures = 0
         puts count
       end
 
+      #signature = NewSignature.create({
       signature = Signature.create({
         :petition_id => petition[:id],
         :person_name => Faker::Name.name,
@@ -46,7 +47,7 @@ total_signatures = 0
         :confirmed => rand(10) > 8 ? true: false,
         #:description => Faker::Lorem.sentence,
       })
-      #signature.save
+      signature.save
     end
 end
 

@@ -6,11 +6,17 @@ Rails.application.routes.draw do
 
   resources :petitions do
     resources :signatures
+    resources :new_signatures
   end
+
+  #resource :signatures
 
   root 'petitions#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  get '/signatures/:signature_key/confirm', :controller=> 'signatures', :action => 'confirm'
+  get '/ondertekening/:signature_key/confirm', :controller=> 'signatures', :action => 'confirm'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

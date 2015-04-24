@@ -7,11 +7,10 @@
 
 <%= @url %>
 
-<% if false %>
 <%= url_for(controller: 'signatures',
             action: 'confirm',
-            only_path: false) %>
-
-<% end %>
+            #host: 'localhost:3000',
+            signature_key: @signature.unique_key,
+            ) %>
 
 <%= t("signature.tanks") %>

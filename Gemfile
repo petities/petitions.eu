@@ -7,6 +7,9 @@ gem 'rails', '4.2.0'
 # gem 'sqlite3'
 gem 'mysql2'
 
+# make jquery work with turbolinks..
+gem 'jquery-turbolinks'
+
 # authentication
 gem 'devise'
 # cache
