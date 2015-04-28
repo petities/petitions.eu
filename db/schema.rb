@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402144414) do
+ActiveRecord::Schema.define(version: 20150428134138) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -136,6 +136,52 @@ ActiveRecord::Schema.define(version: 20150402144414) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "new_signatures", force: :cascade do |t|
+    t.integer  "petition_id",                 limit: 4,   default: 0,     null: false
+    t.string   "person_name",                 limit: 255
+    t.string   "person_street",               limit: 255
+    t.string   "person_street_number_suffix", limit: 255
+    t.string   "person_street_number",        limit: 255
+    t.string   "person_postalcode",           limit: 255
+    t.string   "person_function",             limit: 255
+    t.string   "person_email",                limit: 255
+    t.boolean  "person_dutch_citizen",        limit: 1
+    t.datetime "signed_at"
+    t.datetime "confirmed_at"
+    t.boolean  "confirmed",                   limit: 1,   default: false, null: false
+    t.string   "unique_key",                  limit: 255
+    t.boolean  "special",                     limit: 1
+    t.string   "person_city",                 limit: 255
+    t.boolean  "subscribe",                   limit: 1,   default: false
+    t.string   "person_birth_date",           limit: 255
+    t.string   "person_birth_city",           limit: 255
+    t.integer  "sort_order",                  limit: 4,   default: 0,     null: false
+    t.string   "signature_remote_addr",       limit: 255
+    t.string   "signature_remote_browser",    limit: 255
+    t.string   "confirmation_remote_addr",    limit: 255
+    t.string   "confirmation_remote_browser", limit: 255
+    t.boolean  "more_information",            limit: 1,   default: false, null: false
+    t.boolean  "visible",                     limit: 1,   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "person_born_at"
+    t.integer  "reminders_sent",              limit: 4
+    t.datetime "last_reminder_sent_at"
+    t.date     "unconverted_person_born_at"
+  end
+
+  add_index "new_signatures", ["confirmed"], name: "confirmed", using: :btree
+  add_index "new_signatures", ["confirmed_at"], name: "date_confirmed", using: :btree
+  add_index "new_signatures", ["person_email"], name: "person_email", using: :btree
+  add_index "new_signatures", ["person_function"], name: "person_function", using: :btree
+  add_index "new_signatures", ["petition_id", "special"], name: "index_signatures_on_petiton_id_and_special", using: :btree
+  add_index "new_signatures", ["petition_id"], name: "petition_id", using: :btree
+  add_index "new_signatures", ["signed_at"], name: "index_signatures_on_signed_at", using: :btree
+  add_index "new_signatures", ["sort_order"], name: "sort_order", using: :btree
+  add_index "new_signatures", ["special"], name: "index_signatures_on_special", using: :btree
+  add_index "new_signatures", ["subscribe"], name: "subscribe", using: :btree
+  add_index "new_signatures", ["unique_key"], name: "unique_key", using: :btree
 
   create_table "newsitems", force: :cascade do |t|
     t.string   "title",          limit: 255
@@ -406,51 +452,6 @@ ActiveRecord::Schema.define(version: 20150402144414) do
   add_index "signatures", ["subscribe"], name: "subscribe", using: :btree
   add_index "signatures", ["unique_key"], name: "unique_key", using: :btree
 
-
-  create_table "new_signatures" do |t|
-    t.integer  "petition_id",                 limit: 4,   default: 0,     null: false
-    t.string   "person_name",                 limit: 255
-    t.string   "person_street",               limit: 255
-    t.string   "person_street_number_suffix", limit: 255
-    t.string   "person_street_number",        limit: 255
-    t.string   "person_postalcode",           limit: 255
-    t.string   "person_function",             limit: 255
-    t.string   "person_email",                limit: 255
-    t.boolean  "person_dutch_citizen",        limit: 1
-    t.datetime "signed_at"
-    t.datetime "confirmed_at"
-    t.boolean  "confirmed",                   limit: 1,   default: false, null: false
-    t.string   "unique_key",                  limit: 255
-    t.boolean  "special",                     limit: 1
-    t.string   "person_city",                 limit: 255
-    t.boolean  "subscribe",                   limit: 1,   default: false
-    t.string   "person_birth_date",           limit: 255
-    t.string   "person_birth_city",           limit: 255
-    t.integer  "sort_order",                  limit: 4,   default: 0,     null: false
-    t.string   "signature_remote_addr",       limit: 255
-    t.string   "signature_remote_browser",    limit: 255
-    t.string   "confirmation_remote_addr",    limit: 255
-    t.string   "confirmation_remote_browser", limit: 255
-    t.boolean  "more_information",            limit: 1,   default: false, null: false
-    t.boolean  "visible",                     limit: 1,   default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.date     "person_born_at"
-    t.integer  "reminders_sent",              limit: 4
-    t.datetime "last_reminder_sent_at"
-    t.date     "unconverted_person_born_at"
-  end
-
-  add_index "signatures", ["confirmed"], name: "confirmed", using: :btree
-  add_index "signatures", ["confirmed_at"], name: "date_confirmed", using: :btree
-  add_index "signatures", ["person_email"], name: "person_email", using: :btree
-  add_index "signatures", ["person_function"], name: "person_function", using: :btree
-  add_index "signatures", ["petition_id"], name: "petition_id", using: :btree
-  add_index "signatures", ["signed_at"], name: "index_signatures_on_signed_at", using: :btree
-  add_index "signatures", ["subscribe"], name: "subscribe", using: :btree
-  add_index "signatures", ["unique_key"], name: "unique_key", using: :btree
-
-
   create_table "signatures_reconfirmations", force: :cascade do |t|
     t.integer  "signature_id",               limit: 4
     t.string   "phase",                      limit: 255
@@ -561,6 +562,13 @@ ActiveRecord::Schema.define(version: 20150402144414) do
     t.string   "telephone",           limit: 255
     t.date     "birth_date"
     t.string   "birth_city",          limit: 255
+    t.string   "encrypted_password",  limit: 255
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       limit: 4,   default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",  limit: 255
+    t.string   "last_sign_in_ip",     limit: 255
   end
 
   add_index "users", ["confirmed"], name: "index_users_on_confirmed", using: :btree
