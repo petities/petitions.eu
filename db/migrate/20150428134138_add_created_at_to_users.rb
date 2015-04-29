@@ -1,5 +1,9 @@
 class AddCreatedAtToUsers < ActiveRecord::Migration
   def self.up
+   # create new password field
+   execute "Alter table users add column encrypted_password varchar(255);"
+   # migrate old hashes
+   execute "Update users SET encrypted_password = crypted_password;"
    add_column :users, :remember_created_at, :datetime
    ## Trackable
    add_column :users, :sign_in_count, :integer, :default => 0
