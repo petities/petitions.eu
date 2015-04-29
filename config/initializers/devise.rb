@@ -96,6 +96,7 @@ Devise.setup do |config|
   # encryptor), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 10
+  #config.stretches = 20 # Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = '73ce976d303515079fb7a6a7caa65129492fccf6f1a7a9a9f6d293cc32403e8e1fe9a8ad6798c482e2c22803b6322ad3044d4f25036d4bcafebe3c0b3de1d630'
@@ -201,6 +202,7 @@ Devise.setup do |config|
   #
   # Require the `devise-encryptable` gem when using anything other than bcrypt
   # config.encryptor = :sha512
+  # config.encryptor = :authlogic_sha512
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
