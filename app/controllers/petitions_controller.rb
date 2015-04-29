@@ -75,6 +75,9 @@ class PetitionsController < ApplicationController
   # PATCH/PUT /petitions/1
   # PATCH/PUT /petitions/1.json
   def update
+
+    authorize @petition
+
     respond_to do |format|
       if @petition.update(petition_params)
         format.html { redirect_to @petition, :flash => {
@@ -100,7 +103,14 @@ class PetitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_petition
-      @petition = Petition.find(params[:id])
+      # find petition by slug name subdomain or id.
+      if params[:slug]
+        @petition = Petition.find_by_cached_slug(params[:slug])
+      if params[:subdomain]
+        @petition = Petition.find_by_subdomain(params[:subdomain])
+      else 
+        @petition = Petition.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

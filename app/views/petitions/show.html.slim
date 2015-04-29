@@ -37,6 +37,14 @@ div class="well"
 
   = @petition.signatures.count
 
+div class="well"
+  - if @petition.subdomain?
+    = @petition.subdomain
+
+div class="well"
+  - if @petition.cached_slug? 
+    = @petition.cached_slug
+
 table class="table table-striped"
   thead
     tr

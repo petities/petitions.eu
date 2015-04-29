@@ -13,6 +13,7 @@ gem 'jquery-turbolinks'
 # authentication
 gem 'devise'
 gem 'devise-encryptable'
+gem 'pundit'
 
 # cache
 gem 'dalli'
