@@ -106,7 +106,7 @@ class PetitionsController < ApplicationController
       # find petition by slug name subdomain or id.
       if params[:slug]
         @petition = Petition.find_by_cached_slug(params[:slug])
-      if params[:subdomain]
+      elsif params[:subdomain]
         @petition = Petition.find_by_subdomain(params[:subdomain])
       else 
         @petition = Petition.find(params[:id])
