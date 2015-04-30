@@ -55,6 +55,7 @@ lim:
       visible: Visible
     linkinstruction: Linkinstruction
     tanks: Tanks
+    thanks: Thanks
   signatures: Signatures
   signnow: Signnow
   statement: Statement
