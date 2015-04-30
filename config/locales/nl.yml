@@ -51,10 +51,10 @@ nl:
       email: e-mail
       instructions: instructies
       name: naam
-      subscibe: abonneer
+      subscribe: abonneer
       visible: zichtbaar
     linkinstruction: instructie bij link
-    tanks: dank
+    thanks: dank
   signatures: ondertekeningen
   signnow: teken nu
   statement: verzoek
