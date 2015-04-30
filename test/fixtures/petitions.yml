@@ -1,9 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  text: MyText
+  id: 1,
+  name: test1,
+  description: description:1,
+  request: request:,
+  petitioner_email: test@test.nl,
+  statement: statement,
+  initiators: :initiators
+
 
 two:
-  title: MyString
-  text: MyText
+  id: 2,
+  name: test1,
+  description: description:1,
+  request: request:,
+  petitioner_email: test@test.nl,
+  statement: statement,
+  initiators: :initiators
+
+
+

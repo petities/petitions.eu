@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1,
+  petition_id: 1,
+  person_name: test name2,
+  person_email: test3@gmail.com,
+  person_city: test city3,
+  visible: 1,
+  special: 1,
+  subscribe: 1,
+  #created_at: time.now,
+  #updated_at: time.now,
+  #signed_at: time.now, 
+  #confirmed_at: time.now, 
+  confirmed: 1,
+
+
+two:
+  id: 2,
+  petition_id: 2,
+  person_name: test name3,
+  person_email: test3@gmail.com,
+  person_city: test city3,
+  visible: 1,
+  special: 1,
+  subscribe: 1,
+  confirmed: 1,
+
+three:
+  id: 3,
+  petition_id: 1,
+  person_name: test name32,
+  person_email: test3@gmail.com,
+  person_city: test city33,
+  visible: 1,
+  special: 1,
+  subscribe: 1,
+  confirmed: 1,
+
+

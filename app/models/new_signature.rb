@@ -10,10 +10,10 @@ class NewSignature < Signature
   protected
 
   def send_confirmation_mail
-    puts 'sending mail???'
-    m = SignatureMailer.sig_confirmation_mail(self)
-    puts m
-    puts 'uge'
+    #puts 'sending mail???'
+    SignatureMailer.sig_confirmation_mail(self)
+    #puts m
+    #puts 'uge'
     return true
   end
 

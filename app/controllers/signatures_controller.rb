@@ -5,9 +5,9 @@ class SignaturesController < ApplicationController
 
   # GET /signatures
   # GET /signatures.json
-  def index
-    @signatures = Signature.all
-  end
+  #def index
+  #  @signatures = Signature.all
+  #end
 
   # GET /signatures/1
   # GET /signatures/1.json def show end
@@ -19,11 +19,6 @@ class SignaturesController < ApplicationController
   #  @signature = Petition.signatures.new
   #end
 
-  # GET /signatures/1/edit
-  def edit
-  end
-
-
   # POST /signatures
   # POST /signatures.json
   def create
@@ -32,7 +27,7 @@ class SignaturesController < ApplicationController
 
     respond_to do |format|
       if @signature.save
-        puts "saving signature.."
+        #puts "saving signature.."
         format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
         format.json { render :show, status: :created, location: @signature }
       else
@@ -42,20 +37,20 @@ class SignaturesController < ApplicationController
     end
   end
 
-  def confirm
+  #def confirm
 
-    respond_to do |format|
-      if @signature.save
-        format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
-        format.json { render :show, status: :created, location: @signature }
-      else
-        format.html { render :new }
-        format.json { render json: @signature.errors, status: :unprocessable_entity }
-      end
-    end
+  #  respond_to do |format|
+  #    if @signature.save
+  #      format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
+  #      format.json { render :show, status: :created, location: @signature }
+  #    else
+  #      format.html { render :new }
+  #      format.json { render json: @signature.errors, status: :unprocessable_entity }
+  #    end
+  #  end
 
 
-  end
+  #end
 
   # GET request..
   def confirm
@@ -85,7 +80,7 @@ class SignaturesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to @petition, 
+      format.html { redirect_to @petition,
                     notice: 'Signature was successfully confirmed.' }
       format.json { render :show, status: :ok, location: @signature }
     end
