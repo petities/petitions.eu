@@ -1,61 +1,61 @@
 ---
 nl:
-  active: Active
+  active: actief
   active_admin:
-    dashboard: Dashboard
+    dashboard: dashboard
     dashboard_welcome:
-      call_to_action: Call to action
-      welcome: Welcome
-  anonymous: Anonymous
+      call_to_action: Oproep
+      welcome: welkom
+  anonymous: anoniem
   brand:
-    petitions: Petitions
-  description: Description
-  listing: Listing
+    petitions: petities
+  description: beschrijving
+  listing: overzicht
   name: Name
   peition:
     new: New
   petition:
-    created: Created
+    created: gecreëerd
     help:
-      description: Description
-      initiators: Initiators
-      link: Link
-      link_text: Link text
-      organisation: Organisation
+      description: beschrijving
+      initiators: initiatiefnemers
+      link: link
+      link_text: beschrijving van link
+      organisation: organisatie
       petitioner:
-        email: Email
-        name: Name
-      request: Request
-      statement: Statement
-      title: Title
-    optional: Optional
+        email: e-mail
+        name: naam
+      request: verzoek
+      statement: constatering
+      title: titel
+    optional: optioneel
     step:
-      description: Description
-      notice: Notice
-      petitioner: Petitioner
-      request: Request
-      target: Target
-      we: We
-    title: Title
-  petitioner: Petitioner
-  petitions: Petitions
-  place: Place
-  request: Request
+      description: beschrijving
+      notice: bericht
+      petitioner: petitionaris
+      request: verzoek
+      target: ontvanger
+      we: Wij
+    title: titel
+  petitioner: petitionaris
+  petitions: petities
+  place: plaats
+  request: verzoek
   sidebar:
-    steps: Steps
+    steps: stappen
   signature:
-    confirm: Confirm
-    dear: Dear
+    confirm: bevestig
+    dear: Beste
     help:
-      city: City
-      email: Email
-      instructions: Instructions
-      name: Name
-      subscibe: Subscibe
-      visible: Visible
-    linkinstruction: Linkinstruction
-    tanks: Tanks
-  signatures: Signatures
-  signnow: Signnow
-  statement: Statement
-  when: When
+      city: gemeente
+      email: e-mail
+      instructions: instructies
+      name: naam
+      subscibe: abonneer
+      visible: zichtbaar
+    linkinstruction: instructie bij link
+    tanks: dank
+  signatures: ondertekeningen
+  signnow: teken nu
+  statement: verzoek
+  when: wanneer
