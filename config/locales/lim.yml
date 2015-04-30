@@ -1,0 +1,61 @@
+---
+lim:
+  active: Active
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Call to action
+      welcome: Welcome
+  anonymous: Anonymous
+  brand:
+    petitions: Petitions
+  description: Description
+  listing: Listing
+  name: Name
+  peition:
+    new: New
+  petition:
+    created: Created
+    help:
+      description: Description
+      initiators: Initiators
+      link: Link
+      link_text: Link text
+      organisation: Organisation
+      petitioner:
+        email: Email
+        name: Name
+      request: Request
+      statement: Statement
+      title: Title
+    optional: Optional
+    step:
+      description: Description
+      notice: Notice
+      petitioner: Petitioner
+      request: Request
+      target: Target
+      we: We
+    title: Title
+  petitioner: Petitioner
+  petitions: Petitions
+  place: Place
+  request: Request
+  sidebar:
+    steps: Steps
+  signature:
+    confirm: Confirm
+    dear: Dear
+    help:
+      city: City
+      email: Email
+      instructions: Instructions
+      name: Name
+      subscibe: Subscibe
+      visible: Visible
+    linkinstruction: Linkinstruction
+    tanks: Tanks
+  signatures: Signatures
+  signnow: Signnow
+  statement: Statement
+  when: When
