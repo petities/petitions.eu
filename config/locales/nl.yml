@@ -11,9 +11,9 @@ nl:
     petitions: petities
   description: beschrijving
   listing: overzicht
-  name: Name
+  name: Naam
   peition:
-    new: New
+    new: Nieuw
   petition:
     created: gecreëerd
     help:
