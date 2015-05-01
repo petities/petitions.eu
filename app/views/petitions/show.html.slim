@@ -1,4 +1,4 @@
-p id="notice" 
+p id="notice"
   = notice
 
 div class="pull-right"
@@ -19,7 +19,7 @@ p class="well"
 
 p class="well"
   strong
-    = t "statement" 
+    = t "statement"
     =<> ":"
   = @petition.statement
 
@@ -42,7 +42,7 @@ div class="well"
     = @petition.subdomain
 
 div class="well"
-  - if @petition.cached_slug? 
+  - if @petition.cached_slug?
     = @petition.cached_slug
 
 table class="table table-striped"
@@ -54,7 +54,7 @@ table class="table table-striped"
       th class="col-md-1"
         = t "place"
 
-      th class="col-md-2" 
+      th class="col-md-2"
         = t "when"
 
   tbody
@@ -68,7 +68,6 @@ table class="table table-striped"
             = t "anonymous"
         td
           = signature.person_city
-           
         td
           = distance_of_time_in_words_to_now(signature.signed_at)
 

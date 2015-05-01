@@ -1,0 +1,13 @@
+h1
+  = t "peition.new"
+
+= content_for :head do
+    div class="jumbotron"
+      h1
+        = t 'Create.newpetition'
+
+== render 'side_bar'
+
+== render 'form'
+
+- link_to 'Back', petitions_path

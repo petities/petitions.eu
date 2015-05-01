@@ -12,12 +12,22 @@ class ApplicationController < ActionController::Base
   include Pundit
 
 
+  #around_action :with_locale
   before_filter :set_locale
 
   private
+
     def set_locale
-      #TODO check params locale option?
-      I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+      if I18n.available_locales.include? params[:locale]
+          I18n.with_locale(params[:locale]) {yield}
+      else 
+        I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+      end
+    end
+
+    def default_url_options(options = {})
+      { locale: I18n.locale }
     end
 
 end
+
