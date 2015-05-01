@@ -20,6 +20,8 @@ Gemfile.lock
 doc/api
 doc/app
 *.swp
+*.swo
+*.swn
 *~
 .DS_Store
 
