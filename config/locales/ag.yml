@@ -1,5 +1,7 @@
 ---
 ag:
+  Create:
+    newpetition: Newpetition
   active: Active
   active_admin:
     dashboard: Dashboard
@@ -7,8 +9,6 @@ ag:
       call_to_action: Call to action
       welcome: Welcome
   anonymous: Anonymous
-  brand:
-    petitions: Petitions
   description: Description
   listing: Listing
   name: Name
@@ -36,13 +36,14 @@ ag:
       request: Request
       target: Target
       we: We
+    steps: Steps
     title: Title
+    translations: Translations
   petitioner: Petitioner
   petitions: Petitions
   place: Place
   request: Request
-  sidebar:
-    steps: Steps
+  search: Search
   signature:
     confirm: Confirm
     dear: Dear
@@ -54,7 +55,6 @@ ag:
       subscibe: Subscibe
       visible: Visible
     linkinstruction: Linkinstruction
-    tanks: Tanks
     thanks: Thanks
   signatures: Signatures
   signnow: Signnow

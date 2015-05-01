@@ -1,5 +1,7 @@
 ---
 nl:
+  Create:
+    newpetition: Newpetition
   active: actief
   active_admin:
     dashboard: dashboard
@@ -7,8 +9,6 @@ nl:
       call_to_action: Oproep
       welcome: welkom
   anonymous: anoniem
-  brand:
-    petitions: petities
   description: beschrijving
   listing: overzicht
   name: Naam
@@ -36,13 +36,14 @@ nl:
       request: verzoek
       target: ontvanger
       we: Wij
+    steps: Steps
     title: titel
+    translations: Translations
   petitioner: petitionaris
   petitions: petities
   place: plaats
   request: verzoek
-  sidebar:
-    steps: stappen
+  search: Search
   signature:
     confirm: bevestig
     dear: Beste
@@ -51,7 +52,7 @@ nl:
       email: e-mail
       instructions: instructies
       name: naam
-      subscribe: abonneer
+      subscibe: Subscibe
       visible: zichtbaar
     linkinstruction: instructie bij link
     thanks: dank
