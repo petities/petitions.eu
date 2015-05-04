@@ -41,7 +41,7 @@ lim:
     translations: Translations
   petitioner: Petitioner
   petitions: Petitions
-  place: Place
+  place: limplaats
   request: Request
   search: Search
   signature:
