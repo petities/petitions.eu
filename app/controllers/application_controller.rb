@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
     def set_locale
       if I18n.available_locales.include? params[:locale]
-          I18n.with_locale(params[:locale]) {yield}
+          I18n.locale(params[:locale])
       else 
         I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
       end
@@ -30,4 +30,3 @@ class ApplicationController < ActionController::Base
     end
 
 end
-

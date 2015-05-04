@@ -12,8 +12,6 @@ nl:
   description: beschrijving
   listing: overzicht
   name: Naam
-  peition:
-    new: Nieuw
   petition:
     created: gecreëerd
     help:
@@ -28,6 +26,7 @@ nl:
       request: verzoek
       statement: constatering
       title: titel
+    new: Maak een nieuwe petitie
     optional: optioneel
     step:
       description: beschrijving

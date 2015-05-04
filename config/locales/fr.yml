@@ -28,6 +28,7 @@ fr:
       request: Request
       statement: Statement
       title: Title
+    new: New
     optional: Optional
     step:
       description: Description
