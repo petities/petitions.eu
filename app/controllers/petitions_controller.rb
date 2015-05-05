@@ -76,7 +76,7 @@ class PetitionsController < ApplicationController
   # PATCH/PUT /petitions/1.json
   def update
 
-    authorize @petition
+    #@authorize @petition
 
     respond_to do |format|
       if @petition.update(petition_params)

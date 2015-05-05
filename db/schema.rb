@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430121839) do
+ActiveRecord::Schema.define(version: 20150505090906) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -279,6 +279,21 @@ ActiveRecord::Schema.define(version: 20150430121839) do
 
   add_index "pages", ["cached_slug"], name: "index_pages_on_cached_slug", using: :btree
 
+  create_table "petition_translations", force: :cascade do |t|
+    t.integer  "petition_id", limit: 4,     null: false
+    t.string   "locale",      limit: 255,   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.text     "initiators",  limit: 65535
+    t.text     "statement",   limit: 65535
+    t.text     "request",     limit: 65535
+  end
+
+  add_index "petition_translations", ["locale"], name: "index_petition_translations_on_locale", using: :btree
+  add_index "petition_translations", ["petition_id"], name: "index_petition_translations_on_petition_id", using: :btree
+
   create_table "petition_types", force: :cascade do |t|
     t.string   "name",                                        limit: 255
     t.text     "description",                                 limit: 65535
@@ -538,44 +553,42 @@ ActiveRecord::Schema.define(version: 20150430121839) do
   add_index "tolk_translations", ["phrase_id", "locale_id"], name: "index_tolk_translations_on_phrase_id_and_locale_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               limit: 255
-    t.string   "name",                   limit: 255
-    t.string   "email",                  limit: 255
-    t.boolean  "confirmed",              limit: 1,   default: false, null: false
-    t.string   "crypted_password",       limit: 255
-    t.string   "password_salt",          limit: 255
-    t.string   "persistence_token",      limit: 255
-    t.string   "single_access_token",    limit: 255
-    t.string   "perishable_token",       limit: 255
-    t.integer  "login_count",            limit: 4,   default: 0,     null: false
-    t.integer  "failed_login_count",     limit: 4,   default: 0,     null: false
+    t.string   "username",             limit: 255
+    t.string   "name",                 limit: 255
+    t.string   "email",                limit: 255
+    t.boolean  "confirmed",            limit: 1,   default: false, null: false
+    t.string   "crypted_password",     limit: 255
+    t.string   "password_salt",        limit: 255
+    t.string   "persistence_token",    limit: 255
+    t.string   "single_access_token",  limit: 255
+    t.string   "perishable_token",     limit: 255
+    t.integer  "login_count",          limit: 4,   default: 0,     null: false
+    t.integer  "failed_login_count",   limit: 4,   default: 0,     null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
-    t.string   "current_login_ip",       limit: 255
-    t.string   "last_login_ip",          limit: 255
+    t.string   "current_login_ip",     limit: 255
+    t.string   "last_login_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address",                limit: 255
-    t.string   "postalcode",             limit: 255
-    t.string   "city",                   limit: 255
-    t.string   "telephone",              limit: 255
+    t.string   "address",              limit: 255
+    t.string   "postalcode",           limit: 255
+    t.string   "city",                 limit: 255
+    t.string   "telephone",            limit: 255
     t.date     "birth_date"
-    t.string   "birth_city",             limit: 255
-    t.string   "encrypted_password",     limit: 255, default: ""
-    t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
+    t.string   "birth_city",           limit: 255
+    t.string   "encrypted_password",   limit: 255
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",        limit: 4,   default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.string   "confirmation_token",     limit: 255
+    t.string   "current_sign_in_ip",   limit: 255
+    t.string   "last_sign_in_ip",      limit: 255
+    t.string   "confirmation_token",   limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
-    t.string   "remember_token",         limit: 255
+    t.string   "reset_password_token", limit: 255
+    t.string   "remember_token",       limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

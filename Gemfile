@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+gem 'rails-i18n'
+gem 'globalize', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql2'
@@ -24,8 +26,10 @@ gem 'slim'
 # will_paginate
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'will-paginate-i18n'
 #
-#gem 'i18n_generators'
+
+# gem 'i18n_generators'
 gem 'i18n-tasks'
 
 # Use SCSS for stylesheets

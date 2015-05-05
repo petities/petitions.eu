@@ -11,18 +11,3 @@ a<> = link_to 'Show', @petition
 '|
 a<> = link_to 'Back', petitions_path
 
-
-
-- content_for :sidebar
-  h3 
-    = t 'petition.translations'
-
-  ul 
-    = form_for(@petition) do f
-
-      - I18n.available_locales.each do |locale|
-
-      li
-        = link_to locale , @petition, params.merge(:locale => locale)
-        = f.check_box locale
-

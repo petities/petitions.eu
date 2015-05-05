@@ -23,3 +23,23 @@
         a href="#petitioner"
           = t "petition.step.petitioner"
 
+  - if not @petition.blank?
+    h3 
+      = t 'petition.current_translations'
+
+      ul class="nav nav-sidebar"
+        /@petition.translations
+        - ['nl', 'de', 'es'].each do |locale|
+          li
+            = link_to locale, params.merge(:locale => locale)
+
+    h3 
+      = t 'petition.add_translations'
+
+      = form_tag do |f|
+        = select_tag(@petition.id, options_for_select(I18n.available_locales))
+        f.submit
+
+  - else
+    = t 'petitions.add_translations_later'
+

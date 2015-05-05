@@ -1,5 +1,6 @@
 class Petition < ActiveRecord::Base
-
+  translates :name, :description, :initiators, :statement, :request
+    
   scope :live,      -> {where(status: 'live')}
 
   scope :big,       -> {order(signatures_count: :desc) }

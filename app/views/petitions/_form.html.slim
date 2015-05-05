@@ -11,7 +11,6 @@
             - @petition.errors.full_messages.each do |message|
                li = message
 
-
   div id="description" class="form-group"
     = f.label :name, class:'col-sm-2 control-label'
 
@@ -109,7 +108,7 @@
     = f.label :link1_text, class:'col-sm-2 control-label'
 
     div class="col-sm-10"
-      = f.url_field :link1_text, class: 'form-control', rows:"6"
+      = f.text_field :link1_text, class: 'form-control', rows:"6"
       span class="help-block" id="helpBlock"
          = t('petition.help.link_text')
 
@@ -127,7 +126,7 @@
     = f.label :link2_text, class:'col-sm-2 control-label'
 
     div class="col-sm-10"
-      = f.url_field :link2_text, class: 'form-control', rows:"6"
+      = f.text_field :link2_text, class: 'form-control', rows:"6"
       span class="help-block" id="helpBlock"
            = t('petition.help.link_text')
 
@@ -146,7 +145,7 @@
     = f.label :link3_text, class:'col-sm-2 control-label'
 
     div class="col-sm-10"
-      = f.url_field :link3_text, class: 'form-control', rows:"6"
+      = f.text_field :link3_text, class: 'form-control', rows:"6"
       span class="help-block" id="helpBlock"
            = t('petition.help.link_text')
 
