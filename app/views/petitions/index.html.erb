@@ -48,7 +48,7 @@
 <% end %>
 
 
-<% cache [cache_key_for_petitions, @page, @sorting, @order, @search] do %>
+<% cache [cache_key_for_petitions, @page, @sorting, @order, @search, I18n.locale] do %>
 
   <h1 name="listing"><%= t 'listing' %>  <%= @petitions.count %> <%= t 'petitions' %></h1>
 

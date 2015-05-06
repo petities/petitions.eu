@@ -17,14 +17,8 @@ class SignatureMailer < ApplicationMailer
     # beste x, bevestig uw handtekening voor petitie X
     subject = t("signature.confirm", name: name)
     # settings
-    @url = 'http://dev.petitions.eu/confirm/code'
-    #
 
-    m = mail(to: @signature.person_email, subject: subject)
-
-    # deliver it now!
-    #  TODO QUEUE
-    m.deliver
+    mail(to: @signature.person_email, subject: subject)
 
   end
 

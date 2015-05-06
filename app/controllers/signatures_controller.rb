@@ -91,7 +91,7 @@ class SignaturesController < ApplicationController
   # PATCH/PUT /signatures/1.json
   def update
     respond_to do |format|
-      if @signature.save()
+      if @signature.save
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
         format.json { render :show, status: :ok, location: @signature }
       elsif @signature.update(signature_params)

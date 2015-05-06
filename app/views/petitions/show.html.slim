@@ -2,7 +2,8 @@ p id="notice"
   = notice
 
 div class="pull-right"
-    = image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+  / = image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+  = "image"
 
 p class="well well-lg"
   strong

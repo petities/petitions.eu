@@ -5,11 +5,10 @@
 
 <%= t("petition.title") %>
 
-<%= @url %>
-
 <%= url_for(controller: 'signatures',
             action: 'confirm',
             #host: 'localhost:3000',
+            host: 'dev.petitions.eu',
             signature_key: @signature.unique_key,
             ) %>
 
