@@ -23,7 +23,7 @@
       a href="#petitioner"
         = t "petition.step.petitioner"
 
-  - if not @petition.blank?
+  - if not @petition.id.blank?
 
     h3 
       = t 'petition.current_translations'
@@ -54,27 +54,29 @@
     p
       = t 'petition.add_translations_link_instruction'
 
-    = form_for(@petition, :url => {:action => "update", :id => @petition}  ) do |f|
 
-      ul class="nav nav-sidebar"
-        li
-          = select_tag(:add_locale, options_for_select(I18n.available_locales))
-        li
-          = f.submit "addtranslation", class: 'btn btn-success'
+  - if not @petition.id.blank?
 
+      = form_for(@petition, :url => {:action => "update", :id => @petition}  ) do |f|
 
-    h3
-      = t 'petition.add_custom_tranlation'
-    p
-      = t 'petition.add_translations_dialect'
+          ul class="nav nav-sidebar"
+            li
+              = select_tag(:add_locale, options_for_select(I18n.available_locales))
+            li
+              = f.submit "addtranslation", class: 'btn btn-success'
 
-    = form_for(@petition) do |f|
-      ul class="nav nav-sidebar"
+      h3
+        = t 'petition.add_custom_tranlation'
+      p
+        = t 'petition.add_translations_dialect'
 
-        li
-          = text_field_tag :add_locale, ""
-        li
-          = f.submit "addnewtranslation", class: 'btn btn-success'
+      = form_for(@petition) do |f|
+        ul class="nav nav-sidebar"
+
+          li
+            = text_field_tag :add_locale, ""
+          li
+            = f.submit "addnewtranslation", class: 'btn btn-success'
 
   - else
     = t 'petitions.add_translations_later'
