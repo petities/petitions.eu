@@ -1,5 +1,7 @@
 class Petition < ActiveRecord::Base
   translates :name, :description, :initiators, :statement, :request
+
+  serialize :locale_list, Array
     
   scope :live,      -> {where(status: 'live')}
 

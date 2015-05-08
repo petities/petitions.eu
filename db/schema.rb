@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505090906) do
+ActiveRecord::Schema.define(version: 20150507092902) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -376,6 +376,7 @@ ActiveRecord::Schema.define(version: 20150505090906) do
     t.boolean  "display_person_born_at",           limit: 1
     t.boolean  "display_person_birth_city",        limit: 1
     t.boolean  "delta",                            limit: 1,     default: true,  null: false
+    t.text     "locale_list",                      limit: 65535
   end
 
   add_index "petitions", ["cached_slug"], name: "index_petitions_on_cached_slug", using: :btree

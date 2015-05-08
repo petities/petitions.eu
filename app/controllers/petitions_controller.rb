@@ -78,10 +78,30 @@ class PetitionsController < ApplicationController
 
     #@authorize @petition
 
+    new_params = Hash(petition_params[:petition])
+
+    if params[:add_locale]
+      # add a locale
+      @petition.locale_list << params[:add_locale]
+      @petition.locale_list.uniq!
+    elsif new_params.empty?
+      # NOTE we can not check for locale_list, when checklist is empty 
+      # the browser sends nothing
+      # now update locale list from selection menu
+      locale_list = [*petition_params[:locale_list]]
+      locale_list.uniq!
+      @petition.locale_list = locale_list
+      # remove the locale list otherwise @petition.update fails
+      new_params.delete(:locale_list)
+    end
+
     respond_to do |format|
-      if @petition.update(petition_params)
-        format.html { redirect_to @petition, :flash => {
-            :success => 'Petition was successfully updated.' }}
+      if @petition.update(new_params)
+        #format.html { redirect_to @petition, :flash => {
+        format.html { render :edit, :flash => {
+            :success => 'Petition was successfully updated.',
+            :error => locale_list }
+        }
         format.json { render :show, status: :ok, location: @petition }
       else
         format.html { render :edit }
@@ -115,10 +135,10 @@ class PetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.require(:petition).permit(
+      params.permit(:add_locale, petition: [
         :name, :description, :request, :petitioner_email, :password,
         :statement, :initiators, :petition_id, 
+        locale_list: []])
         #:subscribe, :visible,
-      )
     end
 end
