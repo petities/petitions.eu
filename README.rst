@@ -13,8 +13,7 @@ README
 * Database creation
 
   Create a database.yml in you config folder
-  there is an example sqlite database availble.
-  link is to be added..
+  there is an example sqlite database available on request
 
 * Database initialization
 
