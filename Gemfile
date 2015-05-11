@@ -6,8 +6,9 @@ gem 'rails', '4.2.0'
 gem 'rails-i18n'
 gem 'globalize', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
+
 gem 'sqlite3'
-gem 'mysql2'
+#gem 'mysql2'
 
 #legacy utf 8 issues..
 gem 'utf8-cleaner'
