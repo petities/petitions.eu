@@ -25,6 +25,39 @@
 
   - if not @petition.id.blank?
 
+    h3
+      = t 'petition.version'
+      = ":"
+
+      - if @index < 0
+        =<> @index
+      - else
+        =<> t 'petition.live'
+
+    - if @index
+
+      ul
+
+        li =<> link_to edit_petition_path(@petition)
+            = t "petition.live_version"
+
+        li
+          - if @index < 0
+            =<> link_to edit_petition_path(@petition, {version: @up})
+              span class="glyphicon glyphicon-arrow-up" aria-hidden="true"
+              = t "petition.newer_version"
+          - else
+            =<> t "petition.newest"
+
+        li
+          - if @index.abs < @petition.versions.size
+            =<> link_to edit_petition_path(@petition, {version: @down})
+              span class="glyphicon glyphicon-arrow-down" aria-hidden="true"
+              = t "petition.older_version"
+          - else
+             =<> t "petition.oldest"
+
+
     h3 
       = t 'petition.current_translations'
 
@@ -37,12 +70,14 @@
         = form_for(@petition) do |f|
           - @petition.locale_list.each do |trans|
             li
-
               =<> f.check_box(:locale_list, {:multiple => true }, trans, nil)
 
-              =<> link_to trans, petition_path(@petition, locale: trans)
+              =<> link_to petition_path(@petition, locale: trans)
+                span class="glyphicon glyphicon-eye-open" aria-hidden="true"
 
-              =<> link_to trans, edit_petition_path(@petition, locale: trans)
+              =<> link_to edit_petition_path(@petition, locale: trans)
+                span class="glyphicon glyphicon-edit" aria-hidden="true"
+              = trans
 
           li
             = f.submit "updatetranslations", class: 'btn btn-warning'

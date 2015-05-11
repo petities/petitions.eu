@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511103858) do
+ActiveRecord::Schema.define(version: 20150511110406) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -606,6 +606,7 @@ ActiveRecord::Schema.define(version: 20150511103858) do
     t.integer  "whodunnit",  limit: 4
     t.text     "object",     limit: 65535
     t.datetime "created_at"
+    t.string   "locale",     limit: 255
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree

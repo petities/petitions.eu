@@ -1,5 +1,6 @@
 class Petition < ActiveRecord::Base
-  translates :name, :description, :initiators, :statement, :request
+  translates :name, :description, :initiators, :statement, :request, :versioning => :paper_trail
+  has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
     
