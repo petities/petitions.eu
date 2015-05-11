@@ -19,6 +19,8 @@ gem 'jquery-turbolinks'
 # authentication
 gem 'devise'
 gem 'devise-encryptable'
+gem 'devise-i18n'
+
 gem 'pundit'
 
 # cache
