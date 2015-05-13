@@ -4,12 +4,14 @@ p id="notice"
 div class="pull-right"
   / = image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
   = "image"
+  = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
 
 p class="well well-lg"
   strong
     = t "name"
     =<> ":"
   = @petition.name
+
 
 p class="well"
   strong
@@ -77,7 +79,8 @@ table class="table table-striped"
 
 
 
-= link_to 'Edit', edit_petition_path(@petition)
+= link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
 =<> "|"
 
-= link_to 'Back', petitions_path
+= link_to 'Back', petitions_path, html_options={class: "btn btn-success"}
+

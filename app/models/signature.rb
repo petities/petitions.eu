@@ -5,8 +5,8 @@ class Signature < ActiveRecord::Base
   belongs_to :petition #, :counter_cache => true
   has_one :petition_type, :through => :petition
 
-  has_many :reminders, :class_name => 'SignaturesReminder'
-  has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
+  # has_many :reminders, :class_name => 'SignaturesReminder'
+  # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
   validates :person_name, length: {in: 3..255}
   validates :person_name, format: { with: /\A.+( |\.).+\z/}

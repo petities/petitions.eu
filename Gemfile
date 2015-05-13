@@ -24,6 +24,8 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 
+gem 'cancancan'
+
 gem 'pundit'
 
 # cache
