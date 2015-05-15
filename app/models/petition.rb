@@ -1,5 +1,6 @@
 class Petition < ActiveRecord::Base
-  translates :name, :description, :initiators, :statement, :request
+  translates :name, :description, :initiators, :statement, :request, :versioning => :paper_trail
+  has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
     
@@ -8,7 +9,7 @@ class Petition < ActiveRecord::Base
   scope :big,       -> {order(signatures_count: :desc) }
 
   belongs_to :petition_type
-  belongs_to :organisation
+  # belongs_to :organisation
 
   has_many :images, :as => :imageable, :dependent => :destroy
 

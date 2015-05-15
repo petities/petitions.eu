@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: [:show, :edit, :update, :destroy]
+  before_action :set_petition, only: [:show, :edit, :update]
 
   # GET /petitions
   # GET /petitions.json
@@ -72,14 +72,8 @@ class PetitionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /petitions/1
-  # PATCH/PUT /petitions/1.json
-  def update
-
-    #@authorize @petition
-
-    new_params = Hash(petition_params[:petition])
-
+  def update_locale_list(params, new_params)
+    # update the locale menu here
     if params[:add_locale]
       # add a locale
       @petition.locale_list << params[:add_locale]
@@ -95,12 +89,24 @@ class PetitionsController < ApplicationController
       new_params.delete(:locale_list)
     end
 
+    new_params
+
+  end
+
+  # PATCH/PUT /petitions/1
+  # PATCH/PUT /petitions/1.json
+  def update
+
+    #@authorize @petition
+
+    new_params = Hash(petition_params[:petition])
+
+    new_params = update_locale_list(params, new_params)
     respond_to do |format|
       if @petition.update(new_params)
         #format.html { redirect_to @petition, :flash => {
         format.html { render :edit, :flash => {
-            :success => 'Petition was successfully updated.',
-            :error => locale_list }
+            :success => 'Petition was successfully updated.'}
         }
         format.json { render :show, status: :ok, location: @petition }
       else
@@ -122,6 +128,7 @@ class PetitionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+  #
     def set_petition
       # find petition by slug name subdomain or id.
       if params[:slug]
@@ -131,11 +138,28 @@ class PetitionsController < ApplicationController
       else 
         @petition = Petition.find(params[:id])
       end
+
+      # find specific papertrail version
+      @index = 0
+
+      if params[:version]
+        @index = params[:version].to_i
+        @petition = @petition.versions[@index].reify
+      end
+
+      if @petition.has_attribute? :index
+        @index = @petition.index
+      end
+
+      @up = @index < 0 ? @index + 1 : 0 
+      @down = @index.abs < @petition.versions.size ? @index-1 : @index
+
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.permit(:add_locale, petition: [
+      params.permit(:add_locale, :version, petition: [
         :name, :description, :request, :petitioner_email, :password,
         :statement, :initiators, :petition_id, 
         locale_list: []])

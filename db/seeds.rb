@@ -44,7 +44,8 @@ total_signatures = 0
         :updated_at => Faker::Time.between(10.days.ago, Time.now, :afternoon),
         :signed_at => Faker::Time.between(20.days.ago, Time.now, :evening),
         :confirmed_at => Faker::Time.between(20.days.ago, Time.now),
-        :confirmed => rand(10) > 8 ? true: false,
+        #:confirmed => rand(10) > 8 ? true: false,
+        :confirmed => true,
         #:description => Faker::Lorem.sentence,
       })
       signature.save
