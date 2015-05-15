@@ -64,9 +64,9 @@
     ul class="nav nav-sidebar"
       - unless @petition.locale_list.empty?
         li 
-          =<> t "Enable"
-          =<> t "Show"
-          =<> t "Edit"
+          =<> t "petition.Enable"
+          =<> t "petition.Show"
+          =<> t "petition.Edit"
         = form_for(@petition) do |f|
           - @petition.locale_list.each do |trans|
             li
@@ -101,7 +101,7 @@
               = f.submit "addtranslation", class: 'btn btn-success'
 
       h3
-        = t 'petition.add_custom_tranlation'
+        = t 'petition.add_custom_translation'
       p
         = t 'petition.add_translations_dialect'
 

@@ -15,7 +15,16 @@ en:
   peition:
     new: New
   petition:
+    Edit: Edit
+    Enable: Enable
+    Show: Show
+    add_custom_translation: Add custom translation
+    add_translations: Add translations
+    add_translations_dialect: Add translations dialect
+    add_translations_link_instruction: Add translations link instruction
     created: Created
+    current_translations: Current translations
+    editing: Editing
     help:
       description: Description
       initiators: Initiators
@@ -27,8 +36,17 @@ en:
         name: Name
       request: Request
       statement: Statement
+      subdomain: Subdomain
       title: Title
+    language: Language
+    live: Live
+    live_version: Live version
     new: New
+    newer_version: Newer version
+    newest: Newest
+    notranslations: Notranslations
+    older_version: Older version
+    oldest: Oldest
     optional: Optional
     step:
       description: Description
@@ -39,9 +57,10 @@ en:
       we: We
     steps: Steps
     title: Title
-    translations: Translations
+    version: Version
   petitioner: Petitioner
-  petitions: Petitions
+  petitions:
+    add_translations_later: Add translations later
   place: Place
   request: Request
   search: Search
@@ -53,7 +72,7 @@ en:
       email: Email
       instructions: Instructions
       name: Name
-      subscibe: Subscibe
+      subscribe: Subscribe
       visible: Visible
     linkinstruction: Linkinstruction
     thanks: Thanks
