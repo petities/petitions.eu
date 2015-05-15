@@ -11,7 +11,7 @@ gem 'globalize-versioning'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3'
-#gem 'mysql2'
+gem 'mysql2'
 
 #legacy utf 8 issues..
 gem 'utf8-cleaner'
@@ -24,6 +24,7 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-i18n'
+gem 'rolify'
 
 gem 'cancancan'
 
@@ -78,8 +79,9 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-#
+
 gem 'http_accept_language'
+gem 'i18n-country-translations'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
