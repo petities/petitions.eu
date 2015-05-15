@@ -96,7 +96,7 @@
 
           ul class="nav nav-sidebar"
             li
-              = select_tag(:add_locale, options_for_select(I18n.available_locales))
+              = select_tag(:add_locale, options_for_select(I18n.available_locales ))
             li
               = f.submit "addtranslation", class: 'btn btn-success'
 
@@ -114,5 +114,5 @@
             = f.submit "addnewtranslation", class: 'btn btn-success'
 
   - else
-    = t 'petitions.add_translations_later'
+    = t 'petition.add_translations_later'
 
