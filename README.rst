@@ -50,7 +50,7 @@ I don't know what this does..
     I18n remove-unused
 
 
-Legacy migration db tips
+Legacy migration db hints
 ========================
 
 The original old mysql database contains latin1 and utf8 to fix this
