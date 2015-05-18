@@ -31,8 +31,26 @@ README
 
 * Deployment instructions
 
+* I18n updates
+    
+Find out which translation keys are missing
 
-Legacy migration db tips
+    I18n missing
+    
+Add the missing translation keys
+
+    I18n add-mising
+
+Find out which translation keys are unused
+
+    I18n unused
+    
+I don't know what this does..
+
+    I18n remove-unused
+
+
+Legacy migration db hints
 ========================
 
 The original old mysql database contains latin1 and utf8 to fix this

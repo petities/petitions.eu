@@ -12,8 +12,19 @@ nl:
   description: beschrijving
   listing: overzicht
   name: Naam
+  peition:
+    new: New
   petition:
+    Edit: Edit
+    Enable: Enable
+    Show: Show
+    add_custom_translation: Add custom translation
+    add_translations: Add translations
+    add_translations_dialect: Add translations dialect
+    add_translations_link_instruction: Add translations link instruction
     created: gecreëerd
+    current_translations: Current translations
+    editing: Editing
     help:
       description: beschrijving
       initiators: initiatiefnemers
@@ -25,8 +36,17 @@ nl:
         name: naam
       request: verzoek
       statement: constatering
+      subdomain: Subdomain
       title: titel
+    language: Language
+    live: Live
+    live_version: Live version
     new: Maak een nieuwe petitie
+    newer_version: Newer version
+    newest: Newest
+    notranslations: Notranslations
+    older_version: Older version
+    oldest: Oldest
     optional: optioneel
     step:
       description: beschrijving
@@ -37,9 +57,10 @@ nl:
       we: Wij
     steps: Steps
     title: titel
-    translations: Translations
+    version: Version
   petitioner: petitionaris
-  petitions: petities
+  petitions:
+    add_translations_later: Add translations later
   place: plaats
   request: verzoek
   search: Zoek3
@@ -51,7 +72,7 @@ nl:
       email: e-mail
       instructions: instructies
       name: naam
-      subscibe: Vold
+      subscribe: Subscribe
       visible: zichtbaar
     linkinstruction: instructie bij link
     thanks: dank
