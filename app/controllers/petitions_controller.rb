@@ -8,13 +8,16 @@ class PetitionsController < ApplicationController
     order = params[:order] || 0
     @sorting = params[:sort]
 
-    petitions = Petition
+    petitions = Petition.live
 
     # enable search on petition title. TODO ransack?
     @search = 0
-    if params[:search]
-      petitions = Petition.findbyname(params[:search])
+    if not params[:search].blank?
       @search = params[:search]
+      #translation = Petition.findbyname(params[:search])
+      petitions = Petition.joins(:translations).
+        #with_locales(I18n.available_locales). 
+        where("petition_translations.name like ?", "%#{@search}%")
     end
 
     # enable sorting..
@@ -26,6 +29,8 @@ class PetitionsController < ApplicationController
           petitions = petitions.order(signatures_count: direction)
         end
     end
+
+    @show_on_home = Petition.live.order(last_confirmed_at: :desc).limit(25)
 
     @petitions = petitions.paginate(:page => params[:page])
     @order = order == '1'? 0 : 1

@@ -8,14 +8,16 @@ class Petition < ActiveRecord::Base
 
   scope :big,       -> {order(signatures_count: :desc) }
 
+
   belongs_to :petition_type
   # belongs_to :organisation
 
   has_many :images, :as => :imageable, :dependent => :destroy
 
-  def self.show_on_home
-    Petition.order(last_confirmed_at: :desc).limit(25)
-  end
+  #def self.show_on_home
+  #  #Petition.order(last_confirmed_at: :desc).limit(25)
+  #  []
+  #end
 
   #default_scope :order => 'petitions.name ASC'
   has_many :new_signatures
@@ -40,10 +42,6 @@ class Petition < ActiveRecord::Base
 
   def elapsed_time
       Time.now - (self.last_confirmed_at || Time.now)
-  end
-
-  def self.findbyname(query)
-    where("name like ?", "%#{query}%")
   end
 
 

@@ -1,0 +1,77 @@
+p id="notice"
+  = notice
+
+= link_to new_petition_path,  class: 'btn btn-success' do
+  i class="glyphicon glyphicon-plus"
+    = t "petition.new"
+
+
+- if params["search"].blank? 
+
+  h1
+    = t "active"
+
+  table class="table table-striped"
+    thead
+      tr
+        th class="col-md-9"
+          = t('name')
+        th class="col-md-1"
+          = t('signatures')
+        th class="col-md-2"
+          = t('active')
+
+    tbody>
+
+    - @show_on_home.each do |petition|
+
+      - cache [petition.id, Globalize.locale.to_s] do
+
+        tr
+          td
+            = link_to petition_path(petition) do
+              = petition.name
+
+          td
+            div class="label label-success"
+              = petition.signatures_count
+
+          td
+            = distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+
+
+- cache [cache_key_for_petitions, @page, @sorting, @order, @search, I18n.locale] do
+
+  h1 name="listing"
+    => t 'listing'
+    =<> @petitions.count 
+    =<> t 'petitions' 
+
+  table class="table table-striped"
+
+    thead
+      tr
+        th class="col-md-9"
+          = link_to t('name'), controller: "petitions" , anchor: "listing", sort: 'name', order: @order
+
+        th class="col-md-1"
+          = link_to t('signatures'), controller: "petitions" , anchor: "listing",  sort: 'signatures_count', order: @order
+
+        th class="col-md-2" 
+
+    tbody
+
+      - @petitions.each do |petition|
+          - cache [petition, I18n.locale] do
+            tr
+              td
+                = link_to petition_path(petition) do
+                  = petition.name
+
+              td
+                div class="label label-success"
+                  = petition.signatures_count
+
+              td
+
+    = will_paginate @petitions, renderer: BootstrapPagination::Rails
