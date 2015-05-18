@@ -17,4 +17,3 @@
 //= require bootstrap-sprockets
 //= require mailcheck
 //= require_tree .
-

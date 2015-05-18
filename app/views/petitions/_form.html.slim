@@ -83,8 +83,8 @@
     div class="col-sm-10"
       = f.text_field :petitioner_email, class: 'form-control', rows:"6"
       span class="help-block" id="helpBlock"
-         = t('petition.help.petitioner.email')
-
+        span<> id="emailsuggestion"
+        = t('petition.help.petitioner.email')
 
 
   div class="form-group"

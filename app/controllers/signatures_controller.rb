@@ -65,6 +65,7 @@ class SignaturesController < ApplicationController
       old_signature = @signature
       # create a new one..
       @signature = Signature.new(@signature.as_json)
+      @signature.id = nil
       @signature.confirmed = true
       @signature.confirmation_remote_addr = request.remote_ip
       @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?

@@ -4,14 +4,15 @@ h1
   =<> I18n.locale
 
 
+a<> = link_to 'Show', @petition, html_options = {class:"btn btn-success"}
+  '|
+a<> = link_to 'Back', petitions_path, html_options = {class:"btn btn-success"}
+
+
 == render 'side_bar'
 
 == render 'form'
 
 
-h1 Admin Petition options.. TODO
-
-a<> = link_to 'Show', @petition, html_options = {class:"btn btn-success"}
-'|
-a<> = link_to 'Back', petitions_path, html_options = {class:"btn btn-success"}
-
+- if user.has_role? :admin
+  h1 Admin Petition options.. TODO

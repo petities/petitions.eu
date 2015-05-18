@@ -23,7 +23,8 @@ empty = (element) ->
 # on focusing to the next form check the mail field
 # and do a suggestion
 $ ->
-  $('#signature_person_email').bind 'blur', ->
+  #$('#signature_person_email').bind 'blur', ->
+  $('[id$=_email]').bind 'blur', ->
     $(this).mailcheck suggested: suggested, empty: empty
 
 
@@ -31,7 +32,7 @@ $ ->
 # and remove the suggestion
 $ ->
   $("#emailsuggestion").on "click", ->
-    $("#signature_person_email").val $(this).html()
+    $("[id$=_email]").val $(this).html()
     $(this).removeClass "btn btn-warning"
     $(this).html ""
 

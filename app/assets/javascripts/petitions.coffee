@@ -1,12 +1,13 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-#
 
-# for elements with the counit class lookup the maximum
+
 # content length defind as cmax.
-# determin how many characters are left and put that count
+# determine how many characters are left and put that count
 # in the #rem (remaining) div inside the help block
+# for elements with the counit class lookup the maximum
+
 $ ->
   $(".countit").keyup (e) ->
     cmax = $("#rem_" + $(this).attr("id")).attr("title")
@@ -18,4 +19,4 @@ $ ->
 # TODO
 # Make vote an ajax event!
 #
-#
+
