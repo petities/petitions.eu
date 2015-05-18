@@ -6,6 +6,14 @@ div class="pull-right"
   = "image"
   = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
 
+- if @petition.locale_list
+  p class="well"
+    = t "petitions.translations"
+    =<> ":"
+    - @petition.locale_list.each do |trans|
+      =<> link_to petition_path(@petition, locale: trans)
+        =<> t(trans.upcase.to_sym, :scope => :countries) 
+
 p class="well well-lg"
   strong
     = t "name"
@@ -18,6 +26,12 @@ p class="well"
     = t "description"
     =<> ":"
   = @petition.description
+
+p class="well"
+  strong
+    = t "initiators"
+    =<> ":"
+  = @petition.initiators
 
 
 p class="well"

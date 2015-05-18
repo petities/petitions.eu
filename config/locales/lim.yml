@@ -59,8 +59,7 @@ lim:
     title: Title
     version: Version
   petitioner: Petitioner
-  petitions:
-    add_translations_later: Add translations later
+  petitions: Petitions
   place: limplaats
   request: Request
   search: Search

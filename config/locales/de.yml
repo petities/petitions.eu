@@ -58,9 +58,6 @@ de:
     steps: Steps
     title: Title
     version: Version
-  petitioner: Petitioner
-  petitions:
-    add_translations_later: Add translations later
   place: Place
   request: Request
   search: Search

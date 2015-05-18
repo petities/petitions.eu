@@ -59,8 +59,7 @@ nl:
     title: titel
     version: Version
   petitioner: petitionaris
-  petitions:
-    add_translations_later: Add translations later
+  petitions: Petitions
   place: plaats
   request: verzoek
   search: Zoek3

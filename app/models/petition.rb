@@ -1,4 +1,5 @@
 class Petition < ActiveRecord::Base
+  resourcify
   translates :name, :description, :initiators, :statement, :request, :versioning => :paper_trail
   has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 

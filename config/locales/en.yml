@@ -14,6 +14,7 @@ en:
   name: Name
   peition:
     new: New
+  petitions: Petitions
   petition:
     Edit: Edit
     Enable: Enable
@@ -59,8 +60,7 @@ en:
     title: Title
     version: Version
   petitioner: Petitioner
-  petitions:
-    add_translations_later: Add translations later
+  petitons: Petitions
   place: Place
   request: Request
   search: Search
