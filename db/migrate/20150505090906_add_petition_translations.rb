@@ -14,6 +14,6 @@ class AddPetitionTranslations < ActiveRecord::Migration
   end
 
   def down 
-    Petition.drop_translation_table!
+    #Petition.drop_translation_table!
   end
 end

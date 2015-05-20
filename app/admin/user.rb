@@ -37,7 +37,8 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :roles, as: :check_boxes
+      f.input :roles, as: :check_boxes, collection: Role.where({
+        resource_id: nil, resource_type: nil})
     end
     f.actions
   end

@@ -1,23 +1,32 @@
 
-- if current_user.admin?
 
-  = form_for(@petition, html: {class: "form-horizontal", autocomplete: "on"}) do |f|
+= form_for(@petition, html: {class: "form-horizontal", autocomplete: "on"}) do |f|
 
-    - if @petition.errors.any?
-        div id="error_explanation"
-          h2  = pluralize @petition.errors.count, "error"
-            | prohibited this petition from being saved
+  - if @petition.errors.any?
+      div id="error_explanation"
+        h2  = pluralize @petition.errors.count, "error"
+          | prohibited this petition from being saved
 
-            ul
+          ul
 
-              - @petition.errors.full_messages.each do |message|
-                 li = message
+            - @petition.errors.full_messages.each do |message|
+               li = message
 
-    div class="form-group"
-      = f.label :subdomain, class:'col-sm-2 control-label'
+  div class="form-group"
+    = f.label :subdomain, class:'col-sm-2 control-label'
 
-      div class="col-sm-10"
-        = f.text_field :subdomain, class: 'form-control countit', rows:"6"
-        span class="help-block" id="helpBlock"
-           = t('petition.help.subdomain')
-           span<>id="rem_petition_subdomain" class="heko-block label label-success" title=50
+    div class="col-sm-10"
+      = f.text_field :subdomain, class: 'form-control countit', rows:"6"
+      span class="help-block" id="helpBlock"
+         = t('petition.help.subdomain')
+         span<>id="rem_petition_subdomain" class="heko-block label label-success" title=50
+
+  div class="form-group"
+    = f.label :subdomain, class:'col-sm-2 control-label'
+
+    div class="col-sm-10"
+      = f.text_field :subdomain, class: 'form-control countit', rows:"6"
+      span class="help-block" id="helpBlock"
+         = t('petition.help.subdomain')
+         span<>id="rem_petition_subdomain" class="heko-block label label-success" title=50
+
