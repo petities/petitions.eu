@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SignaturesControllerTest < ActionController::TestCase
+
   setup do
     @petition = petitions(:one)
     @signature = signatures(:one)
@@ -30,8 +31,8 @@ class SignaturesControllerTest < ActionController::TestCase
         :subscribe => true,
         :created_at => Time.now,
         :updated_at => Time.now,
-        :signed_at => Time.now, 
-        :confirmed_at => Time.now, 
+        :signed_at => Time.now,
+        :confirmed_at => Time.now,
         :confirmed => false,
       }
     end
@@ -40,25 +41,25 @@ class SignaturesControllerTest < ActionController::TestCase
 
 
   test "signature confirmation links" do
-    assert_routing("/signatures/10/confirm", :controller => "signatures", 
+    assert_routing("/signatures/10/confirm", :controller => "signatures",
                    :action => "confirm", :signature_key => "10")
 
-    assert_routing("/signatures/xx/confirm", :controller => "signatures", 
+    assert_routing("/signatures/xx/confirm", :controller => "signatures",
                    :action => "confirm", :signature_key => "xx")
   end
 
   test "check confirmation logic" do
-    assert_difference('Signature.count') do 
+    assert_difference('Signature.count') do
       get :confirm, :signature_key => @newsignature.unique_key
-      assert_redirected_to @petition 
+      assert_redirected_to @petition
     end
     # when we do it again nothing should happen.
-    assert_no_difference('Signature.count') do 
+    assert_no_difference('Signature.count') do
       get :confirm, :signature_key => @newsignature.unique_key
     end
   end
 
- 
+
   #test "should show signature" do
   #  get :show, id: @signature
   #  assert_response :success

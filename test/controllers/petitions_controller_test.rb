@@ -18,13 +18,13 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test "should create petition" do
     assert_difference('Petition.count') do
-      post :create, petition: { 
-        name: @petition.name, 
-        description: @petition.description, 
-        request: @petition.request, 
-        petitioner_email: @petition.petitioner_email, 
-        statement: @petition.statement, 
-        initiators: @petition.initiators, 
+      post :create, petition: {
+        name: @petition.name,
+        description: @petition.description,
+        request: @petition.request,
+        petitioner_email: @petition.petitioner_email,
+        statement: @petition.statement,
+        initiators: @petition.initiators,
       }
     end
 

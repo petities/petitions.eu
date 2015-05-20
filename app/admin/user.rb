@@ -33,7 +33,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "User Details" do
       f.input :email
       f.input :password
       f.input :password_confirmation
@@ -42,4 +42,15 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+ def update
+   if params[:user][:password].blank?
+      params[:model].delete("password")
+      params[:model].delete("password_confirmation")
+   end
+
+   super
+
+ end
+
 end

@@ -61,7 +61,9 @@ class PetitionsController < ApplicationController
   # POST /petitions
   # POST /petitions.json
   def create
-    @petition = Petition.new(petition_params)
+
+    new_params = Hash(petition_params[:petition])
+    @petition = Petition.new(new_params)
 
     respond_to do |format|
       if @petition.save

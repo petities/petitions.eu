@@ -1,7 +1,7 @@
 class AddPetitionTranslations < ActiveRecord::Migration
-  
 
   def up
+
     Petition.create_translation_table!({
       :name => :string, 
       :description => :text, 

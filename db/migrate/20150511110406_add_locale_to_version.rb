@@ -1,5 +1,5 @@
 class AddLocaleToVersion < ActiveRecord::Migration
-  def change
+  def up
       add_column :versions, :locale, :string
   end
 end
