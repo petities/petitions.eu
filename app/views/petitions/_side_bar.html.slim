@@ -57,8 +57,22 @@
           - else
              =<> t "petition.oldest"
 
+    h3
+      = t 'petition.editors'
 
-    h3 
+    ul class="nav nav-sidebar"
+      = form_for(@petition, :url => petition_update_owners_path(@petition)) do |f|
+
+        - @owners.each do |owner|
+          li
+            =<> check_box_tag 'owner_ids[]', owner.id
+            = owner.name
+        li
+          = text_field_tag :add_owner, "", :placeholder => t('petition.user_email', default: 'email')
+        li
+          = f.submit "update_owners", class: 'btn btn-warning'
+
+    h3
       = t 'petition.current_translations'
 
     ul class="nav nav-sidebar"

@@ -26,6 +26,7 @@ en:
     created: Created
     current_translations: Current translations
     editing: Editing
+    user_email: Email of user
     help:
       description: Description
       initiators: Initiators

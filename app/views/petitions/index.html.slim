@@ -6,7 +6,7 @@ p id="notice"
     = t "petition.new"
 
 
-- if params["search"].blank? 
+- if params["search"].blank?
 
   h1
     = t "active"
@@ -44,8 +44,8 @@ p id="notice"
 
   h1 name="listing"
     => t 'listing'
-    =<> @petitions.count 
-    =<> t 'petitions' 
+    =<> @petitions.count
+    =<> t 'petitions'
 
   table class="table table-striped"
 
@@ -57,7 +57,7 @@ p id="notice"
         th class="col-md-1"
           = link_to t('signatures'), controller: "petitions" , anchor: "listing",  sort: 'signatures_count', order: @order
 
-        th class="col-md-2" 
+        th class="col-md-2"
 
     tbody
 

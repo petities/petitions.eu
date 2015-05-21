@@ -9,7 +9,6 @@ class Petition < ActiveRecord::Base
 
   scope :big,       -> {order(signatures_count: :desc) }
 
-
   belongs_to :petition_type
   # belongs_to :organisation
 

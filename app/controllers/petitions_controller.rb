@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: [:show, :edit, :update]
+  before_action :set_petition, only: [:show, :edit, :update, :update_owners]
 
   # GET /petitions
   # GET /petitions.json
@@ -22,6 +22,9 @@ class PetitionsController < ApplicationController
 
     # enable sorting..
     if @sorting then
+
+        petitions = Petition.joins(:translations).live
+
         direction = [:desc, :asc][order.to_i]
         if @sorting == 'name' then
           petitions = petitions.order(name: direction)
@@ -40,12 +43,19 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
+    @page = params[:page]
+
+    @owners = find_owners
+
     @signature = @petition.signatures.new
 
     @signatures = @petition.signatures
     @signatures = @signatures.order(created_at: :desc)
     @signatures = @signatures.paginate(:page => params[:page])
 
+    # TODO.
+    # where prominent is TRUE and score is higher then 0
+    # ordered by score
     @prominenten = @signatures
   end
 
@@ -56,6 +66,8 @@ class PetitionsController < ApplicationController
 
   # GET /petitions/1/edit
   def edit
+    authorize @petition
+    @owners = find_owners
   end
 
   # POST /petitions
@@ -82,12 +94,14 @@ class PetitionsController < ApplicationController
   def update_locale_list(params, new_params)
     # update the locale menu here
     if params[:add_locale]
-      # add a locale
+      # add a single locale from the side bar like "klingon"
       @petition.locale_list << params[:add_locale]
       @petition.locale_list.uniq!
     elsif new_params.empty?
+      # set the locale list from the side bar ["en", "de", "lim"]
       # NOTE we can not check for locale_list, when checklist is empty 
       # the browser sends nothing
+      # on no locale list and no petition parameter. locale_list = []
       # now update locale list from selection menu
       locale_list = [*petition_params[:locale_list]]
       locale_list.uniq!
@@ -97,6 +111,40 @@ class PetitionsController < ApplicationController
     end
 
     new_params
+  end
+
+  # POST /petitions/1
+  def update_owners
+    authorize @petition
+    @owners = find_owners
+
+    owner_ids = [*params[:owner_ids]].map(&:to_i)
+    owner_ids.uniq!
+
+    # remove ownership for users not in owners_ids
+
+    if not owner_ids.empty?
+
+      diff1 = @owners.ids - owner_ids
+
+      diff1.each do |id|
+        user = User.find(id)
+        user.remove_role(:admin, @petition)
+      end
+    end
+
+    # add a user to role
+    if params[:add_owner]
+      user = User.find_by_email(params["add_owner"])
+      if user
+        user.add_role :admin, @petition 
+      end
+    end
+
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render :show, status: :ok, location: @petition }
+    end
 
   end
 
@@ -104,11 +152,12 @@ class PetitionsController < ApplicationController
   # PATCH/PUT /petitions/1.json
   def update
 
-    #@authorize @petition
+    @owners = find_owners
 
     new_params = Hash(petition_params[:petition])
 
     new_params = update_locale_list(params, new_params)
+
     respond_to do |format|
       if @petition.update(new_params)
         #format.html { redirect_to @petition, :flash => {
@@ -142,6 +191,8 @@ class PetitionsController < ApplicationController
         @petition = Petition.find_by_cached_slug(params[:slug])
       elsif params[:subdomain]
         @petition = Petition.find_by_subdomain(params[:subdomain])
+      elsif params[:petition_id]
+        @petition = Petition.find(params[:petition_id])
       else 
         @petition = Petition.find(params[:id])
       end
@@ -163,10 +214,14 @@ class PetitionsController < ApplicationController
 
     end
 
+    def find_owners
+      User.joins(:roles).where(
+        roles: {resource_type: 'Petition', resource_id: @petition.id})
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.permit(:add_locale, :version, petition: [
+      params.permit(:add_locale, :version, :owner_ids, :add_owner, petition: [
         :name, :description, :request, :petitioner_email, :password,
         :statement, :initiators, :petition_id, 
         locale_list: []])

@@ -4,92 +4,106 @@ p id="notice"
 div class="pull-right"
   / = image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
   = "image"
-  = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
+  - if user_signed_in?
+      - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
+        = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
 
-- if @petition.locale_list
+
+- cache [@petition, Globalize.locale.to_s] do
+
+  - if @petition.locale_list
+    p class="well"
+      = t "petitions.translations"
+      =<> ":"
+      - @petition.locale_list.each do |trans|
+        =<> link_to petition_path(@petition, locale: trans)
+          =<> t(trans.upcase.to_sym, :scope => :countries) 
+
+  p class="well well-lg"
+    strong
+      = t "name"
+      =<> ":"
+    = @petition.name
+
+
   p class="well"
-    = t "petitions.translations"
-    =<> ":"
-    - @petition.locale_list.each do |trans|
-      =<> link_to petition_path(@petition, locale: trans)
-        =<> t(trans.upcase.to_sym, :scope => :countries) 
+    strong
+      = t "description"
+      =<> ":"
+    = @petition.description
 
-p class="well well-lg"
-  strong
-    = t "name"
-    =<> ":"
-  = @petition.name
-
-
-p class="well"
-  strong
-    = t "description"
-    =<> ":"
-  = @petition.description
-
-p class="well"
-  strong
-    = t "initiators"
-    =<> ":"
-  = @petition.initiators
+  p class="well"
+    strong
+      = t "initiators"
+      =<> ":"
+    = @petition.initiators
 
 
-p class="well"
-  strong
-    = t "statement"
-    =<> ":"
-  = @petition.statement
+  p class="well"
+    strong
+      = t "statement"
+      =<> ":"
+    = @petition.statement
 
-p class="well"
-  strong
-    = t "request"
-    =<> ":"
-  = @petition.request
+  p class="well"
+    strong
+      = t "request"
+      =<> ":"
+    = @petition.request
 
 = render "signatures/form"
 
-div class="well"
-  = t "signatures"
-  =<> ":"
+- cache [@petition, Globalize.locale.to_s] do
 
-  = @petition.signatures.count
+  div class="well"
+    = t "signatures"
+    =<> ":"
 
-div class="well"
-  - if @petition.subdomain?
-    = @petition.subdomain
+    = @petition.signatures.count
 
-div class="well"
-  - if @petition.cached_slug?
-    = @petition.cached_slug
+  div class="well"
+    =<> t "petition.subdomain"
+    - if @petition.subdomain?
+      = @petition.subdomain
 
-table class="table table-striped"
-  thead
-    tr
-      th class="col-md-9"
-        = t "name"
+  div class="well"
+    - if @petition.cached_slug?
+      = @petition.cached_slug
 
-      th class="col-md-1"
-        = t "place"
+  div class="well"
+    =<> t "petition.management"
+    - @owners.each do |owner|
+      = owner.name
 
-      th class="col-md-2"
-        = t "when"
-
-  tbody
-
-    - @signatures.each do |signature|
+- cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
+  table class="table table-striped"
+    thead
       tr
-        td
-          - if signature.visible?
-            = signature.person_name
-          - else
-            = t "anonymous"
-        td
-          = signature.person_city
-        td
-          = distance_of_time_in_words_to_now(signature.signed_at)
+        th class="col-md-9"
+          = t "name"
+
+        th class="col-md-1"
+          = t "place"
+
+        th class="col-md-2"
+          = t "when"
+
+    tbody
+
+      - @signatures.each do |signature|
+        tr
+          td
+            - if signature.visible?
+              = signature.person_name
+            - else
+              = t "anonymous"
+          td
+            = signature.person_city
+          td
+            = distance_of_time_in_words_to_now(signature.signed_at)
 
 
-= will_paginate @signatures, renderer: BootstrapPagination::Rails
+= will_paginate @signatures, renderer: BootstrapPagination::Rails, :params => {:anchor => "#signatures"} 
 
 
 = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}

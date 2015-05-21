@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :petitions do
     resources :signatures
     resources :new_signatures
+
+    patch 'update_owners'
+
   end
 
   #resource :signatures

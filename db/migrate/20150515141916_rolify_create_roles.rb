@@ -1,7 +1,7 @@
 class RolifyCreateRoles < ActiveRecord::Migration
 
   def down
-     drop_table :users_roles
+     #drop_table :users_roles
   end
 
   def up
@@ -28,7 +28,7 @@ class RolifyCreateRoles < ActiveRecord::Migration
       end
     end
 
-    def create_roles_table
+    def create_users_roles_table
       create_table(:users_roles, :id => false) do |t|
         t.references :user
         t.references :role
@@ -40,16 +40,18 @@ class RolifyCreateRoles < ActiveRecord::Migration
       Role.create!(name: 'editor')
     end
 
-    if not ActiveRecord::Base.connection.table_exists? 'roles_users'
+    # check if legacy table exists
+    if ActiveRecord::Base.connection.table_exists? 'roles_users'
+      # check is new user roles table exists
       if not ActiveRecord::Base.connection.table_exists? 'users_roles'
+        # create a new roles table from legacy table
         execute "CREATE TABLE users_roles LIKE roles_users;"
         # copy existing data from roles_users into users_roles
         execute "INSERT users_roles SELECT * FROM roles_users;"
-      else
-        create_roles_table
       end
     else
-      create_roles_table
+      # legacy does not exist so create a new roles table
+      create_users_roles_table
     end
   end
 end
