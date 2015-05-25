@@ -19,6 +19,8 @@ class AddCreatedAtToUsers < ActiveRecord::Migration
    add_column :users, :reset_password_token, :string, :limit => 255
    add_column :users, :remember_token, :string, :limit => 255
 
+   # remove duplicate users
+   execute "DELETE n1 FROM users n1,users n2 WHERE n1.id > n2.id AND n1.email = n2.email;"
    add_index :users, :email,                :unique => true
    add_index :users, :confirmation_token,   :unique => true
    add_index :users, :reset_password_token, :unique => true
