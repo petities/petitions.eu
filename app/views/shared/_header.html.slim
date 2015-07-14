@@ -1,0 +1,12 @@
+header.header
+  div.header-content
+    div.header-button-container
+      = link_to '', root_path, class: 'header-logo'
+    
+    div.search-container.vervolg.whitespace
+      = form_tag(search_petitions_path, method: :get, class: "navbar-form navbar-left", role: "search", locale: I18n.locale) do
+        = text_field_tag :search, params[:search], class: "search-container-input", placeholder: "Zoeken in petities"
+        = hidden_field_tag :locale, I18n.locale
+        input.search-container-button type="submit" value=""
+
+        div.clearfix

@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+
   resources :petitions do
+    collection do
+      get :search
+    end
+
     resources :signatures
     resources :new_signatures
 

@@ -1,112 +1,183 @@
-p id="notice"
-  = notice
+- content_for :head do
+  = javascript_include_tag 'ZeroClipboard.min'
 
-div class="pull-right"
-  / = image_tag( @petition.images.first.upload.url, :class => 'image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
-  = "image"
-  - if user_signed_in?
-      - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
-        = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
+= render partial: 'shared/header'
+      
+div.page
+  - cache [@petition, Globalize.locale.to_s] do
+    section.petition-intro-container
+      div.petition-intro-image-container
+        = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+      div.petition-intro-info-container
+        h1.petition-intro-info-title= @petition.name
+        div.petition-intro-info-counter= "#{@petition.signatures_count} ondertekeningen"
+        div.petition-intro-info-text
+          p= @petition.description
+
+    section.petition-container
+      div.petition-text-wrapper
+        h2.petition-section-title
+          | Petitie
+        div.petition-text
+          h3 Wij
+          p= @petition.initiators
+          p &nbsp;
+          
+          h3 constateren
+          p= @petition.statement
+          p &nbsp;
+          
+          h3 en verzoeken
+          p= @petition.request
+        
+      div.petition-form-wrapper
+        = form_for @signature, url: petition_new_signatures_path(@petition) do |f|
+          h2.petition-section-title
+            | Onderteken deze petitie
+          = f.text_field :person_name, class: 'petition-form-textfield', placeholder: "Naam"
+          = f.text_field :person_city, class: 'petition-form-textfield', placeholder: "Woonplaats"
+          = f.text_field :person_email, class: 'petition-form-textfield', placeholder: "E-mailadres"
+          = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox' 
+          label.petition-form-label for="petition-form-checkbox"
+            | mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
+          = f.submit "Ja, Ik onderteken deze petitie", class: 'petition-form-button'
+        div.petition-form-note
+          | We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
+        
+    section.petition-details-container
+      div.petition-details
+        h2.petition-section-title
+          | Overzicht         
+        div.petitie_field_label
+          | Petitionaris:
+        div.petitie_field_data
+          | Rosa Garcia Lopez namens NVJ
+        div.petitie_field_label
+          | Einddatum:
+        div.petitie_field_data
+          | 03-07-2015
+        div.petitie_field_label
+          | Loket:
+        div.petitie_field_data
+          | Amsterdam
+        div.petitie_field_label
+          | Website:
+        div.petitie_field_data
+          a href="#"
+            | www.nvj.nl
+          br
+          a href="#"
+            | www.domein.nl
+          br
+        div.clearfix
+
+      div.petition-details.history
+        h2.petition-section-title Historie
+        javascript:
+          window.onload = function () {
+            var chart = new CanvasJS.Chart('chartContainer', {
+              backgroundColor: '#bcf9c7',
+              axisX:{
+                lineThickness: 0
+              },
+              axisY:{
+                lineColor: "#bcf9c7",
+                gridColor: "#bcf9c7",
+              },
+              data: [{
+                 type: 'column',
+                 color: '#96c79f',
+                 dataPoints: #{@chart_array}
+               }]
+             });
+            chart.render();
+          }
+        div id="chartContainer" style="height:275px; width:100%;"
+      
+div.social-bar
+  div.social-bar-content
+    div.social-bar-label
+      | Deel deze petitie
+    a.social-bar-button.facebook    href="#"
+    a.social-bar-button.twitter     href="#"
+    a.social-bar-button.googleplus  href="#"
+    a.social-bar-button.linkedin    href="#"
+    a.social-bar-button.email       href="#"
+    div.social-bar-url
+      span#social_url
+        | http://handenafvanhomeopathie.petities.nl/
+      a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
+
+      javascript:
+        $(document).ready(function() {
+          var client = new ZeroClipboard( $(".social-bar-button-url") );
+        });
 
 
-- cache [@petition, Globalize.locale.to_s] do
+div.page
+  section
+    h2.petition-section-title
+      | Ondertekeningen
+    div.petition-signatures-container
+      - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
+        - @signatures.each do |signature|
+          div.petition-signature
+            div.petition-signature-name
+              - if signature.visible?
+                = signature.person_name
+              - else
+                = t "anonymous"
+            div.petition-signature-location= signature.person_city
+            / div.petition-signature-occupation
+            /   | Directeur DOUC
+            div.petition-signature-time= distance_of_time_in_words_to_now(signature.signed_at)
+        
+        div.clearfix
 
-  - if @petition.locale_list
-    p class="well"
-      = t "petitions.translations"
-      =<> ":"
-      - @petition.locale_list.each do |trans|
-        =<> link_to petition_path(@petition, locale: trans)
-          =<> t(trans.upcase.to_sym, :scope => :countries) 
+      = will_paginate @signatures, renderer: PetitionsPaginateRenderer
+    
+    div.navigation-bar
+      a.navigation-toall href="#"
+        | Naar alle ondertekeningen
 
-  p class="well well-lg"
-    strong
-      = t "name"
-      =<> ":"
-    = @petition.name
+/ p id="notice"
+/   = notice
 
-
-  p class="well"
-    strong
-      = t "description"
-      =<> ":"
-    = @petition.description
-
-  p class="well"
-    strong
-      = t "initiators"
-      =<> ":"
-    = @petition.initiators
-
-
-  p class="well"
-    strong
-      = t "statement"
-      =<> ":"
-    = @petition.statement
-
-  p class="well"
-    strong
-      = t "request"
-      =<> ":"
-    = @petition.request
-
-= render "signatures/form"
-
-- cache [@petition, Globalize.locale.to_s] do
-
-  div class="well"
-    = t "signatures"
-    =<> ":"
-
-    = @petition.signatures.count
-
-  div class="well"
-    =<> t "petition.subdomain"
-    - if @petition.subdomain?
-      = @petition.subdomain
-
-  div class="well"
-    - if @petition.cached_slug?
-      = @petition.cached_slug
-
-  div class="well"
-    =<> t "petition.management"
-    - @owners.each do |owner|
-      = owner.name
-
-- cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
-  table class="table table-striped"
-    thead
-      tr
-        th class="col-md-9"
-          = t "name"
-
-        th class="col-md-1"
-          = t "place"
-
-        th class="col-md-2"
-          = t "when"
-
-    tbody
-
-      - @signatures.each do |signature|
-        tr
-          td
-            - if signature.visible?
-              = signature.person_name
-            - else
-              = t "anonymous"
-          td
-            = signature.person_city
-          td
-            = distance_of_time_in_words_to_now(signature.signed_at)
+/   - if user_signed_in?
+/       - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
+/         = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
 
 
-= will_paginate @signatures, renderer: BootstrapPagination::Rails, :params => {:anchor => "#signatures"} 
+/ - cache [@petition, Globalize.locale.to_s] do
 
+/   - if @petition.locale_list
+/     p class="well"
+/       = t "petitions.translations"
+/       =<> ":"
+/       - @petition.locale_list.each do |trans|
+/         =<> link_to petition_path(@petition, locale: trans)
+/           =<> t(trans.upcase.to_sym, :scope => :countries) 
 
-= link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
-=<> "|"
-= link_to 'Back', petitions_path, html_options={class: "btn btn-success"}
+/ - cache [@petition, Globalize.locale.to_s] do
 
+/   div class="well"
+/     = t "signatures"
+/     =<> ":"
+
+/     = @petition.signatures.count
+
+/   div class="well"
+/     =<> t "petition.subdomain"
+/     - if @petition.subdomain?
+/       = @petition.subdomain
+
+/   div class="well"
+/     - if @petition.cached_slug?
+/       = @petition.cached_slug
+
+/   div class="well"
+/     =<> t "petition.management"
+/     - @owners.each do |owner|
+/       = owner.name
+
+/ - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do

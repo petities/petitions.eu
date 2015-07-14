@@ -4,40 +4,36 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
-    @page = params[:page]
+    @page    = params[:page].to_i || 1
+    @sorting = params[:sort] || 'active'
     order = params[:order] || 0
-    @sorting = params[:sort]
 
-    petitions = Petition.live
+    petitions = Petition.joins(:translations).live
+    direction = [:desc, :asc][order.to_i]
+    
+    if @sorting == 'active' then
+      petitions = petitions.order(name: direction)
+    elsif @sorting == 'name'
+      petitions = petitions.order(signatures_count: direction)
+    end
+    
+    @petitions = petitions.paginate(page: params[:page], per_page: 24)
+  end
 
+  def search
     # enable search on petition title. TODO ransack?
-    @search = 0
-    if not params[:search].blank?
-      @search = params[:search]
-      #translation = Petition.findbyname(params[:search])
-      petitions = Petition.joins(:translations).
-        #with_locales(I18n.available_locales). 
-        where("petition_translations.name like ?", "%#{@search}%")
-    end
+    # @search = 0
+    @page = params[:page] || 1
 
-    # enable sorting..
-    if @sorting then
+    @search = params[:search]
+    #translation = Petition.findbyname(params[:search])
+    petitions = Petition.joins(:translations).
+      #with_locales(I18n.available_locales). 
+      where("petition_translations.name like ?", "%#{@search}%")
 
-        petitions = Petition.joins(:translations).live
+    @results_size = petitions.size
 
-        direction = [:desc, :asc][order.to_i]
-        if @sorting == 'name' then
-          petitions = petitions.order(name: direction)
-        else
-          petitions = petitions.order(signatures_count: direction)
-        end
-    end
-
-    @show_on_home = Petition.live.order(last_confirmed_at: :desc).limit(25)
-
-    @petitions = petitions.paginate(:page => params[:page])
-    @order = order == '1'? 0 : 1
-
+    @petitions = petitions.paginate(page: params[:page], per_page: 12)
   end
 
   # GET /petitions/1
@@ -50,9 +46,12 @@ class PetitionsController < ApplicationController
     @signature = @petition.signatures.new
 
     @signatures = @petition.signatures
-    @signatures = @signatures.order(created_at: :desc)
-    @signatures = @signatures.paginate(:page => params[:page])
+    @chart_array = @signatures.map{|signature| signature.confirmed_at }.compact
+                              .group_by{|signature| signature.strftime("%Y-%m-%d")}
+                              .map{|group| {y: group[1].size}}.to_json.html_safe
 
+    @signatures = @signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
+    
     # TODO.
     # where prominent is TRUE and score is higher then 0
     # ordered by score
@@ -76,6 +75,12 @@ class PetitionsController < ApplicationController
 
     new_params = Hash(petition_params[:petition])
     @petition = Petition.new(new_params)
+
+    if params[:images].present?
+      params[:images].each do |image|
+        @petition.images << Image.new(upload: image)
+      end
+    end
 
     respond_to do |format|
       if @petition.save
@@ -221,10 +226,12 @@ class PetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.permit(:add_locale, :version, :owner_ids, :add_owner, petition: [
-        :name, :description, :request, :petitioner_email, :password,
-        :statement, :initiators, :petition_id, 
-        locale_list: []])
+      params.permit(:add_locale, :version, :owner_ids, :add_owner, 
+        petition: [
+          :name, :description, :request, :organisation_name, :petitioner_email, :petitioner_name, :password,
+          :statement, :initiators, :petition_id, locale_list: []
+        ]
+      )
         #:subscribe, :visible,
     end
 end

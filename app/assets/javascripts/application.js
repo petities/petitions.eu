@@ -16,4 +16,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require mailcheck
+//= require canvasjs.min
 //= require_tree .

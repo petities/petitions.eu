@@ -1,77 +1,83 @@
-p id="notice"
-  = notice
+header.header
+  div.header-content
+    = image_tag "header_back1.png", class: 'dynamic'
+    = image_tag "header_back2.png", class: 'dynamic'
+    = image_tag "header_trees.png"
+    = image_tag "header_front2.png", class: 'dynamic'
+    = image_tag "header_front1.png", class: 'dynamic'
+    
+    div.header-button-container
+      = link_to '', root_path, class: 'header-logo'
+      = link_to t("petition.new"), new_petition_path, class: 'header-button'
+      / Start een petitie
 
-= link_to new_petition_path,  class: 'btn btn-success' do
-  i class="glyphicon glyphicon-plus"
-    = t "petition.new"
+div.page
+  
+  div.search-container.whitespace
 
+    = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
+      = text_field_tag :search, params[:search], class: "search-container-input", placeholder: "Zoeken in petities"
+      = hidden_field_tag :locale, I18n.locale
+      input.search-container-button type="submit" value=""
+      
+      div.clearfix
+    
+  section.petitions-overview-wrapper
 
-- if params["search"].blank?
-
-  h1
-    = t "active"
-
-  table class="table table-striped"
-    thead
-      tr
-        th class="col-md-9"
-          = t('name')
-        th class="col-md-1"
-          = t('signatures')
-        th class="col-md-2"
-          = t('active')
-
-    tbody>
-
-    - @show_on_home.each do |petition|
-
-      - cache [petition.id, Globalize.locale.to_s] do
-
-        tr
-          td
-            = link_to petition_path(petition) do
-              = petition.name
-
-          td
-            div class="label label-success"
-              = petition.signatures_count
-
-          td
-            = distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+    div.petitions-overview-sort-options-container
+      | Sorteren op: 
+      span.petitions-overview-sort-option.active Actieve petities
+      ||
+      a.petitions-overview-sort-option href="#" Grootste petities
+      ||
+      a.petitions-overview-sort-option href="#" Nieuwe petities
+      ||
+      a.petitions-overview-sort-option href="#" Nog snel ondertekenen
 
 
-- cache [cache_key_for_petitions, @page, @sorting, @order, @search, I18n.locale] do
+    div.petitions-overview-container
 
-  h1 name="listing"
-    => t 'listing'
-    =<> @petitions.count
-    =<> t 'petitions'
+      - @petitions.each_with_index do |petition, i|
+        - cache [petition, I18n.locale] do
+          
+          div.petition-overview class=((@page == 1 && i >= 12) ? 'hidden' : '')
+            = link_to petition_path(petition), class: 'petition-overview-image-container' do
+              Image
+              /= image_tag petition.images.first
 
-  table class="table table-striped"
-
-    thead
-      tr
-        th class="col-md-9"
-          = link_to t('name'), controller: "petitions" , anchor: "listing", sort: 'name', order: @order
-
-        th class="col-md-1"
-          = link_to t('signatures'), controller: "petitions" , anchor: "listing",  sort: 'signatures_count', order: @order
-
-        th class="col-md-2"
-
-    tbody
-
-      - @petitions.each do |petition|
-          - cache [petition, I18n.locale] do
-            tr
-              td
+            div.petition-overview-info-container
+              h2.petition-overview-info-title
                 = link_to petition_path(petition) do
                   = petition.name
+              div.petitions-counter.hot-item= petition.signatures_count
+              - if petition.last_confirmed_at
+                div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+    
+      div.clearfix
 
-              td
-                div class="label label-success"
-                  = petition.signatures_count
+    div class=((@page == 1) ? 'hidden' : '')
+      = will_paginate @petitions, renderer: PetitionsPaginateRenderer
 
-              td
+    div.petitions-overview-more-container class=((@page != 1) ? 'hidden' : '')
+      div.petitions-overview-more-link
+        | meer petities tonen...
+  
+  aside.news-intro-blocks-container
+    div.news-intro-block
+      h2.news-intro-block-title Meer ondertekenaars met een opiniestuk
+      div.news-intro-block-date 16-03-2015
+      div.news-intro-block-intro 
+        | Een petitie wordt vooral getekend door medestanders die er al van overtuigd zijn dat er iets moet veranderen. Maar de meeste mensen zijn nog niet overtuigd. Als ze al van de petitie weten.
+      a.news-intro-block-intro-read-more href="#" Lees verder
 
-    = will_paginate @petitions, renderer: BootstrapPagination::Rails
+    div.news-intro-block.right
+      h2.news-intro-block-title Hoe moeten we petities.nl verbeteren?
+      div.news-intro-block-date 11-03-2015
+      div.news-intro-block-intro
+        | Dit jaar gaan we onze website weer bijwerken. Wat u nu ziet is in 2009 gemaakt.  Kleine verbeteringen en reparaties lukte ons net, maar voor echt grote veranderingen moeten we programmeurs inhuren. Dat kan nu weer.
+      a.news-intro-block-intro-read-more href="#" Lees verder
+
+/ p id="notice"
+/   = notice
+
+/ - cache [cache_key_for_petitions, @page, @sorting, @order, @search, I18n.locale] do
