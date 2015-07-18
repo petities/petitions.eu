@@ -2,7 +2,7 @@ footer.footer
   div.footer-content
     
     aside.footer-news-list-wrapper
-      h2.footer-content-title Updates
+      h2.footer-content-title= t('footer.updates')
       ul.footer-news-list
         li.footer-news-list-item
           a href="#"
@@ -44,41 +44,42 @@ footer.footer
           ul.footer-content-menu
             div.footer-content-menu-part.left
               li.footer-content-menu-item
-                a href="#" Petities
+                a href="#"= t('footer.menu.petitions')
               li.footer-content-menu-item
-                a href="#" Loketten
+                a href="#"= t('footer.menu.desks')
               li.footer-content-menu-item
-                a href="#" Updates
+                a href="#"= t('footer.menu.updates')
               li.footer-content-menu-item
-                a href="#" Steun ons
+                a href="#"= t('footer.menu.support')
             
             div.footer-content-menu-part.right
               li.footer-content-menu-item
-                a href="#" Help
+                a href="#"= t('footer.menu.help')
               li.footer-content-menu-item
-                a href="#" Uw privacy
+                a href="#"= t('footer.menu.privacy')
               li.footer-content-menu-item
-                a href="#" Beheer uw petities
+                a href="#"= t('footer.menu.manage')
               li.footer-content-menu-item
-                a href="#" Over petities.nl
+                a href="#"= t('footer.menu.about')
             
-        a.donate-button href="#" Doneer en steun Petities.nl
+        a.donate-button href="#"= t('footer.donate')
 
       div.footer-content-contactblock
         div.footer-content-contactblock-section.top
-          h2.footer-content-title Adres
+          h2.footer-content-title= t('footer.address')
           | Stichting Petities.nl<br>
           | Tolhuisweg 2<br>
           | 1031 CL in Amsterdam<br>
           | 020 7854412
 
         div.footer-content-contactblock-section
-          h2.footer-content-title Contact
+          h2.footer-content-title= t('footer.contact')
           | contactformulier<br>
           | webmaster@petities.nl<br>
           | @petities op Twitter
         
   div.footer-sponsor-bar
-    | Hosting gesponsord door<br>
+    = t('footer.hosting')
+    br
     a href="#"
       = image_tag "xs4all.png"

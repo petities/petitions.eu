@@ -2,10 +2,9 @@
           
 div.page
   section.petitions-overview-wrapper
-    h1.petition-section-title Petities
+    h1.petition-section-title= t('search.title')
     
-    div.petition-overview-title
-      | #{@results_size} petities gevonden voor '#{@search}'
+    div.petition-overview-title= t('search.found', results_size: @results_size, search_term: @search)
     
     div.petitions-overview-container
       - @petitions.each do |petition|

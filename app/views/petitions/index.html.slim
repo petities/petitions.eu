@@ -8,15 +8,14 @@ header.header
     
     div.header-button-container
       = link_to '', root_path, class: 'header-logo'
-      = link_to t("petition.new"), new_petition_path, class: 'header-button'
-      / Start een petitie
+      = link_to t("header.new"), new_petition_path, class: 'header-button'
 
 div.page
   
   div.search-container.whitespace
 
     = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
-      = text_field_tag :search, params[:search], class: "search-container-input", placeholder: "Zoeken in petities"
+      = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
       = hidden_field_tag :locale, I18n.locale
       input.search-container-button type="submit" value=""
       
@@ -25,14 +24,14 @@ div.page
   section.petitions-overview-wrapper
 
     div.petitions-overview-sort-options-container
-      | Sorteren op: 
-      span.petitions-overview-sort-option.active Actieve petities
-      ||
-      a.petitions-overview-sort-option href="#" Grootste petities
-      ||
-      a.petitions-overview-sort-option href="#" Nieuwe petities
-      ||
-      a.petitions-overview-sort-option href="#" Nog snel ondertekenen
+      = t('index.sort.title') 
+      span.petitions-overview-sort-option.active= t('index.sort.active')
+      = ' | ' 
+      a.petitions-overview-sort-option href="#"= t('index.sort.biggest')
+      = ' | '
+      a.petitions-overview-sort-option href="#"= t('index.sort.new')
+      = ' | '
+      a.petitions-overview-sort-option href="#"= t('index.sort.sign_quick')
 
 
     div.petitions-overview-container
@@ -55,12 +54,11 @@ div.page
     
       div.clearfix
 
-    div class=((@page == 1) ? 'hidden' : '')
-      = will_paginate @petitions, renderer: PetitionsPaginateRenderer
-
-    div.petitions-overview-more-container class=((@page != 1) ? 'hidden' : '')
-      div.petitions-overview-more-link
-        | meer petities tonen...
+    div.navigation-bar class=((@page != 1) ? 'hidden' : '')
+      a.navigation-loadmore.button href='javascript:void(0);' = t('index.more')
+  
+      div class=((@page == 1) ? 'hidden' : '')
+        = will_paginate @petitions, renderer: PetitionsPaginateRenderer
   
   aside.news-intro-blocks-container
     div.news-intro-block

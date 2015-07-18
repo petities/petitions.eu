@@ -2,130 +2,101 @@
 
 div.page
   section.start-petition-form-container
-    h1.petition-section-title Start een petitie
-    div.petition-overview-title
-      | Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.
+    h1.petition-section-title= t('start.title')
+    div.petition-overview-title= t('start.overview')
     
     = form_for @petition, html:{ multipart: true } do |f|
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Naam van de petitie
+          div.start-petition-form-cell-title= t('start.form.name.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_name"
               | 0 / 80
           = f.text_field :name, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,80)"
-
         div.start-petition-form-cell.label
-          p
-            | De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
-        
+          p= t('start.form.name.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Korte beschrijving
+          div.start-petition-form-cell-title= t('start.form.short_description.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_description"
               | 0 / 300
           = f.text_area :description, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,300)", style: "height:100px;"
-          
         div.start-petition-form-cell.label
-          p
-            | Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
+          p= t('start.form.short_description.description')
         
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Gericht aan
+          div.start-petition-form-cell-title= t('start.form.addressed.label')
           = f.text_field :organisation_name, class: 'start-petition-form-cell-input'
-          
         div.start-petition-form-cell.label
-          p
-            | Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
+          p= t('start.form.addressed.description')
         
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Wij
+          div.start-petition-form-cell-title= t('start.form.we.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_initiators"
               | 0 / 100
           = f.text_area :initiators, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,100)", style: "height:100px;"
           
         div.start-petition-form-cell.label
-          p
-            | U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
+          p= t('start.form.we.description')
         
-
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Constateren
+          div.start-petition-form-cell-title= t('start.form.observe.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_statement"
               | 0 / 450
           = f.text_area :statement, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,450)", style: "height:100px;"
-          
         div.start-petition-form-cell.label
-          p
-            | Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
+          p= t('start.form.observe.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Verzoeken
+          div.start-petition-form-cell-title= t('start.form.request.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_request"
               | 0 / 450
           = f.text_area :request, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,450)", style: "height:100px;"
           
         div.start-petition-form-cell.label
-          p
-            | Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
+          p= t('start.form.request.description')
         
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Petition images
-
+          div.start-petition-form-cell-title= t('start.form.image.label')
           = file_field_tag 'images[]', class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label
-          p
-            | Add images
-
+          p= t('start.form.image.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Petitionaris
+          div.start-petition-form-cell-title= t('start.form.petitioner.lead.label')
           input.start-petition-form-cell-input type="text"
         div.start-petition-form-cell.label
-          p
-            | Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
+          p= t('start.form.petitioner.lead.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Uw e-mailadres
-            = f.text_field :petitioner_email, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell-title= t('start.form.petitioner.email.label')
+          = f.text_field :petitioner_email, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Uw gewenste wachtwoord
-          / input.start-petition-form-cell-input type="text"
+          div.start-petition-form-cell-title= t('start.form.petitioner.password.label')
           = text_field_tag :password, '', class: 'start-petition-form-cell-input', type: 'password'
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | Uw voor- en achternaam
+          div.start-petition-form-cell-title= t('start.form.petitioner.name.label')
           = f.text_field :petitioner_name, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = f.submit "Petitie aanmaken", class: 'start-petition-form-cell-button'
+          = f.submit t('start.form.submit'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
           | &nbsp;

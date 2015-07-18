@@ -14,8 +14,8 @@ $(document).ready(function(){
 			});
 	});
 
-	$('.petitions-overview-more-link').click(function(){
-		$('.petitions-overview-more-container').hide();
+	$('.navigation-loadmore').click(function(){
+		$(this).hide();
 		$('.hidden').removeClass('hidden');
 	})
 

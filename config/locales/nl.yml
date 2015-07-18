@@ -1,81 +1,129 @@
 ---
 nl:
-  Create:
-    newpetition: Nieuwe petitie
-  active: actief
-  active_admin:
-    dashboard: dashboard
-    dashboard_welcome:
-      call_to_action: Oproep
-      welcome: welkom
-  anonymous: anoniem
-  description: beschrijving
-  listing: overzicht
-  name: Naam
-  peition:
-    new: New
-  petition:
-    Edit: Edit
-    Enable: Enable
-    Show: Show
-    add_custom_translation: Add custom translation
-    add_translations: Add translations
-    add_translations_dialect: Add translations dialect
-    add_translations_link_instruction: Add translations link instruction
-    created: gecreëerd
-    current_translations: Current translations
-    editing: Editing
-    help:
-      description: beschrijving
-      initiators: initiatiefnemers
-      link: link
-      link_text: beschrijving van link
-      organisation: organisatie
+  header:
+    new: Start een petitie
+    search: Zoeken in petities
+
+  index:
+    sort:
+      title: 'Sorteren op: '
+      active: Actieve petities
+      biggest: Grootste petities
+      new: Nieuwe petities
+      sign_quick: Nog snel ondertekenen
+    more: meer petities tonen...
+
+  search:
+    title: Petities
+    found: "%{results_size} petities gevonden voor '%{search_term}'"
+
+  start:
+    title: Start een petitie
+    overview: |
+      Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.
+
+    form:
+      name:
+        label: Naam van de petitie
+        description: |
+          De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
+
+      short_description:
+        label: Korte beschrijving
+        description: |
+          Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
+
+      addressed:
+        label: Gericht aan
+        description: |
+          Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
+
+      we:
+        label: Wij
+        description: |
+          U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
+
+      observe:
+        label: Constateren
+        description: |
+          Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
+
+      request:
+        label: Verzoeken
+        description: |
+          Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
+
+      image:
+        label: Petition images
+        description: |
+          Add the petition poster
+
       petitioner:
-        email: e-mail
-        name: naam
-      request: verzoek
-      statement: constatering
-      subdomain: Subdomain
-      title: titel
-    language: Language
-    live: Live
-    live_version: Live version
-    new: Maak een nieuwe petitie
-    newer_version: Newer version
-    newest: Newest
-    notranslations: Notranslations
-    older_version: Older version
-    oldest: Oldest
-    optional: optioneel
-    step:
-      description: beschrijving
-      notice: bericht
-      petitioner: petitionaris
-      request: verzoek
-      target: ontvanger
+        lead:
+          label: Petitionaris
+          description: |
+            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
+
+        email:
+          label: Uw e-mailadres
+          description:
+
+        password:
+          label: Uw gewenste wachtwoord
+          description:
+
+        name:
+          label: Uw voor- en achternaam
+          description:
+
+      submit: Petitie aanmaken
+
+  show:
+    signatures_count: "%{count} ondertekeningen"
+
+    petition:
+      title: Petitie
       we: Wij
-    steps: Steps
-    title: titel
-    version: Version
-  petitioner: petitionaris
-  petitions: Petitions
-  place: plaats
-  request: verzoek
-  search: Zoek3
-  signature:
-    confirm: bevestig
-    dear: Beste
-    help:
-      city: gemeente
-      email: e-mail
-      instructions: instructies
-      name: naam
-      subscribe: Subscribe
-      visible: zichtbaar
-    linkinstruction: instructie bij link
-    thanks: dank
-  signatures: ondertekeningen
-  signnow: teken nu
-  statement: verzoek
-  when: wanneer
+      observe: constateren
+      request: en verzoeken
+    sign:
+      title: Onderteken deze petitie
+      form:
+        name: Naam
+        residence: Woonplaats 
+        email: E-mailadres
+        checkbox: mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
+        submit: Ja, Ik onderteken deze petitie
+      note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
+
+    overview:
+      title: Overzicht
+      addressed:
+      end_date: "Einddatum:"
+      status:
+      petitioners: "Petitionaris:"
+      organisation:
+      location: "Loket:"
+      website: "Website:"
+    history: Historie
+    share: Deel deze petitie
+    signatures:
+      title: Ondertekeningen
+      more: Load more petitions
+      to_all: Naar alle ondertekeningen
+
+  footer:
+    updates: Updates
+    menu:
+      petitions: Petities
+      desks: Loketten
+      updates: Updates
+      support: Steun ons
+      help: Help
+      privacy: Uw privacy
+      manage: Beheer uw petities
+      about: Over petities.nl
+    donate: Doneer en steun Petities.nl
+    address: Adres
+    contact: Contact
+    hosting: Hosting gesponsord door

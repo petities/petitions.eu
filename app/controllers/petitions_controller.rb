@@ -4,12 +4,13 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
-    @page    = params[:page].to_i || 1
+    @page    = (params[:page] || 1).to_i
     @sorting = params[:sort] || 'active'
-    order = params[:order] || 0
+    @order = params[:order].to_i
+
 
     petitions = Petition.joins(:translations).live
-    direction = [:desc, :asc][order.to_i]
+    direction = [:desc, :asc][@order]
     
     if @sorting == 'active' then
       petitions = petitions.order(name: direction)
