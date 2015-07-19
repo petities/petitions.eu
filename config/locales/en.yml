@@ -1,7 +1,7 @@
 ---
 en:
   Create:
-    newpetition: Newpetition
+    newpetition: Start a petition
   active: Active
   active_admin:
     dashboard: Dashboard
@@ -39,7 +39,7 @@ en:
         Sort on:
   listing: Listing
   name: Name
-  peition:
+  petition:
     new: Limburgs Nieuw
   petition:
     Edit: Edit
@@ -123,7 +123,7 @@ en:
         name: Name
         residence: Place of residence
         submit: Yes, I sign this petition
-      note: We e-mail you a link to confirm your signature with. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
+      note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
       more: Load more petitions
@@ -135,7 +135,7 @@ en:
     dear: Dear
     help:
       city: City
-      email: Email
+      email: E-mail
       instructions: Instructions
       name: Name
       subscribe: Subscribe
@@ -143,12 +143,12 @@ en:
     linkinstruction: Linkinstruction
     thanks: Thanks
   signatures: Signatures
-  signnow: Signnow
+  signnow: Sign now
   start:
     form:
       addressed:
         description: |
-          Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
+          A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
         label: Addressed to
       image:
         description: |
@@ -156,11 +156,11 @@ en:
         label: Petition images
       name:
         description: |
-          De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
+          The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
         label: Title of the petition
       observe:
         description: |
-          Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
+          The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
         label: Observe
       petitioner:
         email:
@@ -168,7 +168,7 @@ en:
           label: Your e-mail address
         lead:
           description: |
-            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
+            A petition should have a (legal) person responsible for the petition and the spokes person. Signatures write to you, journalists call you and politicians receive your petition. 
           label: Lead petitioner
         name:
           description: Description
@@ -178,16 +178,16 @@ en:
           label: Preferred password
       request:
         description: |
-          Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
+          Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
       short_description:
         description: |
-          Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
+          With this text you attract signatures: it appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
-      submit: Process petition
+      submit: Submit petition
       we:
         description: |
-          U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
+          You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
         label: We
     overview: |
       A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.
