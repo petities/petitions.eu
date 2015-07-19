@@ -1,15 +1,15 @@
 ---
 nl:
   Create:
-    newpetition: Newpetition
-  active: Active
-  active_admin:
+    newpetition: Start een petitie
+  active: Actief
+  active_admin: 
     dashboard: Dashboard
     dashboard_welcome:
-      call_to_action: Call to action
-      welcome: Welcome
-  anonymous: Anonymous
-  description: Description
+      call_to_action: Oproep
+      welcome: U bent ingelogd
+  anonymous: Anoniem
+  description: Beschrijving
   footer:
     address: Adres
     contact: Contact
@@ -38,70 +38,70 @@ nl:
       title: 'Sorteren op: '
   listing: Listing
   name: Name
-  peition:
+  petition:
     new: Limburgs Nieuw
   petition:
-    Edit: Edit
-    Enable: Enable
-    Show: Show
-    add_custom_translation: Add custom translation
-    add_translations: Add translations
-    add_translations_dialect: Add translations dialect
-    add_translations_later: Add translations later
-    add_translations_link_instruction: Add translations link instruction
-    created: Created
-    current_translations: Current translations
-    editing: Editing
-    editors: Editors
-    finalize: Finalize
+    Edit: Bewerk
+    Enable: Pas toe
+    Show: Toon
+    add_custom_translation: 
+    add_translations: Vertaal
+    add_translations_dialect: Vertaal
+    add_translations_later: Vertaal later
+    add_translations_link_instruction: Hulp met vertalen
+    created: Gemaakt
+    current_translations: Vertalingen
+    editing: Bewerken
+    editors: Vertalers
+    finalize: Klaar
     help:
-      description: Description
-      finish: Finish
-      initiators: Initiators
+      description: Beschrijving
+      finish: Fins
+      initiators: Petitionarissen
       link: Link
-      link_text: Link text
-      organisation: Organisation
+      link_text: Link beschrijving
+      organisation: Organisatie
       petitioner:
-        email: Email
-        name: Name
-      request: Request
-      save: Save
-      statement: Statement
-      subdomain: Subdomain
-      title: Title
-    language: Language
-    live: Live
-    live_version: Live version
-    minimum_age: Minimum age
-    new: New
-    newer_version: Newer version
-    newest: Newest
-    notranslations: Notranslations
-    older_version: Older version
-    oldest: Oldest
-    optional: Optional
+        email: E-mail
+        name: Naam
+      request: Verzoek
+      save: Bewaar
+      statement: Introductie
+      subdomain: Subdomein
+      title: Titel
+    language: Taal
+    live: Ondertekenbaar
+    live_version: Versie
+    minimum_age: Minimum leeftijd
+    new: Nieuw
+    newer_version: Nieuwere versie
+    newest: Nieuwste
+    notranslations: Geen vertalingen
+    older_version: Oudere versie
+    oldest: Oudste
+    optional: Optioneel
     step:
-      description: Description
-      notice: Notice
-      petitioner: Petitioner
-      request: Request
-      target: Target
-      we: We
-    steps: Steps
-    title: Title
-    user_email: User email
-    version: Version
-  petitioner: Petitioner
-  petitions: Petitions
-  place: limplaats
-  request: Request
+      description: Beschrijving
+      notice: Notitie
+      petitioner: Petitionaris
+      request: Verzoek
+      target: Geadresseerde
+      we: Wij
+    steps: Stappen
+    title: Titel
+    user_email: E-mail
+    version: Versie
+  petitioner: Petitionaris
+  petitions: Petities
+  place: Woonplaats
+  request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
     title: Petities
   show:
-    history: Historie
+    history: Geschiedenis
     overview:
-      addressed: Addressed
+      addressed: Ontvanger
       end_date: 'Einddatum:'
       location: 'Loket:'
       organisation: 'Organisation:'
@@ -125,24 +125,24 @@ nl:
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
-      more: Load more petitions
+      more: Laad meer ondertekeningen
       title: Ondertekeningen
       to_all: Naar alle ondertekeningen
     signatures_count: "%{count} ondertekeningen"
   signature:
-    confirm: Confirm
-    dear: Dear
+    confirm: Bevestig
+    dear: Geachte
     help:
-      city: City
-      email: Email
-      instructions: Instructions
-      name: Name
-      subscribe: Subscribe
-      visible: Visible
-    linkinstruction: Linkinstruction
-    thanks: Thanks
-  signatures: Signatures
-  signnow: Signnow
+      city: Woonplaats
+      email: E-mail
+      instructions: Instructies
+      name: Naam
+      subscribe: Abonneer
+      visible: Zichtbaar
+    linkinstruction: Linkinstructie?
+    thanks: Dank u
+  signatures: Ondertekeningen
+  signnow: Teken nu
   start:
     form:
       addressed:
@@ -151,8 +151,8 @@ nl:
         label: Gericht aan
       image:
         description: |
-          Add the petition poster
-        label: Petition images
+          Voeg het plaatje bij de petitie toe.
+        label: Petitie plaatje
       name:
         description: |
           De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
@@ -163,7 +163,7 @@ nl:
         label: Constateren
       petitioner:
         email:
-          description: Description
+          description: |
           label: Uw e-mailadres
         lead:
           description: |
@@ -191,5 +191,5 @@ nl:
     overview: |
       Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.
     title: Start een petitie
-  statement: Statement
-  when: When
+  statement: Verzoek
+  when: Wanneer
