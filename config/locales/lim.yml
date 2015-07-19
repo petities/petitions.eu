@@ -10,6 +10,33 @@ lim:
       welcome: Welcome
   anonymous: Anonymous
   description: Description
+  footer:
+    address: Address
+    contact: Contact
+    donate: Donate and support Petities.nl
+    hosting: Hosting sponsored by
+    menu:
+      about: About Petities.nl
+      desks: Petition desks
+      help: Help
+      manage: Manage your petitions
+      petitions: Petitions
+      privacy: Your privacy
+      support: Support us
+      updates: Updates
+    updates: Updates
+  header:
+    new: Start a petition
+    search: Search in petitions
+  index:
+    more: Show more petitions
+    sort:
+      active: Active petitions
+      biggest: Biggest petitions
+      new: New petitions
+      sign_quick: Sign last minute
+      title: |
+        Sort on:
   listing: Listing
   name: Name
   peition:
@@ -21,12 +48,16 @@ lim:
     add_custom_translation: Add custom translation
     add_translations: Add translations
     add_translations_dialect: Add translations dialect
+    add_translations_later: Add translations later
     add_translations_link_instruction: Add translations link instruction
     created: Created
     current_translations: Current translations
     editing: Editing
+    editors: Editors
+    finalize: Finalize
     help:
       description: Description
+      finish: Finish
       initiators: Initiators
       link: Link
       link_text: Link text
@@ -35,12 +66,14 @@ lim:
         email: Email
         name: Name
       request: Request
+      save: Save
       statement: Statement
       subdomain: Subdomain
       title: Title
     language: Language
     live: Live
     live_version: Live version
+    minimum_age: Minimum age
     new: New
     newer_version: Newer version
     newest: Newest
@@ -57,12 +90,46 @@ lim:
       we: We
     steps: Steps
     title: Title
+    user_email: User email
     version: Version
   petitioner: Petitioner
   petitions: Petitions
   place: limplaats
   request: Request
-  search: Search
+  search:
+    found: "%{results_size} petitions found for '%{search_term}'"
+    title: Petitions
+  show:
+    history: History
+    overview:
+      addressed: Addressed
+      end_date: 'To present on:'
+      location: 'Petition desk:'
+      organisation: 'Organisation:'
+      petitioners: 'Lead petitioner:'
+      status: 'Status:'
+      title: Petition details
+      website: 'Website:'
+    petition:
+      observe: observe
+      request: and request
+      title: Petitie
+      we: We
+    share: Share this petition
+    sign:
+      form:
+        checkbox: I allow my name and place of residence to be publicly visible below the petition.
+        email: E-mail address
+        name: Name
+        residence: Place of residence
+        submit: Yes, I sign this petition
+      note: We e-mail you a link to confirm your signature with. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
+      title: Sign this petition
+    signatures:
+      more: Load more petitions
+      title: Signatures
+      to_all: To all signatures
+    signatures_count: "%{count} signatures"
   signature:
     confirm: Confirm
     dear: Dear
@@ -77,5 +144,53 @@ lim:
     thanks: Thanks
   signatures: Signatures
   signnow: Signnow
+  start:
+    form:
+      addressed:
+        description: |
+          Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
+        label: Addressed to
+      image:
+        description: |
+          Add the petition poster
+        label: Petition images
+      name:
+        description: |
+          De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
+        label: Title of the petition
+      observe:
+        description: |
+          Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
+        label: Observe
+      petitioner:
+        email:
+          description: Description
+          label: Your e-mail address
+        lead:
+          description: |
+            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
+          label: Lead petitioner
+        name:
+          description: Description
+          label: Your first and last name
+        password:
+          description: Description
+          label: Preferred password
+      request:
+        description: |
+          Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
+        label: Request
+      short_description:
+        description: |
+          Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
+        label: Short description
+      submit: Process petition
+      we:
+        description: |
+          U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
+        label: We
+    overview: |
+      A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.
+    title: Start a petition
   statement: Statement
   when: When

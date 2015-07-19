@@ -18,7 +18,7 @@ README
 * Database initialization
 
     rake db:migrate
-    
+
     rake db:seed
 
 * How to run the test suite
@@ -32,11 +32,11 @@ README
 * Deployment instructions
 
 * I18n updates
-    
+
 Find out which translation keys are missing
 
     I18n missing
-    
+
 Add the missing translation keys
 
     I18n add-mising
@@ -44,7 +44,7 @@ Add the missing translation keys
 Find out which translation keys are unused
 
     I18n unused
-    
+
 I don't know what this does..
 
     I18n remove-unused
