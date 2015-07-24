@@ -5,19 +5,15 @@ class SignaturesController < ApplicationController
 
   # GET /signatures
   # GET /signatures.json
-  #def index
-  #  @signatures = Signature.all
-  #end
+  def index
+    @petition = Petition.find(params[:petition_id])
 
-  # GET /signatures/1
-  # GET /signatures/1.json def show end
-
-  ## GET /signatures/new
-  #def new
-  #  puts 'new??'
-  #  #@@petition =
-  #  @signature = Petition.signatures.new
-  #end
+    if @petition
+      @signatures = @petition.signatures.confirmed 
+    else
+      render_404
+    end
+  end
 
   # POST /signatures
   # POST /signatures.json
@@ -27,41 +23,29 @@ class SignaturesController < ApplicationController
 
     respond_to do |format|
       if @signature.save
-        #puts "saving signature.."
-        format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
-        format.json { render :show, status: :created, location: @signature }
+        format.js { render json: { status: 'ok' } }
+        # format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
+        # format.json { render :show, status: :created, location: @signature }
       else
-        format.html { render :new }
-        format.json { render json: @signature.errors, status: :unprocessable_entity }
+        format.js { render json: @signature.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
   end
-
-  #def confirm
-
-  #  respond_to do |format|
-  #    if @signature.save
-  #      format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
-  #      format.json { render :show, status: :created, location: @signature }
-  #    else
-  #      format.html { render :new }
-  #      format.json { render json: @signature.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-
-
-  #end
 
   # GET request..
   def confirm
     # If @signature is valid?, but not confirmed yet, confirm it. Record
     # user-agent, remote IP and increase columns signatures_count and
     # last_confirmed_at on the corresponding Petition record.
+    # add: also update the active_rate_value column when signature is confirmed
 
     #find the petition
-    @petition = Petition.find(@signature.petition_id)
+    @petition = @signature.petition
 
-    if @signature.valid? && !@signature.confirmed?
+    if @petition && @signature.valid? && !@signature.confirmed?
+
       old_signature = @signature
       # create a new one..
       @signature = Signature.new(@signature.as_json)
@@ -70,12 +54,11 @@ class SignaturesController < ApplicationController
       @signature.confirmation_remote_addr = request.remote_ip
       @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
 
-      @petition = Petition.find(@signature.petition_id)
-      puts @petition.signatures_count
-      @petition.signatures_count += 1
-      puts @petition.signatures_count
-      #Petition.increment_signature_count(@signature.petition_id)
-      # delete the old signature
+      @petition.inc_signatures_count!
+      @petition.update_active_rate!
+
+      # expire_fragment @petition
+      
       old_signature.delete
       @signature.save
     end
@@ -123,28 +106,29 @@ class SignaturesController < ApplicationController
     end
 
     def find_signature_by_unique_key
-     @signature = Signature.find_by_unique_key(params[:signature_key])
-     if not @signature
-       @signature = NewSignature.find_by_unique_key(params[:signature_key])
-     end
+      @signature = Signature.find_by_unique_key(params[:signature_key])
+      
+      unless @signature
+        @signature = NewSignature.find_by_unique_key(params[:signature_key])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def signature_params
       params.require(:signature).permit(
-          :person_city, :person_name, :person_email,
+          :person_city, :person_name, :person_email, :person_street, :person_street_number, :person_born_at, :person_postalcode,
           :subscribe, :visible,
       )
     end
 end
 
-class NewSignaturesController < SignaturesController
+# class NewSignaturesController < SignaturesController
 
-  def signature_params
-      params.require(:new_signature).permit(
-          :person_city, :person_name, :person_email,
-          :subscribe, :visible,
-      )
-  end
+#   def signature_params
+#       params.require(:new_signature).permit(
+#           :person_city, :person_name, :person_email,
+#           :subscribe, :visible,
+#       )
+#   end
 
-end
+# end

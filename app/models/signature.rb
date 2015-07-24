@@ -1,7 +1,4 @@
-
-
 class Signature < ActiveRecord::Base
-
   belongs_to :petition #, :counter_cache => true
   has_one :petition_type, :through => :petition
 
@@ -9,7 +6,7 @@ class Signature < ActiveRecord::Base
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
   validates :person_name, length: {in: 3..255}
-  validates :person_name, format: { with: /\A.+( |\.).+\z/}
+  # validates :person_name, format: { with: /\A.+( |\.).+\z/}
 
   # keep this simple since we are sending validation emails anyways.
   validates :person_email, format: {with: /@/}
@@ -32,7 +29,7 @@ class Signature < ActiveRecord::Base
   before_create :fill_signed_at
   after_save :update_petition
 
-  protected
+  # protected
 
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if self.confirmed_at.nil? && self.confirmed?
@@ -67,7 +64,7 @@ class Signature < ActiveRecord::Base
 
   def require_person_birth_city?
     return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
-    return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
+    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
   end
 
 end

@@ -6,42 +6,38 @@ class Petition < ActiveRecord::Base
   serialize :locale_list, Array
     
   scope :live,      -> {where(status: 'live')}
-
-  scope :big,       -> {order(signatures_count: :desc) }
+  scope :big,       -> {order(signatures_count: :desc)}
+  scope :active,     -> {order(active_rate_value: :desc)}
+  scope :newest,     -> {order(created_at: :desc)}
 
   belongs_to :petition_type
   # belongs_to :organisation
 
   has_many :images, :as => :imageable, :dependent => :destroy
 
-  #def self.show_on_home
-  #  #Petition.order(last_confirmed_at: :desc).limit(25)
-  #  []
-  #end
-
   #default_scope :order => 'petitions.name ASC'
+  
   has_many :new_signatures
-
   has_many :signatures do
     def confirmed
-      find :all, :conditions => {:confirmed => true}
+      where(confirmed: true)
     end
 
     def special
-      find :all, :conditions => {:confirmed => true, :special => true}, :order => 'sort_order asc, signed_at asc'
+      where(confirmed: true, special: true).order('sort_order ASC, signed_at ASC')
     end
 
     def recent
-      find :all, :conditions => {:confirmed => true}, :order => 'signed_at desc'
+      where(confirmed: true).order('signed_at DESC')
     end
 
     def last_signed
-      find( :all, :conditions => {:confirmed => true}, :order => 'signed_at DESC', :limit => 1).first
+      where(confirmed: true).order('signed_at DESC').limit(1).first
     end
   end
 
   def elapsed_time
-      Time.now - (self.last_confirmed_at || Time.now)
+    Time.now - (self.last_confirmed_at || Time.now)
   end
 
 
@@ -54,6 +50,31 @@ class Petition < ActiveRecord::Base
   validates_format_of :subdomain, :with => /\A[A-Za-z0-9-]+\z/, :allow_blank => true
   validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
   validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
+
+  def active_rate
+    self.signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size
+  end
+
+  def update_active_rate!
+    self.active_rate_value = self.active_rate
+    save
+  end
+
+  def is_hot?
+    self.active_rate_value > 1
+  end
+
+  def history_chart_json
+    self.signatures.confirmed.map{|signature| signature.confirmed_at }
+        .compact
+        .group_by{|signature| signature.strftime("%Y-%m-%d")}
+        .map{|group| group[1].size}#.to_json.html_safe
+  end
+
+  def inc_signatures_count!
+    self.signatures_count += 1
+    save
+  end
  
 end
 

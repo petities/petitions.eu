@@ -1,5 +1,3 @@
-
-
 class NewSignature < Signature 
   self.table_name  = "new_signatures"
 

@@ -6,16 +6,19 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protect_from_forgery with: :exception
+  
   if Rails.env.test?
     protect_from_forgery with: :null_session
   else 
     protect_from_forgery with: :exception
   end
 
-
-
   #around_action :with_locale
   before_filter :set_locale
+
+  def render_404
+    render 'shared/404'
+  end
 
   private
 
@@ -27,10 +30,16 @@ class ApplicationController < ActionController::Base
     end
 
     def set_locale
+      available_locales = [:ag, :de, :en, :es, :fr, :lim, :nl]
+
       if params[:locale]
-        I18n.locale = params[:locale] || I18n.default_locale
-      else 
-        I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
+        I18n.locale = if available_locales.include? params[:locale].to_sym
+                        params[:locale]
+                      else
+                        I18n.default_locale
+                      end
+      else
+        I18n.locale = http_accept_language.compatible_language_from(available_locales) || I18n.default_locale
       end
     end
 

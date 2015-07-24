@@ -25,30 +25,37 @@ div.page
 
     div.petitions-overview-sort-options-container
       = t('index.sort.title') 
-      span.petitions-overview-sort-option.active= t('index.sort.active')
-      = ' | ' 
-      a.petitions-overview-sort-option href="#"= t('index.sort.biggest')
-      = ' | '
-      a.petitions-overview-sort-option href="#"= t('index.sort.new')
-      = ' | '
-      a.petitions-overview-sort-option href="#"= t('index.sort.sign_quick')
-
+      - @sorting_options.each_with_index do |option, index|
+        - if @sorting == option[:type]
+          span.petitions-overview-sort-option.active= option[:label]
+        - else
+          = link_to option[:label], url_for(params.merge(sort: option[:type])), class: 'petitions-overview-sort-option'
+        - unless index == @sorting_options.size-1
+          = ' | '
 
     div.petitions-overview-container
-
       - @petitions.each_with_index do |petition, i|
         - cache [petition, I18n.locale] do
           
           div.petition-overview class=((@page == 1 && i >= 12) ? 'hidden' : '')
             = link_to petition_path(petition), class: 'petition-overview-image-container' do
-              Image
-              /= image_tag petition.images.first
+              - if petition.images.first.present?
+                = image_tag petition.images.first.upload.url, class: 'petition-overview-image'
+              - else
+                canvas id="chartContainer#{i}" data={chartid: i, chartdata: "chartData#{i}", chartlabels: "chartLabels#{i}"} class='petition-overview-image chart-canvas' style="width: 100%; background-color: #bcf9c7;"
+
+                javascript:
+                  window.chartData#{i} = #{petition.history_chart_json},
+                  window.chartLabels#{i} = #{petition.history_chart_json.map.with_index{|_,i| i+1}};
+
+           
 
             div.petition-overview-info-container
               h2.petition-overview-info-title
                 = link_to petition_path(petition) do
                   = petition.name
-              div.petitions-counter.hot-item= petition.signatures_count
+              div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
+                = petition.signatures_count
               - if petition.last_confirmed_at
                 div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
     
@@ -57,8 +64,8 @@ div.page
     div.navigation-bar class=((@page != 1) ? 'hidden' : '')
       a.navigation-loadmore.button href='javascript:void(0);' = t('index.more')
   
-      div class=((@page == 1) ? 'hidden' : '')
-        = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+    div.navigation-bar.pagination class=((@page == 1) ? 'hidden' : '')
+      = will_paginate @petitions, renderer: PetitionsPaginateRenderer
   
   aside.news-intro-blocks-container
     div.news-intro-block

@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: [:show, :edit, :update, :update_owners]
+  before_action :set_petition, only: [:show, :edit, :add_translation, :update, :update_owners]
 
   # GET /petitions
   # GET /petitions.json
@@ -9,15 +9,27 @@ class PetitionsController < ApplicationController
     @order = params[:order].to_i
 
 
-    petitions = Petition.joins(:translations).live
+    # petitions = Petition.joins(:translations).live
+    petitions = Petition.live
     direction = [:desc, :asc][@order]
     
     if @sorting == 'active' then
-      petitions = petitions.order(name: direction)
-    elsif @sorting == 'name'
+      petitions = petitions.order(active_rate_value: direction)
+    elsif @sorting == 'biggest'
       petitions = petitions.order(signatures_count: direction)
+    elsif @sorting == 'newest'
+      petitions = petitions.order(created_at: direction)
+    elsif @sorting == 'sign_quick'
+      petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
     end
-    
+
+    @sorting_options = [
+      {type: 'active', label: t('index.sort.active')}, 
+      {type: 'biggest', label: t('index.sort.biggest')},
+      {type: 'newest', label: t('index.sort.new')},
+      {type: 'sign_quick', label: t('index.sort.sign_quick')}
+    ]
+
     @petitions = petitions.paginate(page: params[:page], per_page: 24)
   end
 
@@ -46,12 +58,9 @@ class PetitionsController < ApplicationController
 
     @signature = @petition.signatures.new
 
-    @signatures = @petition.signatures
-    @chart_array = @signatures.map{|signature| signature.confirmed_at }.compact
-                              .group_by{|signature| signature.strftime("%Y-%m-%d")}
-                              .map{|group| {y: group[1].size}}.to_json.html_safe
+    @chart_array = @petition.history_chart_json
 
-    @signatures = @signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
+    @signatures = @petition.signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
     
     # TODO.
     # where prominent is TRUE and score is higher then 0
@@ -62,21 +71,18 @@ class PetitionsController < ApplicationController
   # GET /petitions/new
   def new
     @petition = Petition.new
-  end
 
-  # GET /petitions/1/edit
-  def edit
-    authorize @petition
-    @owners = find_owners
+    @petition_types = PetitionType.all
   end
 
   # POST /petitions
   # POST /petitions.json
   def create
+    # new_params = Hash(petition_params[:petition])
+    @petition = Petition.new(petition_params)
 
-    new_params = Hash(petition_params[:petition])
-    @petition = Petition.new(new_params)
-
+    @petition.locale_list << I18n.locale
+    
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)
@@ -85,39 +91,24 @@ class PetitionsController < ApplicationController
 
     respond_to do |format|
       if @petition.save
-        format.html { redirect_to @petition, :flash => {
-            :success => t('petition.created')} }
-        format.json {
-            render :show, status: :created, location: @petition }
+        format.html { redirect_to @petition, flash: { success: t('petition.created') }}
+        format.json { render :show, status: :created, location: @petition }
       else
         format.html { render :new }
-        format.json {
-            render json: @petition.errors, status: :unprocessable_entity }
+        format.json { render json: @petition.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def update_locale_list(params, new_params)
-    # update the locale menu here
-    if params[:add_locale]
-      # add a single locale from the side bar like "klingon"
-      @petition.locale_list << params[:add_locale]
-      @petition.locale_list.uniq!
-    elsif new_params.empty?
-      # set the locale list from the side bar ["en", "de", "lim"]
-      # NOTE we can not check for locale_list, when checklist is empty 
-      # the browser sends nothing
-      # on no locale list and no petition parameter. locale_list = []
-      # now update locale list from selection menu
-      locale_list = [*petition_params[:locale_list]]
-      locale_list.uniq!
-      @petition.locale_list = locale_list
-      # remove the locale list otherwise @petition.update fails
-      new_params.delete(:locale_list)
-    end
-
-    new_params
+  # GET /petitions/1/edit
+  def edit
+    # authorize @petition
+    @owners = find_owners
   end
+
+  def add_translation
+  end
+
 
   # POST /petitions/1
   def update_owners
@@ -157,23 +148,22 @@ class PetitionsController < ApplicationController
   # PATCH/PUT /petitions/1
   # PATCH/PUT /petitions/1.json
   def update
-
     @owners = find_owners
 
-    new_params = Hash(petition_params[:petition])
+    locale = params[:add_locale] || I18n.locale
+    update_locale_list(locale.to_sym) if params[:add_locale]
 
-    new_params = update_locale_list(params, new_params)
-
-    respond_to do |format|
-      if @petition.update(new_params)
-        #format.html { redirect_to @petition, :flash => {
-        format.html { render :edit, :flash => {
-            :success => 'Petition was successfully updated.'}
-        }
-        format.json { render :show, status: :ok, location: @petition }
-      else
-        format.html { render :edit }
-        format.json { render json: @petition.errors, status: :unprocessable_entity }
+    Globalize.with_locale(locale) do
+      respond_to do |format|
+        if @petition.update_attributes(petition_params)
+          format.html { render :edit, :flash => {
+              :success => 'Petition was successfully updated.'}
+          }
+          format.json { render :show, status: :ok, location: @petition }
+        else
+          format.html { render :edit }
+          format.json { render json: @petition.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -192,6 +182,8 @@ class PetitionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
   #
     def set_petition
+      Globalize.locale = params[:locale] || I18n.locale
+    
       # find petition by slug name subdomain or id.
       if params[:slug]
         @petition = Petition.find_by_cached_slug(params[:slug])
@@ -202,7 +194,7 @@ class PetitionsController < ApplicationController
       else 
         @petition = Petition.find(params[:id])
       end
-
+    
       # find specific papertrail version
       @index = 0
 
@@ -225,14 +217,22 @@ class PetitionsController < ApplicationController
         roles: {resource_type: 'Petition', resource_id: @petition.id})
     end
 
+    def update_locale_list(locale)
+      # update the locale menu here
+      @petition.locale_list << params[:add_locale].to_sym
+      @petition.locale_list.uniq!
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      params.permit(:add_locale, :version, :owner_ids, :add_owner, 
-        petition: [
-          :name, :description, :request, :organisation_name, :petitioner_email, :petitioner_name, :password,
-          :statement, :initiators, :petition_id, locale_list: []
-        ]
+      # :add_locale, :version, :owner_ids, :add_owner, 
+      # petition: [
+      # locale_list: []
+      params.require(:petition).permit(
+        :name, :description, :statement, :request, :initiators,
+        :organisation_name, :petitioner_email, :petitioner_name, :password,
+        :petition_type_id
       )
-        #:subscribe, :visible,
+      #:subscribe, :visible,
     end
 end

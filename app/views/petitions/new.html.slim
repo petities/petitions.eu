@@ -8,6 +8,13 @@ div.page
     = form_for @petition, html:{ multipart: true } do |f|
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          div.start-petition-form-cell-title Petition type
+          = f.select :petition_type_id, options_from_collection_for_select(@petition_types, "id", "name")
+        div.start-petition-form-cell.label
+          
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('start.form.name.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_name"
               | 0 / 80

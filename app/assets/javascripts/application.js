@@ -12,9 +12,11 @@
 
 //= require jquery
 //= require jquery.turbolinks
-//= require turbolinks
 //= require jquery_ujs
+
+//= require turbolinks
+
 //= require bootstrap-sprockets
 //= require mailcheck
-//= require canvasjs.min
+//= require Chart.min
 //= require_tree .

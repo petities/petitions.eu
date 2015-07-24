@@ -1,0 +1,33 @@
+= render partial: 'shared/header'
+
+= form_for @petition, html: {class: "form-horizontal", autocomplete: "on"} do |f|
+  div  
+    = label_tag 'New translation language'
+    br
+    = text_field_tag 'add_locale'
+  div
+    = f.label :name
+    br
+    = f.text_field :name
+  div
+    = f.label :description
+    br
+    = f.text_area :description
+  div
+    = f.label :organisation_name
+    br
+    = f.text_field :organisation_name
+  div
+    = f.label :initiators
+    br
+    = f.text_area :initiators
+  div
+    = f.label :statement
+    br
+    = f.text_area :statement
+  div
+    = f.label :request
+    br
+    = f.text_area :request
+
+  = f.submit 'Save'

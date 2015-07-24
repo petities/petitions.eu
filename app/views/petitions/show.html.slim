@@ -2,9 +2,40 @@
   = javascript_include_tag 'ZeroClipboard.min'
 
 = render partial: 'shared/header'
+
+javascript:
+  $(window).on('scroll', function(){
+    if ($(window).width() > 950) {
+      floatingElement=$('.petition-form-float-wrapper');
+      floatTop=$('.petition-form-wrapper').offset().top - $(window).scrollTop();
+      floatBottom=($('.petition-form-wrapper').offset().top + $('.petition-form-wrapper').innerHeight() - floatingElement.height() - 30) - $(window).scrollTop();
+  
+      if (floatTop < 0) {
+        floatingElement.addClass('floating');
+      } else {
+        floatingElement.removeClass('floating');
+      }
+  
+      if (floatBottom < 0) {
+        floatingElement.removeClass('floating').addClass('bottom-fixed');
+      } else {
+        floatingElement.removeClass('bottom-fixed');
+      }
+    }
+  });
       
 div.page
   - cache [@petition, Globalize.locale.to_s] do
+    - if @petition.locale_list.present?
+      div.locale_list
+        | Available in:
+        br
+        - @petition.locale_list.each do |locale|
+          = label_tag locale
+          = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
+          br
+        = link_to '+ Add translation', petition_add_translation_path(@petition)
+
     section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
         = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
@@ -30,17 +61,31 @@ div.page
           p= @petition.request
         
       div.petition-form-wrapper
-        = form_for @signature, url: petition_new_signatures_path(@petition) do |f|
-          h2.petition-section-title= t('show.sign.title')
-          = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
-          = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
-          = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
-          = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox' 
-          label.petition-form-label for="petition-form-checkbox"
-            = t('show.sign.form.checkbox')
-          = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
-        div.petition-form-note= t('show.sign.note')
-        
+        div.petition-form-float-wrapper
+          = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
+            h2.petition-section-title= t('show.sign.title')
+            = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
+            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
+            
+            - if @signature.require_full_address?
+              = f.text_field :person_postalcode, class: 'petition-form-textfield', placeholder: 'Postalcode'
+              = f.text_field :person_street, class: 'petition-form-textfield', placeholder: 'Street'
+              = f.text_field :person_street_number, class: 'petition-form-textfield', placeholder: 'Street number'
+            
+            - if @signature.require_person_birth_city?
+              = f.text_field :person_birth_city, class: 'petition-form-textfield', placeholder: 'Birth city'
+            
+            - if @signature.require_born_at?
+              = f.text_field :person_born_at, class: 'petition-form-textfield', placeholder: 'Born at'
+
+            = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
+            = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox'
+
+            label.petition-form-label for="petition-form-checkbox"
+              = t('show.sign.form.checkbox')
+            = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
+          div.petition-form-note= t('show.sign.note')
+          
     section.petition-details-container
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
@@ -66,25 +111,26 @@ div.page
       div.petition-details.history
         h2.petition-section-title= t('show.history')
         javascript:
-          window.onload = function () {
-            var chart = new CanvasJS.Chart('chartContainer', {
-              backgroundColor: '#bcf9c7',
-              axisX:{
-                lineThickness: 0
-              },
-              axisY:{
-                lineColor: "#bcf9c7",
-                gridColor: "#bcf9c7",
-              },
-              data: [{
-                 type: 'column',
-                 color: '#96c79f',
-                 dataPoints: #{@chart_array}
-               }]
-             });
-            chart.render();
-          }
-        div id="chartContainer" style="height:275px; width:100%;"
+          document.addEventListener("page:change", function(){
+            var ctx = $("#chartContainer")[0].getContext("2d");
+            var data = {
+              labels: #{@chart_array.map.with_index{|_,i| i+1}},
+              datasets: [{
+                fillColor: "#96c79f",
+                data: #{@chart_array}//[1,2,3,4,5,6,7,8,9,10]
+              }]
+            };
+            var myBarChart = new Chart(ctx).Bar(data, {
+              showTooltips: true,
+              animation: true,
+              showScale: true,
+              scaleShowGridLines : false,
+              barShowStroke : false,
+              tooltipFillColor: "#fff",
+              tooltipFontColor: "#000",
+            });
+          });
+        canvas id="chartContainer" style="height:275px; width:100%;"
       
 div.social-bar
   div.social-bar-content
@@ -100,10 +146,13 @@ div.social-bar
       a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
       javascript:
-        $(document).ready(function() {
+        document.addEventListener("page:change", function(){
           var client = new ZeroClipboard( $(".social-bar-button-url") );
         });
 
+        document.addEventListener("page:before-change", function(){
+          ZeroClipboard.destroy();
+        });
 
 div.page
   section
@@ -127,7 +176,7 @@ div.page
       = will_paginate @signatures, renderer: PetitionsPaginateRenderer
     
     div.navigation-bar
-      a.navigation-toall href="#"= t('show.signatures.to_all')
+      = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
 / p id="notice"
 /   = notice
