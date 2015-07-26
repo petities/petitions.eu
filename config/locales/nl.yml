@@ -3,7 +3,7 @@ nl:
   Create:
     newpetition: Start een petitie
   active: Actief
-  active_admin: 
+  active_admin:
     dashboard: Dashboard
     dashboard_welcome:
       call_to_action: Oproep
@@ -38,13 +38,13 @@ nl:
       title: 'Sorteren op: '
   listing: Listing
   name: Name
-  petition:
+  peition:
     new: Limburgs Nieuw
   petition:
     Edit: Bewerk
     Enable: Pas toe
     Show: Toon
-    add_custom_translation: 
+    add_custom_translation: Add custom translation
     add_translations: Vertaal
     add_translations_dialect: Vertaal
     add_translations_later: Vertaal later
@@ -163,7 +163,7 @@ nl:
         label: Constateren
       petitioner:
         email:
-          description: |
+          description: ''
           label: Uw e-mailadres
         lead:
           description: |

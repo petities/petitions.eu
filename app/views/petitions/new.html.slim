@@ -4,14 +4,14 @@ div.page
   section.start-petition-form-container
     h1.petition-section-title= t('start.title')
     div.petition-overview-title= t('start.overview')
-    
+
     = form_for @petition, html:{ multipart: true } do |f|
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title Petition type
           = f.select :petition_type_id, options_from_collection_for_select(@petition_types, "id", "name")
         div.start-petition-form-cell.label
-          
+
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -30,24 +30,24 @@ div.page
           = f.text_area :description, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,300)", style: "height:100px;"
         div.start-petition-form-cell.label
           p= t('start.form.short_description.description')
-        
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('start.form.addressed.label')
           = f.text_field :organisation_name, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label
           p= t('start.form.addressed.description')
-        
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('start.form.we.label')
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_initiators"
               | 0 / 100
           = f.text_area :initiators, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,100)", style: "height:100px;"
-          
+
         div.start-petition-form-cell.label
           p= t('start.form.we.description')
-        
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('start.form.observe.label')
@@ -63,10 +63,10 @@ div.page
             div.start-petition-form-cell-charcount.charCount id="charCount_petition_request"
               | 0 / 450
           = f.text_area :request, class: 'start-petition-form-cell-input', onkeyup: "charCounter(this,450)", style: "height:100px;"
-          
+
         div.start-petition-form-cell.label
           p= t('start.form.request.description')
-        
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('start.form.image.label')

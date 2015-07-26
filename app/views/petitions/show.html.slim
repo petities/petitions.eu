@@ -9,13 +9,13 @@ javascript:
       floatingElement=$('.petition-form-float-wrapper');
       floatTop=$('.petition-form-wrapper').offset().top - $(window).scrollTop();
       floatBottom=($('.petition-form-wrapper').offset().top + $('.petition-form-wrapper').innerHeight() - floatingElement.height() - 30) - $(window).scrollTop();
-  
+
       if (floatTop < 0) {
         floatingElement.addClass('floating');
       } else {
         floatingElement.removeClass('floating');
       }
-  
+
       if (floatBottom < 0) {
         floatingElement.removeClass('floating').addClass('bottom-fixed');
       } else {
@@ -23,7 +23,7 @@ javascript:
       }
     }
   });
-      
+
 div.page
   - cache [@petition, Globalize.locale.to_s] do
     - if @petition.locale_list.present?
@@ -52,29 +52,29 @@ div.page
           h3= t('show.petition.we')
           p= @petition.initiators
           p &nbsp;
-          
+
           h3= t('show.petition.observe')
           p= @petition.statement
           p &nbsp;
-          
+
           h3= t('show.petition.request')
           p= @petition.request
-        
+
       div.petition-form-wrapper
         div.petition-form-float-wrapper
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
             h2.petition-section-title= t('show.sign.title')
             = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
             = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
-            
+
             - if @signature.require_full_address?
               = f.text_field :person_postalcode, class: 'petition-form-textfield', placeholder: 'Postalcode'
               = f.text_field :person_street, class: 'petition-form-textfield', placeholder: 'Street'
               = f.text_field :person_street_number, class: 'petition-form-textfield', placeholder: 'Street number'
-            
+
             - if @signature.require_person_birth_city?
               = f.text_field :person_birth_city, class: 'petition-form-textfield', placeholder: 'Birth city'
-            
+
             - if @signature.require_born_at?
               = f.text_field :person_born_at, class: 'petition-form-textfield', placeholder: 'Born at'
 
@@ -85,7 +85,7 @@ div.page
               = t('show.sign.form.checkbox')
             = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
           div.petition-form-note= t('show.sign.note')
-          
+
     section.petition-details-container
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
@@ -131,7 +131,7 @@ div.page
             });
           });
         canvas id="chartContainer" style="height:275px; width:100%;"
-      
+
 div.social-bar
   div.social-bar-content
     div.social-bar-label= t('show.share')
@@ -170,11 +170,11 @@ div.page
             / div.petition-signature-occupation
             /   | Directeur DOUC
             div.petition-signature-time= distance_of_time_in_words_to_now(signature.signed_at)
-        
+
         div.clearfix
 
       = will_paginate @signatures, renderer: PetitionsPaginateRenderer
-    
+
     div.navigation-bar
       = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
