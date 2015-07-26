@@ -152,7 +152,7 @@ en:
         label: Addressed to
       image:
         description: |
-          Add the petition poster
+          Add the image for the petition. Make sure it is in landscape format (at least 151 pixels high x 172 pixels wide), not square or portrait. 
         label: Petition images
       name:
         description: |
@@ -164,16 +164,20 @@ en:
         label: Observe
       petitioner:
         email:
-          description: Description
+          description: |
+          Use the e-mail address you check often so we can always reach you. If you do not want this to be public you can add an extra address before the petition will open.
           label: Your e-mail address
         lead:
-          description: "A petition should have a (legal) person responsible for the petition and the spokes person. Signatures write to you, journalists call you and politicians receive your petition. \n"
-          label: Lead petitioner
+          description: |
+          If this petition comes from an organisation you can fill in the name here. Otherwise leave it empty.
+          label: Organisation (if any)
         name:
-          description: Description
+          description: |
+          A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition goes open.
           label: Your first and last name
         password:
-          description: Description
+          description: |
+          If you do not enter a password we will give you a good one.
           label: Preferred password
       request:
         description: |
