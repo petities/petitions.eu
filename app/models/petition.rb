@@ -52,7 +52,11 @@ class Petition < ActiveRecord::Base
   validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
 
   def active_rate
-    self.signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size
+    if self.signatures_count > 0
+      self.signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size.to_f / self.signatures_count.to_f
+    else
+      0
+    end
   end
 
   def update_active_rate!
@@ -61,7 +65,7 @@ class Petition < ActiveRecord::Base
   end
 
   def is_hot?
-    self.active_rate_value > 1
+    self.active_rate_value > 0.05
   end
 
   def history_chart_json

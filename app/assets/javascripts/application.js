@@ -19,4 +19,6 @@
 //= require bootstrap-sprockets
 //= require mailcheck
 //= require Chart.min
-//= require_tree .
+//= require paralax
+//= require petities
+// require_tree .

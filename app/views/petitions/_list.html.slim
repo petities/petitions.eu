@@ -1,0 +1,23 @@
+- @petitions.each do |petition|
+  - cache [petition, I18n.locale] do
+    - id = petition.id
+    
+    div.petition-overview
+      = link_to petition_path(petition), class: 'petition-overview-image-container' do
+        - if petition.images.first.present?
+          = image_tag petition.images.first.upload.url, class: 'petition-overview-image'
+        - else
+          canvas id="chartContainer#{id}" data={chartid: id, chartdata: "chartData#{id}", chartlabels: "chartLabels#{id}"} class='petition-overview-image chart-canvas' style="background-color: #bcf9c7;"
+
+          javascript:
+            window.chartData#{id} = #{petition.history_chart_json},
+            window.chartLabels#{id} = #{petition.history_chart_json.map.with_index{|_,i| i+1}};
+
+      div.petition-overview-info-container
+        h2.petition-overview-info-title
+          = link_to petition_path(petition) do
+            = petition.name
+        div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
+          = petition.signatures_count
+        - if petition.last_confirmed_at
+          div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)

@@ -30,7 +30,12 @@ class PetitionsController < ApplicationController
       {type: 'sign_quick', label: t('index.sort.sign_quick')}
     ]
 
-    @petitions = petitions.paginate(page: params[:page], per_page: 24)
+    @petitions = petitions.paginate(page: params[:page], per_page: 12)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def search

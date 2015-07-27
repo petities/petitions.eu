@@ -1,16 +1,21 @@
 header.header
   div.header-content
-    = image_tag "header_back1.png", class: 'dynamic'
-    = image_tag "header_back2.png", class: 'dynamic'
-    = image_tag "header_trees.png"
-    = image_tag "header_front2.png", class: 'dynamic'
-    = image_tag "header_front1.png", class: 'dynamic'
-    
-    div.header-button-container
-      = link_to '', root_path, class: 'header-logo'
-      = link_to t("header.new"), new_petition_path, class: 'header-button'
+    div#wool-paralax
+      div.wool-layer data={shift: "0.01"} = image_tag "header_back2.png"
+      div.wool-layer data={shift: "0.02"} = image_tag "header_front3.png"
+      div.wool-layer data={shift: "0.03"} = image_tag "header_front4.png"
+      div.wool-layer data={shift: "0.04"} = image_tag "header_trees2.png"
+      div.wool-layer data={shift: "0.05"} = image_tag "header_front2.png"
+      div.wool-layer data={shift: "0.07"} = image_tag "header_front1.png"
+      
+      div.header-button-container
+        = link_to '', root_path, class: 'header-logo'
+        = link_to t("header.new"), new_petition_path, class: 'header-button'
 
 div.page
+  javascript:
+    window.page = #{@page};
+    window.sorting = "#{@sorting}";
   
   div.search-container.whitespace
 
@@ -34,37 +39,14 @@ div.page
           = ' | '
 
     div.petitions-overview-container
-      - @petitions.each_with_index do |petition, i|
-        - cache [petition, I18n.locale] do
-          
-          div.petition-overview class=((@page == 1 && i >= 12) ? 'hidden' : '')
-            = link_to petition_path(petition), class: 'petition-overview-image-container' do
-              - if petition.images.first.present?
-                = image_tag petition.images.first.upload.url, class: 'petition-overview-image'
-              - else
-                canvas id="chartContainer#{i}" data={chartid: i, chartdata: "chartData#{i}", chartlabels: "chartLabels#{i}"} class='petition-overview-image chart-canvas' style="width: 100%; background-color: #bcf9c7;"
-
-                javascript:
-                  window.chartData#{i} = #{petition.history_chart_json},
-                  window.chartLabels#{i} = #{petition.history_chart_json.map.with_index{|_,i| i+1}};
-
-           
-
-            div.petition-overview-info-container
-              h2.petition-overview-info-title
-                = link_to petition_path(petition) do
-                  = petition.name
-              div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
-                = petition.signatures_count
-              - if petition.last_confirmed_at
-                div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+      = render partial: 'list'
     
       div.clearfix
 
-    div.navigation-bar class=((@page != 1) ? 'hidden' : '')
+    div.navigation-bar
       a.navigation-loadmore.button href='javascript:void(0);' = t('index.more')
   
-    div.navigation-bar.pagination class=((@page == 1) ? 'hidden' : '')
+    div.navigation-bar.pagination
       = will_paginate @petitions, renderer: PetitionsPaginateRenderer
   
   aside.news-intro-blocks-container
