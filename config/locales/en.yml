@@ -118,12 +118,12 @@ en:
     share: Share this petition
     sign:
       form:
-        checkbox: I allow my name and place of residence to be publicly visible below the petition.
-        email: E-mail address
-        name: Name
+        checkbox: Publish my name visibly below the petition.
+        email: E-mail address required
+        name: First name Surname
         residence: Place of residence
         submit: Yes, I sign this petition
-      note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
+      note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
       more: Load more petitions
