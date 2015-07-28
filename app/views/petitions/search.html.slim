@@ -7,22 +7,8 @@ div.page
     div.petition-overview-title= t('search.found', results_size: @results_size, search_term: @search)
     
     div.petitions-overview-container
-      - @petitions.each do |petition|
-        - cache [petition, I18n.locale] do
-          
-          div.petition-overview
-            = link_to petition_path(petition), class: 'petition-overview-image-container' do
-              Image
-              /= image_tag petition.image
-
-            div.petition-overview-info-container
-              h2.petition-overview-info-title
-                = link_to petition_path(petition) do
-                  = petition.name
-              div.petitions-counter.hot-item= petition.signatures_count
-              - if petition.last_confirmed_at
-                div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
-      
+      = render partial: 'list'
+            
       div.clearfix
 
     = will_paginate @petitions, renderer: PetitionsPaginateRenderer

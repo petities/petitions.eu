@@ -29,7 +29,7 @@ div.page
   section.petitions-overview-wrapper
 
     div.petitions-overview-sort-options-container
-      = t('index.sort.title') 
+      = t('index.sort.title')
       - @sorting_options.each_with_index do |option, index|
         - if @sorting == option[:type]
           span.petitions-overview-sort-option.active= option[:label]
@@ -44,10 +44,14 @@ div.page
       div.clearfix
 
     div.navigation-bar
-      a.navigation-loadmore.button href='javascript:void(0);' = t('index.more')
+      a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
   
-    div.navigation-bar.pagination
-      = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+      div.pagination
+        = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+      
+      div.clearfix
+      
+      = link_to 'All petitions', all_petitions_path, class: 'navigation-toall'
   
   aside.news-intro-blocks-container
     div.news-intro-block

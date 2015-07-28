@@ -36,6 +36,18 @@ nl:
       new: Nieuwe petities
       sign_quick: Nog snel ondertekenen
       title: 'Sorteren op: '
+
+  all:
+    title: All petitions
+    count: "%{results_size} petitions"
+    sort:
+      title: "Petition status: "
+      all: All
+      open: Open for signing
+      concluded: Concluded
+      rejected: Rejected
+      sign_elsewhere: Sign elsewhere
+      
   listing: Listing
   name: Name
   peition:
@@ -141,7 +153,13 @@ nl:
       visible: Zichtbaar
     linkinstruction: Linkinstructie?
     thanks: Dank u
-  signatures: Ondertekeningen
+
+  signatures:
+    sign: Sign this petition
+    title: Ondertekeningen
+    link: Link
+    notify: Notify
+
   signnow: Teken nu
   start:
     form:

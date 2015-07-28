@@ -244,7 +244,7 @@ a     { text-decoration:none; color:#005a85; }
     .petition-signature-time              { position:absolute; bottom:15px; right:15px; font:400 12px/14px 'Open Sans', arial, sans-serif; color:#6f6f6f; }
 
   .navigation-bar               { text-align:center;}
-  .navigation-bar.pagination    { padding-bottom: 20px; }
+  .navigation-bar .pagination, .navigation-toall    { padding-bottom: 20px; }
   .petition-signatures-wrapper .navigation-bar      { text-align:left; }
     .navigation-bar-item          { padding:10px 10px; font:400 18px/21px 'Open Sans', arial, sans-serif; color:#4fa6d0; }
     .navigation-bar-item:hover,

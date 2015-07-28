@@ -6,12 +6,16 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-    @petition = Petition.find(params[:petition_id])
+    @page = (params[:page] || 1).to_i
 
-    if @petition
-      @signatures = @petition.signatures.confirmed 
-    else
-      render_404
+    @petition = Petition.find(params[:petition_id])
+    @chart_array = @petition.history_chart_json
+    
+    @signatures = @petition.signatures.confirmed.paginate(page: @page, per_page: 12)
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

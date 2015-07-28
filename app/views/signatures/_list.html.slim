@@ -1,0 +1,11 @@
+- @signatures.each do |signature|
+  div.petition-signature
+    div.petition-signature-name
+      - if signature.visible?
+        = signature.person_name
+      - else
+        = t "anonymous"
+    div.petition-signature-location= signature.person_city
+    / div.petition-signature-occupation
+    /   | Directeur DOUC
+    div.petition-signature-time= distance_of_time_in_words_to_now(signature.signed_at)

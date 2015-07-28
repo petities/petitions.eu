@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :petitions do
     collection do
+      get :all
       get :search
     end
 

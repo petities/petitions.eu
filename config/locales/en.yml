@@ -37,6 +37,17 @@ en:
       sign_quick: Sign last minute
       title: |
         Sort on:
+  all:
+    title: All petitions
+    count: "%{results_size} petitions"
+    sort:
+      title: "Petition status: "
+      all: All
+      open: Open for signing
+      concluded: Concluded
+      rejected: Rejected
+      sign_elsewhere: Sign elsewhere
+
   listing: Listing
   name: Name
   peition:
@@ -126,10 +137,17 @@ en:
       note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
-      more: Load more petitions
+      more: Load more signatures
       title: Signatures
       to_all: To all signatures
     signatures_count: "%{count} signatures"
+
+  signatures:
+    sign: Sign this petition
+    title: Signatures
+    link: Link
+    notify: Notify
+
   signature:
     confirm: Confirm
     dear: Dear
@@ -142,7 +160,7 @@ en:
       visible: Visible
     linkinstruction: Linkinstruction
     thanks: Thanks
-  signatures: Signatures
+
   signnow: Sign now
   start:
     form:

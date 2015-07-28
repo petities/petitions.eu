@@ -25,6 +25,9 @@ javascript:
   });
 
 div.page
+  javascript:
+    window.page = 1;
+
   - cache [@petition, Globalize.locale.to_s] do
     - if @petition.locale_list.present?
       div.locale_list
@@ -111,13 +114,13 @@ div.page
       div.petition-details.history
         h2.petition-section-title= t('show.history')
         javascript:
-          document.addEventListener("page:change", function(){
+          $(document).ready(function(){
             var ctx = $("#chartContainer")[0].getContext("2d");
             var data = {
               labels: #{@chart_array.map.with_index{|_,i| i+1}},
               datasets: [{
                 fillColor: "#96c79f",
-                data: #{@chart_array}//[1,2,3,4,5,6,7,8,9,10]
+                data: #{@chart_array}
               }]
             };
             var myBarChart = new Chart(ctx).Bar(data, {
@@ -126,6 +129,7 @@ div.page
               showScale: true,
               scaleShowGridLines : false,
               barShowStroke : false,
+              barValueSpacing: 1,
               tooltipFillColor: "#fff",
               tooltipFontColor: "#000",
             });
@@ -159,23 +163,15 @@ div.page
     h2.petition-section-title= t('show.signatures.title')
     div.petition-signatures-container
       - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
-        - @signatures.each do |signature|
-          div.petition-signature
-            div.petition-signature-name
-              - if signature.visible?
-                = signature.person_name
-              - else
-                = t "anonymous"
-            div.petition-signature-location= signature.person_city
-            / div.petition-signature-occupation
-            /   | Directeur DOUC
-            div.petition-signature-time= distance_of_time_in_words_to_now(signature.signed_at)
+        = render partial: 'signatures/list'
 
-        div.clearfix
-
-      = will_paginate @signatures, renderer: PetitionsPaginateRenderer
+      div.clearfix
 
     div.navigation-bar
+      a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
+      
+      div.clearfix
+      
       = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
 / p id="notice"

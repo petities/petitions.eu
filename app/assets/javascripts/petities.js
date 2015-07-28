@@ -59,9 +59,16 @@ $(document).ready(function(){
 
 	$('.navigation-loadmore').click(function(){
 		window.page += 1;
+    var type = $(this).data('type')
+        url = '';
+
+    if(type === 'petitions')
+      url = window.location.pathname + '?page='+ window.page +'&sorting='+ window.sorting
+    else if(type === 'signatures')
+      url = window.location.pathname + '/signatures?page='+ window.page
 
 		$.ajax({
-			url: '?page='+ window.page +'&sorting='+ window.sorting, 
+			url: url, 
 			dataType: 'jsonp'
 		})
   })

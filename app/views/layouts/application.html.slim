@@ -14,7 +14,7 @@ html
     = javascript_include_tag 'application'
     = content_for :head
 
-  body class=(action_name == 'index' ? '' : 'vervolg')
+  body class=(@vervolg ? '' : 'vervolg')
     = yield
 
   = render partial: 'shared/footer'

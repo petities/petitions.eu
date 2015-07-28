@@ -4,10 +4,11 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
+    @vervolg = true
+
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sort] || 'active'
     @order = params[:order].to_i
-
 
     # petitions = Petition.joins(:translations).live
     petitions = Petition.live
@@ -24,13 +25,51 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-      {type: 'active', label: t('index.sort.active')}, 
-      {type: 'biggest', label: t('index.sort.biggest')},
-      {type: 'newest', label: t('index.sort.new')},
-      {type: 'sign_quick', label: t('index.sort.sign_quick')}
+      {type: 'active',      label: t('index.sort.active')}, 
+      {type: 'biggest',     label: t('index.sort.biggest')},
+      {type: 'newest',      label: t('index.sort.new')},
+      {type: 'sign_quick',  label: t('index.sort.sign_quick')}
     ]
 
-    @petitions = petitions.paginate(page: params[:page], per_page: 12)
+    @petitions = petitions.paginate(page: @page, per_page: 12)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def all
+    @page    = (params[:page] || 1).to_i
+    @sorting = params[:status] || 'all'
+    @order   = params[:order].to_i
+
+    # petitions = Petition.joins(:translations).live
+    direction = [:desc, :asc][@order]
+
+    petitions = Petition.live.order(created_at: direction)
+    
+    if @sorting == 'all' then
+      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
+    elsif @sorting == 'open'
+      # petitions = petitions.order(signatures_count: direction)
+    elsif @sorting == 'concluded'
+      petitions = petitions.where(status: 'completed')
+    elsif @sorting == 'sign_elsewhere'
+      # petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
+    end
+
+    @sorting_options = [
+      {type: 'all',            label: t('all.sort.all')}, 
+      {type: 'open',           label: t('all.sort.open')},
+      {type: 'concluded',      label: t('all.sort.concluded')},
+      {type: 'rejected',       label: t('all.sort.rejected')},
+      {type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere')}
+    ]
+
+    @results_size = petitions.size
+
+    @petitions = petitions.paginate(page: @page, per_page: 12)
 
     respond_to do |format|
       format.html
