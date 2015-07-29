@@ -1,0 +1,79 @@
+= render partial: 'shared/header'
+
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title= t('confirm.title', name: @petition.name)
+    / div.petition-overview-title= t('start.overview')
+
+    = form_for @signature, url: @url do |f|
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.name.label')
+          = f.text_field :person_name, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label
+          p= t('confirm.form.name.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.location.label')
+          = f.text_area :person_city, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label
+          p= t('confirm.form.location.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.email.label')
+          = f.text_field :person_email, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label
+          p= t('confirm.form.email.description')
+
+      - if @signature.require_full_address?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.postal_code.label')
+            = f.text_area :person_postalcode, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.postal_code.description')
+
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.street.label')
+            = f.text_area :person_street, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.street.description')
+
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.street_number.label')
+            = f.text_area :person_street_number, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.street_number.description')
+
+      - if @signature.require_person_birth_city?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.city.label')
+            = f.text_area :person_birth_city, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.city.description')
+
+      - if @signature.require_born_at?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.born_at.label')
+            = f.text_area :person_born_at, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.born_at.description')
+
+      div.start-petition-form-row
+          div.start-petition-form-cell.input
+            = t('confirm.info.ip', ip: @remote_ip)
+            br
+            = t('confirm.info.browser', browser: @remote_browser)
+            
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = f.submit @action, class: 'start-petition-form-cell-button'
+          
+        div.start-petition-form-cell.label.empty
+          | &nbsp;

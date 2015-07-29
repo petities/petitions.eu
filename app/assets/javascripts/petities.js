@@ -41,11 +41,37 @@ $(document).ready(function(){
 
 	$('body').woolParalax();
 		
-	$('#new_signature').on('ajax:success',function(e, data, status, xhr){
-      console.log('success')
-      alert('Thank you for signing! Check out your email to confirm your signature!')
+  $('#new_signature input').bind('keyup', function(){
+    $(this).removeClass('error');
+  })
+
+  $('#new_signature').submit(function(){
+    var nameRegex = /^\w+\s+\w+[\w+\s+]{0,}$/,
+        emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+        $nameField = $('#signature_person_name'),
+        $emailField = $('#signature_person_email'),
+        $errorsBlock = $('.signature-form-errors'),
+        result = true;
+
+    $errorsBlock.html('');
+
+    if(!$nameField.val().match(nameRegex)){
+      $nameField.addClass('error');
+      $errorsBlock.append('Please enter correct Name and Surname.<br>');
+      result = false;
+    }
+
+    if(!$emailField.val().match(emailRegex)){
+      $emailField.addClass('error');
+      $errorsBlock.append('Please enter correct Email.<br>');
+      result = false;
+    }
+
+    return result;
+  }).on('ajax:success',function(e, data, status, xhr){
+      $('.petition-form-float-wrapper').hide();
+      $('.petition-success-sign-note').show();
     }).on('ajax:error',function(e, xhr, status, error){
-      console.log('error')
       console.log(xhr)
     });
 

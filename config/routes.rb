@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get :search
     end
 
-    resources :signatures, except: [:new]
+    resources :signatures, except: [:new] do
+      post :confirm_submit
+    end
     # resources :new_signatures
 
     get 'add_translation'

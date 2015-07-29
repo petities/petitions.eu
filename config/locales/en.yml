@@ -124,7 +124,7 @@ en:
     petition:
       observe: observe
       request: and request
-      title: Petitie
+      title: Petition
       we: We
     share: Share this petition
     sign:
@@ -134,6 +134,11 @@ en:
         name: First name Surname
         residence: Place of residence
         submit: Yes, I sign this petition
+        errors:
+          name: Please enter correct Name and Surname.
+          email: Please enter correct Email.
+        success: |
+          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
@@ -211,3 +216,38 @@ en:
     title: Start a petition
   statement: Statement
   when: When
+
+  confirm:
+    title: "Confirm your signature for petition \"%{name}\""
+    form:
+      name:
+        label: Name and Surname
+        description: Your full name
+      location:
+        label: Place of residence
+        description: Place where you live
+      email:
+        label: Email
+        description: Your email
+      postal_code:
+        label: Postal code
+        description: Your postal code
+      street:
+        label: Street
+        description: Street name
+      street_number:
+        label: Street number
+        description: Street number
+      city:
+        label: City of birth
+        description: City where you were born
+      born_at:
+        label: Born at
+        description: Your birth date
+      action:
+        update: Update my data
+        confirm: Confirm
+
+    info:
+      ip: "Your IP-address: %{ip}"
+      browser: "Your browser: %{browser}"
