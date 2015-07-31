@@ -1,170 +1,216 @@
+= form_for @petition, html:{ multipart: true } do |f|
+  div.errors-container style='display: none;'
+    div.errors-empty Field is empty.
+    div.errors-too-long The text is bigger than the allowed value.
+  
+  - if user_signed_in?
+    - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
 
-= form_for(@petition, html: {class: "form-horizontal", autocomplete: "on"}) do |f|
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title Petition type
+        = f.select :petition_type_id, options_from_collection_for_select(@petition_types, "id", "name")
+      div.start-petition-form-cell.label
 
-  - if @petition.errors.any?
-      div id="error_explanation"
-        h2  = pluralize @petition.errors.count, "error"
-          | prohibited this petition from being saved
-
-          ul
-
-            - @petition.errors.full_messages.each do |message|
-               li = message
-
-  div id="description" class="form-group"
-    = f.label :name, class:'col-sm-2 control-label'
-
-    div class="col-sm-10" title="80"
-      = f.text_field :name, class:"form-control countit"
-
-      span class="help-block" id="helpBlock"
-        = t('petition.help.title')
-        span<>id="rem_petition_name" class="heko-block label label-success" title=80
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title Petition status
+        = f.select :status, options_for_select(Petition::STATUS_LIST)
+      div.start-petition-form-cell.label
 
 
-  div class="form-group"
-    = f.label :description, class:'col-sm-2 control-label'
 
-    div class="col-sm-10"
-      = f.text_area :description, class: 'form-control countit', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.description')
-         span<>id="rem_petition_description" class="heko-block label label-success" title=300
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title
+        = t('start.form.name.label')
+        div.start-petition-form-cell-charcount.charCount id="charCount_petition_name"
+          | 0 / 80
+      = f.text_field :name, class: 'start-petition-form-cell-input validation', onkeyup: "charCounter(this,80)", 'data-chars': 80
+      div.errors
+    div.start-petition-form-cell.label
+      p= t('start.form.name.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title
+        = t('start.form.short_description.label')
+        div.start-petition-form-cell-charcount.charCount id="charCount_petition_description"
+          | 0 / 300
+      = f.text_area :description, class: 'start-petition-form-cell-input validation', onkeyup: "charCounter(this,300)", style: "height:100px;", 'data-chars': 300
+      div.errors
+    div.start-petition-form-cell.label
+      p= t('start.form.short_description.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title= t('start.form.addressed.label')
+      = f.select :organisation_kind, options_for_select(@organisation_types.map{|o_t| o_t[0] }, selected: @petition.organisation_kind), include_blank: "Select organisation type"
+      br
+      - @organisation_types.each do |organisation_type|
+        - is_hidden = @petition.organisation_kind != organisation_type[0]
+
+        = f.select :organisation_id, options_from_collection_for_select(organisation_type[1], "id", "name", selected: @petition.organisation_id), {}, {class: "organisation_select #{organisation_type[0]}", style: is_hidden ? 'display:none' : '', disabled: is_hidden}
+
+    div.start-petition-form-cell.label
+      p= t('start.form.addressed.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title
+        = t('start.form.we.label')
+        div.start-petition-form-cell-charcount.charCount id="charCount_petition_initiators"
+          | 0 / 100
+      = f.text_area :initiators, class: 'start-petition-form-cell-input validation', onkeyup: "charCounter(this,100)", style: "height:100px;", 'data-chars': 100
+      div.errors
+    div.start-petition-form-cell.label
+      p= t('start.form.we.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title
+        = t('start.form.observe.label')
+        div.start-petition-form-cell-charcount.charCount id="charCount_petition_statement"
+          | 0 / 450
+      = f.text_area :statement, class: 'start-petition-form-cell-input validation', onkeyup: "charCounter(this,450)", style: "height:100px;", 'data-chars': 450
+      div.errors
+    div.start-petition-form-cell.label
+      p= t('start.form.observe.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title
+        = t('start.form.request.label')
+        div.start-petition-form-cell-charcount.charCount id="charCount_petition_request"
+          | 0 / 450
+      = f.text_area :request, class: 'start-petition-form-cell-input validation', onkeyup: "charCounter(this,450)", style: "height:100px;", 'data-chars': 450
+      div.errors
+    div.start-petition-form-cell.label
+      p= t('start.form.request.description')
+
+  div.start-petition-form-row
+    div.start-petition-form-cell.input
+      div.start-petition-form-cell-title= t('start.form.image.label')
+      = file_field_tag 'images[]', class: 'start-petition-form-cell-input'
+    div.start-petition-form-cell.label
+      p= t('start.form.image.description')
+
+  - if !user_signed_in? && action_name == 'new'
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.lead.label')
+        = f.text_field :petitioner_organisation, class: 'start-petition-form-cell-input'
+      div.start-petition-form-cell.label
+        p= t('start.form.petitioner.lead.description')
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.email.label')
+        = text_field_tag 'user[email]', '', class: 'start-petition-form-cell-input'
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.password.label')
+        = text_field_tag 'user[password]', '', class: 'start-petition-form-cell-input', type: 'password'
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.name.label')
+        = text_field_tag 'user[name]', '', class: 'start-petition-form-cell-input'
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+  - if action_name == 'new'
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        = f.submit t('start.form.submit'), class: 'start-petition-form-cell-button'
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+  - elsif action_name == 'edit'
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        = f.submit t('start.form.update'), class: 'start-petition-form-cell-button whitespace'
+        = f.submit t('start.form.finalize'), class: 'start-petition-form-cell-button'
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+  div.start-petition-form-row
+    div.errors-note.whitespace style="display:none;" Some fields are filled incorrectly. Check them out and try again.
 
 
-  div id="target" class="form-group"
-    = f.label :organisation_name, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.text_field :organisation_name, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.organisation')
-
-
-  div id="initiators" class="form-group"
-    = f.label :initiators, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.text_area :initiators, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.initiators')
-
-  div id="statement" class="form-group"
-    = f.label :statement, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.text_area :statement, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.statement')
-
-  div id="request" class="form-group"
-    = f.label :request, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.text_area :request, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.request')
-
-
-  h1 id="petitioner"
-    = t 'petitioner'
-
-  - if not user_signed_in?
-
-    div class="form-group"
-      = f.label :petitioner_name, class:'col-sm-2 control-label'
-
-      div class="col-sm-10"
-        = f.text_field :petitioner_name, class: 'form-control', rows:"6"
-        span class="help-block" id="helpBlock"
-           = t('petition.help.petitioner.name')
-
-    div class="form-group"
-      = f.label :petitioner_email, class:'col-sm-2 control-label'
-
-      div class="col-sm-10"
-        = f.text_field :petitioner_email, class: 'form-control', rows:"6"
-        span class="help-block" id="helpBlock"
-          span<> id="emailsuggestion"
-          = t('petition.help.petitioner.email')
-
-
-  div class="form-group"
-    div class="col-sm-offset-2 col-sm-10"
-      = f.submit class: 'btn btn-success'
-
-      span class="help-block" id="helpBlock"
-        span<> id="emailsuggestion"
-        = t('petition.help.save')
-
-
-  - if not @petition.id.blank?
-    div class="form-group"
-      div class="col-sm-offset-2 col-sm-10"
+  / - if not @petition.id.blank?
+  /   div class="form-group"
+  /     div class="col-sm-offset-2 col-sm-10"
  
-        = link_to petition_update_owners_path(@petition), class: 'btn btn-warning'
-          = t('petition.finalize')
+  /       = link_to petition_update_owners_path(@petition), class: 'btn btn-warning'
+  /         = t('petition.finalize')
 
-        span class="help-block" id="helpBlock"
-          span<> id="emailsuggestion"
-          = t('petition.help.finish')
-
-
-  div class="well"
-     h1 = t 'petition.optional'
+  /       span class="help-block" id="helpBlock"
+  /         span<> id="emailsuggestion"
+  /         = t('petition.help.finish')
 
 
-  div class="form-group"
-    = f.label :link1, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.url_field :link1, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.link')
+  / div class="well"
+  /    h1 = t 'petition.optional'
 
 
-  div class="form-group"
-    = f.label :link1_text, class:'col-sm-2 control-label'
+  / div class="form-group"
+  /   = f.label :link1, class:'col-sm-2 control-label'
 
-    div class="col-sm-10"
-      = f.text_field :link1_text, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.link_text')
-
-
-  div class="form-group"
-    = f.label :link2, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.url_field :link2, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-         = t('petition.help.link')
+  /   div class="col-sm-10"
+  /     = f.url_field :link1, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /        = t('petition.help.link')
 
 
-  div class="form-group"
-    = f.label :link2_text, class:'col-sm-2 control-label'
+  / div class="form-group"
+  /   = f.label :link1_text, class:'col-sm-2 control-label'
 
-    div class="col-sm-10"
-      = f.text_field :link2_text, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-           = t('petition.help.link_text')
-
-
-  div class="form-group"
-    = f.label :link3, class:'col-sm-2 control-label'
-
-    div class="col-sm-10"
-      = f.url_field :link3, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-           = t('petition.help.link')
+  /   div class="col-sm-10"
+  /     = f.text_field :link1_text, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /        = t('petition.help.link_text')
 
 
-  div class="form-group"
-    = f.label :link3_text, class:'col-sm-2 control-label'
+  / div class="form-group"
+  /   = f.label :link2, class:'col-sm-2 control-label'
 
-    div class="col-sm-10"
-      = f.text_field :link3_text, class: 'form-control', rows:"6"
-      span class="help-block" id="helpBlock"
-           = t('petition.help.link_text')
+  /   div class="col-sm-10"
+  /     = f.url_field :link2, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /        = t('petition.help.link')
+
+
+  / div class="form-group"
+  /   = f.label :link2_text, class:'col-sm-2 control-label'
+
+  /   div class="col-sm-10"
+  /     = f.text_field :link2_text, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /          = t('petition.help.link_text')
+
+
+  / div class="form-group"
+  /   = f.label :link3, class:'col-sm-2 control-label'
+
+  /   div class="col-sm-10"
+  /     = f.url_field :link3, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /          = t('petition.help.link')
+
+
+  / div class="form-group"
+  /   = f.label :link3_text, class:'col-sm-2 control-label'
+
+  /   div class="col-sm-10"
+  /     = f.text_field :link3_text, class: 'form-control', rows:"6"
+  /     span class="help-block" id="helpBlock"
+  /          = t('petition.help.link_text')
 
 

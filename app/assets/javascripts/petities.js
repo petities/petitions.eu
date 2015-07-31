@@ -40,6 +40,40 @@ function initChart(elem){
 $(document).ready(function(){
 
 	$('body').woolParalax();
+
+  $('.new_petition, .edit_petition').submit(function(){
+    var success = true;
+
+    $('.errors').html('');
+    $('.errors-note').hide();
+
+    $('.validation').each(function(index, elem){
+      var val = $(this).val(),
+          allowedCharsCount = $(this).data('chars');
+
+      if(val.length > allowedCharsCount){
+        $(this).siblings('.errors').html($('.errors-too-long').html())
+        success = false;
+      } else if (val.length == 0){
+        $(this).siblings('.errors').html($('.errors-empty').html())
+        success = false;
+      }
+
+    })
+
+    if(!success) $('.errors-note').show();
+
+    return success;
+  })
+
+  $("#organisation_type").change(function () {
+    $('.organisation_select').hide();
+    $('.organisation_select').attr('disabled', true);
+
+    var type = '.' + $(this).find('option:selected').val();
+    $(type).attr('disabled', false)
+    $(type).show();
+  });
 		
   $('#new_signature input').bind('keyup', function(){
     $(this).removeClass('error');
@@ -84,18 +118,35 @@ $(document).ready(function(){
   })
 
 	$('.navigation-loadmore').click(function(){
-		window.page += 1;
     var type = $(this).data('type')
         url = '';
-
-    if(type === 'petitions')
+	
+  	if(type === 'petitions'){
+      window.page += 1;
       url = window.location.pathname + '?page='+ window.page +'&sorting='+ window.sorting
-    else if(type === 'signatures')
+    } else if(type === 'signatures'){
+      window.page += 1;
       url = window.location.pathname + '/signatures?page='+ window.page
+    } else if(type === 'updates'){
+      window.updates_page += 1;
+      url = '/updates?page='+ window.updates_page
+    }
 
 		$.ajax({
 			url: url, 
 			dataType: 'jsonp'
 		})
   })
+
+  $('.read-more-handler').click(function() {
+    $(this).hide();
+    $(this).next('.read-more-content').slideDown();
+  });
+
+  $('.read-more-help-handler').click(function() {
+    $('.read-more-help-handler').show();
+    $('.read-more-help-content').hide();
+    $(this).hide();
+    $(this).next('.read-more-help-content').slideDown();
+  });
 });

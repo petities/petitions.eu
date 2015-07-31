@@ -1,18 +1,17 @@
 = render partial: 'shared/header'
 
-h1 
-  = t 'petition.editing'
-  =<> t 'petition.language'
-  =<> I18n.locale
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title 
+      = t 'petition.editing'
+      =<> t 'petition.language'
+      =<> I18n.locale
 
+    = render 'form'
 
-== render 'side_bar'
+/ - if user_signed_in?
+/   - if current_user.has_role? :admin or current_user.has_role? :admin, @petition
 
-== render 'form'
+/     h1 Admin Petition options.. TODO
 
-- if user_signed_in?
-  - if current_user.has_role? :admin or current_user.has_role? :admin, @petition
-
-    h1 Admin Petition options.. TODO
-
-    == render 'admin_from'
+/     == render 'admin_form'

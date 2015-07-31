@@ -207,6 +207,9 @@ en:
           With this text you attract signatures: it appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
       submit: Submit petition
+      finalize: Finalize
+      update: Update
+
       we:
         description: |
           You describe here who you think will sign. Do not exclude signatories. Max 100 characters.

@@ -41,11 +41,11 @@ ol        { list-style-type:decimal; margin:0 0 0 20px; }
 
 @font-face {
     font-family: 'VAGRoundedLtNormal';
-    src: url('webfonts/vagrounded_lt_normal-webfont.eot');
-    src: url('webfonts/vagrounded_lt_normal-webfont.eot?#iefix') format('embedded-opentype'),
-         url('webfonts/vagrounded_lt_normal-webfont.woff') format('woff'),
-         url('webfonts/vagrounded_lt_normal-webfont.ttf') format('truetype'),
-         url('webfonts/vagrounded_lt_normal-webfont.svg#VAGRoundedLtNormal') format('svg');
+    src: url('vagrounded_lt_normal-webfont.eot');
+    src: url('vagrounded_lt_normal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('vagrounded_lt_normal-webfont.woff') format('woff'),
+         url('vagrounded_lt_normal-webfont.ttf') format('truetype'),
+         url('vagrounded_lt_normal-webfont.svg#VAGRoundedLtNormal') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -286,6 +286,7 @@ a     { text-decoration:none; color:#005a85; }
 
   .start-petition-form-cell-charcount     { position:absolute; top:4px; right:0; font:400 14px/28px 'Open Sans', arial, sans-serif; }
   .error-too-long       { color:#f00; font-weight:700; }
+  .errors, .errors-note { color:#f00;}
 
   .news-intro-blocks-container          { display:flex; }
     .news-intro-block                   { display:inline-block; flex:1; vertical-align:top; margin:0 1% 0 0; padding:20px 2%; background:#bcf9c7; }

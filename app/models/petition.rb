@@ -4,6 +4,22 @@ class Petition < ActiveRecord::Base
   has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
+
+  STATUS_LIST = [
+    'published',
+    'live',
+    'withdrawn',
+    'draft',
+    'concept',
+    'staging',
+    'not_signable_here',
+    'to_process',
+    'ghost',
+    'in_process',
+    'not_processed',
+    'rejected',
+    'completed'
+  ]
     
   scope :live,      -> {where(status: 'live')}
   scope :big,       -> {order(signatures_count: :desc)}
@@ -40,6 +56,7 @@ class Petition < ActiveRecord::Base
     Time.now - (self.last_confirmed_at || Time.now)
   end
 
+  has_many :updates
 
   validates_presence_of :name
   validates_presence_of :description
@@ -50,6 +67,12 @@ class Petition < ActiveRecord::Base
   validates_format_of :subdomain, :with => /\A[A-Za-z0-9-]+\z/, :allow_blank => true
   validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
   validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
+
+  after_update :send_status_mail
+
+  def send_status_mail
+    PetitionMailer.status_change_mail(self).deliver if self.status_changed?
+  end
 
   def active_rate
     if self.signatures_count > 0

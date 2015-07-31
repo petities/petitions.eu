@@ -16,11 +16,14 @@ Rails.application.routes.draw do
     end
     # resources :new_signatures
 
+
     get 'add_translation'
     patch 'update_owners'
 
   end
 
+  resources :updates
+  
   #resource :signatures
 
   root 'petitions#index'

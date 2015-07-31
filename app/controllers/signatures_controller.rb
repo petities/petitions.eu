@@ -11,7 +11,11 @@ class SignaturesController < ApplicationController
     @petition = Petition.find(params[:petition_id])
     @chart_array = @petition.history_chart_json
     
-    @signatures = @petition.signatures.confirmed.paginate(page: @page, per_page: 12)
+    @signatures = @petition.signatures.confirmed
+
+    @signatures_count_by_city = @signatures.group_by{|sig| sig.person_city}.map{|group| [group[0], group[1].size]}.sort_by{|group| group[1]}[0..9]
+
+    @signatures = @signatures.paginate(page: @page, per_page: 12)
 
     respond_to do |format|
       format.html

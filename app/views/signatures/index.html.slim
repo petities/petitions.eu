@@ -42,6 +42,13 @@ div.page.signatures
       
   aside.petition-signatures-side
     div.petition-signatures-side-float
+      div.side-article-container.whitespace
+        h2.side-article-title Signature cities
+        ul
+          - @signatures_count_by_city.each do |group|
+            li= "#{group[0]}: #{group[1]}"
+
+
       javascript:
         $(document).ready(function(){
           var ctx = $("#chartContainer")[0].getContext("2d");

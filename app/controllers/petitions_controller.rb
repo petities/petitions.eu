@@ -56,7 +56,7 @@ class PetitionsController < ApplicationController
     elsif @sorting == 'concluded'
       petitions = petitions.where(status: 'completed')
     elsif @sorting == 'sign_elsewhere'
-      # petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
+      petitions = petitions.where(status: 'not_signable_here')
     end
 
     @sorting_options = [
@@ -105,6 +105,8 @@ class PetitionsController < ApplicationController
     @chart_array = @petition.history_chart_json
 
     @signatures = @petition.signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
+
+    @updates = Update.all.paginate(page: 1, per_page: 3)
     
     # TODO.
     # where prominent is TRUE and score is higher then 0
@@ -117,6 +119,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.new
 
     @petition_types = PetitionType.all
+    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
   end
 
   # POST /petitions
@@ -126,10 +129,32 @@ class PetitionsController < ApplicationController
     @petition = Petition.new(petition_params)
 
     @petition.locale_list << I18n.locale
+
+    if petition_params[:organisation_id].present?
+      organisation = Organisation.find(petition_params[:organisation_id])
+      
+      @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
+    end
     
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)
+      end
+    end
+
+    if !user_signed_in?
+      user_params = params[:user]
+
+      if user_params[:email]
+        user = User.where(email: user_params[:email]).first
+
+        unless user
+          User.create(
+            email: user_params[:email], 
+            username: user_params[:name], 
+            password: user_params[:password]
+          )
+        end
       end
     end
 
@@ -148,6 +173,9 @@ class PetitionsController < ApplicationController
   def edit
     # authorize @petition
     @owners = find_owners
+
+    @petition_types = PetitionType.all
+    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
   end
 
   def add_translation
@@ -197,12 +225,20 @@ class PetitionsController < ApplicationController
     locale = params[:add_locale] || I18n.locale
     update_locale_list(locale.to_sym) if params[:add_locale]
 
+    # if petition_params[:organisation_id].present?
+    #   organisation = Organisation.find(petition_params[:organisation_id])
+      
+    #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
+    # end
+
+    if params[:commit] == 'Finalize'
+      PetitionMailer.finalize_mail(@petition).deliver
+    end
+
     Globalize.with_locale(locale) do
       respond_to do |format|
         if @petition.update_attributes(petition_params)
-          format.html { render :edit, :flash => {
-              :success => 'Petition was successfully updated.'}
-          }
+          format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.'}}
           format.json { render :show, status: :ok, location: @petition }
         else
           format.html { render :edit }
@@ -274,7 +310,7 @@ class PetitionsController < ApplicationController
       # locale_list: []
       params.require(:petition).permit(
         :name, :description, :statement, :request, :initiators,
-        :organisation_name, :petitioner_email, :petitioner_name, :password,
+        :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
         :petition_type_id
       )
       #:subscribe, :visible,

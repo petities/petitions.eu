@@ -207,6 +207,9 @@ nl:
           Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
       submit: Petitie aanmaken
+      finalize: Finalize
+      update: Update
+      
       we:
         description: |
           U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
