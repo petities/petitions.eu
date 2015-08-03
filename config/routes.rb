@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
     # resources :new_signatures
 
+    resources :updates, only: [:index]
+
 
     get 'add_translation'
     patch 'update_owners'

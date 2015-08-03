@@ -13,7 +13,7 @@ class SignaturesController < ApplicationController
     
     @signatures = @petition.signatures.confirmed
 
-    @signatures_count_by_city = @signatures.group_by{|sig| sig.person_city}.map{|group| [group[0], group[1].size]}.sort_by{|group| group[1]}[0..9]
+    @signatures_count_by_city = @signatures.group_by{|sig| sig.person_city}.map{|group| [group[0], group[1].size]}.select{|group| group[1] >= 100}.sort_by{|group| group[1]}[0..9]
 
     @signatures = @signatures.paginate(page: @page, per_page: 12)
 

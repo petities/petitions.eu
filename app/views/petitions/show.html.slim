@@ -68,8 +68,8 @@ div.page
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
             h2.petition-section-title= t('show.sign.title')
             = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
-            = f.select :person_city, options_from_collection_for_select(City.all, :name, :name), class: 'petition-form-textfield'
-            / = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
+            / = f.select :person_city, options_from_collection_for_select(City.all, :name, :name), class: 'petition-form-textfield'
+            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
             = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
             = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox'
             label.petition-form-label for="petition-form-checkbox"
@@ -161,26 +161,31 @@ div.page
       div.clearfix
 
     div.navigation-bar
-      a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
+      - if @signatures.blank?
+        div.whitespace No signatures for this moment
+      - else
+        a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
       
       div.clearfix
       
       = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
-div.petition-updates
-  div.page
-    section
-      h2.petition-section-title Updates
+- if @updates.present?
+  div.petition-updates
+    div.page
+      section
+        h2.petition-section-title Updates
 
-      javascript:
-        window.updates_page = 1;
+        javascript:
+          window.updates_page = 1;
 
-      div.update-container
-        = render partial: 'updates/list'
-        
-      div.navigation-bar
-        a href="javascript:void(0)" data={type: 'updates'} class="navigation-loadmore button" Load more updates
-        div.clearfix
+        div.update-container
+          = render partial: 'updates/list'
+          
+        - if @petition.updates.size > 3
+          div.navigation-bar
+            a href="javascript:void(0)" data={type: 'updates'} class="navigation-loadmore button" Load more updates
+            div.clearfix
       
 / p id="notice"
 /   = notice

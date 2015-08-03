@@ -140,8 +140,9 @@
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
-  div.start-petition-form-row
-    div.errors-note.whitespace style="display:none;" Some fields are filled incorrectly. Check them out and try again.
+  div.start-petition-form-row.whitespace
+    div.start-petition-form-cell.input
+      div.errors-note.whitespace style="display:none;" Some fields are filled incorrectly. Check them out and try again.
 
 
   / - if not @petition.id.blank?

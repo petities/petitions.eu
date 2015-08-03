@@ -106,7 +106,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
 
-    @updates = Update.all.paginate(page: 1, per_page: 3)
+    @updates = @petition.updates.paginate(page: 1, per_page: 3)
     
     # TODO.
     # where prominent is TRUE and score is higher then 0

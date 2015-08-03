@@ -1,6 +1,8 @@
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
 
+  default_scope { order('created_at DESC') }
+
   belongs_to :petition
 
   def intro_text

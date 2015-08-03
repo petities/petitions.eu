@@ -66,13 +66,16 @@ $(document).ready(function(){
     return success;
   })
 
-  $("#organisation_type").change(function () {
+  $("#petition_organisation_kind").change(function () {
     $('.organisation_select').hide();
     $('.organisation_select').attr('disabled', true);
 
     var type = '.' + $(this).find('option:selected').val();
-    $(type).attr('disabled', false)
-    $(type).show();
+    
+    if(type !== '.'){
+      $(type).attr('disabled', false)
+      $(type).show();
+    }
   });
 		
   $('#new_signature input').bind('keyup', function(){
@@ -137,16 +140,16 @@ $(document).ready(function(){
 			dataType: 'jsonp'
 		})
   })
+});
+  
+$(document).on('click', '.read-more-handler', function() {
+  $(this).hide();
+  $(this).next('.read-more-content').slideDown();
+});
 
-  $('.read-more-handler').click(function() {
-    $(this).hide();
-    $(this).next('.read-more-content').slideDown();
-  });
-
-  $('.read-more-help-handler').click(function() {
-    $('.read-more-help-handler').show();
-    $('.read-more-help-content').hide();
-    $(this).hide();
-    $(this).next('.read-more-help-content').slideDown();
-  });
+$(document).on('click', '.read-more-help-handler', function() {
+  $('.read-more-help-handler').show();
+  $('.read-more-help-content').hide();
+  $(this).hide();
+  $(this).next('.read-more-help-content').slideDown();
 });
