@@ -187,21 +187,21 @@ en:
         label: Observe
       petitioner:
         email:
-          description: |
+        description: |
           Use the e-mail address you check often so we can always reach you. If you do not want this to be public you can add an extra address before the petition will open.
-          label: Your e-mail address
+        label: Your e-mail address
         lead:
-          description: |
+        description: |
           If this petition comes from an organisation you can fill in the name here. Otherwise leave it empty.
-          label: Organisation (if any)
+        label: Organisation (if any)
         name:
-          description: |
+        description: |
           A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition goes open.
-          label: Your first and last name
+        label: Your first and last name
         password:
-          description: |
+        description: |
           If you do not enter a password we will give you a good one.
-          label: Preferred password
+        label: Preferred password
       request:
         description: |
           Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
