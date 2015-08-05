@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   #around_action :with_locale
   before_filter :set_locale
 
+  def help
+    @faq_questions = Faq.all
+  end
+
   def render_404
     render 'shared/404'
   end

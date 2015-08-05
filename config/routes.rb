@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   #resource :signatures
 
   root 'petitions#index'
+
+  get '/help', to: 'application#help'
   
   get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
   get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
