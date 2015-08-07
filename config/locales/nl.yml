@@ -53,6 +53,8 @@ nl:
   peition:
     new: Limburgs Nieuw
   petition:
+    pdf: Save in PDF
+    csv: Save in CSV
     Edit: Bewerk
     Enable: Pas toe
     Show: Toon
@@ -209,7 +211,7 @@ nl:
       submit: Petitie aanmaken
       finalize: Finalize
       update: Update
-      
+
       we:
         description: |
           U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
@@ -254,3 +256,6 @@ nl:
     info:
       ip: "Your IP-address: %{ip}"
       browser: "Your browser: %{browser}"
+
+  help:
+    title: Help

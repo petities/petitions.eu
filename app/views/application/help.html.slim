@@ -2,19 +2,20 @@
 
 div.page.vervolg
   section.vervolg-main
-    h1.petition-section-title.left Help
+    h1.petition-section-title.left= t('help.title')
 
     div.update-container
       div.update
         h2 General
 
-        - @faq_questions.each do |faq_item|
-          div.read-more-help-handler
-            | &#43; 
-            = faq_item.question
-          div.read-more-help-content
-            h3= faq_item.question
-            p= faq_item.answer
+        - cache @faq_questions do
+          - @faq_questions.each do |faq_item|
+            div.read-more-help-handler
+              | &#43; 
+              = faq_item.question
+            div.read-more-help-content
+              h3= faq_item.question
+              p= faq_item.answer
             
        
   aside.vervolg-side

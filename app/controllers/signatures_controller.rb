@@ -9,16 +9,41 @@ class SignaturesController < ApplicationController
     @page = (params[:page] || 1).to_i
 
     @petition = Petition.find(params[:petition_id])
-    @chart_array = @petition.history_chart_json
+    @all_signatures = @petition.signatures.confirmed
+
+    unless request.xhr?
+      @chart_array = @petition.history_chart_json 
+      @signatures_count_by_city = @all_signatures.group_by{|sig| sig.person_city}
+                                                 .map{|group| [group[0], group[1].size]}
+                                                 .select{|group| group[1] >= 100}
+                                                 .sort_by{|group| group[1]}[0..9]
+      @per_page = 100
+    else
+      @per_page = 12
+    end
     
-    @signatures = @petition.signatures.confirmed
-
-    @signatures_count_by_city = @signatures.group_by{|sig| sig.person_city}.map{|group| [group[0], group[1].size]}.select{|group| group[1] >= 100}.sort_by{|group| group[1]}[0..9]
-
-    @signatures = @signatures.paginate(page: @page, per_page: 12)
+    @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
 
     respond_to do |format|
       format.html
+      format.js
+      format.pdf
+      format.csv
+    end
+  end
+
+  def search
+    @petition = Petition.find(params[:petition_id])
+
+    @query = params[:query]
+
+    @signatures = if @query.blank?
+                    @petition.signatures.confirmed.paginate(page: params[:page], per_page: 100)
+                  else
+                    @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
+                  end
+
+    respond_to do |format|
       format.js
     end
   end

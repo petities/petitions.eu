@@ -34,6 +34,10 @@ gem 'dalli'
 
 # minimal template language
 gem 'slim'
+# pdf format templates
+gem 'prawn'
+gem 'prawn-table'
+gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'

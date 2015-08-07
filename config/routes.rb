@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
     resources :signatures, except: [:new] do
       post :confirm_submit
+      
+      collection do
+        post :search
+      end
     end
+
     # resources :new_signatures
 
     resources :updates, only: [:index]
@@ -30,8 +35,17 @@ Rails.application.routes.draw do
 
   root 'petitions#index'
 
-  get '/help', to: 'application#help'
+  # STATIC PAGES
+
+  get '/help',    to: 'application#help'
+  get '/about',   to: 'application#about'
+  get '/privacy', to: 'application#privacy'
+  get '/contact', to: 'application#contact'
+
+  post '/contact_form_submit', to: 'application#contact_form_submit'
   
+  ###
+
   get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
   get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'

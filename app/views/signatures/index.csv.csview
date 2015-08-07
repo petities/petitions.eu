@@ -1,0 +1,16 @@
+csv << ["Petition: #{@petition.name}"]
+csv << ["Id: #{@petition.id}"]
+csv << ["Signatures count: #{@all_signatures.size}"]
+csv << [""]
+
+csv << ['Name', 'Email', 'City', 'Visible', 'Confirmed at']
+
+@all_signatures.each do |signature|
+  csv <<  [
+            signature.person_name,
+            signature.person_email,
+            signature.person_city,
+            signature.visible.to_s,
+            signature.confirmed_at.to_s
+          ]
+end

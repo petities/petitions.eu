@@ -7,6 +7,16 @@ div.page
       =<> t 'petition.language'
       =<> I18n.locale
 
+    / - if current_user && (current_user.has_role? :admin or current_user.has_role? :admin, @petition)
+    div.whitespace
+      div.button
+        = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank
+    
+    div.whitespace
+      div.button.whitespace
+        = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank
+
+
     = render 'form'
 
 / - if user_signed_in?

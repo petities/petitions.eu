@@ -19,22 +19,15 @@ div.page.signatures
 
   section.petition-signatures-wrapper
     h2.petition-section-title.left= t('signatures.title')
+
+    div.whitespace
+      = form_tag  search_petition_signatures_path(@petition), remote: true do
+        = hidden_field_tag 'page', @page
+        = text_field_tag 'query', ''
+        = submit_tag 'Search'
     
     div.petition-signatures-container
-      - @signatures.each do |signature|
-        div.petition-signature-list
-          div.petition-signature-name
-            - if signature.visible?
-              = signature.person_name
-            - else
-              = t "anonymous"
-          - if signature.visible?
-            div.petition-signature-location= signature.person_city
-          / div.petition-signature-occupation Directeur DOUC
-          div.petition-signature-actions
-            = link_to t('signatures.link'), "#", class: "signature-link"
-            = link_to t('signatures.notify'), "#", class: "signature-report"
-          span.signature-time= distance_of_time_in_words_to_now(signature.signed_at)
+      = render partial: 'list_index'
       
       div.clearfix
 

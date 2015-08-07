@@ -4,63 +4,38 @@ footer.footer
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
       ul.footer-news-list
-        li.footer-news-list-item
-          a href="#"
-            | 26-05-2015 &nbsp; Nederlandse Europarlementariers tegen octrooi op leven
-        li.footer-news-list-item
-          a href="#"
-            | 26-05-2015 &nbsp; Bionext overhandigt petitie aan Europarlement
-        li.footer-news-list-item
-          a href="#"
-            | 25-05-2015 &nbsp; De War op Lepeltje Lepeltje Festival
-        li.footer-news-list-item
-          a href="#"
-            | 22-05-2015 &nbsp; Aanbieden petitie op 2 juni 13.30
-        li.footer-news-list-item
-          a href="#"
-            | 17-05-2015 &nbsp; Inger de vries kondigt start petitie aan
-        li.footer-news-list-item
-          a href="#"
-            | 02-05-2015 &nbsp; Steun onze strijd voor een Museumpark zonder Depot
-        li.footer-news-list-item
-          a href="#"
-            | 24-04-2015 &nbsp; Alvast bedankt
-        li.footer-news-list-item
-          a href="#"
-            | 22-05-2015 &nbsp; Aanbieden petitie op 2 juni 13.30
-        li.footer-news-list-item
-          a href="#"
-            | 17-05-2015 &nbsp; Inger de vries kondigt start petitie aan
-        li.footer-news-list-item
-          a href="#"
-            | 02-05-2015 &nbsp; Steun onze strijd voor een Museumpark zonder Depot
-        li.footer-news-list-item
-          a href="#"
-            | 24-04-2015 &nbsp; Alvast bedankt
-      
+        - cache @news do
+          - @news.each do |entry|
+            li.footer-news-list-item
+              a href="#"
+                = entry.date
+                | &nbsp; 
+                = entry.title
+                  
+          
     div.footer-content-block
       div.footer-content-menu-wrapper
         nav.footer-content-menu-container
           ul.footer-content-menu
             div.footer-content-menu-part.left
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.petitions')
+                = link_to t('footer.menu.petitions'), petitions_path
               li.footer-content-menu-item
                 a href="#"= t('footer.menu.desks')
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.updates')
+                = link_to t('footer.menu.updates'), updates_path
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.support')
+                = link_to t('footer.menu.support'), about_path
             
             div.footer-content-menu-part.right
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.help')
+                = link_to t('footer.menu.help'), help_path
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.privacy')
+                = link_to t('footer.menu.privacy'), privacy_path
               li.footer-content-menu-item
                 a href="#"= t('footer.menu.manage')
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.about')
+                = link_to t('footer.menu.about'), about_path
             
         a.donate-button href="#"= t('footer.donate')
 

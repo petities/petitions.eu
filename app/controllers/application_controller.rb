@@ -16,9 +16,28 @@ class ApplicationController < ActionController::Base
   #around_action :with_locale
   before_filter :set_locale
 
-  def help
-    @faq_questions = Faq.all
+  before_filter do
+    @news = Update.limit(10)
   end
+
+  def help
+    Globalize.with_locale(I18n.locale) do
+      @faq_questions = Faq.all
+    end
+  end
+
+  def privacy; end
+
+  def about; end
+
+  def contact
+
+  end
+
+  def contact_form_submit
+  
+  end
+
 
   def render_404
     render 'shared/404'

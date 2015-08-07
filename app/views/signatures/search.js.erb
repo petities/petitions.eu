@@ -1,0 +1,8 @@
+$loadedData = $("<%= escape_javascript(render partial: 'list_index', layout: false) %>")
+
+$('.petition-signatures-container').html($loadedData);
+
+if(<%= @query.blank? %>)
+  $('.navigation-bar').show();
+else
+  $('.navigation-bar').hide();
