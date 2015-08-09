@@ -38,23 +38,23 @@ nl:
       title: 'Sorteren op: '
 
   all:
-    title: All petitions
-    count: "%{results_size} petitions"
+    title: Alle petities
+    count: "%{results_size} petities"
     sort:
-      title: "Petition status: "
-      all: All
-      open: Open for signing
-      concluded: Concluded
-      rejected: Rejected
-      sign_elsewhere: Sign elsewhere
+      title: "Petitie status: "
+      all: Alle
+      open: Ondertekenbaar
+      concluded: Afgehandeld
+      rejected: Afgewezen
+      sign_elsewhere: Onderteken elders
 
   listing: Listing
-  name: Name
-  peition:
+  name: Naam
+  petition:
     new: Limburgs Nieuw
   petition:
-    pdf: Save in PDF
-    csv: Save in CSV
+    pdf: Bewaar als PDF
+    csv: Bewaar als CSV
     Edit: Bewerk
     Enable: Pas toe
     Show: Toon
@@ -118,7 +118,7 @@ nl:
       addressed: Ontvanger
       end_date: 'Einddatum:'
       location: 'Loket:'
-      organisation: 'Organisation:'
+      organisation: 'Organisatie:'
       petitioners: 'Petitionaris:'
       status: 'Status:'
       title: Overzicht
@@ -137,10 +137,10 @@ nl:
         residence: Woonplaats
         submit: Ja, Ik onderteken deze petitie
         errors:
-          name: Please enter correct Name and Surname.
-          email: Please enter correct Email.
+          name: Vul hier uw voor- en achternaam in.
+          email: Vul hier uw e-mailadres in.
         success: |
-          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+          Dank u, uw ondertekening moet alleen nog bevestigd worden. Op <span>%email</span> ontvangt u een e-mail van info@petities.nl met "Bevestig alstublief" in de onderwerp-regel. Controleer ook uw spam mailbox als deze mail niet te vinden is. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
@@ -162,10 +162,10 @@ nl:
     thanks: Dank u
 
   signatures:
-    sign: Sign this petition
+    sign: Onderteken deze petitie
     title: Ondertekeningen
     link: Link
-    notify: Notify
+    notify: Meld
 
   signnow: Teken nu
   start:
@@ -223,35 +223,35 @@ nl:
   when: Wanneer
 
   confirm:
-    title: "Confirm your signature for petition \"%{name}\""
+    title: "Bevestig uw ondertekening voor petitie \"%{name}\""
     form:
       name:
-        label: Name and Surname
-        description: Your full name
+        label: Naam- en achternaam
+        description: Uw volledige naam
       location:
-        label: Place of residence
-        description: Place where you live
+        label: Woonplaats
+        description: Waar u woont
       email:
         label: Email
-        description: Your email
+        description: Uw e-mailadres
       postal_code:
-        label: Postal code
-        description: Your postal code
+        label: Postcode
+        description: Uw postcode
       street:
-        label: Street
-        description: Street name
+        label: Straat
+        description: Straatnaam
       street_number:
-        label: Street number
-        description: Street number
+        label: Nummer
+        description: Nummer en eventuele toevoeging
       city:
-        label: City of birth
-        description: City where you were born
+        label: Geboorteplaats
+        description: Waar u geboren bent
       born_at:
-        label: Born at
-        description: Your birth date
+        label: Geboortedatum
+        description: Uw geboortedatum
       action:
-        update: Update my data
-        confirm: Confirm
+        update: Werk mijn data bij
+        confirm: Bijwerken
 
     info:
       ip: "Your IP-address: %{ip}"
