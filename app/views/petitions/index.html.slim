@@ -1,5 +1,6 @@
 header.header
   div.header-content
+<<<<<<< Updated upstream
     div#wool-paralax
       div.wool-layer data={shift: "0.01"} = image_tag "header_back2.png"
       div.wool-layer data={shift: "0.02"} = image_tag "header_front3.png"
@@ -11,6 +12,17 @@ header.header
       div.header-button-container
         = link_to '', root_path, class: 'header-logo'
         = link_to t("header.new"), new_petition_path, class: 'header-button'
+=======
+    = image_tag "header_back1.png", class: 'dynamic'
+    = image_tag "header_back2.png", class: 'dynamic'
+    = image_tag "header_trees.png"
+    = image_tag "header_front2.png", class: 'dynamic'
+    = image_tag "header_front1.png", class: 'dynamic'
+    
+    div.header-button-container
+      = link_to '', root_path, class: 'header-logo'
+      = link_to t("header.new"), new_petition_path, class: 'header-button'
+>>>>>>> Stashed changes
 
 div.page
   javascript:
@@ -29,7 +41,11 @@ div.page
   section.petitions-overview-wrapper
 
     div.petitions-overview-sort-options-container
+<<<<<<< Updated upstream
       = t('index.sort.title')
+=======
+      = t('index.sort.title') 
+>>>>>>> Stashed changes
       - @sorting_options.each_with_index do |option, index|
         - if @sorting == option[:type]
           span.petitions-overview-sort-option.active= option[:label]
@@ -39,6 +55,7 @@ div.page
           = ' | '
 
     div.petitions-overview-container
+<<<<<<< Updated upstream
       = render partial: 'list'
     
       div.clearfix
@@ -52,6 +69,40 @@ div.page
       div.clearfix
       
       = link_to 'All petitions', all_petitions_path, class: 'navigation-toall'
+=======
+      - @petitions.each_with_index do |petition, i|
+        - cache [petition, I18n.locale] do
+          
+          div.petition-overview class=((@page == 1 && i >= 12) ? 'hidden' : '')
+            = link_to petition_path(petition), class: 'petition-overview-image-container' do
+              - if petition.images.first.present?
+                = image_tag petition.images.first.upload.url, class: 'petition-overview-image'
+              - else
+                canvas id="chartContainer#{i}" data={chartid: i, chartdata: "chartData#{i}", chartlabels: "chartLabels#{i}"} class='petition-overview-image chart-canvas' style="width: 100%; background-color: #bcf9c7;"
+
+                javascript:
+                  window.chartData#{i} = #{petition.history_chart_json},
+                  window.chartLabels#{i} = #{petition.history_chart_json.map.with_index{|_,i| i+1}};
+
+           
+
+            div.petition-overview-info-container
+              h2.petition-overview-info-title
+                = link_to petition_path(petition) do
+                  = petition.name
+              div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
+                = petition.signatures_count
+              - if petition.last_confirmed_at
+                div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+    
+      div.clearfix
+
+    div.navigation-bar class=((@page != 1) ? 'hidden' : '')
+      a.navigation-loadmore.button href='javascript:void(0);' = t('index.more')
+  
+    div.navigation-bar.pagination class=((@page == 1) ? 'hidden' : '')
+      = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+>>>>>>> Stashed changes
   
   aside.news-intro-blocks-container
     div.news-intro-block

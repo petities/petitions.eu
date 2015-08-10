@@ -159,8 +159,11 @@ a     { text-decoration:none; color:#005a85; }
       .petition-form-float-wrapper.bottom-fixed     { position:absolute; bottom:30px; width:88.3%; }
         .petition-form-textfield      { width:96%; margin:0 0 10px; padding:8px 2%; font:400 17px/28px 'Open Sans', arial, sans-serif; border:1px solid #929292; }
         .petition-form-checkbox       { display:inline-block; vertical-align:top; width:3%; margin:16px 10px 0 0; }
+<<<<<<< Updated upstream
         .error { background-color: #ffeeee; border: 1px solid #ff0000; }
         .signature-form-errors { text-align: center; font-style:italic; font-size: 14px; color: #ff0000; padding-bottom: 10px; }
+=======
+>>>>>>> Stashed changes
       .petition-form-label          { display:inline-block; vertical-align:top; width:85%; padding:10px 0; font-size:16px; }
         input[type="submit"].petition-form-button   {
           width:100%; margin:0 0 10px; padding:8px 2%;
@@ -246,7 +249,11 @@ a     { text-decoration:none; color:#005a85; }
     .petition-signature-time              { position:absolute; bottom:15px; right:15px; font:400 12px/14px 'Open Sans', arial, sans-serif; color:#6f6f6f; }
 
   .navigation-bar               { text-align:center;}
+<<<<<<< Updated upstream
   .navigation-bar .pagination, .navigation-toall    { padding-bottom: 20px; }
+=======
+  .navigation-bar.pagination    { padding-bottom: 20px; }
+>>>>>>> Stashed changes
   .petition-signatures-wrapper .navigation-bar      { text-align:left; }
     .navigation-bar-item          { padding:10px 10px; font:400 18px/21px 'Open Sans', arial, sans-serif; color:#4fa6d0; }
     .navigation-bar-item:hover,

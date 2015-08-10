@@ -9,13 +9,21 @@ javascript:
       floatingElement=$('.petition-form-float-wrapper');
       floatTop=$('.petition-form-wrapper').offset().top - $(window).scrollTop();
       floatBottom=($('.petition-form-wrapper').offset().top + $('.petition-form-wrapper').innerHeight() - floatingElement.height() - 30) - $(window).scrollTop();
+<<<<<<< Updated upstream
 
+=======
+  
+>>>>>>> Stashed changes
       if (floatTop < 0) {
         floatingElement.addClass('floating');
       } else {
         floatingElement.removeClass('floating');
       }
+<<<<<<< Updated upstream
 
+=======
+  
+>>>>>>> Stashed changes
       if (floatBottom < 0) {
         floatingElement.removeClass('floating').addClass('bottom-fixed');
       } else {
@@ -23,7 +31,11 @@ javascript:
       }
     }
   });
+<<<<<<< Updated upstream
 
+=======
+      
+>>>>>>> Stashed changes
 div.page
   javascript:
     window.page = 1;
@@ -55,11 +67,19 @@ div.page
           h3= t('show.petition.we')
           p= @petition.initiators
           p &nbsp;
+<<<<<<< Updated upstream
 
           h3= t('show.petition.observe')
           p= @petition.statement
           p &nbsp;
 
+=======
+          
+          h3= t('show.petition.observe')
+          p= @petition.statement
+          p &nbsp;
+          
+>>>>>>> Stashed changes
           h3= t('show.petition.request')
           p= @petition.request
 
@@ -68,6 +88,7 @@ div.page
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
             h2.petition-section-title= t('show.sign.title')
             = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
+<<<<<<< Updated upstream
             / = f.select :person_city, options_from_collection_for_select(City.all, :name, :name), class: 'petition-form-textfield'
             = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
             = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
@@ -82,6 +103,29 @@ div.page
         div.petition-success-sign-note style='display: none;'
           p= t('show.sign.form.success')
 
+=======
+            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
+            
+            - if @signature.require_full_address?
+              = f.text_field :person_postalcode, class: 'petition-form-textfield', placeholder: 'Postalcode'
+              = f.text_field :person_street, class: 'petition-form-textfield', placeholder: 'Street'
+              = f.text_field :person_street_number, class: 'petition-form-textfield', placeholder: 'Street number'
+            
+            - if @signature.require_person_birth_city?
+              = f.text_field :person_birth_city, class: 'petition-form-textfield', placeholder: 'Birth city'
+            
+            - if @signature.require_born_at?
+              = f.text_field :person_born_at, class: 'petition-form-textfield', placeholder: 'Born at'
+
+            = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
+            = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox'
+
+            label.petition-form-label for="petition-form-checkbox"
+              = t('show.sign.form.checkbox')
+            = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
+          div.petition-form-note= t('show.sign.note')
+          
+>>>>>>> Stashed changes
     section.petition-details-container
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
@@ -89,8 +133,13 @@ div.page
         div.petitie_field_data
           | Rosa Garcia Lopez namens NVJ
         div.petitie_field_label= t('show.overview.end_date')
+<<<<<<< Updated upstream
         - if @petition.date_projected
           div.petitie_field_data= @petition.date_projected.strftime('%d-%m-%Y')
+=======
+        div.petitie_field_data
+          | 03-07-2015
+>>>>>>> Stashed changes
         div.petitie_field_label= t('show.overview.location')
         div.petitie_field_data
           | Amsterdam
@@ -107,13 +156,21 @@ div.page
       div.petition-details.history
         h2.petition-section-title= t('show.history')
         javascript:
+<<<<<<< Updated upstream
           $(document).ready(function(){
+=======
+          document.addEventListener("page:change", function(){
+>>>>>>> Stashed changes
             var ctx = $("#chartContainer")[0].getContext("2d");
             var data = {
               labels: #{@chart_array.map.with_index{|_,i| i+1}},
               datasets: [{
                 fillColor: "#96c79f",
+<<<<<<< Updated upstream
                 data: #{@chart_array}
+=======
+                data: #{@chart_array}//[1,2,3,4,5,6,7,8,9,10]
+>>>>>>> Stashed changes
               }]
             };
             var myBarChart = new Chart(ctx).Bar(data, {
@@ -122,13 +179,20 @@ div.page
               showScale: true,
               scaleShowGridLines : false,
               barShowStroke : false,
+<<<<<<< Updated upstream
               barValueSpacing: 1,
+=======
+>>>>>>> Stashed changes
               tooltipFillColor: "#fff",
               tooltipFontColor: "#000",
             });
           });
         canvas id="chartContainer" style="height:275px; width:100%;"
+<<<<<<< Updated upstream
 
+=======
+      
+>>>>>>> Stashed changes
 div.social-bar
   div.social-bar-content
     div.social-bar-label= t('show.share')
@@ -161,6 +225,7 @@ div.page
       div.clearfix
 
     div.navigation-bar
+<<<<<<< Updated upstream
       - if @signatures.blank?
         div.whitespace No signatures for this moment
       - else
@@ -178,6 +243,9 @@ div.page
 
         javascript:
           window.updates_page = 1;
+=======
+      = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
+>>>>>>> Stashed changes
 
         div.update-container
           = render partial: 'updates/list'
