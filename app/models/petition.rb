@@ -26,6 +26,8 @@ class Petition < ActiveRecord::Base
   scope :active,     -> {order(active_rate_value: :desc)}
   scope :newest,     -> {order(created_at: :desc)}
 
+  belongs_to :owner, class_name: 'User'
+
   belongs_to :petition_type
   # belongs_to :organisation
 
@@ -40,7 +42,8 @@ class Petition < ActiveRecord::Base
     end
 
     def special
-      where(confirmed: true, special: true).order('sort_order ASC, signed_at ASC')
+      # where(confirmed: true, special: true).order('sort_order ASC, signed_at ASC')
+      where(confirmed: true).order('sort_order DESC, signed_at ASC')
     end
 
     def recent
@@ -52,9 +55,6 @@ class Petition < ActiveRecord::Base
     end
   end
 
-  def elapsed_time
-    Time.now - (self.last_confirmed_at || Time.now)
-  end
 
   has_many :updates
 
@@ -72,6 +72,10 @@ class Petition < ActiveRecord::Base
 
   def send_status_mail
     PetitionMailer.status_change_mail(self).deliver if self.status_changed?
+  end
+  
+  def elapsed_time
+    Time.now - (self.last_confirmed_at || Time.now)
   end
 
   def active_rate

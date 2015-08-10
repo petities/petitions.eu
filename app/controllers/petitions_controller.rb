@@ -93,6 +93,15 @@ class PetitionsController < ApplicationController
     @petitions = petitions.paginate(page: params[:page], per_page: 12)
   end
 
+  def manage
+    if current_user
+      @petitions = current_user.petitions
+      @results_size = @petitions.size
+    else
+      redirect_to new_user_session_path 
+    end
+  end
+
   # GET /petitions/1
   # GET /petitions/1.json
   def show
@@ -104,7 +113,7 @@ class PetitionsController < ApplicationController
 
     @chart_array = @petition.history_chart_json
 
-    @signatures = @petition.signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
+    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
     

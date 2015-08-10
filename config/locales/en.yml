@@ -48,6 +48,9 @@ en:
       rejected: Rejected
       sign_elsewhere: Sign elsewhere
 
+  manage:
+    title: 'My petitions'
+
   listing: Listing
   name: Name
   peition:

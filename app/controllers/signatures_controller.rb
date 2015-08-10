@@ -9,7 +9,7 @@ class SignaturesController < ApplicationController
     @page = (params[:page] || 1).to_i
 
     @petition = Petition.find(params[:petition_id])
-    @all_signatures = @petition.signatures.confirmed
+    @all_signatures = @petition.signatures.special
 
     unless request.xhr?
       @chart_array = @petition.history_chart_json 
@@ -38,7 +38,7 @@ class SignaturesController < ApplicationController
     @query = params[:query]
 
     @signatures = if @query.blank?
-                    @petition.signatures.confirmed.paginate(page: params[:page], per_page: 100)
+                    @petition.signatures.special.paginate(page: params[:page], per_page: 100)
                   else
                     @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
                   end

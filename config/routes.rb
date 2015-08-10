@@ -9,11 +9,12 @@ Rails.application.routes.draw do
     collection do
       get :all
       get :search
+      get :manage
     end
 
     resources :signatures, except: [:new] do
       post :confirm_submit
-      
+
       collection do
         post :search
       end
