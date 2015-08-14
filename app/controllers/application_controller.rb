@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   #around_action :with_locale
   before_filter :set_locale
 
-<<<<<<< Updated upstream
   before_filter do
     @news = Update.limit(10)
   end
@@ -40,8 +39,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-=======
->>>>>>> Stashed changes
   def render_404
     render 'shared/404'
   end

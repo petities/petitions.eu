@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       get :manage
     end
 
-<<<<<<< Updated upstream
     resources :signatures, except: [:new] do
       post :confirm_submit
 
@@ -26,11 +25,6 @@ Rails.application.routes.draw do
     resources :updates, only: [:index]
 
 
-=======
-    resources :signatures, except: [:new]
-    # resources :new_signatures
-
->>>>>>> Stashed changes
     get 'add_translation'
     patch 'update_owners'
 
@@ -41,7 +35,6 @@ Rails.application.routes.draw do
   #resource :signatures
 
   root 'petitions#index'
-<<<<<<< Updated upstream
 
   # STATIC PAGES
 
@@ -54,9 +47,6 @@ Rails.application.routes.draw do
   
   ###
 
-=======
-  
->>>>>>> Stashed changes
   get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
   get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'

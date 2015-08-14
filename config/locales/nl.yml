@@ -38,26 +38,26 @@ nl:
       title: 'Sorteren op: '
 
   all:
-    title: Alle petities
-    count: "%{results_size} petities"
+    title: All petitions
+    count: "%{results_size} petitions"
     sort:
-      title: "Petitie status: "
-      all: Alle
-      open: Ondertekenbaar
-      concluded: Afgehandeld
-      rejected: Afgewezen
-      sign_elsewhere: Onderteken elders
+      title: "Petition status: "
+      all: All
+      open: Open for signing
+      concluded: Concluded
+      rejected: Rejected
+      sign_elsewhere: Sign elsewhere
 
   manage:
     title: 'My petitions'
 
   listing: Listing
-  name: Naam
-  petition:
+  name: Name
+  peition:
     new: Limburgs Nieuw
   petition:
-    pdf: Bewaar als PDF
-    csv: Bewaar als CSV
+    pdf: Save in PDF
+    csv: Save in CSV
     Edit: Bewerk
     Enable: Pas toe
     Show: Toon
@@ -121,7 +121,7 @@ nl:
       addressed: Ontvanger
       end_date: 'Einddatum:'
       location: 'Loket:'
-      organisation: 'Organisatie:'
+      organisation: 'Organisation:'
       petitioners: 'Petitionaris:'
       status: 'Status:'
       title: Overzicht
@@ -140,10 +140,10 @@ nl:
         residence: Woonplaats
         submit: Ja, Ik onderteken deze petitie
         errors:
-          name: Vul hier uw voor- en achternaam in.
-          email: Vul hier uw e-mailadres in.
+          name: Please enter correct Name and Surname.
+          email: Please enter correct Email.
         success: |
-          Dank u, uw ondertekening moet alleen nog bevestigd worden. Op <span>%email</span> ontvangt u een e-mail van info@petities.nl met "Bevestig alstublief" in de onderwerp-regel. Controleer ook uw spam mailbox als deze mail niet te vinden is. Zonder bevestiging telt uw ondertekening niet mee.
+          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
@@ -165,10 +165,10 @@ nl:
     thanks: Dank u
 
   signatures:
-    sign: Onderteken deze petitie
+    sign: Sign this petition
     title: Ondertekeningen
     link: Link
-    notify: Meld
+    notify: Notify
 
   signnow: Teken nu
   start:
@@ -226,35 +226,35 @@ nl:
   when: Wanneer
 
   confirm:
-    title: "Bevestig uw ondertekening voor petitie \"%{name}\""
+    title: "Confirm your signature for petition \"%{name}\""
     form:
       name:
-        label: Naam- en achternaam
-        description: Uw volledige naam
+        label: Name and Surname
+        description: Your full name
       location:
-        label: Woonplaats
-        description: Waar u woont
+        label: Place of residence
+        description: Place where you live
       email:
         label: Email
-        description: Uw e-mailadres
+        description: Your email
       postal_code:
-        label: Postcode
-        description: Uw postcode
+        label: Postal code
+        description: Your postal code
       street:
-        label: Straat
-        description: Straatnaam
+        label: Street
+        description: Street name
       street_number:
-        label: Nummer
-        description: Nummer en eventuele toevoeging
+        label: Street number
+        description: Street number
       city:
-        label: Geboorteplaats
-        description: Waar u geboren bent
+        label: City of birth
+        description: City where you were born
       born_at:
-        label: Geboortedatum
-        description: Uw geboortedatum
+        label: Born at
+        description: Your birth date
       action:
-        update: Werk mijn data bij
-        confirm: Bijwerken
+        update: Update my data
+        confirm: Confirm
 
     info:
       ip: "Your IP-address: %{ip}"

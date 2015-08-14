@@ -6,7 +6,6 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-<<<<<<< Updated upstream
     @page = (params[:page] || 1).to_i
 
     @petition = Petition.find(params[:petition_id])
@@ -46,14 +45,6 @@ class SignaturesController < ApplicationController
 
     respond_to do |format|
       format.js
-=======
-    @petition = Petition.find(params[:petition_id])
-
-    if @petition
-      @signatures = @petition.signatures.confirmed 
-    else
-      render_404
->>>>>>> Stashed changes
     end
   end
 
@@ -66,22 +57,12 @@ class SignaturesController < ApplicationController
     respond_to do |format|
       if @signature.save
         format.js { render json: { status: 'ok' } }
-<<<<<<< Updated upstream
       else
         format.js { render json: @signature.errors, status: :unprocessable_entity }
-=======
-        # format.html { redirect_to @petition, notice: 'Signature was successfully created.' }
-        # format.json { render :show, status: :created, location: @signature }
-      else
-        format.js { render json: @signature.errors, status: :unprocessable_entity }
-        # format.html { render :new }
-        # format.json { render json: @signature.errors, status: :unprocessable_entity }
->>>>>>> Stashed changes
       end
     end
   end
 
-<<<<<<< Updated upstream
   def confirm
     @petition = @signature.petition
 
@@ -100,10 +81,6 @@ class SignaturesController < ApplicationController
   end
 
   def confirm_submit
-=======
-  # GET request..
-  def confirm
->>>>>>> Stashed changes
     # If @signature is valid?, but not confirmed yet, confirm it. Record
     # user-agent, remote IP and increase columns signatures_count and
     # last_confirmed_at on the corresponding Petition record.
@@ -111,30 +88,8 @@ class SignaturesController < ApplicationController
 
     #find the petition
     @petition = @signature.petition
-<<<<<<< Updated upstream
 
     confirm_signature if @petition && @signature.valid? && !@signature.confirmed?
-=======
-
-    if @petition && @signature.valid? && !@signature.confirmed?
-
-      old_signature = @signature
-      # create a new one..
-      @signature = Signature.new(@signature.as_json)
-      @signature.id = nil
-      @signature.confirmed = true
-      @signature.confirmation_remote_addr = request.remote_ip
-      @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-
-      @petition.inc_signatures_count!
-      @petition.update_active_rate!
-
-      # expire_fragment @petition
-      
-      old_signature.delete
-      @signature.save
-    end
->>>>>>> Stashed changes
 
     respond_to do |format|
       format.html { redirect_to @petition,
@@ -193,7 +148,6 @@ class SignaturesController < ApplicationController
       )
     end
 
-<<<<<<< Updated upstream
     def confirm_signature
       old_signature = @signature
       # create a new one..
@@ -212,15 +166,3 @@ class SignaturesController < ApplicationController
       @signature.save
     end
 end
-=======
-# class NewSignaturesController < SignaturesController
-
-#   def signature_params
-#       params.require(:new_signature).permit(
-#           :person_city, :person_name, :person_email,
-#           :subscribe, :visible,
-#       )
-#   end
-
-# end
->>>>>>> Stashed changes

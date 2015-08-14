@@ -24,11 +24,7 @@ en:
       privacy: Your privacy
       support: Support us
       updates: Updates
-<<<<<<< Updated upstream
     updates: News
-=======
-    updates: Updates
->>>>>>> Stashed changes
   header:
     new: Start a petition
     search: Search in petitions
@@ -41,7 +37,6 @@ en:
       sign_quick: Sign last minute
       title: |
         Sort on:
-<<<<<<< Updated upstream
   all:
     title: All petitions
     count: "%{results_size} petitions"
@@ -59,11 +54,6 @@ en:
   listing: Listing
   name: Name
   peition:
-=======
-  listing: Listing
-  name: Name
-  petition:
->>>>>>> Stashed changes
     new: Limburgs Nieuw
   petition:
     pdf: Save in PDF
@@ -139,16 +129,11 @@ en:
     petition:
       observe: observe
       request: and request
-<<<<<<< Updated upstream
       title: Petition
-=======
-      title: Petitie
->>>>>>> Stashed changes
       we: We
     share: Share this petition
     sign:
       form:
-<<<<<<< Updated upstream
         checkbox: Publish my name visibly below the petition.
         email: E-mail address required
         name: First name Surname
@@ -173,20 +158,6 @@ en:
     link: Link
     notify: Notify
 
-=======
-        checkbox: I allow my name and place of residence to be publicly visible below the petition.
-        email: E-mail address
-        name: Name
-        residence: Place of residence
-        submit: Yes, I sign this petition
-      note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
-      title: Sign this petition
-    signatures:
-      more: Load more petitions
-      title: Signatures
-      to_all: To all signatures
-    signatures_count: "%{count} signatures"
->>>>>>> Stashed changes
   signature:
     confirm: Confirm
     dear: Dear
@@ -199,11 +170,7 @@ en:
       visible: Visible
     linkinstruction: Linkinstruction
     thanks: Thanks
-<<<<<<< Updated upstream
 
-=======
-  signatures: Signatures
->>>>>>> Stashed changes
   signnow: Sign now
   start:
     form:
@@ -213,11 +180,7 @@ en:
         label: Addressed to
       image:
         description: |
-<<<<<<< Updated upstream
           Add the image for the petition. Make sure it is in landscape format (at least 151 pixels high x 172 pixels wide), not square or portrait. 
-=======
-          Add the petition poster
->>>>>>> Stashed changes
         label: Petition images
       name:
         description: |
@@ -229,7 +192,6 @@ en:
         label: Observe
       petitioner:
         email:
-<<<<<<< Updated upstream
         description: |
           Use the e-mail address you check often so we can always reach you. If you do not want this to be public you can add an extra address before the petition will open.
         label: Your e-mail address
@@ -245,20 +207,6 @@ en:
         description: |
           If you do not enter a password we will give you a good one.
         label: Preferred password
-=======
-          description: Description
-          label: Your e-mail address
-        lead:
-          description: |
-            A petition should have a (legal) person responsible for the petition and the spokes person. Signatures write to you, journalists call you and politicians receive your petition. 
-          label: Lead petitioner
-        name:
-          description: Description
-          label: Your first and last name
-        password:
-          description: Description
-          label: Preferred password
->>>>>>> Stashed changes
       request:
         description: |
           Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
@@ -268,12 +216,9 @@ en:
           With this text you attract signatures: it appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
       submit: Submit petition
-<<<<<<< Updated upstream
       finalize: Finalize
       update: Update
 
-=======
->>>>>>> Stashed changes
       we:
         description: |
           You describe here who you think will sign. Do not exclude signatories. Max 100 characters.

@@ -4,19 +4,12 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
-<<<<<<< Updated upstream
     @vervolg = true
 
-=======
->>>>>>> Stashed changes
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sort] || 'active'
     @order = params[:order].to_i
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     # petitions = Petition.joins(:translations).live
     petitions = Petition.live
     direction = [:desc, :asc][@order]
@@ -32,7 +25,6 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-<<<<<<< Updated upstream
       {type: 'active',      label: t('index.sort.active')}, 
       {type: 'biggest',     label: t('index.sort.biggest')},
       {type: 'newest',      label: t('index.sort.new')},
@@ -83,15 +75,6 @@ class PetitionsController < ApplicationController
       format.html
       format.js
     end
-=======
-      {type: 'active', label: t('index.sort.active')}, 
-      {type: 'biggest', label: t('index.sort.biggest')},
-      {type: 'newest', label: t('index.sort.new')},
-      {type: 'sign_quick', label: t('index.sort.sign_quick')}
-    ]
-
-    @petitions = petitions.paginate(page: params[:page], per_page: 24)
->>>>>>> Stashed changes
   end
 
   def search
@@ -129,15 +112,10 @@ class PetitionsController < ApplicationController
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
-<<<<<<< Updated upstream
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
-=======
-
-    @signatures = @petition.signatures.order(created_at: :desc).paginate(page: params[:page], per_page: 12)
->>>>>>> Stashed changes
     
     # TODO.
     # where prominent is TRUE and score is higher then 0
@@ -150,10 +128,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.new
 
     @petition_types = PetitionType.all
-<<<<<<< Updated upstream
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
-=======
->>>>>>> Stashed changes
   end
 
   # POST /petitions
@@ -163,15 +138,12 @@ class PetitionsController < ApplicationController
     @petition = Petition.new(petition_params)
 
     @petition.locale_list << I18n.locale
-<<<<<<< Updated upstream
 
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
       
       @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     end
-=======
->>>>>>> Stashed changes
     
     if params[:images].present?
       params[:images].each do |image|
@@ -210,12 +182,9 @@ class PetitionsController < ApplicationController
   def edit
     # authorize @petition
     @owners = find_owners
-<<<<<<< Updated upstream
 
     @petition_types = PetitionType.all
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
-=======
->>>>>>> Stashed changes
   end
 
   def add_translation
@@ -265,7 +234,6 @@ class PetitionsController < ApplicationController
     locale = params[:add_locale] || I18n.locale
     update_locale_list(locale.to_sym) if params[:add_locale]
 
-<<<<<<< Updated upstream
     # if petition_params[:organisation_id].present?
     #   organisation = Organisation.find(petition_params[:organisation_id])
       
@@ -280,14 +248,6 @@ class PetitionsController < ApplicationController
       respond_to do |format|
         if @petition.update_attributes(petition_params)
           format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.'}}
-=======
-    Globalize.with_locale(locale) do
-      respond_to do |format|
-        if @petition.update_attributes(petition_params)
-          format.html { render :edit, :flash => {
-              :success => 'Petition was successfully updated.'}
-          }
->>>>>>> Stashed changes
           format.json { render :show, status: :ok, location: @petition }
         else
           format.html { render :edit }
@@ -359,11 +319,7 @@ class PetitionsController < ApplicationController
       # locale_list: []
       params.require(:petition).permit(
         :name, :description, :statement, :request, :initiators,
-<<<<<<< Updated upstream
         :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
-=======
-        :organisation_name, :petitioner_email, :petitioner_name, :password,
->>>>>>> Stashed changes
         :petition_type_id
       )
       #:subscribe, :visible,

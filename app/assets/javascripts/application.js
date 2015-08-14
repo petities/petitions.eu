@@ -11,25 +11,14 @@
 // about supported directives.
 
 //= require jquery
-<<<<<<< Updated upstream
 // require jquery.turbolinks
 //= require jquery_ujs
 
 // require turbolinks
-=======
-//= require jquery.turbolinks
-//= require jquery_ujs
-
-//= require turbolinks
->>>>>>> Stashed changes
 
 //= require bootstrap-sprockets
 //= require mailcheck
 //= require Chart.min
-<<<<<<< Updated upstream
 //= require paralax
 //= require petities
 // require_tree .
-=======
-//= require_tree .
->>>>>>> Stashed changes

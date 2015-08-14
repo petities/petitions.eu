@@ -68,7 +68,6 @@ class Petition < ActiveRecord::Base
   validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
   validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
 
-<<<<<<< Updated upstream
   after_update :send_status_mail
 
   def send_status_mail
@@ -85,10 +84,6 @@ class Petition < ActiveRecord::Base
     else
       0
     end
-=======
-  def active_rate
-    self.signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size
->>>>>>> Stashed changes
   end
 
   def update_active_rate!
@@ -97,11 +92,7 @@ class Petition < ActiveRecord::Base
   end
 
   def is_hot?
-<<<<<<< Updated upstream
     self.active_rate_value > 0.05
-=======
-    self.active_rate_value > 1
->>>>>>> Stashed changes
   end
 
   def history_chart_json
