@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: [:show, :edit, :add_translation, :update, :update_owners]
+  before_action :set_petition, only: [:show, :edit, :add_translation, :update, :finalize, :update_owners]
 
   # GET /petitions
   # GET /petitions.json
@@ -151,14 +151,16 @@ class PetitionsController < ApplicationController
       end
     end
 
-    if !user_signed_in?
+    if user_signed_in?
+      owner = current_user
+    else
       user_params = params[:user]
 
       if user_params[:email]
-        user = User.where(email: user_params[:email]).first
-
-        unless user
-          User.create(
+        owner = User.where(email: user_params[:email]).first
+      
+        unless owner
+          owner = User.create(
             email: user_params[:email], 
             username: user_params[:name], 
             password: user_params[:password]
@@ -169,6 +171,10 @@ class PetitionsController < ApplicationController
 
     respond_to do |format|
       if @petition.save
+        if owner
+          owner.add_role :admin, @petition
+        end
+
         format.html { redirect_to @petition, flash: { success: t('petition.created') }}
         format.json { render :show, status: :created, location: @petition }
       else
@@ -180,11 +186,13 @@ class PetitionsController < ApplicationController
 
   # GET /petitions/1/edit
   def edit
-    # authorize @petition
+    authorize @petition
     @owners = find_owners
 
     @petition_types = PetitionType.all
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
+
+    @images = @petition.images
   end
 
   def add_translation
@@ -240,8 +248,10 @@ class PetitionsController < ApplicationController
     #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     # end
 
-    if params[:commit] == 'Finalize'
-      PetitionMailer.finalize_mail(@petition).deliver
+    if params[:images].present?
+      params[:images].each do |image|
+        @petition.images << Image.new(upload: image)
+      end
     end
 
     Globalize.with_locale(locale) do
@@ -255,6 +265,15 @@ class PetitionsController < ApplicationController
         end
       end
     end
+  end
+
+  def finalize
+    authorize @petition
+
+    PetitionMailer.finalize_mail(@petition).deliver
+
+    flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
+    redirect_to edit_petition_path(@petition)
   end
 
   # DELETE /petitions/1

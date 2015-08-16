@@ -1,0 +1,34 @@
+= render partial: 'shared/header'
+
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title Change your password
+
+    = form_for resource, as: resource_name, url: password_path(resource_name), method: :put do |f|
+      
+      = f.hidden_field :reset_password_token
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | New password
+          = f.password_field :password, autocomplete: "off", class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | Confirm new password
+          = f.password_field :password_confirmation, autocomplete: "off", class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = devise_error_messages!
+      
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = submit_tag "Change my password", class: 'start-petition-form-cell-button'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
+  
+  as :user do
+    get 'login' => 'devise/sessions#new', as: :new_user_session
+    post 'login' => 'devise/sessions#create', as: :user_session
+    delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
+    get 'logout' => 'devise/sessions#destroy'
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
@@ -12,11 +20,14 @@ Rails.application.routes.draw do
       get :manage
     end
 
-    resources :signatures, except: [:new] do
+    resources :signatures, except: [:new, :show] do
       post :confirm_submit
+
 
       collection do
         post :search
+
+        get ':signature_id' => 'signatures#index', as: :anchor
       end
     end
 
@@ -24,11 +35,13 @@ Rails.application.routes.draw do
 
     resources :updates, only: [:index]
 
+    get :finalize
 
     get 'add_translation'
     patch 'update_owners'
 
   end
+
 
   resources :updates
   

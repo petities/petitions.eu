@@ -17,7 +17,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   before_filter do
-    @news = Update.limit(10)
+    if request.get?
+      @news = Update.limit(10)
+    end
   end
 
   def help

@@ -261,7 +261,7 @@ a     { text-decoration:none; color:#005a85; }
   .petition-section-title.left          { text-align:left; }
   .petition-overview                    { float:left; width:23.5%; margin:0 2% 2% 0; background:#e9e9e9; }
   .petition-overview:nth-child(4n)      { margin:0 0 2%; }
-    .petition-overview-image-container    { position:relative; display:block; }
+    .petition-overview-image-container    { position:relative; display:block; height: 150px; overflow: hidden; margin-bottom: 10px;}
       .petition-overview-graph              { position:absolute; top:0; left:0; height:96%; width:100%; background:#bcf9c7; display:none; }
         .petition-overview-graph img          { width:100%; }
       .petition-overview-image              { width:100%; }

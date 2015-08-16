@@ -1,5 +1,3 @@
-
-
 class PetitionPolicy < ApplicationPolicy 
 
   def create?
@@ -7,12 +5,7 @@ class PetitionPolicy < ApplicationPolicy
   end
 
   def edit?
-    puts 'POLICY??'
-    puts 'POLICY??'
-    puts 'POLICY??'
-    puts 'POLICY??'
     # allow edit view on petition.
-    puts @petition
     if not user
       return false
     end
@@ -25,6 +18,12 @@ class PetitionPolicy < ApplicationPolicy
     end
     user.has_role? :admin or user.has_role? :admin, record
     # allow updates on petition..?
+    # user.has_role? :admin or user.has_role? :admin, record
+  end
+
+  def finalize?
+    return false unless user
+
     user.has_role? :admin or user.has_role? :admin, record
   end
 

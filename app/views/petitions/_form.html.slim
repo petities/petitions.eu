@@ -3,8 +3,8 @@
     div.errors-empty Field is empty.
     div.errors-too-long The text is bigger than the allowed value.
   
-  - if user_signed_in?
-    - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
+  
+  - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
@@ -88,6 +88,14 @@
     div.start-petition-form-cell.label
       p= t('start.form.request.description')
 
+  - if @images && @images.size > 0
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title Images
+        - @images.each do |image|
+          = image_tag image.upload.url, width: '100'
+        
+
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title= t('start.form.image.label')
@@ -109,21 +117,21 @@
         div.start-petition-form-cell-title= t('start.form.petitioner.email.label')
         = text_field_tag 'user[email]', '', class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
-        | &nbsp;
+        | Your organization
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.password.label')
         = text_field_tag 'user[password]', '', class: 'start-petition-form-cell-input', type: 'password'
       div.start-petition-form-cell.label.empty
-        | &nbsp;
+        | It must have at least 8 symbols.
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.name.label')
         = text_field_tag 'user[name]', '', class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
-        | &nbsp;
+        | Your name and surname.
 
   - if action_name == 'new'
     div.start-petition-form-row
@@ -136,7 +144,9 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         = f.submit t('start.form.update'), class: 'start-petition-form-cell-button whitespace'
-        = f.submit t('start.form.finalize'), class: 'start-petition-form-cell-button'
+
+        - if user_signed_in? && current_user.has_role?(:admin, @petition)
+          = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
       div.start-petition-form-cell.label.empty
         | &nbsp;
 

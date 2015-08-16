@@ -10,10 +10,3 @@ header.header
         input.search-container-button type="submit" value=""
 
         div.clearfix
-    
-    - if current_user
-      div
-        | Logged in as: 
-        = current_user.email
-        = ' '
-        = link_to 'Sign out', destroy_user_session_path, method: :delete

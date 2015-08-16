@@ -32,6 +32,7 @@ class Petition < ActiveRecord::Base
   # belongs_to :organisation
 
   has_many :images, :as => :imageable, :dependent => :destroy
+  accepts_nested_attributes_for :images
 
   #default_scope :order => 'petitions.name ASC'
   
@@ -105,6 +106,17 @@ class Petition < ActiveRecord::Base
   def inc_signatures_count!
     self.signatures_count += 1
     save
+  end
+
+  def links
+    { 
+      links: [
+        { link: link1, text: link1_text },
+        { link: link2, text: link2_text },
+        { link: link3, text: link3_text },
+      ].select{|link| link[:link].present?},
+      site: { link: site1, text: site1_text }
+    }
   end
  
 end
