@@ -26,16 +26,15 @@ class ApplicationController < ActionController::Base
     @faq_questions = I18n.t('help.faq').map{ |key, value| value }
   end
 
-  def privacy; end
-
-  def about; end
-
-  def contact
-
+  %w(about privacy donate contact).each do |name|
+    define_method(name) {}
   end
 
-  def contact_form_submit
-  
+  def contact_submit
+    ApplicationMailer.contact_mail(params[:from], params[:body]).deliver
+
+    flash[:notice] = 'Your email was successfully sent to website administrator!'
+    redirect_to contact_path
   end
 
 

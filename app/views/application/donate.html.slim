@@ -1,0 +1,22 @@
+= render partial: 'shared/header'
+
+div.page.vervolg
+  section.vervolg-main
+    h1.petition-section-title= t('donate.title')
+    
+    == t('donate.text')
+
+javascript:
+  window.paypalCheckoutReady = function() {
+      paypal.checkout.setup("6XF3MPZBZV6HU", {
+        locale: 'en_US',
+        environment: 'sandbox',
+        container: ['paypal']
+      });
+    }
+css:
+  .paypal-button-hidden {
+    visibility: hidden;
+  } 
+
+<script src="http://www.paypalobjects.com/api/checkout.js" async></script>

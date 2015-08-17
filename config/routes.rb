@@ -51,12 +51,12 @@ Rails.application.routes.draw do
 
   # STATIC PAGES
 
-  get '/help',    to: 'application#help'
-  get '/about',   to: 'application#about'
-  get '/privacy', to: 'application#privacy'
-  get '/contact', to: 'application#contact'
+  %w(help about privacy donate contact).each do |name|
+    get "/#{name}", to: "application##{name}"
+  end
+  post '/contact_submit', to: 'application#contact_submit'
 
-  post '/contact_form_submit', to: 'application#contact_form_submit'
+
   
   ###
 

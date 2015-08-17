@@ -358,3 +358,12 @@ en:
     title: Start a petition
   statement: Statement
   when: When
+
+  donate:
+    title: Donate us
+    text: |
+      <p>Your donation is most appreciated. You can:</p>
+      <ul>
+        <li>transfer it to the account  NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands with Rabobank (bank identification code RABONL2U)</li>
+        <li>or use <a id="paypal"></a> (to <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>)</li>
+      </ul>

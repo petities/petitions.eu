@@ -7,7 +7,7 @@ div.page.vervolg
     = raw t('about.text')
 
   aside.vervolg-side
-    a.button.steun-petities.whitespace= t('about.donate')
+    = link_to t('about.donate'), donate_path, class: 'button steun-petities whitespace'
 
   /   div.side-article-container-blue.whitespace
   /     h2 Ondertekening wijzigen

@@ -1,0 +1,29 @@
+= render partial: 'shared/header'
+
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title Contact form
+
+    = form_tag contact_submit_path do |f|
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | From
+          = email_field_tag :from, nil, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          | Your e-mail address
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | Message
+          = text_area_tag :body, nil, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          | Your message
+
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = submit_tag 'Send', class: 'start-petition-form-cell-button'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
