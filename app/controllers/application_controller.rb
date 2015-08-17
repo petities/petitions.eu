@@ -23,9 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def help
-    Globalize.with_locale(I18n.locale) do
-      @faq_questions = Faq.all
-    end
+    @faq_questions = I18n.t('help.faq').map{ |key, value| value }
   end
 
   def privacy; end

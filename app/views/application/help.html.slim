@@ -6,28 +6,26 @@ div.page.vervolg
 
     div.update-container
       div.update
-        h2 General
+        h2= t('help.general')
 
-        - cache @faq_questions do
-          - @faq_questions.each do |faq_item|
-            div.read-more-help-handler
-              | &#43; 
-              = faq_item.question
-            div.read-more-help-content
-              h3= faq_item.question
-              p= faq_item.answer
-            
-       
+        - @faq_questions.each do |faq_item|
+
+          div.read-more-help-handler
+            | &#43;
+            = faq_item[:title] 
+          div.read-more-help-content
+            h3= faq_item[:title] 
+            p= faq_item[:answer] 
+
+
   aside.vervolg-side
-    
+
     div.side-article-container.whitespace
-      h2 Meer ondertekenaars met een opiniestuk
-      p Een petitie wordt vooral getekend door medestanders die er al van overtuigd zijn dat er iets moet veranderen. Maar de meeste mensen zijn nog niet overtuigd. Als ze al van de petitie weten. Met een opiniestuk in de krant of online kun je mensen zowel informeren als overtuigen. Zo'n tekst leest bovendien veel prettiger dan een petitietekst. Een opiniestuk schrijven is niet zo moeilijk. De opinie staat centraal, en er moeten argumenten in staan. Die heeft u al met uw petitie. Op de website Opiniestukken.nl staan tips voor een goed opiniestuk. U kunt het daarna insturen naar een redactie, zodat u een groot publiek bereikt dat u zo kunt overtuigen van uw punt.
-      p &nbsp;
-      p U kunt het opiniestuk ook online publiceren op Opiniestukken.nl zelf. Uiteraard kunt u in de tekst verwijzen naar de petitie waar uw opiniestuk bij hoort. En u mag natuurlijk altijd met een opiniestuk aandacht vestigen op de petitie van iemand anders!
-      p &nbsp;
+      h2= t('help.opinionpiece.title')
+      p= t('help.opinionpiece.descr')
+
       a href="http://www.opiniestukken.nl" target="_blank" Opiniestukken.nl
 
     div.side-article-container.whitespace
-      h2 Ondertekening wijzigen
-      p Uw ondertekening van een petitie kunt u altijd aanpassen of verbergen. Dat kan heel makkelijk door opnieuw te klikken op de link die we u toestuurden in de e-mail ter bevestiging. Op de pagina die dan verschijnt vindt u hier de mogelijkheden toe.
+      h2= t('help.changesig.title')
+      p= t('help.changesig.desrc')

@@ -2,14 +2,81 @@
 es:
   Create:
     newpetition: Newpetition
+  about:
+    donate: Donate and support Petities.nl
+    text: |
+      <p>Petities.nl is van de stichting Petities.nl, op het web <a href="http://web.archive.org/web/20051017052754/http://petities.nl/">sinds 1 mei 2005.</a> Het is ons doel om het Nederlanders makkelijk te maken een petitie te ondertekenen of te starten waar een antwoord op moet komen. Sinds 16 juni 2008 is het mogelijk voor de ontvangers van petities een loket te openen in de website om petities te ontvangen en te beantwoorden.</p>&#13;
+      <p>&nbsp;</p>
+      <p>Deze dienst is tot nu toe mogelijk gemaakt dankzij het werk van professionele vrijwilligers, <a href="http://www.digitalepioniers.nl/projecten/Petities-nl/59">subsidies</a>, <a href="http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">tijdelijke professionele ondersteuning</a> en giften. <a href="http://petities.nl/doneren">Donaties</a> zijn zeer welkom via de stichting GeefGratis (<a href="http://www.allegoededoelen.nl/index.php?gd=1574&amp;t=oo">iDeal, SMS, creditcard</a>) of rechtstreeks op rekeningnummer NL14RABO0324616899 (32 46 16 899 in het kort) via de Rabobank (eventueel met bankidentificatie code RABONL2U). Ook kunt u 0900-HELPONS (0900-4357667) bellen en door 1574 in te toetsen €1,30 overmaken. Via SMS kunt u ons machtigen om jaarlijks €3 te doneren: sms DONATIE 1574 naar 1008. Via Paypal doneert u aan webmaster@petities.nl. </p>&#13;
+      <p>&nbsp;</p>
+      <p><a href="http://www.netdem.nl">NetwerkDemocratie</a>, het platform voor democratische innovatie, steunt Petities.nl onder andere met huisvesting en projectmanagement.</p>&#13;
+      <p>&nbsp;</p>
+      <p>Petities.nl is <a href="http://www.belastingdienst.nl/rekenhulpen/giften/anbi_zoeken/">erkend als Algemeen Nut Beogende Instelling</a> door de Belastingdienst. </p>&#13;
+      <p>&nbsp;</p>
+      <p>U kunt ook <a href="http://opendomein.nl/lidmaatschap/">lid worden van de vereniging Open Domein</a> als u de technische ondersteuning voor dit soort projecten op internet belangrijk vindt.</p>&#13;
+      <p>&nbsp;</p>
+      <p>De stichting is in februari 2004 opgericht door ReindeR Rustema, Arjan Widlak en Michiel Leenaars en is in het register van de Kamer van Koophandel geregistreerd <a href="http://snipurl.com/1q9fle">met nummer 34206249</a>. De stichting heeft geen winstoogmerk. De stichting is aangesloten bij de koepelorganisatie voor dergelijke initiatieven, <a href="http://bendeburgers.nl">BendeBurgers</a>.</p>&#13;
+      <p>&nbsp;</p>
+      <p>De website heeft in 2010 <a href="http://www.burgerlink.nl/nieuws/2010/oktober/Wikiwijs-nl-en-Petities-nl-winnen--eParticipatie-A.html">de eParticipatie Award gewonnen</a> in de categorie samenleving in en een <a href="http://personaldemocracy.com/blog-entry/pdf-europe-2010-announcing-years-google-fellows">Google Fellowship voor het Personal Democracy Forum</a> in Barcelona.</p>&#13;
+      <p>&nbsp;</p>
+      <p>U kunt de webmaster vragen stellen of suggesties doen op het adres <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a> of via <a href="/contact">het formulier</a> onder 'contact' onderaan elke pagina. Petitionarissen kunnen urgente verzoeken inspreken als bericht via telefoonnummer 020 7854412. </p>&#13;
+      <p>&nbsp;</p>
+      <p>U kunt zich ook melden om als vrijwilliger (in overleg) een klusje te doen, in ruil voor erkenning en referenties. We kunnen helaas geen stageplaatsen bieden omdat we niet aan de eisen kunnen voldoen die aan een stageplaats worden gesteld.</p>
+    title: Over de stichting Petities.nl
   active: Active
   active_admin:
     dashboard: Dashboard
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+  all:
+    count: "%{results_size} petitions"
+    sort:
+      all: All
+      concluded: Concluded
+      open: Open for signing
+      rejected: Rejected
+      sign_elsewhere: Sign elsewhere
+      title: 'Petition status: '
+    title: All petitions
   anonymous: Anonymous
+  confirm:
+    form:
+      action:
+        confirm: Confirm
+        update: Update my data
+      born_at:
+        description: Your birth date
+        label: Born at
+      city:
+        description: City where you were born
+        label: City of birth
+      email:
+        description: Your email
+        label: Email
+      location:
+        description: Place where you live
+        label: Place of residence
+      name:
+        description: Your full name
+        label: Name and Surname
+      postal_code:
+        description: Your postal code
+        label: Postal code
+      street:
+        description: Street name
+        label: Street
+      street_number:
+        description: Street number
+        label: Street number
+    info:
+      browser: 'Your browser: %{browser}'
+      ip: 'Your IP-address: %{ip}'
+    title: Confirm your signature for petition "%{name}"
   description: Description
+  errors:
+    messages:
+      not_saved: Not saved
   footer:
     address: Address
     contact: Contact
@@ -28,6 +95,67 @@ es:
   header:
     new: Start a petition
     search: Search in petitions
+  help:
+    changesig:
+      desrc: Desrc
+      title: Title
+    faq:
+      question1:
+        answer: a1
+        title: q1
+      question10:
+        answer: a10
+        title: q10
+      question11:
+        answer: a11
+        title: q11
+      question12:
+        answer: a12
+        title: q12
+      question13:
+        answer: a13
+        title: q13
+      question14:
+        answer: a14
+        title: q14
+      question15:
+        answer: a15
+        title: q15
+      question16:
+        answer: a16
+        title: q16
+      question17:
+        answer: a17
+        title: q17
+      question2:
+        answer: a2
+        title: q2
+      question3:
+        answer: a3
+        title: q3
+      question4:
+        answer: a4
+        title: q4
+      question5:
+        answer: a5
+        title: q5
+      question6:
+        answer: a6
+        title: q6
+      question7:
+        answer: a7
+        title: q7
+      question8:
+        answer: a8
+        title: q8
+      question9:
+        answer: a9
+        title: q9
+    general: General
+    opinionpiece:
+      descr: Descr
+      title: Title
+    title: Help
   index:
     more: Show more petitions
     sort:
@@ -38,6 +166,8 @@ es:
       title: |
         Sort on:
   listing: Listing
+  manage:
+    title: My petitions
   name: Name
   peition:
     new: New
@@ -51,6 +181,7 @@ es:
     add_translations_later: Add translations later
     add_translations_link_instruction: Add translations link instruction
     created: Created
+    csv: Save in CSV
     current_translations: Current translations
     editing: Editing
     editors: Editors
@@ -81,6 +212,7 @@ es:
     older_version: Older version
     oldest: Oldest
     optional: Optional
+    pdf: Save in PDF
     step:
       description: Description
       notice: Notice
@@ -95,6 +227,25 @@ es:
   petitioner: Petitioner
   petitions: Petitions
   place: Place
+  privacy:
+    text: |
+      <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
+      <p>&nbsp;</p>
+      <p>Zoals <a href="http://www.justitie.nl/wbp">de wet</a> voorschrijft worden uw persoonsgegevens alleen gebruikt voor het doel waarvoor u ze heeft verstrekt: de ontvanger van een petitie krijgt inzage in de lijst ondertekenaars om de petitie te controleren of om een beeld te krijgen van de achterban. De ontvanger mag ook persoonlijk contact met u opnemen, maar in de praktijk communiceert de ontvanger alleen met de petitionaris als woordvoerder van alle ondertekenaars.</p>
+      <p>&nbsp;</p>
+      <p>Als u anoniem ondertekent dan verdwijnen uw gegevens (behalve het tijdstip van ondertekenen) uit de database na het afhandelen van de petitie. Als u heeft aangegeven een petitie publiekelijk te ondersteunen blijft uw naam, woonplaats en titel/beschrijving in de database achter zodat deze op het web getoond kunnen worden. Bedenkt u achteraf dat u niet meer wilt dat uw ondertekening op het web zichtbaar is dan kunt u dat veranderen door middel van de link in de e-mail die u ontving om uw ondertekening te bevestigen (zie <a href="/help/algemeen">help</a> als u die link niet meer heeft). Daarna duurt het nog minstens een week voor de zoekmachines uw ondertekening weglaten uit de zoekresultaten.</p>
+      <p>&nbsp;</p>
+      <p>Als u mailt met de webmaster wordt uw e-mailadres alleen gebruikt voor correspondentie die te maken heeft met uw vraag, klacht of opmerking. U ontvangt geen onpersoonlijke informatie (zoals een nieuwsbrief), tenzij <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">u zelf een abonnement op de nieuwsbrief vraagt.</a></p>
+      <p>&nbsp;</p>
+      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van info@petities.nl:</p>
+      <ol>
+        <li>om te bevestigen, binnen enkele minuten tot een dag na uw ondertekening</li>
+        <li>om aan te kondigen dat de petitie gaat sluiten en wordt overhandigd, weken of maanden na uw ondertekening</li>
+        <li>om te laten weten wat het resultaat van de petitie is, binnen zes weken na het overhandigen van de petitie.</li>
+      </ol>
+      <p>&nbsp;</p>
+      <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen door opnieuw de petitie te tekenen met exact hetzelfde e-mailadres.</p>
+    title: Uw privacy
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -120,9 +271,14 @@ es:
       form:
         checkbox: I allow my name and place of residence to be publicly visible below the petition.
         email: E-mail address
+        errors:
+          email: Please enter correct Email.
+          name: Please enter correct Name and Surname.
         name: Name
         residence: Place of residence
         submit: Yes, I sign this petition
+        success: |
+          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature with. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
@@ -142,7 +298,11 @@ es:
       visible: Visible
     linkinstruction: Linkinstruction
     thanks: Thanks
-  signatures: Signatures
+  signatures:
+    link: Link
+    notify: Notify
+    sign: Sign this petition
+    title: Signatures
   signnow: Signnow
   start:
     form:
@@ -150,6 +310,7 @@ es:
         description: |
           Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
         label: Addressed to
+      finalize: Finalize
       image:
         description: |
           Add the petition poster
@@ -163,9 +324,12 @@ es:
           Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
         label: Observe
       petitioner:
+        description: |
+          If you do not enter a password we will give you a good one.
         email:
           description: Description
           label: Your e-mail address
+        label: Preferred password
         lead:
           description: |
             Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
@@ -185,6 +349,7 @@ es:
           Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Short description
       submit: Process petition
+      update: Update
       we:
         description: |
           U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
