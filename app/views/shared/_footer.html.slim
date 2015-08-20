@@ -3,14 +3,15 @@ footer.footer
 
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
-      ul.footer-news-list
-        - cache @news do
-          - @news.offset(is_homepage? ? 2 : 0).each do |entry|
-            li.footer-news-list-item
-              a href="#"
-                = entry.date
-                | &nbsp; 
-                = entry.title
+      - cache @news do
+        - if @news
+          ul.footer-news-list
+            - @news.offset(is_homepage? ? 2 : 0).each do |entry|
+              li.footer-news-list-item
+                a href="#"
+                  = entry.date
+                  | &nbsp; 
+                  = entry.title
                   
           
     div.footer-content-block
