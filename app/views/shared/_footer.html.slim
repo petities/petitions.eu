@@ -1,18 +1,19 @@
 footer.footer
   div.footer-content
-    
+
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
       ul.footer-news-list
         - cache @news do
-          - @news.each do |entry|
-            li.footer-news-list-item
-              a href="#"
-                = entry.date
-                | &nbsp; 
-                = entry.title
-                  
-          
+          - if @news
+            - @news.each do |entry|
+              li.footer-news-list-item
+                a href="#"
+                  = entry.date
+                  | &nbsp;
+                  = entry.title
+
+
     div.footer-content-block
       div.footer-content-menu-wrapper
         nav.footer-content-menu-container
@@ -26,7 +27,7 @@ footer.footer
                 = link_to t('footer.menu.updates'), updates_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.support'), about_path
-            
+
             div.footer-content-menu-part.right
               li.footer-content-menu-item
                 = link_to t('footer.menu.help'), help_path
@@ -36,7 +37,7 @@ footer.footer
                 = link_to t('footer.menu.manage'), manage_petitions_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.about'), about_path
-            
+
         a.donate-button href="#"= t('footer.donate')
 
       div.footer-content-contactblock
@@ -52,7 +53,7 @@ footer.footer
           | contactformulier<br>
           | webmaster@petities.nl<br>
           | @petities op Twitter
-        
+
   div.footer-sponsor-bar
     = t('footer.hosting')
     br
