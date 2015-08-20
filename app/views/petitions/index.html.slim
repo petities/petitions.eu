@@ -1,17 +1,3 @@
-header.header
-  div.header-content
-    div#wool-paralax
-      div.wool-layer data={shift: "0.01"} = image_tag "header_back2.png"
-      div.wool-layer data={shift: "0.02"} = image_tag "header_front3.png"
-      div.wool-layer data={shift: "0.03"} = image_tag "header_front4.png"
-      div.wool-layer data={shift: "0.04"} = image_tag "header_trees2.png"
-      div.wool-layer data={shift: "0.05"} = image_tag "header_front2.png"
-      div.wool-layer data={shift: "0.07"} = image_tag "header_front1.png"
-      
-      div.header-button-container
-        = link_to '', root_path, class: 'header-logo'
-        = link_to t("header.new"), new_petition_path, class: 'header-button'
-
 div.page
   javascript:
     window.page = #{@page};
@@ -55,17 +41,15 @@ div.page
   
   aside.news-intro-blocks-container
     div.news-intro-block
-      h2.news-intro-block-title Meer ondertekenaars met een opiniestuk
-      div.news-intro-block-date 16-03-2015
-      div.news-intro-block-intro 
-        | Een petitie wordt vooral getekend door medestanders die er al van overtuigd zijn dat er iets moet veranderen. Maar de meeste mensen zijn nog niet overtuigd. Als ze al van de petitie weten.
+      h2.news-intro-block-title= @news[0].title
+      div.news-intro-block-date= @news[0].date
+      div.news-intro-block-intro= @news[0].intro_text
       a.news-intro-block-intro-read-more href="#" Lees verder
 
     div.news-intro-block.right
-      h2.news-intro-block-title Hoe moeten we petities.nl verbeteren?
-      div.news-intro-block-date 11-03-2015
-      div.news-intro-block-intro
-        | Dit jaar gaan we onze website weer bijwerken. Wat u nu ziet is in 2009 gemaakt.  Kleine verbeteringen en reparaties lukte ons net, maar voor echt grote veranderingen moeten we programmeurs inhuren. Dat kan nu weer.
+      h2.news-intro-block-title= @news[1].title
+      div.news-intro-block-date= @news[1].date
+      div.news-intro-block-intro= @news[1].intro_text
       a.news-intro-block-intro-read-more href="#" Lees verder
 
 / p id="notice"

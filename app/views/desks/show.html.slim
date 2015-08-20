@@ -1,0 +1,16 @@
+div.page
+  javascript:
+    window.page = #{@page};
+
+  section.petitions-overview-wrapper
+    h1.petition-section-title= "Petition desk: #{@office.name}"
+    
+    div.petition-overview-title= t('all.count', results_size: @results_size)
+
+    
+    div.petitions-overview-container
+      = render partial: 'petitions/list'
+
+      div.clearfix
+
+    = will_paginate @petitions, renderer: PetitionsPaginateRenderer

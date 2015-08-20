@@ -365,5 +365,9 @@ en:
       <p>Your donation is most appreciated. You can:</p>
       <ul>
         <li>transfer it to the account  NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands with Rabobank (bank identification code RABONL2U)</li>
-        <li>or use <a id="paypal"></a> (to <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>)</li>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="RXPC48TRFCARN">
+          <li>or use PayPal: <input type="image" src="/assets/btn_donate_LG_en.gif" border="0" name="submit" alt="PayPal"> (to <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>)</li>
+        </form>        
       </ul>

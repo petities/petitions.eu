@@ -112,10 +112,11 @@ class PetitionsController < ApplicationController
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
-
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
+
+    @office = Office.find(@petition.office_id)
     
     # TODO.
     # where prominent is TRUE and score is higher then 0

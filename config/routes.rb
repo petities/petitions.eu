@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get :all
       get :search
       get :manage
+
+      resources :desks, as: :petition_desks
+
     end
 
     resources :signatures, except: [:new, :show] do

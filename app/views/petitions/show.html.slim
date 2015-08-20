@@ -1,8 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'ZeroClipboard.min'
 
-= render partial: 'shared/header'
-
 javascript:
   $(window).on('scroll', function(){
     if ($(window).width() > 950) {
@@ -99,8 +97,8 @@ div.page
         - if @petition.date_projected
           div.petitie_field_data= @petition.date_projected.strftime('%d-%m-%Y')
         div.petitie_field_label= t('show.overview.location')
-        div.petitie_field_data
-          | Amsterdam
+        - if @office
+          div.petitie_field_data= @office.name
         - if @petition.links[:links].present?
           div.petitie_field_label= t('show.overview.website')
           div.petitie_field_data

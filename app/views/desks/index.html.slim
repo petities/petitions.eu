@@ -1,0 +1,17 @@
+div.page
+  section.petitions-overview-wrapper
+    
+    h1.petition-section-title Petition desks
+    div.petition-overview-title A petition desk is the page on this website where you can file your petition. The civil servants behind the desk will help you write where it is needed. When your petition does not comply you will receive feedback on what to change. Read more about petition desks. <a href="#">More information petition desks</a>.
+      
+    div.petitions-overview-container
+      - @offices.each do |office|
+        div.petition-overview
+          = link_to petition_desk_path(office), class: 'petition-overview-image-container' do
+            <img src="http://www.freshbits.nl/client/petities.nl/html/afbeeldingen/loket/alkmaar.gif" class="petition-overview-image">
+
+          div.petition-overview-info-container
+            h2.petition-overview-info-title
+              = link_to office.name, '#'
+
+      div.clearfix

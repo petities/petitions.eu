@@ -1,8 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'ZeroClipboard.min'
 
-= render partial: 'shared/header'
-
 div.page.top
   section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
     div.petition-intro-image-container

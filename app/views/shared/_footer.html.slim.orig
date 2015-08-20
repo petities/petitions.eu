@@ -5,6 +5,17 @@ footer.footer
       h2.footer-content-title= t('footer.updates')
       ul.footer-news-list
         - cache @news do
+<<<<<<< Updated upstream
+          - if @news
+            - @news.each do |entry|
+              li.footer-news-list-item
+                a href="#"
+                  = entry.date
+                  | &nbsp;
+                  = entry.title
+
+
+=======
           - @news.offset(is_homepage? ? 2 : 0).each do |entry|
             li.footer-news-list-item
               a href="#"
@@ -13,6 +24,7 @@ footer.footer
                 = entry.title
                   
           
+>>>>>>> Stashed changes
     div.footer-content-block
       div.footer-content-menu-wrapper
         nav.footer-content-menu-container
@@ -36,8 +48,13 @@ footer.footer
                 = link_to t('footer.menu.manage'), manage_petitions_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.about'), about_path
+<<<<<<< Updated upstream
+
+        a.donate-button href="#"= t('footer.donate')
+=======
             
         = link_to t('footer.donate'), donate_path, class: 'donate-button'
+>>>>>>> Stashed changes
 
       div.footer-content-contactblock
         div.footer-content-contactblock-section.top

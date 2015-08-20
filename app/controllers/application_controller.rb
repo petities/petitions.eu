@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   before_filter do
     if request.get?
-      @news = Update.limit(10)
+      @news = Update.website_news.limit(12)
     end
   end
 
