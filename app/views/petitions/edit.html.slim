@@ -1,5 +1,3 @@
-= render partial: 'shared/header'
-
 div.page
   section.start-petition-form-container
     h1.petition-section-title 
@@ -9,12 +7,10 @@ div.page
 
     / - if current_user && (current_user.has_role? :admin or current_user.has_role? :admin, @petition)
     div.whitespace
-      div.button
-        = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank
+      = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
     
     div.whitespace
-      div.button.whitespace
-        = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank
+      = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
 
 
     = render 'form'

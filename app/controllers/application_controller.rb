@@ -17,25 +17,24 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   before_filter do
-    @news = Update.limit(10)
-  end
-
-  def help
-    Globalize.with_locale(I18n.locale) do
-      @faq_questions = Faq.all
+    if request.get?
+      @news = Update.website_news.limit(12)
     end
   end
 
-  def privacy; end
-
-  def about; end
-
-  def contact
-
+  def help
+    @faq_questions = I18n.t('help.faq').map{ |key, value| value }
   end
 
-  def contact_form_submit
-  
+  %w(about privacy donate contact).each do |name|
+    define_method(name) {}
+  end
+
+  def contact_submit
+    ApplicationMailer.contact_mail(params[:from], params[:body]).deliver
+
+    flash[:notice] = 'Your email was successfully sent to website administrator!'
+    redirect_to contact_path
   end
 
 

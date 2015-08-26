@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
+  
+  as :user do
+    get 'login' => 'devise/sessions#new', as: :new_user_session
+    post 'login' => 'devise/sessions#create', as: :user_session
+    delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
+    get 'logout' => 'devise/sessions#destroy'
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
@@ -10,13 +18,19 @@ Rails.application.routes.draw do
       get :all
       get :search
       get :manage
+
+      resources :desks, as: :petition_desks
+
     end
 
-    resources :signatures, except: [:new] do
+    resources :signatures, except: [:new, :show] do
       post :confirm_submit
+
 
       collection do
         post :search
+
+        get ':signature_id' => 'signatures#index', as: :anchor
       end
     end
 
@@ -24,11 +38,13 @@ Rails.application.routes.draw do
 
     resources :updates, only: [:index]
 
+    get :finalize
 
     get 'add_translation'
     patch 'update_owners'
 
   end
+
 
   resources :updates
   
@@ -38,12 +54,12 @@ Rails.application.routes.draw do
 
   # STATIC PAGES
 
-  get '/help',    to: 'application#help'
-  get '/about',   to: 'application#about'
-  get '/privacy', to: 'application#privacy'
-  get '/contact', to: 'application#contact'
+  %w(help about privacy donate contact).each do |name|
+    get "/#{name}", to: "application##{name}"
+  end
+  post '/contact_submit', to: 'application#contact_submit'
 
-  post '/contact_form_submit', to: 'application#contact_form_submit'
+
   
   ###
 

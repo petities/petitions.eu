@@ -1,16 +1,17 @@
 footer.footer
   div.footer-content
-    
+
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
-      ul.footer-news-list
-        - cache @news do
-          - @news.each do |entry|
-            li.footer-news-list-item
-              a href="#"
-                = entry.date
-                | &nbsp; 
-                = entry.title
+      - cache @news do
+        - if @news
+          ul.footer-news-list
+            - @news.offset(is_homepage? ? 2 : 0).each do |entry|
+              li.footer-news-list-item
+                a href="#"
+                  = entry.date
+                  | &nbsp; 
+                  = entry.title
                   
           
     div.footer-content-block
@@ -21,12 +22,12 @@ footer.footer
               li.footer-content-menu-item
                 = link_to t('footer.menu.petitions'), petitions_path
               li.footer-content-menu-item
-                a href="#"= t('footer.menu.desks')
+                = link_to t('footer.menu.desks'), petition_desks_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.updates'), updates_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.support'), about_path
-            
+
             div.footer-content-menu-part.right
               li.footer-content-menu-item
                 = link_to t('footer.menu.help'), help_path
@@ -37,7 +38,7 @@ footer.footer
               li.footer-content-menu-item
                 = link_to t('footer.menu.about'), about_path
             
-        a.donate-button href="#"= t('footer.donate')
+        = link_to t('footer.donate'), donate_path, class: 'donate-button'
 
       div.footer-content-contactblock
         div.footer-content-contactblock-section.top
@@ -49,10 +50,11 @@ footer.footer
 
         div.footer-content-contactblock-section
           h2.footer-content-title= t('footer.contact')
-          | contactformulier<br>
+          = link_to 'contactformulier', contact_path
+          br
           | webmaster@petities.nl<br>
           | @petities op Twitter
-        
+
   div.footer-sponsor-bar
     = t('footer.hosting')
     br

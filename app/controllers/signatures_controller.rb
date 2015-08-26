@@ -6,8 +6,6 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-    @page = (params[:page] || 1).to_i
-
     @petition = Petition.find(params[:petition_id])
     @all_signatures = @petition.signatures.special
 
@@ -17,11 +15,19 @@ class SignaturesController < ApplicationController
                                                  .map{|group| [group[0], group[1].size]}
                                                  .select{|group| group[1] >= 100}
                                                  .sort_by{|group| group[1]}[0..9]
-      @per_page = 100
+      @per_page = 10
     else
       @per_page = 12
     end
     
+    @page = if params[:page]
+              params[:page].to_i
+            elsif params[:signature_id]
+              (@all_signatures.pluck(:id).index(params[:signature_id].to_i).to_f / @per_page).floor + 1
+            else
+              1
+            end
+
     @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
 
     respond_to do |format|

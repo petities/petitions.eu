@@ -1,26 +1,28 @@
-= render partial: 'shared/header'
-
 div.page
   section.start-petition-form-container
-    h1.petition-section-title Sign in
+    h1.petition-section-title Login
 
     = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-  
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             | Email
-            = f.email_field :email, class: 'start-petition-form-cell-input'
+          = f.email_field :email, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          | &nbsp;
+          | E-mail address
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             | Password
-            = f.password_field :password, class: 'start-petition-form-cell-input'
+          = f.password_field :password, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          | &nbsp;
+          | Your password
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = link_to 'Reset password', new_user_password_path      
 
       div.start-petition-form-row
         div.start-petition-form-cell.input

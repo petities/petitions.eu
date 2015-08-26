@@ -21,4 +21,5 @@
 //= require Chart.min
 //= require paralax
 //= require petities
+//= require social_share
 // require_tree .

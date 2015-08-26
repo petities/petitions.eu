@@ -1,8 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'ZeroClipboard.min'
 
-= render partial: 'shared/header'
-
 div.page.top
   section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
     div.petition-intro-image-container
@@ -79,18 +77,20 @@ div.page.signatures
         div.social-bar-side-label= t('show.share')
 
         div.social-bar-side-content.whitespace
-          a href="#" class="social-bar-side-button facebook"
-          a href="#" class="social-bar-side-button twitter"
-          a href="#" class="social-bar-side-button googleplus"
-          a href="#" class="social-bar-side-button linkedin"
-          a href="#" class="social-bar-side-button email"
-        
+          a.social-bar-side-button.facebook    href="javascript:fbShare('#{petition_url(@petition)}', '#{@petition.name}', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350);"
+          a.social-bar-side-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_url(@petition)}&text="
+          a.social-bar-side-button.googleplus  href="javascript:gPlusShare('#{petition_url(@petition)}');"
+          a.social-bar-side-button.linkedin    href="javascript:lnShare('#{petition_url(@petition)}');"
+          = mail_to nil, nil,
+                class: "social-bar-side-button email",
+                subject: "Share a petition: #{@petition.name}",
+                body: petition_url(@petition)
         div.social-side-bar-url
-          span#social_url http://handenafvanhomeopathie.petities.nl/
+          span#social_url= petition_url(@petition)
           a.social-bar-side-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
           javascript:
-            document.addEventListener("page:change", function(){
+            $(document).ready(function(){
               var client = new ZeroClipboard( $(".social-bar-side-button-url") );
             });
 

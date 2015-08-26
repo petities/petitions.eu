@@ -1,19 +1,26 @@
 header.header
   div.header-content
-    div.header-button-container
-      = link_to '', root_path, class: 'header-logo'
+    - if is_homepage?
+      div#wool-paralax
+        div.wool-layer data={shift: "0.01"} = image_tag "header_back2.png"
+        div.wool-layer data={shift: "0.02"} = image_tag "header_front3.png"
+        div.wool-layer data={shift: "0.03"} = image_tag "header_front4.png"
+        div.wool-layer data={shift: "0.04"} = image_tag "header_trees2.png"
+        div.wool-layer data={shift: "0.05"} = image_tag "header_front2.png"
+        div.wool-layer data={shift: "0.07"} = image_tag "header_front1.png"
+        
+        div.header-button-container
+          = link_to '', root_path, class: 'header-logo'
+          = link_to t("header.new"), new_petition_path, class: 'header-button'
 
-    div.search-container.vervolg.whitespace
-      = form_tag(search_petitions_path, method: :get, class: "navbar-form navbar-left", role: "search", locale: I18n.locale) do
-        = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
-        = hidden_field_tag :locale, I18n.locale
-        input.search-container-button type="submit" value=""
+    - else
+      div.header-button-container
+        = link_to '', root_path, class: 'header-logo'
 
-        div.clearfix
-    
-    - if current_user
-      div
-        | Logged in as: 
-        = current_user.email
-        = ' '
-        = link_to 'Sign out', destroy_user_session_path, method: :delete
+      div.search-container.vervolg.whitespace
+        = form_tag(search_petitions_path, method: :get, class: "navbar-form navbar-left", role: "search", locale: I18n.locale) do
+          = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
+          = hidden_field_tag :locale, I18n.locale
+          input.search-container-button type="submit" value=""
+
+          div.clearfix

@@ -1,8 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'ZeroClipboard.min'
 
-= render partial: 'shared/header'
-
 javascript:
   $(window).on('scroll', function(){
     if ($(window).width() > 950) {
@@ -25,19 +23,26 @@ javascript:
   });
 
 div.page
+  - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
+    div.admin_form.whitespace
+      - if @petition.locale_list.present?
+        div.locale_list.whitespace
+          | Available in:
+          br
+          - @petition.locale_list.each do |locale|
+            = label_tag locale
+            = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
+            br
+          = link_to '+ Add translation', petition_add_translation_path(@petition)
+
+      = link_to 'Edit', edit_petition_path(@petition), class: 'button'
+
+
   javascript:
     window.page = 1;
 
   - cache [@petition, Globalize.locale.to_s] do
-    - if @petition.locale_list.present?
-      div.locale_list
-        | Available in:
-        br
-        - @petition.locale_list.each do |locale|
-          = label_tag locale
-          = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
-          br
-        = link_to '+ Add translation', petition_add_translation_path(@petition)
+    
 
     section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
@@ -92,16 +97,15 @@ div.page
         - if @petition.date_projected
           div.petitie_field_data= @petition.date_projected.strftime('%d-%m-%Y')
         div.petitie_field_label= t('show.overview.location')
-        div.petitie_field_data
-          | Amsterdam
-        div.petitie_field_label= t('show.overview.website')
-        div.petitie_field_data
-          a href="#"
-            | www.nvj.nl
-          br
-          a href="#"
-            | www.domein.nl
-          br
+        - if @office
+          div.petitie_field_data= @office.name
+        - if @petition.links[:links].present?
+          div.petitie_field_label= t('show.overview.website')
+          div.petitie_field_data
+            - @petition.links[:links].each do |link|
+              a href="#{link[:link]}"= link[:text]
+              br
+              
         div.clearfix
 
       div.petition-details.history
@@ -132,18 +136,20 @@ div.page
 div.social-bar
   div.social-bar-content
     div.social-bar-label= t('show.share')
-    a.social-bar-button.facebook    href="#"
-    a.social-bar-button.twitter     href="#"
-    a.social-bar-button.googleplus  href="#"
-    a.social-bar-button.linkedin    href="#"
-    a.social-bar-button.email       href="#"
+    a.social-bar-button.facebook    href="javascript:fbShare('#{petition_url(@petition)}', '#{@petition.name}', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350);"
+    a.social-bar-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_url(@petition)}&text="
+    a.social-bar-button.googleplus  href="javascript:gPlusShare('#{petition_url(@petition)}');"
+    a.social-bar-button.linkedin    href="javascript:lnShare('#{petition_url(@petition)}');"
+    = mail_to nil, nil,
+          class: "social-bar-button email",
+          subject: "Share a petition: #{@petition.name}",
+          body: petition_url(@petition)
     div.social-bar-url
-      span#social_url
-        | http://handenafvanhomeopathie.petities.nl/
+      span#social_url= petition_url(@petition) 
       a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
       javascript:
-        document.addEventListener("page:change", function(){
+        $(document).ready(function(){
           var client = new ZeroClipboard( $(".social-bar-button-url") );
         });
 

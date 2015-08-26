@@ -1,0 +1,20 @@
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title Forgot your password?
+
+    = form_tag user_password_path do
+  
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | Email
+          = email_field_tag :email, '', autofocus: true, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          | The link for password change form will be sent to your email.
+
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = submit_tag "Send me reset password instructions", class: 'start-petition-form-cell-button'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
