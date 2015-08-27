@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-Mailcheck.defaultDomains.push('uva.nl', 'petities.nl') # // extend existing domains
+Mailcheck.defaultDomains.push('uva.nl', 'petities.nl', 'xs4all.nl', 'gmail.com', 'hotmail.com', 'deds.nl', 'dds.nl', ) # // extend existing domains
 #Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
 Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
 
