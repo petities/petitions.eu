@@ -9,21 +9,55 @@ div.page.vervolg
         - @faq_questions.each do |faq_item|
 
           div.read-more-help-handler
-            | &#43;
+            | &#43; 
             = faq_item[:title] 
           div.read-more-help-content
             h3= faq_item[:title] 
-            p= faq_item[:answer] 
+            p= raw faq_item[:answer] 
+      div.update
+        h2= t('help.whilesigning')
 
+        - @faq_questions.each do |faq_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = faq_item[:title] 
+          div.read-more-help-content
+            h3= faq_item[:title] 
+            p= raw faq_item[:answer] 
+      div.update
+        h2= t('help.aftersigning')
+
+        - @faq_questions.each do |faq_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = faq_item[:title] 
+          div.read-more-help-content
+            h3= faq_item[:title] 
+            p= raw faq_item[:answer] 
+      div.update
+        h2= t('help.startpetition')
+
+        - @faq_questions.each do |faq_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = faq_item[:title] 
+          div.read-more-help-content
+            h3= faq_item[:title] 
+            p= raw faq_item[:answer] 
 
   aside.vervolg-side
 
     div.side-article-container.whitespace
-      h2= t('help.opinionpiece.title')
-      p= t('help.opinionpiece.descr')
-
-      a href="http://www.opiniestukken.nl" target="_blank" Opiniestukken.nl
+      h2= t('help.changesig.title')
+      p= raw t('help.changesig.descr')
+      
+    div.side-article-container.whitespace
+      h2= t('help.handbook.title')
+      p= raw t('help.handbook.descr')
 
     div.side-article-container.whitespace
-      h2= t('help.changesig.title')
-      p= t('help.changesig.desrc')
+      h2= t('help.opinionpiece.title')
+      p= raw t('help.opinionpiece.descr')
