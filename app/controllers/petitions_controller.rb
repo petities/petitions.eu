@@ -13,7 +13,7 @@ class PetitionsController < ApplicationController
     # petitions = Petition.joins(:translations).live
     petitions = Petition.live
     direction = [:desc, :asc][@order]
-    
+
     if @sorting == 'active' then
       petitions = petitions.order(active_rate_value: direction)
     elsif @sorting == 'biggest'
@@ -25,7 +25,7 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-      {type: 'active',      label: t('index.sort.active')}, 
+      {type: 'active',      label: t('index.sort.active')},
       {type: 'biggest',     label: t('index.sort.biggest')},
       {type: 'newest',      label: t('index.sort.new')},
       {type: 'sign_quick',  label: t('index.sort.sign_quick')}
@@ -48,7 +48,7 @@ class PetitionsController < ApplicationController
     direction = [:desc, :asc][@order]
 
     petitions = Petition.live.order(created_at: direction)
-    
+
     if @sorting == 'all' then
       petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
     elsif @sorting == 'open'
@@ -60,7 +60,7 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-      {type: 'all',            label: t('all.sort.all')}, 
+      {type: 'all',            label: t('all.sort.all')},
       {type: 'open',           label: t('all.sort.open')},
       {type: 'concluded',      label: t('all.sort.concluded')},
       {type: 'rejected',       label: t('all.sort.rejected')},
@@ -85,7 +85,7 @@ class PetitionsController < ApplicationController
     @search = params[:search]
     #translation = Petition.findbyname(params[:search])
     petitions = Petition.joins(:translations).
-      #with_locales(I18n.available_locales). 
+      #with_locales(I18n.available_locales).
       where("petition_translations.name like ?", "%#{@search}%")
 
     @results_size = petitions.size
@@ -98,7 +98,7 @@ class PetitionsController < ApplicationController
       @petitions = current_user.petitions
       @results_size = @petitions.size
     else
-      redirect_to new_user_session_path 
+      redirect_to new_user_session_path
     end
   end
 
@@ -116,8 +116,12 @@ class PetitionsController < ApplicationController
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
 
-    @office = Office.find(@petition.office_id)
-    
+    if @petition.office_id
+      @office = Office.find(@petition.office_id)
+    else
+      @office = Office.find_by_email('webmaster@petities.nl')
+    end
+
     # TODO.
     # where prominent is TRUE and score is higher then 0
     # ordered by score
@@ -245,7 +249,6 @@ class PetitionsController < ApplicationController
 
     # if petition_params[:organisation_id].present?
     #   organisation = Organisation.find(petition_params[:organisation_id])
-      
     #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     # end
 
