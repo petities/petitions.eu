@@ -214,7 +214,7 @@ en:
   show:
     history: History
     overview:
-      addressee: 'Addressed to'
+      addressee: 'Addressed to:'
       end_date: 'Closing date:'
       desk: 'Petition desk:'
       location: 'In:'
