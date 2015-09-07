@@ -73,7 +73,10 @@ nl:
   description: Beschrijving
   errors:
     messages:
+      empty: Dit veld is leeg, maar er moet tekst in staan.
+      incorrect: Sommige velden zijn niet goed ingevuld. Controleer ze en probeer opnieuw.
       not_saved: Niet bewaard
+      too_long: Wat u schreef past niet. U kunt om een uitzondering vragen als u echt meer ruimte nodig heeft.
   footer:
     address: Adres
     contact: Contact
@@ -214,9 +217,10 @@ nl:
     history: Geschiedenis
     overview:
       addressee: 'Ontvanger:'
+      desk: 'Petitieloket:'
       end_date: 'Einddatum:'
       location: 'In:'
-      organisation: 'Organisation:'
+      organisation: 'Organisatie:'
       petitioners: 'Petitionaris:'
       status: 'Status:'
       title: Details
@@ -237,8 +241,7 @@ nl:
         name: Voornaam Achternaam
         residence: Woonplaats
         submit: Ja, Ik onderteken deze petitie
-        success: |
-          Dank u wel! Uw ondertekening moet alleen nog bevestigd worden. Op uw e-mailadres $e-mailadres$ ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Check ook uw spamfilter als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet.
+        success: Dank u wel! Uw ondertekening moet alleen nog bevestigd worden. Op uw e-mailadres $e-mailadres$ ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Check ook uw spamfilter als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
@@ -256,7 +259,7 @@ nl:
       name: Naam
       subscribe: Abonneer
       visible: Zichtbaar
-    linkinstruction: Linkinstructie?
+    linkinstruction: Volg deze link
     thanks: Dank u
   signatures:
     link: Link
@@ -267,55 +270,43 @@ nl:
   start:
     form:
       addressed:
-        description: |
-          Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
+        description: Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
         label: Gericht aan
       finalize: Klaar
       image:
-        description: |
-          Voeg het plaatje bij de petitie toe.
+        description: Voeg het plaatje bij de petitie toe. Let erop dat het in landschapformaat is (minstens 151 pixels hoog x 172 pixels breed), niet vierkant of portret.
         label: Petitie-plaatje
       name:
-        description: |
-          De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
+        description: De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
         label: Naam van de petitie
       observe:
-        description: |
-          Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
+        description: Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
         label: Constateren
       petitioner:
-        description: |
-          Als u geen goed wachtwoord invoert dan geven wij u een goede.
         email:
-          description: ''
+          description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen. 
           label: Uw e-mailadres
-        label: Gewenst wachtwoord
-        lead:
-          description: |
-            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
-          label: Petitionaris
         name:
-          description: Description
+          description: Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
           label: Uw voor- en achternaam
+        organisation:
+          description: Optioneel. Een organisatie stelt ondertekenaars gerust dat u niet alleen verantwoordelijk bent.
+          label: Organisatie
         password:
-          description: Description
+          description: Als u geen goed wachtwoord kiest geven wij u een goede. 
           label: Uw gewenste wachtwoord
       request:
-        description: |
-          Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
+        description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
       short_description:
-        description: |
-          Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
+        description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
       submit: Petitie aanmaken
       update: Update
       we:
-        description: |
-          U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
+        description: U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
         label: Wij
-    overview: |
-      Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.
+    overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
   statement: Verzoek
   when: Wanneer

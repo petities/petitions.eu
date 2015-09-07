@@ -73,7 +73,10 @@ en:
   description: Description
   errors:
     messages:
+      empty: This field is empty but should contain text.
+      incorrect: Some fields are filled incorrectly. Check them out and try again.
       not_saved: Not saved
+      too_long: What you wrote does not fit. You can ask for an exception if you really need more space.
   footer:
     address: Address
     contact: Contact
@@ -124,8 +127,7 @@ en:
       biggest: Biggest petitions
       new: New petitions
       sign_quick: Sign last minute
-      title: |
-        Sort on:
+      title: 'Sort on: '
   listing: Listing
   manage:
     title: My petitions
@@ -215,8 +217,8 @@ en:
     history: History
     overview:
       addressee: 'Addressed to:'
-      end_date: 'Closing date:'
       desk: 'Petition desk:'
+      end_date: 'Closing date:'
       location: 'In:'
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
@@ -239,8 +241,7 @@ en:
         name: First name Surname
         residence: Place of residence
         submit: Yes, I sign this petition
-        success: |
-          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+        success: Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
@@ -258,7 +259,7 @@ en:
       name: Name
       subscribe: Subscribe
       visible: Visible
-    linkinstruction: Linkinstruction
+    linkinstruction: Follow this link to confirm
     thanks: Thanks
   signatures:
     link: Link
@@ -269,54 +270,43 @@ en:
   start:
     form:
       addressed:
-        description: |
-          A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
+        description: A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
         label: Addressed to
       finalize: Finalize
       image:
-        description: "Add the image for the petition. Make sure it is in landscape format (at least 151 pixels high x 172 pixels wide), not square or portrait. \n"
-        label: Petition images
+        description: Add the image for the petition. Make sure it is in landscape format (at least 151 pixels high x 172 pixels wide), not square or portrait.
+        label: Petition image
       name:
-        description: |
-          The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
+        description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
         label: Title of the petition
       observe:
-        description: |
-          The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
+        description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
         label: Observe
       petitioner:
-        description: |
-          If you do not enter a password we will give you a good one.
         email:
-          description: Description
-          label: Uw e-mailadres
-        label: Preferred password
-        lead:
-          description: |
-            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
-          label: Petitionaris
+          description: Without an e-mail address we can not send you access to your petition.
+          label: Your e-mail address
         name:
-          description: Description
-          label: Uw voor- en achternaam
+          description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
+          label: Your name and surname
+        organisation:
+          description: Optional. An organisation reassures signatories that you are not the only one to take responsibility.
+          label: Organisation
         password:
-          description: Description
-          label: Uw gewenste wachtwoord
+          description: If you do not enter a password we will give you a good one.
+          label: Desired password
       request:
-        description: |
-          Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
+        description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
       short_description:
-        description: |
-          With this text you attract signatures: it appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
+        description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
       submit: Submit petition
       update: Update
       we:
-        description: |
-          You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
+        description: You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
         label: We
-    overview: |
-      A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.
+    overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
   statement: Statement
   when: When
