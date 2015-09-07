@@ -92,7 +92,7 @@ div.page
         h2.petition-section-title= t('show.overview.title')
         div.petitie_field_label= t('show.overview.addressee')
         div.petitie_field_data
-        - if @petition.petitioner_name
+        - if @petition.organisation_id
           div.petitie_field_data= @petition.organisation_id
         div.petitie_field_label= t('show.overview.desk')
         - if @office
@@ -110,13 +110,13 @@ div.page
           div.petitie_field_data= @petition.petitioner_name
         div.petitie_field_label= t('show.overview.organisation')
         div.petitie_field_data
-        - if @petition.petitioner_name
+        - if @petition.petitioner_organisation
           div.petitie_field_data= @petition.petitioner_organisation
+        div.petitie_field_label= t('show.overview.website')  
         - if @petition.links[:links].present?
-          div.petitie_field_label= t('show.overview.website')
           div.petitie_field_data
             - @petition.links[:links].each do |link|
-              a href="#{link[:link]}"= link[:text]
+              a href="#{link[:link]}"= link[:text]                   
               br
               
         div.clearfix
