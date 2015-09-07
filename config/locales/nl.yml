@@ -213,13 +213,13 @@ nl:
   show:
     history: Geschiedenis
     overview:
-      addressed: Ontvanger
+      addressee: 'Ontvanger:'
       end_date: 'Einddatum:'
-      location: 'Loket:'
+      location: 'In:'
       organisation: 'Organisation:'
       petitioners: 'Petitionaris:'
       status: 'Status:'
-      title: Overzicht
+      title: Details
       website: 'Website:'
     petition:
       observe: constateren

@@ -214,9 +214,10 @@ en:
   show:
     history: History
     overview:
-      addressed: Addressed
-      end_date: 'Handover on:'
-      location: 'Petition desk:'
+      addressee: 'Addressed to'
+      end_date: 'Closing date:'
+      desk: 'Petition desk:'
+      location: 'In:'
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
       status: 'Status:'
