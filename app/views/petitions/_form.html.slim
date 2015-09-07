@@ -1,7 +1,7 @@
 = form_for @petition, html:{ multipart: true } do |f|
   div.errors-container style='display: none;'
-    div.errors-empty Field is empty.
-    div.errors-too-long The text is bigger than the allowed value.
+    div.errors-empty: p= t('errors.messages.empty')
+    div.errors-too-long: p= t('errors.messages.too_long')
   
   
   - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
@@ -107,13 +107,6 @@
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title= t('start.form.petitioner.organisation.label')
-        = f.text_field :petitioner_organisation, class: 'start-petition-form-cell-input'
-      div.start-petition-form-cell.label
-        p= t('start.form.petitioner.organisation.description')
-
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.email.label')
         = text_field_tag 'user[email]', '', class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
@@ -132,6 +125,13 @@
         = text_field_tag 'user[name]', '', class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
         p= t('start.form.petitioner.name.description')
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.organisation.label')
+        = f.text_field :petitioner_organisation, class: 'start-petition-form-cell-input'
+      div.start-petition-form-cell.label
+        p= t('start.form.petitioner.organisation.description')
 
   - if action_name == 'new'
     div.start-petition-form-row
@@ -152,7 +152,7 @@
 
   div.start-petition-form-row.whitespace
     div.start-petition-form-cell.input
-      div.errors-note.whitespace style="display:none;" Some fields are filled incorrectly. Check them out and try again.
+      div.errors-note.whitespace style="display:none;": p=t('errors.messages.incorrect')
 
 
   / - if not @petition.id.blank?
