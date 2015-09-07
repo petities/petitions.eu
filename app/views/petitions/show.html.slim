@@ -92,7 +92,8 @@ div.page
         h2.petition-section-title= t('show.overview.title')
         div.petitie_field_label= t('show.overview.petitioners')
         div.petitie_field_data
-          | Rosa Garcia Lopez namens NVJ
+        - if @petition.petitioner_name
+          div.petitie_field_data= @petition.petitioner_name
         div.petitie_field_label= t('show.overview.end_date')
         - if @petition.date_projected
           div.petitie_field_data= @petition.date_projected.strftime('%d-%m-%Y')
