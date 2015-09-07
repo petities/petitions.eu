@@ -90,15 +90,28 @@ div.page
     section.petition-details-container
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
-        div.petitie_field_label= t('show.overview.petitioners')
+        div.petitie_field_label= t('show.overview.addressee')
         div.petitie_field_data
-          | Rosa Garcia Lopez namens NVJ
+        - if @petition.petitioner_name
+          div.petitie_field_data= @petition.organisation_id
+        div.petitie_field_label= t('show.overview.desk')
+        - if @office
+          div.petitie_field_data= @office.name
         div.petitie_field_label= t('show.overview.end_date')
         - if @petition.date_projected
           div.petitie_field_data= @petition.date_projected.strftime('%d-%m-%Y')
-        div.petitie_field_label= t('show.overview.location')
-        - if @office
-          div.petitie_field_data= @office.name
+        div.petitie_field_label= t('show.overview.status')
+        div.petitie_field_data
+        - if @petition.status
+          div.petitie_field_data= @petition.status
+        div.petitie_field_label= t('show.overview.petitioners')
+        div.petitie_field_data
+        - if @petition.petitioner_name
+          div.petitie_field_data= @petition.petitioner_name
+        div.petitie_field_label= t('show.overview.organisation')
+        div.petitie_field_data
+        - if @petition.petitioner_name
+          div.petitie_field_data= @petition.petitioner_organisation
         - if @petition.links[:links].present?
           div.petitie_field_label= t('show.overview.website')
           div.petitie_field_data
