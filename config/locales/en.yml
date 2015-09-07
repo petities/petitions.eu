@@ -215,12 +215,12 @@ en:
     history: History
     overview:
       addressed: Addressed
-      end_date: 'To present on:'
+      end_date: 'Handover on:'
       location: 'Petition desk:'
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
       status: 'Status:'
-      title: Petition details
+      title: Details
       website: 'Website:'
     petition:
       observe: observe
