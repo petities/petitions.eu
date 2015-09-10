@@ -123,6 +123,7 @@ en:
   index:
     all: All petitions
     more: Show more petitions
+    read: Read more... 
     sort:
       active: Active petitions
       biggest: Biggest petitions

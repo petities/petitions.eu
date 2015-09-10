@@ -44,13 +44,13 @@ div.page
       h2.news-intro-block-title= @news[0].title
       div.news-intro-block-date= @news[0].date
       div.news-intro-block-intro= @news[0].intro_text
-      a.news-intro-block-intro-read-more href="#" Lees verder
+      a.news-intro-block-intro-read-more href="#" = t('index.read')
 
     div.news-intro-block.right
       h2.news-intro-block-title= @news[1].title
       div.news-intro-block-date= @news[1].date
       div.news-intro-block-intro= @news[1].intro_text
-      a.news-intro-block-intro-read-more href="#" Lees verder
+      a.news-intro-block-intro-read-more href="#" = t('index.read')
 
 / p id="notice"
 /   = notice

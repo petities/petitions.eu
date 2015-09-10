@@ -123,6 +123,7 @@ nl:
   index:
     all: Alle petities
     more: Meer petities tonen
+    read: Lees verder... 
     sort:
       active: Actieve petities
       biggest: Grootste petities
