@@ -121,6 +121,7 @@ en:
     whilesigning: While signing a petition
     title: Help
   index:
+    all: All petitions
     more: Show more petitions
     sort:
       active: Active petitions

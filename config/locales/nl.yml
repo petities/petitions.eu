@@ -121,7 +121,8 @@ nl:
     whilesigning: Bij het ondertekenen
     title: Help
   index:
-    more: meer petities tonen...
+    all: Alle petities
+    more: Meer petities tonen
     sort:
       active: Actieve petities
       biggest: Grootste petities
