@@ -34,7 +34,7 @@ en:
       open: Open for signing
       rejected: Rejected
       sign_elsewhere: Sign elsewhere
-      title: 'Petition status: '
+      title: 'Sort on: '
     title: All petitions
   anonymous: Anonymous
   confirm:
@@ -121,7 +121,9 @@ en:
     whilesigning: While signing a petition
     title: Help
   index:
+    all: All petitions
     more: Show more petitions
+    read: Read more... 
     sort:
       active: Active petitions
       biggest: Biggest petitions

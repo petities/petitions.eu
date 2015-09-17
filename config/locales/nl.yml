@@ -34,7 +34,7 @@ nl:
       open: Ondertekenbaar
       rejected: Afgewezen
       sign_elsewhere: Elders te tekenen
-      title: 'Petitie status: '
+      title: 'Sorteren op: '
     title: Alle petities
   anonymous: Anoniem
   confirm:
@@ -121,7 +121,9 @@ nl:
     whilesigning: Bij het ondertekenen
     title: Help
   index:
-    more: meer petities tonen...
+    all: Alle petities
+    more: Meer petities tonen
+    read: Lees verder... 
     sort:
       active: Actieve petities
       biggest: Grootste petities
