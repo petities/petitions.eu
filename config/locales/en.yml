@@ -34,7 +34,7 @@ en:
       open: Open for signing
       rejected: Rejected
       sign_elsewhere: Sign elsewhere
-      title: 'Petition status: '
+      title: 'Sort on: '
     title: All petitions
   anonymous: Anonymous
   confirm:
