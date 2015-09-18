@@ -71,6 +71,9 @@ nl:
       ip: 'Uw IP-address: %{ip}'
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
+  desk: 
+    intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen. 
+    title: Petitieloketten
   errors:
     messages:
       empty: Dit veld is leeg, maar er moet tekst in staan.
