@@ -71,6 +71,9 @@ en:
       ip: 'Your IP-address: %{ip}'
     title: Confirm your signature for petition "%{name}"
   description: Description
+  desk: 
+    intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
+    title: Petition desks
   errors:
     messages:
       empty: This field is empty but should contain text.
