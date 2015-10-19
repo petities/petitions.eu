@@ -50,10 +50,10 @@ footer.footer
 
         div.footer-content-contactblock-section
           h2.footer-content-title= t('footer.contact')
-          = link_to 'contactformulier', contact_path
+          = link_to t('footer.menu.form'), contact_path
           br
-          | webmaster@petities.nl<br>
-          | @petities op Twitter
+          | <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a><br>
+          | <a href="http://twitter.com/petities">@petities op Twitter</a><br>
 
   div.footer-sponsor-bar
     = t('footer.hosting')
