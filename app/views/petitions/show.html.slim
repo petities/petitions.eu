@@ -42,7 +42,6 @@ div.page
     window.page = 1;
 
   - cache [@petition, Globalize.locale.to_s] do
-    
 
     section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
@@ -146,29 +145,7 @@ div.page
           });
         canvas id="chartContainer" style="height:275px; width:100%;"
 
-div.social-bar
-  div.social-bar-content
-    div.social-bar-label= t('show.share')
-    a.social-bar-button.facebook    href="javascript:fbShare('#{petition_url(@petition)}', '#{@petition.name}', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350);"
-    a.social-bar-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_url(@petition)}&text="
-    a.social-bar-button.googleplus  href="javascript:gPlusShare('#{petition_url(@petition)}');"
-    a.social-bar-button.linkedin    href="javascript:lnShare('#{petition_url(@petition)}');"
-    = mail_to nil, nil,
-          class: "social-bar-button email",
-          subject: "Share a petition: #{@petition.name}",
-          body: petition_url(@petition)
-    div.social-bar-url
-      span#social_url= petition_url(@petition) 
-      a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
-
-      javascript:
-        $(document).ready(function(){
-          var client = new ZeroClipboard( $(".social-bar-button-url") );
-        });
-
-        document.addEventListener("page:before-change", function(){
-          ZeroClipboard.destroy();
-        });
+= render partial: 'social'
 
 div.page
   section
