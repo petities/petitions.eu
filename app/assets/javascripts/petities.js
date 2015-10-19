@@ -91,6 +91,7 @@ $(document).ready(function(){
         result = true;
 
     $errorsBlock.html('');
+	// update span field met current email.
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');

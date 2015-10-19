@@ -85,7 +85,11 @@ div.page
           div.petition-form-note= t('show.sign.note')
 
         div.petition-success-sign-note style='display: none;'
-          p= t('show.sign.form.success')
+          p
+          	= t('show.sign.form.success1')
+          	= @signature.person_email
+          	<span id=email_send></span>
+          	= t('show.sign.form.success2')
 
     section.petition-details-container
       div.petition-details
