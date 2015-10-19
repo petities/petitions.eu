@@ -4,49 +4,48 @@ div.page.vervolg
 
     div.update-container
       div.update
-        h2= t('help.general')
+        h2= 
 
-        - @faq_questions.each do |faq_item|
+        - @general.each do |general_item|
 
           div.read-more-help-handler
             | &#43; 
-            = faq_item[:title] 
+            = general_item[:title] 
           div.read-more-help-content
-            h3= faq_item[:title] 
-            p= raw faq_item[:answer] 
+            h3= general_item[:title] 
+            p= raw general_item[:answer] 
       div.update
-        h2= t('help.whilesigning')
+        h2= 
 
-        - @faq_questions.each do |faq_item|
+        - @whilesigning.each do |whilesigning_item|
 
           div.read-more-help-handler
             | &#43; 
-            = faq_item[:title] 
+            = whilesigning_item[:title] 
           div.read-more-help-content
-            h3= faq_item[:title] 
-            p= raw faq_item[:answer] 
+            h3= whilesigning_item[:title] 
+            p= raw whilesigning_item[:answer] 
       div.update
-        h2= t('help.aftersigning')
+        h2= 
 
-        - @faq_questions.each do |faq_item|
+        - @aftersigning.each do |aftersigning_item|
 
           div.read-more-help-handler
             | &#43; 
-            = faq_item[:title] 
+            = aftersigning_item[:title] 
           div.read-more-help-content
-            h3= faq_item[:title] 
-            p= raw faq_item[:answer] 
+            h3= aftersigning_item[:title] 
+            p= raw aftersigning_item[:answer] 
       div.update
-        h2= t('help.startpetition')
 
-        - @faq_questions.each do |faq_item|
+        - @writingpetition.each do |writingpetition_item|
 
           div.read-more-help-handler
             | &#43; 
-            = faq_item[:title] 
+            = writingpetition_item[:title] 
           div.read-more-help-content
-            h3= faq_item[:title] 
-            p= raw faq_item[:answer] 
+            h3= writingpetition_item[:title] 
+            p= raw writingpetition_item[:answer] 
 
   aside.vervolg-side
 
