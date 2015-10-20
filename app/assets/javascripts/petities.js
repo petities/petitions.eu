@@ -82,6 +82,12 @@ $(document).ready(function(){
     $(this).removeClass('error');
   });
 
+  $('#sign_again').bind('click', function(){
+    $('.petition-success-sign-note').hide();
+    $('.petition-form-float-wrapper').show();
+  });
+
+
   $('#new_signature').submit(function(){
     var nameRegex = /^\w+\s+\w+[\w+\s+]{0,}$/,
         emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
