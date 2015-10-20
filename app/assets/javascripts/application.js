@@ -22,4 +22,5 @@
 //= require paralax
 //= require petities
 //= require social_share
+//= require signature
 // require_tree .

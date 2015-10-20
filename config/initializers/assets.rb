@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( petitions3.css petitions.js social_share ZeroClipboard.min.js paralax.js )
+Rails.application.config.assets.precompile += %w(petitions3.css fixes.css petitions.js social_share ZeroClipboard.min.js paralax.js )

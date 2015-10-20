@@ -73,18 +73,26 @@ div.page
             h2.petition-section-title= t('show.sign.title')
             = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
             / = f.select :person_city, options_from_collection_for_select(City.all, :name, :name), class: 'petition-form-textfield'
-            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
             = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
+            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
             = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox'
             label.petition-form-label for="petition-form-checkbox"
               = t('show.sign.form.checkbox')
 
             div.signature-form-errors
+
+            div class='didyoumean signaturesuggestbutton' style="display: none;"
+              = t 'signature.did_you_mean'
+              div.signature-form-sugestion
+                'test
+
             = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
           div.petition-form-note= t('show.sign.note')
 
         div.petition-success-sign-note style='display: none;'
-          p= t('show.sign.form.success')
+          p= t('show.sign.form.success1')
+          span.confirm_email
+          p= t('show.sign.form.success2')
 
     section.petition-details-container
       div.petition-details

@@ -1,0 +1,32 @@
+
+.petition-form-button,
+input[type="button"].petition-form-button {
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 8px 2%;
+  font: 400 17px/28px 'Open Sans', arial, sans-serif;
+  color: #fff;
+  border: 0;
+  background: #4fa6d0;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background: #7ec060;
+  }
+}
+
+.signaturesuggestbutton {
+  width: 100%;
+  margin: 0 0 10px;
+  font: 400 17px/28px 'Open Sans', arial, sans-serif;
+  color: #fff;
+  border: 0;
+  background: #D04F4F;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background: #7ec060;
+  }
+}
+
+
