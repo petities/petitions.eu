@@ -35,7 +35,7 @@ header.header
             = current_user.email
 
           div.header-user-dropdown
-            a href="#" class="header-user-dropdown-item" Dashboard
+            = link_to 'Login', new_user_session_path, class: "header-user-dropdown-item"
             a href="#" class="header-user-dropdown-item" Mijn gegevens
             = link_to 'Logout', destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
 
