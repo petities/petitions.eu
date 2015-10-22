@@ -1,26 +1,52 @@
 class Petition < ActiveRecord::Base
+  extend ActionView::Helpers::TranslationHelper
   resourcify
   translates :name, :description, :initiators, :statement, :request, :versioning => :paper_trail
   has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
 
+  # admin
   STATUS_LIST = [
-    'published',
-    'live',
-    'withdrawn',
-    'draft',
-    'concept',
-    'staging',
-    'not_signable_here',
-    'to_process',
-    'ghost',
-    'in_process',
-    'not_processed',
-    'rejected',
-    'completed'
+    # we can view it but not sign?
+    [ t('petition.published'),         'published'],              
+    # we take the petition offline.
+    [ t('petition.withdrawn'),         'withdrawn'],
+    # no confirmed author
+    [ t('petition.draft'),             'draft'],
+    # still building author is confirmed
+    [ t('petition.concept'),           'concept'],
+    # admin has to review the petition
+    [ t('petition.staging'),           'staging'],
+    # admin reviewed the state
+    [ t('petition.live'),              'live'],              
+    [ t('petition.not_signable_here'), 'not_signable_here'],
+    # admin does not like this petition
+    [ t('petition.rejected'),          'rejected'],
+    # petition should go to goverment
+    [ t('petition.to_process'),        'to_process'],
+    # no owner?
+    [ t('petition.ghost'),             'ghost'],
+    # petition is at goverment
+    [ t('petition.in_process'),        'in_process'],
+    # petition is not at goverment
+    [ t('petition.not_processed'),     'not_processed'],
+    # there is a goverment response
+    # we are done!
+    [ t('petition.completed'),         'completed'],
+  ]
+
+  # loketten
+  loket_admin = [
+    [ t('petition.withdrawn'),         'withdrawn'],
+    [ t('petition.to_process'),        'to_process'],
   ]
     
+  # petitionaris
+  petitionaris = [
+    [t('petition.stageing'), 'stageing'],   # offer for review
+  ]
+
   scope :live,      -> {where(status: 'live')}
   scope :big,       -> {order(signatures_count: :desc)}
   scope :active,     -> {order(active_rate_value: :desc)}
@@ -37,6 +63,7 @@ class Petition < ActiveRecord::Base
   #default_scope :order => 'petitions.name ASC'
   
   has_many :new_signatures
+
   has_many :signatures do
     def confirmed
       where(confirmed: true)
@@ -55,7 +82,6 @@ class Petition < ActiveRecord::Base
       where(confirmed: true).order('signed_at DESC').limit(1).first
     end
   end
-
 
   has_many :updates
 
@@ -94,6 +120,44 @@ class Petition < ActiveRecord::Base
 
   def is_hot?
     self.active_rate_value > 0.05
+  end
+
+  ## petition status summary 
+  def state_summary
+    return 'draft' if self.is_draft?
+    return 'closed' if self.is_closed?
+    return 'signable' if self.is_live?
+    return 'in_treatment' if self.in_treatment?
+    return 'is_answered' if self.is_answered? 
+  end
+
+  def is_draft?
+    ['concept',
+     'draft',
+     'staging',
+    ].include? self.status
+  end
+
+  def is_live?
+    ['live', 
+     'not_signable_here'].include? self.status
+  end
+
+  def is_closed?
+    ['withdrawn', 
+     'rejected', 
+     'to_process', 
+     'not_processed'].include? self.status
+  end
+
+  def in_treatment?
+    ['in_process',
+     'to_process',
+     'not_processed'].include? self.status
+  end
+
+  def is_answered?
+    ['completed'].include? self.status
   end
 
   def history_chart_json

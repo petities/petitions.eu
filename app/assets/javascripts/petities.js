@@ -52,16 +52,16 @@ $(document).ready(function(){
           allowedCharsCount = $(this).data('chars');
 
       if(val.length > allowedCharsCount){
-        $(this).siblings('.errors').html($('.errors-too-long').html())
+        $(this).siblings('.errors').html($('.errors-too-long').html());
         success = false;
-      } else if (val.length == 0){
-        $(this).siblings('.errors').html($('.errors-empty').html())
+      } else if (val.length === 0){
+        $(this).siblings('.errors').html($('.errors-empty').html());
         success = false;
       }
 
-    })
+    });
 
-    if(!success) $('.errors-note').show();
+    if(!success){ $('.errors-note').show();}
 
     return success;
   });
@@ -71,13 +71,13 @@ $(document).ready(function(){
     $('.organisation_select').attr('disabled', true);
 
     var type = '.' + $(this).find('option:selected').val();
-    
+
     if(type !== '.'){
       $(type).attr('disabled', false);
       $(type).show();
     }
   });
-    
+
   $('#new_signature input').bind('keyup', function(){
     $(this).removeClass('error');
   });
@@ -121,6 +121,53 @@ $(document).ready(function(){
     }).on('ajax:error',function(e, xhr, status, error){
       console.log(xhr);
     });
+
+
+  // change the state of a petition in the edit view
+  $('select').change(function(){
+    var value = $("#petitionstate option:selected").text();
+    console.log(value);
+  });
+
+  //set the state on state element when ready
+  if($('.petition-state-label').length > 0) {
+    $('.petition-state-label').each(function(index, elem){
+      console.log(elem.id);
+      console.log(petition_state_summary);
+      if(elem.id === petition_state_summary){
+        $(elem).addClass('active');
+      }
+    });
+  }
+
+  //  var result = true;
+
+  //  $errorsBlock.html('');
+
+  //  if(!$nameField.val().match(nameRegex)){
+  //    $nameField.addClass('error');
+  //    $errorsBlock.append('Please enter correct Name and Surname.<br>');
+  //    result = false;
+  //  }
+
+  //  if(!$emailField.val().match(emailRegex)){
+  //    console.log($emailField.val());
+  //    $emailField.addClass('error');
+  //    $errorsBlock.append('Please enter correct Email.<br>');
+  //    result = false;
+  //  }
+  //  // set the email span field
+  //  $emailConfirm.html($emailField.val());
+
+  //  return result;
+  //}).on('ajax:success',function(e, data, status, xhr){
+  //    $('.petition-form-float-wrapper').hide();
+  //    $('.petition-success-sign-note').show();
+  //  }).on('ajax:error',function(e, xhr, status, error){
+  //    console.log(xhr);
+  //  });
+
+
 
   ///////
   // CODE FOR HISTORY CHARTS FOR PETITIONS W/O IMAGE

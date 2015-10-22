@@ -41,20 +41,23 @@ div.page
         h3= t('show.petition.request')
         p= @petition.request
 
+    javascript:
+      var petition_state_summary = '#{@petition.state_summary}' || 'draft';
+
     div.petition-form-wrapper
       div.petition-form-indication-wrapper
         h2 class="petition-section-title"
           = t "petition.current_state_is"
         div.petition-state-container
-          div class="petition-state-label passed" 
+          div id="draft" class="petition-state-label" 
             = t "petition.state.not_yet_finished"
-          div class="petition-state-label active"
-            = t "petition.signable"
-          div class="petition-state-label"
+          div id="signable" class="petition-state-label"
+              = t "petition.signable"
+          div id="closed" class="petition-state-label"
             = t "petition.closed"
-          div class="petition-state-label"
+          div id="in_treatment" class="petition-state-label"
             = t "petition.in_treatment"
-          div class="petition-state-label"
+          div id="is_answered" class="petition-state-label"
             = t "petition.is_answered"
 
   section.petition-container id="petitionStateEdit" style="display: none"
@@ -83,22 +86,33 @@ div.page
           Ik zou het niet weten.. 
           <br>
           Uitleg over status denk ik..  
-        select.petition-form-indication-dropdown
-          option  
+        select.petition-form-indication-dropdown id='petitionstate'
+          option value="concept" 
             = t "petition.state.not_yet_finished"
-          option  
+          option value="live"
             = t "petition.signable"
-          option  
+          option value="to_process"
             = t "petition.closed"
-          option  
+          option value="in_process"
             = t "petition.in_treatment"
-          option  
+          option value="completed"
             = t "petition.is_answered"
 
   /<!-- editbutton -->
+  // We should put the next appropiate action here
+  // not a set state function.
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton onclick=="$('#petitionStateEdit').css('display','flex'); $('#petitionState').hide();"
       = t 'petition.edit_state'
+
+  div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+    div.petition-editbutton 
+      = t 'petition.the_next_logical_action'
+
+  div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+    div.petition-editbutton 
+      = t 'petition.another_possible_action'
+
   /<!-- /editbutton -->
 
 
@@ -108,6 +122,28 @@ div.page
   
   div.whitespace
     = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
+
+  section.petition-container id="petitionprogres"
+    div.petition-text-wrapper
+      h2.petition-section-title= t('show.petition.news')
+      div.petition-text 
+        h3 report on news about your petition
+        h3 Gemeente X
+        p blabla 
+        p &nbsp;
+
+        h3 Wij willen vluchtelingen 
+        p statement
+        p &nbsp;
+
+        h3 We zijn de weg kwijt!
+        p request
+
+    div.petition-form-wrapper
+      div.petition-form-indication-wrapper
+        h2 class="petition-section-title"
+          = t "petition.current_news_is"
+        p hier komt nieuws!
 
 
 = render partial: 'social'

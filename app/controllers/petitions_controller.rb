@@ -193,7 +193,6 @@ class PetitionsController < ApplicationController
   def edit
     authorize @petition
     @owners = find_owners
-
     @petition_types = PetitionType.all
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
 
@@ -204,7 +203,7 @@ class PetitionsController < ApplicationController
   end
 
 
-  # POST /petitions/1
+  # 
   def update_owners
     authorize @petition
     @owners = find_owners
@@ -228,7 +227,7 @@ class PetitionsController < ApplicationController
     if params[:add_owner]
       user = User.find_by_email(params["add_owner"])
       if user
-        user.add_role :admin, @petition 
+        user.add_role :admin, @petition
       end
     end
 
@@ -274,7 +273,7 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
-    PetitionMailer.finalize_mail(@petition).deliver
+    PetitionMailer.finalize_mail(@petition).deliver_later
 
     flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
     redirect_to edit_petition_path(@petition)
@@ -341,7 +340,7 @@ class PetitionsController < ApplicationController
       # petition: [
       # locale_list: []
       params.require(:petition).permit(
-        :name, :description, :statement, :request, :initiators,
+        :name, :description, :statement, :request, :initiators, :status,
         :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
         :petition_type_id
       )

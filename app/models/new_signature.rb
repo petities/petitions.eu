@@ -9,7 +9,7 @@ class NewSignature < Signature
 
   def send_confirmation_mail
     # puts 'sending mail???'
-    SignatureMailer.sig_confirmation_mail(self).deliver_now
+    SignatureMailer.sig_confirmation_mail(self).deliver_later
     return true
   end
 

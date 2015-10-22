@@ -16,7 +16,8 @@
 
 // require turbolinks
 
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
+//
 //= require mailcheck
 //= require Chart.min
 //= require paralax

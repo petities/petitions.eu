@@ -41,7 +41,7 @@ gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+#gem 'will_paginate-bootstrap'
 gem 'will-paginate-i18n'
 #
 
@@ -78,7 +78,7 @@ gem 'config', github: 'railsconfig/config'
 gem 'activeadmin', github: 'activeadmin'
 
 # bootstrap
-gem 'bootstrap-sass', '~> 3.2.0'
+#gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
