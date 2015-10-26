@@ -62,8 +62,11 @@ gem 'sprockets-rails'
 # image file upload made easypeasy
 gem 'paperclip'
 
+# execute jobs on the side..
+gem 'sidekiq'
 
-gem 'redis_analytics'
+# have some real time stats of our app
+gem 'redis_analytics', :git => 'git@github.com:saturnine/redis_analytics.git'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
