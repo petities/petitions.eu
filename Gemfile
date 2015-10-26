@@ -34,6 +34,7 @@ gem 'dalli'
 
 # minimal template language
 gem 'slim'
+
 # pdf format templates
 gem 'prawn'
 gem 'prawn-table'
@@ -60,6 +61,9 @@ gem 'sprockets-rails'
 
 # image file upload made easypeasy
 gem 'paperclip'
+
+
+gem 'redis_analytics'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

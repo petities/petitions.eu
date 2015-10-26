@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   end
   post '/contact_submit', to: 'application#contact_submit'
 
-
+  mount RedisAnalytics::Dashboard::Engine => "/dashboard"
   
   ###
 
