@@ -5,6 +5,8 @@ class NewSignature < Signature
   before_create :fill_signed_at
   after_save :send_confirmation_mail
 
+  validates_uniqueness_of :person_email, :scope => :petition_id
+
   protected
 
   def send_confirmation_mail

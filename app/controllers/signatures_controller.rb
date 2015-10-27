@@ -87,12 +87,8 @@ class SignaturesController < ApplicationController
   end
 
   def confirm_submit
-    # If @signature is valid?, but not confirmed yet, confirm it. Record
-    # user-agent, remote IP and increase columns signatures_count and
-    # last_confirmed_at on the corresponding Petition record.
-    # add: also update the active_rate_value column when signature is confirmed
+    # When a users confirms a signature.
 
-    #find the petition
     @petition = @signature.petition
 
     confirm_signature if @petition && @signature.valid? && !@signature.confirmed?
@@ -156,7 +152,7 @@ class SignaturesController < ApplicationController
 
     def confirm_signature
       old_signature = @signature
-      # create a new one..
+      # create a new signature in the signarure table.
       @signature = Signature.new(@signature.as_json)
       @signature.id = nil
       @signature.confirmed = true

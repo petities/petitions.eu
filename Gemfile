@@ -92,6 +92,8 @@ gem 'autoprefixer-rails'
 
 gem 'http_accept_language'
 gem 'i18n-country-translations'
+gem 'countries'
+gem 'country_select'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
