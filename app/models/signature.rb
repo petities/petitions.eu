@@ -10,6 +10,7 @@ class Signature < ActiveRecord::Base
 
   # keep this simple since we are sending validation emails anyways.
   validates :person_email, format: {with: /@/}
+
   #
   # Some petitions require a full address
   validates :person_postalcode, format: {with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/, on: :update}, :if => :require_full_address?
@@ -23,7 +24,6 @@ class Signature < ActiveRecord::Base
   scope :subscribe, -> { where(confirmed: true, subscribe: true) }
   scope :special, -> { where(special: true, confirmed: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
-
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at

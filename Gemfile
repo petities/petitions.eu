@@ -34,6 +34,7 @@ gem 'dalli'
 
 # minimal template language
 gem 'slim'
+
 # pdf format templates
 gem 'prawn'
 gem 'prawn-table'
@@ -41,7 +42,7 @@ gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+#gem 'will_paginate-bootstrap'
 gem 'will-paginate-i18n'
 #
 
@@ -61,6 +62,12 @@ gem 'sprockets-rails'
 # image file upload made easypeasy
 gem 'paperclip'
 
+# execute jobs on the side..
+gem 'sidekiq'
+
+# have some real time stats of our app
+gem 'redis_analytics', :git => 'git@github.com:saturnine/redis_analytics.git'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -78,13 +85,15 @@ gem 'config', github: 'railsconfig/config'
 gem 'activeadmin', github: 'activeadmin'
 
 # bootstrap
-gem 'bootstrap-sass', '~> 3.2.0'
+#gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'http_accept_language'
 gem 'i18n-country-translations'
+gem 'countries'
+gem 'country_select'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

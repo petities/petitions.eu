@@ -4,7 +4,7 @@
     div.errors-too-long: p= t('errors.messages.too_long')
   
   
-  - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
+  - if user_signed_in? && (current_user.has_role?(:admin)) # || current_user.has_role?(:admin, @petition))
 
     div.start-petition-form-row
       div.start-petition-form-cell.input

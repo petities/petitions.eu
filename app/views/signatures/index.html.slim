@@ -26,12 +26,12 @@ div.page.signatures
     
     div.petition-signatures-container
       = render partial: 'list_index'
-      
+
       div.clearfix
 
     div.navigation-bar
       = will_paginate @signatures, renderer: PetitionsPaginateRenderer
-      
+
   aside.petition-signatures-side
     div.petition-signatures-side-float
 
@@ -65,14 +65,14 @@ div.page.signatures
             tooltipFontColor: "#000",
           });
         });
-      
+
       div.whitespace style="padding:5px; background-color: #bcf9c7;"
         canvas#chartContainer style="height:175px; width:100%;"
 
       div.side-article-container.whitespace
         h2.side-article-title= @petition.name
         div.side-article-text= @petition.description
-  
+
       div.social-bar-side
         div.social-bar-side-label= t('show.share')
 

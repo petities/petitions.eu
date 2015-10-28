@@ -16,10 +16,12 @@
 
 // require turbolinks
 
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
+//
 //= require mailcheck
 //= require Chart.min
 //= require paralax
 //= require petities
 //= require social_share
+//= require signature
 // require_tree .

@@ -60,9 +60,19 @@ Rails.application.routes.draw do
   post '/contact_submit', to: 'application#contact_submit'
 
 
-  
-  ###
+  # dashboard statistics
+  analytics_constraint = lambda do |request|
+      request.env['warden'].authenticated? and request.env['warden'].user.has_role? :admin
+  end
 
+  constraints analytics_constraint do
+      mount RedisAnalytics::Dashboard::Engine => "/dashboard"
+  end
+
+  #
+  # make old links work
+  #
+  
   get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
   get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'
