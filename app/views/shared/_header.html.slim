@@ -14,13 +14,36 @@ header.header
           = link_to t("header.new"), new_petition_path, class: 'header-button'
 
     - else
-      div.header-button-container
-        = link_to '', root_path, class: 'header-logo'
+        
+      div class="header-languages-container"
+        div class="header-languages-container-active"
+        div class="header-languages-container-active-dropdown"
+          div class="header-languages-container-active-dropdown-item nl" onclick=="$('.header-languages-container-active').removeClass('en').addClass('nl');"
+          div class="header-languages-container-active-dropdown-item en" onclick=="$('.header-languages-container-active').removeClass('nl').addClass('en');"
 
       div.search-container.vervolg.whitespace
-        = form_tag(search_petitions_path, method: :get, class: "navbar-form navbar-left", role: "search", locale: I18n.locale) do
+        = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
           = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
           = hidden_field_tag :locale, I18n.locale
           input.search-container-button type="submit" value=""
 
           div.clearfix
+
+      - if current_user
+        div.header-user-wrapper
+          div.header-user-name onclick=""
+            = current_user.email
+
+          div.header-user-dropdown
+            a href="#" class="header-user-dropdown-item" Dashboard
+            a href="#" class="header-user-dropdown-item" Mijn gegevens
+            = link_to 'Logout', destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
+
+      - else
+        div.header-user-wrapper
+          div class="header-user-name" onclick=""
+            = link_to 'Login', new_user_session_path
+
+      div.header-button-container
+        = link_to '', root_path, class: 'header-logo'
+

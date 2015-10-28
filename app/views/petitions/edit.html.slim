@@ -1,19 +1,117 @@
+
 div.page
-  section.start-petition-form-container
-    h1.petition-section-title 
-      = t 'petition.editing'
-      =<> t 'petition.language'
-      =<> I18n.locale
 
-    / - if current_user && (current_user.has_role? :admin or current_user.has_role? :admin, @petition)
-    div.whitespace
-      = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
+  section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container') id="introContainer"
+    div.petition-intro-image-container
+      = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+    div.petition-intro-info-container
+      h1.petition-intro-info-title= @petition.name
+      div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
+      div.petition-intro-info-text
+        p= @petition.description
+
+    /<!-- editbutton -->
+    div class="petition-editbutton-container"
+      div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
+        = t 'edit.petition.edittext'
+    /<!-- /editbutton -->
+
+  section class="petition-intro-container edit"
+    div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
+
+    /h1.petition-section-title 
+    /  = t 'petition.editing'
+    /  =<> t 'petition.language'
+    /  =<> I18n.locale
     
-    div.whitespace
-      = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
-
-
     = render 'form'
+
+  section.petition-container id="petitionState"
+    div.petition-text-wrapper
+      h2.petition-section-title= t('show.petition.title')
+      div.petition-text
+        h3= t('show.petition.we')
+        p= @petition.initiators
+        p &nbsp;
+
+        h3= t('show.petition.observe')
+        p= @petition.statement
+        p &nbsp;
+
+        h3= t('show.petition.request')
+        p= @petition.request
+
+    div.petition-form-wrapper
+      div.petition-form-indication-wrapper
+        h2 class="petition-section-title"
+          = t "petition.current_state_is"
+        div.petition-state-container
+          div class="petition-state-label passed" 
+            = t "petition.state.not_yet_finished"
+          div class="petition-state-label active"
+            = t "petition.signable"
+          div class="petition-state-label"
+            = t "petition.closed"
+          div class="petition-state-label"
+            = t "petition.in_treatment"
+          div class="petition-state-label"
+            = t "petition.is_answered"
+
+  section.petition-container id="petitionStateEdit" style="display: none"
+    div.petition-text-wrapper
+      h2.petition-section-title= t('show.petition.title')
+      div.petition-text
+        h3= t('show.petition.we')
+        p= @petition.initiators
+        p &nbsp;
+
+        h3= t('show.petition.observe')
+        p= @petition.statement
+        p &nbsp;
+
+        h3= t('show.petition.request')
+        p= @petition.request
+
+    div.petition-form-wrapper 
+      div onclick=="$('#petitionState').css('display','flex'); $('#petitionStateEdit').hide();" class="petition-edit-close-button"
+      div class="petition-form-indication-wrapper"
+        h2 class="petition-section-title"
+          = t 'petition.current_state_is'
+        div.whitespace
+          What voor tekst moet hier?  
+          <br>
+          Ik zou het niet weten.. 
+          <br>
+          Uitleg over status denk ik..  
+        select.petition-form-indication-dropdown
+          option  
+            = t "petition.state.not_yet_finished"
+          option  
+            = t "petition.signable"
+          option  
+            = t "petition.closed"
+          option  
+            = t "petition.in_treatment"
+          option  
+            = t "petition.is_answered"
+
+  /<!-- editbutton -->
+  div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+    div.petition-editbutton onclick=="$('#petitionStateEdit').css('display','flex'); $('#petitionState').hide();"
+      = t 'petition.edit_state'
+  /<!-- /editbutton -->
+
+
+  / - if current_user && (current_user.has_role? :admin or current_user.has_role? :admin, @petition)
+  div.whitespace
+    = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
+  
+  div.whitespace
+    = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
+
+
+= render partial: 'social'
+
 
 / - if user_signed_in?
 /   - if current_user.has_role? :admin or current_user.has_role? :admin, @petition
