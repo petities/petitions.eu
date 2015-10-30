@@ -7,6 +7,9 @@ gem 'rails-i18n'
 
 gem 'globalize', '~> 5.0.0'
 gem 'globalize-versioning'
+# friendly slugs..
+gem 'friendly_id'
+gem 'friendly_id-globalize'
 
 # Use sqlite3 as the database for Active Record
 

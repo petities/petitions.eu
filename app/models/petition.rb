@@ -1,11 +1,15 @@
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
+  extend FriendlyId
+
   resourcify
-  translates :name, :description, :initiators, :statement, :request, :versioning => :paper_trail
+  translates :name, :description, :initiators, :statement, :request, :slug, :versioning  => :paper_trail
   has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
 
+  friendly_id :name, use: :globalize
+  
   # admin
   STATUS_LIST = [
     # we can view it but not sign?

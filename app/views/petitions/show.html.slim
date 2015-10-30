@@ -31,7 +31,10 @@ div.page
           br
           - @petition.locale_list.each do |locale|
             = label_tag locale
-            = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
+            - if params[:locale]
+              = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
+            - else
+              = radio_button_tag :locale, locale, { onclick: "document.location='?locale=#{locale}';" }
             br
           = link_to '+ Add translation', petition_add_translation_path(@petition)
 
@@ -67,6 +70,7 @@ div.page
           h3= t('show.petition.request')
           p= @petition.request
 
+
       div.petition-form-wrapper
         div.petition-form-float-wrapper
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
@@ -87,7 +91,15 @@ div.page
                 'test
 
             = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
+
           div.petition-form-note= t('show.sign.note')
+
+          div.petition-text
+            p &nbsp;
+            h3= t('show.petition.sharethis')
+            - @petition.translations_by_locale.each do |ignorelocale, transp|
+              p &nbsp;
+              p= petition_url(transp.slug, :locale => nil)
 
         div.petition-success-sign-note style='display: none;'
           p= t('show.sign.form.success1')
