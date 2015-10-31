@@ -317,6 +317,9 @@ class PetitionsController < ApplicationController
             where("petition_translations.slug like ?", "%#{params[:id]}%").first()
           # print @petition
         end
+        #if not @petition.friendly_id
+        #  @petition.save!
+        #end
       end
     
       # find specific papertrail version
