@@ -9,11 +9,10 @@ class Petition < ActiveRecord::Base
   serialize :locale_list, Array
 
   friendly_id :name, use: :globalize
-  
-  # admin
+
   STATUS_LIST = [
     # we can view it but not sign?
-    [ t('petition.published'),         'published'],              
+    [ t('petition.published'),         'published'],
     # we take the petition offline.
     [ t('petition.withdrawn'),         'withdrawn'],
     # no confirmed author
@@ -23,7 +22,7 @@ class Petition < ActiveRecord::Base
     # admin has to review the petition
     [ t('petition.staging'),           'staging'],
     # admin reviewed the state
-    [ t('petition.live'),              'live'],              
+    [ t('petition.live'),              'live'],
     [ t('petition.not_signable_here'), 'not_signable_here'],
     # admin does not like this petition
     [ t('petition.rejected'),          'rejected'],
@@ -41,13 +40,13 @@ class Petition < ActiveRecord::Base
   ]
 
   # loketten
-  loket_admin = [
+  LOKET_ADMIN = [
     [ t('petition.withdrawn'),         'withdrawn'],
     [ t('petition.to_process'),        'to_process'],
   ]
-    
+
   # petitionaris
-  petitionaris = [
+  PETITIONARIS = [
     [t('petition.stageing'), 'stageing'],   # offer for review
   ]
 
@@ -61,11 +60,11 @@ class Petition < ActiveRecord::Base
   belongs_to :petition_type
   # belongs_to :organisation
 
-  has_many :images, :as => :imageable, :dependent => :destroy
+  has_many :images, :as => :imageable,  :dependent => :destroy
   accepts_nested_attributes_for :images
 
   #default_scope :order => 'petitions.name ASC'
-  
+
   has_many :new_signatures
 
   has_many :signatures do
