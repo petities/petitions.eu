@@ -27,14 +27,15 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.email.label')
-          = f.text_field :person_email, class: 'start-petition-form-cell-input'
-        div.start-petition-form-cell.label
-          p= t('confirm.form.email.description')
+      /div.start-petition-form-row
+      /  div.start-petition-form-cell.input
+      /    div.start-petition-form-cell-title= t('confirm.form.email.label')
+      /    = f.text_field :person_email, class: 'start-petition-form-cell-input'
+      /  div.start-petition-form-cell.label
+      /    p= t('confirm.form.email.description')
 
       /#- if @signature.require_full_address?
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.street.label')
@@ -50,8 +51,8 @@ div.page
             = f.text_field :person_street_number, class: 'start-petition-form-cell-input'
 
           div.start-petition-form-cell-half
-            div.start-petition-form-cell-title= t('confirm.form.street_number.label')
-            = f.text_field :person_street_number, class: 'start-petition-form-cell-input'
+            div.start-petition-form-cell-title= t('confirm.form.street_number_suffix.suffixlabel')
+            = f.text_field :person_street_number_suffix, class: 'start-petition-form-cell-input'
 
         div.start-petition-form-cell.label
           p= t('confirm.form.street_number.description')
@@ -75,7 +76,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.born_at.label')
-          = f.date_select :person_born_at, order: [:day, :month, :year]
+          = f.date_select :person_born_at, order: [:day, :month, :year], end_year: Date.today.year - 5, start_year: 1920, selected: Date.today.year - 25
         div.start-petition-form-cell.label
           p= t('confirm.form.born_at.description')
 
@@ -92,6 +93,10 @@ div.page
             = t('confirm.info.ip', ip: @remote_ip)
             br
             = t('confirm.info.browser', browser: @remote_browser)
+
+          div.start-petition-form-cell.label
+            p= t('confirm.form.bigbrother')
+
             
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -99,3 +104,133 @@ div.page
           
         div.start-petition-form-cell.label.empty
           | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          h2.start-petition-form-cell-title
+            = t('confirm.info.help_petition')
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('confirm.info.do_you_have_influence?')
+            select.start-petition-form-cell-select.large
+              option
+                | King 
+              option
+                | Wapenhandelaar
+              option
+                | nobody
+              option
+                | Heisenberg
+              option
+                | Sauron
+
+        div.start-petition-form-cell.label
+          p
+            De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel.</p>
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.helplabel')
+            /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
+          select.start-petition-form-cell-select.large
+            option Optie 1
+            option Optie 2
+            option Optie 3
+            option Optie 4
+  
+        div.start-petition-form-cell.label
+          p= t('confirm.form.help_offer_description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          h2.start-petition-form-cell-title
+            = t('confirm.info.donate_petition')
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('confirm.info.how_much')
+
+          label.start-petition-form-cell-label
+            input type="radio" name="donate"
+              | € 1
+
+          label.start-petition-form-cell-label
+            input type="radio" name="donate"
+              | € 5
+
+          label.start-petition-form-cell-label
+            input type="radio" name="donate"
+              | € 10 
+
+          label.start-petition-form-cell-label
+            input type="radio" name="donate"
+              | € 25 
+
+          label.start-petition-form-cell-label
+            input type="radio" name="donate"
+              | € 50
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-button
+            | Offer help
+          /= f.submit @action, class: 'start-petition-form-cell-button'
+          div.start-petition-from-cell-button
+          
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          h2.start-petition-form-cell-title
+            = t('confirm.info.share_petition')
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.info.share_petition')
+          input.start-petition-form-cell-input type="text"
+        div.start-petition-form-cell.label
+          p= t('confirm.info.email_friends_you_know')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
+          input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
+        div.start-petition-form-cell.label
+          p= t('confirm.info.share.on_facebook_description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
+          input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
+        div.start-petition-form-cell.label
+          p= t('confirm.info.share.on_twitter_description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('confirm.info.petition_signature_url')
+          input type="text" class="start-petition-form-cell-input-readonly" value="http://petities.nl/petitie/cached-slug-naam-petitie/all_signatures?page=8#44" readonly=""
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('confirm.info.your_email')
+          input.start-petition-form-cell-input-readonly type="text" value=@signature.person_email readonly=""
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+
+

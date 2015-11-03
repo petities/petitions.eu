@@ -112,6 +112,7 @@ class PetitionsController < ApplicationController
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
+
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
@@ -251,6 +252,10 @@ class PetitionsController < ApplicationController
     #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     # end
 
+    # reset slug..
+    #@petition.slug = nil
+
+
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)
@@ -295,7 +300,7 @@ class PetitionsController < ApplicationController
     def set_petition
       Globalize.locale = params[:locale] || I18n.locale
     
-      # find petition by slug name subdomain or id.
+      # find petition by slug name subdomain, id, friendly_name
       if params[:slug]
         @petition = Petition.find_by_cached_slug(params[:slug])
       elsif params[:subdomain]
@@ -303,7 +308,18 @@ class PetitionsController < ApplicationController
       elsif params[:petition_id]
         @petition = Petition.find(params[:petition_id])
       else 
-        @petition = Petition.find(params[:id])
+        begin
+          # find by friendly url
+          @petition = Petition.friendly.find(params[:id])
+        rescue
+          # find in all locales petition that matches..
+          @petition = Petition.joins(:translations).
+            where("petition_translations.slug like ?", "%#{params[:id]}%").first()
+          # print @petition
+        end
+        #if not @petition.friendly_id
+        #  @petition.save!
+        #end
       end
     
       # find specific papertrail version
