@@ -356,19 +356,16 @@ nl:
   when: Wanneer
 
   donate:
-    title: Doneer
+    title: Doneer ons
     text: |
-      <p>Uw donatie aan <a href="../about">ons</a> is van harte welkom. U kunt het:</p>
-       <p>&nbsp;</p>
-       <ul>
-        <li>overmaken op Rabobankrekening NL14RABO0324616899 van stichting Petities.nl in Amsterdam.</li>
-        <li>overmaken <a href="https://www.geef.nl/externalMod.php?gd=1574&taal=NL_NL">met iDeal via Geef.nl</a></li>
+      <p>Uw donatie is van harte welkom. U kunt het:</p>
+      <ul>
+        <li>overmaken op rekening NL14RABO0324616899 van stichting Petities.nl in Amsterdam via de Rabobank (bank identificatie code RABONL2U)</li>
+        <li>overmaken via iDeal</li>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick">
           <input type="hidden" name="hosted_button_id" value="RXPC48TRFCARN">
-          <li><input type="image" src="/assets/btn_donate_LG_nl.gif" border="0" name="submit" alt="Doneren"> via Paypal aan webmaster@petities.nl.</li>
+          <li>of gebruik PayPal: <input type="image" src="/assets/btn_donate_LG_nl.gif" border="0" name="submit" alt="PayPal"> (aan <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>).</li>
         </form>        
       </ul>
-      <p>&nbsp;</p>
-      Dank u wel!
-      <p>&nbsp;</p>
+      </ul>
