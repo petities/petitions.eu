@@ -1,0 +1,31 @@
+div.page
+  javascript:
+    window.page = #{@page};
+    window.sorting = "#{@sorting}";
+
+  section.petitions-overview-wrapper
+    h1.petition-section-title
+      = t('admin.sorting')
+      =<> @sorting
+
+    div.petition-overview-title= t('all.count', results_size: @results_size)
+
+    div.petitions-overview-sort-options-container
+      = t('all.sort.title')
+      - @sorting_options.each_with_index do |option, index|
+        - if @sorting == option[:type]
+          span.petitions-overview-sort-option.active= option[:label]
+        - else
+          = link_to option[:label], url_for(params.merge(sorting: option[:type])), class: 'petitions-overview-sort-option'
+        - unless index == @sorting_options.size-1
+          = ' | '
+
+    div.petitions-overview-container
+      = render partial: 'list'
+
+      div.clearfix
+
+    div.navigation-bar
+      a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
+
+    = will_paginate @petitions, renderer: PetitionsPaginateRenderer

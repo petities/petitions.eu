@@ -49,6 +49,7 @@ class PetitionsController < ApplicationController
 
     petitions = Petition.live.order(created_at: direction)
 
+    # describe petitions
     if @sorting == 'all' then
       petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
     elsif @sorting == 'open'
@@ -68,6 +69,7 @@ class PetitionsController < ApplicationController
     ]
 
     @results_size = petitions.size
+
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
@@ -93,10 +95,56 @@ class PetitionsController < ApplicationController
     @petitions = petitions.paginate(page: params[:page], per_page: 12)
   end
 
+  def admin
+
+    @page    = (params[:page] || 1).to_i
+    @sorting = params[:sorting] || 'live'
+    @order   = params[:order].to_i
+
+    # petitions = Petition.joins(:translations).live
+    direction = [:desc, :asc][@order]
+
+    petitions = Petition.all().order(created_at: direction)
+
+    # do sorting
+    if @sorting
+      petitions = petitions.where(status: @sorting)
+    end
+
+    sort_list = []
+    # convert all status 
+    Petition::STATUS_LIST.each do |label, status|
+      sort_list.push({type: status, label: label})
+    end
+
+    @sorting_options = sort_list
+
+    @petitions = petitions.paginate(page: @page, per_page: 12)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def manage
     if current_user
       @petitions = current_user.petitions
       @results_size = @petitions.size
+
+
+      @sorting_options = [
+        {type: 'all',            label: t('all.sort.all')},
+        {type: 'open',           label: t('all.sort.open')},
+        {type: 'concluded',      label: t('all.sort.concluded')},
+        {type: 'rejected',       label: t('all.sort.rejected')},
+        {type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere')}
+      ]
+
+
+      # state new
+      #
+      # state 
     else
       redirect_to new_user_session_path
     end
