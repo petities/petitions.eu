@@ -344,14 +344,19 @@ en:
   when: When
 
   donate:
-    title: Donate us
+    title: Donate
     text: |
-      <p>Your donation is most appreciated. You can:</p>
+      <p>Your donation is most appreciated by <a href="../about">us</a>. You can:</p>
+      <p>&nbsp;</p>
       <ul>
-        <li>transfer it to the account  NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands with Rabobank (bank identification code RABONL2U)</li>
+        <li>transfer it to Rabobank account NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands (bank identification code RABONL2U)</li>
+        <li><a href="https://www.geef.nl/donatiemodule/taal:en/doel:petities-nl/land:NL/mobile:false/forceer:true">by creditcard through Geef.nl</a></li> 
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick">
           <input type="hidden" name="hosted_button_id" value="RXPC48TRFCARN">
-          <li>or use PayPal: <input type="image" src="/assets/btn_donate_LG_en.gif" border="0" name="submit" alt="PayPal"> (to <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>)</li>
-        </form>        
+          <li><input type="image" src="/assets/btn_donate_LG_en.gif" border="0" name="submit" alt="Donate"> to webmaster@petities.nl through Paypal.</li>
+        </form>       
       </ul>
+      <p>&nbsp;</p>
+      <p>Thank you!</p>
+      <p>&nbsp;</p>
