@@ -12,12 +12,20 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  # urls for admin only..
+  admin_constraint = lambda do |request|
+      request.env['warden'].authenticated? and request.env['warden'].user.has_role? :admin
+  end
 
   resources :petitions do
     collection do
       get :all
       get :search
       get :manage
+
+      constraints admin_constraint do
+        get :admin
+      end
 
       resources :desks, as: :petition_desks
 
@@ -61,11 +69,7 @@ Rails.application.routes.draw do
 
 
   # dashboard statistics
-  analytics_constraint = lambda do |request|
-      request.env['warden'].authenticated? and request.env['warden'].user.has_role? :admin
-  end
-
-  constraints analytics_constraint do
+  constraints admin_constraint do
       mount RedisAnalytics::Dashboard::Engine => "/dashboard"
   end
 
