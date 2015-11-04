@@ -69,7 +69,7 @@ gem 'paperclip'
 gem 'sidekiq'
 
 # have some real time stats of our app
-gem 'redis_analytics', :git => 'git@github.com:saturnine/redis_analytics.git'
+gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
