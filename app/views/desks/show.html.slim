@@ -1,16 +1,83 @@
+javascript:
+  window.page = #{@page};
+
+/div.page
+
+  /section.petitions-overview-wrapper
+  /  h1.petition-section-title= "Petition desk: #{@office.name}"
+  /  
+  /  div.petition-overview-title= t('all.count', results_size: @results_size)
+
+  /  
+  /  div.petitions-overview-container
+  /    = render partial: 'petitions/list'
+
+  /    div.clearfix
+
+  /  = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+
+
 div.page
-  javascript:
-    window.page = #{@page};
+  h1.petition-section-title= "Petition desk: #{@office.name}"
+  div.petition-overview-title= t('all.count', results_size: @results_size)
 
-  section.petitions-overview-wrapper
-    h1.petition-section-title= "Petition desk: #{@office.name}"
-    
-    div.petition-overview-title= t('all.count', results_size: @results_size)
+div.page.vervolg
+  section.vervolg-main
+    div.main-container-grey.whitespace
+      h2.main-container-grey-title
+        = t("desk.petition.allow_through")
+      div.main-container-grey-itemswrapper
+        - @petitions_allow.each do |petition|
+          = link_to edit_petition_path(petition), class: "main-container-grey-item"
+            = petition.name
 
-    
-    div.petitions-overview-container
-      = render partial: 'petitions/list'
+    div.main-container-grey.whitespace
+      h2.main-container-grey-title
+        = t("desk.petition.answer")
+      div.main-container-grey-itemswrapper
+        - @petitions_answer.each do |petition|
+          = link_to edit_petition_path(petition), class: "main-container-grey-item"
+            = petition.name
 
-      div.clearfix
+    div.main-container-grey.whitespace
+      h2.main-container-grey-title
+        = t("desk.petition.signable")
+      div.main-container-grey-itemswrapper
+        - @petitions_live.each do |petition|
+          = link_to edit_petition_path(petition), class: "main-container-grey-item"
+            = petition.name
 
-    = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+    div.main-container-grey.whitespace
+      h2.main-container-grey-title
+        = t("desk.petition.answered")
+      div.main-container-grey-itemswrapper
+        - @petitions_live.each do |petition|
+          = link_to edit_petition_path(petition), class: "main-container-grey-item"
+            = petition.name
+
+    div.main-container-grey.whitespace
+      h2.main-container-grey-title
+        = t("desk.petition.withdrawn")
+      div.main-container-grey-itemswrapper
+        - @petitions_withdrawn.each do |petition|
+          = link_to edit_petition_path(petition), class: "main-container-grey-item"
+            = petition.name
+
+  aside.vervolg-side
+    = link_to t('footer.donate'), donate_path, class: 'button steun-petities whitespace'
+
+    div.side-article-container-blue.whitespace
+      h2= t('desk.title_blue')
+      p= t('desk.text_blue') 
+
+    div.side-article-container-green.whitespace
+      h2= t('desk.title_green')
+      p= t('desk.text_green') 
+      
+    div.side-article-container.whitespace
+      h2= t('desk.title_grey')
+      p= t('desk.text_grey') 
+
+    div.side-article-container.whitespace
+      h2= t('desk.title_grey_2')
+      p= t('desk.text_grey_2') 

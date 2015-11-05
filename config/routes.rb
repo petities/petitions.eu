@@ -28,12 +28,10 @@ Rails.application.routes.draw do
       end
 
       resources :desks, as: :petition_desks
-
     end
 
     resources :signatures, except: [:new, :show] do
       post :confirm_submit
-
 
       collection do
         post :search
@@ -48,25 +46,23 @@ Rails.application.routes.draw do
 
     get :finalize
 
+    # is this used?
     get 'add_translation'
     patch 'update_owners'
 
   end
 
-
   resources :updates
   
-  #resource :signatures
+  # resource :signatures
 
   root 'petitions#index'
-
   # STATIC PAGES
 
   %w(help about privacy donate contact).each do |name|
     get "/#{name}", to: "application##{name}"
   end
   post '/contact_submit', to: 'application#contact_submit'
-
 
   # dashboard statistics
   constraints admin_constraint do

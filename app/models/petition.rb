@@ -23,6 +23,7 @@ class Petition < ActiveRecord::Base
     [ t('petition.staging'),           'staging'],
     # admin reviewed the state
     [ t('petition.live'),              'live'],
+    # petitions we do not sign here
     [ t('petition.not_signable_here'), 'not_signable_here'],
     # admin does not like this petition
     [ t('petition.rejected'),          'rejected'],

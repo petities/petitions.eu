@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :petitions, as: :owner
+  # has_many :petitions, as: :owner
 
   def valid_password?(password)
     begin
