@@ -65,12 +65,12 @@ div.page
           p= t('confirm.form.postal_code.description')
 
       /#- if @signature.require_person_birth_city?
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.city.label')
-          = f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
-        div.start-petition-form-cell.label
-          p= t('confirm.form.city.description')
+      /div.start-petition-form-row
+      /  div.start-petition-form-cell.input
+      /    div.start-petition-form-cell-title= t('confirm.form.city.label')
+      /    = f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
+      /  div.start-petition-form-cell.label
+      /    p= t('confirm.form.city.description')
 
       /#- if @signature.require_born_at?
       div.start-petition-form-row
@@ -80,13 +80,13 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.born_at.description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.country.label')
-          /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-          = f.country_select :person_birth_country, priority_countries: ["NL", "DE", "GB", "FR"]
-        div.start-petition-form-cell.label
-          p= t('confirm.form.birth_country.description')
+      /div.start-petition-form-row
+      /  div.start-petition-form-cell.input
+      /    div.start-petition-form-cell-title= t('confirm.form.country.label')
+      /    /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
+      /    = f.country_select :person_birth_country, priority_countries: ["NL", "DE", "GB", "FR"]
+      /  div.start-petition-form-cell.label
+      /    p= t('confirm.form.birth_country.description')
 
       div.start-petition-form-row
           div.start-petition-form-cell.input

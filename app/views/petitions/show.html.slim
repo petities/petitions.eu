@@ -72,6 +72,10 @@ div.page
 
 
       div.petition-form-wrapper
+        javascript:
+          window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
+          window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
+ 
         div.petition-form-float-wrapper
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
             h2.petition-section-title= t('show.sign.title')
@@ -83,7 +87,7 @@ div.page
             label.petition-form-label for="petition-form-checkbox"
               = t('show.sign.form.checkbox')
 
-            div.signature-form-errors
+            div.signature-form-errors.signaturesuggestbutton
 
             div class='didyoumean signaturesuggestbutton' style="display: none;"
               = t 'signature.did_you_mean'
