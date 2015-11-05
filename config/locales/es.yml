@@ -2,6 +2,9 @@
 es:
   Create:
     newpetition: Newpetition
+  Dashboard: Dashboard
+  Login: Login
+  Logout: Logout
   about:
     donate: Donate and support Petities.nl
     text: |
@@ -29,6 +32,8 @@ es:
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+  admin:
+    sorting: Sorting
   all:
     count: "%{results_size} petitions"
     sort:
@@ -45,6 +50,7 @@ es:
       action:
         confirm: Confirm
         update: Update my data
+      bigbrother: Bigbrother
       birth_country:
         description: Description
       born_at:
@@ -58,6 +64,8 @@ es:
       email:
         description: Your email
         label: Email
+      help_offer_description: Help offer description
+      helplabel: Helplabel
       location:
         description: Place where you live
         label: Place of residence
@@ -73,17 +81,44 @@ es:
       street_number:
         description: Street number
         label: Street number
+      street_number_suffix:
+        suffixlabel: Suffixlabel
       visible:
         description: Description
         privacylabel: Privacylabel
     info:
       browser: 'Your browser: %{browser}'
+      do_you_have_influence?: Do you have influence?
+      donate_petition: Donate petition
+      email_friends_you_know: Email friends you know
+      help_petition: Help petition
+      how_much: How much
       ip: 'Your IP-address: %{ip}'
+      petition_signature_url: Petition signature url
+      share:
+        on_facebook_description: On facebook description
+        on_twitter_description: On twitter description
+      share_petition: Share petition
+      your_email: Your email
     title: Confirm your signature for petition "%{name}"
   description: Description
   desk:
     intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
+    petition:
+      allow_through: Allow through
+      answer: Answer
+      answered: Answered
+      signable: Signable
+      withdrawn: Withdrawn
+    text_blue: Text blue
+    text_green: Text green
+    text_grey: Text grey
+    text_grey_2: Text grey 2
     title: Petition desks
+    title_blue: Title blue
+    title_green: Title green
+    title_grey: Title grey
+    title_grey_2: Title grey 2
   donate:
     text: "<p>Your donation is most appreciated. You can:</p>\n<ul>\n  <li>transfer it to the account  NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands with Rabobank (bank identification code RABONL2U)</li>\n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li>or use PayPal: <input type=\"image\" src=\"/assets/btn_donate_LG_en.gif\" border=\"0\" name=\"submit\" alt=\"PayPal\"> (to <a href=\"mailto:webmaster@petities.nl\">webmaster@petities.nl</a>)</li>\n  </form>        \n</ul>"
     title: Donate us
@@ -368,6 +403,7 @@ es:
       news: News
       observe: observe
       request: and request
+      sharethis: Sharethis
       title: Petitie
       we: We
     share: Share this petition
@@ -393,6 +429,9 @@ es:
       title: Signatures
       to_all: To all signatures
     signatures_count: "%{count} signatures"
+  sign:
+    wrong_email: Wrong email
+    wrong_name: Wrong name
   signature:
     confirm: Confirm
     dear: Dear

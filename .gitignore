@@ -27,6 +27,7 @@ doc/app
 .DS_Store
 
 database.yml
+public/system
 
 config/settings.local.yml
 config/settings/*.local.yml
