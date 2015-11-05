@@ -306,7 +306,7 @@ en:
         label: Addressed to
       finalize: Finalize
       image:
-        description: Add the image for the petition. Make sure it is in landscape format (at least 151 pixels high x 172 pixels wide), not square or portrait.
+        description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image
       name:
         description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
