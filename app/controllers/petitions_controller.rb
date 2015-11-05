@@ -128,10 +128,11 @@ class PetitionsController < ApplicationController
   end
 
   def manage
-    if current_user
-      @petitions = current_user.petitions
-      @results_size = @petitions.size
 
+    if current_user
+      #@petitions = current_user.petitions
+      @petitions = Petition.with_role(:admin, current_user)
+      @results_size = @petitions.size
 
       @sorting_options = [
         {type: 'all',            label: t('all.sort.all')},
@@ -140,7 +141,6 @@ class PetitionsController < ApplicationController
         {type: 'rejected',       label: t('all.sort.rejected')},
         {type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere')}
       ]
-
 
       # state new
       #

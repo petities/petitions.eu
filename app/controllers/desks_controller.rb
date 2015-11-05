@@ -1,4 +1,5 @@
 class DesksController < ApplicationController
+
   def index
     @offices = Office.all
   end
@@ -9,6 +10,20 @@ class DesksController < ApplicationController
     @office = Office.find(params[:id])
     @petitions = Petition.where(office_id: @office.id)
     @results_size = @petitions.size
-    @petitions = @petitions.paginate(page: @page, per_page: 12)
+
+    # find petition in state of allow
+    @petitions_allow = @petitions.where("status IN ('draft', 'concept', 'staging')")
+    # find petitions in state of answer
+    @petitions_answer = @petitions.where("status IN ('to_process', 'in_process')")
+    # find petition in state of signable
+    @petitions_live = @petitions.live
+    # find petition in state of answered
+    @petitions_completed = @petitions.where(status: 'completed')
+    # find petition in state of done/ingetrokken 
+    @petitions_rejected = @petitions.where(status: 'rejected')
+    # withdrawn..
+    @petitions_withdrawn = @petitions.where(status: 'withdrawn')
+    # @petitions = @petitions.paginate(page: @page, per_page: 12)
+
   end
 end
