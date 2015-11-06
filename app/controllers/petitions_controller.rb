@@ -156,7 +156,11 @@ class PetitionsController < ApplicationController
     @page = params[:page]
 
     @owners = find_owners
-
+    
+    if @petition.organisation_id
+    	@organisation = Organisation.find(@petition.organisation_id)
+	end
+	
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
