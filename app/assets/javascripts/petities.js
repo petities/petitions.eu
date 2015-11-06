@@ -226,6 +226,18 @@ $(document).ready(function(){
     });
   });
 });
+
+
+function toggleSearchBox() {
+  c=$('.search-container');
+  if (c.is(':visible')) {
+        c.hide();
+          
+  } else {
+        c.show();
+          
+  }
+}
   
 $(document).on('click', '.read-more-handler', function() {
   $(this).hide();
