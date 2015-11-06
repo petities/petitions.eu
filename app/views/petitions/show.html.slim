@@ -96,7 +96,7 @@ div.page
 
           div.petition-text
             p &nbsp;
-            h3= t('show.petition.sharethis')
+            h3= t('show.petition.share_this')
             - @petition.translations_by_locale.each do |ignorelocale, transp|
               p &nbsp;
               - if transp.slug
@@ -114,9 +114,8 @@ div.page
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
         div.petition_field_label= t('show.overview.addressee')
-        div.petition_field_data
-        - if @petition.organisation_id
-          div.petition_field_data= @petition.organisation_id
+        - if @organisation
+          div.petition_field_data= @organisation.name
         div.petition_field_label= t('show.overview.desk')
         - if @office
           div.petition_field_data= @office.name
