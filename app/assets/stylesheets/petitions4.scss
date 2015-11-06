@@ -415,11 +415,10 @@ input[type="text"].search-container-input {
 }
 
 .header-search-toggle {
-  position: absolute;
-  top: 10px;
-  right: 0;
+  float: right;
   height: 43px;
   width: 43px;
+  margin: 10px 0 0;
   background: #4fa6d0 url("search.png") no-repeat scroll 9px 8px;
   cursor: pointer;
   display: none;
@@ -428,26 +427,21 @@ input[type="text"].search-container-input {
 .header-user-wrapper {
   position: relative;
   float: right;
-  height: 23px;
+  height: 43px;
   margin: 10px 17px 0 0;
   font: 400 15px/23px 'Open Sans',arial,sans-serif;
-  background: #4fa6d0;
+  background: #4fa6d0 url('beheer-icon.png') right center no-repeat;
   color: #fff;
   cursor: pointer;
   z-index: 99;
 
   &:hover {
-    background: #8cc362;
+    background: #8cc362 url('beheer-icon.png') right center no-repeat;
   }
 }
 
 .header-user-name {
   padding: 10px 40px 10px 15px;
-  background: #4fa6d0 url('beheer-icon.png') right center no-repeat;
-
-  &:hover {
-    background: #8cc362 url('beheer-icon.png') right center no-repeat;
-  }
 }
 
 .header-user-dropdown {
@@ -1785,6 +1779,19 @@ a.tag {
 }
 
 @media only screen and (max-width: 950px) {
+
+  .header-user-wrapper{ 
+    width:40px;  
+  }
+
+  .header-user-name{ 
+    display:none;  
+  }
+
+  .header-user-dropdown{ 
+    width:250px;  
+  }
+
   .page-left, .page-right {
     float: none;
     width: 100%;
@@ -1880,6 +1887,7 @@ a.tag {
 }
 
 @media only screen and (max-width: 720px) {
+
   .search-container {
     width: 100%;
     max-width: 500px;
@@ -1887,6 +1895,25 @@ a.tag {
 
   input.search-container-input[type="text"] {
     width: 70%;
+  }
+
+  input.search-container.vervolg {
+    width: 70%;
+  }
+
+  .search-container.vervolg {
+    float: none;
+    position: fixed;
+    top: 63px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: none;
+
+    .search-container-input {
+      width: 70%;
+    }
   }
 
   .petition-intro-image-container {
@@ -1940,7 +1967,7 @@ a.tag {
       display: block;
       margin: 0 0 2%;
     }
-  }
+  } 
 
   .footer-news-list-wrapper, .footer-content-block {
     width: 100%;

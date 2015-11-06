@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-# def random_petition
+#def random_petition
 #   rand_id = rand(Petition.count)
 #   Petition.where("id >= :rand_id", {rand_id: rand_id}).first
-# end
+#end
 
 # start = Time.now
 # total_signatures = 0
@@ -54,24 +54,40 @@
 
 # puts Time.now - start, total_signatures
 
-100.times do
-  petition = Petition.create({
-    name: Faker::Lorem.sentence,
-    description: Faker::Lorem.paragraph,
-    organisation_name: Faker::Company.name,
-    initiators: Faker::Company.name,
-    statement: Faker::Lorem.paragraph(5),
-    request: Faker::Lorem.sentence,
-    locale_list: [:en],
-    status: 'live',
-    created_at: Faker::Time.between(20.days.ago, Time.now, :morning),
-    updated_at: Faker::Time.between(10.days.ago, Time.now, :afternoon),
-    date_projected: Faker::Time.between(10.days.from_now, 2.months.from_now)
-  })
+#100.times do
+#  petition = Petition.create({
+#    name: Faker::Lorem.sentence,
+#    description: Faker::Lorem.paragraph,
+#    organisation_name: Faker::Company.name,
+#    initiators: Faker::Company.name,
+#    statement: Faker::Lorem.paragraph(5),
+#    request: Faker::Lorem.sentence,
+#    locale_list: [:en],
+#    status: 'live',
+#    created_at: Faker::Time.between(20.days.ago, Time.now, :morning),
+#    updated_at: Faker::Time.between(10.days.ago, Time.now, :afternoon),
+#    date_projected: Faker::Time.between(10.days.from_now, 2.months.from_now)
+#  })
 
-  count = rand(100..1000)
 
-  petition.update(signatures_count: count) 
+Petition.all.each do |petition|
+
+
+  if not petition.live? then
+    next
+  end
+
+
+  count = petition.signatures.count
+  petition.update(signatures_count: count)
+
+  if petition.signatures.count < 4 then
+    next
+  end
+
+  count = rand(5..50)
+
+  puts '%-6s signatures %5s' % [petition.id, count]
 
   count.times do
     signature = Signature.create({
@@ -80,7 +96,7 @@
         :person_email => Faker::Internet.free_email,
         :person_city => Faker::Address.city,
         :visible => rand(10) > 8 ? true: false,
-        :special => rand(100000) > 99990 ? true: false,
+        :special => rand(100000) > 79990 ? true: false,
         :subscribe => rand(2) > 1 ? true: false,
         :created_at => Faker::Time.between(20.days.ago, Time.now, :morning),
         :updated_at => Faker::Time.between(10.days.ago, Time.now, :afternoon),
@@ -94,4 +110,7 @@
   end
 
   petition.update_active_rate!
+
 end
+
+
