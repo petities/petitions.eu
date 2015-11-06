@@ -13,11 +13,11 @@ div.social-bar
       span#social_url= petition_url(@petition) 
       a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
-      javascript:
-        $(document).ready(function(){
-          var client = new ZeroClipboard( $(".social-bar-button-url") );
-        });
+      /javascript:
+      /  $(document).ready(function(){
+      /    //var client = new ZeroClipboard( $(".social-bar-button-url") );
+      /  });
 
-        document.addEventListener("page:before-change", function(){
-          ZeroClipboard.destroy();
-        });
+      /  document.addEventListener("page:before-change", function(){
+      /    //ZeroClipboard.destroy();
+      /  });

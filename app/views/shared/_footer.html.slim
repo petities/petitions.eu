@@ -49,11 +49,14 @@ footer.footer
           | 020 7854412
 
         div.footer-content-contactblock-section
-          h2.footer-content-title= t('footer.contact')
-          = link_to t('footer.menu.form'), contact_path
-          br
-          | <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a><br>
-          | <a href="http://twitter.com/petities">@petities op Twitter</a><br>
+          ul.footer-content-menu
+            li.footer-content-menu-item
+              = t('footer.contact')
+            li.footer-content-menu-item
+              = link_to t('footer.menu.form'), contact_path
+            li.footer-content-menu-item
+              | <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a><br>
+              | <a href="http://twitter.com/petities">@petities op Twitter</a><br>
 
   div.footer-sponsor-bar
     = t('footer.hosting')

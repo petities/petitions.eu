@@ -15,6 +15,10 @@ input[type="button"].petition-form-button {
   }
 }
 
+.petition-form-textfield.error {
+  border: 2px solid #DC1818;
+}
+
 .signaturesuggestbutton {
   width: 100%;
   margin: 0 0 10px;

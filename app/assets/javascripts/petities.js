@@ -1,17 +1,19 @@
-function charCounter(fld,maxlength) {
-  var $counter=$('#charCount_'+$(fld).attr('id'));
-  console.log($counter)
-  $counter.text(fld.value.length + ' / ' + maxlength);
-  if (fld.value.length > maxlength) {
-    if (!$counter.hasClass('error-too-long')) {
-      $counter.addClass('error-too-long');
-    }
-  } else {
-    if ($counter.hasClass('error-too-long')) {
-      $counter.removeClass('error-too-long');
-    }
-  }
-}
+//function charCounter(fld, maxlength) {
+//  var $counter=$('#charCount_'+$(fld).attr('id'));
+//  console.log($counter);
+//
+//  $counter.text(fld.value.length + ' / ' + maxlength);
+//
+//  if (fld.value.length > maxlength) {
+//    if (!$counter.hasClass('error-too-long')) {
+//      $counter.addClass('error-too-long');
+//    }
+//  } else {
+//    if ($counter.hasClass('error-too-long')) {
+//      $counter.removeClass('error-too-long');
+//    }
+//  }
+//}
 
 var chartOptions = {
   showTooltips: false,
@@ -21,8 +23,8 @@ var chartOptions = {
   barShowStroke : false,
   barValueSpacing: 1,
   tooltipFillColor: "#fff",
-  tooltipFontColor: "#000",
-}
+  tooltipFontColor: "#000"
+};
 
 function initChart(elem){
   window['myBarChart' + $(elem).data('chartid')] = new Chart($(elem)[0].getContext("2d")).Bar(
@@ -37,33 +39,55 @@ function initChart(elem){
   );
 }
 
+
 $(document).ready(function(){
 
   $('body').woolParalax();
 
+  //console.log($('.validation'));
+
+  //define text validation function for editing/creating a petition
+  var validate_text_length = function(field){
+    var val = $(field).val(),
+        allowedCharsCount = $(field).data('chars');
+
+    // find the counter element
+    $counter=$('#charCount_'+$(field).attr('id'));
+    $counter.text(field.value.length + ' / ' + allowedCharsCount);
+
+    if(val.length > allowedCharsCount){
+      if (!$counter.hasClass('error-too-long')) {
+        $counter.addClass('error-too-long');
+      }
+    } else {
+      if ($counter.hasClass('error-too-long')) {
+        $counter.removeClass('error-too-long');
+      }  
+    }
+  };
+
+  //initialise text length
+  $('.validation').each(function(index, elm){
+    validate_text_length(this);
+  });
+
+  //on text lenght change validate text
+  $('.validation').keyup(function(e){
+    validate_text_length(this);
+  });
+
+  //improve error handling and showing here.
   $('.new_petition, .edit_petition').submit(function(){
+
     var success = true;
 
     $('.errors').html('');
     $('.errors-note').hide();
 
-    $('.validation').each(function(index, elem){
-      var val = $(this).val(),
-          allowedCharsCount = $(this).data('chars');
-
-      if(val.length > allowedCharsCount){
-        $(this).siblings('.errors').html($('.errors-too-long').html());
-        success = false;
-      } else if (val.length === 0){
-        $(this).siblings('.errors').html($('.errors-empty').html());
-        success = false;
-      }
-
-    });
-
     if(!success){ $('.errors-note').show();}
 
     return success;
+
   });
 
   $("#petition_organisation_kind").change(function () {
@@ -88,6 +112,7 @@ $(document).ready(function(){
   });
 
 
+
   $('#new_signature').submit(function(){
     var nameRegex = /^\w+\s+\w+[\w+\s+]{0,}$/,
         emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
@@ -98,18 +123,20 @@ $(document).ready(function(){
         result = true;
 
     $errorsBlock.html('');
-	// update span field met current email.
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');
-      $errorsBlock.append('Please enter correct Name and Surname.<br>');
+      var error_name = window.wrong_name_error || 'Name and Surname';
+      $errorsBlock.append(error_name);
+      //$errorsBlock.append('Please enter correct Name and Surname.<br>');
       result = false;
     }
 
     if(!$emailField.val().match(emailRegex)){
-      console.log($emailField.val());
+      //console.log($emailField.val());
       $emailField.addClass('error');
-      $errorsBlock.append('Please enter correct Email.<br>');
+      var error_email = window.wrong_email_error || 'Email is wrong';
+      $errorsBlock.append(" " + error_email);
       result = false;
     }
     // set the email span field
@@ -133,8 +160,8 @@ $(document).ready(function(){
   //set the state on state element when ready
   if($('.petition-state-label').length > 0) {
     $('.petition-state-label').each(function(index, elem){
-      console.log(elem.id);
-      console.log(petition_state_summary);
+      //console.log(elem.id);
+      //console.log(petition_state_summary);
       if(elem.id === petition_state_summary){
         $(elem).addClass('active');
       }

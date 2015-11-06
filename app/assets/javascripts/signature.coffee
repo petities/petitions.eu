@@ -11,7 +11,7 @@ sugestion_id = '.signature-form-sugestion'
 tip_id = '.didyoumean'
 
 suggested = (element, sugestion) ->
-  console.log(sugestion)
+  #console.log(sugestion)
   sugElement = $(sugestion_id) 
   #sugElement.addClass "signaturesuggestbutton"
   sugElement.html sugestion.full     
@@ -19,7 +19,7 @@ suggested = (element, sugestion) ->
   tipElement.show()
 
 empty = (element) ->
-  console.log("no sugestion")
+  #console.log("no sugestion")
   sugElement = $(sugestion_id) 
   #sugElement.removeClass "signaturesuggestbutton"
   $(sugestion_id).html "" 
