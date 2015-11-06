@@ -47,42 +47,45 @@ en:
       action:
         confirm: Confirm
         update: Update my data
-      bigbrother: Bigbrother
+      bigbrother: This is all we know about you
       birth_country:
-        description: Description
+        description: The Dutch nationality is required for this sort of petition.
       born_at:
-        description: Your birth date
+        description: Required for this sort of petition to verify your signature.
         label: Born at
       city:
         description: City where you were born
         label: City of birth
       country:
-        label: Label
+        label: Country were you currently live
       email:
-        description: Your email
+        description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
-      help_offer_description: Help offer description
-      helplabel: Helplabel
+      help_offer_description: The petitioner may ask your help based on your pledge
+      helplabel: Pledge
+      invite: 
+        description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
+        label: My municipality may send me up to 6 invitations per year
       location:
-        description: Place where you live
-        label: Place of residence
+        description: Where you currently live, visible to the world if you choose 
+        label: Place
       name:
-        description: Your full name
+        description: Sign at least with your surname and an initial
         label: Name and Surname
       postal_code:
-        description: Your postal code
+        description: Required for this sort of petition to verify your signature
         label: Postal code
       street:
-        description: Street name
+        description: Required for this sort of petition to verify your signature
         label: Street
       street_number:
-        description: Street number
+        description: Required for this sort of petition to verify your signature.
         label: Street number
       street_number_suffix:
         suffixlabel: Suffixlabel
       visible:
-        description: Description
-        privacylabel: Privacylabel
+        description: A publicly visible signature can be found with search engines, for example when someone looks up your name
+        privacylabel: Make my name and place publicly visible under the petition
     info:
       browser: 'Your browser: %{browser}'
       do_you_have_influence?: Do you have influence?

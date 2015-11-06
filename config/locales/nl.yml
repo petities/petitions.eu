@@ -47,42 +47,45 @@ nl:
       action:
         confirm: Bevestig
         update: Mijn gegevens bijwerken
-      bigbrother: Bigbrother
+      bigbrother: Dit is alles wat we van u weten
       birth_country:
-        description: Description
+        description: De Nederlandse nationaliteit is verplicht bij dit soort petities.
       born_at:
-        description: Uw geboortedatum
+        description: Noodzakelijk voor dit soort petitie om uw ondertekening te controleren
         label: Geboren op
       city:
-        description: De plaats waar u geboren bent.
+        description: De plaats waar u geboren bent
         label: Geboorteplaats
       country:
-        label: Label
+        label: Het land waar u nu leeft
       email:
         description: Uw e-mailadres
         label: E-mail
-      help_offer_description: Help offer description
-      helplabel: Helplabel
+      help_offer_description: De petitionaris kan u om hulp vragen op basis van uw toezegging
+      helplabel: Toezeggingen
+      invite: 
+        description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
+        label: Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar
       location:
-        description: Waar u op het moment van ondertekenen woont.
+        description: Waar u op het moment van ondertekenen woont, zichtbaar voor de wereld als u daarvoor kiest
         label: Woonplaats
       name:
-        description: Uw volledige naam
+        description: Teken minstens met uw achternaam met een initiaal ervoor
         label: Voornaam en achternaam
       postal_code:
-        description: Uw postcode
+        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
         label: Postcode
       street:
-        description: Straatnaam
+        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
         label: Straatnaam
       street_number:
-        description: Huisnummer
+        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
         label: Huisnummer
       street_number_suffix:
         suffixlabel: Suffixlabel
       visible:
-        description: Description
-        privacylabel: Privacylabel
+        description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
+        privacylabel: Mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie
     info:
       browser: 'Uw browser: %{browser}'
       do_you_have_influence?: Do you have influence?
@@ -412,7 +415,7 @@ nl:
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
         name: Voornaam Achternaam
         residence: Woonplaats
-        sign_again: Sign again
+sign_again: Sign again
         submit: Ja, Ik onderteken deze petitie
         success: Dank u wel! Uw ondertekening moet alleen nog bevestigd worden. Op uw e-mailadres $e-mailadres$ ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Check ook uw spamfilter als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet.
         success1: Thank you, your signature only needs your confirmation. On your address
