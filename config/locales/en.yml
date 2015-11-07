@@ -46,59 +46,80 @@ en:
     form:
       action:
         confirm: Confirm
-        update: Update my data
-      bigbrother: This is all we know about you
+        pledge: I pledge
+        update: Update my signature
+      bigbrother: You also provided this information to us. This too, remains your property.
       birth_country:
         description: The Dutch nationality is required for this sort of petition.
       born_at:
-        description: Required for this sort of petition to verify your signature.
+        description: You might be too young for this kind of petition. It will be checked.
         label: Born at
       city:
-        description: City where you were born
+        description: City where you were born, not required.
         label: City of birth
       country:
         label: Country were you currently live
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
-      help_offer_description: The petitioner may ask your help based on your pledge
-      helplabel: Pledge
+      function:
+        description: You may write your function, profession or relation to the petition, but it is not required.  
+        label: Function or situation
+      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
+      influencelabel: Do you have influence? Are you a...       
       invite: 
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
       location:
-        description: Where you currently live, visible to the world if you choose 
+        description: Where you currently live, visible to the world if you choose.  
         label: Place
       name:
-        description: Sign at least with your surname and an initial
-        label: Name and Surname
+        description: Sign at least with your surname and an initial.
+        label: Name and surname
       postal_code:
-        description: Required for this sort of petition to verify your signature
+        description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
+      skillslabel: Do you have special skill? Are you able to...       
+      skills_offer_description: The lead petitioner might need your special skills. You might be able to help. You will receive an e-mail with a specific proposal.
       street:
-        description: Required for this sort of petition to verify your signature
+        description: The address where you officially live today is required for this sort of petition. You can find it on mail from the government.
         label: Street
       street_number:
-        description: Required for this sort of petition to verify your signature.
+        description: Your address will never be public.
         label: Street number
       street_number_suffix:
-        suffixlabel: Suffixlabel
+        suffixlabel: Suffix
       visible:
-        description: A publicly visible signature can be found with search engines, for example when someone looks up your name
-        privacylabel: Make my name and place publicly visible under the petition
+        description: A public signature can be found with search engines, for example when someone looks up your name.
+        privacylabel: My name and place will be public, visible under the petition.
     info:
       browser: 'Your browser: %{browser}'
       do_you_have_influence?: Do you have influence?
-      donate_petition: Donate petition
-      email_friends_you_know: Email friends you know
+      donate_petition: Donate
+      mailafriend: Enter e-mail addressess of people you know and who might sign.
+      mailafriend_description: 'You can e-mail this invitation through us: Dear sir or madam,
+
+On petitions.eu -your name- (with e-mail address -your e-mail address-) just signed the petition "-the petition-" with the note "-functie-".
+
+With this e-mail -your name- invites you to read and perhaps sign the petition.
+
+If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. You will not receive any further invitations about this petition on your e-mail address.
+
+You can view the petition at -address petition-
+
+Do you have questions about this petition? Please contact the lead petitioner: -addres petitioner-
+
+Best Regards, 
+Petitions.eu'
       help_petition: Help petition
-      how_much: How much
+      how_much: How much would you like to contribute?
+      how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
       ip: 'Your IP-address: %{ip}'
-      petition_signature_url: Petition signature url
+      petition_signature_url: Link to your signature
       share:
         on_facebook_description: On facebook description
         on_twitter_description: On twitter description
-      share_petition: Share petition
+      share_petition: Share the petition
       your_email: Your email
     title: Confirm your signature for petition "%{name}"
   description: Description

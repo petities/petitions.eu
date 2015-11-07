@@ -46,60 +46,80 @@ nl:
     form:
       action:
         confirm: Bevestig
-        update: Mijn gegevens bijwerken
-      bigbrother: Dit is alles wat we van u weten
+        pledge: Zeg ik toe
+        update: Werk mijn ondertekening bij
+      bigbrother: Deze informatie ontvingen we ook van u. Maar ook dit blijft uw eigendom.
       birth_country:
         description: De Nederlandse nationaliteit is verplicht bij dit soort petities.
       born_at:
-        description: Noodzakelijk voor dit soort petitie om uw ondertekening te controleren
+        description: Voor dit soort petities kunt u te jong zijn. Daar wordt op gecontroleerd.
         label: Geboren op
       city:
-        description: De plaats waar u geboren bent
+        description: De plaats waar u geboren bent. Niet verplicht.
         label: Geboorteplaats
       country:
-        label: Het land waar u nu leeft
+        label: Het land waar u nu leeft.
       email:
-        description: Uw e-mailadres
+        description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie. 
         label: E-mail
-      help_offer_description: De petitionaris kan u om hulp vragen op basis van uw toezegging
-      helplabel: Toezeggingen
+      function:
+        description: U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet.  
+        label: Functie of situatie
+      influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
+      influencelabel: Heeft u invloed? Bent u een... 
       invite: 
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
         label: Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar
       location:
-        description: Waar u op het moment van ondertekenen woont, zichtbaar voor de wereld als u daarvoor kiest
+        description: Waar u op het moment van ondertekenen woont. Alleen zichtbaar voor de wereld als u daarvoor kiest.
         label: Woonplaats
       name:
-        description: Teken minstens met uw achternaam met een initiaal ervoor
+        description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
       postal_code:
-        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
+        description: Alleen de ontvanger van de petitie en de petitionaris kunnen uw adres zien. Om het te controleren.
         label: Postcode
+      skillslabel: Kunt u iets speciaals om te helpen? Kunt u...       
+      skills_offer_description: Een petitionaris heeft misschien uw speciale vaardigheden nodig. Mogelijk kunt u helpen. U ontvangt dan een e-mail met een concreet voorstel.
       street:
-        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
+        description: Uw adres zoals in het bevolkingsregister staat is noodzakelijk voor dit soort petities. Dit adres staat ook op post van de overheid.
         label: Straatnaam
       street_number:
-        description: Noodzakelijk voor dit soort petities om uw ondertekening te controleren
+        description: Uw adres wordt nooit openbaar. 
         label: Huisnummer
       street_number_suffix:
-        suffixlabel: Suffixlabel
+        suffixlabel: Huisnummertoevoeging
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
-        privacylabel: Mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie
+        privacylabel: Mijn naam en woonplaats zullen publiek zichtbaar zijn onder de petitie.
     info:
       browser: 'Uw browser: %{browser}'
-      do_you_have_influence?: Do you have influence?
-      donate_petition: Donate petition
-      email_friends_you_know: Email friends you know
-      help_petition: Help petition
-      how_much: How much
+      donate_petition: Doneer
+      mailafriend: Voer e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
+      mailafriend_description: 'Deze uitnodiging kunt u via ons mailen: Geachte heer, mevrouw,
+
+Op petities.nl heeft -uw naam- (met e-mailadres -uw e-mailadres-) zojuist de petitie "-de petitie-" ondertekend met de aantekening "-uw functie".
+
+Met deze e-mail nodigt -uw naam- u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
+
+Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
+
+De petitie kunt u bekijken via -adres petitie-
+
+Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: -adres petitionaris-
+
+Met vriendelijke groet, 
+Petities.nl'
+      help_petition: Help de petitie
+      how_much: Hoeveel zou u bij willen dragen?
+      how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
       ip: 'Uw IP-address: %{ip}'
-      petition_signature_url: Petition signature url
+      petition_signature_url: Link naar uw ondertekening.
       share:
-        on_facebook_description: On facebook description
-        on_twitter_description: On twitter description
-      share_petition: Share petition
-      your_email: Your email
+        on_facebook_description: Zet de petitie op Facebook
+        on_twitter_description: Zet de petitie op Twitter
+      share_petition: Deel de petitie
+      your_email: Uw e-mailadres
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:

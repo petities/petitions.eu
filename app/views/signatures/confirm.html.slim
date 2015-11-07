@@ -96,7 +96,6 @@ div.page
 
           div.start-petition-form-cell.label
             p= t('confirm.form.bigbrother')
-
             
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -115,35 +114,45 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            = t('confirm.info.do_you_have_influence?')
+            = t('confirm.form.influencelabel')
             select.start-petition-form-cell-select.large
               option
-                | King 
+                | 
               option
-                | Wapenhandelaar
+                | expert 
               option
-                | nobody
+                | bekende persoon die herkend wordt
               option
-                | Heisenberg
+                | schrijver met veel lezers
               option
-                | Sauron
+                | lid van een relevante belangenorganisatie
+              option
+                | lid van politieke partij
+              option
+                | werkgever met veel werknemers
 
         div.start-petition-form-cell.label
-          p
-            De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel.</p>
+          p= t('confirm.form.influence_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.helplabel')
+          div.start-petition-form-cell-title= t('confirm.form.skillslabel')
             /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           select.start-petition-form-cell-select.large
-            option Optie 1
-            option Optie 2
-            option Optie 3
-            option Optie 4
+            option 
+            option ervaringen vertellen aan een journalist
+            option onderzoek doen
+            option persberichten/nieuwsbrieven schrijven
+            option spreken voor groepen mensen
+            option spreken voor radio of televisie
+            option aandacht trekken
+            option een bijeenkomst organiseren
+            option ruimte bieden voor een bijeenkomst
+            option een lift geven naar een bijeenkomst
+            option iets anders, namelijk
   
         div.start-petition-form-cell.label
-          p= t('confirm.form.help_offer_description')
+          p= t('confirm.form.skills_offer_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -177,16 +186,18 @@ div.page
             input type="radio" name="donate"
               | € 50
 
+        div.start-petition-form-cell.label
+          p= t('confirm.info.how_much_description')
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-button
-            | Offer help
+            | I pledge
           /= f.submit @action, class: 'start-petition-form-cell-button'
           div.start-petition-from-cell-button
           
         div.start-petition-form-cell.label.empty
           | &nbsp;
-
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -197,24 +208,20 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.info.share_petition')
+          div.start-petition-form-cell-title= t('confirm.info.mailafriend')
           input.start-petition-form-cell-input type="text"
         div.start-petition-form-cell.label
-          p= t('confirm.info.email_friends_you_know')
+          p= t('confirm.info.mailafriend_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
-        div.start-petition-form-cell.label
-          p= t('confirm.info.share.on_facebook_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
-        div.start-petition-form-cell.label
-          p= t('confirm.info.share.on_twitter_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
