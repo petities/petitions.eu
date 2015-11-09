@@ -184,7 +184,6 @@ Petitions.eu'
         title: Which petitions did I already sign?
     changesig:
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
-      desrc: Desrc
       title: Change your signature
     general:
       question01:
