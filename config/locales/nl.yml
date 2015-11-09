@@ -185,58 +185,6 @@ Petities.nl'
       descr: "<p>Uw ondertekening van een petitie kunt u altijd aanpassen of verbergen. Dat kan heel makkelijk door opnieuw te klikken op de link die we u toestuurden in de e-mail ter bevestiging. Op de pagina die dan verschijnt vindt u hier de mogelijkheden toe.</p><p>&nbsp;</p><p>Heeft u die e-mail niet meer? Teken dan opnieuw en u krijgt die e-mail weer.</p>"
       desrc: Desrc
       title: Uw ondertekening wijzigen
-    faq:
-      question1:
-        answer: a1
-        title: q1
-      question10:
-        answer: a10
-        title: q10
-      question11:
-        answer: a11
-        title: q11
-      question12:
-        answer: a12
-        title: q12
-      question13:
-        answer: a13
-        title: q13
-      question14:
-        answer: a14
-        title: q14
-      question15:
-        answer: a15
-        title: q15
-      question16:
-        answer: a16
-        title: q16
-      question17:
-        answer: a17
-        title: q17
-      question2:
-        answer: a2
-        title: q2
-      question3:
-        answer: a3
-        title: q3
-      question4:
-        answer: a4
-        title: q4
-      question5:
-        answer: a5
-        title: q5
-      question6:
-        answer: a6
-        title: q6
-      question7:
-        answer: a7
-        title: q7
-      question8:
-        answer: a8
-        title: q8
-      question9:
-        answer: a9
-        title: q9
     general:
       question01:
         answer: Petities.nl wil de tekortkomingen van online petities opheffen door&#58;<br>&#149; een duidelijke geadressseerde die de petitie moet ontvangen en in de positie is om wat te veranderen<br>&#149; een petitionaris die de petitie binnen een gestelde termijn tot het einde beheert<br>&#149; een petitionaris die woordvoerder en contactpersoon is; geen anonieme petities waar niemand voor verantwoordelijk is<br>&#149; geen petities over consumentenzaken toe te staan, alleen petities over zaken van algemeen belang<br>&#149; constructieve petities aan te moedigen omdat afzender, analyse en eis helder geformuleerd moeten worden<br>&#149; spam over de petitie te voorkomen.<br>In het algemeen willen we het grondwettelijke petitierecht ondersteunen en verbeteren.
@@ -435,7 +383,7 @@ Petities.nl'
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
         name: Voornaam Achternaam
         residence: Woonplaats
-        sign_again: Sign again
+        sign_again: Nu iemand anders laten tekenen
         submit: Ja, Ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
         success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in spam/reclame postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
@@ -452,7 +400,7 @@ Petities.nl'
   signature:
     confirm: Bevestig
     dear: Geachte
-    did_you_mean: Did you mean
+    did_you_mean: Bedoelde u 
     help:
       city: Woonplaats
       email: E-mail

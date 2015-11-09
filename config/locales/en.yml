@@ -186,58 +186,6 @@ Petitions.eu'
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
       desrc: Desrc
       title: Change your signature
-    faq:
-      question1:
-        answer: a1
-        title: q1
-      question10:
-        answer: a10
-        title: q10
-      question11:
-        answer: a11
-        title: q11
-      question12:
-        answer: a12
-        title: q12
-      question13:
-        answer: a13
-        title: q13
-      question14:
-        answer: a14
-        title: q14
-      question15:
-        answer: a15
-        title: q15
-      question16:
-        answer: a16
-        title: q16
-      question17:
-        answer: a17
-        title: q17
-      question2:
-        answer: a2
-        title: q2
-      question3:
-        answer: a3
-        title: q3
-      question4:
-        answer: a4
-        title: q4
-      question5:
-        answer: a5
-        title: q5
-      question6:
-        answer: a6
-        title: q6
-      question7:
-        answer: a7
-        title: q7
-      question8:
-        answer: a8
-        title: q8
-      question9:
-        answer: a9
-        title: q9
     general:
       question01:
         answer: Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
@@ -257,8 +205,8 @@ Petitions.eu'
     title: Help
     whilesigning:
       question01:
-        answer: whilesigningq1Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
-        title: Online petitions are pointless I am told. Why is Petities.nl different?
+        answer: When a petition is closed for signing the button to sign does not appear under a petition. The petition is on it's way to handed over or is awaiting an answer.
+        title: Why can I not sign a certain petition?
       question02:
         answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
         title: Why are anonymous signatures allowed?
@@ -436,7 +384,7 @@ Petitions.eu'
           name: Please enter your name and surname. Or an initial and your surname.
         name: First name Surname
         residence: Place of residence
-        sign_again: Sign again
+        sign_again: Let someone else sign now
         submit: Yes, I sign this petition
         success1: Thank you. It is now important to confirm your signature. On your address
         success2: you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
