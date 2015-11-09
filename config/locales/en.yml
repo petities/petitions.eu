@@ -308,7 +308,6 @@ Petitions.eu'
     published: Published
     rejected: Rejected
     signable: Signable
-    stageing: Stageing
     staging: Staging
     state:
       not_yet_finished: Not yet finished
@@ -431,12 +430,9 @@ Petitions.eu'
         description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
         label: Observe
       petitioner:
-        description: |
-          If you do not enter a password we will give you a good one.
         email:
           description: Without an e-mail address we can not send you access to your petition.
           label: Your e-mail address
-        label: Preferred password
         name:
           description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname

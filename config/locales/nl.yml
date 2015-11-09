@@ -306,12 +306,11 @@ Petities.nl'
     optional: Optioneel
     pdf: Bewaar als PDF
     published: Published
-    rejected: Rejected
-    signable: Signable
-    stageing: Stageing
+    rejected: Afgewezen
+    signable: Ondertekenbaar
     staging: Staging
     state:
-      not_yet_finished: Not yet finished
+      not_yet_finished: Nog niet af
     step:
       description: Beschrijving
       notice: Notitie
@@ -320,12 +319,12 @@ Petities.nl'
       target: Geadresseerde
       we: Wij
     steps: Stappen
-    the_next_logical_action: The next logical action
+    the_next_logical_action: De volgende stap
     title: Titel
-    to_process: To process
+    to_process: In behandeling
     user_email: E-mail
     version: Versie
-    withdrawn: Withdrawn
+    withdrawn: Ingetrokken
   petitioner: Petitionaris
   petitions: Petities
   place: Woonplaats
@@ -385,7 +384,7 @@ Petities.nl'
         sign_again: Nu iemand anders laten tekenen
         submit: Ja, Ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
-        success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in spam/reclame postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
+        success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
@@ -431,12 +430,9 @@ Petities.nl'
         description: Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
         label: Constateren
       petitioner:
-        description: |
-          Als u geen wachtwoord opgeeft dan sturen wij u een goede.
         email:
           description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen.
           label: Uw e-mailadres
-        label: Gewenste wachtwoord
         name:
           description: Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
           label: Uw voor- en achternaam
