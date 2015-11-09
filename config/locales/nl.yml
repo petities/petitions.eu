@@ -415,7 +415,7 @@ nl:
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
         name: Voornaam Achternaam
         residence: Woonplaats
-sign_again: Sign again
+        sign_again: Sign again
         submit: Ja, Ik onderteken deze petitie
         success: Dank u wel! Uw ondertekening moet alleen nog bevestigd worden. Op uw e-mailadres $e-mailadres$ ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Check ook uw spamfilter als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet.
         success1: Thank you, your signature only needs your confirmation. On your address
