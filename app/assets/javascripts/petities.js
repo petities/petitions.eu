@@ -55,7 +55,11 @@ $(document).ready(function(){
     $counter=$('#charCount_'+$(field).attr('id'));
     $counter.text(field.value.length + ' / ' + allowedCharsCount);
 
-    if(val.length > allowedCharsCount){
+    if(val.length === 0){
+      if (!$counter.hasClass('error-too-long')) {
+        $counter.addClass('error-too-long');
+      }
+    } else if (val.length > allowedCharsCount){
       if (!$counter.hasClass('error-too-long')) {
         $counter.addClass('error-too-long');
       }
