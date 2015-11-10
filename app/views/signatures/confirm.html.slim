@@ -34,7 +34,7 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.email.description')
 
-      /#- if @signature.require_full_address?
+      /- if @signature.require_full_address?
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -117,19 +117,19 @@ div.page
             = t('confirm.form.influencelabel')
             select.start-petition-form-cell-select.large
               option
-                | 
+                |
               option
-                | expert 
+                = t('pledge.expert') 
               option
-                | bekende persoon die herkend wordt
+                = t('pledge.asseenontv')
               option
-                | schrijver met veel lezers
+                = t('pledge.withreaders')
               option
-                | lid van een relevante belangenorganisatie
+                = t('pledge.ngomember')
               option
-                | lid van politieke partij
+                = t('pledge.partymember')
               option
-                | werkgever met veel werknemers
+                = t('pledge.employer')
 
         div.start-petition-form-cell.label
           p= t('confirm.form.influence_description')
@@ -192,7 +192,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-button
-            | I pledge
+            = t('confirm.form.action.pledge')
           /= f.submit @action, class: 'start-petition-form-cell-button'
           div.start-petition-from-cell-button
           
