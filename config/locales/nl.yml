@@ -76,6 +76,23 @@ nl:
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
+      pledge:
+        asseenontv: bekende persoon die herkend wordt
+        carpooler: een lift geven naar een bijeenkomst
+        copywriter: persberichten of nieuwsbrieven schrijven
+        employer: werkgever met veel werknemers
+        experienced: ervaringen vertellen aan een journalist
+        expert: expert
+        host: ruimte bieden voor een bijeenkomst
+        mediatrained: spreken voor radio of televisie
+        ngomember: lid van een relevante belangenorganisatie
+        organiser: een bijeenkomst organiseren
+        other: iets anders, namelijk
+        partymember: lid van politieke partij
+        performer: aandacht trekken
+        publicspeaker: spreken voor groepen mensen
+        researcher: onderzoek doen
+        withreaders: schrijver met veel lezers
       postal_code:
         description: Alleen de ontvanger van de petitie en de petitionaris kunnen uw adres zien. Om het te controleren.
         label: Postcode

@@ -119,17 +119,17 @@ div.page
               option
                 |
               option
-                = t('pledge.expert') 
+                = t('confirm.form.pledge.expert') 
               option
-                = t('pledge.asseenontv')
+                = t('confirm.form.pledge.asseenontv')
               option
-                = t('pledge.withreaders')
+                = t('confirm.form.pledge.withreaders')
               option
-                = t('pledge.ngomember')
+                = t('confirm.form.pledge.ngomember')
               option
-                = t('pledge.partymember')
+                = t('confirm.form.pledge.partymember')
               option
-                = t('pledge.employer')
+                = t('confirm.form.pledge.employer')
 
         div.start-petition-form-cell.label
           p= t('confirm.form.influence_description')
@@ -140,16 +140,27 @@ div.page
             /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           select.start-petition-form-cell-select.large
             option 
-            option ervaringen vertellen aan een journalist
-            option onderzoek doen
-            option persberichten/nieuwsbrieven schrijven
-            option spreken voor groepen mensen
-            option spreken voor radio of televisie
-            option aandacht trekken
-            option een bijeenkomst organiseren
-            option ruimte bieden voor een bijeenkomst
-            option een lift geven naar een bijeenkomst
-            option iets anders, namelijk
+              |
+            option 
+              = t('confirm.form.pledge.experienced')
+            option 
+              = t('confirm.form.pledge.researcher')
+            option 
+              = t('confirm.form.pledge.copywriter')
+            option 
+              = t('confirm.form.pledge.publicspeaker')
+            option 
+              = t('confirm.form.pledge.mediatrained')
+            option 
+              = t('confirm.form.pledge.performer')
+            option 
+              = t('confirm.form.pledge.organiser')
+            option
+              = t('confirm.form.pledge.host')
+            option 
+              = t('confirm.form.pledge.carpooler')
+            option 
+              = t('confirm.form.pledge.other')
   
         div.start-petition-form-cell.label
           p= t('confirm.form.skills_offer_description')

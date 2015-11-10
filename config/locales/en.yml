@@ -76,6 +76,23 @@ en:
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
+      pledge:
+        asseenontv: known person who gets recognised
+        carpooler: give a ride to a meeting
+        copywriter: write press releases or newsletters
+        employer: employer with many employees
+        experienced: tell experiences to a journalist
+        expert: expert
+        host: host a meeting
+        mediatrained: talk on radio or television
+        ngomember: member of a relevant organisation
+        organiser: organise a meeting
+        other: iets anders, namelijk
+        partymember: lid van politieke partij
+        performer: aandacht trekken
+        publicspeaker: spreken voor groepen mensen
+        researcher: onderzoek doen
+        withreaders: schrijver met veel lezers
       postal_code:
         description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
