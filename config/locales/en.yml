@@ -46,7 +46,7 @@ en:
     form:
       action:
         confirm: Confirm
-        pledge: I pledge
+        pledge: I pledge to help
         update: Update my signature
       bigbrother: You also provided this information to us. This too, remains your property.
       birth_country:
@@ -66,7 +66,7 @@ en:
         description: You may write your function, profession or relation to the petition, but it is not required.  
         label: Function or situation
       influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
-      influencelabel: Do you have influence? Are you a...       
+      influencelabel: Do you have influence? Are you a(n)...       
       invite: 
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
@@ -87,12 +87,12 @@ en:
         mediatrained: talk on radio or television
         ngomember: member of a relevant organisation
         organiser: organise a meeting
-        other: iets anders, namelijk
-        partymember: lid van politieke partij
-        performer: aandacht trekken
-        publicspeaker: spreken voor groepen mensen
-        researcher: onderzoek doen
-        withreaders: schrijver met veel lezers
+        other: something else... 
+        partymember: member of a political party
+        performer: attract attention
+        publicspeaker: speak in public
+        researcher: do research
+        withreaders: writer with many readers
       postal_code:
         description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
