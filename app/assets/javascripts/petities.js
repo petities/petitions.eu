@@ -17,7 +17,7 @@
 
 var chartOptions = {
   showTooltips: false,
-  animation: false,
+  animation: true,
   showScale: false,
   scaleShowGridLines : false,
   barShowStroke : false,
