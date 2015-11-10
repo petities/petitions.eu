@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -14,7 +14,8 @@ gem 'friendly_id-globalize'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3'
-gem 'mysql2'
+
+gem 'mysql2', '~> 0.3.18'
 
 #legacy utf 8 issues..
 gem 'utf8-cleaner'

@@ -112,7 +112,7 @@ class PetitionsController < ApplicationController
     end
 
     sort_list = []
-    # convert all status 
+    # convert all status
     Petition::STATUS_LIST.each do |label, status|
       sort_list.push({type: status, label: label})
     end
@@ -144,7 +144,7 @@ class PetitionsController < ApplicationController
 
       # state new
       #
-      # state 
+      # state
     else
       redirect_to new_user_session_path
     end
@@ -156,11 +156,11 @@ class PetitionsController < ApplicationController
     @page = params[:page]
 
     @owners = find_owners
-    
+
     if @petition.organisation_id
     	@organisation = Organisation.find(@petition.organisation_id)
 	end
-	
+
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
@@ -199,10 +199,10 @@ class PetitionsController < ApplicationController
 
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
-      
+
       @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     end
-    
+
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)
@@ -216,11 +216,11 @@ class PetitionsController < ApplicationController
 
       if user_params[:email]
         owner = User.where(email: user_params[:email]).first
-      
+
         unless owner
           owner = User.create(
-            email: user_params[:email], 
-            username: user_params[:name], 
+            email: user_params[:email],
+            username: user_params[:name],
             password: user_params[:password]
           )
         end
@@ -256,7 +256,7 @@ class PetitionsController < ApplicationController
   end
 
 
-  # 
+  #
   def update_owners
     authorize @petition
     @owners = find_owners
@@ -351,7 +351,7 @@ class PetitionsController < ApplicationController
   #
     def set_petition
       Globalize.locale = params[:locale] || I18n.locale
-    
+
       # find petition by slug name subdomain, id, friendly_name
       if params[:slug]
         @petition = Petition.find_by_cached_slug(params[:slug])
@@ -359,7 +359,7 @@ class PetitionsController < ApplicationController
         @petition = Petition.find_by_subdomain(params[:subdomain])
       elsif params[:petition_id]
         @petition = Petition.find(params[:petition_id])
-      else 
+      else
         begin
           # find by friendly url
           @petition = Petition.friendly.find(params[:id])
@@ -373,7 +373,7 @@ class PetitionsController < ApplicationController
         #  @petition.save!
         #end
       end
-    
+
       # find specific papertrail version
       @index = 0
 
@@ -386,7 +386,7 @@ class PetitionsController < ApplicationController
         @index = @petition.index
       end
 
-      @up = @index < 0 ? @index + 1 : 0 
+      @up = @index < 0 ? @index + 1 : 0
       @down = @index.abs < @petition.versions.size ? @index-1 : @index
 
     end
@@ -404,7 +404,7 @@ class PetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def petition_params
-      # :add_locale, :version, :owner_ids, :add_owner, 
+      # :add_locale, :version, :owner_ids, :add_owner,
       # petition: [
       # locale_list: []
       params.require(:petition).permit(

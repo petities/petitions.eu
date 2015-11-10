@@ -2,8 +2,8 @@
   div.errors-container style='display: none;'
     div.errors-empty: p= t('errors.messages.empty')
     div.errors-too-long: p= t('errors.messages.too_long')
-  
-  
+
+
   - if user_signed_in? && (current_user.has_role?(:admin)) # || current_user.has_role?(:admin, @petition))
 
     div.start-petition-form-row
@@ -18,15 +18,13 @@
         = f.select :status, options_for_select(Petition::STATUS_LIST)
       div.start-petition-form-cell.label
 
-
-
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title
         = t('start.form.name.label')
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_name"
           | 0 / 80
-      = f.text_field :name, class: 'start-petition-form-cell-input validation', 'data-chars': 80
+      = f.text_field(:name, class: 'start-petition-form-cell-input validation', 'data-chars'=> 80)
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.name.description')
@@ -37,7 +35,7 @@
         = t('start.form.short_description.label')
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_description"
           | 0 / 300
-      = f.text_area :description, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars': 300
+      = f.text_area(:description, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars'=> 300)
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.short_description.description')
@@ -61,7 +59,7 @@
         = t('start.form.we.label')
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_initiators"
           | 0 / 100
-      = f.text_area :initiators, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars': 100
+      = f.text_area(:initiators, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data' => {'chars'=> 100})
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.we.description')
@@ -72,7 +70,7 @@
         = t('start.form.observe.label')
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_statement"
           | 0 / 450
-      = f.text_area :statement, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars': 450
+      = f.text_area(:statement, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars' => 450)
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.observe.description')
@@ -83,7 +81,7 @@
         = t('start.form.request.label')
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_request"
           | 0 / 450
-      = f.text_area :request, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars': 450
+      = f.text_area :request, class: 'start-petition-form-cell-input validation', style: "height:100px;", 'data-chars' => 450
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.request.description')
@@ -94,7 +92,7 @@
         div.start-petition-form-cell-title Images
         - @images.each do |image|
           = image_tag image.upload.url, width: '100'
-        
+
 
   div.start-petition-form-row
     div.start-petition-form-cell.input
@@ -158,7 +156,7 @@
   / - if not @petition.id.blank?
   /   div class="form-group"
   /     div class="col-sm-offset-2 col-sm-10"
- 
+
   /       = link_to petition_update_owners_path(@petition), class: 'btn btn-warning'
   /         = t('petition.finalize')
 
