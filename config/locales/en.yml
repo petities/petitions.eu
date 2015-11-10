@@ -46,59 +46,96 @@ en:
     form:
       action:
         confirm: Confirm
-        update: Update my data
-      bigbrother: This is all we know about you
+        pledge: I pledge
+        update: Update my signature
+      bigbrother: You also provided this information to us. This too, remains your property.
       birth_country:
         description: The Dutch nationality is required for this sort of petition.
       born_at:
-        description: Required for this sort of petition to verify your signature.
+        description: You might be too young for this kind of petition. It will be checked.
         label: Born at
       city:
-        description: City where you were born
+        description: City where you were born, not required.
         label: City of birth
       country:
         label: Country were you currently live
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
-      help_offer_description: The petitioner may ask your help based on your pledge
-      helplabel: Pledge
+      function:
+        description: You may write your function, profession or relation to the petition, but it is not required.  
+        label: Function or situation
+      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
+      influencelabel: Do you have influence? Are you a...       
       invite: 
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
       location:
-        description: Where you currently live, visible to the world if you choose 
+        description: Where you currently live, visible to the world if you choose.  
         label: Place
       name:
-        description: Sign at least with your surname and an initial
-        label: Name and Surname
+        description: Sign at least with your surname and an initial.
+        label: Name and surname
+      pledge:
+        asseenontv: known person who gets recognised
+        carpooler: give a ride to a meeting
+        copywriter: write press releases or newsletters
+        employer: employer with many employees
+        experienced: tell experiences to a journalist
+        expert: expert
+        host: host a meeting
+        mediatrained: talk on radio or television
+        ngomember: member of a relevant organisation
+        organiser: organise a meeting
+        other: iets anders, namelijk
+        partymember: lid van politieke partij
+        performer: aandacht trekken
+        publicspeaker: spreken voor groepen mensen
+        researcher: onderzoek doen
+        withreaders: schrijver met veel lezers
       postal_code:
-        description: Required for this sort of petition to verify your signature
+        description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
+      skillslabel: Do you have special skill? Are you able to...       
+      skills_offer_description: The lead petitioner might need your special skills. You might be able to help. You will receive an e-mail with a specific proposal.
       street:
-        description: Required for this sort of petition to verify your signature
+        description: The address where you officially live today is required for this sort of petition. You can find it on mail from the government.
         label: Street
       street_number:
-        description: Required for this sort of petition to verify your signature.
+        description: Your address will never be public.
         label: Street number
       street_number_suffix:
-        suffixlabel: Suffixlabel
+        suffixlabel: Suffix
       visible:
-        description: A publicly visible signature can be found with search engines, for example when someone looks up your name
-        privacylabel: Make my name and place publicly visible under the petition
+        description: A public signature can be found with search engines, for example when someone looks up your name.
+        privacylabel: My name and place will be public, visible under the petition.
     info:
       browser: 'Your browser: %{browser}'
-      do_you_have_influence?: Do you have influence?
-      donate_petition: Donate petition
-      email_friends_you_know: Email friends you know
+      donate_petition: Donate
+      mailafriend: Enter e-mail addressess of people you know and who might sign.
+      mailafriend_description: 'You can e-mail this invitation through us: Dear sir or madam,
+
+On petitions.eu -your name- (with e-mail address -your e-mail address-) just signed the petition "-the petition-" with the note "-functie-".
+
+With this e-mail -your name- invites you to read and perhaps sign the petition.
+
+If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. You will not receive any further invitations about this petition on your e-mail address.
+
+You can view the petition at -address petition-
+
+Do you have questions about this petition? Please contact the lead petitioner: -addres petitioner-
+
+Best Regards, 
+Petitions.eu'
       help_petition: Help petition
-      how_much: How much
+      how_much: How much would you like to contribute?
+      how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
       ip: 'Your IP-address: %{ip}'
-      petition_signature_url: Petition signature url
+      petition_signature_url: Link to your signature
       share:
         on_facebook_description: On facebook description
         on_twitter_description: On twitter description
-      share_petition: Share petition
+      share_petition: Share the petition
       your_email: Your email
     title: Confirm your signature for petition "%{name}"
   description: Description
@@ -163,60 +200,7 @@ en:
         title: Which petitions did I already sign?
     changesig:
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
-      desrc: Desrc
       title: Change your signature
-    faq:
-      question1:
-        answer: a1
-        title: q1
-      question10:
-        answer: a10
-        title: q10
-      question11:
-        answer: a11
-        title: q11
-      question12:
-        answer: a12
-        title: q12
-      question13:
-        answer: a13
-        title: q13
-      question14:
-        answer: a14
-        title: q14
-      question15:
-        answer: a15
-        title: q15
-      question16:
-        answer: a16
-        title: q16
-      question17:
-        answer: a17
-        title: q17
-      question2:
-        answer: a2
-        title: q2
-      question3:
-        answer: a3
-        title: q3
-      question4:
-        answer: a4
-        title: q4
-      question5:
-        answer: a5
-        title: q5
-      question6:
-        answer: a6
-        title: q6
-      question7:
-        answer: a7
-        title: q7
-      question8:
-        answer: a8
-        title: q8
-      question9:
-        answer: a9
-        title: q9
     general:
       question01:
         answer: Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
@@ -225,7 +209,7 @@ en:
         answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
         title: Why are anonymous signatures allowed?
       question03:
-        answer: Degene die de petitie uiteindelijk ontvangt krijgt een uitdraai van uw gegevens om te controleren. In theorie kunt u persoonlijk door een politicus of beleidsambtenaar benaderd worden als ze gegronde vermoedens hebben dat ze waardevolle toelichting op de petitie kunnen krijgen op die manier. In de praktijk wordt er alleen met de petitionaris gesproken, als woordvoerder van alle ondertekenaars. De ontvanger van een petitie kan geen mailing versturen naar de lijst ondertekenaars, want de <a href="https://www.cbpweb.nl/">Wet op de Bescherming Persoonsgegevens</a> verhindert dat. Deze database is immers niet met die bedoeling aangelegd, dus dat mag niet. De webmaster en de systeembeheerder van petities.nl hebben toegang tot alle gegevens. De Stichting Petities.nl wil zich onderscheiden van concurrende aktiesites door de betrouwbaarheid en neutraliteit. We vallen onder de Nederlandse wetgeving en staan op servers in Nederland bij een non-profit organisatie die niet te koop is. Gegevens die niet gebruikt zijn worden zelfs actief gewist (niets bewaren is altijd het veiligst in dit verband). De petitionaris heeft gedurende de looptijd van de petitie geen toegang tot uw gegevens en krijgt na de 'sluiting' van de petitie alleen toegang tot de naam-titel-geboortedatum-woonplaats gegevens om te overhandigen. Dit is de lijst inclusief de op de website onzichtbare ondertekenaars. Deze lijst mag dus niet gepubliceerd worden (beschermd door de Wet Bescherming Persoonsgegevens) en mag alleen overhandigd worden om te worden gecontroleerd op echtheid. En om indruk te maken natuurlijk! Volksvertegenwoordigers weten als geen ander hoe moeilijk het is om iemand ergens uit vrije wil ergens voor te laten tekenen...
+        answer: Those who receive your petition are handed a list of signatures to verify. Hypothetically a politician or civil servant might contact you personally when they expect you can give a valuable insight on the petition. Practically they only talk to the petitioner, as spokesperson for all signatories. The recipient of a petition can not send a mailing to all signatories, because this is prohibited by the <a href="https://www.cbpweb.nl/">dataprotection law</a>. After all, our database is not created for that purpose and therefore the data can not be used for it. The webmaster and systeemadministrator of petities.nl have access to all this data. The Petities.nl Foundation aims for distinction from competing action sites with reliability and neutrality. We operate under Dutch legislation on servers in the Netherlands from a non-profit organisation which is not for sale. Unused data is actively deleted (storing no data is always the safest policy). The lead petitioner only has access to the name-function-place data for the hand over. Included are the 'anonymous' signatories, not publicly visible on the website. This list may not be published (protected by the dataprotection act) and may only be handed over to be verified. And to impress of course! Elected representatives know how difficult it is to voluntarily make someone sign for something...
         title: Who gets to see my data?
     handbook:
       descr: The <a href="http://handboek.petities.nl/wiki/Hoofdpagina/en">Handbook Petitions</a> has extra tricks and tips based on our experiences since 2005. Mostly in Dutch.
@@ -236,35 +220,35 @@ en:
     title: Help
     whilesigning:
       question01:
-        answer: whilesigningq1Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
-        title: Online petitions are pointless I am told. Why is Petities.nl different?
+        answer: When a petition is closed for signing the button to sign does not appear under a petition. A petition closes before the hand over and then awaits an answer. You could contact the lead petitioner to add your signature if the petition is not formally handed over.
+        title: Why can I not sign a certain petition?
       question02:
-        answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
-        title: Why are anonymous signatures allowed?
+        answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address. 
+        title: I used the wrong e-mail address to sign, what to do?
       question03:
-        answer: Degene die de petitie uiteindelijk ontvangt krijgt een uitdraai van uw gegevens om te controleren. In theorie kunt u persoonlijk door een politicus of beleidsambtenaar benaderd worden als ze gegronde vermoedens hebben dat ze waardevolle toelichting op de petitie kunnen krijgen op die manier. In de praktijk wordt er alleen met de petitionaris gesproken, als woordvoerder van alle ondertekenaars. De ontvanger van een petitie kan geen mailing versturen naar de lijst ondertekenaars, want de <a href="https://www.cbpweb.nl/">Wet op de Bescherming Persoonsgegevens</a> verhindert dat. Deze database is immers niet met die bedoeling aangelegd, dus dat mag niet. De webmaster en de systeembeheerder van petities.nl hebben toegang tot alle gegevens. De Stichting Petities.nl wil zich onderscheiden van concurrende aktiesites door de betrouwbaarheid en neutraliteit. We vallen onder de Nederlandse wetgeving en staan op servers in Nederland bij een non-profit organisatie die niet te koop is. Gegevens die niet gebruikt zijn worden zelfs actief gewist (niets bewaren is altijd het veiligst in dit verband). De petitionaris heeft gedurende de looptijd van de petitie geen toegang tot uw gegevens en krijgt na de 'sluiting' van de petitie alleen toegang tot de naam-titel-geboortedatum-woonplaats gegevens om te overhandigen. Dit is de lijst inclusief de op de website onzichtbare ondertekenaars. Deze lijst mag dus niet gepubliceerd worden (beschermd door de Wet Bescherming Persoonsgegevens) en mag alleen overhandigd worden om te worden gecontroleerd op echtheid. En om indruk te maken natuurlijk! Volksvertegenwoordigers weten als geen ander hoe moeilijk het is om iemand ergens uit vrije wil ergens voor te laten tekenen...
-        title: Who gets to see my data?
+        answer: awaiting translation
+        title: Zonder mijn naam openbaar op het web ondertekenen, kan dat?
       question04:
-        answer: Nee, dat kan niet. U kunt wel zelf een verbeterde petitie opstellen die de concurrentie aangaat met de bestaande. Bedenk dat u niet de enige bent die zich achter de petitie schaart. De grote kracht van een petitie is dat er één eis in staat die ondersteund wordt door alle ondertekenaars. Als iedereen zijn eigen mening laat horen valt de kracht van de petitie weg. Daarom kunt u beter een opmerking, anecdote of ondersteuning aan de petitionaris mailen. Hij of zij zal u daarvoor dankbaar zijn en u mogelijk citeren in een interview aan een journalist of bij vragen van de petitie-ontvanger. Als u mee wilt denken over verdere actie en/of ervaringen wilt uitwisselen met andere ondertekenaars meldt u zich bij de petitionaris.
+        answer: awaiting translation
         title: Ik ben het niet exact eens met petitie. Kan ik een extra conditie opgeven bij mijn ondertekening?
       question05:
-        answer: Na het ondertekenen krijgt u een bevestigingsmail met daarin het e-mailadres van de petitionaris. Die kunt u uw commentaar terugschrijven. Ook kunt u iets van commentaar kwijt in het functie-veld bij het ondertekenen. Als u het niet eens bent met een petitie kunt u een tegen-petitie starten.
+        answer: awaiting translation
         title: Hoe kan ik aan een petitie persoonlijk commentaar toevoegen?
     writingpetition:
       question01:
-        answer: writepetitionq1Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
-        title: Online petitions are pointless I am told. Why is Petities.nl different?
+        answer: awaiting translation
+        title: Waarom moet ik als petitionaris extra links opgeven?
       question02:
-        answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
-        title: Why are anonymous signatures allowed?
+        answer: awaiting translation
+        title: Ik heb geen discussieforum, waar moet ik naar linken in mijn petitie?
       question03:
-        answer: Degene die de petitie uiteindelijk ontvangt krijgt een uitdraai van uw gegevens om te controleren. In theorie kunt u persoonlijk door een politicus of beleidsambtenaar benaderd worden als ze gegronde vermoedens hebben dat ze waardevolle toelichting op de petitie kunnen krijgen op die manier. In de praktijk wordt er alleen met de petitionaris gesproken, als woordvoerder van alle ondertekenaars. De ontvanger van een petitie kan geen mailing versturen naar de lijst ondertekenaars, want de <a href="https://www.cbpweb.nl/">Wet op de Bescherming Persoonsgegevens</a> verhindert dat. Deze database is immers niet met die bedoeling aangelegd, dus dat mag niet. De webmaster en de systeembeheerder van petities.nl hebben toegang tot alle gegevens. De Stichting Petities.nl wil zich onderscheiden van concurrende aktiesites door de betrouwbaarheid en neutraliteit. We vallen onder de Nederlandse wetgeving en staan op servers in Nederland bij een non-profit organisatie die niet te koop is. Gegevens die niet gebruikt zijn worden zelfs actief gewist (niets bewaren is altijd het veiligst in dit verband). De petitionaris heeft gedurende de looptijd van de petitie geen toegang tot uw gegevens en krijgt na de 'sluiting' van de petitie alleen toegang tot de naam-titel-geboortedatum-woonplaats gegevens om te overhandigen. Dit is de lijst inclusief de op de website onzichtbare ondertekenaars. Deze lijst mag dus niet gepubliceerd worden (beschermd door de Wet Bescherming Persoonsgegevens) en mag alleen overhandigd worden om te worden gecontroleerd op echtheid. En om indruk te maken natuurlijk! Volksvertegenwoordigers weten als geen ander hoe moeilijk het is om iemand ergens uit vrije wil ergens voor te laten tekenen...
-        title: Who gets to see my data?
+        answer: awaiting translation
+        title: Waarom mogen petities over een product of bedrijf niet?
       question04:
-        answer: U richt een petitie aan iemand die door zijn of haar handelen de door u beoogde situatie kan (helpen) realiseren. Zoals volksvertegenwoordigers, bestuurders van organisaties en dergelijken. U kunt kiezen uit een aantal standaard ontvangers, maar u kunt ook geadresseerden aan deze voorselectie laten toevoegen door de webmaster. Het is verstandig om voor het starten van de petitie te controleren of de geadresseerde bereid is om de petitie in ontvangst te nemen in een later stadium. Gemeenten die hebben aangegeven altijd bereid zijn een petitie te willen ontvangen hebben een petitieloket geopend op deze website. U en de ondertekenaars van uw petitie krijgen dan gegarandeerd antwoord op uw petitie.
+        answer: awaiting translation
         title: Aan wie adresseer ik een petitie?
       question05:
-        answer: U kunt een stukje code op uw pagina plakken. Zie ons <a href="http://handboek.petities.nl">handboek</a> voor details hierover.
+        answer: awaiting translation
         title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
   index:
     all: All petitions
@@ -341,7 +325,6 @@ en:
     published: Published
     rejected: Rejected
     signable: Signable
-    stageing: Stageing
     staging: Staging
     state:
       not_yet_finished: Not yet finished
@@ -402,7 +385,7 @@ en:
       news: News
       observe: observe
       request: and request
-      sharethis: Sharethis
+      sharethis: Share this petition with others
       title: Petition
       we: We
     share: Share this petition
@@ -415,10 +398,9 @@ en:
           name: Please enter your name and surname. Or an initial and your surname.
         name: First name Surname
         residence: Place of residence
-        sign_again: Sign again
+        sign_again: Let someone else sign now
         submit: Yes, I sign this petition
-        success: Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
-        success1: Thank you, your signature only needs your confirmation. On your address
+        success1: Thank you. It is now important to confirm your signature. On your address
         success2: you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
       title: Sign this petition
@@ -465,16 +447,9 @@ en:
         description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
         label: Observe
       petitioner:
-        description: |
-          If you do not enter a password we will give you a good one.
         email:
           description: Without an e-mail address we can not send you access to your petition.
           label: Your e-mail address
-        label: Preferred password
-        lead:
-          description: |
-            Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
-          label: Lead petitioner
         name:
           description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname
