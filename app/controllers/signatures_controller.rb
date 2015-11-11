@@ -15,7 +15,7 @@ class SignaturesController < ApplicationController
                                                  .map{|group| [group[0], group[1].size]}
                                                  .select{|group| group[1] >= 100}
                                                  .sort_by{|group| group[1]}[0..9]
-      @per_page = 10
+      @per_page = 100
     else
       @per_page = 12
     end
