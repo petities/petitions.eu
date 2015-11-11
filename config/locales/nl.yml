@@ -46,7 +46,7 @@ nl:
     form:
       action:
         confirm: Bevestig
-        pledge: Zeg ik toe
+        pledge: Ik zeg deze hulp toe
         update: Werk mijn ondertekening bij
       bigbrother: Deze informatie ontvingen we ook van u. Maar ook dit blijft uw eigendom.
       birth_country:

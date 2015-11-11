@@ -17,7 +17,8 @@
         = t "anonymous"
     - if signature.visible?
       div.petition-signature-location= signature.person_city
-    / div.petition-signature-occupation Directeur DOUC
+      div.petition-signature-occupation 
+        = signature.person_function
     div.petition-signature-actions
       = link_to t('signatures.link'), anchor_petition_signatures_path(@petition, signature), class: "signature-link"
       = mail_to 'webmaster@petities.nl', t('signatures.notify'),
