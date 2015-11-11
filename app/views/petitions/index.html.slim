@@ -36,10 +36,11 @@ div.page
   
       div.pagination
         = will_paginate @petitions, renderer: PetitionsPaginateRenderer
-      
+    
       div.clearfix
-      
+
       = link_to t('index.all'), all_petitions_path, class: 'navigation-toall'
+
   
   aside.news-intro-blocks-container
     div.news-intro-block
@@ -53,6 +54,8 @@ div.page
       div.news-intro-block-date= @news[1].date
       div.news-intro-block-intro= @news[1].intro_text
       a.news-intro-block-intro-read-more href="#" = t('index.read')
+      
+      
 
 / p id="notice"
 /   = notice
