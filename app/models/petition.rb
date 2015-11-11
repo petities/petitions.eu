@@ -94,17 +94,21 @@ class Petition < ActiveRecord::Base
   validates_presence_of :initiators
   validates_presence_of :statement
   validates_presence_of :request
- 
+
   validates_format_of :subdomain, :with => /\A[A-Za-z0-9-]+\z/, :allow_blank => true
   validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
   validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
 
   after_update :send_status_mail
 
+  def should_generate_new_friendly_id?
+      name_changed?
+  end
+
   def send_status_mail
     PetitionMailer.status_change_mail(self).deliver if self.status_changed?
   end
-  
+
   def elapsed_time
     Time.now - (self.last_confirmed_at || Time.now)
   end
@@ -126,13 +130,13 @@ class Petition < ActiveRecord::Base
     self.active_rate_value > 0.05
   end
 
-  ## petition status summary 
+  ## petition status summary
   def state_summary
     return 'draft' if self.is_draft?
     return 'closed' if self.is_closed?
     return 'signable' if self.is_live?
     return 'in_treatment' if self.in_treatment?
-    return 'is_answered' if self.is_answered? 
+    return 'is_answered' if self.is_answered?
   end
 
   def is_draft?
@@ -143,14 +147,14 @@ class Petition < ActiveRecord::Base
   end
 
   def is_live?
-    ['live', 
+    ['live',
      'not_signable_here'].include? self.status
   end
 
   def is_closed?
-    ['withdrawn', 
-     'rejected', 
-     'to_process', 
+    ['withdrawn',
+     'rejected',
+     'to_process',
      'not_processed'].include? self.status
   end
 
@@ -177,7 +181,7 @@ class Petition < ActiveRecord::Base
   end
 
   def links
-    { 
+    {
       links: [
         { link: link1, text: link1_text },
         { link: link2, text: link2_text },
@@ -186,7 +190,7 @@ class Petition < ActiveRecord::Base
       site: { link: site1, text: site1_text }
     }
   end
- 
+
 end
 
 

@@ -4,7 +4,7 @@ div.page.vervolg
 
     div.update-container
       div.update
-        h2= 
+        h2=t('help.general_items') 
 
         - @general.each do |general_item|
 
@@ -15,7 +15,7 @@ div.page.vervolg
             h3= general_item[:title] 
             p= raw general_item[:answer] 
       div.update
-        h2= 
+        h2=t('help.whilesigning_item')
 
         - @whilesigning.each do |whilesigning_item|
 
@@ -26,7 +26,7 @@ div.page.vervolg
             h3= whilesigning_item[:title] 
             p= raw whilesigning_item[:answer] 
       div.update
-        h2= 
+        h2=t('help.aftersigning_item') 
 
         - @aftersigning.each do |aftersigning_item|
 
@@ -38,6 +38,7 @@ div.page.vervolg
             p= raw aftersigning_item[:answer] 
       div.update
 
+        h2=t('help.writingpetition_item') 
         - @writingpetition.each do |writingpetition_item|
 
           div.read-more-help-handler
