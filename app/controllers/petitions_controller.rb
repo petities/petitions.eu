@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: [:show, :edit, :add_translation, :update, :finalize, :update_owners]
+  before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
   # GET /petitions.json
@@ -251,10 +251,6 @@ class PetitionsController < ApplicationController
 
     @images = @petition.images
   end
-
-  def add_translation
-  end
-
 
   #
   def update_owners

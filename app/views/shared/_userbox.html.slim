@@ -1,0 +1,15 @@
+div.header-user-name
+  - if current_user
+    = current_user.email
+
+    div.header-user-dropdown
+      /= link_to t('Login'), new_user_session_path, class: "header-user-dropdown-item"
+      /a href="#" class="header-user-dropdown-item" Mijn gegevens
+      = link_to t('Dashboard'), manage_petitions_path, class: "header-user-dropdown-item"
+      - if current_user.has_role? :admin
+        = link_to 'visits', 'visits', class: "header-user-dropdown-item"
+      = link_to t('Logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
+
+  - else
+      = link_to 'Login', new_user_session_path
+

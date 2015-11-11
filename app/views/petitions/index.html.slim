@@ -9,8 +9,10 @@ div.page
       = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
       = hidden_field_tag :locale, I18n.locale
       input.search-container-button type="submit" value=""
-      
-      div.clearfix
+    div.clearfix
+
+  div.header-user-wrapper.user-index
+    = render partial: 'shared/userbox'
     
   section.petitions-overview-wrapper
 

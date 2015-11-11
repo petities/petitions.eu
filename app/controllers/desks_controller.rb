@@ -24,6 +24,12 @@ class DesksController < ApplicationController
     # withdrawn..
     @petitions_withdrawn = @petitions.where(status: 'withdrawn')
     # @petitions = @petitions.paginate(page: @page, per_page: 12)
+    #
+    @users = User.order(:email)
+
+    @office_admins = User.with_role(:admin, @office)
+
+    @admins = User.with_role(:admin)
 
   end
 end
