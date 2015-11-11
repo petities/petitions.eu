@@ -2,9 +2,6 @@
 en:
   Create:
     newpetition: Start a petition
-  Dashboard: Dashboard
-  Login: Login
-  Logout: Logout
   about:
     donate: Donate and support Petities.nl
     text: |
@@ -261,8 +258,11 @@ Petitions.eu'
       sign_quick: Sign last minute
       title: 'Sort on: '
   listing: Listing
+  login: Login
+  logout: Logout
   manage:
     title: My petitions
+  mypetitions: My petitions
   name: Name
   peition:
     new: Limburgs Nieuw

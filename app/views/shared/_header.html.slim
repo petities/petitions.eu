@@ -41,10 +41,10 @@ header.header
             = current_user.email
 
           div.header-user-dropdown
-            = link_to t('Login'), new_user_session_path, class: "header-user-dropdown-item"
+            = link_to t('login'), new_user_session_path, class: "header-user-dropdown-item"
             a href="#" class="header-user-dropdown-item" Mijn gegevens
-            = link_to t('Dashboard'), manage_petitions_path, class: "header-user-dropdown-item"
-            = link_to t('Logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
+            = link_to t('mypetitions'), manage_petitions_path, class: "header-user-dropdown-item"
+            = link_to t('logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
 
       - else
         div.header-user-wrapper
