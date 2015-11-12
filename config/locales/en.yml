@@ -264,7 +264,7 @@ Petitions.eu'
       label: E-mail address
     login: Login
     password:
-      descr: When you made your petition you chose a password. If you did not, we sent you a password by e-mail. Do you not know or have your password anymore, ask a link by e-mail to set a new one.
+      descr: When you began your petition you chose a password. If you did not, we sent you a password by e-mail. Do you not have or know your password anymore, ask a link by e-mail to set a new one.
       label: Password
     reset: Send password reset link
   logout: Logout
@@ -272,8 +272,16 @@ Petitions.eu'
     title: My petitions
   mypetitions: My petitions
   name: Name
-  peition:
-    new: Limburgs Nieuw
+  password:
+    change: Change your password
+    confirm: Confirm your new password
+    forgot: Forgot your password?
+    descr: Do you not know which e-mail address you used or do you not have access to it? Contact us.
+    new: Your new password
+    save: Save new password
+    send: Send me the password link
+    wisdom: 
+      'We recommend using <a href="https://en.wikipedia.org/wiki/List_of_password_managers">special software</a> to generate and store passwords. For example 1Password or LastPass.'
   petition:
     Edit: Edit
     Enable: Enable
