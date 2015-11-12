@@ -42,7 +42,7 @@ header.header
 
           div.header-user-dropdown
             = link_to t('login'), new_user_session_path, class: "header-user-dropdown-item"
-            = link_to t('profile') class="header-user-dropdown-item" 
+            = link_to t('profile'), class="header-user-dropdown-item" 
             = link_to t('mypetitions'), manage_petitions_path, class: "header-user-dropdown-item"
             = link_to t('logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
 
