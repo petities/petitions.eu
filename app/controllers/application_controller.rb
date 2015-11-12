@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
 
   def help
     @general = I18n.t('help.general').map{ |key, value| value }
-    @whilesigning = I18n.t('help.whilesigning').map{ |key, value| value }    
+    @whilesigning = I18n.t('help.whilesigning').map{ |key, value| value }
     @aftersigning = I18n.t('help.aftersigning').map{ |key, value| value }
-    @writingpetition = I18n.t('help.writingpetition').map{ |key, value| value }    
+    @writingpetition = I18n.t('help.writingpetition').map{ |key, value| value }
 
   end
 
