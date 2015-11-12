@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: a252cebb4e6b4939775df2ef6920f16bec38f884
+  revision: 21f76b1faf651cd4f71dd24997102f7eb83b49d2
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -110,7 +110,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     connection_pool (2.2.0)
     countries (1.2.1)
       currencies (~> 0.4.2)
@@ -432,3 +432,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   will-paginate-i18n
   will_paginate
+
+BUNDLED WITH
+   1.10.6
