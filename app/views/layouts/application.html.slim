@@ -16,14 +16,6 @@ html
     = content_for :head
 
   body class=(@vervolg ? '' : 'vervolg')
-    center style='background: #bcf9c7;'
-
-      div
-        - puts flash.to_a
-        - flash.each do |message|
-          div
-            = message[1]
-
     = render partial: 'shared/header'
 
 
