@@ -4,7 +4,7 @@
     div.errors-too-long: p= t('errors.messages.too_long')
 
 
-  - if user_signed_in? && (current_user.has_role?(:admin)) # || current_user.has_role?(:admin, @petition))
+  - if(user_signed_in? && ((current_user.has_role?(:admin)))) #or current_user.has_role?(:admin, @petition)))
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
@@ -46,10 +46,9 @@
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title= t('start.form.addressed.label')
       = f.select :organisation_kind, options_for_select(@organisation_types.map{|o_t| o_t[0] }, selected: @petition.organisation_kind), include_blank: "Select organisation type"
-      div.start-petition-form-cell-title
+
       - @organisation_types.each do |organisation_type|
         - is_hidden = @petition.organisation_kind != organisation_type[0]
-
         = f.select :organisation_id, options_from_collection_for_select(organisation_type[1], "id", "name", selected: @petition.organisation_id), {}, {class: "organisation_select #{organisation_type[0]}", style: is_hidden ? 'display:none' : '', disabled: is_hidden}
 
     div.start-petition-form-cell.label
