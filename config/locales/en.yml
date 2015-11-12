@@ -2,9 +2,6 @@
 en:
   Create:
     newpetition: Start a petition
-  Dashboard: Dashboard
-  Login: Login
-  Logout: Logout
   about:
     donate: Donate and support Petities.nl
     text: |
@@ -261,8 +258,19 @@ Petitions.eu'
       sign_quick: Sign last minute
       title: 'Sort on: '
   listing: Listing
+  login:
+    email: 
+      descr: The e-mailaddress you used to start your petition is also your username.
+      label: E-mail address
+    login: Login
+    password:
+      descr: When you made your petition you chose a password. If you did not, we sent you a password by e-mail. Do you not know or have your password anymore, ask a link by e-mail to set a new one.
+      label: Password
+    reset: Send password reset link
+  logout: Logout
   manage:
     title: My petitions
+  mypetitions: My petitions
   name: Name
   peition:
     new: Limburgs Nieuw
@@ -364,6 +372,7 @@ Petitions.eu'
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
+  profile: My profile
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -472,5 +481,6 @@ Petitions.eu'
         label: We
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
+  startanother: Start another petition
   statement: Statement
   when: When

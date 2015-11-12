@@ -1,33 +1,33 @@
 div.page
   section.start-petition-form-container
-    h1.petition-section-title Login
+    h1.petition-section-title =t('login.login')
 
     = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            | Email
+            = t('login.email.label')
           = f.email_field :email, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          | E-mail address
+          = t('login.email.descr')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            | Password
+            = t('login.password.label')
           = f.password_field :password, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          | Your password
+          = t('login.password.descr')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            = link_to 'Reset password', new_user_password_path      
+            = link_to t('login.reset'), new_user_password_path      
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = f.submit 'Sign in', class: 'start-petition-form-cell-button'
-        div.start-petition-form-cell.label.empty
+          = f.submit t('login.login'), class: 'start-petition-form-cell-button'
+          div.start-petition-form-cell.label.empty
           | &nbsp;
 
 

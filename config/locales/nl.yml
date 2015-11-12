@@ -2,9 +2,6 @@
 nl:
   Create:
     newpetition: Start een petitie
-  Dashboard: Dashboard
-  Login: Login
-  Logout: Logout
   about:
     donate: Doneer en steun Petities.nl
     text: |
@@ -261,8 +258,19 @@ Petities.nl'
       sign_quick: Nog snel ondertekenen
       title: 'Sorteren op: '
   listing: Lijst
+  login:
+    email: 
+      descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
+      label: E-mailadres
+    login: Log in
+    password:
+      descr: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail. Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
+      label: Wachtwoord
+    reset: Stuur link om nieuw wachtwoord te kiezen
+  logout: Log uit
   manage:
     title: Mijn petities
+  mypetitions: Mijn petities
   name: Name
   peition:
     new: Limburgs Nieuw
@@ -364,6 +372,7 @@ Petities.nl'
       <p>&nbsp;</p>
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
+  profile: Mijn profiel
   request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
@@ -472,5 +481,6 @@ Petities.nl'
         label: Wij
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
+  startanother: Start nog een petitie
   statement: Verzoek
   when: Wanneer
