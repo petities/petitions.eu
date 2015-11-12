@@ -364,6 +364,7 @@ Petitions.eu'
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
+  profile: My profile
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
