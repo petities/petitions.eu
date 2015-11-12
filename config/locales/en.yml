@@ -258,7 +258,15 @@ Petitions.eu'
       sign_quick: Sign last minute
       title: 'Sort on: '
   listing: Listing
-  login: Login
+  login:
+    email: 
+      descr: The e-mailaddress you used to start your petition is also your username.
+      label: E-mail address
+    login: Login
+    password:
+      descr: When you made your petition you chose a password. If you did not, we sent you a password by e-mail. Do you not know or have your password anymore, ask a link by e-mail to set a new one.
+      label: Password
+    reset: Send password reset link
   logout: Logout
   manage:
     title: My petitions
