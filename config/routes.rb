@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
-  
+
+
   as :user do
     get 'login' => 'devise/sessions#new', as: :new_user_session
     post 'login' => 'devise/sessions#create', as: :user_session
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
   end
 
   resources :updates
-  
+
   # resource :signatures
 
   root 'petitions#index'
@@ -67,12 +68,13 @@ Rails.application.routes.draw do
   # dashboard statistics
   constraints admin_constraint do
       mount RedisAnalytics::Dashboard::Engine => "/visits"
+      mount Sidekiq::Web => '/sidekiq'
   end
 
   #
   # make old links work
   #
-  
+
   get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
   get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'
