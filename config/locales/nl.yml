@@ -272,8 +272,16 @@ Petities.nl'
     title: Mijn petities
   mypetitions: Mijn petities
   name: Name
-  peition:
-    new: Limburgs Nieuw
+  password:
+    change: Verander uw wachtwoord
+    confirm: Bevestig uw nieuwe wachtwoord
+    forgot: Uw wachtwoord vergeten?
+    descr: Weet u niet meer met welk e-mailadres u de petitie bent begonnen of kunt u er niet meer bij? Neem contact met ons op.
+    new: Uw nieuwe wachtwoord
+    save: Bewaar nieuw wachtwoord
+    send: Stuur me die wachtwoordlink
+    wisdom: 
+      'Wij adviseren <a href="https://en.wikipedia.org/wiki/List_of_password_managers">speciale software</a> te gebruiken om een wachtwoord mee te maken en om wachtwoorden in te bewaren. Bijvoorbeeld 1Password of LastPass.'
   petition:
     Edit: Bewerk
     Enable: Pas toe

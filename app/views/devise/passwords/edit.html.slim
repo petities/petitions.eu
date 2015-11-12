@@ -1,6 +1,6 @@
 div.page
   section.start-petition-form-container
-    h1.petition-section-title Change your password
+    h1.petition-section-title = t('password.change')
 
     = form_for resource, as: resource_name, url: password_path(resource_name), method: :put do |f|
       
@@ -8,15 +8,15 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            | New password
+            = t('password.new')
           = f.password_field :password, autocomplete: "off", class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          | &nbsp;
+          = raw t('password.wisdom')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            | Confirm new password
+            = t('password.confirm')
           = f.password_field :password_confirmation, autocomplete: "off", class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
           | &nbsp;
@@ -27,6 +27,6 @@ div.page
       
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = submit_tag "Change my password", class: 'start-petition-form-cell-button'
+          = submit_tag t('password.save'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
           | &nbsp;
