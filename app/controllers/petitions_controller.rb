@@ -194,6 +194,7 @@ class PetitionsController < ApplicationController
   def create
     # new_params = Hash(petition_params[:petition])
     @petition = Petition.new(petition_params)
+    @petition.status = "concept"
 
     @petition.locale_list << I18n.locale
 
@@ -211,6 +212,7 @@ class PetitionsController < ApplicationController
 
     if user_signed_in?
       owner = current_user
+      @petition.status = "concept"
     else
       user_params = params[:user]
 

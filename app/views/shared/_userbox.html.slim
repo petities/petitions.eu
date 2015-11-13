@@ -3,7 +3,7 @@ div.header-user-name
     = current_user.email
 
     div.header-user-dropdown
-      - unless current_user.has_role? :admin
+      /- unless current_user.has_role? :admin
         = link_to t('startanother'), new_petition_path, class: "header-user-dropdown-item"
       - else   
         = link_to t('mypetitions'), manage_petitions_path, class: "header-user-dropdown-item"
