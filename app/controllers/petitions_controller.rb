@@ -249,6 +249,10 @@ class PetitionsController < ApplicationController
     @petition_types = PetitionType.all
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
 
+    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+
+    flash[:petition_flash] = t("petition.status.flash.%s" % @petition.status, default: @petition.status)
+
     @images = @petition.images
   end
 
@@ -363,27 +367,23 @@ class PetitionsController < ApplicationController
           # find in all locales petition that matches..
           @petition = Petition.joins(:translations).
             where("petition_translations.slug like ?", "%#{params[:id]}%").first()
-          # print @petition
         end
-        #if not @petition.friendly_id
-        #  @petition.save!
-        #end
       end
 
       # find specific papertrail version
-      @index = 0
-
-      if params[:version]
-        @index = params[:version].to_i
-        @petition = @petition.versions[@index].reify
-      end
+      @version_index = 0
 
       if @petition.has_attribute? :index
-        @index = @petition.index
+        @version_index = @petition.index
       end
 
-      @up = @index < 0 ? @index + 1 : 0
-      @down = @index.abs < @petition.versions.size ? @index-1 : @index
+      if params[:version].to_i < 0
+        @version_index = params[:version].to_i
+        @petition = @petition.versions[@version_index].reify
+      end
+      
+      @up = @version_index < 0 ? @version_index + 1 : 0
+      @down = @version_index.abs < @petition.versions.size ? @version_index-1 : @version_index
 
     end
 

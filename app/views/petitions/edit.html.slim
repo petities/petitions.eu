@@ -13,8 +13,31 @@ div.page
     /<!-- editbutton -->
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-        = t 'edit.petition.edittext'
+        = t 'edit.petition.edit_petition_text'
     /<!-- /editbutton -->
+
+    /<!-- petition versioning -->
+
+    div class="petition-editbutton-container"
+
+      h2
+        - unless @version_index < 0
+          =<> t 'petition.newest_version'
+        - else
+          =<> t 'petition.version'
+          =<> @version_index
+        =<> t 'petition.of'
+        =<> @petition.versions.size
+
+      - if @version_index < 0
+        div.petition-editbutton.left
+          =<> link_to 'newer version', edit_petition_path(@petition, {version: @up})
+
+      - if @version_index.abs < @petition.versions.size
+        div.petition-editbutton.right
+          =<> link_to 'pervious version', edit_petition_path(@petition, {version: @down})
+
+    /<!-- versioning -->
 
   section class="petition-intro-container edit"
     div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
@@ -59,6 +82,16 @@ div.page
             = t "petition.in_treatment"
           div id="is_answered" class="petition-state-label"
             = t "petition.is_answered"
+
+        - status_descr_key = 'petition.status.descr.' + @petition.status
+
+        h2 class="petition-section-title"
+          = t "petition.status.status_explanation"
+        h2 class="petition-section-title"
+          = t(status_descr_key, default: 'missing description for:' + @petition.status)
+        p 
+          = t(status_descr_key, default: 'missing description for:' + @petition.status)
+
 
   section.petition-container id="petitionStateEdit" style="display: none"
     div.petition-text-wrapper
@@ -105,23 +138,23 @@ div.page
     /div.petition-editbutton onclick=="$('#petitionStateEdit').css('display','flex'); $('#petitionState').hide();"
     /  = t 'petition.edit_state'
 
-  div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
-    div.petition-editbutton 
-      = t 'petition.the_next_logical_action'
+  - if @petition.is_draft?
+    div class="petition-editbutton-container"
+      div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
+        = t 'edit.petition.edit_petition_text'
 
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton 
-      = t 'petition.another_possible_action'
+      /TODO insert anchor
+      = t 'petition.write_update_about_petition'
 
+  - if @petition.is_draft?
+      - if user_signed_in? && current_user.has_role?(:admin, @petition)
+        div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+          div.petition-editbutton 
+            = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
+    
   /<!-- /editbutton -->
-
-
-  / - if current_user && (current_user.has_role? :admin or current_user.has_role? :admin, @petition)
-  div.whitespace
-    = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
-  
-  div.whitespace
-    = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
 
   section.petition-container id="petitionprogres"
     div.petition-text-wrapper
@@ -147,6 +180,9 @@ div.page
 
 
 = render partial: 'social'
+
+
+= render partial: 'signatures'
 
 
 / - if user_signed_in?

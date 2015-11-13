@@ -6,7 +6,7 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-    @petition = Petition.find(params[:petition_id])
+    @petition = Petition.friendly.find(params[:petition_id])
     @all_signatures = @petition.signatures.special
 
     unless request.xhr?
@@ -39,7 +39,7 @@ class SignaturesController < ApplicationController
   end
 
   def search
-    @petition = Petition.find(params[:petition_id])
+    @petition = Petition.friendly.find(params[:petition_id])
 
     @query = params[:query]
 
@@ -57,7 +57,7 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-    @petition = Petition.find(params[:petition_id])
+    @petition = Petition.friendly.find(params[:petition_id])
     @signature = @petition.new_signatures.new(signature_params)
 
     respond_to do |format|

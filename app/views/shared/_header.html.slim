@@ -37,3 +37,13 @@ header.header
 
       div.header-user-wrapper
         = render partial: 'shared/userbox'
+
+div.page
+
+  section.petition-intro-container
+    div
+      - flash.each do |message|
+        h2.petition-section-title
+          = message[1]
+      /h2.petition-section-title
+      /  = "test flash"

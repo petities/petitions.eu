@@ -175,24 +175,7 @@ div.page
 
 = render partial: 'social'
 
-div.page
-  section
-    h2.petition-section-title= t('show.signatures.title')
-    div.petition-signatures-container
-      - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
-        = render partial: 'signatures/list'
-
-      div.clearfix
-
-    div.navigation-bar
-      - if @signatures.blank?
-        div.whitespace No signatures for this moment
-      - else
-        a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
-      
-      div.clearfix
-      
-      = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
+= render partial: 'signatures'
 
 - if @updates.present?
   div.petition-updates
