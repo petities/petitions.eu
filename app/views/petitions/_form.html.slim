@@ -3,7 +3,6 @@
     div.errors-empty: p= t('errors.messages.empty')
     div.errors-too-long: p= t('errors.messages.too_long')
 
-
   - if(user_signed_in? && ((current_user.has_role?(:admin)))) #or current_user.has_role?(:admin, @petition)))
 
     div.start-petition-form-row
@@ -147,13 +146,21 @@
   - elsif action_name == 'edit'
     div.start-petition-form-row
       div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.petitioner.update.label')
         = f.submit t('start.form.update'), class: 'start-petition-form-cell-button whitespace'
 
-      - if @petition.is_draft?
-        - if user_signed_in? && current_user.has_role?(:admin, @petition)
-          = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
       div.start-petition-form-cell.label.empty
-        | &nbsp;
+        p= t('start.form.petitioner.update.update_description')
+
+  - if @petition.is_draft?
+    - if user_signed_in? && current_user.has_role?(:admin, @petition)
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('start.form.petitioner.finalize.label')
+          = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
+
+        div.start-petition-form-cell.label.empty
+          p= t('start.form.petitioner.finalize.finalize_description')
 
   div.start-petition-form-row.whitespace
     div.start-petition-form-cell.input

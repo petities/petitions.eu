@@ -14,7 +14,6 @@ gem 'friendly_id-globalize'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3'
-
 gem 'mysql2', '~> 0.3.18'
 
 #legacy utf 8 issues..
@@ -38,6 +37,9 @@ gem 'dalli'
 
 # minimal template language
 gem 'slim'
+
+# markdown stuff
+gem 'redcarpet'
 
 # pdf format templates
 gem 'prawn'

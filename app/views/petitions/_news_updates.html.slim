@@ -4,10 +4,8 @@ div.petition-updates
     section
       h2.petition-section-title
         = t('petition.updates.news_updates')
-
-      - if current_user.has_role?(:admin, @petition)
-        div.update-container.updates-edit
-
+      div.update-container.updates-edit
+        - if current_user.has_role?(:admin, @petition)
           div.update-edit style="display:flex;"
             div.update-icon
             div.update-content.whitespace
@@ -27,13 +25,11 @@ div.petition-updates
                 div class="petition-edit-label"
                   = t('petition.update.petitie')
                 input class="petition-edit-input" type="text" value=""
-                input type="submit" class="petition-edit-save" value="New petition"
+                input type="submit" class="petition-edit-save" value="New update"
 
-        /<!-- update artikel-->
-
-        div.update id="update1"
+        div.update id="update1" style="display:flex;"
           div.update-icon onclick="toggleUpdateEdit(1)"
-          div.update-content
+          div.update-content 
             h2
               | Radio Roze Golf: Russische homo’s worden teruggestuurd
             div.update-intro
@@ -69,7 +65,7 @@ div.petition-updates
               div.petition-edit-label
                 | Petitie:
               input.petition-edit-input type="text" value="Hou het Tropenmuseum open"
-              input type="submit" class="petition-edit-save" value="Save petition">
+              input type="submit" class="petition-edit-save" value="Save update"
 
       div.navigation-bar
         a href="#" class="navigation-loadmore button"

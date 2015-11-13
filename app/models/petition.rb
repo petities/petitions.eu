@@ -142,14 +142,14 @@ class Petition < ActiveRecord::Base
   ## edit a given petition
   def can_edit_petition? user
     if user.has_role? :admin
-      return True
+      return true
     end
 
     office = Office.find(self.office_id)
 
     if office
       if user.has_role? office, :admin
-        return True
+        return true
       end
     end
 
