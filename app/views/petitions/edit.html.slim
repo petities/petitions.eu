@@ -1,3 +1,9 @@
+div.page
+
+  section.petition-intro-container
+    div
+      h2.petition-section-title
+        = @petition_flash
 
 div.page
 
@@ -42,11 +48,11 @@ div.page
   section class="petition-intro-container edit"
     div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
 
-    /h1.petition-section-title 
+    /h1.petition-section-title
     /  = t 'petition.editing'
     /  =<> t 'petition.language'
     /  =<> I18n.locale
-    
+
     = render 'form'
 
   section.petition-container id="petitionState"
@@ -72,7 +78,7 @@ div.page
         h2 class="petition-section-title"
           = t "petition.current_state_is"
         div.petition-state-container
-          div id="draft" class="petition-state-label" 
+          div id="draft" class="petition-state-label"
             = t "petition.state.not_yet_finished"
           div id="signable" class="petition-state-label"
               = t "petition.signable"
@@ -89,7 +95,7 @@ div.page
           = t "petition.status.status_explanation"
         h2 class="petition-section-title"
           = t(status_descr_key, default: 'missing description for:' + @petition.status)
-        p 
+        p
           = t(status_descr_key, default: 'missing description for:' + @petition.status)
 
 
@@ -108,19 +114,19 @@ div.page
         h3= t('show.petition.request')
         p= @petition.request
 
-    div.petition-form-wrapper 
+    div.petition-form-wrapper
       div onclick=="$('#petitionState').css('display','flex'); $('#petitionStateEdit').hide();" class="petition-edit-close-button"
       div class="petition-form-indication-wrapper"
         h2 class="petition-section-title"
           = t 'petition.current_state_is'
         div.whitespace
-          What voor tekst moet hier?  
+          What voor tekst moet hier?
           <br>
-          Ik zou het niet weten.. 
+          Ik zou het niet weten..
           <br>
-          Uitleg over status denk ik..  
+          Uitleg over status denk ik..
         select.petition-form-indication-dropdown id='petitionstate'
-          option value="concept" 
+          option value="concept"
             = t "petition.state.not_yet_finished"
           option value="live"
             = t "petition.signable"
@@ -144,28 +150,28 @@ div.page
         = t 'edit.petition.edit_petition_text'
 
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
-    div.petition-editbutton 
+    div.petition-editbutton
       /TODO insert anchor
       = t 'petition.write_update_about_petition'
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
         div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
-          div.petition-editbutton 
+          div.petition-editbutton
             = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
-    
+
   /<!-- /editbutton -->
 
   section.petition-container id="petitionprogres"
     div.petition-text-wrapper
       h2.petition-section-title= t('show.petition.news')
-      div.petition-text 
+      div.petition-text
         h3 report on news about your petition
         h3 Gemeente X
-        p blabla 
+        p blabla
         p &nbsp;
 
-        h3 Wij willen vluchtelingen 
+        h3 Wij willen vluchtelingen
         p statement
         p &nbsp;
 
