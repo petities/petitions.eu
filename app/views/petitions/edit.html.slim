@@ -30,11 +30,11 @@ div.page
         =<> @petition.versions.size
 
       - if @version_index < 0
-        div.petition-editbutton.left
+        div.petition-editbutton.pull-left
           =<> link_to 'newer version', edit_petition_path(@petition, {version: @up})
 
       - if @version_index.abs < @petition.versions.size
-        div.petition-editbutton.right
+        div.petition-editbutton.pull-right
           =<> link_to 'pervious version', edit_petition_path(@petition, {version: @down})
 
     /<!-- versioning -->
