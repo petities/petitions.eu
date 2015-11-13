@@ -239,9 +239,20 @@ function toggleSearchBox() {
           
   } else {
         c.show();
-          
   }
 }
+
+function toggleUpdateEdit(id) {
+  ud=$('#update'+id);
+  if (ud.is(':visible')) {
+    ud.hide();
+    $('#updateEdit'+id).css('display','flex');
+  } else {
+    ud.css('display','flex');
+    $('#updateEdit'+id).hide();
+  }
+}
+
   
 $(document).on('click', '.read-more-handler', function() {
   $(this).hide();

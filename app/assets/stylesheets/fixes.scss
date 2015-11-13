@@ -75,3 +75,81 @@ input[type="button"].petition-form-button {
 .pull-left {
   float: left;
 }
+
+
+.petition-edit-label{ 
+  margin:0 0 5px; 
+}  
+
+.petition-edit-input { 
+  width:94%; 
+  margin:0 0 15px; 
+  padding:10px 3%; 
+  background:#fff; 
+  border:1px solid #aaa; 
+}
+
+.petition-edit-input.small { 
+  width:12%; 
+}
+
+textarea.petition-edit-input { 
+  height:200px; 
+}
+
+
+.petition_field_label {
+  float: left;
+  width: 40%;
+  font-weight: bold;
+  padding: 0 0 5px 0;
+}
+
+.petition_field_dat {
+  float: left;
+  width: 58%;
+  padding: 0 0 5px 0;
+}
+
+/* petition update fields.. */
+
+.update-content {
+    flex: 0 1 90%;
+}
+
+.update-edit {
+    display: flex;
+    padding: 25px 0 5px;
+    border-bottom: 1px solid #e9e9e9;
+    display: none;
+}
+
+.petition-edit-save {
+    -webkit-appearance: none;
+    padding: 5px 2%;
+    background: #4fa6d0;
+    font: 400 18px/28px 'Open Sans', arial, sans-serif;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+.update-icon {
+    flex: 0 0 10%;
+    height: 46px;
+    width: 49px;
+    background: url('edit.gif') 0 0 no-repeat;
+    cursor: pointer;
+}
+
+.update {
+    padding: 25px 0 5px;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.petition-updates 
+.update-container { 
+  width: 70%; 
+  margin: 0 auto 25px; 
+}
+
