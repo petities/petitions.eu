@@ -251,7 +251,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
-    flash[:petition_flash] = t("petition.status.flash.%s" % @petition.status, default: @petition.status)
+    @petition_flash = t("petition.status.flash.%s" % @petition.status, default: @petition.status)
 
     @images = @petition.images
   end
@@ -381,7 +381,7 @@ class PetitionsController < ApplicationController
         @version_index = params[:version].to_i
         @petition = @petition.versions[@version_index].reify
       end
-      
+
       @up = @version_index < 0 ? @version_index + 1 : 0
       @down = @version_index.abs < @petition.versions.size ? @version_index-1 : @version_index
 
