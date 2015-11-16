@@ -1,5 +1,11 @@
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
+  extend FriendlyId
+  
+  #slug_column = 'cached_slug'
+  
+  friendly_id :title, use: :slugged, slug_column: :cached_slug
+  
 
   default_scope { order('created_at DESC') }
 

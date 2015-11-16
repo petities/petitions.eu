@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
     # resources :new_signatures
 
-    resources :updates, only: [:index]
+    resources :updates, only: [:index, :show]
 
     get :finalize
 
