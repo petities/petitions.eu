@@ -63,15 +63,15 @@ div.page
       h2.petition-section-title= t('show.petition.title')
       div.petition-text
         h3= t('show.petition.we')
-        p= @petition.initiators
+        = markdown @petition.initiators
         p &nbsp;
 
         h3= t('show.petition.observe')
-        p= @petition.statement
+        = markdown @petition.statement
         p &nbsp;
 
         h3= t('show.petition.request')
-        p= @petition.request
+        = markdown @petition.request
 
     javascript:
       var petition_state_summary = '#{@petition.state_summary}' || 'draft';
@@ -148,7 +148,8 @@ div.page
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
-      = t 'petition.write_update_about_petition'
+      = link_to '#write_update'
+        = t 'petition.write_update_about_petition'
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
@@ -186,6 +187,7 @@ div.page
 
 = render partial: 'signatures'
 
+div id='write_update'
 = render partial: 'news_updates'
 
 

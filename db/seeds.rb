@@ -69,11 +69,22 @@
 #    date_projected: Faker::Time.between(10.days.from_now, 2.months.from_now)
 #  })
 
+# Petition.all.each do |petition|
+#   puts '%-6s signatures %5s' % [petition.id, petition.signatures.count]
+#   if petition.friendly_id == nil
+#     begin
+#       petition.save!
+#     rescue => ex
+#       puts ex
+#     end
+#   end
+#   puts petition.friendly_id
+# end
+#
 
 Petition.all.each do |petition|
 
   puts '%-6s signatures %5s' % [petition.id, petition.signatures.count]
-
 
   if not petition.live? then
     next
@@ -86,7 +97,7 @@ Petition.all.each do |petition|
   count = rand(5..50)
 
   puts '%-6s add signatures %5s' % [petition.id, count]
-  
+
   count.times do
     signature = Signature.create({
         :petition_id => petition[:id],
@@ -107,7 +118,7 @@ Petition.all.each do |petition|
       })
       # signature.save
   end
-  
+
   count = petition.signatures.count
   petition.update(signatures_count: count)
   petition.update_active_rate!

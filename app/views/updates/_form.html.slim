@@ -1,0 +1,49 @@
+
+
+
+/- if user_signed_in? && (current_user.has_role?(:admin))
+
+= form_for update, html:{ multipart: true } do |f|
+  div.petition-edit-label
+    = t('update.label.title')
+
+  = f.text_field(:title, class: 'petition-edit-input')
+
+
+  div.petition-edit-label
+    = t('update.label.text')
+
+  = f.text_area(:text, class: 'petition-edit-input')
+
+  div.petition-edit-label
+    = t('update.label.show_on_homepage')
+
+  = f.check_box :show_on_home, {checked: true}
+
+  - if @offices
+    div.petition-edit-label
+      = t('update.label.show_on_office')
+
+    = f.check_box :show_on_office, {checked: false}
+
+    div.petition-edit-label
+      = t('update.label.select_office')
+
+    = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
+
+  /- if @petitions
+  /  div.petition-edit-label
+  /    = t('update.label.select_petition')
+  /    = f.select :petition_id, options_from_collection_for_select(@petitions, "id", "name"), class: 'petition-edit-input'
+
+  /div.petition-edit-label
+  /    | TODO afbeelding:
+
+  div.petition-edit-label
+      = t('update.label.save_news')
+
+  - if action_name == 'new'
+    = f.submit t('news_update.form.update', default: 'create news'), class: 'petition-edit-save'
+
+  - else 
+    = f.submit t('news_update.form.update', default: 'update news'), class: 'petition-edit-save'

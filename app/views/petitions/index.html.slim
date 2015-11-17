@@ -43,19 +43,14 @@ div.page
 
   
   aside.news-intro-blocks-container
-    div.news-intro-block
-      h2.news-intro-block-title= @news[0].title
-      div.news-intro-block-date= @news[0].date
-      div.news-intro-block-intro= @news[0].intro_text
-      a.news-intro-block-intro-read-more href="#" = t('index.read')
-
-    div.news-intro-block.right
-      h2.news-intro-block-title= @news[1].title
-      div.news-intro-block-date= @news[1].date
-      div.news-intro-block-intro= @news[1].intro_text
-      a.news-intro-block-intro-read-more href="#" = t('index.read')
-      
-      
+    - @news[0,2].each do |news|
+      div.news-intro-block
+        h2.news-intro-block-title= news.title
+        div.news-intro-block-date= news.created_at.strftime("%d-%m-%Y")
+        div.news-intro-block-intro
+          = markdown news.intro_text
+        = link_to update_path(news)
+          = t('index.read')
 
 / p id="notice"
 /   = notice

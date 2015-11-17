@@ -8,11 +8,13 @@ footer.footer
           ul.footer-news-list
             - @news.offset(is_homepage? ? 2 : 0).each do |entry|
               li.footer-news-list-item
-                a href="#"
-                  = entry.date
+                = link_to update_path(entry)
+                  - if entry.date.nil?
+                    = entry.updated_at.strftime("%d-%m-%Y")
+                  - else
+                    = entry.date.strftime("%d-%m-%Y")
                   | &nbsp; 
                   = entry.title
-                  
           
     div.footer-content-block
       div.footer-content-menu-wrapper

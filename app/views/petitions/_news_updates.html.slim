@@ -9,6 +9,7 @@ div.petition-updates
           div.update-edit style="display:flex;"
             div.update-icon
             div.update-content.whitespace
+              /= form_for @
               form
                 div.petition-edit-label
                   = t('petition.update.from.title')

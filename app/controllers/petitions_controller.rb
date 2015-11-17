@@ -159,7 +159,10 @@ class PetitionsController < ApplicationController
 
     if @petition.organisation_id
     	@organisation = Organisation.find(@petition.organisation_id)
-	end
+    end
+
+    @petition_types = PetitionType.all
+    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
 
     @signature = @petition.signatures.new
 
@@ -247,6 +250,7 @@ class PetitionsController < ApplicationController
   # GET /petitions/1/edit
   def edit
     authorize @petition
+
     @owners = find_owners
     @petition_types = PetitionType.all
     @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
@@ -296,6 +300,8 @@ class PetitionsController < ApplicationController
   # PATCH/PUT /petitions/1
   # PATCH/PUT /petitions/1.json
   def update
+    authorize @petition
+
     @owners = find_owners
 
     locale = params[:add_locale] || I18n.locale
@@ -308,7 +314,6 @@ class PetitionsController < ApplicationController
 
     # reset slug..
     #@petition.slug = nil
-
 
     if params[:images].present?
       params[:images].each do |image|

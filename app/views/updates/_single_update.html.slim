@@ -1,17 +1,20 @@
-div.update
-   h2= update.title
-   div.update-intro= raw update.intro_text
+h2= update.title
+div.update-intro
+  = markdown raw update.intro_text
 
-   - unless update.read_more_text.blank?
-     div.read-more-handler.whitespace + Lees meer
-     div.read-more-content.whitespace= raw update.read_more_text
-   - else
-     div.whitespace
+- unless update.read_more_text.blank?
+  div.read-more-handler.whitespace 
+    | + 
+    = t('update.read_more')
+  div.read-more-content.whitespace
+    = markdown raw update.read_more_text
+- else
+  div.whitespace
 
-   div.update-date
-     = update.created_at.strftime('%d-%m-%Y')
+div.update-date
+  = update.created_at.strftime('%d-%m-%Y')
 
-     - if update.petition.present?
-       = ' | ' 
-       | Petition: 
-       = link_to update.petition.name, petition_path(update.petition)
+  - if update.petition.present?
+    = ' | ' 
+    | Petition: 
+    = link_to update.petition.name, petition_path(update.petition)

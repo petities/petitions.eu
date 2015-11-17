@@ -1,0 +1,10 @@
+
+- if user_signed_in? && current_user.has_role?(:admin)
+  /div.update-container
+  /div.update-container.updates-edit
+  div.update-edit style="display:flex;"
+    div.update-icon
+    div.update-content.whitespace
+      = render partial: 'form', locals: { update: update}
+
+
