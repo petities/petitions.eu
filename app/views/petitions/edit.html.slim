@@ -5,6 +5,7 @@ div.page
       h2.petition-section-title
         = @petition_flash
 
+
 div.page
 
   section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container') id="introContainer"
@@ -20,6 +21,9 @@ div.page
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
         = t 'edit.petition.edit_petition_text'
+    div class="petition-editbutton-container"
+      div class="petition-editbutton"
+        = link_to t('petition.add_news'), '#write_update', class: 'button'
     /<!-- /editbutton -->
 
     /<!-- petition versioning -->
@@ -182,13 +186,24 @@ div.page
         p hier komt nieuws!
 
 
-= render partial: 'social'
+  = render partial: 'social'
 
 
-= render partial: 'signatures'
+  = render partial: 'signatures'
 
-div id='write_update'
-= render partial: 'news_updates'
+  /= render partial: 'news_updates'
+
+div.page
+  section
+    h2.petition-section-title= t('show.signatures.title')
+      = t('updates.news_updates')
+
+    div.update-container id="petitionnews"
+      div id='write_update'
+      = render partial: 'updates/single_from_update', locals: {update: @new_update}
+
+      = render partial: 'updates/list'
+
 
 
 

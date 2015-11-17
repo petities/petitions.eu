@@ -6,10 +6,8 @@ class PasswordsController < Devise::PasswordsController
 
   def create
     user = User.where(email: params[:email]).first
-    
-    if user && user.email
-      user.send_reset_password_instructions
-    end
+
+    user.send_reset_password_instructions if user && user.email
 
     flash[:notice] = "Reset password instructions were sent on the following email: #{params[:email]}"
 
@@ -18,21 +16,20 @@ class PasswordsController < Devise::PasswordsController
 
   def update
     self.resource = resource_class.reset_password_by_token(resource_params)
-    
+
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
-    
-      flash[:notice] = "You can now login with your new password!"
+
+      flash[:notice] = 'You can now login with your new password!'
       respond_with resource, location: after_resetting_password_path_for(resource)
     else
       respond_with resource
-    end    
+    end
   end
 
-protected
+  protected
 
-  def after_resetting_password_path_for(resource)
+  def after_resetting_password_path_for(_resource)
     new_session_path(resource_name)
   end
-
 end

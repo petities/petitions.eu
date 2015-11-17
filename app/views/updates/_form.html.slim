@@ -31,10 +31,11 @@
 
     = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
 
-  /- if @petitions
-  /  div.petition-edit-label
-  /    = t('update.label.select_petition')
-  /    = f.select :petition_id, options_from_collection_for_select(@petitions, "id", "name"), class: 'petition-edit-input'
+  - if @petition
+    div.petition-edit-label
+      = t('update.label.update_for_petition')
+    
+    = f.hidden_field :petition_id, :value => @petition.id
 
   /div.petition-edit-label
   /    | TODO afbeelding:

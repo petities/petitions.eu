@@ -41,5 +41,4 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
   filter :locale_list
-
 end

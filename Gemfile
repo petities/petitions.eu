@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'rails-i18n'
@@ -16,7 +15,7 @@ gem 'friendly_id-globalize'
 gem 'sqlite3'
 gem 'mysql2', '~> 0.3.18'
 
-#legacy utf 8 issues..
+# legacy utf 8 issues..
 gem 'utf8-cleaner'
 gem 'rack-utf8_sanitizer'
 
@@ -48,7 +47,7 @@ gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'
-#gem 'will_paginate-bootstrap'
+# gem 'will_paginate-bootstrap'
 gem 'will-paginate-i18n'
 #
 
@@ -91,7 +90,7 @@ gem 'config', github: 'railsconfig/config'
 gem 'activeadmin', github: 'activeadmin'
 
 # bootstrap
-#gem 'bootstrap-sass', '~> 3.2.0'
+# gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -122,4 +121,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

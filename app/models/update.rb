@@ -1,21 +1,20 @@
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
   extend FriendlyId
-  
-  # `title`.`title`, `title_clean`.`title_clean`, 
-  # `text`.`text`, `petition_id`.`petition_id`, 
-  # `office_id`.`office_id`, `url`.`url`, 
-  # `url_text`.`url_text`, `private_key`.`private_key`, 
-  # `date`.`date`, `date_from`.`date_from`, 
-  # `date_until`.`date_until`, `show_on_office`.`show_on_office`, 
-  # `show_on_home`.`show_on_home`, 
-  # `created_at`.`created_at`, `updated_at`.`updated_at`, 
+
+  # `title`.`title`, `title_clean`.`title_clean`,
+  # `text`.`text`, `petition_id`.`petition_id`,
+  # `office_id`.`office_id`, `url`.`url`,
+  # `url_text`.`url_text`, `private_key`.`private_key`,
+  # `date`.`date`, `date_from`.`date_from`,
+  # `date_until`.`date_until`, `show_on_office`.`show_on_office`,
+  # `show_on_home`.`show_on_home`,
+  # `created_at`.`created_at`, `updated_at`.`updated_at`,
   # `cached_slug`.`cached_slug`
 
-  #slug_column = 'cached_slug'
-  
+  # slug_column = 'cached_slug'
+
   friendly_id :title, use: :slugged, slug_column: :cached_slug
-  
 
   default_scope { order('created_at DESC') }
 
@@ -25,11 +24,10 @@ class Update < ActiveRecord::Base
   belongs_to :petition
 
   def intro_text
-    self.text.split('. ').first.html_safe
+    text.split('. ').first.html_safe
   end
 
   def read_more_text
-    self.text.split('. ').last.html_safe
+    text.split('. ').last.html_safe
   end
 end
-

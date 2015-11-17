@@ -3,8 +3,8 @@ class Petition < ActiveRecord::Base
   extend FriendlyId
 
   resourcify
-  translates :name, :description, :initiators, :statement, :request, :slug, :versioning  => :paper_trail
-  has_paper_trail :only => [:name, :description, :initiators, :statement, :request]
+  translates :name, :description, :initiators, :statement, :request, :slug, versioning: :paper_trail
+  has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
   serialize :locale_list, Array
 
@@ -50,7 +50,7 @@ class Petition < ActiveRecord::Base
 
   # petitionaris
   PETITIONARIS = [
-    [t('petition.stageing'), 'stageing'],   # offer for review
+    [t('petition.stageing'), 'stageing'], # offer for review
   ]
 
   scope :live,      -> {where(status: 'live')}
@@ -63,10 +63,10 @@ class Petition < ActiveRecord::Base
   belongs_to :petition_type
   # belongs_to :organisation
 
-  has_many :images, :as => :imageable,  :dependent => :destroy
+  has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images
 
-  #default_scope :order => 'petitions.name ASC'
+  # default_scope :order => 'petitions.name ASC'
 
   has_many :new_signatures
 
@@ -97,15 +97,15 @@ class Petition < ActiveRecord::Base
   validates_presence_of :statement
   validates_presence_of :request
 
-  validates_format_of :subdomain, :with => /\A[A-Za-z0-9-]+\z/, :allow_blank => true
-  validates_uniqueness_of :subdomain, :case_sensitive => false, :allow_blank => true
-  validates_exclusion_of :subdomain, :in => %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
+  validates_format_of :subdomain, with: /\A[A-Za-z0-9-]+\z/, allow_blank: true
+  validates_uniqueness_of :subdomain, case_sensitive: false, allow_blank: true
+  validates_exclusion_of :subdomain, in: %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
 
   after_update :send_status_mail
 
   def should_generate_new_friendly_id?
-      return true
-      name_changed?
+    # return true
+    name_changed?
   end
 
   def send_status_mail
@@ -143,18 +143,12 @@ class Petition < ActiveRecord::Base
   end
 
   ## edit a given petition
-  def can_edit_petition? user
-    if user.has_role? :admin
-      return true
-    end
+  def can_edit_petition?(user)
+    return true if user.has_role? :admin
 
     office = Office.find(self.office_id)
 
-    if office
-      if user.has_role? office, :admin
-        return true
-      end
-    end
+    return true if office && user.has_role?(office, :admin)
 
     return False
   end
@@ -190,9 +184,9 @@ class Petition < ActiveRecord::Base
 
   def history_chart_json
     self.signatures.confirmed.map{|signature| signature.confirmed_at }
-        .compact
-        .group_by{|signature| signature.strftime("%Y-%m-%d")}
-        .map{|group| group[1].size}#.to_json.html_safe
+      .compact
+      .group_by{|signature| signature.strftime("%Y-%m-%d")}
+      .map{|group| group[1].size}# .to_json.html_safe
   end
 
   def inc_signatures_count!
@@ -210,7 +204,6 @@ class Petition < ActiveRecord::Base
       site: { link: site1, text: site1_text }
     }
   end
-
 end
 
 

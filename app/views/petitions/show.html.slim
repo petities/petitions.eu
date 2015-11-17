@@ -40,6 +40,8 @@ div.page
 
       = link_to 'Edit', edit_petition_path(@petition), class: 'button'
 
+  - if @updates
+    = link_to t('petition.news'), '#petitionnews', class: 'button'
 
   javascript:
     window.page = 1;
@@ -173,65 +175,21 @@ div.page
           });
         canvas id="chartContainer" style="height:275px; width:100%;"
 
-= render partial: 'social'
+  = render partial: 'social'
 
-= render partial: 'signatures'
+  = render partial: 'signatures'
 
-- if @updates.present?
-  div.petition-updates
-    div.page
-      section
-        h2.petition-section-title Updates
+  section.vervolg-main
 
-        javascript:
-          window.updates_page = 1;
+  h1.petition-section-title.left
+    = t('updates.news_updates')
+  div.update-container id="petitionnews"
+    = render partial: 'updates/list'
 
-        div.update-container
-          = render partial: 'updates/list'
-          
-        - if @petition.updates.size > 3
-          div.navigation-bar
-            a href="javascript:void(0)" data={type: 'updates'} class="navigation-loadmore button" Load more updates
-            div.clearfix
-      
-/ p id="notice"
-/   = notice
+    /= render partial: 'updates/single_from_update', locals: {update: @new_update}
 
-/   - if user_signed_in?
-/       - if current_user.has_role? :admin or current_user.has_role? :admin, @petition 
-/         = link_to 'Edit', edit_petition_path(@petition), html_options={class: "btn btn-warning"}
-
-
-/ - cache [@petition, Globalize.locale.to_s] do
-
-/   - if @petition.locale_list
-/     p class="well"
-/       = t "petitions.translations"
-/       =<> ":"
-/       - @petition.locale_list.each do |trans|
-/         =<> link_to petition_path(@petition, locale: trans)
-/           =<> t(trans.upcase.to_sym, :scope => :countries) 
-
-/ - cache [@petition, Globalize.locale.to_s] do
-
-/   div class="well"
-/     = t "signatures"
-/     =<> ":"
-
-/     = @petition.signatures.count
-
+ 
 /   div class="well"
 /     =<> t "petition.subdomain"
 /     - if @petition.subdomain?
 /       = @petition.subdomain
-
-/   div class="well"
-/     - if @petition.cached_slug?
-/       = @petition.cached_slug
-
-/   div class="well"
-/     =<> t "petition.management"
-/     - @owners.each do |owner|
-/       = owner.name
-
-/ - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
