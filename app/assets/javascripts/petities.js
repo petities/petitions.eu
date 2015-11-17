@@ -242,6 +242,15 @@ function toggleSearchBox() {
   }
 }
 
+function toggleEditMenu() {
+  m=$('.header-user-dropdown');
+  if (m.is(':visible')) {
+    m.hide();
+  } else {
+    m.show();
+  }
+}
+
 function toggleUpdateEdit(id) {
   ud=$('#update'+id);
   if (ud.is(':visible')) {
