@@ -1,7 +1,38 @@
+- if @update
+  - update = @update
+  - command = "toggleUpdateEdit(%s)" % -1 
+  - update_id = "update%s" % -1 
+  - update_edit_id = "updateEdit%s" % -1 
 
-- if @selected_update
-  - update = @selected_update
-  = render partial: 'single_update', locals: { update: update}
+  div.update id=update_id style="display:flex;"
+    div.update-icon onclick=command
+    div.update-content.whitespace
+      = render partial: 'updates/single_noreadmore_update', locals: { update: update}
+
+  - if user_signed_in? && current_user.has_role?(:admin)
+    div.update-edit id=update_edit_id
+      div.update-icon onclick=command
+      div.update-content.whitespace
+        = render partial: 'form', locals: { update: update}
+
+  div.update-content.whitespace
+  h1.petition-section-title.left 
+    = t('updates.latests_updates')
 
 - @updates.each do |update|
-  = render partial: 'single_update', locals: { update: update}
+
+  - command = "toggleUpdateEdit(%s)" % update.id
+  - update_id = "update%s" % update.id
+  - update_edit_id = "updateEdit%s" % update.id
+
+  div.update id=update_id style="display:flex;"
+    div.update-icon onclick=command
+    div.update-content.whitespace
+      = render partial: 'updates/single_update', locals: { update: update}
+
+  - if user_signed_in? && current_user.has_role?(:admin)
+    div.update-edit id=update_edit_id
+      div.update-icon onclick=command
+      div.update-content.whitespace
+        = render partial: 'form', locals: { update: update}
+

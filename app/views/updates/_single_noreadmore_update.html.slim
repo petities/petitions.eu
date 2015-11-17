@@ -1,0 +1,11 @@
+h2= update.title
+div.update-intro
+  = markdown raw update.text
+
+div.update-date
+  = update.created_at.strftime('%d-%m-%Y')
+
+  - if update.petition.present?
+    = ' | ' 
+    | Petition: 
+    = link_to update.petition.name, petition_path(update.petition)

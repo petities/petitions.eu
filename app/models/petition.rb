@@ -8,6 +8,8 @@ class Petition < ActiveRecord::Base
 
   serialize :locale_list, Array
 
+  # add slug_column?
+  # write migration?
   friendly_id :name, use: :globalize
 
   STATUS_LIST = [
@@ -102,6 +104,7 @@ class Petition < ActiveRecord::Base
   after_update :send_status_mail
 
   def should_generate_new_friendly_id?
+      return true
       name_changed?
   end
 
