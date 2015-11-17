@@ -1,0 +1,17 @@
+div.page.vervolg
+  section.vervolg-main
+    h1.petition-section-title.left Updates
+    div.update-container
+      = render partial: 'list'
+
+    div.navigation-bar
+      = will_paginate @updates, renderer: PetitionsPaginateRenderer
+
+  aside.vervolg-side
+    div.side-article-container.whitespace
+      h2= t('help.changesig.title')
+      p= raw t('help.changesig.descr')
+      
+    div.side-article-container.whitespace
+      h2= t('help.opinionpiece.title')
+      p= raw t('help.opinionpiece.descr')
