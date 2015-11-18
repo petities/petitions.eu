@@ -11,8 +11,9 @@ div.page
       input.search-container-button type="submit" value=""
     div.clearfix
 
-  /div.header-user-wrapper.user-index
-  /  = render partial: 'shared/userbox'
+  - if user_signed_in?
+    div.header-user-wrapper.user-index
+      = render partial: 'shared/userbox'
     
   section.petitions-overview-wrapper
 
