@@ -63,7 +63,7 @@ div.page.vervolg
           = link_to edit_petition_path(petition), class: "main-container-grey-item"
             = petition.name
 
-    - if(current_user.has_role?(:admin) or current_user.has_role?(@office, :admin))
+    - if user_signed_in? && (current_user.has_role?(:admin) or current_user.has_role?(@office, :admin))
       /div.main-container-grey.whitespace
       /  h2.main-container-grey-title
       /    = t("desk.add_admin")
@@ -91,7 +91,6 @@ div.page.vervolg
           - @admins.each do |admin|
             div.main-container-grey-item 
               = admin.email
- 
 
 
   aside.vervolg-side
