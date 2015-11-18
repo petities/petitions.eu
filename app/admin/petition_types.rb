@@ -11,8 +11,8 @@ ActiveAdmin.register PetitionType do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-  
-  #config.petitions = false
+
+  # config.petitions = false
   filter :name
   filter :description
   filter :required_minimum_age
@@ -25,18 +25,17 @@ ActiveAdmin.register PetitionType do
   filter :require_signature_full_address
 
   permit_params do
-      permitted = [
-        :name,
-        :description,
-        :required_minimum_age,
-        :display_person_born_at,
-        :display_person_birth_city,
-        :require_person_born_at,
-        :require_person_birth_city,
-        :display_signature_person_citizen,
-        :display_signature_full_address,
-        :require_signature_full_address,
-      ]
+    permitted = [
+      :name,
+      :description,
+      :required_minimum_age,
+      :display_person_born_at,
+      :display_person_birth_city,
+      :require_person_born_at,
+      :require_person_birth_city,
+      :display_signature_person_citizen,
+      :display_signature_full_address,
+      :require_signature_full_address
+    ]
   end
-
 end

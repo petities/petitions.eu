@@ -1,6 +1,4 @@
 ActiveAdmin.register NewSignature do
-
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -30,7 +28,7 @@ ActiveAdmin.register NewSignature do
 
   filter :special
   filter :person_city
-  filter :person_birth_city 
+  filter :person_birth_city
   filter :person_born_at
 
   filter :signature_remote_browser
@@ -42,5 +40,4 @@ ActiveAdmin.register NewSignature do
 
   filter :last_reminder_send_at
   filter :unconverted_person_born_at
-
 end

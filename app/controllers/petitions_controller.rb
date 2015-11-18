@@ -14,7 +14,7 @@ class PetitionsController < ApplicationController
     petitions = Petition.live
     direction = [:desc, :asc][@order]
 
-    if @sorting == 'active' then
+    if @sorting == 'active'
       petitions = petitions.order(active_rate_value: direction)
     elsif @sorting == 'biggest'
       petitions = petitions.order(signatures_count: direction)
@@ -25,10 +25,10 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-      {type: 'active',      label: t('index.sort.active')},
-      {type: 'biggest',     label: t('index.sort.biggest')},
-      {type: 'newest',      label: t('index.sort.new')},
-      {type: 'sign_quick',  label: t('index.sort.sign_quick')}
+      { type: 'active', label: t('index.sort.active') },
+      { type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'newest',      label: t('index.sort.new') },
+      { type: 'sign_quick', label: t('index.sort.sign_quick') }
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
@@ -50,7 +50,7 @@ class PetitionsController < ApplicationController
     petitions = Petition.live.order(created_at: direction)
 
     # describe petitions
-    if @sorting == 'all' then
+    if @sorting == 'all'
       petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
     elsif @sorting == 'open'
       # petitions = petitions.order(signatures_count: direction)
@@ -61,15 +61,14 @@ class PetitionsController < ApplicationController
     end
 
     @sorting_options = [
-      {type: 'all',            label: t('all.sort.all')},
-      {type: 'open',           label: t('all.sort.open')},
-      {type: 'concluded',      label: t('all.sort.concluded')},
-      {type: 'rejected',       label: t('all.sort.rejected')},
-      {type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere')}
+      { type: 'all', label: t('all.sort.all') },
+      { type: 'open',           label: t('all.sort.open') },
+      { type: 'concluded',      label: t('all.sort.concluded') },
+      { type: 'rejected',       label: t('all.sort.rejected') },
+      { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
     ]
 
     @results_size = petitions.size
-
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
@@ -85,10 +84,10 @@ class PetitionsController < ApplicationController
     @page = params[:page] || 1
 
     @search = params[:search]
-    #translation = Petition.findbyname(params[:search])
+    # translation = Petition.findbyname(params[:search])
     petitions = Petition.joins(:translations).
-      #with_locales(I18n.available_locales).
-      where("petition_translations.name like ?", "%#{@search}%")
+                # with_locales(I18n.available_locales).
+                where('petition_translations.name like ?', "%#{@search}%")
 
     @results_size = petitions.size
 
@@ -96,7 +95,6 @@ class PetitionsController < ApplicationController
   end
 
   def admin
-
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'live'
     @order   = params[:order].to_i
@@ -104,17 +102,15 @@ class PetitionsController < ApplicationController
     # petitions = Petition.joins(:translations).live
     direction = [:desc, :asc][@order]
 
-    petitions = Petition.all().order(created_at: direction)
+    petitions = Petition.all.order(created_at: direction)
 
     # do sorting
-    if @sorting
-      petitions = petitions.where(status: @sorting)
-    end
+    petitions = petitions.where(status: @sorting) if @sorting
 
     sort_list = []
     # convert all status
     Petition::STATUS_LIST.each do |label, status|
-      sort_list.push({type: status, label: label})
+      sort_list.push(type: status, label: label)
     end
 
     @sorting_options = sort_list
@@ -128,18 +124,17 @@ class PetitionsController < ApplicationController
   end
 
   def manage
-
     if current_user
-      #@petitions = current_user.petitions
+      # @petitions = current_user.petitions
       @petitions = Petition.with_role(:admin, current_user)
       @results_size = @petitions.size
 
       @sorting_options = [
-        {type: 'all',            label: t('all.sort.all')},
-        {type: 'open',           label: t('all.sort.open')},
-        {type: 'concluded',      label: t('all.sort.concluded')},
-        {type: 'rejected',       label: t('all.sort.rejected')},
-        {type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere')}
+        { type: 'all', label: t('all.sort.all') },
+        { type: 'open',           label: t('all.sort.open') },
+        { type: 'concluded',      label: t('all.sort.concluded') },
+        { type: 'rejected',       label: t('all.sort.rejected') },
+        { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
       ]
 
       # state new
@@ -158,17 +153,21 @@ class PetitionsController < ApplicationController
     @owners = find_owners
 
     if @petition.organisation_id
-    	@organisation = Organisation.find(@petition.organisation_id)
+      @organisation = Organisation.find(@petition.organisation_id)
     end
 
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
+    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
 
     @signature = @petition.signatures.new
 
     @chart_array = @petition.history_chart_json
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+
+    @new_update = Update.new(
+      petition_id: @petition.id
+    )
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
 
@@ -189,7 +188,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.new
 
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
+    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
   end
 
   # POST /petitions
@@ -197,14 +196,15 @@ class PetitionsController < ApplicationController
   def create
     # new_params = Hash(petition_params[:petition])
     @petition = Petition.new(petition_params)
-    @petition.status = "concept"
+    @petition.status = 'concept'
 
     @petition.locale_list << I18n.locale
 
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
 
-      @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
+      @petition.organisation_kind = organisation.kind
+      @petition.organisation_name = organisation.name
     end
 
     if params[:images].present?
@@ -215,7 +215,7 @@ class PetitionsController < ApplicationController
 
     if user_signed_in?
       owner = current_user
-      @petition.status = "concept"
+      @petition.status = 'concept'
     else
       user_params = params[:user]
 
@@ -234,11 +234,9 @@ class PetitionsController < ApplicationController
 
     respond_to do |format|
       if @petition.save
-        if owner
-          owner.add_role :admin, @petition
-        end
+        owner.add_role :admin, @petition if owner
 
-        format.html { redirect_to @petition, flash: { success: t('petition.created') }}
+        format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }
       else
         format.html { render :new }
@@ -253,13 +251,22 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by{|o| o.name}.group_by{|o| o.kind}
+    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
-    @petition_flash = t("petition.status.flash.%s" % @petition.status, default: @petition.status)
+    @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
 
     @images = @petition.images
+
+
+    @new_update = Update.new(
+      petition_id: @petition.id
+    )
+
+    @updates = @petition.updates.paginate(page: 1, per_page: 3)
+
+
   end
 
   #
@@ -272,7 +279,7 @@ class PetitionsController < ApplicationController
 
     # remove ownership for users not in owners_ids
 
-    if not owner_ids.empty?
+    unless owner_ids.empty?
 
       diff1 = @owners.ids - owner_ids
 
@@ -284,17 +291,14 @@ class PetitionsController < ApplicationController
 
     # add a user to role
     if params[:add_owner]
-      user = User.find_by_email(params["add_owner"])
-      if user
-        user.add_role :admin, @petition
-      end
+      user = User.find_by_email(params['add_owner'])
+      user.add_role :admin, @petition if user
     end
 
     respond_to do |format|
       format.html { render :edit }
       format.json { render :show, status: :ok, location: @petition }
     end
-
   end
 
   # PATCH/PUT /petitions/1
@@ -313,7 +317,7 @@ class PetitionsController < ApplicationController
     # end
 
     # reset slug..
-    #@petition.slug = nil
+    # @petition.slug = nil
 
     if params[:images].present?
       params[:images].each do |image|
@@ -324,7 +328,7 @@ class PetitionsController < ApplicationController
     Globalize.with_locale(locale) do
       respond_to do |format|
         if @petition.update_attributes(petition_params)
-          format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.'}}
+          format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
           format.json { render :show, status: :ok, location: @petition }
         else
           format.html { render :edit }
@@ -345,76 +349,74 @@ class PetitionsController < ApplicationController
 
   # DELETE /petitions/1
   # DELETE /petitions/1.json
-  #def destroy
+  # def destroy
   #  @petition.destroy
   #  respond_to do |format|
   #    format.html { redirect_to petitions_url, notice: 'Petition was successfully destroyed.' }
   #    format.json { head :no_content }
   #  end
-  #end
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   #
-    def set_petition
-      Globalize.locale = params[:locale] || I18n.locale
+  def set_petition
+    Globalize.locale = params[:locale] || I18n.locale
 
-      # find petition by slug name subdomain, id, friendly_name
-      if params[:slug]
-        @petition = Petition.find_by_cached_slug(params[:slug])
-      elsif params[:subdomain]
-        @petition = Petition.find_by_subdomain(params[:subdomain])
-      elsif params[:petition_id]
-        @petition = Petition.find(params[:petition_id])
-      else
-        begin
-          # find by friendly url
-          @petition = Petition.friendly.find(params[:id])
-        rescue
-          # find in all locales petition that matches..
-          @petition = Petition.joins(:translations).
-            where("petition_translations.slug like ?", "%#{params[:id]}%").first()
-        end
+    # find petition by slug name subdomain, id, friendly_name
+    if params[:slug]
+      @petition = Petition.find_by_cached_slug(params[:slug])
+    elsif params[:subdomain]
+      @petition = Petition.find_by_subdomain(params[:subdomain])
+    elsif params[:petition_id]
+      @petition = Petition.find(params[:petition_id])
+    else
+      begin
+        # find by friendly url
+        @petition = Petition.friendly.find(params[:id])
+      rescue
+        # find in all locales petition that matches..
+        @petition = Petition.joins(:translations)
+                    .where('petition_translations.slug like ?', "%#{params[:id]}%").first
       end
-
-      # find specific papertrail version
-      @version_index = 0
-
-      if @petition.has_attribute? :index
-        @version_index = @petition.index
-      end
-
-      if params[:version].to_i < 0
-        @version_index = params[:version].to_i
-        @petition = @petition.versions[@version_index].reify
-      end
-
-      @up = @version_index < 0 ? @version_index + 1 : 0
-      @down = @version_index.abs < @petition.versions.size ? @version_index-1 : @version_index
-
     end
 
-    def find_owners
-      User.joins(:roles).where(
-        roles: {resource_type: 'Petition', resource_id: @petition.id})
+    # find specific papertrail version
+    @version_index = 0
+
+    @version_index = @petition.index if @petition.has_attribute? :index
+
+    if params[:version].to_i < 0
+      @version_index = params[:version].to_i
+      @petition = @petition.versions[@version_index].reify
     end
 
-    def update_locale_list(locale)
-      # update the locale menu here
-      @petition.locale_list << params[:add_locale].to_sym
-      @petition.locale_list.uniq!
-    end
+    @up = @version_index < 0 ? @version_index + 1 : 0
+    @down = @version_index.abs < @petition.versions.size ? @version_index - 1 : @version_index
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def petition_params
-      # :add_locale, :version, :owner_ids, :add_owner,
-      # petition: [
-      # locale_list: []
-      params.require(:petition).permit(
-        :name, :description, :statement, :request, :initiators, :status,
-        :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
-        :petition_type_id
-      )
-      #:subscribe, :visible,
-    end
+  def find_owners
+    User.joins(:roles).where(
+      roles: { resource_type: 'Petition', resource_id: @petition.id })
+  end
+
+  def update_locale_list(_locale)
+    # update the locale menu here
+    @petition.locale_list << params[:add_locale].to_sym
+    @petition.locale_list.uniq!
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def petition_params
+    # :add_locale, :version, :owner_ids, :add_owner,
+    # petition: [
+    # locale_list: []
+    params.require(:petition).permit(
+      :name, :description, :statement, :request, :initiators, :status,
+      :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
+      :petition_type_id
+    )
+    #:subscribe, :visible,
+  end
 end

@@ -1,5 +1,4 @@
 class UpdatesController < ApplicationController
-  
   before_action :set_newsitem, only: [:show, :edit, :update]
 
   def index
@@ -18,22 +17,21 @@ class UpdatesController < ApplicationController
   end
 
   def new
-
-    #@offices = Office.where(hidden: false)
+    # @offices = Office.where(hidden: false)
     @offices = Office.all
     @petitions = Petition.live
     @update = Update.new
-    #authorize @update
+    # authorize @update
   end
 
   def show
-     @page = (params[:page] || 1).to_i
+    @page = (params[:page] || 1).to_i
 
-     @updates = Update.all
+    @updates = Update.all
 
-     per_page = request.xhr? ? 3 : 8
+    per_page = request.xhr? ? 3 : 8
 
-     @updates = @updates.paginate(page: @page, per_page: per_page)
+    @updates = @updates.paginate(page: @page, per_page: per_page)
   end
 
   def create
@@ -42,7 +40,10 @@ class UpdatesController < ApplicationController
 
     respond_to do |format|
       if @update.save
-        format.html { redirect_to @update, flash: { success: t('update.created') }}
+        if @update.petition
+          format.html { redirect_to @update.petition, flash: { success: t('update.created') } }
+        end
+        format.html { redirect_to @update, flash: { success: t('update.created') } }
         format.json { render :show, status: :created, location: @update }
       else
         format.html { render :new }
@@ -60,7 +61,7 @@ class UpdatesController < ApplicationController
 
     respond_to do |format|
       if @update.update_attributes(update_params)
-        format.html { redirect_to @update, flash: { success: t('update.updated') }}
+        format.html { redirect_to @update, flash: { success: t('update.updated') } }
         format.json { render :show, status: :created, location: @update }
       else
         format.html { render :edit }
@@ -70,23 +71,22 @@ class UpdatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    #
-    def set_newsitem
-      # find by friendly url
-      @update = Update.friendly.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def update_params
-      # :add_locale, :version, :owner_ids, :add_owner,
-      # petition: [
-      # locale_list: []
-      params.require(:update).permit(
-        :title, :text, :show_on_home, :show_on_office,
-        :petition_id, :office_id,
-      )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  #
+  def set_newsitem
+    # find by friendly url
+    @update = Update.friendly.find(params[:id])
+  end
 
-
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def update_params
+    # :add_locale, :version, :owner_ids, :add_owner,
+    # petition: [
+    # locale_list: []
+    params.require(:update).permit(
+      :title, :text, :show_on_home, :show_on_office,
+      :petition_id, :office_id
+    )
+  end
 end

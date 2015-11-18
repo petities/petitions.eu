@@ -53,7 +53,7 @@ class PetitionsPaginateRenderer < WillPaginate::ViewHelpers::LinkRenderer
       %(<span class="navigation-bar-item">...</span>)
     end
 
-    def previous_or_next_page(page, text, classname)
+    def previous_or_next_page(_page, _text, _classname)
       ''
     end
 

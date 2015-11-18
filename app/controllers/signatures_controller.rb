@@ -1,6 +1,5 @@
 class SignaturesController < ApplicationController
-
-  before_action :find_signature_by_unique_key, :only => [ :show, :confirm, :invite]
+  before_action :find_signature_by_unique_key, only: [:show, :confirm, :invite]
   before_action :set_signature, only: [:update]
 
   # GET /signatures
@@ -10,16 +9,16 @@ class SignaturesController < ApplicationController
     @all_signatures = @petition.signatures.special
 
     unless request.xhr?
-      @chart_array = @petition.history_chart_json 
-      @signatures_count_by_city = @all_signatures.group_by{|sig| sig.person_city}
-                                                 .map{|group| [group[0], group[1].size]}
-                                                 .select{|group| group[1] >= 100}
-                                                 .sort_by{|group| group[1]}[0..9]
+      @chart_array = @petition.history_chart_json
+      @signatures_count_by_city = @all_signatures.group_by(&:person_city)
+                                  .map { |group| [group[0], group[1].size] }
+                                  .select { |group| group[1] >= 100 }
+                                  .sort_by { |group| group[1] }[0..9]
       @per_page = 100
     else
       @per_page = 12
     end
-    
+
     @page = if params[:page]
               params[:page].to_i
             elsif params[:signature_id]
@@ -94,11 +93,12 @@ class SignaturesController < ApplicationController
     confirm_signature if @petition && @signature.valid? && !@signature.confirmed?
 
     respond_to do |format|
-      format.html { redirect_to @petition,
-                    notice: 'Signature was successfully confirmed.' }
+      format.html do
+        redirect_to @petition,
+                    notice: 'Signature was successfully confirmed.'
+      end
       format.json { render :show, status: :ok, location: @signature }
     end
-
   end
 
   # PATCH/PUT /signatures/1
@@ -119,52 +119,53 @@ class SignaturesController < ApplicationController
 
   # DELETE /signatures/1
   # DELETE /signatures/1.json
-  #def destroy
+  # def destroy
   #  @signature.destroy
   #  respond_to do |format|
   #    format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
   #    format.json { head :no_content }
   #  end
-  #end
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_signature
-      @signature = Signature.find(params[:id])
-      # find by unique key
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_signature
+    @signature = Signature.find(params[:id])
+    # find by unique key
+  end
+
+  def find_signature_by_unique_key
+    @signature = Signature.find_by_unique_key(params[:signature_key])
+
+    unless @signature
+      @signature = NewSignature.find_by_unique_key(params[:signature_key])
     end
+  end
 
-    def find_signature_by_unique_key
-      @signature = Signature.find_by_unique_key(params[:signature_key])
-      
-      unless @signature
-        @signature = NewSignature.find_by_unique_key(params[:signature_key])
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def signature_params
+    params.require(:signature).permit(
+      :person_city, :person_name, :person_email, :person_street, :person_street_number, :person_born_at, :person_postalcode,
+      :subscribe, :visible
+    )
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def signature_params
-      params.require(:signature).permit(
-          :person_city, :person_name, :person_email, :person_street, :person_street_number, :person_born_at, :person_postalcode,
-          :subscribe, :visible,
-      )
-    end
+  def confirm_signature
+    old_signature = @signature
+    # create a new signature in the signarure table.
+    @signature = Signature.new(@signature.as_json)
+    @signature.id = nil
+    @signature.confirmed = true
+    @signature.confirmation_remote_addr = request.remote_ip
+    @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
 
-    def confirm_signature
-      old_signature = @signature
-      # create a new signature in the signarure table.
-      @signature = Signature.new(@signature.as_json)
-      @signature.id = nil
-      @signature.confirmed = true
-      @signature.confirmation_remote_addr = request.remote_ip
-      @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
+    @petition.inc_signatures_count!
+    @petition.update_active_rate!
 
-      @petition.inc_signatures_count!
-      @petition.update_active_rate!
+    # expire_fragment @petition
 
-      # expire_fragment @petition
-      
-      old_signature.delete
-      @signature.save
-    end
+    old_signature.delete
+    @signature.save
+  end
 end

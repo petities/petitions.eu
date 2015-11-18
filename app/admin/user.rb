@@ -18,39 +18,33 @@ ActiveAdmin.register User do
   filter :roles
 
   show do
- 
     attributes_table do
       row :email
       row :first_name
       row :last_name
     end
 
-    table_for  user.roles do
-      column "Role" do |role|
-        role.name
-      end
+    table_for user.roles do
+      column 'Role', &:name
     end
   end
 
   form do |f|
-    f.inputs "User Details" do
+    f.inputs 'User Details' do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :roles, as: :check_boxes, collection: Role.where({
-        resource_id: nil, resource_type: nil})
+      f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
     end
     f.actions
   end
 
- def update
-   if params[:user][:password].blank?
-      params[:model].delete("password")
-      params[:model].delete("password_confirmation")
-   end
+  def update
+    if params[:user][:password].blank?
+      params[:model].delete('password')
+      params[:model].delete('password_confirmation')
+    end
 
-   super
-
- end
-
+    super
+  end
 end

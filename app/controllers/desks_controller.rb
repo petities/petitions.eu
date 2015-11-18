@@ -1,5 +1,4 @@
 class DesksController < ApplicationController
-
   def index
     @offices = Office.all
   end
@@ -19,7 +18,7 @@ class DesksController < ApplicationController
     @petitions_live = @petitions.live
     # find petition in state of answered
     @petitions_completed = @petitions.where(status: 'completed')
-    # find petition in state of done/ingetrokken 
+    # find petition in state of done/ingetrokken
     @petitions_rejected = @petitions.where(status: 'rejected')
     # withdrawn..
     @petitions_withdrawn = @petitions.where(status: 'withdrawn')
@@ -30,6 +29,5 @@ class DesksController < ApplicationController
     @office_admins = User.with_role(:admin, @office)
 
     @admins = User.with_role(:admin)
-
   end
 end
