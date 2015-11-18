@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
     resources :updates # only: [:index, :show]
 
+
     get :finalize
 
     # is this used?

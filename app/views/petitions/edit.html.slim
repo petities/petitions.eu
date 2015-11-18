@@ -191,25 +191,9 @@ div.page
 
   = render partial: 'signatures'
 
-  /= render partial: 'news_updates'
+  section.vervolg-main
 
-div.page
-  section
-    h2.petition-section-title= t('show.signatures.title')
-      = t('updates.news_updates')
-
-    div.update-container id="petitionnews"
-      div id='write_update'
-      = render partial: 'updates/single_from_update', locals: {update: @new_update}
-
-      = render partial: 'updates/list'
-
-
-
-
-/ - if user_signed_in?
-/   - if current_user.has_role? :admin or current_user.has_role? :admin, @petition
-
-/     h1 Admin Petition options.. TODO
-
-/     == render 'admin_form'
+  h1.petition-section-title.left
+    = t('updates.news_updates')
+  div.update-container id="petitionnews"
+    = render partial: 'updates/list'

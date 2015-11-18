@@ -22,12 +22,28 @@ class Update < ActiveRecord::Base
   scope :show_on_home, -> { where(show_on_home: true) }
 
   belongs_to :petition
+  belongs_to :office
 
   def intro_text
-    text.split('. ').first.html_safe
+    #text.split('. ').slice(0, 2)
+    unless text 
+      return 
+    end
+    text_array = text.split('. ').slice(0, 2)
+    if text_array
+      return text_array.join('. ').html_safe
+    end
   end
 
   def read_more_text
-    text.split('. ').last.html_safe
+    unless text
+      return
+    end
+    
+    text_array = text.split('. ').slice(2, text.length)
+    if text_array
+      text = text_array.join('. ').html_safe
+    end
+    return text
   end
 end
