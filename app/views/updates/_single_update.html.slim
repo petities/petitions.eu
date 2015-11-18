@@ -8,6 +8,9 @@ div.update-intro
     = t('update.read_more')
   div.read-more-content.whitespace
     = markdown raw update.read_more_text
+    - if update.url
+      = link_to  update.url
+        = update.url_text
 - else
   div.whitespace
 

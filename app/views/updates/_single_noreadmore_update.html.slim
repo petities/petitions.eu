@@ -1,7 +1,9 @@
 h2= update.title
 div.update-intro
   = markdown raw update.text
-
+  - if update.url
+    = link_to  update.url
+      = update.url_text
 div.update-date
   = update.created_at.strftime('%d-%m-%Y')
 
