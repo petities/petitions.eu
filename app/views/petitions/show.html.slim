@@ -179,17 +179,4 @@ div.page
 
   = render partial: 'signatures'
 
-  section.vervolg-main
-
-  h1.petition-section-title.left
-    = t('updates.news_updates')
-  div.update-container id="petitionnews"
-    = render partial: 'updates/list'
-
-    /= render partial: 'updates/single_from_update', locals: {update: @new_update}
-
- 
-/   div class="well"
-/     =<> t "petition.subdomain"
-/     - if @petition.subdomain?
-/       = @petition.subdomain
+= render partial: 'petition_updates'

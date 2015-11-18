@@ -165,7 +165,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
-    @new_update = Update.new(
+    @update = Update.new(
       petition_id: @petition.id
     )
 
@@ -259,13 +259,11 @@ class PetitionsController < ApplicationController
 
     @images = @petition.images
 
-
     @update = Update.new(
       petition_id: @petition.id
     )
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
-
 
   end
 

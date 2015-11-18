@@ -25,25 +25,17 @@ class Update < ActiveRecord::Base
   belongs_to :office
 
   def intro_text
-    #text.split('. ').slice(0, 2)
-    unless text 
-      return 
-    end
+    # text.split('. ').slice(0, 2)
+    return unless text
     text_array = text.split('. ').slice(0, 2)
-    if text_array
-      return text_array.join('. ').html_safe
-    end
+    return text_array.join('. ').html_safe if text_array
   end
 
   def read_more_text
-    unless text
-      return
-    end
-    
+    return unless text
+
     text_array = text.split('. ').slice(2, text.length)
-    if text_array
-      text = text_array.join('. ').html_safe
-    end
-    return text
+    text = text_array.join('. ').html_safe if text_array
+    text
   end
 end

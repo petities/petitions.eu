@@ -21,9 +21,9 @@ div.page
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
         = t 'edit.petition.edit_petition_text'
+
     div class="petition-editbutton-container"
-      div class="petition-editbutton"
-        = link_to t('petition.add_news'), '#write_update', class: 'button'
+      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
     /<!-- /editbutton -->
 
     /<!-- petition versioning -->
@@ -182,8 +182,8 @@ div.page
     div.petition-form-wrapper
       div.petition-form-indication-wrapper
         h2 class="petition-section-title"
-          = t "petition.current_news_is"
-        p hier komt nieuws!
+          = t "petition.current_feedback"
+        p hier komt webmaster feedback?!
 
 
   = render partial: 'social'
@@ -191,9 +191,4 @@ div.page
 
   = render partial: 'signatures'
 
-  section.vervolg-main
-
-  h1.petition-section-title.left
-    = t('updates.news_updates')
-  div.update-container id="petitionnews"
-    = render partial: 'updates/list'
+= render partial: 'petition_updates'

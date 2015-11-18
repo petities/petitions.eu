@@ -15,10 +15,11 @@
 
   = f.text_area(:text, class: 'petition-edit-input')
 
-  div.petition-edit-label
-    = t('update.label.show_on_homepage')
+  - if current_user.has_role? :admin
+    div.petition-edit-label
+      = t('update.label.show_on_homepage')
 
-  = f.check_box :show_on_home, {checked: true}
+    = f.check_box :show_on_home, {checked: true}
 
   - if @offices
     div.petition-edit-label
@@ -32,19 +33,10 @@
     = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
 
   - if @petition
-    div.petition-edit-label
-      = t('update.label.update_for_petition')
-    
     = f.hidden_field :petition_id, :value => @petition.id
 
-  /div.petition-edit-label
-  /    | TODO afbeelding:
-
   div.petition-edit-label
-      = t('update.label.save_news')
-
-  - if action_name == 'new'
-    = f.submit t('news_update.form.update', default: 'create news'), class: 'petition-edit-save'
-
+  - if update.title.nil?
+    = f.submit t('news_update.form.create', default: 'create news'), class: 'petition-edit-save'
   - else 
     = f.submit t('news_update.form.update', default: 'update news'), class: 'petition-edit-save'

@@ -42,9 +42,7 @@ Rails.application.routes.draw do
     end
 
     # resources :new_signatures
-
-    resources :updates # only: [:index, :show]
-
+    resources :updates,  only: [:index, :show]
 
     get :finalize
 
@@ -61,7 +59,7 @@ Rails.application.routes.draw do
   root 'petitions#index'
   # STATIC PAGES
 
-  %w(help about privacy donate contact).each do |name|
+  %w(help about privacy donate contact roles).each do |name|
     get "/#{name}", to: "application##{name}"
   end
   post '/contact_submit', to: 'application#contact_submit'
