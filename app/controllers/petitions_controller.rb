@@ -260,7 +260,7 @@ class PetitionsController < ApplicationController
     @images = @petition.images
 
 
-    @new_update = Update.new(
+    @update = Update.new(
       petition_id: @petition.id
     )
 

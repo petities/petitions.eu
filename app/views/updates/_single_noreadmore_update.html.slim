@@ -5,7 +5,8 @@ div.update-intro
     = link_to  update.url
       = update.url_text
 div.update-date
-  = update.created_at.strftime('%d-%m-%Y')
+  - if update.created_at
+    = update.created_at.strftime('%d-%m-%Y')
 
   - if update.petition.present?
     = ' | ' 
