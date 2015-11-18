@@ -158,7 +158,7 @@ Petitions.eu'
     title: Donate
   edit:
     petition:
-      edittext: Edittext
+      edittext: Edit the petition
   errors:
     messages:
       empty: This field is empty but should contain text.
@@ -195,6 +195,7 @@ Petitions.eu'
       question03:
         answer: Fill in your e-mail address here and we send you an e-mail with a link to each petition you signed. You can follow this link to a page where you can hide or modify your name or description.
         title: Which petitions did I already sign?
+    aftersigning_item: After signing
     changesig:
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
       title: Change your signature
@@ -208,6 +209,7 @@ Petitions.eu'
       question03:
         answer: Those who receive your petition are handed a list of signatures to verify. Hypothetically a politician or civil servant might contact you personally when they expect you can give a valuable insight on the petition. Practically they only talk to the petitioner, as spokesperson for all signatories. The recipient of a petition can not send a mailing to all signatories, because this is prohibited by the <a href="https://www.cbpweb.nl/">dataprotection law</a>. After all, our database is not created for that purpose and therefore the data can not be used for it. The webmaster and systeemadministrator of petities.nl have access to all this data. The Petities.nl Foundation aims for distinction from competing action sites with reliability and neutrality. We operate under Dutch legislation on servers in the Netherlands from a non-profit organisation which is not for sale. Unused data is actively deleted (storing no data is always the safest policy). The lead petitioner only has access to the name-function-place data for the hand over. Included are the 'anonymous' signatories, not publicly visible on the website. This list may not be published (protected by the dataprotection act) and may only be handed over to be verified. And to impress of course! Elected representatives know how difficult it is to voluntarily make someone sign for something...
         title: Who gets to see my data?
+    general_items: General questions
     handbook:
       descr: The <a href="http://handboek.petities.nl/wiki/Hoofdpagina/en">Handbook Petitions</a> has extra tricks and tips based on our experiences since 2005. Mostly in Dutch.
       title: Petition Handbook
@@ -223,14 +225,15 @@ Petitions.eu'
         answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address. 
         title: I used the wrong e-mail address to sign, what to do?
       question03:
-        answer: awaiting translation
-        title: Zonder mijn naam openbaar op het web ondertekenen, kan dat?
+        answer: Yes, you sign anonymously by default. The recipient of the petition and the lead petitioner can see who (your name and self description) signed from where. Only if you opted in for showing your name on the web it appears under the petition. You can reverse this by yourself anytime but it might already be archived by others in the meantime.
+        title: Can I sign without my name publicly on the web?
       question04:
         answer: awaiting translation
         title: Ik ben het niet exact eens met petitie. Kan ik een extra conditie opgeven bij mijn ondertekening?
       question05:
         answer: awaiting translation
         title: Hoe kan ik aan een petitie persoonlijk commentaar toevoegen?
+    whilesigning_item: While signing
     writingpetition:
       question01:
         answer: awaiting translation
@@ -247,6 +250,7 @@ Petitions.eu'
       question05:
         answer: awaiting translation
         title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
+    writingpetition_item: While writing a petition
   index:
     all: All petitions
     more: Show more petitions
