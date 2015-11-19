@@ -1,0 +1,18 @@
+
+nl:
+  petition:
+    organisations:
+      blank: "Selecteer een organisatie"
+      test: "test is working"
+      goverment: "Overheid"
+      governement: "Overheid" #typo in db
+      water_county: "Rijkswaterstaat"
+      european_union: "Europese Unie"
+      district: "Provincie"
+      parliament: "Parlement"
+      counsil: "Gemeente"
+      collective: "Vereniging"
+      plusregion: "Plus regio"
+      
+      
+  

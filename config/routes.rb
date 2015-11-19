@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
 
-
   as :user do
     get 'login' => 'devise/sessions#new', as: :new_user_session
     post 'login' => 'devise/sessions#create', as: :user_session
@@ -59,7 +58,7 @@ Rails.application.routes.draw do
   root 'petitions#index'
   # STATIC PAGES
 
-  %w(help about privacy donate contact roles).each do |name|
+  %w(help about privacy donate contact profile).each do |name|
     get "/#{name}", to: "application##{name}"
   end
   post '/contact_submit', to: 'application#contact_submit'

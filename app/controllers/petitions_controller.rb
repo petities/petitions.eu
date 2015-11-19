@@ -159,7 +159,8 @@ class PetitionsController < ApplicationController
     end
 
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
+
+    set_organisation_helper
 
     @signature = @petition.signatures.new
 
@@ -190,7 +191,8 @@ class PetitionsController < ApplicationController
     @petition = Petition.new
 
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
+    set_organisation_helper
+
   end
 
   # POST /petitions
@@ -253,7 +255,8 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
     @petition_types = PetitionType.all
-    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
+
+    set_organisation_helper
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
@@ -267,6 +270,25 @@ class PetitionsController < ApplicationController
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
 
+  end
+
+
+  def makeI18noption o_t
+    value = o_t[0]
+    visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0]) 
+
+    return [visible_value, value]
+  end
+
+  def set_organisation_helper
+    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
+    @organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
+
+    @organisation_type_prepared = {}
+    @organisation_types.each  do |type, collection|
+      i18n_col = collection.map{|org| [t('petition.organisations.%s' % org.name, default: org.name), org.id]}
+      @organisation_type_prepared[type] = i18n_col
+    end
   end
 
   #
