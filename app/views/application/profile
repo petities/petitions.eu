@@ -1,0 +1,36 @@
+
+div.page.vervolg
+
+
+div.page.vervolg
+
+  css:
+    td {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    table {
+      border: 2px black;
+      border-style: solid;
+
+    }
+
+  - if user_signed_in?
+      table
+        thead
+          tr
+            td role
+            td resource
+        tbody
+          - current_user.roles.each do |role|
+            tr
+              td
+                =<> role.name
+              td
+                - if role.resource_type == 'Petition'
+                  - petition = Petition.find(role.resource_id)
+                  =<> link_to petition.name, petition_path(petition)
+                - else
+                  =<> role.resource_type
+                  =<> role.resource_id

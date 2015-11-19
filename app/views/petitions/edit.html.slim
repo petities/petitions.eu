@@ -96,14 +96,15 @@ div.page
           div id="is_answered" class="petition-state-label"
             = t "petition.is_answered"
 
-        - status_descr_key = 'petition.status.descr.' + @petition.status
+        - status = @petition.status || 'status unknown'
+        - status_descr_key = 'petition.status.descr.' + status
 
         h2 class="petition-section-title"
           = t "petition.status.status_explanation"
         h2 class="petition-section-title"
-          = t(status_descr_key, default: 'missing description for:' + @petition.status)
+          = t(status_descr_key, default: 'missing description for:' + status, default:status)
         p
-          = t(status_descr_key, default: 'missing description for:' + @petition.status)
+          = t(status_descr_key, default: 'missing description for:' + status, default:status)
 
 
   section.petition-container id="petitionStateEdit" style="display: none"
