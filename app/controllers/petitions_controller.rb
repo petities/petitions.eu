@@ -41,7 +41,7 @@ class PetitionsController < ApplicationController
 
   def all
     @page    = (params[:page] || 1).to_i
-    @sorting = params[:status] || 'all'
+    @sorting = params[:sorting] || 'all'
     @order   = params[:order].to_i
 
     # petitions = Petition.joins(:translations).live
@@ -51,13 +51,15 @@ class PetitionsController < ApplicationController
 
     # describe petitions
     if @sorting == 'all'
-      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
+      petitions = Petition.where("status NOT IN ('draft', 'concept', 'staging')")
     elsif @sorting == 'open'
-      # petitions = petitions.order(signatures_count: direction)
+      petitions = Petition.live
     elsif @sorting == 'concluded'
-      petitions = petitions.where(status: 'completed')
+      petitions = Petition.where(status: 'completed')
+    elsif @sorting == 'rejected'
+      petitions = Petition.where(status: 'rejected')
     elsif @sorting == 'sign_elsewhere'
-      petitions = petitions.where(status: 'not_signable_here')
+      petitions = Petition.where(status: 'not_signable_here')
     end
 
     @sorting_options = [
@@ -130,7 +132,7 @@ class PetitionsController < ApplicationController
       @results_size = @petitions.size
 
       @sorting_options = [
-        { type: 'all', label: t('all.sort.all') },
+        { type: 'all',            label: t('all.sort.all') },
         { type: 'open',           label: t('all.sort.open') },
         { type: 'concluded',      label: t('all.sort.concluded') },
         { type: 'rejected',       label: t('all.sort.rejected') },
@@ -165,7 +167,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
-    @new_update = Update.new(
+    @update = Update.new(
       petition_id: @petition.id
     )
 
@@ -259,13 +261,11 @@ class PetitionsController < ApplicationController
 
     @images = @petition.images
 
-
     @update = Update.new(
       petition_id: @petition.id
     )
 
     @updates = @petition.updates.paginate(page: 1, per_page: 3)
-
 
   end
 

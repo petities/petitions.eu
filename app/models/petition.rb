@@ -14,38 +14,38 @@ class Petition < ActiveRecord::Base
 
   STATUS_LIST = [
     # we can view it but not sign?
-    [ t('petition.published'),         'published'],
+    [t('petition.published'),         'published'],
     # we take the petition offline.
-    [ t('petition.withdrawn'),         'withdrawn'],
+    [t('petition.withdrawn'),         'withdrawn'],
     # no confirmed author
-    [ t('petition.draft'),             'draft'],
+    [t('petition.draft'),             'draft'],
     # still building author is confirmed
-    [ t('petition.concept'),           'concept'],
+    [t('petition.concept'),           'concept'],
     # admin has to review the petition
-    [ t('petition.staging'),           'staging'],
+    [t('petition.staging'),           'staging'],
     # admin reviewed the state
-    [ t('petition.live'),              'live'],
+    [t('petition.live'),              'live'],
     # petitions we do not sign here
-    [ t('petition.not_signable_here'), 'not_signable_here'],
+    [t('petition.not_signable_here'), 'not_signable_here'],
     # admin does not like this petition
-    [ t('petition.rejected'),          'rejected'],
+    [t('petition.rejected'),          'rejected'],
     # petition should go to goverment
-    [ t('petition.to_process'),        'to_process'],
+    [t('petition.to_process'),        'to_process'],
     # no owner?
-    [ t('petition.ghost'),             'ghost'],
+    [t('petition.ghost'),             'ghost'],
     # petition is at goverment
-    [ t('petition.in_process'),        'in_process'],
+    [t('petition.in_process'),        'in_process'],
     # petition is not at goverment
-    [ t('petition.not_processed'),     'not_processed'],
+    [t('petition.not_processed'),     'not_processed'],
     # there is a goverment response
     # we are done!
-    [ t('petition.completed'),         'completed'],
+    [t('petition.completed'),         'completed']
   ]
 
   # loketten
   LOKET_ADMIN = [
-    [ t('petition.withdrawn'),         'withdrawn'],
-    [ t('petition.to_process'),        'to_process'],
+    [t('petition.withdrawn'),         'withdrawn'],
+    [t('petition.to_process'),        'to_process']
   ]
 
   # petitionaris
@@ -53,10 +53,10 @@ class Petition < ActiveRecord::Base
     [t('petition.stageing'), 'stageing'], # offer for review
   ]
 
-  scope :live,      -> {where(status: 'live')}
-  scope :big,       -> {order(signatures_count: :desc)}
-  scope :active,     -> {order(active_rate_value: :desc)}
-  scope :newest,     -> {order(created_at: :desc)}
+  scope :live,      -> { where(status: 'live') }
+  scope :big,       -> { order(signatures_count: :desc) }
+  scope :active,     -> { order(active_rate_value: :desc) }
+  scope :newest,     -> { order(created_at: :desc) }
 
   belongs_to :owner, class_name: 'User'
 
@@ -113,24 +113,24 @@ class Petition < ActiveRecord::Base
   end
 
   def elapsed_time
-    Time.now - (self.last_confirmed_at || Time.now)
+    Time.now - (last_confirmed_at || Time.now)
   end
 
   def active_rate
-    if self.signatures_count > 0
-      self.signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size.to_f / self.signatures_count.to_f
+    if signatures_count > 0
+      signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size.to_f / signatures_count.to_f
     else
       0
     end
   end
 
   def update_active_rate!
-    self.active_rate_value = self.active_rate
+    self.active_rate_value = active_rate
     save
   end
 
   def is_hot?
-    self.active_rate_value > 0.05
+    active_rate_value > 0.05
   end
 
   ## petition status summary
@@ -146,47 +146,46 @@ class Petition < ActiveRecord::Base
   def can_edit_petition?(user)
     return true if user.has_role? :admin
 
-    office = Office.find(self.office_id)
+    office = Office.find(office_id)
 
     return true if office && user.has_role?(office, :admin)
 
-    return False
+    False
   end
 
   def is_draft?
-    ['concept',
-     'draft',
-     'staging',
-    ].include? self.status
+    %w(concept
+       draft
+       staging).include? status
   end
 
   def is_live?
-    ['live',
-     'not_signable_here'].include? self.status
+    %w(live
+       not_signable_here).include? status
   end
 
   def is_closed?
-    ['withdrawn',
-     'rejected',
-     'to_process',
-     'not_processed'].include? self.status
+    %w(withdrawn
+       rejected
+       to_process
+       not_processed).include? status
   end
 
   def in_treatment?
-    ['in_process',
-     'to_process',
-     'not_processed'].include? self.status
+    %w(in_process
+       to_process
+       not_processed).include? status
   end
 
   def is_answered?
-    ['completed'].include? self.status
+    ['completed'].include? status
   end
 
   def history_chart_json
-    self.signatures.confirmed.map{|signature| signature.confirmed_at }
+    signatures.confirmed.map(&:confirmed_at)
       .compact
-      .group_by{|signature| signature.strftime("%Y-%m-%d")}
-      .map{|group| group[1].size}# .to_json.html_safe
+      .group_by { |signature| signature.strftime('%Y-%m-%d') }
+      .map { |group| group[1].size } # .to_json.html_safe
   end
 
   def inc_signatures_count!
@@ -199,11 +198,9 @@ class Petition < ActiveRecord::Base
       links: [
         { link: link1, text: link1_text },
         { link: link2, text: link2_text },
-        { link: link3, text: link3_text },
-      ].select{|link| link[:link].present?},
+        { link: link3, text: link3_text }
+      ].select { |link| link[:link].present? },
       site: { link: site1, text: site1_text }
     }
   end
 end
-
-

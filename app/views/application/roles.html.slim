@@ -1,22 +1,36 @@
-div.page.vervolg
-  section.vervolg-main
-    h1.petition-section-title.left= t('about.title')
-
-    = raw t('about.text')
-
-  aside.vervolg-side
-    = link_to t('about.donate'), donate_path, class: 'button steun-petities whitespace'
 
 div.page.vervolg
-  section.vervolg-main
+
+  css:
+    td {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    table {
+      border: 2px black;
+      border-style: solid;
+
+    }
 
   - if user_signed_in?
-    ul
-      - current_user.roles.each do |role|
-        li
-          = role.name
-          = role.resource_type
-          = role.resource_id
+      table
+        thead
+          tr
+            td role
+            td resource
+        tbody
+          - current_user.roles.each do |role|
+            tr
+              td
+                =<> role.name
+              td
+                - if role.resource_type == 'Petition'
+                  - petition = Petition.find(role.resource_id)
+                  =<> link_to petition.name, petition_path(petition)
+                - else
+                  =<> role.resource_type
+                  =<> role.resource_id
 
   /   div.side-article-container-blue.whitespace
   /     h2 Ondertekening wijzigen

@@ -120,34 +120,31 @@ div.page
     section.petition-details-container
       div.petition-details
         h2.petition-section-title= t('show.overview.title')
-        div.petition_field_label= t('show.overview.addressee')
         - if @organisation
+          div.petition_field_label= t('show.overview.addressee')
           div.petition_field_data= @organisation.name
-        div.petition_field_label= t('show.overview.desk')
         - if @office
+          div.petition_field_label= t('show.overview.desk')
           div.petition_field_data= @office.name
-        div.petition_field_label= t('show.overview.end_date')
         - if @petition.date_projected
+          div.petition_field_label= t('show.overview.end_date')
           div.petition_field_data= @petition.date_projected.strftime('%d-%m-%Y')
-        div.petition_field_label= t('show.overview.status')
-        div.petition_field_data
         - if @petition.status
+          div.petition_field_label= t('show.overview.status')
           div.petition_field_data= @petition.status
-        div.petition_field_label= t('show.overview.petitioners')
-        div.petition_field_data
         - if @petition.petitioner_name
+          div.petition_field_label= t('show.overview.petitioners')
           div.petition_field_data= @petition.petitioner_name
-        div.petition_field_label= t('show.overview.organisation')
-        div.petition_field_data
         - if @petition.petitioner_organisation
+          div.petition_field_label= t('show.overview.organisation')
           div.petition_field_data= @petition.petitioner_organisation
-        div.petition_field_label= t('show.overview.website')  
+
         - if @petition.links[:links].present?
+          div.petition_field_label= t('show.overview.website')  
           div.petition_field_data
             - @petition.links[:links].each do |link|
               a href="#{link[:link]}"= link[:text]                   
-              br
-              
+ 
         div.clearfix
 
       div.petition-details.history
@@ -179,17 +176,4 @@ div.page
 
   = render partial: 'signatures'
 
-  section.vervolg-main
-
-  h1.petition-section-title.left
-    = t('updates.news_updates')
-  div.update-container id="petitionnews"
-    = render partial: 'updates/list'
-
-    /= render partial: 'updates/single_from_update', locals: {update: @new_update}
-
- 
-/   div class="well"
-/     =<> t "petition.subdomain"
-/     - if @petition.subdomain?
-/       = @petition.subdomain
+= render partial: 'petition_updates'
