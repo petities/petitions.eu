@@ -259,6 +259,10 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+    
+    if @petition.status.nil?
+      @petition.status = 'draft'
+    end
 
     @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
 
