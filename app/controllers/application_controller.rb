@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a?(Admin)
       admin_dashboard_path
+    # TODO check if user has an office
     else
       manage_petitions_path || root_path
     end

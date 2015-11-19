@@ -3,6 +3,9 @@ class Office < ActiveRecord::Base
 
   extend FriendlyId
 
+  friendly_id :name, :use => [:slugged, :finders], slug_column: :cached_slug
+  #friendly_id :title, use: :slugged, slug_column: :cached_slug
+
   has_many :petitions
 
   has_many :images, as: :imageable, dependent: :destroy

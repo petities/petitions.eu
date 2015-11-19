@@ -14,7 +14,7 @@ class Update < ActiveRecord::Base
 
   # slug_column = 'cached_slug'
 
-  friendly_id :title, use: :slugged, slug_column: :cached_slug
+  friendly_id :title, :use => [:slugged, :finders], slug_column: :cached_slug
 
   default_scope { order('created_at DESC') }
 

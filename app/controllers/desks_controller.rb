@@ -1,4 +1,5 @@
 class DesksController < ApplicationController
+
   def index
     @offices = Office.all
   end

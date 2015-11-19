@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, role_ids: []
+  permit_params :email, :password, :password_confirmation, :telephone, role_ids: []
 
   index do
     selectable_column
@@ -8,6 +8,7 @@ ActiveAdmin.register User do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
+    column :telephone
     actions
   end
 
@@ -22,29 +23,47 @@ ActiveAdmin.register User do
       row :email
       row :first_name
       row :last_name
+      row :telephone
     end
 
-    table_for user.roles do
-      column 'Role', &:name
+    panel "user roles" do
+      table_for user.roles do
+        column :name
+        column :resource_type
+        column :resource_id
+      end
     end
   end
 
   form do |f|
     f.inputs 'User Details' do
       f.input :email
+      f.input :telephone
       f.input :password
       f.input :password_confirmation
-      f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
+
+      panel "website roles" do
+        f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
+
+      end
+
+      panel "office roles" do
+        f.input :roles, as: :check_boxes, collection: Role.where(resource_type: 'Office').map{|r| [r.name + ' ' + Office.find(r.resource_id).name, r.id]}
+      end
+
     end
     f.actions
   end
 
-  def update
-    if params[:user][:password].blank?
-      params[:model].delete('password')
-      params[:model].delete('password_confirmation')
-    end
+  controller do
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete('password')
+        params[:user].delete('password_confirmation')
+      end
 
-    super
+      super
+    end
   end
+
 end

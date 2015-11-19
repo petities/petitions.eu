@@ -10,7 +10,7 @@ class Petition < ActiveRecord::Base
 
   # add slug_column?
   # write migration?
-  friendly_id :name, use: :globalize
+  friendly_id :name, :use => [:globalize, :finders]
 
   STATUS_LIST = [
     # we can view it but not sign?
