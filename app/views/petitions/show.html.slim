@@ -24,21 +24,25 @@ javascript:
 
 div.page
   - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
-    div.admin_form.whitespace
-      - if @petition.locale_list.present?
-        div.locale_list.whitespace
-          | Available in:
-          br
-          - @petition.locale_list.each do |locale|
-            = label_tag locale
-            - if params[:locale]
-              = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
-            - else
-              = radio_button_tag :locale, locale, { onclick: "document.location='?locale=#{locale}';" }
-            br
-          = link_to '+ Add translation', petition_add_translation_path(@petition)
+    - if @petition.locale_list.present?
+      section.petition-intro-container-noimage
+        div.petition-intro-info-container
+          div.petition-intro-info-text
+            = t('petition.available_languages')
 
-      = link_to 'Edit', edit_petition_path(@petition), class: 'button'
+          div.locale_list.whitespace
+            div.petition-intro-info-text
+            br
+            - @petition.locale_list.each do |locale|
+              = label_tag locale
+              - if params[:locale]
+                = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
+              - else
+                = radio_button_tag :locale, locale, { onclick: "document.location='?locale=#{locale}';" }
+              = label_tag 'NL' 
+              = radio_button_tag :locale, 'NL', false, { onclick: "document.location='?locale=nl';" }
+
+    = link_to 'Edit', edit_petition_path(@petition), class: 'button'
 
   - if @updates
     = link_to t('petition.news'), '#petitionnews', class: 'button'
