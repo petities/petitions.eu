@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   before_filter do
-    @news = Update.website_news.limit(12) if request.get?
+    #@news = Update.website_news.limit(12) if request.get?
+    @news = Update.show_on_home.limit(12) if request.get?
   end
 
   def help
