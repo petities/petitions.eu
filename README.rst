@@ -29,6 +29,8 @@ README
 
     memcached
 
+    sidekiq -q mailers
+
 * Deployment instructions
 
 * I18n updates
