@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id                  :integer          not null, primary key
+#  imageable_id        :integer
+#  imageable_type      :string(255)
+#  upload_file_name    :string(255)
+#  upload_content_type :string(255)
+#  upload_file_size    :integer
+#  upload_updated_at   :datetime
+#  created_at          :datetime
+#  updated_at          :datetime
+#  alt_label           :string(255)
+#
+
 class Image < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
 

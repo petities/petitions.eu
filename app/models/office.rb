@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: offices
+#
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  name_clean        :string(255)
+#  text              :text(65535)
+#  url               :string(255)
+#  hidden            :boolean
+#  postalcode        :string(255)
+#  email             :string(255)
+#  organisation_id   :integer
+#  organisation_kind :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  cached_slug       :string(255)
+#  subdomain         :string(255)
+#  url_text          :string(255)
+#  telephone         :string(255)
+#  petition_type_id  :integer
+#
+
 class Office < ActiveRecord::Base
   default_scope { order('name ASC') }
 
