@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
 
   as :user do
@@ -31,7 +32,9 @@ Rails.application.routes.draw do
     end
 
     resources :signatures, except: [:new, :show] do
+
       post :confirm_submit
+      patch :confirm_submit
 
       collection do
         post :search
@@ -61,6 +64,7 @@ Rails.application.routes.draw do
   %w(help about privacy donate contact profile).each do |name|
     get "/#{name}", to: "application##{name}"
   end
+
   post '/contact_submit', to: 'application#contact_submit'
 
   # dashboard statistics
@@ -73,8 +77,8 @@ Rails.application.routes.draw do
   # make old links work
   #
 
-  get '/signatures/:signature_key/confirm',    to: 'signatures#confirm'
-  get '/ondertekening/:signature_key/confirm', to: 'signatures#confirm'
+  get '/signatures/:signature_id/confirm',    to: 'signatures#confirm', as: :signature_confirm
+  get '/ondertekening/:signature_id/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
 end

@@ -2,8 +2,29 @@ div.page
   section.start-petition-form-container
     h1.petition-section-title= t('confirm.title', name: @petition.name)
     / div.petition-overview-title= t('start.overview')
+    h2
+      = @message
 
+    javascript:
+      window.check_fields = @check_fields.to_json
+      window.error_fields = @error_fields.to_json
+      
     = form_for @signature, url: @url do |f|
+
+      - if Rails.env.development?
+        div.start-petition-form-row
+           div.start-petition-form-cell.input
+             div.start-petition-form-cell-title 
+             - @signature.errors.full_messages.each do |message|
+               div.message 
+                 = raw message
+           div.start-petition-form-cell.label
+             p
+               = @check_fields.to_json
+             p.error
+               = @error_fields.to_json
+             p
+               = @petition.petition_type.name
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -22,8 +43,19 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.country.label')
+          /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
+          = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
+        div.start-petition-form-cell.label
+          p= t('confirm.form.country.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.location.label')
-          = f.text_field :person_city, class: 'start-petition-form-cell-input'
+          - error = ''
+          - if @signature.errors[:person_city]
+            - error = ' error' 
+          = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
 
@@ -34,7 +66,13 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.email.description')
 
-      /- if @signature.require_full_address?
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.function.label')
+          /- classname= 
+          = f.text_area :person_function, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label
+          p= t('confirm.form.function.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -72,21 +110,13 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.city.description')
 
-      /#- if @signature.require_born_at?
+      /- if @signature.require_born_at? || Rails.env.develpment?
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.born_at.label')
           = f.date_select :person_born_at, order: [:day, :month, :year], end_year: Date.today.year - 5, start_year: 1920, selected: Date.today.year - 25
         div.start-petition-form-cell.label
           p= t('confirm.form.born_at.description')
-
-      /div.start-petition-form-row
-      /  div.start-petition-form-cell.input
-      /    div.start-petition-form-cell-title= t('confirm.form.country.label')
-      /    /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-      /    = f.country_select :person_birth_country, priority_countries: ["NL", "DE", "GB", "FR"]
-      /  div.start-petition-form-cell.label
-      /    p= t('confirm.form.birth_country.description')
 
       div.start-petition-form-row
           div.start-petition-form-cell.input
@@ -249,6 +279,3 @@ div.page
           input.start-petition-form-cell-input-readonly type="text" value=@signature.person_email readonly=""
         div.start-petition-form-cell.label.empty
           | &nbsp;
-
-
-

@@ -147,6 +147,7 @@ $(document).ready(function(){
     $emailConfirm.html($emailField.val());
 
     return result;
+
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();

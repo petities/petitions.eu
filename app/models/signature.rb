@@ -35,10 +35,11 @@
 #  last_reminder_sent_at       :datetime
 #  unconverted_person_born_at  :date
 #  person_birth_country        :string(2)
-#  person_country              :string(2)
-#
+#  country_code              :string(2)
+
 
 class Signature < ActiveRecord::Base
+  extend ActionView::Helpers::TranslationHelper
   belongs_to :petition # , :counter_cache => true
   has_one :petition_type, through: :petition
 
@@ -51,13 +52,71 @@ class Signature < ActiveRecord::Base
   # keep this simple since we are sending validation emails anyways.
   validates :person_email, format: { with: /@/ }
 
-  #
+  # FIXME
+  def country_postalcode_validation
+    case I18n.locale
+      when :en
+      # check for latin characters
+      when :de
+        # check for cyrillic characters
+      when :nl
+      return true
+    end
+    return true
+  end
+  
   # Some petitions require a full address
-  validates :person_postalcode, format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/, on: :update }, if: :require_full_address?
-  validates :person_city, length: { in: 3..255 }, on: :update, if: :require_full_address?
-  validates :person_street, length: { in: 3..255 }, on: :update, if: :require_full_address?
-  validates :person_street_number, numericality: { only_integer: true }, on: :update, if: :require_full_address?
-  validates :person_street_number_suffix, length: { in: 1..255 }, allow_blank: true, on: :update, if: :require_full_address?
+  #validates :person_postalcode, 
+  #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
+  #          on: :update, 
+  #          if: :require_full_address?
+
+  validates :person_city, 
+            length: {
+              in: 3..255, 
+              message: t('signature.errors.city_to_short')
+            }, 
+            on: :update, 
+            if: :require_full_address?
+
+  validates :person_street, 
+            length: {
+              in: 3..255,
+              message: t('signature.errors.to_long')
+            }, 
+            on: :update, 
+            if: :require_full_address?
+
+  validates :person_street_number, 
+            numericality: { 
+              only_integer: true,
+              message: t('signature.errors.not_a_number')
+            }, 
+            on: :update, 
+            if: :require_full_address?
+
+  validates :person_street_number_suffix, 
+            length: {
+              in: 1..255,
+              message: t('signature.errors.not_ok')
+            }, 
+            allow_blank: true, 
+            on: :update, 
+            if: :require_full_address?
+
+  # Some petitions require a minimum age
+  validates_date :person_born_at, 
+                 on_or_before: :required_minimum_age,
+                 on: :update, 
+                 if: :require_minimum_age?
+                 
+  validates :person_birth_city, 
+            length: {
+              in: 3..255,
+              message: t('signature.errors.city')
+             },
+             on: :update, 
+             if: :require_person_birth_city?
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
@@ -106,4 +165,10 @@ class Signature < ActiveRecord::Base
     return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
     # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
   end
+
+  def require_person_country?
+    return true if petition.present? && petition.petition_type.present? && !petition.petition_type.country_code
+    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
+  end
+
 end

@@ -30,4 +30,5 @@
 
 class PetitionType < ActiveRecord::Base
   has_many :petitions
+  has_many :offices
 end
