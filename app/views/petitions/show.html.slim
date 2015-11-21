@@ -95,9 +95,9 @@ div.page
 
             div.signature-form-errors.signaturesuggestbutton
 
-            div class='didyoumean signaturesuggestbutton' style="display: none;"
+            div.email-suggest-button id='didyoumean_signature_person_email'  style="display: none;"
               = t 'signature.did_you_mean'
-              div.signature-form-sugestion
+              div id='suggest_signature_person_email'
                 'test
 
             = f.submit t('show.sign.form.submit'), class: 'petition-form-button'

@@ -6,9 +6,9 @@ div.page
       = @message
 
     javascript:
-      window.check_fields = @check_fields.to_json
-      window.error_fields = @error_fields.to_json
-      
+      window.check_fields = #{raw @check_fields.to_json};
+      window.error_fields = #{raw @error_fields.to_json};
+
     = form_for @signature, url: @url do |f|
 
       - if Rails.env.development?
@@ -250,19 +250,36 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.info.mailafriend')
-          input.start-petition-form-cell-input type="text"
+
+          input.start-petition-form-cell-input type="text" id="send_email"
+          | &nbsp;
+          div.start-petition-form-cell-button.email-suggest-button id='didyoumean_send_email'  
+            = t 'signature.did_you_mean'
+            div id='suggest_send_email'
+              'test
+          | &nbsp;
+          div.start-petition-form-cell-button
+            = t('confirm.form.action.send_email')
+          /= f.submit @action, class: 'start-petition-form-cell-button'
+
         div.start-petition-form-cell.label
           p= t('confirm.info.mailafriend_description')
+
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
 
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
           input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -277,5 +294,7 @@ div.page
           div.start-petition-form-cell-title
             = t('confirm.info.your_email')
           input.start-petition-form-cell-input-readonly type="text" value=@signature.person_email readonly=""
+
         div.start-petition-form-cell.label.empty
           | &nbsp;
+

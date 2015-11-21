@@ -155,11 +155,15 @@ class SignaturesController < ApplicationController
         format.json { render :show, status: :ok, location: @signature }
       end
     else
+      # render a normal edit view 
+      @remote_ip = request.remote_ip
+      @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
+      add_check_fields
+      @error_fields = @signature.errors.keys
+      @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
+
       respond_to do |format|
         format.html do
-          add_check_fields
-          @error_fields = @signature.errors.keys.to_json
-          @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
           render 'confirm'
         end 
         format.json { render json: @signature.errors, status: :unprocessable_entity }

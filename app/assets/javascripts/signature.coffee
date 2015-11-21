@@ -7,21 +7,22 @@ Mailcheck.defaultDomains.push('uva.nl', 'petities.nl', 'xs4all.nl', 'gmail.com',
 #Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
 Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
 
-sugestion_id = '.signature-form-sugestion'
-tip_id = '.didyoumean'
-
 suggested = (element, sugestion) ->
-  #console.log(sugestion)
+  console.log(sugestion)
+  tip_id = '#didyoumean_' + element[0].id
+  console.log(tip_id)
+  sugestion_id = '#suggest_' + element[0].id
+  console.log(sugestion_id)
+
   sugElement = $(sugestion_id) 
-  #sugElement.addClass "signaturesuggestbutton"
   sugElement.html sugestion.full     
   tipElement = $(tip_id) 
   tipElement.show()
 
-empty = (element) ->
-  #console.log("no sugestion")
+empty = (elements, suggestion) ->
+  tip_id = '#didyoumean_' + element[0].id
+  sugestion_id = '#suggest_' + element[0].id
   sugElement = $(sugestion_id) 
-  #sugElement.removeClass "signaturesuggestbutton"
   $(sugestion_id).html "" 
   tipElement = $(tip_id) 
   tipElement.hide()
@@ -31,17 +32,25 @@ empty = (element) ->
 $ ->
   #$('#signature_person_email').bind 'blur', ->
   $('[id$=_email]').bind 'blur', ->
-    # console.log("heeeey..!!")
     $(this).mailcheck suggested: suggested, empty: empty
 
 
 # replace content of email form when clicked.
 # and remove the sugestion
 $ ->
-  $(sugestion_id).on "click", ->
-    $("[id$=_email]").val $(this).html()
-    #$(this).removeClass "signaturesuggestbutton"
+  $('[id^=suggest_]').on "click", ->
+    console.log('yes')
+    # find email element
+    id = $(this)[0].id
+    input_id = id.split('suggest_')[1]
+    element = $('#' + input_id)
+    # set value to suggested
+    element.val $(this).html()
+    # empty suggestion box
     $(this).html ""
+    # hide the tip box
+    tip_id = '#didyoumean_' + input_id
+    console.log(tip_id)
     tipElement = $(tip_id) 
     tipElement.hide()
 
