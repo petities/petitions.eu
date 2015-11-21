@@ -13,26 +13,44 @@ suggested = (element, sugestion) ->
   console.log(tip_id)
   sugestion_id = '#suggest_' + element[0].id
   console.log(sugestion_id)
-
   sugElement = $(sugestion_id) 
   sugElement.html sugestion.full     
   tipElement = $(tip_id) 
   tipElement.show()
 
 empty = (elements, suggestion) ->
-  tip_id = '#didyoumean_' + element[0].id
-  sugestion_id = '#suggest_' + element[0].id
+  tip_id = '#didyoumean_' + elements[0].id
+  sugestion_id = '#suggest_' + elements[0].id
   sugElement = $(sugestion_id) 
   $(sugestion_id).html "" 
   tipElement = $(tip_id) 
   tipElement.hide()
 
+
+
+delay = ( 
+  timer = 0
+  (callback, ms) ->
+    clearTimeout(timer)
+    setTimeout(callback, ms)
+  )
+
+
+# while typing email form check the email field with a little delay
+$ ->
+  $('[id$=_email]').keyup(->
+    input = this
+    delay(->
+      $(input).mailcheck suggested: suggested, empty: empty 
+    , 800)) 
+   
+
 # on focusing to the next form check the mail field
 # and do a sugestion
-$ ->
-  #$('#signature_person_email').bind 'blur', ->
-  $('[id$=_email]').bind 'blur', ->
-    $(this).mailcheck suggested: suggested, empty: empty
+#$ ->
+#  #$('#signature_person_email').bind 'blur', ->
+#  $('[id$=_email]').bind 'blur', ->
+#    $(this).mailcheck suggested: suggested, empty: empty
 
 
 # replace content of email form when clicked.
