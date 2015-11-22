@@ -29,7 +29,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title 
-          = f.check_box id="visible"
+          = f.check_box :visible
           label= t('confirm.form.visible.privacylabel')
         div.start-petition-form-cell.label
           p= t('confirm.form.visible.description')
@@ -253,7 +253,7 @@ div.page
 
           input.start-petition-form-cell-input type="text" id="send_email"
           | &nbsp;
-          div.start-petition-form-cell-button.email-suggest-button id='didyoumean_send_email'  
+          div.start-petition-form-cell-button.email-suggest-button id='didyoumean_send_email' style="display: none;"
             = t 'signature.did_you_mean'
             div id='suggest_send_email'
               'test
@@ -285,7 +285,18 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.info.petition_signature_url')
-          input type="text" class="start-petition-form-cell-input-readonly" value="http://petities.nl/petitie/cached-slug-naam-petitie/all_signatures?page=8#44" readonly=""
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+      div.start-petition-form-row
+        input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-button
+            = link_to t('confirm.info.your_signature'), anchor_petition_signatures_path(@petition, @signature)
+          div.start-petition-from-cell-button
+          
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
