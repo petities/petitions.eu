@@ -46,8 +46,17 @@ class Signature < ActiveRecord::Base
   # has_many :reminders, :class_name => 'SignaturesReminder'
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
-  validates :person_name, length: { in: 3..255 }
-  # validates :person_name, format: { with: /\A.+( |\.).+\z/}
+  validates :person_name, 
+              length: { 
+                in: 3..255,
+                message: t('signature.errors.name_invalid', default: 'invalid')
+              }
+
+  validates :person_name, 
+              format: { 
+                with: /\A.+( |\.).+\z/,
+                message: t('signature.errors.name_and_surname', default: 'name_and_surname')
+            }
 
   # keep this simple since we are sending validation emails anyways.
   validates :person_email, format: { with: /@/ }
@@ -56,10 +65,13 @@ class Signature < ActiveRecord::Base
   def country_postalcode_validation
     case I18n.locale
       when :en
-      # check for latin characters
+        # check for latin characters
+        return true
       when :de
+        return true
         # check for cyrillic characters
       when :nl
+        return true
       return true
     end
     return true
@@ -74,7 +86,7 @@ class Signature < ActiveRecord::Base
   validates :person_city, 
             length: {
               in: 3..255, 
-              message: t('signature.errors.city_to_short')
+              message: t('signature.errors.city_to_short', default: 'to short')
             }, 
             on: :update, 
             if: :require_full_address?
@@ -82,7 +94,7 @@ class Signature < ActiveRecord::Base
   validates :person_street, 
             length: {
               in: 3..255,
-              message: t('signature.errors.to_long')
+              message: t('signature.errors.wrong', default: 'invalid')
             }, 
             on: :update, 
             if: :require_full_address?
@@ -90,7 +102,7 @@ class Signature < ActiveRecord::Base
   validates :person_street_number, 
             numericality: { 
               only_integer: true,
-              message: t('signature.errors.not_a_number')
+              message: t('signature.errors.not_a_number', default: 'not a number')
             }, 
             on: :update, 
             if: :require_full_address?
@@ -98,7 +110,7 @@ class Signature < ActiveRecord::Base
   validates :person_street_number_suffix, 
             length: {
               in: 1..255,
-              message: t('signature.errors.not_ok')
+              message: t('signature.errors.not_ok', default: 'not a suffix')
             }, 
             allow_blank: true, 
             on: :update, 
@@ -113,7 +125,7 @@ class Signature < ActiveRecord::Base
   validates :person_birth_city, 
             length: {
               in: 3..255,
-              message: t('signature.errors.city')
+              message: t('signature.errors.city', default: 'to short')
              },
              on: :update, 
              if: :require_person_birth_city?

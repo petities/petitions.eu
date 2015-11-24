@@ -145,14 +145,16 @@ class SignaturesController < ApplicationController
     if @petition && @signature.update(signature_params) && @signature.valid?
       # signature also passed validation
       @signature.confirmed = true
+
       # save the signature in the office signatures table
       # and remove it from the new signatures table
+
       respond_to do |format|
+        format.json { render :show, status: :ok }
         format.html do
           redirect_to @petition,
                       notice: 'Signature was successfully confirmed.'
         end
-        format.json { render :show, status: :ok, location: @signature }
       end
     else
       # render a normal edit view 
@@ -163,10 +165,10 @@ class SignaturesController < ApplicationController
       @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
       respond_to do |format|
+        format.json { render json: @signature.errors, status: :unprocessable_entity }
         format.html do
           render 'confirm'
         end 
-        format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
       # there are errors in the form. reload thew signature
       # confirmation view
