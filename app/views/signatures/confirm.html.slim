@@ -47,6 +47,13 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          = f.check_box :more_information
+          label= t('confirm.form.more_information.label')
+        div.start-petition-form-cell.label
+          p= t('confirm.form.more_information.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.name.label')
           = f.text_field :person_name, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label
@@ -187,8 +194,10 @@ div.page
       = t('confirm.info.help_petition')
     div
       | &nbsp;
+    div 
+      /= debug @pledge
 
-    = form_for @petition do |f|
+    = form_for @pledge, url: @pledge_url, remote: true, data: { type: :json } do |f|
       div
         | &nbsp;
       div.start-petition-form-row
@@ -200,23 +209,20 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          = f.check_box :inform_me
+          label= t('confirm.form.label.invite_info')
+        div.start-petition-form-cell.label
+          p= t('confirm.form.invite_info.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.form.influencelabel')
-            select.start-petition-form-cell-select.large
-              option
-                |
-              option
-                = t('confirm.form.pledge.expert') 
-              option
-                = t('confirm.form.pledge.asseenontv')
-              option
-                = t('confirm.form.pledge.withreaders')
-              option
-                = t('confirm.form.pledge.ngomember')
-              option
-                = t('confirm.form.pledge.partymember')
-              option
-                = t('confirm.form.pledge.employer')
+            = f.select(:influence, 
+                       options_for_select(Pledge::INFLUENCE_OPTIONS, 
+                        selected: @pledge.influence), 
+                       include_blank: t("pledge.influence.blank", default:""),
+                       class: "start-petition-form-cell-select.large")
 
         div.start-petition-form-cell.label
           p= t('confirm.form.influence_description')
@@ -224,30 +230,12 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.skillslabel')
-          select.start-petition-form-cell-select.large id="skills"
-            option 
-              |
-            option 
-              = t('confirm.form.pledge.experienced')
-            option 
-              = t('confirm.form.pledge.researcher')
-            option 
-              = t('confirm.form.pledge.copywriter')
-            option 
-              = t('confirm.form.pledge.publicspeaker')
-            option 
-              = t('confirm.form.pledge.mediatrained')
-            option 
-              = t('confirm.form.pledge.performer')
-            option 
-              = t('confirm.form.pledge.organiser')
-            option
-              = t('confirm.form.pledge.host')
-            option 
-              = t('confirm.form.pledge.carpooler')
-            option 
-              = t('confirm.form.pledge.other')
-  
+          = f.select(:skill,
+                     options_for_select(Pledge::SKILL_OPTIONS, 
+                      selected: @pledge.skill), 
+                     include_blank: t("pledge.skill.blank", default:""),
+                     class: "start-petition-form-cell-select.large")
+ 
         div.start-petition-form-cell.label
           p= t('confirm.form.skills_offer_description')
 
@@ -262,26 +250,10 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.info.how_much')
-
-          label.start-petition-form-cell-label
-            input type="radio" value="1" name="donate"
-              | € 1
-
-          label.start-petition-form-cell-label
-            input type="radio" value="5" name="donate"
-              | € 5
-
-          label.start-petition-form-cell-label
-            input type="radio" value="10" name="donate"
-              | € 10 
-
-          label.start-petition-form-cell-label
-            input type="radio" value="25" name="donate"
-              | € 25 
-
-          label.start-petition-form-cell-label
-            input type="radio" value="50" name="donate"
-              | € 50
+          - Pledge::MONEY_OPTIONS.each do |label, value|
+            label.start-petition-form-cell-label
+              = f.radio_button :money, value
+              = label
 
         div.start-petition-form-cell.label
           p= t('confirm.info.how_much_description')
@@ -291,8 +263,9 @@ div.page
           h2.start-petition-form-cell-title= t('confirm.info.feedback.label')
             = t('confirm.info.feedback')
 
-          textarea class="start-petition-form-cell-input" value="not yet implemented"
-          /= f.text_area :petitioner, class: 'start-petition-form-cell-input'
+          = f.text_area(:feedback, 
+                       class: "start-petition-form-cell-input", 
+                       placeholder: t('pledge.feedback', default: 'give feedback'))
 
         div.start-petition-form-cell.label
           p= t('confirm.info.feedback.description')
@@ -302,7 +275,8 @@ div.page
           div.start-petition-form-cell-button
             = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
-          | &nbsp;
+          h1 id='pledge_tanks' style="display: none;"
+            = t('pledge.tankyou!')
 
 
 div.page

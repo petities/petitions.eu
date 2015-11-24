@@ -115,6 +115,11 @@ $ ->
     $('#confirm_errors').show()
   )
 
+  # pledge succes note
+  $('.edit_pledge, .new_pledge').on('ajax:success', (e, data, status, xhr) ->
+    $('#pledge_tanks').show()
+  )
+
 
 window.debugthis = []
 
@@ -157,4 +162,6 @@ $.fn.render_form_errors = (model_name, errors) ->
 $.fn.clear_form_errors = () ->
   this.find('.has_error').removeClass('has_error')
   this.find('div.has_error_help').remove()
+
+
 

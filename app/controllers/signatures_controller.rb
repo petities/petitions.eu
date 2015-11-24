@@ -1,5 +1,5 @@
 class SignaturesController < ApplicationController
-  before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :invite, :user_update]
+  before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :pledge_submit, :invite, :user_update]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:update]
@@ -77,6 +77,9 @@ class SignaturesController < ApplicationController
     @petition = @signature.petition
     # generate the update sig url
     @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
+
+    set_pledge
+
     #@url = petition_signature_confirm_submit
 
     # check if we are in the unconfirmed table
@@ -157,6 +160,7 @@ class SignaturesController < ApplicationController
         end
       end
     else
+      # there are errors
       # render a normal edit view 
       @remote_ip = request.remote_ip
       @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
@@ -164,28 +168,55 @@ class SignaturesController < ApplicationController
       @error_fields = @signature.errors.keys
       @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
+      set_pledge
+
       respond_to do |format|
         format.json { render json: @signature.errors, status: :unprocessable_entity }
         format.html do
           render 'confirm'
         end 
       end
-      # there are errors in the form. reload thew signature
-      # confirmation view
     end
   end
 
+  def set_pledge
+    @pledge = Pledge.where(signature_id: @signature.id).first
+    if not @pledge
+      @pledge = Pledge.new
+      @pledge.signature_id = @signature.id
+      @pledge.petition_id = @petition.id
+    end
+
+    @pledge_url = petition_signature_pledge_confirm_path(@petition, @signature.unique_key)
+
+  end
+
+  def pledge_submit
+    # set petition 
+    @petition = @signature.petition
+    # find pledge by petition_id and signature_id
+    set_pledge
+
+    # update pledge
+    if @pledge.update(pledge_params)
+      respond_to do |format|
+        format.json { render :show, status: :ok }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: @signature.errors, status: :unprocessable_entity }
+      end     
+    end
+  end
 
   # ONLY ALLOWED FOR ADMINS
   # NOW ANYONE CAN CHANGE SIGNATURES BY ID
-
   # PATCH/PUT /signatures/1
   # PATCH/PUT /signatures/1.json
   def update
     @petition = @signature.petition
     # only allow updates from 
     # authorize @petition
-
     respond_to do |format|
       if @signature.update(signature_params)
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
@@ -235,9 +266,12 @@ class SignaturesController < ApplicationController
       :person_function, :person_country, :person_famous,
       :person_street_number_suffix,
       :subscribe, :visible,
-      pledge_attributes: [
-        :id, :contribution, :help_function, :feedback,
-        :help_influence]
+    )
+  end
+
+  def pledge_params
+    params.require(:pledge).permit(
+      :skill, :influence, :feedback, :money, :inform_me
     )
   end
 
@@ -256,4 +290,5 @@ class SignaturesController < ApplicationController
     old_signature.delete
     @signature.save
   end
+
 end

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
       post :confirm_submit
       patch :confirm_submit
+      post :pledge_submit, as: :pledge_confirm
+      patch :pledge_submit
 
       collection do
         post :search
