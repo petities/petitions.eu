@@ -285,14 +285,26 @@ class PetitionsController < ApplicationController
   end
 
   def set_organisation_helper
-    @organisation_types = Organisation.all.sort_by(&:name).group_by(&:kind)
-    @organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
+    @organisation_types = Organisation.all.where(visible: true).sort_by(&:name).group_by(&:kind)
+    #@organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
       i18n_col = collection.map{|org| [t('petition.organisations.%s' % org.name, default: org.name), org.id]}
       @organisation_type_prepared[type] = i18n_col
     end
+    
+    @publicbodies_sort_order = [
+      [t('petition.organisations.%s' %  'counsil') , 'counsil'],
+      [t('petition.organisations.%s' %  'plusregion'), 'plusregion'],
+      [t('petition.organisations.%s' %  'water_county'), 'water_county'],
+      [t('petition.organisations.%s' %  'district'), 'district'],
+      [t('petition.organisations.%s' %  'governement'), 'governement'],
+      [t('petition.organisations.%s' %  'parliament'), 'parliament'],
+      [t('petition.organisations.%s' %  'european_union'), 'european_union'],
+      [t('petition.organisations.%s' %  'collective') , 'collective']
+    ]
+    
   end
 
   #

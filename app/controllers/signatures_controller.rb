@@ -149,9 +149,6 @@ class SignaturesController < ApplicationController
       # signature also passed validation
       @signature.confirmed = true
 
-      # save the signature in the office signatures table
-      # and remove it from the new signatures table
-
       respond_to do |format|
         format.json { render :show, status: :ok }
         format.html do
