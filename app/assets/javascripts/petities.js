@@ -39,6 +39,17 @@ function initChart(elem){
   );
 }
 
+$.fn.select_org_menu = function(){
+  $('.organisation_select').hide();
+  $('.organisation_select').attr('disabled', true);
+
+  var type = '.' + $(this).find('option:selected').val();
+
+  if(type !== '.'){
+    $(type).attr('disabled', false);
+    $(type).show();
+  }
+}
 
 $(document).ready(function(){
 
@@ -94,17 +105,13 @@ $(document).ready(function(){
 
   });
 
+
+
   $("#petition_organisation_kind").change(function () {
-    $('.organisation_select').hide();
-    $('.organisation_select').attr('disabled', true);
-
-    var type = '.' + $(this).find('option:selected').val();
-
-    if(type !== '.'){
-      $(type).attr('disabled', false);
-      $(type).show();
-    }
+    $(this).select_org_menu();
   });
+
+  $("#petition_organisation_kind").select_org_menu();
 
   $('#new_signature input').bind('keyup', function(){
     $(this).removeClass('error');

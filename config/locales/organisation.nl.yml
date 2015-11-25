@@ -2,17 +2,16 @@
 nl:
   petition:
     organisations:
-      blank: "Selecteer een organisatie"
-      test: "test is working"
-      goverment: "Overheid"
-      governement: "Overheid" #typo in db
-      water_county: "Rijkswaterstaat"
+      blank: "Kies een ontvanger:"
+      government: "Rijksoverheid"
+      governement: "Rijksoverheid" #typo in db
+      water_county: Waterschap
       european_union: "Europese Unie"
       district: "Provincie"
       parliament: "Parlement"
       counsil: "Gemeente"
-      collective: "Vereniging"
-      plusregion: "Plus regio"
-      
-      
-  
+      collective: "Andere organisatie"
+      plusregion: "Samenwerkende gemeenten"
+      "Europees Parlement": Europees Parlement
+      "Europese Commissie": Europese Commissie
+      "Europese Ombudsman": Europese Ombudsman
