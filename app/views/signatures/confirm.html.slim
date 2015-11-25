@@ -2,16 +2,55 @@ div.page
   section.start-petition-form-container
     h1.petition-section-title= t('confirm.title', name: @petition.name)
     / div.petition-overview-title= t('start.overview')
+    h2
+      = @message
 
-    = form_for @signature, url: @url do |f|
+    javascript:
+      window.check_fields = #{raw @check_fields.to_json};
+      window.error_fields = #{raw @error_fields.to_json};
+
+      window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
+      window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
+
+
+    = form_for @signature, url: @url, remote: true, data: { type: :json } do |f|
+
+      //show debug / error information
+      //- if Rails.env.development?
+      //  div.start-petition-form-row
+      //     div.start-petition-form-cell.input
+      //       div.start-petition-form-cell-title.form_errors
+      //       - @signature.errors.full_messages.each do |message|
+      //         div.message 
+      //           = raw message
+      //     div.start-petition-form-cell.label
+      //       p
+      //         = @check_fields.to_json
+      //       p.error
+      //         = @error_fields.to_json
+      //       p
+      //         = @petition.petition_type.name
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title 
-          = f.check_box id="visible"
+          h2.start-petition-form-cell-title 
+            = t('confirm.info.check_information')
+        div.start-petition-form-cell.label
+          | &nbsp
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = f.check_box :visible
           label= t('confirm.form.visible.privacylabel')
         div.start-petition-form-cell.label
           p= t('confirm.form.visible.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = f.check_box :more_information
+          label= t('confirm.form.more_information.label')
+        div.start-petition-form-cell.label
+          p= t('confirm.form.more_information.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -22,8 +61,19 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.country.label')
+          /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
+          = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
+        div.start-petition-form-cell.label
+          p= t('confirm.form.country.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.location.label')
-          = f.text_field :person_city, class: 'start-petition-form-cell-input'
+          - error = ''
+          - if not @signature.errors[:person_city].empty?
+            - error = ' error' 
+          = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
 
@@ -34,7 +84,13 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.email.description')
 
-      /- if @signature.require_full_address?
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title= t('confirm.form.function.label')
+          = f.text_area :person_function, class: 'start-petition-form-cell-input'
+          /input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
+        div.start-petition-form-cell.label
+          p= t('confirm.form.function.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -72,21 +128,13 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.city.description')
 
-      /#- if @signature.require_born_at?
+      /- if @signature.require_born_at? || Rails.env.develpment?
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.born_at.label')
           = f.date_select :person_born_at, order: [:day, :month, :year], end_year: Date.today.year - 5, start_year: 1920, selected: Date.today.year - 25
         div.start-petition-form-cell.label
           p= t('confirm.form.born_at.description')
-
-      /div.start-petition-form-row
-      /  div.start-petition-form-cell.input
-      /    div.start-petition-form-cell-title= t('confirm.form.country.label')
-      /    /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-      /    = f.country_select :person_birth_country, priority_countries: ["NL", "DE", "GB", "FR"]
-      /  div.start-petition-form-cell.label
-      /    p= t('confirm.form.birth_country.description')
 
       div.start-petition-form-row
           div.start-petition-form-cell.input
@@ -104,6 +152,54 @@ div.page
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
+      span.errors id="confirm_errors" style='display: none;'
+
+        div.start-petition-form-row
+          h2.start-petition-form-cell.input.error
+            = t('signature.confirm.errors')
+
+            
+          div.start-petition-form-cell.label.empty
+            | &nbsp;
+            div id="confirm_error_messages"
+
+
+      span id="confirm_success" style='display: none;'
+
+        div.start-petition-form-row
+          h2.start-petition-form-cell.input
+            = t('signature.confirm.success')
+            
+          div.start-petition-form-cell.label.empty
+            | &nbsp;
+
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            = link_to t('confirm.see_your_signature'), anchor_petition_signatures_url(@petition, @signature), class: 'start-petition-form-cell-button'
+            
+          div.start-petition-form-cell.label.empty
+            | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = link_to t('confirm.back_to_petition'), @petition, class: 'start-petition-form-cell-button'
+          
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title
+      = t('confirm.info.help_petition')
+    div
+      | &nbsp;
+    div 
+      /= debug @pledge
+
+    = form_for @pledge, url: @pledge_url, remote: true, data: { type: :json } do |f|
+      div
+        | &nbsp;
       div.start-petition-form-row
         div.start-petition-form-cell.input
           h2.start-petition-form-cell-title
@@ -113,23 +209,20 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          = f.check_box :inform_me
+          label= t('confirm.form.label.invite_info')
+        div.start-petition-form-cell.label
+          p= t('confirm.form.invite_info.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.form.influencelabel')
-            select.start-petition-form-cell-select.large
-              option
-                |
-              option
-                = t('confirm.form.pledge.expert') 
-              option
-                = t('confirm.form.pledge.asseenontv')
-              option
-                = t('confirm.form.pledge.withreaders')
-              option
-                = t('confirm.form.pledge.ngomember')
-              option
-                = t('confirm.form.pledge.partymember')
-              option
-                = t('confirm.form.pledge.employer')
+            = f.select(:influence, 
+                       options_for_select(Pledge::INFLUENCE_OPTIONS, 
+                        selected: @pledge.influence), 
+                       include_blank: t("pledge.influence.blank", default:""),
+                       class: "start-petition-form-cell-select.large")
 
         div.start-petition-form-cell.label
           p= t('confirm.form.influence_description')
@@ -137,31 +230,12 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.skillslabel')
-            /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
-          select.start-petition-form-cell-select.large
-            option 
-              |
-            option 
-              = t('confirm.form.pledge.experienced')
-            option 
-              = t('confirm.form.pledge.researcher')
-            option 
-              = t('confirm.form.pledge.copywriter')
-            option 
-              = t('confirm.form.pledge.publicspeaker')
-            option 
-              = t('confirm.form.pledge.mediatrained')
-            option 
-              = t('confirm.form.pledge.performer')
-            option 
-              = t('confirm.form.pledge.organiser')
-            option
-              = t('confirm.form.pledge.host')
-            option 
-              = t('confirm.form.pledge.carpooler')
-            option 
-              = t('confirm.form.pledge.other')
-  
+          = f.select(:skill,
+                     options_for_select(Pledge::SKILL_OPTIONS, 
+                      selected: @pledge.skill), 
+                     include_blank: t("pledge.skill.blank", default:""),
+                     class: "start-petition-form-cell-select.large")
+ 
         div.start-petition-form-cell.label
           p= t('confirm.form.skills_offer_description')
 
@@ -176,79 +250,108 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.info.how_much')
-
-          label.start-petition-form-cell-label
-            input type="radio" name="donate"
-              | € 1
-
-          label.start-petition-form-cell-label
-            input type="radio" name="donate"
-              | € 5
-
-          label.start-petition-form-cell-label
-            input type="radio" name="donate"
-              | € 10 
-
-          label.start-petition-form-cell-label
-            input type="radio" name="donate"
-              | € 25 
-
-          label.start-petition-form-cell-label
-            input type="radio" name="donate"
-              | € 50
+          - Pledge::MONEY_OPTIONS.each do |label, value|
+            label.start-petition-form-cell-label
+              = f.radio_button :money, value
+              = label
 
         div.start-petition-form-cell.label
           p= t('confirm.info.how_much_description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-button
-            = t('confirm.form.action.pledge')
-          /= f.submit @action, class: 'start-petition-form-cell-button'
-          div.start-petition-from-cell-button
-          
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
+          h2.start-petition-form-cell-title= t('confirm.info.feedback.label')
+            = t('confirm.info.feedback')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          h2.start-petition-form-cell-title
-            = t('confirm.info.share_petition')
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
+          = f.text_area(:feedback, 
+                       class: "start-petition-form-cell-input", 
+                       placeholder: t('pledge.feedback', default: 'give feedback'))
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.info.mailafriend')
-          input.start-petition-form-cell-input type="text"
         div.start-petition-form-cell.label
-          p= t('confirm.info.mailafriend_description')
+          p= t('confirm.info.feedback.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
-          input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
-          input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            = t('confirm.info.petition_signature_url')
-          input type="text" class="start-petition-form-cell-input-readonly" value="http://petities.nl/petitie/cached-slug-naam-petitie/all_signatures?page=8#44" readonly=""
+          div.start-petition-form-cell-button
+            = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
-          | &nbsp;
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            = t('confirm.info.your_email')
-          input.start-petition-form-cell-input-readonly type="text" value=@signature.person_email readonly=""
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
+          h1 id='pledge_tanks' style="display: none;"
+            = t('pledge.tankyou!')
 
 
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title
+      = t('confirm.info.share_petition')
+    div
+      | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('confirm.info.mailafriend')
+
+        input.start-petition-form-cell-input type="text" id="send_email"
+        | &nbsp;
+        div.start-petition-form-cell-button.email-suggest-button id='didyoumean_send_email' style="display: none;"
+          = t 'signature.did_you_mean'
+          div id='suggest_send_email'
+            'test
+        | &nbsp;
+        div.start-petition-form-cell-button
+          = t('confirm.form.action.send_email')
+        /= f.submit @action, class: 'start-petition-form-cell-button'
+
+      div.start-petition-form-cell.label
+        p= t('confirm.info.mailafriend_title')
+        div.email
+          = markdown t('confirm.info.mailafriend_mail',
+            name: @signature.person_name,
+            sig_email: @signature.person_email,
+            petition_name: @petition.petitioner_name,
+            sig_function: @signature.person_function, 
+            petition_url: petition_url({id: @petition.slug}),  
+            petition_descr: @petition.description,
+            petition_email: @petition.petitioner_email)
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
+
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title
+          = t('confirm.info.petition_signature_url')
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    / # print full signature url
+    div.start-petition-form-row
+      input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-button
+          = link_to t('confirm.info.your_signature'), anchor_petition_signatures_path(@petition, @signature)
+        div.start-petition-from-cell-button
+        
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title
+          = t('confirm.info.your_email')
+        input.start-petition-form-cell-input-readonly type="text" value=@signature.person_email readonly=""
+
+      div.start-petition-form-cell.label.empty
+        | &nbsp;
 

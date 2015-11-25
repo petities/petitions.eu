@@ -110,20 +110,28 @@ nl:
       browser: 'Uw browser: %{browser}'
       donate_petition: Doneer
       mailafriend: Voer e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
-      mailafriend_description: 'Deze uitnodiging kunt u via ons mailen: Geachte heer, mevrouw,
+      mailafriend_title: 'Deze uitnodiging kunt u via ons mailen:'
+      mailafriend_mail: ' 
 
-Op petities.nl heeft -uw naam- (met e-mailadres -uw e-mailadres-) zojuist de petitie "-de petitie-" ondertekend met de aantekening "-uw functie".
+Geachte heer, mevrouw,
 
-Met deze e-mail nodigt -uw naam- u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
+Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
+
+Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
 
 Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
 
-De petitie kunt u bekijken via -adres petitie-
+De petitie kunt u bekijken op 
 
-Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: -adres petitionaris-
+%{petition_url} 
+
+%{petition_descr} 
+
+Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
 
 Met vriendelijke groet, 
 Petities.nl'
+
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?
       how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.

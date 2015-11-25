@@ -11,22 +11,28 @@ ActiveAdmin.register_page 'Dashboard' do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+       column do
+         panel "Active Petitions" do
+           ul do
+             Petition.live.order(active_rate_value: :desc).limit(10).map do |petition|
+               li link_to(petition.name , admin_petition_path(petition))
+               # li petition.active_rate_value
+             end
+           end
+         end
+       end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+       column do
+         panel "new petitions" do
+          ul do
+             Petition.order(created_at: :desc).limit(20).map do |petition|
+               li link_to(petition.name , admin_petition_path(petition))
+               # li petition.active_rate_value
+             end
+           end
+         end
+       end
+     end
   end # content
 end

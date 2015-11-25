@@ -75,7 +75,7 @@ $(document).ready(function(){
     validate_text_length(this);
   });
 
-  //on text lenght change validate text
+  //on text length change validate text
   $('.validation').keyup(function(e){
     validate_text_length(this);
   });
@@ -127,6 +127,7 @@ $(document).ready(function(){
         result = true;
 
     $errorsBlock.html('');
+  
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');
@@ -147,6 +148,7 @@ $(document).ready(function(){
     $emailConfirm.html($emailField.val());
 
     return result;
+
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
@@ -171,35 +173,6 @@ $(document).ready(function(){
       }
     });
   }
-
-  //  var result = true;
-
-  //  $errorsBlock.html('');
-
-  //  if(!$nameField.val().match(nameRegex)){
-  //    $nameField.addClass('error');
-  //    $errorsBlock.append('Please enter correct Name and Surname.<br>');
-  //    result = false;
-  //  }
-
-  //  if(!$emailField.val().match(emailRegex)){
-  //    console.log($emailField.val());
-  //    $emailField.addClass('error');
-  //    $errorsBlock.append('Please enter correct Email.<br>');
-  //    result = false;
-  //  }
-  //  // set the email span field
-  //  $emailConfirm.html($emailField.val());
-
-  //  return result;
-  //}).on('ajax:success',function(e, data, status, xhr){
-  //    $('.petition-form-float-wrapper').hide();
-  //    $('.petition-success-sign-note').show();
-  //  }).on('ajax:error',function(e, xhr, status, error){
-  //    console.log(xhr);
-  //  });
-
-
 
   ///////
   // CODE FOR HISTORY CHARTS FOR PETITIONS W/O IMAGE

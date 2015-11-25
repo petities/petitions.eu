@@ -16,9 +16,14 @@ div class="panel panel-success"
             prohibited this signature from being saved:
 
         ul
+          - @signature.errors.each do |error|
+            li
+              = raw error
+
+
           - @signature.errors.full_messages.each do |message|
             li
-              message
+              = raw message
 
     div class="form-group"
       = f.label :person_name, class:'col-sm-2 control-label'
@@ -49,7 +54,7 @@ div class="panel panel-success"
 
     - unless @petition.petition_type.blank?
       
-      - if @petition.petition_type.minimumage
+      - if @petition.petition_type.required_minimum_age?
         div class="form-group"
 
           div class="col-sm-10"

@@ -28,6 +28,10 @@ gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'rolify'
 
+# date validation
+
+gem 'validates_timeliness'
+
 # roles mamangement
 gem 'pundit'
 

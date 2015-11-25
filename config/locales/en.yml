@@ -110,20 +110,37 @@ en:
       browser: 'Your browser: %{browser}'
       donate_petition: Donate
       mailafriend: Enter e-mail addressess of people you know and who might sign.
-      mailafriend_description: 'You can e-mail this invitation through us: Dear sir or madam,
+      mailafriend_title: 'You can e-mail this invitation through us:'
+      mailafriend_mail: '
 
-On petitions.eu -your name- (with e-mail address -your e-mail address-) just signed the petition "-the petition-" with the note "-functie-".
+Dear sir or madam,
 
-With this e-mail -your name- invites you to read and perhaps sign the petition.
 
-If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. You will not receive any further invitations about this petition on your e-mail address.
+On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" with the note "%{sig_function}".
 
-You can view the petition at -address petition-
 
-Do you have questions about this petition? Please contact the lead petitioner: -addres petitioner-
+With this e-mail %{name} invites you to read and perhaps sign the petition.
 
-Best Regards, 
+
+If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. 
+You will not receive any further invitations about this petition on your e-mail address.
+
+
+You can view the petition at 
+
+
+%{petition_url}
+
+
+%{petition_descr} 
+
+
+Do you have questions about this petition? Please contact the lead petitioner: %{petition_email} 
+
+
+Best Regards,
 Petitions.eu'
+
       help_petition: Help petition
       how_much: How much would you like to contribute?
       how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.

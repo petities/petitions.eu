@@ -1,0 +1,11 @@
+
+<%= 
+  t('confirm.info.mailafriend_description',
+  name: @signature.person_name,
+  sig_email: @signature.person_email,
+  petition_name: @petition.name,
+  sig_function: @signature.person_function, 
+  petition_url: petition_url(id: @petition.friendly_id),  
+  petition_email: @petition.petitioner_email
+) %>
+

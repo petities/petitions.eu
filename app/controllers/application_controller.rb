@@ -21,6 +21,16 @@ class ApplicationController < ActionController::Base
     @news = Update.show_on_home.limit(12) if request.get?
   end
 
+  # redirect users..
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(Admin)
+      admin_dashboard_path
+    # TODO check if user has an office
+    else
+      manage_petitions_path || root_path
+    end
+  end
+
   def help
     @general = I18n.t('help.general').map { |_key, value| value }
     @whilesigning = I18n.t('help.whilesigning').map { |_key, value| value }
@@ -47,7 +57,6 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
-
     flash[:error] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
     redirect_to(request.referrer || root_path)
   end
