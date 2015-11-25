@@ -129,6 +129,9 @@ $.fn.render_form_obligations = (model_name, fields) ->
   form = this
   fields = window.check_fields
 
+  if not fields
+    return
+
   $.each(fields, (i, field) ->
     input = form.find('input, select, textarea').filter(->
       name = $(this).attr('name')
