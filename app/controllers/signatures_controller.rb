@@ -1,5 +1,5 @@
 class SignaturesController < ApplicationController
-  before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :pledge_submit, :invite, :user_update]
+  before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :pledge_submit, :mail_submit, :user_update]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:update]
@@ -229,6 +229,18 @@ class SignaturesController < ApplicationController
     end
   end
 
+
+  def mail_submit
+
+    target = email_params[:share_mail]
+
+    SignatureMailer.share_mail(@signature, target).deliver_later
+
+    respond_to do |format|
+        format.json { render :show, status: :ok}
+    end
+  end
+
   # DELETE /signatures/1
   # DELETE /signatures/1.json
   def destroy
@@ -272,6 +284,12 @@ class SignaturesController < ApplicationController
   def pledge_params
     params.require(:pledge).permit(
       :skill, :influence, :feedback, :money, :inform_me
+    )
+  end
+
+  def email_params
+    params.require(:share).permit(
+      :share_email
     )
   end
 

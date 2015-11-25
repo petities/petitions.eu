@@ -17,4 +17,12 @@ class SignatureMailer < ApplicationMailer
 
     mail(to: @signature.person_email, subject: subject)
   end
+
+
+  def share_mail(signature, target_email)
+
+    @petition = @signature.petition
+
+    mail(to: target_email, subject: subject)
+  end
 end

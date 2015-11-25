@@ -16,20 +16,20 @@ div.page
     = form_for @signature, url: @url, remote: true, data: { type: :json } do |f|
 
       //show debug / error information
-      - if Rails.env.development?
-        div.start-petition-form-row
-           div.start-petition-form-cell.input
-             div.start-petition-form-cell-title.form_errors
-             - @signature.errors.full_messages.each do |message|
-               div.message 
-                 = raw message
-           div.start-petition-form-cell.label
-             p
-               = @check_fields.to_json
-             p.error
-               = @error_fields.to_json
-             p
-               = @petition.petition_type.name
+      //- if Rails.env.development?
+      //  div.start-petition-form-row
+      //     div.start-petition-form-cell.input
+      //       div.start-petition-form-cell-title.form_errors
+      //       - @signature.errors.full_messages.each do |message|
+      //         div.message 
+      //           = raw message
+      //     div.start-petition-form-cell.label
+      //       p
+      //         = @check_fields.to_json
+      //       p.error
+      //         = @error_fields.to_json
+      //       p
+      //         = @petition.petition_type.name
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -302,12 +302,19 @@ div.page
         /= f.submit @action, class: 'start-petition-form-cell-button'
 
       div.start-petition-form-cell.label
-        p= t('confirm.info.mailafriend_description')
-
+        p= t('confirm.info.mailafriend_title')
+        div.email
+          = markdown t('confirm.info.mailafriend_mail',
+            name: @signature.person_name,
+            sig_email: @signature.person_email,
+            petition_name: @petition.petitioner_name,
+            sig_function: @signature.person_function, 
+            petition_url: petition_url({id: @petition.slug}),  
+            petition_descr: @petition.description,
+            petition_email: @petition.petitioner_email)
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
         input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
 
       div.start-petition-form-cell.label.empty
@@ -315,7 +322,6 @@ div.page
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        /= f.text_field :person_birth_city, class: 'start-petition-form-cell-input'
         input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
       div.start-petition-form-cell.label.empty
         | &nbsp;
