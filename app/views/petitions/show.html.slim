@@ -122,62 +122,12 @@ div.page
             = t('show.sign.form.sign_again')
 
     section.petition-details-container
-      div.petition-details
-        h2.petition-section-title= t('show.overview.title')
-        - if @organisation
-          div.petition_field_label= t('show.overview.addressee')
-          div.petition_field_data= @organisation.name
-        - if @office
-          div.petition_field_label= t('show.overview.desk')
-          div.petition_field_data= @office.name
-        - if @petition.date_projected
-          div.petition_field_label= t('show.overview.end_date')
-          div.petition_field_data= @petition.date_projected.strftime('%d-%m-%Y')
-        - if @petition.status
-          div.petition_field_label= t('show.overview.status')
-          div.petition_field_data= @petition.status
-        - if @petition.petitioner_name
-          div.petition_field_label= t('show.overview.petitioners')
-          div.petition_field_data= @petition.petitioner_name
-        - if @petition.petitioner_organisation
-          div.petition_field_label= t('show.overview.organisation')
-          div.petition_field_data= @petition.petitioner_organisation
+      = render partial: 'detailbox'
 
-        - if @petition.links[:links].present?
-          div.petition_field_label= t('show.overview.website')  
-          div.petition_field_data
-            - @petition.links[:links].each do |link|
-              a href="#{link[:link]}"= link[:text]                   
- 
-        div.clearfix
+      = render partial: 'bigchart'
 
-      div.petition-details.history
-        h2.petition-section-title= t('show.history')
-        javascript:
-          $(document).ready(function(){
-            var ctx = $("#chartContainer")[0].getContext("2d");
-            var data = {
-              labels: #{@chart_array.map.with_index{|_,i| i+1}},
-              datasets: [{
-                fillColor: "#96c79f",
-                data: #{@chart_array}
-              }]
-            };
-            var myBarChart = new Chart(ctx).Bar(data, {
-              showTooltips: true,
-              animation: true,
-              showScale: true,
-              scaleShowGridLines : false,
-              barShowStroke : false,
-              barValueSpacing: 1,
-              tooltipFillColor: "#fff",
-              tooltipFontColor: "#000",
-            });
-          });
-        canvas id="chartContainer" style="height:275px; width:100%;"
+= render partial: 'social'
 
-  = render partial: 'social'
-
-  = render partial: 'signatures'
+= render partial: 'signatures'
 
 = render partial: 'petition_updates'
