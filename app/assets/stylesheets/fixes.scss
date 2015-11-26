@@ -15,6 +15,13 @@ input[type="button"].petition-form-button {
   }
 }
 
+.buttonfix {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
 .email p {
   margin: 8px;
 }

@@ -21,8 +21,16 @@ class SignatureMailer < ApplicationMailer
 
   def share_mail(signature, target_email)
 
+    # build the required globals for the template
+    @signature = signature
     @petition = @signature.petition
 
+    # build a catch subject line
+    subject = t('confirm.info.mailafriend_subject', {
+      title: @petition.name})
+
+    # build the mail
     mail(to: target_email, subject: subject)
   end
+
 end

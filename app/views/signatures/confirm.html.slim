@@ -182,7 +182,9 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = link_to t('confirm.back_to_petition'), @petition, class: 'start-petition-form-cell-button'
+          = link_to t('confirm.back_to_petition'), 
+                    @petition, 
+                    class: 'start-petition-form-cell-button buttonfix'
           
         div.start-petition-form-cell.label.empty
           | &nbsp;
@@ -260,20 +262,26 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          h2.start-petition-form-cell-title= t('confirm.info.feedback.label')
-            = t('confirm.info.feedback')
+          h2.start-petition-form-cell-title
+            = t('confirm.info.feedback.label')
+        div.start-petition-form-cell.label
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | &nbsp;
 
           = f.text_area(:feedback, 
                        class: "start-petition-form-cell-input", 
                        placeholder: t('pledge.feedback', default: 'give feedback'))
 
-        div.start-petition-form-cell.label
+        div.start-petition-form-cell.label.empty
           p= t('confirm.info.feedback.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-button
-            = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
+          = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
           h1 id='pledge_tanks' style="display: none;"
             = t('pledge.tankyou!')
@@ -288,17 +296,33 @@ div.page
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title= t('confirm.info.mailafriend')
+        h2.start-petition-form-cell-title= t('confirm.info.mailafriend.title')
 
-        input.start-petition-form-cell-input type="text" id="send_email"
-        | &nbsp;
-        div.start-petition-form-cell-button.email-suggest-button id='didyoumean_send_email' style="display: none;"
-          = t 'signature.did_you_mean'
-          div id='suggest_send_email'
-            'test
-        | &nbsp;
-        div.start-petition-form-cell-button
-          = t('confirm.form.action.send_email')
+        = form_tag @share_email_url, method: 'post', remote: true, data: { type: :json }, id: "share_email" do
+
+          = text_field_tag(:share_email, "", 
+                {class: 'start-petition-form-cell-input', 
+                 id: :input_share_email,
+                 placeholder: t('confirm.info.mailafriend.email', default: 'mail your friend!')})
+
+          | &nbsp;
+          div.start-petition-form-cell-button.email-suggest-button id='didyoumean_input_share_email' style="display: none;"
+            = t 'signature.did_you_mean'
+            div id='suggest_input_share_email'
+              | &nbsp;
+          | &nbsp;
+          = submit_tag t('confirm.form.action.send_email'), class: "start-petition-form-cell-button"
+
+          | &nbsp;
+          div.start-petition-form-cell-button id='success_share_email' style="display: none;"
+            = t 'signature.success_send'
+ 
+          | &nbsp;
+          div.start-petition-form-cell-button.email-suggest-button id='fail_share_email' style="display: none;"
+            = t 'signature.failed_send'
+
+          div#feedback
+
 
       div.start-petition-form-cell.label
         p= t('confirm.info.mailafriend_title')
@@ -332,16 +356,15 @@ div.page
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
-    / # print full signature url
     div.start-petition-form-row
       input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-button
-          = link_to t('confirm.info.your_signature'), anchor_petition_signatures_path(@petition, @signature)
-        div.start-petition-from-cell-button
-        
+        = link_to(t('confirm.info.your_signature'), 
+          anchor_petition_signatures_path(@petition, @signature),
+          class: 'start-petition-form-cell-button buttonfix')
+      
       div.start-petition-form-cell.label.empty
         | &nbsp;
 

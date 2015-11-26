@@ -42,7 +42,7 @@ $ ->
     input = this
     delay(->
       $(input).mailcheck suggested: suggested, empty: empty 
-    , 800)) 
+    , 400)) 
    
 
 # on focusing to the next form check the mail field
@@ -56,18 +56,19 @@ $ ->
 # and remove the sugestion
 $ ->
   $('[id^=suggest_]').on "click", ->
-    console.log('yes')
+    #console.log('yes')
     # find email element
     id = $(this)[0].id
     input_id = id.split('suggest_')[1]
     element = $('#' + input_id)
     # set value to suggested
     element.val $(this).html()
+    #console.log(element)
     # empty suggestion box
     $(this).html ""
     # hide the tip box
     tip_id = '#didyoumean_' + input_id
-    console.log(tip_id)
+    #console.log(tip_id)
     tipElement = $(tip_id) 
     tipElement.hide()
 
@@ -109,7 +110,7 @@ $ ->
     $('#confirm_errors').hide()
     $('.edit_signature').clear_form_errors()
   ).on('ajax:error', (e, data, status, xhr) ->
-    console.log(data.responseJSON)
+    #console.log(data.responseJSON)
     $('#confirm_success').hide()
     $('.edit_signature').render_form_errors('signature', data.responseJSON)
     $('#confirm_errors').show()
@@ -118,6 +119,22 @@ $ ->
   # pledge succes note
   $('.edit_pledge, .new_pledge').on('ajax:success', (e, data, status, xhr) ->
     $('#pledge_tanks').show()
+  )
+
+  # sign email success..
+  $('#share_email').on('ajax:success', (e, data, status, xhr) ->
+    $('#success_share_email').show()
+    $('#fail_share_email').hide()
+    #console.log(status)
+    #$('#feedback').html('you are awesome!')
+  )
+  
+  # sign email fail
+  $('#share_email').on('ajax:error', (e, data, status, xhr) ->
+    $('#success_share_email').hide()
+    $('#fail_share_email').show()
+    #console.log(data.responseJSON)
+    #$('#feedback').html('failed')
   )
 
 
@@ -136,7 +153,7 @@ $.fn.render_form_obligations = (model_name, fields) ->
     input = form.find('input, select, textarea').filter(->
       name = $(this).attr('name')
       if name
-        console.log(model_name + '\\[' + field + '\\]')
+        #console.log(model_name + '\\[' + field + '\\]')
         name.match(new RegExp(model_name + '\\[' + field + '\\]'))
     )
     input.addClass('is_obligated')
