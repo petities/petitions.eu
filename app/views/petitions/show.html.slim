@@ -44,7 +44,7 @@ div.page
 
     = link_to 'Edit', edit_petition_path(@petition), class: 'button'
 
-  - if @updates
+  - if not @updates.empty?
     = link_to t('petition.news'), '#petitionnews', class: 'button'
 
   javascript:
@@ -124,7 +124,7 @@ div.page
     section.petition-details-container
       = render partial: 'detailbox'
 
-      = render partial: 'bigchart'
+      = render partial: 'history_chart'
 
 = render partial: 'social'
 
