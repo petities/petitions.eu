@@ -20,10 +20,10 @@ div.page
     /<!-- editbutton -->
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-        = t 'edit.petition.edit_petition_text'
+        = t 'edit.petition.edit_text'
 
     div class="petition-editbutton-container"
-      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
+      = link_to t('edit.petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
     /<!-- /editbutton -->
 
     /<!-- petition versioning -->
@@ -32,20 +32,20 @@ div.page
 
       h2
         - unless @version_index < 0
-          =<> t 'petition.newest_version'
+          =<> t 'edit.petition.newest_version'
         - else
-          =<> t 'petition.version'
+          =<> t 'edit.petition.version'
           =<> @version_index
-        =<> t 'petition.of'
+        =<> t 'edit.petition.of'
         =<> @petition.versions.size
 
       - if @version_index < 0
         div.petition-editbutton.pull-left
-          =<> link_to 'newer version', edit_petition_path(@petition, {version: @up})
+          =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})
 
       - if @version_index.abs < @petition.versions.size
         div.petition-editbutton.pull-right
-          =<> link_to 'pervious version', edit_petition_path(@petition, {version: @down})
+          =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @down})
 
     /<!-- versioning -->
 
@@ -100,9 +100,8 @@ div.page
         - status_descr_key = 'petition.status.descr.' + status
 
         h2 class="petition-section-title"
-          = t "petition.status.status_explanation"
-        h2 class="petition-section-title"
-          = t(status_descr_key, default: 'missing description for:' + status, default:status)
+        p
+          = t ('edit.petition.status.explanation')
         p
           = t(status_descr_key, default: 'missing description for:' + status, default:status)
 
@@ -128,33 +127,17 @@ div.page
         h2 class="petition-section-title"
           = t 'petition.current_state_is'
         div.whitespace
-          What voor tekst moet hier?
-          <br>
-          Ik zou het niet weten..
-          <br>
-          Uitleg over status denk ik..
-        select.petition-form-indication-dropdown id='petitionstate'
-          option value="concept"
-            = t "petition.state.not_yet_finished"
-          option value="live"
-            = t "petition.signable"
-          option value="to_process"
-            = t "petition.closed"
-          option value="in_process"
-            = t "petition.in_treatment"
-          option value="completed"
-            = t "petition.is_answered"
 
   - if @petition.is_draft?
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-        = t 'edit.petition.edit_petition_text'
+        = t 'edit.petition.edit_text'
 
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
       = link_to '#write_update'
-        = t 'petition.write_update_about_petition'
+        = t 'edit.petition.write_update_about_petition'
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)

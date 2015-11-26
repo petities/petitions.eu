@@ -309,8 +309,8 @@ Petities.nl'
     concept: Concept
     created: Gemaakt
     csv: Bewaar als CSV sheet
-    current_news_is: Current news is
-    current_state_is: Current state is
+    current_news_is: Het nieuws
+    current_state_is: De petitie is
     current_translations: Vertalingen
     draft: Draft
     edit_state: Edit state
@@ -364,6 +364,14 @@ Petities.nl'
       target: Geadresseerde
       we: Wij
     steps: Stappen
+    status:
+      flash: 
+        concept: Not yet finished
+        live: Signable
+        in_treatment: In treatment
+        in_process: In process
+        closed: Answered
+        published: Published
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling

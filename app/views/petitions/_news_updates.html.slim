@@ -3,7 +3,7 @@ div.petition-updates
   div.page
     section
       h2.petition-section-title
-        = t('petition.updates.news_updates')
+        = t('update.news_updates')
       div.update-container.updates-edit
         - if current_user.has_role?(:admin, @petition)
           div.update-edit style="display:flex;"
@@ -12,19 +12,19 @@ div.petition-updates
               /= form_for @
               form
                 div.petition-edit-label
-                  = t('petition.update.from.title')
+                  = t('update.from.title')
                 input.petition-edit-input type="text" value=""
                 div.petition-edit-label
-                  = t('petition.update.from.date')
+                  = t('update.from.date')
                 input.petition-edit-input.small type="text" value=""
                 div.petition-edit-label
-                  = t('petition.update.image')
+                  = t('update.image')
                 input.petition-edit-input type="file" value=""
                 div.petition-edit-label
-                  = t('petition.update.text')
+                  = t('update.text')
                 textarea.petition-edit-input
                 div class="petition-edit-label"
-                  = t('petition.update.petitie')
+                  = t('update.petition')
                 input class="petition-edit-input" type="text" value=""
                 input type="submit" class="petition-edit-save" value="New update"
 
