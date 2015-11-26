@@ -5,13 +5,39 @@ nl:
       blank: "Kies een ontvanger:"
       government: "Rijksoverheid"
       governement: "Rijksoverheid" #typo in db
-      water_county: Waterschap
+      water_county: waterschap
       european_union: "Europese Unie"
-      district: "Provincie"
-      parliament: "Parlement"
-      counsil: "Gemeente"
-      collective: "Andere organisatie"
-      plusregion: "Samenwerkende gemeenten"
+      district: "provincie"
+      parliament: "parlement"
+      counsil: "gemeente"
+      collective: "andere organisatie"
+      plusregion: "samenwerkende gemeenten"
       "Europees Parlement": Europees Parlement
       "Europese Commissie": Europese Commissie
       "Europese Ombudsman": Europese Ombudsman
+      "Kabinet": kabinet
+      "Koning": koning
+      "Openbaar Ministerie (artikel 12Sv-procedure)": "Openbaar Ministerie (artikel 12Sv-procedure)"
+      ambassadeur: ambassadeur
+      minister: minister
+      staatssecretaris: staatssecretaris
+      "(in)formateur": "(in)formateur"
+      "Eerste Kamer": "Eerste Kamer"
+      "Tweede Kamer": "Tweede Kamer"
+      auteursrechthouder: auteursrechthouder
+      brancheorganisatie: brancheorganisatie
+      fonds: fonds
+      hulpverleningsorganisatie: hulpverleningsorganisatie
+      infrastructuurexploitant: infrastructuurexploitant
+      inspectie: inspectie
+      kerkbestuur: kerkbestuur
+      "openbaar vervoerbedrijf": "openbaar vervoerbedrijf"
+      pensioenfonds: pensioenfonds
+      schoolbestuur: schoolbestuur
+      sportfederatie: sportfederatie
+      universiteitsbestuur: universiteitsbestuur
+      vakbond: vakbond
+      welzijnsorganisatie: welzijnsorganisatie
+      werkgever: werkgever
+      woningcorporatie: woningcorporatie
+      zorginstelling: zorginstelling
