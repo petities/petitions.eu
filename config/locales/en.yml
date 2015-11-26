@@ -111,12 +111,14 @@ en:
       donate_petition: Donate
       mailafriend: Enter e-mail addressess of people you know and who might sign.
       mailafriend_title: 'You can e-mail this invitation through us:'
+      mailafriend_subject: 'Invitation to sign: %{title}'
       mailafriend_mail: '
 
 Dear sir or madam,
 
 
-On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" with the note "%{sig_function}".
+On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" 
+with the note "%{sig_function}".
 
 
 With this e-mail %{name} invites you to read and perhaps sign the petition.
@@ -126,7 +128,7 @@ If you do not want to sign you do not have to do anything. Your e-mail address i
 You will not receive any further invitations about this petition on your e-mail address.
 
 
-You can view the petition at 
+You can view the petition at :
 
 
 %{petition_url}

@@ -189,6 +189,7 @@ class SignaturesController < ApplicationController
 
     @pledge_url = petition_signature_pledge_confirm_path(@petition, @signature.unique_key)
 
+    @share_email_url = petition_signature_mail_submit_path(@petition, @signature.unique_key)
   end
 
   def pledge_submit
@@ -232,8 +233,18 @@ class SignaturesController < ApplicationController
 
   def mail_submit
 
-    target = email_params[:share_mail]
+    target = email_params[:share_email]
 
+    if target.empty?
+      respond_to do |format|
+        format.json { render :show, status: :unprocessable_entity }
+      end
+      return
+    end
+
+    # do mail via sidekiq
+    #SignatureMailer.share_mail(@signature, target).deliver_later
+    # to test.
     SignatureMailer.share_mail(@signature, target).deliver_later
 
     respond_to do |format|
@@ -288,7 +299,7 @@ class SignaturesController < ApplicationController
   end
 
   def email_params
-    params.require(:share).permit(
+    params.permit(
       :share_email
     )
   end

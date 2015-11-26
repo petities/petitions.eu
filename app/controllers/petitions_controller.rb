@@ -342,9 +342,6 @@ class PetitionsController < ApplicationController
     #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     # end
 
-    # reset slug..
-    # @petition.slug = nil
-
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)

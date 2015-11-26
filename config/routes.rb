@@ -38,6 +38,8 @@ Rails.application.routes.draw do
       post :pledge_submit, as: :pledge_confirm
       patch :pledge_submit
 
+      post :mail_submit
+
       collection do
         post :search
 
