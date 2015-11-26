@@ -1,9 +1,7 @@
 
 <%= t("signature.dear") %> <%= @signature.person_name %> 
 
-<%= t("signature.linkinstruction") %>
-
-<%= t("petition.title") %>
+<%= t("signature.linkinstruction") %> "<%= @signature.petition.name %>"
 
 <%= url_for(controller: 'signatures',
             action: 'confirm',
@@ -11,5 +9,7 @@
             host: 'dev.petitions.eu',
             signature_id: @signature.unique_key,
             ) %>
+
+<%= @signature.petition.description %>
 
 <%= t("signature.thanks") %>

@@ -159,7 +159,11 @@ $(document).ready(function(){
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
+      console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
+      //just let the user think that something happened anyway
+      $('.petition-form-float-wrapper').hide();
+      $('.petition-success-sign-note').show();
       console.log(xhr);
     });
 

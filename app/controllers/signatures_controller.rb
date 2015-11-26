@@ -60,7 +60,32 @@ class SignaturesController < ApplicationController
   # POST /signatures.json
   def create
     @petition = Petition.friendly.find(params[:petition_id])
-    @signature = @petition.new_signatures.new(signature_params)
+
+    # try to find old signature first
+    email = signature_params[:person_email]
+    @signature = Signature.where(person_email: email, petition_id: @petition.id).first
+
+    if not @signature
+      @signature = NewSignature.where(person_email: email, petition_id: @petition.id).first
+    end
+
+    if @signature
+      # we found an old signature
+      # send confirmation mail again
+      # to this moron :)
+      @signature.send(:send_confirmation_mail)
+      respond_to do |format|
+        format.js { render json: { is_resend: 'true',  status: 'ok' } }
+      end
+      # DONE!
+      return
+    else
+      # no old signature found send new one
+      # lets create a proper new signature
+      @signature = @petition.new_signatures.new(signature_params)
+    end
+
+    # respond to json request
 
     respond_to do |format|
       if @signature.save
@@ -69,6 +94,7 @@ class SignaturesController < ApplicationController
         format.js { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # get signature confirm page

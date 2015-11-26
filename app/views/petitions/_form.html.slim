@@ -8,7 +8,9 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title Petition type
-        = f.select :petition_type_id, options_from_collection_for_select(@petition_types, "id", "name", selected: @petition.petition_type_id)
+        = f.select :petition_type_id, 
+          options_from_collection_for_select(@petition_types, "id", "name", selected: @petition.petition_type_id),
+          include_blank: t("start.from.type.blank", default:"select type")
       div.start-petition-form-cell.label
 
     div.start-petition-form-row

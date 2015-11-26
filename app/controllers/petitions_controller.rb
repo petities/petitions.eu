@@ -1,4 +1,5 @@
 class PetitionsController < ApplicationController
+
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
@@ -97,6 +98,7 @@ class PetitionsController < ApplicationController
   end
 
   def admin
+
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'live'
     @order   = params[:order].to_i
@@ -192,7 +194,6 @@ class PetitionsController < ApplicationController
 
     @petition_types = PetitionType.all
     set_organisation_helper
-
   end
 
   # POST /petitions
