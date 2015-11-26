@@ -44,7 +44,7 @@
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title= t('start.form.addressed.label')
-      = f.select :organisation_kind, options_for_select(@organisation_type_options, selected: @petition.organisation_kind), include_blank: t("petition.organisations.blank", default:"Select organisation type")
+      = f.select :organisation_kind, options_for_select(@publicbodies_sort_order, selected: @petition.organisation_kind), include_blank: t("petition.organisations.blank", default:"Select organisation type")
 
       - @organisation_type_prepared.each do |type, collection|
         - is_hidden = @petition.organisation_kind != type 

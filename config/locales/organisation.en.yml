@@ -1,0 +1,19 @@
+
+en:
+  petition:
+    organisations:
+      blank: "Choose a recipient:"
+      government: "Government"
+      governement: "Government" #typo in db
+      water_county: "Water board"
+      european_union: "European Union"
+      district: "Province"
+      parliament: "Parliament"
+      counsil: "Municipality"
+      collective: "Organisation"
+      plusregion: "Plus region"
+      "Europees Parlement": European Parliament
+      "Europese Commissie": European Commission
+      "Europese Ombudsman": European Ombudsman
+      
+  

@@ -332,7 +332,7 @@ div.page
             sig_email: @signature.person_email,
             petition_name: @petition.petitioner_name,
             sig_function: @signature.person_function, 
-            petition_url: petition_url({id: @petition.slug}),  
+            petition_url: petition_url({id: @petition.slug || @petition.id}),  
             petition_descr: @petition.description,
             petition_email: @petition.petitioner_email)
 
