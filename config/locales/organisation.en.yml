@@ -3,17 +3,41 @@ en:
   petition:
     organisations:
       blank: "Choose a recipient:"
-      government: "Government"
-      governement: "Government" #typo in db
-      water_county: "Water board"
+      government: "government"
+      governement: "government" #typo in db
+      water_county: "water board"
       european_union: "European Union"
-      district: "Province"
-      parliament: "Parliament"
-      counsil: "Municipality"
-      collective: "Organisation"
-      plusregion: "Plus region"
+      district: "province"
+      parliament: "parliament"
+      counsil: "municipality"
+      collective: "other organisation"
+      plusregion: "alliance of municipalities"
       "Europees Parlement": European Parliament
       "Europese Commissie": European Commission
       "Europese Ombudsman": European Ombudsman
-      
-  
+      "Kabinet": cabinet
+      "Koning": king
+      "Openbaar Ministerie (artikel 12Sv-procedure)": "Public Prosecution Service (article 12Sv-procedure)"
+      ambassadeur: ambassador
+      minister: minister
+      staatssecretaris: "junior minister"
+      "(in)formateur": "(in)formateur"
+      "Eerste Kamer": "Eerste Kamer"
+      "Tweede Kamer": "Tweede Kamer"
+      auteursrechthouder: copyright holder
+      brancheorganisatie: sector organisation
+      fonds: fund
+      hulpverleningsorganisatie: certified first responder
+      infrastructuurexploitant: infrastructuurexploitant
+      inspectie: inspection
+      kerkbestuur: church board
+      "openbaar vervoerbedrijf": "public transport authority"
+      pensioenfonds: pension fund
+      schoolbestuur: school board
+      sportfederatie: sports federation
+      universiteitsbestuur: university board
+      vakbond: union
+      welzijnsorganisatie: social services organisation
+      werkgever: employer
+      woningcorporatie: housing cooperative
+      zorginstelling: health care provider

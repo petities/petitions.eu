@@ -6,12 +6,13 @@ div.petition-details id="edit_details" style='display: none;'
 
     div.petition-edit-label
       = t('petition.details.form.public_name')
-    = f.text_field :petitioner_name, class: 'petition-edit-input'
+    = f.text_field :petitioner_name, class: 'petition-edit-input',
+                   placeholder: t('petition.details.from.your_name', default: 'your public name')
 
     div.petition-edit-label
       = t('petition.details.form.telephone')
     = f.text_field :petitioner_telephone, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_number', default: 'your number (will not be public)')
+                   placeholder: t('petition.details.from.your_number', default: 'your public number')
 
     div.petition-edit-label
       = t('petition.details.form.public_organisation')

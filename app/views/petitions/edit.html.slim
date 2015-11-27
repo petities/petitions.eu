@@ -20,6 +20,17 @@ div.page
     /<!-- editbutton -->
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
+<<<<<<< HEAD
+        = t 'edit.petition.edit_text'
+    /<!-- /editbutton -->
+
+
+    div class="petition-editbutton-container"
+      = link_to t('edit.petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
+<<<<<<< Updated upstream
+=======
+    /<!-- /editbutton -->
+=======
         = t 'edit.petition.edit_petition_text'
     /<!-- /editbutton -->
 
@@ -28,6 +39,8 @@ div.page
 
     div class="petition-editbutton-container"
       = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
+>>>>>>> master
+>>>>>>> Stashed changes
 
     /<!-- petition versioning -->
 
@@ -35,20 +48,20 @@ div.page
 
       h2
         - unless @version_index < 0
-          =<> t 'petition.newest_version'
+          =<> t 'edit.petition.newest_version'
         - else
-          =<> t 'petition.version'
+          =<> t 'edit.petition.version'
           =<> @version_index
-        =<> t 'petition.of'
+        =<> t 'edit.petition.of'
         =<> @petition.versions.size
 
       - if @version_index < 0
         div.petition-editbutton.pull-left
-          =<> link_to 'newer version', edit_petition_path(@petition, {version: @up})
+          =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})
 
       - if @version_index.abs < @petition.versions.size
         div.petition-editbutton.pull-right
-          =<> link_to 'pervious version', edit_petition_path(@petition, {version: @down})
+          =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @down})
 
     /<!-- versioning -->
 
@@ -103,9 +116,8 @@ div.page
         - status_descr_key = 'petition.status.descr.' + status
 
         h2 class="petition-section-title"
-          = t "petition.status.status_explanation"
-        h2 class="petition-section-title"
-          = t(status_descr_key, default: 'missing description for:' + status, default:status)
+        p
+          = t ('edit.petition.status.explanation')
         p
           = t(status_descr_key, default: 'missing description for:' + status, default:status)
 
@@ -131,33 +143,38 @@ div.page
         h2 class="petition-section-title"
           = t 'petition.current_state_is'
         div.whitespace
-          What voor tekst moet hier?
-          <br>
-          Ik zou het niet weten..
-          <br>
-          Uitleg over status denk ik..
-        select.petition-form-indication-dropdown id='petitionstate'
-          option value="concept"
-            = t "petition.state.not_yet_finished"
-          option value="live"
-            = t "petition.signable"
-          option value="to_process"
-            = t "petition.closed"
-          option value="in_process"
-            = t "petition.in_treatment"
-          option value="completed"
-            = t "petition.is_answered"
 
   - if @petition.is_draft?
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-        = t 'edit.petition.edit_petition_text'
+        = t 'edit.petition.edit_text'
 
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
       = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+<<<<<<< HEAD
+      = link_to '#write_update'
+        = t 'edit.petition.write_update_about_petition'
+=======
+      = link_to '#petitionnews'
+        = t 'petition.write_update_about_petition'
+>>>>>>> master
+<<<<<<< Updated upstream
+=======
+      = link_to '#petitionnews'
+        = t 'petition.write_update_about_petition'
+>>>>>>> origin/internationalisation
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
@@ -168,6 +185,15 @@ div.page
   /<!-- /editbutton -->
 
 
+<<<<<<< Updated upstream
+  section.petition-details-container
+
+    div#petition_details.petition_details
+    = render partial: 'detailbox'
+
+    = render partial: 'history_chart'
+
+=======
   section.petition-details-container 
   
     div#petition_details.petition_details
@@ -175,6 +201,7 @@ div.page
 
     = render partial: 'history_chart'
 
+>>>>>>> Stashed changes
     = render partial: 'edit_details'
 
     = render partial: 'edit_details_docs'
@@ -182,7 +209,11 @@ div.page
   /<!-- editbutton -->
   javascript:
     var showEdit = function(){
+<<<<<<< Updated upstream
+      $('#detailbox').hide();
+=======
       $('#detailbox').hide(); 
+>>>>>>> Stashed changes
       $('#history_chart').hide();
       $('#edit_details').show();
       $('#edit_details_docs').show();
@@ -192,7 +223,11 @@ div.page
     var showDetails = function(){
       $('#edit_details').hide();
       $('#edit_details_docs').hide();
+<<<<<<< Updated upstream
+      $('#detailbox').show();
+=======
       $('#detailbox').show(); 
+>>>>>>> Stashed changes
       $('#history_chart').show();
       $('#edit_detail_button').show();
     };

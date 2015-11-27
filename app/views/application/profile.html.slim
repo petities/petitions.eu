@@ -22,6 +22,7 @@ div.page.vervolg
           tr
             td role
             td resource
+            td resource_type
         tbody
           - current_user.roles.each do |role|
             tr
@@ -32,5 +33,6 @@ div.page.vervolg
                   - petition = Petition.find(role.resource_id)
                   =<> link_to petition.name, petition_path(petition)
                 - else
-                  =<> role.resource_type
                   =<> role.resource_id
+              td
+                =<> role.resource_type

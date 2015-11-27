@@ -42,6 +42,7 @@ en:
   confirm:
     form:
       action:
+        add_details: Update my signature
         confirm: Confirm
         pledge: I pledge to help
         update: Update my signature
@@ -55,6 +56,7 @@ en:
         description: City where you were born, not required.
         label: City of birth
       country:
+        description: Dutch citizens abroad can sign
         label: Country were you currently live
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
@@ -62,6 +64,8 @@ en:
       function:
         description: You may write your function, profession or relation to the petition, but it is not required.  
         label: Function or situation
+      form:
+        update_information: updated
       influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
       influencelabel: Do you have influence? Are you a(n)...       
       invite: 
@@ -70,6 +74,9 @@ en:
       location:
         description: Where you currently live, visible to the world if you choose.  
         label: Place
+      more_information:
+        description: You will receive up to three e-mails maximum
+        label: Yes, send me up to three e-mails with updates about this petition
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
@@ -103,11 +110,13 @@ en:
         label: Street number
       street_number_suffix:
         suffixlabel: Suffix
+      update_information: Update your information
       visible:
         description: A public signature can be found with search engines, for example when someone looks up your name.
         privacylabel: My name and place will be public, visible under the petition.
     info:
       browser: 'Your browser: %{browser}'
+      check_information: Please check your information
       donate_petition: Donate
       mailafriend: Enter e-mail addressess of people you know and who might sign.
       mailafriend_title: 'You can e-mail this invitation through us:'
@@ -177,7 +186,17 @@ Petitions.eu'
     title: Donate
   edit:
     petition:
-      edittext: Edit the petition
+      add_news: Add news
+      edit_text: Edit the petition
+      newer_version: Newer version
+      newest_version: Petition version
+      of: out of 
+      older_version: Older version
+      status:
+        explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
+      updated: Petition is updated
+      version: version
+      write_update_about_petition: Write update about petition
   errors:
     messages:
       empty: This field is empty but should contain text.
@@ -315,13 +334,14 @@ Petitions.eu'
     add_translations_later: Add translations later
     add_translations_link_instruction: Add translations link instruction
     another_possible_action: Another possible action
+    available_languages: Available languages
     closed: Closed
     completed: Completed
     concept: Concept
     created: Created
     csv: Save in CSV
-    current_news_is: Current news is
-    current_state_is: Current state is
+    current_news_is: The news
+    current_state_is: The petition is
     current_translations: Current translations
     draft: Draft
     edit_state: Edit state
@@ -375,6 +395,14 @@ Petitions.eu'
       target: Target
       we: We
     steps: Steps
+    status:
+      flash: 
+        concept: Not yet finished
+        live: Signable
+        in_treatment: In treatment
+        in_process: In process
+        closed: Answered
+        published: Published
     the_next_logical_action: The next logical action
     title: Title
     to_process: To process
@@ -476,7 +504,7 @@ Petitions.eu'
       addressed:
         description: A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
         label: Addressed to
-      finalize: Finalize
+      finalize: Open the petition
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image
@@ -514,4 +542,20 @@ Petitions.eu'
     title: Start a petition
   startanother: Start another petition
   statement: Statement
+  update:
+    created: News update created
+    earlier_updates: Earlier updates
+    form:
+      create: Create
+      update: Update
+    from:
+      date:
+      image:
+      title:
+    news_updates: Updates
+    label: 
+      text: Your news update about the petition
+      title: Title of this update
+      show_on_homepage: Show on homepage 
+    updated: News update updated
   when: When

@@ -37,6 +37,6 @@
 
   div.petition-edit-label
   - if update.title.nil?
-    = f.submit t('news_update.form.create', default: 'create news'), class: 'petition-edit-save'
+    = f.submit t('update.form.create', default: 'create news'), class: 'petition-edit-save'
   - else 
-    = f.submit t('news_update.form.update', default: 'update news'), class: 'petition-edit-save'
+    = f.submit t('update.form.update', default: 'update news'), class: 'petition-edit-save'

@@ -200,6 +200,18 @@ class PetitionsController < ApplicationController
 
     @petition_types = PetitionType.all
     set_organisation_helper
+
+    if user_signed_in?
+      owner = current_user
+      #copy user info
+      @petition.petitioner_name = owner.name
+      @petition.petitioner_address = owner.address 
+      @petition.petitioner_postalcode = owner.postalcode
+      @petition.petitioner_telephone = owner.telephone
+      @petition.petitioner_email = owner.email
+      @petition.petitioner_city = owner.city
+    end
+
   end
 
   # POST /petitions
@@ -207,6 +219,7 @@ class PetitionsController < ApplicationController
   def create
     # new_params = Hash(petition_params[:petition])
     @petition = Petition.new(petition_params)
+
     @petition.status = 'concept'
 
     @petition.locale_list << I18n.locale
@@ -226,7 +239,6 @@ class PetitionsController < ApplicationController
 
     if user_signed_in?
       owner = current_user
-      @petition.status = 'concept'
     else
       user_params = params[:user]
 
