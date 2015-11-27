@@ -53,16 +53,16 @@ en:
         description: You might be too young for this kind of petition. It will be checked.
         label: Born at
       city:
-        description: City where you were born, not required.
+        description: "City where you were born, not required."
         label: City of birth
       country:
-        description: Dutch citizens abroad can sign
+        description: Dutch citizens abroad can sign.
         label: Country were you currently live
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
       function:
-        description: You may write your function, profession or relation to the petition, but it is not required.  
+        description: "You may write your function, profession or relation to the petition, but it is not required."  
         label: Function or situation
       form:
         update_information: updated
@@ -72,11 +72,11 @@ en:
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
       location:
-        description: Where you currently live, visible to the world if you choose.  
+        description: "Where you currently live, visible to the world if you choose." 
         label: Place
       more_information:
-        description: You will receive up to three e-mails maximum
-        label: Yes, send me up to three e-mails with updates about this petition
+        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
+        label: "Yes, send me up to three e-mails with updates about this petition"
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
@@ -349,7 +349,7 @@ Petitions.eu'
     closed: Closed
     completed: Completed
     concept: Concept
-    created: Created
+    created: Your new petition is now created
     csv: Save in CSV
     current_news_is: The news
     current_state_is: The petition is
@@ -443,6 +443,9 @@ Petitions.eu'
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
   profile: My profile
+  pundit:
+    petition_policy:
+      edit: You can now add a translation of the petition
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -503,6 +506,7 @@ Petitions.eu'
       subscribe: Subscribe
       visible: Visible
     linkinstruction: Follow below link to confirm
+    success: Your information is saved
     thanks: Thanks
   signatures:
     link: Link

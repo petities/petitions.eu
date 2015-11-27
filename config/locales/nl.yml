@@ -56,24 +56,28 @@ nl:
         description: De plaats waar u geboren bent. Niet verplicht.
         label: Geboorteplaats
       country:
+        description: Nederlanders in het buitenland mogen wel tekenen.  
         label: Het land waar u nu leeft.
       email:
         description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie. 
         label: E-mail
       function:
-        description: U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet.  
+        description: "U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet."
         label: Functie of situatie
       influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
       influencelabel: Heeft u invloed? Bent u een... 
       invite: 
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
-        label: Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar
+        label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
       location:
         description: Waar u op het moment van ondertekenen woont. Alleen zichtbaar voor de wereld als u daarvoor kiest.
         label: Woonplaats
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
+      more_information:
+        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       pledge:
         asseenontv: bekende persoon die herkend wordt
         carpooler: een lift geven naar een bijeenkomst
@@ -109,6 +113,7 @@ nl:
         privacylabel: Mijn naam en woonplaats zullen publiek zichtbaar zijn onder de petitie.
     info:
       browser: 'Uw browser: %{browser}'
+      check_information: Controleer uw gegevens
       donate_petition: Doneer
       mailafriend: Voer e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
       mailafriend_title: 'Deze uitnodiging kunt u via ons mailen:'
@@ -167,8 +172,18 @@ Petities.nl'
     title: Doneer
   edit:
     petition:
-      edittext: Bewerk de petitie
-  errors:
+      add_news: Voeg nieuws toe
+      edit_text: Bewerk de petitie
+      newer_version: Nieuwere versie
+      newest_version: Petitie versie
+      of: uit  
+      older_version: Oudere versie
+      status:
+        explanation: Als uw petitietekst eenmaal klaar is, geeft u het aan de moderator om het open te zetten voor ondertekening. Na de sluitingsdatum van de petitie kan er niet meer worden ondertekend. Om de petitie te sluiten of te verlengen moet u de sluitingsdatum veranderen. Gesloten petities moeten worden overhandigd aan de ontvanger. Daarna wachten we op een antwoord.
+      updated: Petitie is bijgewerkt
+      version: versie
+      write_update_about_petition: Schrijf een nieuwtje over de petitie      
+      errors:
     messages:
       empty: Dit veld is leeg, maar er moet tekst in staan.
       incorrect: Sommige velden zijn niet goed ingevuld. Controleer ze en probeer opnieuw.
@@ -308,7 +323,7 @@ Petities.nl'
     closed: Closed
     completed: Completed
     concept: Concept
-    created: Gemaakt
+    created: Uw nieuwe petitie is nu aangemaakt
     csv: Bewaar als CSV sheet
     current_news_is: Het nieuws
     current_state_is: De petitie is
@@ -402,6 +417,9 @@ Petities.nl'
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
   profile: Mijn profiel
+  pundit:
+    petition_policy:
+      edit: U kunt nu een vertaling toevoegen van uw petitie
   request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
@@ -462,6 +480,7 @@ Petities.nl'
       subscribe: Abonneer
       visible: Zichtbaar
     linkinstruction: Volg deze link
+    success: Uw gegevens zijn bijgewerkt
     thanks: Dank u
   signatures:
     link: Link
