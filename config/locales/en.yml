@@ -196,7 +196,7 @@ Petitions.eu'
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
       updated: Petition is updated
       version: version
-      write_update_about_petition: Write update about petition
+    write_update_about_petition: Write update about petition
   errors:
     messages:
       empty: This field is empty but should contain text.
