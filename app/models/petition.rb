@@ -77,7 +77,7 @@ class Petition < ActiveRecord::Base
 
   # add slug_column?
   # write migration?
-  friendly_id :name, :use => [:globalize, :finders], slug_column: :cached_slug
+  friendly_id :name, :use => [:globalize, :finders] #, slug_column: :cached_slug
 
   STATUS_LIST = [
     # we can view it but not sign?
@@ -171,7 +171,6 @@ class Petition < ActiveRecord::Base
   after_update :send_status_mail
 
   def should_generate_new_friendly_id?
-    # return true
     name_changed?
   end
 
