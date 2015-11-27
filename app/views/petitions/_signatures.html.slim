@@ -10,7 +10,7 @@ div.page
 
     div.navigation-bar
       - if @signatures.blank?
-        div.whitespace No signatures for this moment
+        div.whitespace = t('edit.petition.no_signatures_yet')
       - else
         a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
       
