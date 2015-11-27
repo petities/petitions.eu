@@ -254,6 +254,17 @@ Petitions.eu'
     opinionpiece:
       descr: A petition gets most signatures from allies who are already convinced by the need for change. But most are not! If they know about the petition at all. With opinion piece in the newspaper or online you can both inform and convince people. This text is usually more pleasant to read than a petition.</p><p>&nbsp;</p><p>To write such a piece is not difficult&#58; it is all about the opinion supported by arguments. Send your piece to a newspaper or a website accepting contributions from others. You can also write an opinion piece to draw attention to someone else's petition. Do not forget the call to sign the petition!
       title: More signatures with an opinion piece
+    petition:
+      update:
+        help: Summarise
+        descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**." 
+        descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
+        descr3: |
+            <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
+        descr4: "Make sure the title summarises the news you want to spread. The first sentence ending with a period is what everyone will see, what follows is optional."
+        links: Include links
+        markdown: Use styling
+        tips: See the handbook
     title: Help
     whilesigning:
       question01:
