@@ -33,6 +33,16 @@ div.page
 =======
         = t 'edit.petition.edit_petition_text'
     /<!-- /editbutton -->
+=======
+        = t 'edit.petition.edit_petition_text'
+    /<!-- /editbutton -->
+
+    /<!-- close petition -->
+    /<!-- close petition -->
+
+    div class="petition-editbutton-container"
+      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
+>>>>>>> master
 
     /<!-- close petition -->
     /<!-- close petition -->
@@ -154,10 +164,13 @@ div.page
       /TODO insert anchor
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 <<<<<<< HEAD
@@ -168,10 +181,13 @@ div.page
         = t 'petition.write_update_about_petition'
 >>>>>>> master
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
       = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
 >>>>>>> origin/internationalisation
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -184,6 +200,7 @@ div.page
 
   /<!-- /editbutton -->
 
+<<<<<<< Updated upstream
 
 <<<<<<< Updated upstream
   section.petition-details-container
@@ -238,6 +255,44 @@ div.page
 
 = render partial: 'social'
 
+=======
+
+  section.petition-details-container 
+  
+    div#petition_details.petition_details
+    = render partial: 'detailbox'
+
+    = render partial: 'history_chart'
+
+    = render partial: 'edit_details'
+
+    = render partial: 'edit_details_docs'
+
+  /<!-- editbutton -->
+  javascript:
+    var showEdit = function(){
+      $('#detailbox').hide(); 
+      $('#history_chart').hide();
+      $('#edit_details').show();
+      $('#edit_details_docs').show();
+      $('#edit_detail_button').hide();
+
+    };
+    var showDetails = function(){
+      $('#edit_details').hide();
+      $('#edit_details_docs').hide();
+      $('#detailbox').show(); 
+      $('#history_chart').show();
+      $('#edit_detail_button').show();
+    };
+
+  div class="petition-editbutton-container"
+    div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
+      = t 'edit.petition.edit_details_text'
+
+= render partial: 'social'
+
+>>>>>>> Stashed changes
 = render partial: 'signatures'
 
 = render partial: 'petition_updates'
