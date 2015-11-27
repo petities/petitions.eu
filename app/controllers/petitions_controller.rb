@@ -149,12 +149,7 @@ class PetitionsController < ApplicationController
     end
   end
 
-  # GET /petitions/1
-  # GET /petitions/1.json
-  def show
-    @page = params[:page]
-
-    @owners = find_owners
+  def set_petition_vars
 
     if @petition.organisation_id
       @organisation = Organisation.find(@petition.organisation_id)
@@ -162,11 +157,22 @@ class PetitionsController < ApplicationController
 
     @petition_types = PetitionType.all
 
+    @chart_array = @petition.history_chart_json
+
+  end
+  # GET /petitions/1
+  # GET /petitions/1.json
+  def show
+    @page = params[:page]
+
+    @owners = find_owners
+
+    set_petition_vars
+
     set_organisation_helper
 
     @signature = @petition.signatures.new
 
-    @chart_array = @petition.history_chart_json
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
@@ -256,6 +262,8 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
     @petition_types = PetitionType.all
+
+    set_petition_vars
 
     set_organisation_helper
 
@@ -374,6 +382,7 @@ class PetitionsController < ApplicationController
     end
   end
 
+  # send petition to moderation
   def finalize
     authorize @petition
 
@@ -445,14 +454,33 @@ class PetitionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def petition_params
-    # :add_locale, :version, :owner_ids, :add_owner,
-    # petition: [
-    # locale_list: []
     params.require(:petition).permit(
       :name, :description, :statement, :request, :initiators, :status,
-      :organisation_id, :organisation_kind, :petitioner_email, :petitioner_name, :password,
-      :petition_type_id
+      :organisation_id, :organisation_kind,
+      :petitioner_email, :petitioner_name, :petitioner_organisation,
+      :petitioner_telephone,
+      :petition_type_id,
+      :date_projected,
+      :link1, :link1_text,
+      :link2, :link2_text,
+      :link3, :link3_text,
     )
     #:subscribe, :visible,
+  end
+
+  # add remove locales
+  def locale_params
+    params.require(:petition).permit(
+     :add_locale,
+     :remove_locale
+    )
+  end
+
+  # add remove owners
+  def owner_params
+    params.require(:petition).permit(
+      :user_email,
+      :user_id
+    )
   end
 end

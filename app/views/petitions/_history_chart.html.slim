@@ -1,0 +1,27 @@
+
+div#history_chart.petition-details.history
+  h2.petition-section-title= t('show.history')
+  javascript:
+    $(document).ready(function(){
+      var ctx = $("#chartContainer")[0].getContext("2d");
+      var data = {
+        labels: #{@chart_array.map.with_index{|_,i| i+1}},
+        datasets: [{
+          fillColor: "#96c79f",
+          data: #{@chart_array}
+        }]
+      };
+      var myBarChart = new Chart(ctx).Bar(data, {
+        showTooltips: true,
+        animation: true,
+        showScale: true,
+        scaleShowGridLines : false,
+        barShowStroke : false,
+        barValueSpacing: 1,
+        tooltipFillColor: "#fff",
+        tooltipFontColor: "#000",
+      });
+    });
+  canvas id="chartContainer" style="height:275px; width:100%;"
+
+

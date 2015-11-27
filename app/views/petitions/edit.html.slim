@@ -21,10 +21,13 @@ div.page
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
         = t 'edit.petition.edit_text'
+    /<!-- /editbutton -->
+
+    /<!-- close petition -->
+    /<!-- close petition -->
 
     div class="petition-editbutton-container"
-      = link_to t('edit.petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
-    /<!-- /editbutton -->
+      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
 
     /<!-- petition versioning -->
 
@@ -136,8 +139,8 @@ div.page
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
-      = link_to '#write_update'
-        = t 'edit.petition.write_update_about_petition'
+      = link_to '#petitionnews'
+        = t 'petition.write_update_about_petition'
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
@@ -147,32 +150,42 @@ div.page
 
   /<!-- /editbutton -->
 
-  section.petition-container id="petitionprogres"
-    div.petition-text-wrapper
-      h2.petition-section-title= t('show.petition.news')
-      div.petition-text
-        h3 report on news about your petition
-        h3 Gemeente X
-        p blabla
-        p &nbsp;
 
-        h3 Wij willen vluchtelingen
-        p statement
-        p &nbsp;
+  section.petition-details-container
 
-        h3 We zijn de weg kwijt!
-        p request
+    div#petition_details.petition_details
+    = render partial: 'detailbox'
 
-    div.petition-form-wrapper
-      div.petition-form-indication-wrapper
-        h2 class="petition-section-title"
-          = t "petition.current_feedback"
-        p hier komt webmaster feedback?!
+    = render partial: 'history_chart'
 
+    = render partial: 'edit_details'
 
-  = render partial: 'social'
+    = render partial: 'edit_details_docs'
 
+  /<!-- editbutton -->
+  javascript:
+    var showEdit = function(){
+      $('#detailbox').hide();
+      $('#history_chart').hide();
+      $('#edit_details').show();
+      $('#edit_details_docs').show();
+      $('#edit_detail_button').hide();
 
-  = render partial: 'signatures'
+    };
+    var showDetails = function(){
+      $('#edit_details').hide();
+      $('#edit_details_docs').hide();
+      $('#detailbox').show();
+      $('#history_chart').show();
+      $('#edit_detail_button').show();
+    };
+
+  div class="petition-editbutton-container"
+    div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
+      = t 'edit.petition.edit_details_text'
+
+= render partial: 'social'
+
+= render partial: 'signatures'
 
 = render partial: 'petition_updates'

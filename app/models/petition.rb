@@ -77,7 +77,7 @@ class Petition < ActiveRecord::Base
 
   # add slug_column?
   # write migration?
-  friendly_id :name, :use => [:globalize, :finders]
+  friendly_id :name, :use => [:globalize, :finders], slug_column: :cached_slug
 
   STATUS_LIST = [
     # we can view it but not sign?
