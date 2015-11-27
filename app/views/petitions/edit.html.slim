@@ -23,6 +23,9 @@ div.page
         = t 'edit.petition.edit_petition_text'
     /<!-- /editbutton -->
 
+    /<!-- close petition -->
+    /<!-- close petition -->
+
     div class="petition-editbutton-container"
       = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
 
@@ -153,7 +156,7 @@ div.page
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
-      = link_to '#write_update'
+      = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
 
   - if @petition.is_draft?

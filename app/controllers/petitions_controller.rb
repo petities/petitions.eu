@@ -382,6 +382,7 @@ class PetitionsController < ApplicationController
     end
   end
 
+  # send petition to moderation
   def finalize
     authorize @petition
 
@@ -455,10 +456,11 @@ class PetitionsController < ApplicationController
   def petition_params
     params.require(:petition).permit(
       :name, :description, :statement, :request, :initiators, :status,
-      :organisation_id, :organisation_kind, 
+      :organisation_id, :organisation_kind,
       :petitioner_email, :petitioner_name, :petitioner_organisation,
-      :petition_type_id, 
-      :date_projected, 
+      :petitioner_telephone,
+      :petition_type_id,
+      :date_projected,
       :link1, :link1_text,
       :link2, :link2_text,
       :link3, :link3_text,
