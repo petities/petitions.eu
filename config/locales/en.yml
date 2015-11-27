@@ -564,6 +564,7 @@ Petitions.eu'
       image:
       title:
     news_updates: Updates
+    no_news_yet: No news about this petition yet. 
     label: 
       text: Your news update about the petition
       title: Title of this update

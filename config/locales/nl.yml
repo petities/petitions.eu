@@ -42,6 +42,7 @@ nl:
   confirm:
     form:
       action:
+        add_details: Werk mijn ondertekening bij
         confirm: Bevestig
         pledge: Ik zeg deze hulp toe
         update: Werk mijn ondertekening bij
