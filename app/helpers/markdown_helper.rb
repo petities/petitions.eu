@@ -2,8 +2,10 @@ module MarkdownHelper
   def markdown(text)
     rc = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true)
     # rc = Redcarpet::Markdown.new(Redcarpet::Render::HTML, )
-    rc.render(text).html_safe
+    if text
+      rc.render(text).html_safe
+    end
   end
- end
+end
 
 Slim::Embedded.options[:markdown] = { strikethrough: true }

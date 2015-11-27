@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
     available_locales = [:ag, :de, :en, :es, :fr, :lim, :nl]
 
     if params[:locale]
-      I18n.locale = if available_locales.include? params[:locale].to_sym
+      I18n.locale = if available_locales.include? params[:locale].downcase.to_sym
                       params[:locale]
                     else
                       I18n.default_locale

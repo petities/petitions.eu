@@ -23,29 +23,24 @@ javascript:
   });
 
 div.page
-  - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
-    - if @petition.locale_list.present?
-      section.petition-intro-container-noimage
-        div.petition-intro-info-container
-          div.petition-intro-info-text
-            = t('petition.available_languages')
+  /- if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
+  - if @petition.locale_list.present?
+    section.petition-intro-container-noimage
+      div.petition-intro-info-container
+        div.petition-intro-info-text
+          = t('petition.available_languages')
 
-          div.locale_list.whitespace
-            div.petition-intro-info-text
-            br
-            - @petition.locale_list.each do |locale|
-              = label_tag locale
-              - if params[:locale]
-                = radio_button_tag :locale, locale, locale == params[:locale].to_sym, { onclick: "document.location='?locale=#{locale}';" }
-              - else
-                = radio_button_tag :locale, locale, { onclick: "document.location='?locale=#{locale}';" }
-              = label_tag 'NL' 
-              = radio_button_tag :locale, 'NL', false, { onclick: "document.location='?locale=nl';" }
+        div.locale_list.whitespace
+          div.petition-intro-info-text.whitespace
+          - @petition.locale_list.each do |locale|
+            =< label_tag locale, locale
+            => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
 
-    = link_to 'Edit', edit_petition_path(@petition), class: 'button'
+    = link_to 'Edit', edit_petition_path(@petition), class: 'button whitespace'
 
-  - if not @updates.empty?
-    = link_to t('petition.news'), '#petitionnews', class: 'button'
+  div
+    - if not @updates.empty?
+      = link_to t('petition.news'), '#petitionnews', class: 'button'
 
   javascript:
     window.page = 1;

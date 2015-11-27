@@ -8,7 +8,9 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-    @petition = Petition.friendly.find(params[:petition_id])
+    #@petition = Petition.friendly.find(params[:petition_id])
+    @petition = PetitionsController.send(:set_petition)
+
     @all_signatures = @petition.signatures.special
 
     unless request.xhr?
@@ -41,7 +43,8 @@ class SignaturesController < ApplicationController
   end
 
   def search
-    @petition = Petition.friendly.find(params[:petition_id])
+    #@petition = Petition.friendly.find(params[:petition_id])
+    @petition = PetitionsController.send(:set_petition)
 
     @query = params[:query]
 
@@ -59,7 +62,8 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-    @petition = Petition.friendly.find(params[:petition_id])
+    #@petition = Petition.friendly.find(params[:petition_id])
+    @petition = PetitionsController.send(:set_petition)
 
     # try to find old signature first
     email = signature_params[:person_email]

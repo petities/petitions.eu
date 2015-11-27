@@ -204,7 +204,7 @@ class PetitionsController < ApplicationController
     if user_signed_in?
       owner = current_user
       #copy user info
-      @petition.petitioner_name = owner.name
+      @petition.petitioner_name = owner.username
       @petition.petitioner_address = owner.address 
       @petition.petitioner_postalcode = owner.postalcode
       @petition.petitioner_telephone = owner.telephone
@@ -248,7 +248,8 @@ class PetitionsController < ApplicationController
         unless owner
           owner = User.create(
             email: user_params[:email],
-            username: user_params[:name],
+            username: user_params[:email],
+            name: user_params[:name],
             password: user_params[:password]
           )
         end
@@ -367,8 +368,7 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
 
-    locale = params[:add_locale] || I18n.locale
-    update_locale_list(locale.to_sym) if params[:add_locale]
+    update_locale_list
 
     # if petition_params[:organisation_id].present?
     #   organisation = Organisation.find(petition_params[:organisation_id])
@@ -458,9 +458,10 @@ class PetitionsController < ApplicationController
       roles: { resource_type: 'Petition', resource_id: @petition.id })
   end
 
-  def update_locale_list(_locale)
+  def update_locale_list
+    locale = params[:locale] || I18n.locale
     # update the locale menu here
-    @petition.locale_list << params[:add_locale].to_sym
+    @petition.locale_list << locale.to_sym
     @petition.locale_list.uniq!
   end
 
