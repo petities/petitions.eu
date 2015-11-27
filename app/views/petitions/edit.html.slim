@@ -23,11 +23,9 @@ div.page
         = t 'edit.petition.edit_text'
     /<!-- /editbutton -->
 
-    /<!-- close petition -->
-    /<!-- close petition -->
 
     div class="petition-editbutton-container"
-      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
+      = link_to t('edit.petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
 
     /<!-- petition versioning -->
 
@@ -139,8 +137,23 @@ div.page
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
       /TODO insert anchor
+<<<<<<< Updated upstream
       = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      = link_to '#write_update'
+        = t 'edit.petition.write_update_about_petition'
+=======
+      = link_to '#petitionnews'
+        = t 'petition.write_update_about_petition'
+>>>>>>> master
+=======
+      = link_to '#petitionnews'
+        = t 'petition.write_update_about_petition'
+>>>>>>> origin/internationalisation
+>>>>>>> Stashed changes
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
