@@ -31,7 +31,7 @@ div#detailbox.petition-details
       = @petition.petitioner_name
       |&nbsp
 
-  - if not @petition.petitioner_organisation.empty?
+  - if @petition.petitioner_organisation.present?
     div.petition_field_label= t('show.overview.organisation')
     div.petition_field_data
       = @petition.petitioner_organisation
