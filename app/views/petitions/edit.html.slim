@@ -124,24 +124,31 @@ div.page
           = t 'petition.current_state_is'
         div.whitespace
 
+div
   - if @petition.is_draft?
-    div class="petition-editbutton-container"
+    div.petition-editbutton-container
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
         = t 'edit.petition.edit_text'
+    div.whitespace    
 
-  div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+div
+  div.petition-editbutton-container
     div.petition-editbutton
       = link_to '#petitionnews'
-        = t 'petition.write_update_about_petition'
+        = t 'edit.petition.write_news'
+    div.whitespace
 
+
+div
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
-        div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
+        div.petition-editbutton-container #style="margin:-20px 0 0; padding:0 0 30px;"
           div.petition-editbutton
             = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
+        div.whitespace
 
   /<!-- /editbutton -->
-
+div.page
   section.petition-details-container
 
     div#petition_details.petition_details

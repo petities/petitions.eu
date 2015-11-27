@@ -2,6 +2,7 @@
 div.page.vervolg
   section.vervolg-main
 
+
     h1.petition-section-title.left
       = t('update.news_updates')
     div.update-container id="petitionnews"
@@ -11,19 +12,20 @@ div.page.vervolg
       = will_paginate @updates, renderer: PetitionsPaginateRenderer
 
   aside.vervolg-side
-    div.side-article-container.whitespace
-      h2= t('help.petition.update.markdown')
-      p= raw t('help.petition.update.descr')
+    - if current_user && current_user.has_role?(:admin, @petition)
+      div.side-article-container.whitespace
+        h2= t('help.petition.update.markdown')
+        p= raw t('help.petition.update.descr')
       
-    div.side-article-container.whitespace
-      h2= t('help.petition.update.links')
-      p= raw t('help.petition.update.descr2')
+      div.side-article-container.whitespace
+        h2= t('help.petition.update.links')
+        p= raw t('help.petition.update.descr2')
 
  
-    div.side-article-container.whitespace
-      h2= t('help.petition.update.tips')
-      p= raw t('help.petition.update.descr3')
+      div.side-article-container.whitespace
+        h2= t('help.petition.update.tips')
+        p= raw t('help.petition.update.descr3')
 
-    div.side-article-container.whitespace
-      h2= t('help.petition.update.help')
-      p= raw t('help.petition.update.descr4')
+      div.side-article-container.whitespace
+        h2= t('help.petition.update.help')
+        p= raw t('help.petition.update.descr4')
