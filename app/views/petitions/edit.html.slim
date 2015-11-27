@@ -16,43 +16,13 @@ div.page
       div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
       div.petition-intro-info-text
         p= @petition.description
-
-    /<!-- editbutton -->
+    
     div class="petition-editbutton-container"
       div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-<<<<<<< HEAD
         = t 'edit.petition.edit_text'
-    /<!-- /editbutton -->
-
 
     div class="petition-editbutton-container"
-      = link_to t('edit.petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
-<<<<<<< Updated upstream
-=======
-    /<!-- /editbutton -->
-=======
-        = t 'edit.petition.edit_petition_text'
-    /<!-- /editbutton -->
-=======
-        = t 'edit.petition.edit_petition_text'
-    /<!-- /editbutton -->
-
-    /<!-- close petition -->
-    /<!-- close petition -->
-
-    div class="petition-editbutton-container"
-      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
->>>>>>> master
-
-    /<!-- close petition -->
-    /<!-- close petition -->
-
-    div class="petition-editbutton-container"
-      = link_to t('petition.add_news'), '#petitionnews', class: 'petition-editbutton button'
->>>>>>> master
->>>>>>> Stashed changes
-
-    /<!-- petition versioning -->
+      a.petition-editbutton.button href='#petitionnews'= t('edit.petition.add_news')
 
     div class="petition-editbutton-container"
 
@@ -161,36 +131,8 @@ div.page
 
   div.petition-editbutton-container style="margin:-20px 0 0; padding:0 0 30px;"
     div.petition-editbutton
-      /TODO insert anchor
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
       = link_to '#petitionnews'
         = t 'petition.write_update_about_petition'
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
-      = link_to '#write_update'
-        = t 'edit.petition.write_update_about_petition'
-=======
-      = link_to '#petitionnews'
-        = t 'petition.write_update_about_petition'
->>>>>>> master
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-      = link_to '#petitionnews'
-        = t 'petition.write_update_about_petition'
->>>>>>> origin/internationalisation
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
   - if @petition.is_draft?
       - if user_signed_in? && current_user.has_role?(:admin, @petition)
@@ -200,9 +142,6 @@ div.page
 
   /<!-- /editbutton -->
 
-<<<<<<< Updated upstream
-
-<<<<<<< Updated upstream
   section.petition-details-container
 
     div#petition_details.petition_details
@@ -210,15 +149,6 @@ div.page
 
     = render partial: 'history_chart'
 
-=======
-  section.petition-details-container 
-  
-    div#petition_details.petition_details
-    = render partial: 'detailbox'
-
-    = render partial: 'history_chart'
-
->>>>>>> Stashed changes
     = render partial: 'edit_details'
 
     = render partial: 'edit_details_docs'
@@ -226,11 +156,7 @@ div.page
   /<!-- editbutton -->
   javascript:
     var showEdit = function(){
-<<<<<<< Updated upstream
       $('#detailbox').hide();
-=======
-      $('#detailbox').hide(); 
->>>>>>> Stashed changes
       $('#history_chart').hide();
       $('#edit_details').show();
       $('#edit_details_docs').show();
@@ -240,11 +166,7 @@ div.page
     var showDetails = function(){
       $('#edit_details').hide();
       $('#edit_details_docs').hide();
-<<<<<<< Updated upstream
       $('#detailbox').show();
-=======
-      $('#detailbox').show(); 
->>>>>>> Stashed changes
       $('#history_chart').show();
       $('#edit_detail_button').show();
     };
@@ -255,44 +177,6 @@ div.page
 
 = render partial: 'social'
 
-=======
-
-  section.petition-details-container 
-  
-    div#petition_details.petition_details
-    = render partial: 'detailbox'
-
-    = render partial: 'history_chart'
-
-    = render partial: 'edit_details'
-
-    = render partial: 'edit_details_docs'
-
-  /<!-- editbutton -->
-  javascript:
-    var showEdit = function(){
-      $('#detailbox').hide(); 
-      $('#history_chart').hide();
-      $('#edit_details').show();
-      $('#edit_details_docs').show();
-      $('#edit_detail_button').hide();
-
-    };
-    var showDetails = function(){
-      $('#edit_details').hide();
-      $('#edit_details_docs').hide();
-      $('#detailbox').show(); 
-      $('#history_chart').show();
-      $('#edit_detail_button').show();
-    };
-
-  div class="petition-editbutton-container"
-    div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
-      = t 'edit.petition.edit_details_text'
-
-= render partial: 'social'
-
->>>>>>> Stashed changes
 = render partial: 'signatures'
 
 = render partial: 'petition_updates'
