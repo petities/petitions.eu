@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5'
 gem 'rails-i18n'
 
 gem 'globalize', '~> 5.0.0'
@@ -109,6 +109,11 @@ gem 'country_select'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :development do
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rbenv'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
