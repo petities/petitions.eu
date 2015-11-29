@@ -12,7 +12,7 @@ gem 'friendly_id-globalize'
 
 # Use sqlite3 as the database for Active Record
 
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 gem 'mysql2', '~> 0.3.18'
 
 # legacy utf 8 issues..
@@ -112,7 +112,8 @@ gem 'country_select'
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv', '~> 2.0.3'
+  gem 'capistrano-bundler', '~> 1.1.4'
 end
 
 group :development, :test do

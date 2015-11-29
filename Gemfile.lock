@@ -388,8 +388,9 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
+  capistrano-bundler (~> 1.1.4)
   capistrano-rails (~> 1.1.1)
-  capistrano-rbenv
+  capistrano-rbenv (~> 2.0.3)
   coffee-rails (~> 4.1.0)
   config!
   countries
