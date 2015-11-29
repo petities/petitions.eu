@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-
+  include FindPetition
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
@@ -281,7 +281,7 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
-    
+
     if @petition.status.nil?
       @petition.status = 'draft'
     end
@@ -315,7 +315,7 @@ class PetitionsController < ApplicationController
       i18n_col = collection.map{|org| [t('petition.organisations.%s' % org.name, default: org.name), org.id]}
       @organisation_type_prepared[type] = i18n_col
     end
-    
+
     @publicbodies_sort_order = [
       [t('petition.organisations.%s' %  'counsil') , 'counsil'],
       [t('petition.organisations.%s' %  'plusregion'), 'plusregion'],
@@ -326,7 +326,7 @@ class PetitionsController < ApplicationController
       [t('petition.organisations.%s' %  'european_union'), 'european_union'],
       [t('petition.organisations.%s' %  'collective') , 'collective']
     ]
-    
+
   end
 
   #
@@ -416,28 +416,8 @@ class PetitionsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  #
   def set_petition
-    Globalize.locale = params[:locale] || I18n.locale
-
-    # find petition by slug name subdomain, id, friendly_name
-    if params[:slug]
-      @petition = Petition.find_by_cached_slug(params[:slug])
-    elsif params[:subdomain]
-      @petition = Petition.find_by_subdomain(params[:subdomain])
-    elsif params[:petition_id]
-      @petition = Petition.find(params[:petition_id])
-    else
-      begin
-        # find by friendly url
-        @petition = Petition.friendly.find(params[:id])
-      rescue
-        # find in all locales petition that matches..
-        @petition = Petition.joins(:translations)
-                    .where('petition_translations.slug like ?', "%#{params[:id]}%").first
-      end
-    end
+    find_petition
 
     # find specific papertrail version
     @version_index = 0
