@@ -38,6 +38,7 @@ div.page
               =< label_tag locale, locale
               => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
 
+  - if user_signed_in? && current_user.has_role?(:admin, @petition)
     = link_to 'Edit', edit_petition_path(@petition), class: 'button whitespace'
 
   div
@@ -78,7 +79,7 @@ div.page
         javascript:
           window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
           window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
- 
+
         div.petition-form-float-wrapper
           = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
             h2.petition-section-title= t('show.sign.title')
