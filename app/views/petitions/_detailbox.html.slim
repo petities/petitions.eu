@@ -10,7 +10,7 @@ div#detailbox.petition-details
   - if @office
     div.petition_field_label= t('show.overview.desk')
     div.petition_field_data
-      = @office.name
+      = link_to @office.name, petition_desk_path(@office)
       |&nbsp
 
   - if @petition.date_projected
@@ -22,7 +22,7 @@ div#detailbox.petition-details
   - if @petition.status.present?
     div.petition_field_label= t('show.overview.status')
     div.petition_field_data
-      = @petition.status
+      = @petition.state_summary
       |&nbsp
 
   - if @petition.petitioner_name.present?
@@ -38,10 +38,10 @@ div#detailbox.petition-details
       |&nbsp
 
   - if @petition.links[:links].present?
-    div.petition_field_label= t('show.overview.website')  
+    div.petition_field_label= t('show.overview.website')
     div.petition_field_data
       - @petition.links[:links].each do |link|
-        a href="#{link[:link]}"= link[:text]                   
+        a href="#{link[:link]}"= link[:text]
         br
 
   div.clearfix

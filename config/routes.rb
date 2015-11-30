@@ -18,6 +18,14 @@ Rails.application.routes.draw do
       request.env['warden'].authenticated? and request.env['warden'].user.has_role? :admin
   end
 
+  constraints PetitionSubdomain do
+    get '', to: 'petitions#show'
+  end
+
+  constraints OfficeSubdomain do
+    get '', to: 'desks#show'
+  end
+
   resources :petitions do
     collection do
       get :all

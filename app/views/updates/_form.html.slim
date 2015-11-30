@@ -2,41 +2,42 @@
 
 
 /- if user_signed_in? && (current_user.has_role?(:admin))
+- if not %w(concept draft).include? @petition.status
 
-= form_for update, html:{ multipart: true } do |f|
-  div.petition-edit-label
-    = t('update.label.title')
-
-  = f.text_field(:title, class: 'petition-edit-input')
-
-
-  div.petition-edit-label
-    = t('update.label.text')
-
-  = f.text_area(:text, class: 'petition-edit-input')
-
-  - if current_user.has_role? :admin
+  = form_for update, html:{ multipart: true } do |f|
     div.petition-edit-label
-      = t('update.label.show_on_homepage')
+      = t('update.label.title')
 
-    = f.check_box :show_on_home, {checked: true}
+    = f.text_field(:title, class: 'petition-edit-input')
 
-  - if @offices
-    div.petition-edit-label
-      = t('update.label.show_on_office')
-
-    = f.check_box :show_on_office, {checked: false}
 
     div.petition-edit-label
-      = t('update.label.select_office')
+      = t('update.label.text')
 
-    = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
+    = f.text_area(:text, class: 'petition-edit-input')
 
-  - if @petition
-    = f.hidden_field :petition_id, :value => @petition.id
+    - if current_user.has_role? :admin
+      div.petition-edit-label
+        = t('update.label.show_on_homepage')
 
-  div.petition-edit-label
-  - if update.title.nil?
-    = f.submit t('update.form.create', default: 'create news'), class: 'petition-edit-save'
-  - else 
-    = f.submit t('update.form.update', default: 'update news'), class: 'petition-edit-save'
+      = f.check_box :show_on_home, {checked: true}
+
+    - if @offices
+      div.petition-edit-label
+        = t('update.label.show_on_office')
+
+      = f.check_box :show_on_office, {checked: false}
+
+      div.petition-edit-label
+        = t('update.label.select_office')
+
+      = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
+
+    - if @petition
+      = f.hidden_field :petition_id, :value => @petition.id
+
+    div.petition-edit-label
+    - if update.title.nil?
+      = f.submit t('update.form.create', default: 'create news'), class: 'petition-edit-save'
+    - else
+      = f.submit t('update.form.update', default: 'update news'), class: 'petition-edit-save'
