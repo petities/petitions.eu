@@ -10,7 +10,7 @@ div#detailbox.petition-details
   - if @office
     div.petition_field_label= t('show.overview.desk')
     div.petition_field_data
-      = @office.name
+      = link_to @office.name, petition_desk_path(@office)
       |&nbsp
 
   - if @petition.date_projected
