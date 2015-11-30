@@ -74,6 +74,9 @@ gem 'paperclip'
 # execute jobs on the side..
 gem 'sidekiq'
 
+# create periodic tasks in your project
+gem 'whenever', :require => false
+
 # have some real time stats of our app
 gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 
