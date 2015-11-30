@@ -26,13 +26,16 @@ doc/app
 *~
 .DS_Store
 
-database.yml
+config/database.yml
+config/secrets.yml
 public/system
 
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+config/secrets.yml
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 *.tmbundle
 =======
@@ -68,3 +71,6 @@ app/models/petition.rb
 
 app/controllers/petitions_controller.rb
 >>>>>>> Stashed changes
+=======
+*.tmbundle
+>>>>>>> master

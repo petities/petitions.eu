@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5'
 gem 'rails-i18n'
 
 gem 'globalize', '~> 5.0.0'
@@ -12,7 +12,7 @@ gem 'friendly_id-globalize'
 
 # Use sqlite3 as the database for Active Record
 
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 gem 'mysql2', '~> 0.3.18'
 
 # legacy utf 8 issues..
@@ -109,6 +109,12 @@ gem 'country_select'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :development do
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rbenv', '~> 2.0.3'
+  gem 'capistrano-bundler', '~> 1.1.4'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

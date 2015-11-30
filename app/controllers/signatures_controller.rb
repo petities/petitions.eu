@@ -1,4 +1,6 @@
 class SignaturesController < ApplicationController
+  include FindPetition
+
   before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :pledge_submit, :mail_submit, :user_update]
 
   # allow petitioner to modify signatures
@@ -8,8 +10,7 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-    #@petition = Petition.friendly.find(params[:petition_id])
-    @petition = PetitionsController.send(:set_petition)
+    find_petition
 
     @all_signatures = @petition.signatures.special
 
@@ -62,8 +63,7 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-    #@petition = Petition.friendly.find(params[:petition_id])
-    @petition = PetitionsController.send(:set_petition)
+    find_petition
 
     # try to find old signature first
     email = signature_params[:person_email]

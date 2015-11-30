@@ -25,16 +25,18 @@ javascript:
 div.page
   /- if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
   - if @petition.locale_list.present?
-    section.petition-intro-container-noimage
-      div.petition-intro-info-container
-        div.petition-intro-info-text
-          = t('petition.available_languages')
+    - special_locales = @petition.locale_list - [:en, :nl]
+    - if not special_locales.empty?
+      section.petition-intro-container-noimage
+        div.petition-intro-info-container
+          div.petition-intro-info-text
+            = t('petition.available_languages')
 
-        div.locale_list.whitespace
-          div.petition-intro-info-text.whitespace
-          - @petition.locale_list.each do |locale|
-            =< label_tag locale, locale
-            => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
+          div.locale_list.whitespace
+            div.petition-intro-info-text.whitespace
+            - special_locales.each do |locale|
+              =< label_tag locale, locale
+              => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
 
     = link_to 'Edit', edit_petition_path(@petition), class: 'button whitespace'
 
