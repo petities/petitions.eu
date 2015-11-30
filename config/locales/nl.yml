@@ -165,11 +165,11 @@ Petities.nl'
   desk:
     intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
     petition:
-      allow_through: Allow through
-      answer: Answer
-      answered: Answered
-      signable: Signable
-      withdrawn: Withdrawn
+      allow_through: Nog doorlaten
+      answer: Nog beantwoorden
+      answered: Beantwoord
+      signable: Ondertekenbaar
+      withdrawn: Ingetrokken
     text_blue: Text blue
     text_green: Text green
     text_grey: Text grey
@@ -261,7 +261,7 @@ Petities.nl'
         descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
         descr3: |
               <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
-        descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste zin die met een punt eindigt is wat iedereen ziet, voor de rest moet men klikken."
+        descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste twee zinnen is wat iedereen ziet, voor de rest moet men klikken."
         links: Gebruik links
         markdown: Gebruik opmaak
         tips: Zie het handboek
@@ -510,6 +510,7 @@ Petities.nl'
     success: Uw gegevens zijn bijgewerkt
     thanks: Dank u
   signatures:
+    popular_cities: Populaire woonplaatsen
     link: Link
     notify: Meld
     sign: Teken deze petitie

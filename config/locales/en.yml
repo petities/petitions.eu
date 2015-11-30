@@ -261,7 +261,7 @@ Petitions.eu'
         descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
         descr3: |
             <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
-        descr4: "Make sure the title summarises the news you want to spread. The first sentence ending with a period is what everyone will see, what follows is optional."
+        descr4: "Make sure the title summarises the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
         links: Include links
         markdown: Use styling
         tips: See the handbook
@@ -510,6 +510,7 @@ Petitions.eu'
     success: Your information is saved
     thanks: Thanks
   signatures:
+    popular_cities: Popular places
     link: Link
     notify: Notify
     sign: Sign this petition
