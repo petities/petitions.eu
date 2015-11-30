@@ -205,7 +205,7 @@ class PetitionsController < ApplicationController
       owner = current_user
       #copy user info
       @petition.petitioner_name = owner.username
-      @petition.petitioner_address = owner.address 
+      @petition.petitioner_address = owner.address
       @petition.petitioner_postalcode = owner.postalcode
       @petition.petitioner_telephone = owner.telephone
       @petition.petitioner_email = owner.email
@@ -301,7 +301,7 @@ class PetitionsController < ApplicationController
 
   def makeI18noption o_t
     value = o_t[0]
-    visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0]) 
+    visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0])
 
     return [visible_value, value]
   end
@@ -457,6 +457,7 @@ class PetitionsController < ApplicationController
       :link1, :link1_text,
       :link2, :link2_text,
       :link3, :link3_text,
+      :subdomain
     )
     #:subscribe, :visible,
   end

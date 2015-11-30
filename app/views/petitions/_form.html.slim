@@ -8,7 +8,7 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title Petition type
-        = f.select :petition_type_id, 
+        = f.select :petition_type_id,
           options_from_collection_for_select(@petition_types, "id", "name", selected: @petition.petition_type_id),
           include_blank: t("start.form.type.blank", default:"select type")
       div.start-petition-form-cell.label
@@ -18,6 +18,13 @@
         div.start-petition-form-cell-title Petition status
         = f.select :status, options_for_select(Petition::STATUS_LIST, selected: @petition.status)
       div.start-petition-form-cell.label
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title Subdomain
+        = f.text_field :subdomain, class: 'start-petition-form-cell-input validation'
+      div.start-petition-form-cell.label
+        p= t('start.form.subdomain.description')
 
   div.start-petition-form-row
     div.start-petition-form-cell.input
@@ -49,7 +56,7 @@
       = f.select :organisation_kind, options_for_select(@publicbodies_sort_order, selected: @petition.organisation_kind), include_blank: t("petition.organisations.blank", default:"Select organisation type")
 
       - @organisation_type_prepared.each do |type, collection|
-        - is_hidden = @petition.organisation_kind != type 
+        - is_hidden = @petition.organisation_kind != type
         = f.select :organisation_id, options_for_select(collection, selected: @petition.organisation_id), {}, {class: "organisation_select #{type}", style: is_hidden ? 'display:none' : '', disabled: is_hidden}
 
     div.start-petition-form-cell.label
