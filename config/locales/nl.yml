@@ -165,11 +165,11 @@ Petities.nl'
   desk:
     intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
     petition:
-      allow_through: Allow through
-      answer: Answer
-      answered: Answered
-      signable: Signable
-      withdrawn: Withdrawn
+      allow_through: Nog doorlaten
+      answer: Nog beantwoorden
+      answered: Beantwoord
+      signable: Ondertekenbaar
+      withdrawn: Ingetrokken
     text_blue: Text blue
     text_green: Text green
     text_grey: Text grey
