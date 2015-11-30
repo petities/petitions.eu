@@ -36,7 +36,6 @@ config/environments/*.local.yml
 config/secrets.yml
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 *.tmbundle
 =======
@@ -72,9 +71,6 @@ app/models/petition.rb
 
 app/controllers/petitions_controller.rb
 >>>>>>> Stashed changes
-=======
-*.tmbundle
->>>>>>> master
 =======
 *.tmbundle
 >>>>>>> master
