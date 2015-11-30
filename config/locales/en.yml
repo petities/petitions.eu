@@ -510,6 +510,7 @@ Petitions.eu'
     success: Your information is saved
     thanks: Thanks
   signatures:
+    popular_cities: Popular places
     link: Link
     notify: Notify
     sign: Sign this petition
