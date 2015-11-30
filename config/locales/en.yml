@@ -53,16 +53,16 @@ en:
         description: You might be too young for this kind of petition. It will be checked.
         label: Born at
       city:
-        description: City where you were born, not required.
+        description: "City where you were born, not required."
         label: City of birth
       country:
-        description: Dutch citizens abroad can sign
+        description: Dutch citizens abroad can sign.
         label: Country were you currently live
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
       function:
-        description: You may write your function, profession or relation to the petition, but it is not required.  
+        description: "You may write your function, profession or relation to the petition, but it is not required."  
         label: Function or situation
       form:
         update_information: updated
@@ -72,14 +72,14 @@ en:
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
       location:
-        description: Where you currently live, visible to the world if you choose.  
+        description: "Where you currently live, visible to the world if you choose." 
         label: Place
-      more_information:
-        description: You will receive up to three e-mails maximum
-        label: Yes, send me up to three e-mails with updates about this petition
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
+      more_information:
+        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
+        label: "Yes, send me up to three e-mails with updates about this petition"
       pledge:
         asseenontv: known person who gets recognised
         carpooler: give a ride to a meeting
@@ -126,18 +126,16 @@ en:
 Dear sir or madam,
 
 
-On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" 
-with the note "%{sig_function}".
+On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" with the note "%{sig_function}".
 
 
 With this e-mail %{name} invites you to read and perhaps sign the petition.
 
 
-If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. 
-You will not receive any further invitations about this petition on your e-mail address.
+If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. You will not receive any further invitations about this petition on your e-mail address.
 
 
-You can view the petition at :
+You can view the petition at:
 
 
 %{petition_url}
@@ -188,15 +186,17 @@ Petitions.eu'
     petition:
       add_news: Add news
       edit_text: Edit the petition
+      edit_details_text: Edit the details
       newer_version: Newer version
       newest_version: Petition version
+      no_signatures_yet: No signatures yet
       of: out of 
       older_version: Older version
       status:
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
       updated: Petition is updated
       version: version
-      write_update_about_petition: Write update about petition
+      write_news: Write an update
   errors:
     messages:
       empty: This field is empty but should contain text.
@@ -254,6 +254,17 @@ Petitions.eu'
     opinionpiece:
       descr: A petition gets most signatures from allies who are already convinced by the need for change. But most are not! If they know about the petition at all. With opinion piece in the newspaper or online you can both inform and convince people. This text is usually more pleasant to read than a petition.</p><p>&nbsp;</p><p>To write such a piece is not difficult&#58; it is all about the opinion supported by arguments. Send your piece to a newspaper or a website accepting contributions from others. You can also write an opinion piece to draw attention to someone else's petition. Do not forget the call to sign the petition!
       title: More signatures with an opinion piece
+    petition:
+      update:
+        help: Summarise
+        descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**." 
+        descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
+        descr3: |
+            <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
+        descr4: "Make sure the title summarises the news you want to spread. The first sentence ending with a period is what everyone will see, what follows is optional."
+        links: Include links
+        markdown: Use styling
+        tips: See the handbook
     title: Help
     whilesigning:
       question01:
@@ -334,11 +345,11 @@ Petitions.eu'
     add_translations_later: Add translations later
     add_translations_link_instruction: Add translations link instruction
     another_possible_action: Another possible action
-    available_languages: Available languages
+    available_languages: "Available in:"
     closed: Closed
     completed: Completed
     concept: Concept
-    created: Created
+    created: Your new petition is now created
     csv: Save in CSV
     current_news_is: The news
     current_state_is: The petition is
@@ -380,6 +391,7 @@ Petitions.eu'
     older_version: Older version
     oldest: Oldest
     optional: Optional
+    other_language_options: "Translate into:"
     pdf: Save in PDF
     published: Published
     rejected: Rejected
@@ -432,6 +444,9 @@ Petitions.eu'
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
   profile: My profile
+  pundit:
+    petition_policy:
+      edit: You can now add a translation of the petition
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -453,7 +468,7 @@ Petitions.eu'
       news: News
       observe: observe
       request: and request
-      sharethis: Share this petition with others
+      share_this: Share this petition with others
       title: Petition
       we: We
     share: Share this petition
@@ -492,6 +507,7 @@ Petitions.eu'
       subscribe: Subscribe
       visible: Visible
     linkinstruction: Follow below link to confirm
+    success: Your information is saved
     thanks: Thanks
   signatures:
     link: Link
@@ -549,10 +565,11 @@ Petitions.eu'
       create: Create
       update: Update
     from:
-      date:
-      image:
-      title:
+      date: Date
+      image: Image
+      title: Title
     news_updates: Updates
+    no_news_yet: No news about this petition yet. 
     label: 
       text: Your news update about the petition
       title: Title of this update

@@ -5,37 +5,37 @@ div#detailbox.petition-details
     div.petition_field_label= t('show.overview.addressee')
     div.petition_field_data
       = @organisation.name
-      '&nbsp
+      |&nbsp
 
   - if @office
     div.petition_field_label= t('show.overview.desk')
     div.petition_field_data
       = @office.name
-      '&nbsp
+      |&nbsp
 
   - if @petition.date_projected
     div.petition_field_label= t('show.overview.end_date')
     div.petition_field_data
       = @petition.date_projected.strftime('%d-%m-%Y')
-      '&nbsp
+      |&nbsp
 
-  - if @petition.status
+  - if @petition.status.present?
     div.petition_field_label= t('show.overview.status')
     div.petition_field_data
       = @petition.status
-      '&nbsp
+      |&nbsp
 
-  - if @petition.petitioner_name
+  - if @petition.petitioner_name.present?
     div.petition_field_label= t('show.overview.petitioners')
     div.petition_field_data
       = @petition.petitioner_name
-      '&nbsp
+      |&nbsp
 
-  - if @petition.petitioner_organisation
+  - if @petition.petitioner_organisation.present?
     div.petition_field_label= t('show.overview.organisation')
     div.petition_field_data
       = @petition.petitioner_organisation
-      '&nbsp
+      |&nbsp
 
   - if @petition.links[:links].present?
     div.petition_field_label= t('show.overview.website')  

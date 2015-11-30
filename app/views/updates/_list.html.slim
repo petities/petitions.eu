@@ -33,6 +33,9 @@
     h1.petition-section-title.left 
       = t('update.earlier_updates')
 
+- if @updates.empty? 
+   = t('update.no_news_yet')
+     
 - @updates.each do |update|
 
   - command = "toggleUpdateEdit(%s)" % update.id

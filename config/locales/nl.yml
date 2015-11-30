@@ -42,6 +42,7 @@ nl:
   confirm:
     form:
       action:
+        add_details: Werk mijn ondertekening bij
         confirm: Bevestig
         pledge: Ik zeg deze hulp toe
         update: Werk mijn ondertekening bij
@@ -55,24 +56,30 @@ nl:
         description: De plaats waar u geboren bent. Niet verplicht.
         label: Geboorteplaats
       country:
+        description: Nederlanders in het buitenland mogen wel tekenen.  
         label: Het land waar u nu leeft.
       email:
         description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie. 
         label: E-mail
       function:
-        description: U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet.  
+        description: "U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet."
         label: Functie of situatie
+      form:
+        update_information: updated
       influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
       influencelabel: Heeft u invloed? Bent u een... 
       invite: 
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
-        label: Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar
+        label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
       location:
         description: Waar u op het moment van ondertekenen woont. Alleen zichtbaar voor de wereld als u daarvoor kiest.
         label: Woonplaats
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
+      more_information:
+        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       pledge:
         asseenontv: bekende persoon die herkend wordt
         carpooler: een lift geven naar een bijeenkomst
@@ -103,31 +110,42 @@ nl:
         label: Huisnummer
       street_number_suffix:
         suffixlabel: Huisnummertoevoeging
+      update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
         privacylabel: Mijn naam en woonplaats zullen publiek zichtbaar zijn onder de petitie.
     info:
       browser: 'Uw browser: %{browser}'
+      check_information: Controleer uw gegevens
       donate_petition: Doneer
       mailafriend: Voer e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
       mailafriend_title: 'Deze uitnodiging kunt u via ons mailen:'
+      mailafriend_subject: 'Uitnodiging om te ondertekenen: %{title}'
       mailafriend_mail: ' 
 
 Geachte heer, mevrouw,
 
+
 Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
+
 
 Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
 
+
 Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
 
-De petitie kunt u bekijken op 
+
+De petitie kunt u bekijken op:
+
 
 %{petition_url} 
 
+
 %{petition_descr} 
 
+
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
+
 
 Met vriendelijke groet, 
 Petities.nl'
@@ -166,7 +184,19 @@ Petities.nl'
     title: Doneer
   edit:
     petition:
-      edittext: Bewerk de petitie
+      add_news: Voeg nieuws toe
+      edit_details_text: Bewerk de details
+      edit_text: Bewerk de petitie
+      newer_version: Nieuwere versie
+      newest_version: Petitie versie
+      no_signatures_yet: Nog geen ondertekeningen
+      of: uit  
+      older_version: Oudere versie
+      status:
+        explanation: Als uw petitietekst eenmaal klaar is, geeft u het aan de moderator om het open te zetten voor ondertekening. Na de sluitingsdatum van de petitie kan er niet meer worden ondertekend. Om de petitie te sluiten of te verlengen moet u de sluitingsdatum veranderen. Gesloten petities moeten worden overhandigd aan de ontvanger. Daarna wachten we op een antwoord.
+      updated: Petitie is bijgewerkt
+      version: versie
+      write_news: Schrijf een nieuwtje      
   errors:
     messages:
       empty: Dit veld is leeg, maar er moet tekst in staan.
@@ -224,6 +254,17 @@ Petities.nl'
     opinionpiece:
       descr: <p>Een petitie wordt vooral getekend door medestanders die er al van overtuigd zijn dat er iets moet veranderen. Maar de meeste mensen zijn nog niet overtuigd. Als ze al van de petitie weten. Met een opiniestuk in de krant of online kun je mensen zowel informeren als overtuigen. Zo'n tekst leest bovendien veel prettiger dan een petitietekst.</p><p>&nbsp;</p><p>Een opiniestuk schrijven is niet zo moeilijk. De opinie staat centraal, ondersteund door argumenten. </p><p>&nbsp;</p><p>Op de website Opiniestukken.nl staan tips voor een goed opiniestuk. U kunt het daarna insturen naar een redactie, zodat u een groot publiek bereikt dat u zo kunt overtuigen van uw punt. U kunt het opiniestuk ook online publiceren op <a href="http://www.opiniestukken.nl">Opiniestukken.nl</a> zelf. En u mag natuurlijk altijd met een opiniestuk aandacht vestigen op de petitie van iemand anders. Vergeet de oproep om de petitie niet.</p>
       title: Meer ondertekenaars met een opiniestuk
+    petition:
+      update:
+        help: Vat samen
+        descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet**gedrukt." 
+        descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
+        descr3: |
+              <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
+        descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste zin die met een punt eindigt is wat iedereen ziet, voor de rest moet men klikken."
+        links: Gebruik links
+        markdown: Gebruik opmaak
+        tips: Zie het handboek
     title: Help
     whilesigning:
       question01:
@@ -304,16 +345,17 @@ Petities.nl'
     add_translations_later: Vertaal later
     add_translations_link_instruction: Hulp met vertalen
     another_possible_action: Another possible action
-    closed: Closed
-    completed: Completed
+    available_languages: "Beschikbaar in:"
+    closed: Gesloten
+    completed: Afgerond
     concept: Concept
-    created: Gemaakt
+    created: Uw nieuwe petitie is nu aangemaakt
     csv: Bewaar als CSV sheet
     current_news_is: Het nieuws
     current_state_is: De petitie is
     current_translations: Vertalingen
-    draft: Draft
-    edit_state: Edit state
+    draft: Kladje
+    edit_state: Bewerk status
     editing: Bewerken
     editors: Vertalers
     finalize: Klaar
@@ -333,13 +375,13 @@ Petities.nl'
       statement: Introductie
       subdomain: Subdomein
       title: Titel
-    in_process: In process
-    in_treatment: In treatment
-    is_answered: Is answered
+    in_process: Te behandelen
+    in_treatment: In behandeling
+    is_answered: Is beantwoord
     language: Taal
     live: Ondertekenbaar
     live_version: Versie
-    minimum_age: Minimum leeftijd
+    minimum_age: Minimumleeftijd
     new: Nieuw
     newer_version: Nieuwere versie
     newest: Nieuwste
@@ -349,6 +391,7 @@ Petities.nl'
     older_version: Oudere versie
     oldest: Oudste
     optional: Optioneel
+    other_language_options: "Vertaal naar:"    
     pdf: Bewaar als PDF
     published: Published
     rejected: Afgewezen
@@ -366,12 +409,12 @@ Petities.nl'
     steps: Stappen
     status:
       flash: 
-        concept: Not yet finished
-        live: Signable
-        in_treatment: In treatment
-        in_process: In process
-        closed: Answered
-        published: Published
+        concept: Nog niet af
+        live: Ondertekenbaar
+        in_treatment: In behandeling
+        in_process: Te behandelen
+        closed: Beantwoord
+        published: Ondertekenbaar
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
@@ -401,6 +444,9 @@ Petities.nl'
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
   profile: Mijn profiel
+  pundit:
+    petition_policy:
+      edit: U kunt nu een vertaling toevoegen van uw petitie
   request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
@@ -408,7 +454,7 @@ Petities.nl'
   show:
     history: Geschiedenis
     overview:
-      addressed: Addressed
+      addressed: 'Geadresseerd:'
       addressee: 'Ontvanger:'
       desk: 'Petitieloket:'
       end_date: 'Einddatum:'
@@ -419,10 +465,10 @@ Petities.nl'
       title: Details
       website: 'Website:'
     petition:
-      news: News
+      news: Nieuws
       observe: constateren
       request: en verzoeken
-      sharethis: Deel deze petitie met anderen
+      share_this: Deel deze petitie met anderen
       title: Petitie
       we: Wij
     share: Deel deze petitie
@@ -461,6 +507,7 @@ Petities.nl'
       subscribe: Abonneer
       visible: Zichtbaar
     linkinstruction: Volg deze link
+    success: Uw gegevens zijn bijgewerkt
     thanks: Dank u
   signatures:
     link: Link
@@ -511,4 +558,21 @@ Petities.nl'
     title: Start een petitie
   startanother: Start nog een petitie
   statement: Verzoek
+  update:
+    created: Nieuws toegevoegd
+    earlier_updates: Eerder toegevoegd
+    form:
+      create: Maak
+      update: Werk bij
+    from:
+      date: Datum
+      image: Plaatje
+      title: Titel
+    news_updates: Nieuwtjes
+    no_news_yet: Nog geen nieuws over deze petitie. 
+    label: 
+      text: Uw nieuwtje over de petitie
+      title: Titel van dit nieuws
+      show_on_homepage: Toon op homepage 
+    updated: Nieuwtje bijgewerkt
   when: Wanneer
