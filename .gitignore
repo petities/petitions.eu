@@ -35,4 +35,5 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 config/secrets.yml
 
+
 *.tmbundle
