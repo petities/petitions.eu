@@ -261,7 +261,7 @@ Petities.nl'
         descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
         descr3: |
               <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
-        descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste zin die met een punt eindigt is wat iedereen ziet, voor de rest moet men klikken."
+        descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste twee zinnen is wat iedereen ziet, voor de rest moet men klikken."
         links: Gebruik links
         markdown: Gebruik opmaak
         tips: Zie het handboek
