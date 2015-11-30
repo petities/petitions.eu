@@ -7,8 +7,13 @@ class DesksController < ApplicationController
   def show
     @page = params[:page] || 1
 
-    @office = Office.find(params[:id])
+    if params[:id]
+      @office = Office.find(params[:id])
+    elsif request.subdomain
+      @office = Office.find_by_subdomain(request.subdomain)
+    end
     @petitions = Petition.where(office_id: @office.id)
+
     @results_size = @petitions.size
 
     # find petition in state of allow
@@ -32,3 +37,4 @@ class DesksController < ApplicationController
     @admins = User.with_role(:admin)
   end
 end
+
