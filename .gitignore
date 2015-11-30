@@ -35,12 +35,5 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 config/secrets.yml
 
-app/views/petitions/show.html.slim
-
-app/views/petitions/edit.html.slim
-
-app/models/petition.rb
-
-app/controllers/petitions_controller.rb
 
 *.tmbundle
