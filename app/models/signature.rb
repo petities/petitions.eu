@@ -62,20 +62,20 @@ class Signature < ActiveRecord::Base
   validates :person_email, format: { with: /@/ }
 
   # FIXME
-  def country_postalcode_validation
-    case I18n.locale
-      when :en
-        # check for latin characters
-        return true
-      when :de
-        return true
-        # check for cyrillic characters
-      when :nl
-        return true
-      return true
-    end
-    return true
-  end
+  #def country_postalcode_validation
+  #  case I18n.locale
+  #    when :en
+  #      # check for latin characters
+  #      return true
+  #    when :de
+  #      return true
+  #      # check for cyrillic characters
+  #    when :nl
+  #      return true
+  #    return true
+  #  end
+  #  return true
+  #end
   
   # Some petitions require a full address
   #validates :person_postalcode, 

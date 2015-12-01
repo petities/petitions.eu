@@ -114,18 +114,19 @@ class SignaturesController < ApplicationController
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
-      
+
       # check if we need to have extra information
       # and inform user about it
-      if(@signature.require_full_address? || 
-         @signature.require_person_birth_city? || 
-         @signature.require_born_at? || 
-         @signarure.require_person_country?
-       ) 
-        
+      if(@signature.require_full_address? ||
+         @signature.require_person_birth_city? ||
+         @signature.require_born_at? ||
+         @signature.require_person_country?
+       )
+
        # create the information needed messages
        @action = t('confirm.form.action.confirm_and_save')
        @message = t('confirm.form.add_information_and_confirm')
+
       else
         #signature is confirmed no extra data needed
         @signature.confirmed = true
@@ -188,7 +189,7 @@ class SignaturesController < ApplicationController
       end
     else
       # there are errors
-      # render a normal edit view 
+      # render a normal edit view
       @remote_ip = request.remote_ip
       @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
       add_check_fields
@@ -201,7 +202,7 @@ class SignaturesController < ApplicationController
         format.json { render json: @signature.errors, status: :unprocessable_entity }
         format.html do
           render 'confirm'
-        end 
+        end
       end
     end
   end
@@ -220,7 +221,7 @@ class SignaturesController < ApplicationController
   end
 
   def pledge_submit
-    # set petition 
+    # set petition
     @petition = @signature.petition
     # find pledge by petition_id and signature_id
     set_pledge
@@ -233,7 +234,7 @@ class SignaturesController < ApplicationController
     else
       respond_to do |format|
         format.json { render json: @signature.errors, status: :unprocessable_entity }
-      end     
+      end
     end
   end
 
@@ -243,7 +244,7 @@ class SignaturesController < ApplicationController
   # PATCH/PUT /signatures/1.json
   def update
     @petition = @signature.petition
-    # only allow updates from 
+    # only allow updates from
     # authorize @petition
     respond_to do |format|
       if @signature.update(signature_params)
