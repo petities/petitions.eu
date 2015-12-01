@@ -48,7 +48,7 @@ div.page
   javascript:
     window.page = 1;
 
-  - cache [@petition, Globalize.locale.to_s] do
+  - cache [@petition, Globalize.locale.to_s, @answer] do
 
     section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
@@ -76,48 +76,24 @@ div.page
 
 
       div.petition-form-wrapper
-        javascript:
-          window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
-          window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
 
-        div.petition-form-float-wrapper
-          = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
-            h2.petition-section-title= t('show.sign.title')
-            = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name')
-            / = f.select :person_city, options_from_collection_for_select(City.all, :name, :name), class: 'petition-form-textfield'
-            = f.text_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email')
-            = f.text_field :person_city, class: 'petition-form-textfield', placeholder: t('show.sign.form.residence')
-            = f.check_box :visible, class: 'petition-form-checkbox', id: 'petition-form-checkbox'
-            label.petition-form-label for="petition-form-checkbox"
-              = t('show.sign.form.checkbox')
+        - if @answer
+          h2.petition-section-title= t('show.petition.answer')
+          div.petition-text
+            h3= t('show.petition.target')
+            = markdown @office.name 
+            p &nbsp;
 
-            div.signature-form-errors.signaturesuggestbutton
+            h3= t('show.petition.answer_title')
+            = markdown @answer.title
+            p &nbsp;
 
-            div.email-suggest-button id='didyoumean_signature_person_email'  style="display: none;"
-              = t 'signature.did_you_mean'
-              div id='suggest_signature_person_email'
-                'test
+            h3= t('show.petition.text')
+            = markdown @answer.text
+            p &nbsp;
 
-            = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
-
-          div.petition-form-note= t('show.sign.note')
-
-          /div.petition-text
-          /  p &nbsp;
-          /  h3= t('show.petition.share_this')
-          /  - @petition.translations_by_locale.each do |ignorelocale, transp|
-          /    p &nbsp;
-          /    - if transp.slug
-          /      p= petition_url(transp.slug, :locale => nil)
-
-        div.petition-success-sign-note style='display: none;'
-          p
-            =<> t('show.sign.form.success1')
-            span.confirm_email
-            =<> t('show.sign.form.success2')
-          div.signature_succes_logo
-          div.petition-form-button id='sign_again'
-            = t('show.sign.form.sign_again')
+        - if @petition.status == 'live'
+          = render partial: 'signform'
 
     section.petition-details-container
       = render partial: 'detailbox'

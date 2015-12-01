@@ -21,7 +21,13 @@
       div.petition-edit-label
         = t('update.label.show_on_homepage')
 
-      = f.check_box :show_on_home, {checked: true}
+      = f.check_box :show_on_home
+
+    - if current_user.has_role? :admin or current_user.has_role?(:admin, @office)
+      div.petition-edit-label
+        = t('update.label.show_on_petition')
+
+      = f.check_box :show_on_petition
 
     - if @offices
       div.petition-edit-label

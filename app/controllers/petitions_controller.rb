@@ -188,6 +188,8 @@ class PetitionsController < ApplicationController
       @office = Office.find_by_email('webmaster@petities.nl')
     end
 
+    @answer = @petition.updates.where(show_on_petition: true).first
+
     # TODO.
     # where prominent is TRUE and score is higher then 0
     # ordered by score

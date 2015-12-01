@@ -85,7 +85,7 @@ class UpdatesController < ApplicationController
     # petition: [
     # locale_list: []
     params.require(:update).permit(
-      :title, :text, :show_on_home, :show_on_office,
+      :title, :text, :show_on_home, :show_on_office, :show_on_petition,
       :petition_id, :office_id
     )
   end
