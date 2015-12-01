@@ -81,7 +81,7 @@ div.page
           h2.petition-section-title= t('show.petition.answer')
           div.petition-text
             h3= t('show.petition.target')
-            = markdown @office.name 
+            = markdown @office.name
             p &nbsp;
 
             h3= t('show.petition.answer_title')
@@ -94,6 +94,14 @@ div.page
 
         - if @petition.status == 'live'
           = render partial: 'signform'
+        - else
+            div.petition-text
+              h3= t('show.petition.status')
+              - if @petition.is_draft?
+                = t('show.petition.will_be_singable')
+              - else
+                = t('show.petition.was_singable')
+              p &nbsp;
 
     section.petition-details-container
       = render partial: 'detailbox'

@@ -157,7 +157,7 @@ class PetitionsController < ApplicationController
 
     @petition_types = PetitionType.all
 
-    @chart_array = @petition.history_chart_json
+    @chart_data, @chart_labels = @petition.history_chart_json
 
   end
   # GET /petitions/1

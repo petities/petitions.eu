@@ -248,10 +248,19 @@ class Petition < ActiveRecord::Base
   end
 
   def history_chart_json
-    signatures.confirmed.map(&:confirmed_at)
+    label_size = signatures.confirmed.map(&:confirmed_at)
       .compact
       .group_by { |signature| signature.strftime('%Y-%m-%d') }
-      .map { |group| group[1].size } # .to_json.html_safe
+      .map { |group| [group[0], group[1].size] } # .to_json.html_safe
+
+    labels = label_size.map.with_index{|d_s, i| d_s[0] }
+
+    if labels.size > 20
+      factor = (labels.size / 20.0).ceil
+      labels = labels.map.with_index{|l, i| i % factor == 0 ? l: "" }
+    end
+    data = label_size.map{|d_s| d_s[1]}
+    return data, labels
   end
 
   def inc_signatures_count!

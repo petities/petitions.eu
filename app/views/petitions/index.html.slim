@@ -2,7 +2,7 @@ div.page
   javascript:
     window.page = #{@page};
     window.sorting = "#{@sorting}";
-  
+
   div.search-container.whitespace
 
     = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
@@ -14,7 +14,7 @@ div.page
   - if user_signed_in?
     div.header-user-wrapper.user-index
       = render partial: 'shared/userbox'
-    
+
   section.petitions-overview-wrapper
 
     div.petitions-overview-sort-options-container
@@ -29,20 +29,20 @@ div.page
 
     div.petitions-overview-container
       = render partial: 'list'
-    
+
       div.clearfix
 
     div.navigation-bar
       a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
-  
+
       div.pagination
         = will_paginate @petitions, renderer: PetitionsPaginateRenderer
-    
+
       div.clearfix
 
       = link_to t('index.all'), all_petitions_path, class: 'navigation-toall'
 
-  
+
   aside.news-intro-blocks-container
     - @news[0,2].each do |news|
       div.news-intro-block
