@@ -16,6 +16,7 @@
 #  date_until     :date
 #  show_on_office :boolean
 #  show_on_home   :boolean
+#  show_on_petition :boolean
 #  created_at     :datetime
 #  updated_at     :datetime
 #  cached_slug    :string(255)

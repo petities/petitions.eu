@@ -1,8 +1,9 @@
 
 
 
-/- if user_signed_in? && (current_user.has_role?(:admin))
-- if not %w(concept draft).include? @petition.status
+- if user_signed_in? && (current_user.has_role?(:admin))
+  - if (@petition && %w(concept draft).include?(@petition.status))
+    - return
 
   = form_for update, html:{ multipart: true } do |f|
     div.petition-edit-label
