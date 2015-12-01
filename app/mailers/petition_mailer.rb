@@ -13,4 +13,17 @@ class PetitionMailer < ApplicationMailer
 
     mail(to: 'website@petities.nl', subject: 'Petition moderation pending')
   end
+
+  # #72
+  # withdraw any petition with less then 10 signatures
+  # more
+  def warning_due_date_mail(petition)
+
+  end
+
+  # petition should get an answer
+  def due_date_ask_for_answer(petition)
+
+  end
+
 end

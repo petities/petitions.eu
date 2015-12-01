@@ -1,5 +1,6 @@
 namespace :new_signatures do
 
+
   desc 'Delete unconfirmed signatures older then a week'
   task :delete_old_signatures => :environment do
     NewSignature.where('created_at < ?', 10.days.ago).delete_all
@@ -7,6 +8,7 @@ namespace :new_signatures do
 
   desc 'Send reminder to confirm signature'
   task :send_reminder => :environment do
+
     Rails.logger = ActiveSupport::Logger.new('log/send_reminders.log')
 
     old_reminder = NewSignature.
