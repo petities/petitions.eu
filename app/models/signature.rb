@@ -193,6 +193,25 @@ class Signature < ActiveRecord::Base
     true
   end
 
+  def send_reminder_mail
+    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
+
+    # update the time
+    self.last_reminder_sent_at = Time.now
+
+    # update the reminder sent value
+    if self.reminders_sent == nil
+      self.reminders_sent = 1
+    else 
+      self.reminders_sent = self.reminders_sent + 1 
+    end
+    # save the resulting sig
+    if not self.save
+      Rails.logger.debug 'destroyed invalid email %s' % person_email
+      self.destroy
+    end
+  end
+
   def generate_unique_key
     self.unique_key = SecureRandom.urlsafe_base64(16) if unique_key.nil?
     true
