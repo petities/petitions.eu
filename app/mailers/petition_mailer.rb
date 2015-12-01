@@ -1,4 +1,5 @@
 class PetitionMailer < ApplicationMailer
+
   def status_change_mail(petition)
     @petition = petition
 
