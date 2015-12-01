@@ -1,10 +1,17 @@
+- if user_signed_in? && current_user.has_role?(:admin, @petition)
+  h3.whitespace= t('signature.only_you_can_see_annoymous')
+
 - @signatures.each do |signature|
   div.petition-signature
     div.petition-signature-name
+
       - if signature.visible?
         = signature.person_name
       - else
-        = t "anonymous"
+        =<> t "anonymous"
+        - if user_signed_in? && current_user.has_role?(:admin, @petition)
+          br
+          =<> signature.person_name
     - if signature.visible?
       div.petition-signature-location= signature.person_city
       div.petition-signature-occupation
