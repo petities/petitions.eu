@@ -126,8 +126,9 @@ class Petition < ActiveRecord::Base
   scope :newest,     -> { order(created_at: :desc) }
 
   belongs_to :owner, class_name: 'User'
-
+  belongs_to :office
   belongs_to :petition_type
+
   # belongs_to :organisation
 
   has_many :images, as: :imageable, dependent: :destroy
@@ -216,7 +217,7 @@ class Petition < ActiveRecord::Base
 
     return true if office && user.has_role?(office, :admin)
 
-    False
+    false
   end
 
   def is_draft?
