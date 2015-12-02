@@ -21,9 +21,17 @@ div.petition-details id="edit_details" style='display: none;'
 
     div.petition-edit-label
       = t('petition.details.form.due_date_label')
-    = f.date_select :date_projected, class: 'petition-edit-input',
+    = f.date_select :date_projected, class: 'petition-edit-input whitespace',
                      default: 90.days.from_now
+    div.whitespace
 
+    div.petition-edit-label.whitespace
+      = t('petition.details.form.reference_field')
+    = f.text_field :reference_field, class: 'petition-edit-input',
+                   placeholder: t('petition.details.from.reference_field', default: 'reference id for communications')
+
+    div.whitespace
+    div.whitespace
     div.petition-edit-label
       = t('petition.details.form.link1')
     = f.text_field :link1, class: 'petition-edit-input',

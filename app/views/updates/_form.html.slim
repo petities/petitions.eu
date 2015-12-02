@@ -1,8 +1,9 @@
 
 
 
-/- if user_signed_in? && (current_user.has_role?(:admin))
-- if not %w(concept draft).include? @petition.status
+- if user_signed_in? && (current_user.has_role?(:admin))
+  - if (@petition && %w(concept draft).include?(@petition.status))
+    - return
 
   = form_for update, html:{ multipart: true } do |f|
     div.petition-edit-label
@@ -20,7 +21,13 @@
       div.petition-edit-label
         = t('update.label.show_on_homepage')
 
-      = f.check_box :show_on_home, {checked: true}
+      = f.check_box :show_on_home
+
+    - if current_user.has_role? :admin or current_user.has_role?(:admin, @office)
+      div.petition-edit-label
+        = t('update.label.show_on_petition')
+
+      = f.check_box :show_on_petition
 
     - if @offices
       div.petition-edit-label

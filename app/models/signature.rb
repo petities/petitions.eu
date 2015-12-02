@@ -62,20 +62,20 @@ class Signature < ActiveRecord::Base
   validates :person_email, format: { with: /@/ }
 
   # FIXME
-  def country_postalcode_validation
-    case I18n.locale
-      when :en
-        # check for latin characters
-        return true
-      when :de
-        return true
-        # check for cyrillic characters
-      when :nl
-        return true
-      return true
-    end
-    return true
-  end
+  #def country_postalcode_validation
+  #  case I18n.locale
+  #    when :en
+  #      # check for latin characters
+  #      return true
+  #    when :de
+  #      return true
+  #      # check for cyrillic characters
+  #    when :nl
+  #      return true
+  #    return true
+  #  end
+  #  return true
+  #end
   
   # Some petitions require a full address
   #validates :person_postalcode, 
@@ -191,6 +191,25 @@ class Signature < ActiveRecord::Base
     # puts 'sending mail???'
     SignatureMailer.sig_confirmation_mail(self).deliver_later
     true
+  end
+
+  def send_reminder_mail
+    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
+
+    # update the time
+    self.last_reminder_sent_at = Time.now
+
+    # update the reminder sent value
+    if self.reminders_sent == nil
+      self.reminders_sent = 1
+    else 
+      self.reminders_sent = self.reminders_sent + 1 
+    end
+    # save the resulting sig
+    if not self.save
+      Rails.logger.debug 'destroyed invalid email %s' % person_email
+      self.destroy
+    end
   end
 
   def generate_unique_key

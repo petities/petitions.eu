@@ -13,6 +13,14 @@ div#detailbox.petition-details
       = link_to @office.name, petition_desk_path(@office)
       |&nbsp
 
+  - if @office and @petition.reference_field
+    div.petition_field_label= t('show.overview.desk')
+    div.petition_field_data
+      = @petition.reference_field
+      |&nbsp
+
+
+
   - if @petition.date_projected
     div.petition_field_label= t('show.overview.end_date')
     div.petition_field_data
@@ -36,6 +44,25 @@ div#detailbox.petition-details
     div.petition_field_data
       = @petition.petitioner_organisation
       |&nbsp
+
+  - if ((user_signed_in? && current_user.has_role?(:admin, @petition)) || (user_signed_in? && current_user.has_role?(:admin, @office)))
+    - if not @owners.empty?
+      /adds some whitespace..
+      div.petition_field_label
+        |&nbsp
+      div.petition_field_data
+        |&nbsp
+      h2.petition-section-title= t('show.overview.all_owners')
+      - @owners.each do |owner|
+        div.petition_field_label= t('petitioner_real_name')
+        div.petition_field_data
+          = owner.name
+          |&nbsp
+
+        div.petition_field_label= t('petitioner_real_email')
+        div.petition_field_data
+          = owner.username
+          |&nbsp
 
   - if @petition.links[:links].present?
     div.petition_field_label= t('show.overview.website')

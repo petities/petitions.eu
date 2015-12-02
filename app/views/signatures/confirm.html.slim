@@ -21,7 +21,7 @@ div.page
       //     div.start-petition-form-cell.input
       //       div.start-petition-form-cell-title.form_errors
       //       - @signature.errors.full_messages.each do |message|
-      //         div.message 
+      //         div.message
       //           = raw message
       //     div.start-petition-form-cell.label
       //       p
@@ -33,7 +33,7 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          h2.start-petition-form-cell-title 
+          h2.start-petition-form-cell-title
             = t('confirm.info.check_information')
         div.start-petition-form-cell.label
           | &nbsp
@@ -72,7 +72,7 @@ div.page
           div.start-petition-form-cell-title= t('confirm.form.location.label')
           - error = ''
           - if not @signature.errors[:person_city].empty?
-            - error = ' error' 
+            - error = ' error'
           = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
@@ -144,11 +144,11 @@ div.page
 
           div.start-petition-form-cell.label
             p= t('confirm.form.bigbrother')
-            
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           = f.submit @action, class: 'start-petition-form-cell-button'
-          
+
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
@@ -158,7 +158,6 @@ div.page
           h2.start-petition-form-cell.input.error
             = t('signature.confirm.errors')
 
-            
           div.start-petition-form-cell.label.empty
             | &nbsp;
             div id="confirm_error_messages"
@@ -169,23 +168,23 @@ div.page
         div.start-petition-form-row
           h2.start-petition-form-cell.input
             = t('signature.success')
-            
+
           div.start-petition-form-cell.label.empty
             | &nbsp;
 
         div.start-petition-form-row
           div.start-petition-form-cell.input
             = link_to t('confirm.see_your_signature'), anchor_petition_signatures_url(@petition, @signature), class: 'start-petition-form-cell-button'
-            
+
           div.start-petition-form-cell.label.empty
             | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-      /    = link_to t('confirm.back_to_petition'), 
-      /              @petition, 
+      /    = link_to t('confirm.back_to_petition'),
+      /              @petition,
                     class: 'start-petition-form-cell-button buttonfix'
-          
+
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
@@ -196,7 +195,7 @@ div.page
       = t('confirm.info.help_petition')
     div
       | &nbsp;
-    div 
+    div
       /= debug @pledge
 
     = form_for @pledge, url: @pledge_url, remote: true, data: { type: :json } do |f|
@@ -220,9 +219,9 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.form.influencelabel')
-            = f.select(:influence, 
-                       options_for_select(Pledge::INFLUENCE_OPTIONS, 
-                        selected: @pledge.influence), 
+            = f.select(:influence,
+                       options_for_select(Pledge::INFLUENCE_OPTIONS,
+                        selected: @pledge.influence),
                        include_blank: t("pledge.influence.blank", default:""),
                        class: "start-petition-form-cell-select.large")
 
@@ -233,11 +232,11 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.skillslabel')
           = f.select(:skill,
-                     options_for_select(Pledge::SKILL_OPTIONS, 
-                      selected: @pledge.skill), 
+                     options_for_select(Pledge::SKILL_OPTIONS,
+                      selected: @pledge.skill),
                      include_blank: t("pledge.skill.blank", default:""),
                      class: "start-petition-form-cell-select.large")
- 
+
         div.start-petition-form-cell.label
           p= t('confirm.form.skills_offer_description')
 
@@ -272,8 +271,8 @@ div.page
           div.start-petition-form-cell-title
             | &nbsp;
 
-          = f.text_area(:feedback, 
-                       class: "start-petition-form-cell-input", 
+          = f.text_area(:feedback,
+                       class: "start-petition-form-cell-input",
                        placeholder: t('pledge.feedback', default: 'give feedback'))
 
         div.start-petition-form-cell.label.empty
@@ -297,11 +296,12 @@ div.page
     div.start-petition-form-row
       div.start-petition-form-cell.input
         h2.start-petition-form-cell-title= t('confirm.info.mailafriend.title')
+        div.whitespace
 
         = form_tag @share_email_url, method: 'post', remote: true, data: { type: :json }, id: "share_email" do
 
-          = text_field_tag(:share_email, "", 
-                {class: 'start-petition-form-cell-input', 
+          = text_field_tag(:share_email, "",
+                {class: 'start-petition-form-cell-input',
                  id: :input_share_email,
                  placeholder: t('confirm.info.mailafriend.email', default: 'mail your friend!')})
 

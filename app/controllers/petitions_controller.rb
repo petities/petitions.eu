@@ -157,7 +157,7 @@ class PetitionsController < ApplicationController
 
     @petition_types = PetitionType.all
 
-    @chart_array = @petition.history_chart_json
+    @chart_data, @chart_labels = @petition.history_chart_json
 
   end
   # GET /petitions/1
@@ -187,6 +187,8 @@ class PetitionsController < ApplicationController
     else
       @office = Office.find_by_email('webmaster@petities.nl')
     end
+
+    @answer = @petition.updates.where(show_on_petition: true).first
 
     # TODO.
     # where prominent is TRUE and score is higher then 0
@@ -274,6 +276,7 @@ class PetitionsController < ApplicationController
     authorize @petition
 
     @owners = find_owners
+
     @petition_types = PetitionType.all
 
     set_petition_vars
@@ -398,9 +401,12 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
-    PetitionMailer.finalize_mail(@petition).deliver_later
+    if @petition.office.present?
+      PetitionMailer.finalize_mail(@petition).deliver_later
+    end
 
-    flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
+    #flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
+    flash[:notice] = t('petition.your_petition_awaiting_moderation')
     redirect_to edit_petition_path(@petition)
   end
 
@@ -434,8 +440,10 @@ class PetitionsController < ApplicationController
   end
 
   def find_owners
-    User.joins(:roles).where(
-      roles: { resource_type: 'Petition', resource_id: @petition.id })
+    #User.joins(:roles).where(
+    #  roles: { resource_type: 'Petition', resource_id: @petition.id })
+    role_id = @petition.roles[0].id
+    User.joins(:roles).where(roles: {id: role_id})
   end
 
   def update_locale_list
@@ -454,6 +462,7 @@ class PetitionsController < ApplicationController
       :petitioner_telephone,
       :petition_type_id,
       :date_projected,
+      :reference_field,
       :link1, :link1_text,
       :link2, :link2_text,
       :link3, :link3_text,
