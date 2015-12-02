@@ -26,7 +26,7 @@ class PetitionMailer < ApplicationMailer
   def warning_due_date_mail(petition)
 
     subject = t('petition.is.due')
-
+    target = petition.office.email
     mail(to: target, subject: subject)
   end
 
