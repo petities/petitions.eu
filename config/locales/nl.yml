@@ -456,6 +456,7 @@ Petities.nl'
     overview:
       addressed: 'Geadresseerd:'
       addressee: 'Ontvanger:'
+      all_owners: Contactinformatie
       desk: 'Petitieloket:'
       end_date: 'Einddatum:'
       location: 'In:'
@@ -471,6 +472,10 @@ Petities.nl'
       share_this: Deel deze petitie met anderen
       title: Petitie
       we: Wij
+    petitioner:
+      real_name: Name
+      real_telephone: Telephone
+      real_email: E-mail
     share: Deel deze petitie
     sign:
       form:
