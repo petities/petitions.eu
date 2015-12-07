@@ -2,41 +2,29 @@
 #
 # Table name: newsitems
 #
-#  id             :integer          not null, primary key
-#  title          :string(255)
-#  title_clean    :string(255)
-#  text           :text(4294967295)
-#  petition_id    :integer
-#  office_id      :integer
-#  url            :string(255)
-#  url_text       :string(255)
-#  private_key    :string(255)
-#  date           :date
-#  date_from      :date
-#  date_until     :date
-#  show_on_office :boolean
-#  show_on_home   :boolean
+#  id               :integer          not null, primary key
+#  title            :string(255)
+#  title_clean      :string(255)
+#  text             :text(4294967295)
+#  petition_id      :integer
+#  office_id        :integer
+#  url              :string(255)
+#  url_text         :string(255)
+#  private_key      :string(255)
+#  date             :date
+#  date_from        :date
+#  date_until       :date
+#  show_on_office   :boolean
+#  show_on_home     :boolean
+#  created_at       :datetime
+#  updated_at       :datetime
+#  cached_slug      :string(255)
 #  show_on_petition :boolean
-#  created_at     :datetime
-#  updated_at     :datetime
-#  cached_slug    :string(255)
 #
 
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
   extend FriendlyId
-
-  # `title`.`title`, `title_clean`.`title_clean`,
-  # `text`.`text`, `petition_id`.`petition_id`,
-  # `office_id`.`office_id`, `url`.`url`,
-  # `url_text`.`url_text`, `private_key`.`private_key`,
-  # `date`.`date`, `date_from`.`date_from`,
-  # `date_until`.`date_until`, `show_on_office`.`show_on_office`,
-  # `show_on_home`.`show_on_home`,
-  # `created_at`.`created_at`, `updated_at`.`updated_at`,
-  # `cached_slug`.`cached_slug`
-
-  # slug_column = 'cached_slug'
 
   friendly_id :title, :use => [:slugged, :finders], slug_column: :cached_slug
 

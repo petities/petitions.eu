@@ -63,6 +63,8 @@
 #  active_rate_value                :float(24)        default(0.0)
 #  owner_id                         :integer
 #  owner_type                       :string(255)
+#  slug                             :string(255)
+#  reference_field                  :string(255)
 #
 
 require 'test_helper'
