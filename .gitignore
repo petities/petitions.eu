@@ -25,6 +25,7 @@ doc/app
 *.swn
 *~
 .DS_Store
+.byebug_history
 
 config/database.yml
 config/secrets.yml
