@@ -17,21 +17,23 @@ class PetitionsControllerTest < ActionController::TestCase
   end
 
   test "should create petition" do
-    assert_difference('Petition.count') do
-      post :create, {
-        petition: {
-          name: @petition.name + 'x' ,
-          description: @petition.description + 'x',
-          initiators: @petition.initiators + 'y',
-          statement: @petition.statement + 'test',
-          request: @petition.request + 'teest',
-          office_id: 1
-        },
-        user: {
-          email: 'test@test.com',
-          name: 'test'
+    assert_no_difference('User.count') do
+      assert_difference('Petition.count') do
+        post :create, {
+          petition: {
+            name: @petition.name + 'x' ,
+            description: @petition.description + 'x',
+            initiators: @petition.initiators + 'y',
+            statement: @petition.statement + 'test',
+            request: @petition.request + 'teest',
+            office_id: 1
+          },
+          user: {
+            email: 'test@test.com', # user already exists
+            name: 'test'
+          }
         }
-      }
+      end
     end
 
     assert_redirected_to petition_path(assigns(:petition))
@@ -39,24 +41,27 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test "should create petition and user" do
     assert_difference('User.count') do
-      post :create, {
-        petition: {
-          name: @petition.name + 'x' ,
-          description: @petition.description + 'x',
-          initiators: @petition.initiators + 'y',
-          statement: @petition.statement + 'test',
-          request: @petition.request + 'teest',
-          office_id: 1
-        },
-        user: {
-          email: 'idonotexist@test.com',
-          name: 'nexttest',
-          password: 'idonotexist@test.com'
+      assert_difference('Petition.count') do
+        post :create, {
+          petition: {
+            name: @petition.name + 'x' ,
+            description: @petition.description + 'x',
+            initiators: @petition.initiators + 'y',
+            statement: @petition.statement + 'test',
+            request: @petition.request + 'teest',
+            office_id: 1
+          },
+          user: {
+            email: 'idonotexist@test.com',
+            name: 'nexttest',
+            password: 'idonotexist@test.com'
+          }
         }
-      }
+      end
     end
 
     assert_redirected_to petition_path(assigns(:petition))
+
   end
 
   #test "should show petition" do
