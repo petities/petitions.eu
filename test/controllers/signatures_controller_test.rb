@@ -21,7 +21,7 @@ class SignaturesControllerTest < ActionController::TestCase
 
   test "should create signature" do
     assert_difference('NewSignature.count') do
-      post :create, :petition_id=>@petition, signature: {
+      post :create, format: :js, :petition_id=>@petition, signature: {
         #:petition_id => @petitions.id,
         :person_name => 'test name',
         :person_email => 'test2@gmail.com',
@@ -36,26 +36,26 @@ class SignaturesControllerTest < ActionController::TestCase
         :confirmed => false,
       }
     end
-    assert_redirected_to petition_path(@petition)
+    assert_response :success
   end
 
 
   test "signature confirmation links" do
     assert_routing("/signatures/10/confirm", :controller => "signatures",
-                   :action => "confirm", :signature_key => "10")
+                   :action => "confirm", :signature_id => "10")
 
     assert_routing("/signatures/xx/confirm", :controller => "signatures",
-                   :action => "confirm", :signature_key => "xx")
+                   :action => "confirm", :signature_id => "xx")
   end
 
   test "check confirmation logic" do
     assert_difference('Signature.count') do
-      get :confirm, :signature_key => @newsignature.unique_key
-      assert_redirected_to @petition
+      get :confirm, :signature_id => @newsignature.unique_key
+      #assert_redirected_to @petition
     end
     # when we do it again nothing should happen.
     assert_no_difference('Signature.count') do
-      get :confirm, :signature_key => @newsignature.unique_key
+      get :confirm, :signature_id => @newsignature.unique_key
     end
   end
 
