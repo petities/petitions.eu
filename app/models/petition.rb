@@ -65,7 +65,7 @@
 #  owner_type                       :string(255)
 #  slug                             :string(255)
 #  reference_field                  :string(255)
-#
+
 
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper

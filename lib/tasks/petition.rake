@@ -36,12 +36,13 @@ namespace :petition do
         # change status to orphan
         petition.status == 'orphan'
         Rails.logger.debug('orphan %s %s' % [petition.id, petition.name])
-
       else
-        Rails.logger.debug('request answer %s %s' % [petition.id, petition.name])
+        Rails.logger.debug('request answer due date %s %s' % [petition.id, petition.name])
         # send request to answer to office
         # change status to to_process
-        #
+        petition.status == 'to_process'
+        m = PetitionMailer.office_ask_for_answer_due_date_mail(petition)
+        m.deliver_later
       end
     end
   end
@@ -116,7 +117,7 @@ namespace :petition do
          task_status.count += 1
          task_status.last_action = Time.now
          mail = PetitionMailer.office_ask_for_answer_mail(petition)
-         #mail.deliver_later
+         mail.deliver_later
          Rails.logger.debug(
            'asked %s x %s for answer on %s' % [
              petition.office.name, 
@@ -128,13 +129,14 @@ namespace :petition do
     end
   end
 
+
   desc 'publish answer to interested people'
   task 'publish_answer_to_subscribers' => :environment do
     Rails.logger = ActiveSupport::Logger.new('log/publish_answer.log')
 
     # find all petitions with an answer and are not completed
     have_answer = Petition.where(status: 'in_process').
-      where('date_projected < ?', Time.now).
+      where('answer_due_date < ?', Time.now).
       joins(:updates).
       where(newsitems: {show_on_petition: true}).limit(10)
 

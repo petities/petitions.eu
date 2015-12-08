@@ -27,6 +27,14 @@ div#detailbox.petition-details
       = @petition.date_projected.strftime('%d-%m-%Y')
       |&nbsp
 
+  - if @petition.answer_due_date
+    div.petition_field_label= t('show.overview.answer_end_date')
+    div.petition_field_data
+      = @petition.answer_due_date.strftime('%d-%m-%Y')
+      |&nbsp
+
+
+
   - if @petition.status.present?
     div.petition_field_label= t('show.overview.status')
     div.petition_field_data

@@ -463,6 +463,7 @@ class PetitionsController < ApplicationController
       :petitioner_telephone,
       :petition_type_id,
       :date_projected,
+      :answer_due_date,
       :reference_field,
       :link1, :link1_text,
       :link2, :link2_text,

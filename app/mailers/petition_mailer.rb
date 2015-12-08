@@ -53,6 +53,15 @@ class PetitionMailer < ApplicationMailer
 
   end
 
+  def office_ask_for_answer_due_date_mail(petition)
+    Logger.debug('build ask for answer due date mail..')
+
+    subject = t('petition.moderation.we_need_answer')
+
+    mail(to: @petition.office.email, subject: subject)
+
+  end
+
   def office_ask_for_answer_mail(petition)
     Logger.debug('build ask for answer mail..')
 
