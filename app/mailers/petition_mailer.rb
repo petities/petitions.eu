@@ -31,7 +31,7 @@ class PetitionMailer < ApplicationMailer
   end
 
   # petition should get an answer
-  def due_date_ask_for_answer(petition)
+  def due_date_ask_for_answer_mail(petition)
 
     subject = t('petition.office.please_answer')
 
@@ -40,8 +40,27 @@ class PetitionMailer < ApplicationMailer
     mail(to: @petition.office.email, subject: subject)
   end
 
-  def send_reference_number(petition)
-    Logger.debug('sending mail..')
+  def reference_number_mail(petition, target="")
+    Logger.debug('building reference number mail..')
+
+    subject = t('petition.moderation.we_need_reference')
+
+    if not target
+      target = @petition.office.email 
+    end
+
+    mail(to: target, subject: subject)
+
   end
+
+  def office_ask_for_answer_mail(petition)
+    Logger.debug('build ask for answer mail..')
+
+    subject = t('petition.moderation.we_need_answer')
+
+    mail(to: @petition.office.email, subject: subject)
+
+  end
+
 
 end

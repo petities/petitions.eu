@@ -179,7 +179,7 @@ class Petition < ActiveRecord::Base
   end
 
   def send_status_mail
-    PetitionMailer.status_change_mail(self).deliver if self.status_changed?
+    PetitionMailer.status_change_mail(self).deliver_later if self.status_changed?
   end
 
   def elapsed_time
