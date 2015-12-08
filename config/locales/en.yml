@@ -456,6 +456,7 @@ Petitions.eu'
     overview:
       addressed: Addressed
       addressee: 'Addressed to:'
+      all_owners: Contact information
       desk: 'Petition desk:'
       end_date: 'Closing date:'
       location: 'In:'
@@ -471,6 +472,10 @@ Petitions.eu'
       share_this: Share this petition with others
       title: Petition
       we: We
+    petitioner:
+      real_name: Name
+      real_telephone: Telephone
+      real_email: E-mail
     share: Share this petition
     sign:
       form:
