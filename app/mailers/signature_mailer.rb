@@ -54,4 +54,13 @@ class SignatureMailer < ApplicationMailer
     mail(to: target_email, subject: subject)
   end
 
+  def inform_user_of_answer_mail(signature, petition, answer)
+    @signature = signatere
+    @petition = petition
+    @answer = answer
+
+    subject = t('signature.petition.is_answered')
+
+    mail(to: signature.person_email, subject: subject)
+  end
 end

@@ -17,6 +17,9 @@
 class Pledge < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
 
+  has_one :petition
+  has_one :signature
+
   INFLUENCE_OPTIONS = [
     [t('confirm.form.pledge.expert') , 'expert'],
     [t('confirm.form.pledge.asseenontv'), 'asseenontv'],
@@ -46,4 +49,5 @@ class Pledge < ActiveRecord::Base
     [t('confirm.form.money.25'), '25'],
     [t('confirm.form.money.50'), '50']
   ]
+
 end
