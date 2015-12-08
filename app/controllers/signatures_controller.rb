@@ -15,7 +15,7 @@ class SignaturesController < ApplicationController
     @all_signatures = @petition.signatures.special
 
     unless request.xhr?
-      @chart_array = @petition.history_chart_json
+      @chart_data, @chart_labels = @petition.history_chart_json
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
                                   .select { |group| group[1] >= 100 }
