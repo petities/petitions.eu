@@ -46,7 +46,7 @@ class PetitionMailer < ApplicationMailer
     subject = t('petition.moderation.we_need_reference')
 
     if not target
-      target = @petition.office.email 
+      target = @petition.office.email
     end
 
     mail(to: target, subject: subject)
@@ -71,5 +71,19 @@ class PetitionMailer < ApplicationMailer
 
   end
 
+  def adoption_request_signatory_mail(petition, signature)
+    @petition = petition
+    @signature = signature
+
+    @become_owner_url = url_for(
+      controller: 'signatures',
+      action: 'become_petition_owner',
+      host: 'dev.petitions.eu',
+      signature_id: @signature_id.unique_key)
+
+    subject = t('petition.moderation.we_need_new_owner')
+
+    mail(to: @signature.person_email, subject: subject)
+  end
 
 end

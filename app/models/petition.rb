@@ -223,6 +223,12 @@ class Petition < ActiveRecord::Base
     false
   end
 
+  # All users who signed this petition should get an
+  # answer
+  def email_answer(answer=nil)
+    ## fixme
+  end
+
   def is_draft?
     %w(concept
        draft

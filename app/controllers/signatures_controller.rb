@@ -1,7 +1,9 @@
 class SignaturesController < ApplicationController
   include FindPetition
 
-  before_action :find_signature_by_unique_key, only: [:show, :confirm, :confirm_submit, :pledge_submit, :mail_submit, :user_update]
+  before_action :find_signature_by_unique_key, only: [
+    :show, :confirm, :confirm_submit, :pledge_submit, :mail_submit,
+    :user_update, :become_petition_owner]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:update]
@@ -98,6 +100,30 @@ class SignaturesController < ApplicationController
         format.js { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
+
+  end
+
+  # become owner of the petition you have link for
+  def become_petition_owner
+    @petition = @signature.petition
+
+    u = User.find_or_create_by(email: @signature.person_email)
+    u.name = @signature.person_email
+
+    if u.confirmed_at.nil?
+      u.confirmed_at = Time.now
+      u.send_reset_password_instructions
+    end
+
+    # save
+    u.save
+
+    # give user admin permission
+    u.add_role(:admin, @petition)
+
+    # set petition back to live
+    @petition.status = 'live'
+    @petition.save
 
   end
 

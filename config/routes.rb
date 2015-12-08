@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
     resources :signatures, except: [:new, :show] do
 
+
       post :confirm_submit
       patch :confirm_submit
       post :pledge_submit, as: :pledge_confirm
@@ -89,6 +90,7 @@ Rails.application.routes.draw do
   # make old links work
   #
 
+  get '/signatures/:signature_id/becomeowner',    to: 'signatures#become_petition_owner', as: :signature_become_owner
   get '/signatures/:signature_id/confirm',    to: 'signatures#confirm', as: :signature_confirm
   get '/ondertekening/:signature_id/confirm', to: 'signatures#confirm'
   get '/petitie/:slug',       to: 'petitions#show'
