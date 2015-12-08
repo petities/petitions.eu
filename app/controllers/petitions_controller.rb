@@ -228,7 +228,6 @@ class PetitionsController < ApplicationController
 
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
-
       @petition.organisation_kind = organisation.kind
       @petition.organisation_name = organisation.name
     end
@@ -238,6 +237,7 @@ class PetitionsController < ApplicationController
         @petition.images << Image.new(upload: image)
       end
     end
+
 
     if user_signed_in?
       owner = current_user
@@ -254,6 +254,7 @@ class PetitionsController < ApplicationController
             name: user_params[:name],
             password: user_params[:password]
           )
+          owner.save
         end
       end
     end

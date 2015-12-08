@@ -1,9 +1,9 @@
 class PetitionMailer < ApplicationMailer
 
-  # 
+  #
   def status_change_mail(petition)
     @petition = petition
-    
+
     subject = t('Petition.status.changed')
 
     if @petition.petitioner_email
@@ -11,7 +11,7 @@ class PetitionMailer < ApplicationMailer
     end
   end
 
-  # finalize email 
+  # finalize email
   def finalize_mail(petition)
 
     @petition = petition
@@ -38,6 +38,10 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
 
     mail(to: @petition.office.email, subject: subject)
+  end
+
+  def send_reference_number(petition)
+    Logger.debug('sending mail..')
   end
 
 end
