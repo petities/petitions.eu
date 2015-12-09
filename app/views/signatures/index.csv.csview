@@ -1,9 +1,9 @@
-csv << ["Petition: #{@petition.name}"]
+csv << [t('csv.petition') + "#{@petition.name}"]
 csv << ["Id: #{@petition.id}"]
-csv << ["Signatures count: #{@all_signatures.size}"]
+csv << [t('csv.signature_count') + "#{@all_signatures.size}"]
 csv << [""]
 
-csv << ['Name', 'Email', 'City', 'Visible', 'Confirmed at']
+csv << [t('csv.name'), t('csv.email'), t('csv.city'), t('csv.visible'), t('csv.confirmed_at')]
 
 @all_signatures.each do |signature|
   csv <<  [
