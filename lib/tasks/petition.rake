@@ -31,11 +31,10 @@ namespace :petition do
       if petition.signatures.confirmed.size < 10
         Rails.logger.debug('withdrawn %s %s' % [petition.id, petition.name])
         petition.status == 'withdrawn'
-        petition.save
       elsif petition.updates.size < 1
         # change status to orphan
         petition.status == 'orphan'
-        Rails.logger.debug('orphan %s %s' % [petition.id, petition.name])
+        Rails.logger.debug('orphaned %s %s' % [petition.id, petition.name])
       else
         Rails.logger.debug('request answer due date %s %s' % [petition.id, petition.name])
         # send request to answer to office
@@ -44,6 +43,7 @@ namespace :petition do
         m = PetitionMailer.office_ask_for_answer_due_date_mail(petition)
         m.deliver_later
       end
+      petition.save
     end
   end
 
