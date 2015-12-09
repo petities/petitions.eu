@@ -54,7 +54,7 @@ class PetitionMailerPreview < ActionMailer::Preview
   end
 
   def adoption_request_signatory_mail
-    PetitionMailer.adoption_request_signatory_mail(Petition.live.first, Signature.first)
+    PetitionMailer.adoption_request_signatory_mail(Signature.last.petition, Signature.last)
   end
 
   def adoption_result_signatories_mail

@@ -1,0 +1,9 @@
+en:
+  csv:
+    name: Name
+    petition: 'Petition:'
+    signature_count: 'Signature count:'
+    email: Email
+    city: City
+    visible: Visible
+    confirmed_at: Confirmed at

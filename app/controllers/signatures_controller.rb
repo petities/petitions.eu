@@ -103,13 +103,15 @@ class SignaturesController < ApplicationController
 
   end
 
-  # become owner of the petition you have link for
+  # get admin rights of the petition you have link for
   def become_petition_owner
     @petition = @signature.petition
 
     u = User.find_or_create_by(email: @signature.person_email)
     u.name = @signature.person_email
 
+    # new user?
+    # send password instructions
     if u.confirmed_at.nil?
       u.confirmed_at = Time.now
       u.send_reset_password_instructions
@@ -120,10 +122,17 @@ class SignaturesController < ApplicationController
 
     # give user admin permission
     u.add_role(:admin, @petition)
-
     # set petition back to live
     @petition.status = 'live'
     @petition.save
+
+    respond_to do |format|
+      format.json { render :show, status: :ok }
+      format.html do
+        redirect_to @petition,
+          notice: t('confirmed.now_you_can_edit', default: 'you can manage this petition now')
+      end
+    end
 
   end
 
@@ -210,7 +219,7 @@ class SignaturesController < ApplicationController
         format.json { render :show, status: :ok }
         format.html do
           redirect_to @petition,
-                      notice: 'Signature was successfully confirmed.'
+            notice: t('confirmed.signaturesuccessfully', default: 'signature successfully confirmed')
         end
       end
     else

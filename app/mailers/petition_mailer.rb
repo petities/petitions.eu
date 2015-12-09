@@ -75,11 +75,16 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @signature = signature
 
+    if signature.unique_key.nil?
+      signature.send(:generate_unique_key)
+      signature.save
+    end
+
     @become_owner_url = url_for(
       controller: 'signatures',
       action: 'become_petition_owner',
       host: 'dev.petitions.eu',
-      signature_id: @signature_id.unique_key)
+      signature_id: @signature.unique_key)
 
     subject = t('petition.moderation.we_need_new_owner')
 
