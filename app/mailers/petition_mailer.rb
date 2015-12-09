@@ -1,24 +1,32 @@
 class PetitionMailer < ApplicationMailer
 
   #
-  def status_change_mail(petition)
+  def status_change_mail(petition, target: nil)
     @petition = petition
 
     subject = t('Petition.status.changed')
 
+    if target.nil?
+      target = @petition.petitioner_email
+    end
+
     if @petition.petitioner_email
-      mail(to: @petition.petitioner_email, subject: subject )
+      mail(to: target, subject: subject )
     end
   end
 
   # finalize email
-  def finalize_mail(petition)
+  def finalize_mail(petition, target: nil)
 
     @petition = petition
 
+    if target.nil?
+      target = @petition.office.email
+    end
+
     subject = t('petition.moderation.pending')
 
-    mail(to: @petition.office.email, subject: subject)
+    mail(to: target, subject: subject)
 
   end
 

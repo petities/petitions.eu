@@ -13,4 +13,12 @@ ActiveAdmin.register Office do
 #   permitted
 # end
 
+  filter :name
+  filter :subdomain
+  filter :email
+  filter :postalcode
+  filter :text
+  filter :url
+  filter :telephone
+
 end

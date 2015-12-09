@@ -185,7 +185,7 @@ class PetitionsController < ApplicationController
     if @petition.office_id
       @office = Office.find(@petition.office_id)
     else
-      @office = Office.find_by_email('webmaster@petities.nl')
+      @office = Office.find_by_email('nederland@petities.nl')
     end
 
     @answer = @petition.updates.where(show_on_petition: true).first
@@ -226,11 +226,7 @@ class PetitionsController < ApplicationController
 
     @petition.locale_list << I18n.locale
 
-    if petition_params[:organisation_id].present?
-      organisation = Organisation.find(petition_params[:organisation_id])
-      @petition.organisation_kind = organisation.kind
-      @petition.organisation_name = organisation.name
-    end
+    set_office
 
     if params[:images].present?
       params[:images].each do |image|
@@ -365,6 +361,27 @@ class PetitionsController < ApplicationController
     end
   end
 
+  def set_office
+
+    if petition_params[:organisation_id].present?
+      organisation = Organisation.find(petition_params[:organisation_id])
+      @petition.organisation_kind = organisation.kind
+      @petition.organisation_name = organisation.name
+
+      office = Office.find_by_organisation_id(organisation.id)
+      if office and not office.hidden
+        @petition.office = office
+      else
+        @petition.office = Office.find_by_email('nederland@petities.nl')
+      end
+    #  @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
+    end
+
+    if petition_params[:organisation_id].present?
+      organisation = Organisation.find(petition_params[:organisation_id])
+    end
+  end
+
   # PATCH/PUT /petitions/1
   # PATCH/PUT /petitions/1.json
   def update
@@ -372,12 +389,9 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
 
-    update_locale_list
+    set_office
 
-    # if petition_params[:organisation_id].present?
-    #   organisation = Organisation.find(petition_params[:organisation_id])
-    #   @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
-    # end
+    update_locale_list
 
     if params[:images].present?
       params[:images].each do |image|
@@ -404,6 +418,7 @@ class PetitionsController < ApplicationController
 
     if @petition.office.present?
       PetitionMailer.finalize_mail(@petition).deliver_later
+      PetitionMailer.finalize_mail(@petition, target: 'nederland@petities.nl').deliver_later
     end
 
     #flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
