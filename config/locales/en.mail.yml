@@ -2,34 +2,25 @@ en:
   mail:
     confirm:
       nowwhat: nothing 
-      reminder_mail: '
+      signature:
+        linkinstruction1: You nearly signed the petition 
+        linkinstruction2: with the e-mail address 
+        linkinstruction3: 'on' 
+        linkinstruction4: with the name
+        linkinstruction5: 'Is this your name and your e-mail address? Please confirm your signature by following this link:'
+        linkinstruction6: | 
+            Otherwise your e-mail address will be automatically deleted from our system. You do not count as signatory yet! 
 
-Dear %{name} 
-
-
-Follow below link to confirm your signature for %{petition_name}
-
-
-%{sig_link}
-
-
-NOTE you might need to add aditional information about yourself to make your
-signature valid
-
-
-You can view the petition at:
-
-
-%{petition_url}
+            After your confirmation you can always return to update your information or invite others to sign. It is therefore good to keep this message.
+        linkinstruction7: 'Do you have questions about this petition? Please contact the lead petitioner on:'
+        petition: THE PETITION
+        subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
+    dear: Dear
+    signoff: 'Thank you for using Petities.nl!
 
 
-%{petition_descr} 
+        The webmaster 
 
 
-Do you have questions about this petition? Please contact the lead petitioner: %{petition_email} 
-
-
-Best Regards,
-
-Petities.nl
-Petitions.eu'
+        Would you like to support us? http://petities.nl/donate'
+    

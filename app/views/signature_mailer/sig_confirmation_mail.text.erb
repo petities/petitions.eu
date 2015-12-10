@@ -1,7 +1,10 @@
 
-<%= t("signature.dear") %> <%= @signature.person_name %> 
+<%= t("mail.dear") %> <%= @signature.person_name %>,
 
-<%= t("signature.linkinstruction") %> "<%= @signature.petition.name %>"
+<%= t("mail.confirm.signature.linkinstruction1") %> "<%= @signature.petition.name %>" <%= t("mail.confirm.signature.linkinstruction2") %> <%= @signature.person_email %> <%= t("mail.confirm.signature.linkinstruction3") %> <%= @signature.signed_at.to_formatted_s(:short)  %> <%= t("mail.confirm.signature.linkinstruction4") %> <%= @signature.person_name %>.
+
+
+<%= t("mail.confirm.signature.linkinstruction5") %>
 
 <%= url_for(controller: 'signatures',
             action: 'confirm',
@@ -10,6 +13,24 @@
             signature_id: @signature.unique_key,
             ) %>
 
+<%= t("mail.confirm.signature.linkinstruction6") %>
+
+<%= t("mail.signoff") %> 
+
+
+<%= t("mail.confirm.signature.petition") %> <%= @signature.petition.subdomain %>.petities.nl
+
+
 <%= @signature.petition.description %>
 
-<%= t("signature.thanks") %>
+
+<%= @signature.petition.initiators %>
+
+
+<%= @signature.petition.statement %>
+
+
+<%= @signature.petition.request %>
+
+<%= t("mail.confirm.signature.linkinstruction7") %> <%= @signature.petition.petitioner_email %>
+

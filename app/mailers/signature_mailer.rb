@@ -2,6 +2,7 @@
 class SignatureMailer < ApplicationMailer
 
   def sig_confirmation_mail(signature)
+
     @signature = signature
 
     @confirm_url = url_for(controller: 'signatures',
@@ -17,9 +18,10 @@ class SignatureMailer < ApplicationMailer
     name = 'noname'
     name = @signature.petition.name if @signature.petition.present?
 
-    subject = t('signature.confirm', name: name)
+    subject = t('mail.confirm.signature.subject', petition_name: name)
 
-    mail(to: @signature.person_email, subject: subject)
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @signature.person_email, subject: subject)
+    
   end
 
   def sig_reminder_confirm_mail(signature)
@@ -35,7 +37,7 @@ class SignatureMailer < ApplicationMailer
       signature_id: @signature.unique_key)
 
     name = @signature.petition.name if @signature.petition.present?
-    subject = t('signature.confirm', name: name)
+    subject = t('mail.confirm.signature.subject', petition_name: name)
 
     mail(to: @signature.person_email, subject: subject)
   end

@@ -501,7 +501,6 @@ Petitions.eu'
     wrong_email: Wrong email
     wrong_name: Wrong name
   signature:
-    confirm: Confirm
     dear: Dear
     did_you_mean: Did you mean
     help:
@@ -511,9 +510,7 @@ Petitions.eu'
       name: Name
       subscribe: Subscribe
       visible: Visible
-    linkinstruction: Follow below link to confirm
     success: Your information is saved
-    thanks: Thanks
   signatures:
     popular_cities: Popular places
     link: Link
