@@ -307,14 +307,14 @@ div.page
               | &nbsp;
           | &nbsp;
           = submit_tag t('confirm.form.action.send_email'), class: "start-petition-form-cell-button"
+          | &nbsp;
+
+          div.start-petition-form-cell-button.email-success-note id='success_share_email' style="display: none;"
+            = t('signature.success_send', default: 'success')
 
           | &nbsp;
-          div.start-petition-form-cell-button id='success_share_email' style="display: none;"
-            = t 'signature.success_send'
- 
-          | &nbsp;
           div.start-petition-form-cell-button.email-suggest-button id='fail_share_email' style="display: none;"
-            = t 'signature.failed_send'
+            = t('signature.failed_send', default: 'failed')
 
           div#feedback
 
@@ -326,8 +326,8 @@ div.page
             name: @signature.person_name,
             sig_email: @signature.person_email,
             petition_name: @petition.name,
-            sig_function: @signature.person_function, 
-            petition_url: petition_url({id: @petition.slug || @petition.id}),  
+            sig_function: @signature.person_function,
+            petition_url: petition_url({id: @petition.slug || @petition.id}),
             petition_descr: @petition.description,
             petition_email: @petition.petitioner_email)
 
@@ -357,10 +357,10 @@ div.page
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        = link_to(t('confirm.info.your_signature'), 
+        = link_to(t('confirm.info.your_signature'),
           anchor_petition_signatures_path(@petition, @signature),
           class: 'start-petition-form-cell-button buttonfix')
-      
+
       div.start-petition-form-cell.label.empty
         | &nbsp;
 

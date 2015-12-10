@@ -63,17 +63,17 @@ en:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
       function:
-        description: "You may write your function, profession or relation to the petition, but it is not required."  
+        description: "You may write your function, profession or relation to the petition, but it is not required."
         label: Function or situation
       form:
         update_information: updated
-      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
-      influencelabel: Do you have influence? Are you a(n)...       
-      invite_info: 
-        description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
+      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal.
+      influencelabel: Do you have influence? Are you a(n)...
+      invite:
+        description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.
         label: My municipality may send me up to 6 invitations per year
       location:
-        description: "Where you currently live, visible to the world if you choose." 
+        description: "Where you currently live, visible to the world if you choose."
         label: Place
       name:
         description: Sign at least with your surname and an initial.
@@ -92,7 +92,7 @@ en:
         mediatrained: talk on radio or television
         ngomember: member of a relevant organisation
         organiser: organise a meeting
-        other: something else... 
+        other: something else...
         partymember: member of a political party
         performer: attract attention
         publicspeaker: speak in public
@@ -101,7 +101,7 @@ en:
       postal_code:
         description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
-      skillslabel: Do you have special skill? Are you able to...       
+      skillslabel: Do you have special skill? Are you able to...
       skills_offer_description: The lead petitioner might need your special skills. You might be able to help. You will receive an e-mail with a specific proposal.
       street:
         description: The address where you officially live today is required for this sort of petition. You can find it on mail from the government.
@@ -165,7 +165,7 @@ en:
       newer_version: Newer version
       newest_version: Petition version
       no_signatures_yet: No signatures yet
-      of: out of 
+      of: out of
       older_version: Older version
       status:
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
@@ -232,7 +232,7 @@ en:
     petition:
       update:
         help: Summarise
-        descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**." 
+        descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**."
         descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
         descr3: |
             <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
@@ -246,7 +246,7 @@ en:
         answer: When a petition is closed for signing the button to sign does not appear under a petition. A petition closes before the hand over and then awaits an answer. You could contact the lead petitioner to add your signature if the petition is not formally handed over.
         title: Why can I not sign a certain petition?
       question02:
-        answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address. 
+        answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address.
         title: I used the wrong e-mail address to sign, what to do?
       question03:
         answer: Yes, you sign anonymously by default. The recipient of the petition and the lead petitioner can see who (your name and self description) signed from where. Only if you opted in for showing your name on the web it appears under the petition. You can reverse this by yourself anytime but it might already be archived by others in the meantime.
@@ -287,7 +287,7 @@ en:
       title: 'Sort on: '
   listing: Listing
   login:
-    email: 
+    email:
       descr: The e-mailaddress you used to start your petition is also your username.
       label: E-mail address
     login: Login
@@ -308,7 +308,7 @@ en:
     new: Your new password
     save: Save new password
     send: Send me the password link
-    wisdom: 
+    wisdom:
       'We recommend using <a href="https://en.wikipedia.org/wiki/List_of_password_managers">special software</a> to generate and store passwords. For example 1Password or LastPass.'
   petition:
     Edit: Edit
@@ -383,7 +383,7 @@ en:
       we: We
     steps: Steps
     status:
-      flash: 
+      flash:
         concept: Not yet finished
         live: Signable
         in_treatment: In treatment
@@ -422,7 +422,6 @@ en:
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
-  profile: My profile
   pundit:
     petition_policy:
       edit: You can now add a translation of the petition
@@ -555,10 +554,10 @@ en:
       image: Image
       title: Title
     news_updates: Updates
-    no_news_yet: No news about this petition yet. 
-    label: 
+    no_news_yet: No news about this petition yet.
+    label:
       text: Your news update about the petition
       title: Title of this update
-      show_on_homepage: Show on homepage 
+      show_on_homepage: Show on homepage
     updated: News update updated
   when: When

@@ -13,22 +13,22 @@ suggested = (element, sugestion) ->
   #console.log(tip_id)
   sugestion_id = '#suggest_' + element[0].id
   #console.log(sugestion_id)
-  sugElement = $(sugestion_id) 
-  sugElement.html sugestion.full     
-  tipElement = $(tip_id) 
+  sugElement = $(sugestion_id)
+  sugElement.html sugestion.full
+  tipElement = $(tip_id)
   tipElement.show()
 
 empty = (elements, suggestion) ->
   tip_id = '#didyoumean_' + elements[0].id
   sugestion_id = '#suggest_' + elements[0].id
-  sugElement = $(sugestion_id) 
-  $(sugestion_id).html "" 
-  tipElement = $(tip_id) 
+  sugElement = $(sugestion_id)
+  $(sugestion_id).html ""
+  tipElement = $(tip_id)
   tipElement.hide()
 
 
 
-delay = ( 
+delay = (
   timer = 0
   (callback, ms) ->
     clearTimeout(timer)
@@ -41,9 +41,9 @@ $ ->
   $('[id$=_email]').keyup(->
     input = this
     delay(->
-      $(input).mailcheck suggested: suggested, empty: empty 
-    , 400)) 
-   
+      $(input).mailcheck suggested: suggested, empty: empty
+    , 400))
+
 
 # on focusing to the next form check the mail field
 # and do a sugestion
@@ -69,7 +69,7 @@ $ ->
     # hide the tip box
     tip_id = '#didyoumean_' + input_id
     #console.log(tip_id)
-    tipElement = $(tip_id) 
+    tipElement = $(tip_id)
     tipElement.hide()
 
 
@@ -77,13 +77,13 @@ $ ->
 # confirmation error handling
 
 #  ///////
-#  // CODE FOR CONFIRMING SIGNATURE PAGE 
+#  // CODE FOR CONFIRMING SIGNATURE PAGE
 #  ///////
 
 $ ->
 
 
-  $('.edit_signature input').bind('keyup', -> 
+  $('.edit_signature input').bind('keyup', ->
     if $(this).hasClass('error')
       $(this).removeClass('error')
   )
@@ -125,14 +125,18 @@ $ ->
   $('#share_email').on('ajax:success', (e, data, status, xhr) ->
     $('#success_share_email').show()
     $('#fail_share_email').hide()
+    $('#input_share_email').val("")
+    $('#input_share_email').attr("placeholder", "Great!.. invite more!!")
     #console.log(status)
     #$('#feedback').html('you are awesome!')
   )
-  
+
   # sign email fail
   $('#share_email').on('ajax:error', (e, data, status, xhr) ->
     $('#success_share_email').hide()
     $('#fail_share_email').show()
+    $('#input_share_email').val("")
+    $('#input_share_email').attr("placeholder", "Failed! Try again! send more!")
     #console.log(data.responseJSON)
     #$('#feedback').html('failed')
   )

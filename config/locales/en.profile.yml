@@ -1,0 +1,24 @@
+en:
+  profile:
+    link: Your profile
+    edit_your_information: 'Your contact information'
+    title: Your details
+    roles: Your roles
+    real_name: 'Real name:'
+    real_email: 'Confirmed email:'
+    mobile: 'Mobile number:'
+    city: 'City:'
+    name: 'Full name:'
+    telephone: 'Mobile:'
+    address: 'Address:'
+    postalcode: 'Postalcode:'
+    birth_date: 'Birth date:'
+    last_login: 'Last signed in at:'
+    details:
+      title: Help us
+      your_profile: 'Please enter you real personal information. Your information is only visible to you and petition administrators'
+      please_change?: 'If your information is incomplete please add it.
+        Complete information increases the trust of your petition and this website'
+      privacy: 'We will do our best to keep your contanct information save.'
+      fakename!: 'Your petition(s) can have different (organisation) contact information!
+        You can edit the details of your petitions in the edit page of each petition you own.'

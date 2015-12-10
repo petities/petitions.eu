@@ -1,0 +1,73 @@
+
+
+div#detailbox.profile-details
+  h2.petition-section-title= t('profile.title')
+
+  div.petition_field_label= t('profile.real_email')
+  div.petition_field_data
+    = @profile.email
+    |&nbsp
+
+  div.petition_field_label= t('profile.real_name')
+  div.petition_field_data
+    = @profile.name
+    |&nbsp
+
+  div.petition_field_label= t('profile.mobile')
+  div.petition_field_data
+    = @profile.telephone
+    |&nbsp
+
+  div.petition_field_label= t('profile.city')
+  div.petition_field_data
+    = @profile.city
+    |&nbsp
+
+  div.petition_field_label= t('profile.address')
+  div.petition_field_data
+    = @profile.address
+    |&nbsp
+
+  -if @profile.postalcode
+    div.petition_field_label= t('profile.postalcode')
+    div.petition_field_data
+      = @profile.postalcode
+      |&nbsp
+
+  - if @profile.birth_date
+    div.petition_field_label= t('profile.birth_date')
+    div.petition_field_data
+      = @profile.birth_date.to_date.to_formatted_s(:long_ordinal)
+      |&nbsp
+
+  div.petition_field_label= t('profile.last_login')
+  div.petition_field_data
+    = @profile.last_sign_in_at
+    |&nbsp
+
+  div.petition_field_label= t('profile.last_ip')
+  div.petition_field_data
+    = @profile.last_sign_in_ip
+    |&nbsp
+
+  div.clearfix.whitespace
+
+  h2.petition-section-title= t('profile.roles')
+
+  - current_user.roles.each do |role|
+    div.petition_field_label =<> role.name
+    div.petition_field_data
+      - if role.resource_type == 'Petition'
+        - petition = Petition.find(role.resource_id)
+        =<> link_to petition.name, petition_path(petition)
+      - elsif role.resource_type = 'Office'
+        -if role.resource_id
+          - office = Office.find(role.resource_id)
+          =<> link_to office.name, petition_desk_path(office.id)
+        - else
+          'Office
+      - else
+        =<> role.resource_id
+        =<> role.resource_type
+      |&nbsp
+
