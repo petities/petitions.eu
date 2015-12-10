@@ -1,15 +1,22 @@
 
-<%= t("signature.dear") %> <%= @signature.person_name %> 
+<%= t("mail.dear") %> <%= @signature.person_name %>,
 
-<%= t("signature.linkinstruction") %> "<%= @signature.petition.name %>"
+<%= t("mail.confirm.signature.linkinstruction",{
+	petition: @signature.petition.name,
+	email: @signature.person_email,
+	date: @signature.signed_at.to_formatted_s(:short),
+	name: @signature.person_name,
+	confirm_url: @confirm_url	
+}) %>
 
-<%= url_for(controller: 'signatures',
-            action: 'confirm',
-            #host: 'localhost:3000',
-            host: 'dev.petitions.eu',
-            signature_id: @signature.unique_key,
-            ) %>
+<%= t("mail.signoff") %> 
 
-<%= @signature.petition.description %>
+<%= t("mail.confirm.signature.petition", {
+	subdomain: @signature.petition.subdomain,
+	intro: @signature.petition.description,
+	we: @signature.petition.initiators,
+	observe: @signature.petition.statement,
+	request: @signature.petition.request,
+	petitionermail: @signature.petition.petitioner_email
+}) %>
 
-<%= t("signature.thanks") %>

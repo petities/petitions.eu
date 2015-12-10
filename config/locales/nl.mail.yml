@@ -1,0 +1,67 @@
+nl:
+  mail:
+    confirm:
+      nowwhat: nothing 
+      signature:
+        linkinstruction: '
+U heeft bijna de petitie %{petition} ondertekend met het e-mailadres %{email} op %{date} met de naam %{name}. 
+
+Is dit en uw e-mailadres? Bevestig dan alstublieft door deze link te volgen:
+%{confirm_url}
+
+Anders wordt uw e-mailadres automatisch gewist bij ons. U telt nog niet als ondertekenaar! 
+
+Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.'
+
+      petition: '
+DE PETITIE %{subdomain}.petities.nl
+
+
+%{intro}
+
+
+%{we}
+
+
+%{observe}
+
+
+%{request}
+
+Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}'
+        subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
+    dear: Geachte
+    signoff: 'Dank u wel voor het gebruiken van Petities.nl!
+
+
+        De webmaster 
+
+
+        Wilt u ons steunen? http://petities.nl/donate'
+    mailafriend:
+      subject: 'Uitnodiging om te ondertekenen: %{title}'
+      mail: ' 
+
+Geachte heer, mevrouw,
+
+
+Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
+
+
+Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
+
+
+Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
+
+
+De petitie kunt u bekijken op:
+
+
+%{petition_url} 
+
+
+%{petition_descr} 
+
+
+Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}'
+    note:  met de aantekening

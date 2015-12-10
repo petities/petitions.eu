@@ -211,7 +211,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           = f.check_box :inform_me
-          label= t('confirm.form.label.invite_info')
+          label= t('confirm.form.invite_info.label')
         div.start-petition-form-cell.label
           p= t('confirm.form.invite_info.description')
 
@@ -242,6 +242,19 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            | &nbsp;
+
+          = f.text_area(:feedback,
+                       class: "start-petition-form-cell-input",
+                       placeholder: t('pledge.feedback.placeholder', default: '...'))
+
+        div.start-petition-form-cell.label.empty
+          p= t('pledge.feedback.description')
+
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
           h2.start-petition-form-cell-title
             = t('confirm.info.donate_petition')
         div.start-petition-form-cell.label.empty
@@ -259,31 +272,13 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.info.how_much_description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          h2.start-petition-form-cell-title
-            = t('confirm.info.feedback.label')
-        div.start-petition-form-cell.label
-          | &nbsp;
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            | &nbsp;
-
-          = f.text_area(:feedback,
-                       class: "start-petition-form-cell-input",
-                       placeholder: t('pledge.feedback', default: 'give feedback'))
-
-        div.start-petition-form-cell.label.empty
-          p= t('confirm.info.feedback.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
-          h1 id='pledge_tanks' style="display: none;"
-            = t('pledge.tankyou!')
+          h1 id='pledge_thanks' style="display: none;"
+            = t('pledge.thankyou!')
 
 
 div.page
@@ -295,7 +290,7 @@ div.page
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        h2.start-petition-form-cell-title= t('confirm.info.mailafriend.title')
+        h2.start-petition-form-cell-title= t('confirm.mailafriend.title')
         div.whitespace
 
         = form_tag @share_email_url, method: 'post', remote: true, data: { type: :json }, id: "share_email" do
@@ -303,7 +298,7 @@ div.page
           = text_field_tag(:share_email, "",
                 {class: 'start-petition-form-cell-input',
                  id: :input_share_email,
-                 placeholder: t('confirm.info.mailafriend.email', default: 'mail your friend!')})
+                 placeholder: t('confirm.mailafriend.input', default: 'confirm.mailafriend.input')})
 
           | &nbsp;
           div.start-petition-form-cell-button.email-suggest-button id='didyoumean_input_share_email' style="display: none;"
@@ -325,16 +320,17 @@ div.page
 
 
       div.start-petition-form-cell.label
-        p= t('confirm.info.mailafriend_title')
+        p= t('confirm.mailafriend.label')
         div.email
-          = markdown t('confirm.info.mailafriend_mail',
+          = markdown t('mail.mailafriend.mail',
             name: @signature.person_name,
             sig_email: @signature.person_email,
-            petition_name: @petition.petitioner_name,
+            petition_name: @petition.name,
             sig_function: @signature.person_function,
             petition_url: petition_url({id: @petition.slug || @petition.id}),
             petition_descr: @petition.description,
             petition_email: @petition.petitioner_email)
+
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
