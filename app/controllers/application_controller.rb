@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   # around_action :with_locale
   before_filter :set_locale
+  before_filter :ensure_domain
 
   before_filter do
     #@news = Update.website_news.limit(12) if request.get?
@@ -54,6 +55,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # redirect subdomains which are not direct 'hits'
+  # to a url without subdomain
+  def ensure_domain
+      if not request.subdomain.empty?
+        if not request.fullpath == '/'
+          redirect_to request.url.sub(request.subdomain + '.', '')
+        end
+      end
+  end
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore

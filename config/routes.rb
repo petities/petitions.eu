@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   constraints PetitionSubdomain do
     get '', to: 'petitions#show'
+
   end
 
   constraints OfficeSubdomain do
