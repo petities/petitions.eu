@@ -74,9 +74,24 @@ h2.start-petition-form-cell.input.error {
 }
 
 
+.email-success-note {
+  text-align: center;
+  width: 100%;
+  padding: 10px 0px 10px 0px;
+  margin: 0 0 10px;
+  font: 400 17px/28px 'Open Sans', arial, sans-serif;
+  color: #fff;
+  border: 0;
+  background: #7ec060;
+  text-align: center;
+  cursor: pointer;
+}
+
+
 .email-suggest-button {
   width: 100%;
-  margin: 0 0 10px;
+  padding: 0px;
+  padding: 10px 0px 10px 0px;
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
   color: #fff;
   border: 0;
