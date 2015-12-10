@@ -8,7 +8,7 @@ class PetitionMailerPreview < ActionMailer::Preview
   def finalize_mail
     PetitionMailer.finalize_mail(Petition.live.first)
   end
- 
+
   def warning_due_date_mail
     PetitionMailer.warning_due_date_mail(Petition.live.first)
   end
@@ -16,11 +16,11 @@ class PetitionMailerPreview < ActionMailer::Preview
   def write_about_hand_over_mail
     PetitionMailer.write_about_hand_over_mail(Petition.live.first)
   end
- 
+
   def improve_and_reopen_mail
     PetitionMailer.improve_and_reopen_mail(Petition.live.first)
   end
-  
+
   def petition_announcement_mail
     PetitionMailer.petition_announcement_mail(Petition.live.first)
   end
@@ -54,7 +54,7 @@ class PetitionMailerPreview < ActionMailer::Preview
   end
 
   def adoption_request_signatory_mail
-    PetitionMailer.adoption_request_signatory_mail(Petition.live.first)
+    PetitionMailer.adoption_request_signatory_mail(Signature.last.petition, Signature.last)
   end
 
   def adoption_result_signatories_mail

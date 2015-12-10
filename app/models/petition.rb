@@ -65,7 +65,7 @@
 #  owner_type                       :string(255)
 #  slug                             :string(255)
 #  reference_field                  :string(255)
-#
+
 
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
@@ -179,7 +179,10 @@ class Petition < ActiveRecord::Base
   end
 
   def send_status_mail
-    PetitionMailer.status_change_mail(self).deliver_later if self.status_changed?
+    if self.status_changed?
+      PetitionMailer.status_change_mail(self).deliver_later
+      PetitionMailer.status_change_mail(self, target: 'nederland@petities.nl').deliver_later
+    end
   end
 
   def elapsed_time
@@ -221,6 +224,12 @@ class Petition < ActiveRecord::Base
     return true if office && user.has_role?(office, :admin)
 
     false
+  end
+
+  # All users who signed this petition should get an
+  # answer
+  def email_answer(answer=nil)
+    ## fixme
   end
 
   def is_draft?

@@ -47,10 +47,10 @@ div.page.signatures
         $(document).ready(function(){
           var ctx = $("#chartContainer")[0].getContext("2d");
           var data = {
-            labels: #{@chart_array.map.with_index{|_,i| i+1}},
+            labels: #{raw @chart_labels},
             datasets: [{
               fillColor: "#96c79f",
-              data: #{@chart_array}
+              data: #{raw @chart_data}
             }]
           };
           var myBarChart = new Chart(ctx).Bar(data, {

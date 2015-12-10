@@ -1,24 +1,32 @@
 class PetitionMailer < ApplicationMailer
 
   #
-  def status_change_mail(petition)
+  def status_change_mail(petition, target: nil)
     @petition = petition
 
     subject = t('Petition.status.changed')
 
+    if target.nil?
+      target = @petition.petitioner_email
+    end
+
     if @petition.petitioner_email
-      mail(to: @petition.petitioner_email, subject: subject )
+      mail(to: target, subject: subject )
     end
   end
 
   # finalize email
-  def finalize_mail(petition)
+  def finalize_mail(petition, target: nil)
 
     @petition = petition
 
+    if target.nil?
+      target = @petition.office.email
+    end
+
     subject = t('petition.moderation.pending')
 
-    mail(to: @petition.office.email, subject: subject)
+    mail(to: target, subject: subject)
 
   end
 
@@ -46,10 +54,19 @@ class PetitionMailer < ApplicationMailer
     subject = t('petition.moderation.we_need_reference')
 
     if not target
-      target = @petition.office.email 
+      target = @petition.office.email
     end
 
     mail(to: target, subject: subject)
+
+  end
+
+  def office_ask_for_answer_due_date_mail(petition)
+    Logger.debug('build ask for answer due date mail..')
+
+    subject = t('petition.moderation.we_need_answer')
+
+    mail(to: @petition.office.email, subject: subject)
 
   end
 
@@ -62,5 +79,24 @@ class PetitionMailer < ApplicationMailer
 
   end
 
+  def adoption_request_signatory_mail(petition, signature)
+    @petition = petition
+    @signature = signature
+
+    if signature.unique_key.nil?
+      signature.send(:generate_unique_key)
+      signature.save
+    end
+
+    @become_owner_url = url_for(
+      controller: 'signatures',
+      action: 'become_petition_owner',
+      host: 'dev.petitions.eu',
+      signature_id: @signature.unique_key)
+
+    subject = t('petition.moderation.we_need_new_owner')
+
+    mail(to: @signature.person_email, subject: subject)
+  end
 
 end

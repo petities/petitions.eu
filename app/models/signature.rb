@@ -46,14 +46,14 @@ class Signature < ActiveRecord::Base
   # has_many :reminders, :class_name => 'SignaturesReminder'
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
-  validates :person_name, 
-              length: { 
+  validates :person_name,
+              length: {
                 in: 3..255,
                 message: t('signature.errors.name_invalid', default: 'invalid')
               }
 
-  validates :person_name, 
-              format: { 
+  validates :person_name,
+              format: {
                 with: /\A.+( |\.).+\z/,
                 message: t('signature.errors.name_and_surname', default: 'name_and_surname')
             }
@@ -76,58 +76,58 @@ class Signature < ActiveRecord::Base
   #  end
   #  return true
   #end
-  
+
   # Some petitions require a full address
-  #validates :person_postalcode, 
+  #validates :person_postalcode,
   #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
-  #          on: :update, 
+  #          on: :update,
   #          if: :require_full_address?
 
-  validates :person_city, 
+  validates :person_city,
             length: {
-              in: 3..255, 
+              in: 3..255,
               message: t('signature.errors.city_to_short', default: 'to short')
-            }, 
-            on: :update, 
+            },
+            on: :update,
             if: :require_full_address?
 
-  validates :person_street, 
+  validates :person_street,
             length: {
               in: 3..255,
               message: t('signature.errors.wrong', default: 'invalid')
-            }, 
-            on: :update, 
+            },
+            on: :update,
             if: :require_full_address?
 
-  validates :person_street_number, 
-            numericality: { 
+  validates :person_street_number,
+            numericality: {
               only_integer: true,
               message: t('signature.errors.not_a_number', default: 'not a number')
-            }, 
-            on: :update, 
+            },
+            on: :update,
             if: :require_full_address?
 
-  validates :person_street_number_suffix, 
+  validates :person_street_number_suffix,
             length: {
               in: 1..255,
               message: t('signature.errors.not_ok', default: 'not a suffix')
-            }, 
-            allow_blank: true, 
-            on: :update, 
+            },
+            allow_blank: true,
+            on: :update,
             if: :require_full_address?
 
   # Some petitions require a minimum age
-  validates_date :person_born_at, 
+  validates_date :person_born_at,
                  on_or_before: :required_minimum_age,
-                 on: :update, 
+                 on: :update,
                  if: :require_minimum_age?
-                 
-  validates :person_birth_city, 
+
+  validates :person_birth_city,
             length: {
               in: 3..255,
               message: t('signature.errors.city', default: 'to short')
              },
-             on: :update, 
+             on: :update,
              if: :require_person_birth_city?
 
   scope :confirmed, -> { where(confirmed: true) }
@@ -202,8 +202,8 @@ class Signature < ActiveRecord::Base
     # update the reminder sent value
     if self.reminders_sent == nil
       self.reminders_sent = 1
-    else 
-      self.reminders_sent = self.reminders_sent + 1 
+    else
+      self.reminders_sent = self.reminders_sent + 1
     end
     # save the resulting sig
     if not self.save

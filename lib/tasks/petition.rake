@@ -31,17 +31,61 @@ namespace :petition do
       if petition.signatures.confirmed.size < 10
         Rails.logger.debug('withdrawn %s %s' % [petition.id, petition.name])
         petition.status == 'withdrawn'
-        petition.save
       elsif petition.updates.size < 1
         # change status to orphan
         petition.status == 'orphan'
-        Rails.logger.debug('orphan %s %s' % [petition.id, petition.name])
-
+        Rails.logger.debug('orphaned %s %s' % [petition.id, petition.name])
       else
-        Rails.logger.debug('request answer %s %s' % [petition.id, petition.name])
+        Rails.logger.debug('request answer due date %s %s' % [petition.id, petition.name])
         # send request to answer to office
         # change status to to_process
-        #
+        petition.status == 'to_process'
+        m = PetitionMailer.office_ask_for_answer_due_date_mail(petition)
+        m.deliver_later
+      end
+      petition.save
+    end
+  end
+
+  desc 'help find new owners for orphan petitions'
+  task :find_new_owner => :environment do
+    Rails.logger = ActiveSupport::Logger.new('log/find_new_owner.log')
+
+    # find at most 100 orphans
+    orphan_petitions = Petition.
+      where(status: :orphan).limit(100)
+
+    orphan_petitions.each do |petition|
+
+      task_status = TaskStatus.find_or_create_by(
+          task_name: 'find_owner',
+          petition_id: petition.id)
+
+      if task_status.count.nil?
+        task_status.count = 0
+      else
+        # already launched a search before..
+        if task_status.last_action < 7.days.ago
+          # no owner found.
+          petition.status = 'withdrawn'
+          petition.save
+          petition.email_answer(
+            answer: t('petition.is.withdrawn', default: 'Petition is withdrawn'))
+        end
+        next
+      end
+
+      # find at most 100 candiates
+      candidates = Pledge.
+        where(petition_id: orphan.id).
+        joins(:task_status).
+        where(task_statuses: {inform_me: true}).limit(100)
+
+      #
+      Rails.logger.debug('found %s candidates for %s' % [candidates.size, petition.name])
+
+      candidates.each do |candidate|
+        PetitionMailer.adoption_request_signatory_mail(petition, candidate.signature).deliver_later
       end
     end
   end
@@ -106,7 +150,7 @@ namespace :petition do
         task_name: 'get_answer',
         petition_id: petition.id)
 
-       if task_status.count.nil? 
+       if task_status.count.nil?
          task_status.count = 0
          task_status.last_action = Time.now
        end
@@ -116,10 +160,10 @@ namespace :petition do
          task_status.count += 1
          task_status.last_action = Time.now
          mail = PetitionMailer.office_ask_for_answer_mail(petition)
-         #mail.deliver_later
+         mail.deliver_later
          Rails.logger.debug(
            'asked %s x %s for answer on %s' % [
-             petition.office.name, 
+             petition.office.name,
              task_status.count,
              petition.name])
 
@@ -128,29 +172,30 @@ namespace :petition do
     end
   end
 
+
   desc 'publish answer to interested people'
   task 'publish_answer_to_subscribers' => :environment do
     Rails.logger = ActiveSupport::Logger.new('log/publish_answer.log')
 
     # find all petitions with an answer and are not completed
     have_answer = Petition.where(status: 'in_process').
-      where('date_projected < ?', Time.now).
+      where('answer_due_date < ?', Time.now).
       joins(:updates).
       where(newsitems: {show_on_petition: true}).limit(10)
 
     # find users that want to know about the answer
     have_answer.each do |petition|
-    
+
       publish_task = TaskStatus.find_or_create_by(
         task_name: 'publish_answer',
         petition_id: petition.id)
 
-       if publish_task.count.nil? 
+       if publish_task.count.nil?
          publish_task.count = 0
          publish_task.last_action = Time.now
        else
          # skip
-         Rails.logger.debug('we only publish once %s' % petition.name) 
+         Rails.logger.debug('we only publish once %s' % petition.name)
          next
        end
 
@@ -160,7 +205,7 @@ namespace :petition do
         where(inform_me: true)
 
       message = '%s people want answer on %s'% [inform_me.size, petition.name]
-      Rails.logger.debug(message) 
+      Rails.logger.debug(message)
       publish_task.message = message
 
       # find the answer
@@ -177,7 +222,7 @@ namespace :petition do
 
       # set petition status on completed
       petition.status = 'completed'
-      Rails.logger.debug('completed publish %s ' % petition.name) 
+      Rails.logger.debug('completed publish %s ' % petition.name)
       petition.save
       publish_task.save
     end
