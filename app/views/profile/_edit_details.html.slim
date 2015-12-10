@@ -1,0 +1,40 @@
+
+div#edit_details.petition-details style='display: none; position:relative'
+  div.petition-edit-close-button onclick=="showDetails()"
+  h2.petition-section-title= t('petition.details.form.title')
+
+  = form_for @profile, url: {path: '/profile', action: :patch, method: :patch} do |f|
+
+    div.petition-edit-label
+      = t('profile.name')
+    = f.text_field :name, class: 'petition-edit-input',
+                   placeholder: t('profile.your_name', default: 'your real name please')
+
+    div.petition-edit-label
+      = t('profile.telephone')
+    = f.text_field :telephone, class: 'petition-edit-input',
+                   placeholder: t('profile.your_telephone', default: 'your telephone number')
+
+    div.petition-edit-label
+      = t('profile.city')
+    = f.text_field :city, class: 'petition-edit-input',
+                   placeholder: t('profile.your_city', default: 'your city')
+
+    div.petition-edit-label
+      = t('profile.address')
+    = f.text_field :address, class: 'petition-edit-input',
+                   placeholder: t('profile.your_street_and_number', default: 'your street and number')
+
+    div.petition-edit-label
+      = t('profile.postalcode')
+    = f.text_field :postalcode, class: 'petition-edit-input',
+                   placeholder: t('profile.your_postalcode', default: 'your postalcode')
+
+    div.petition-edit-label
+      = t('profile.birth_date')
+    = f.date_select :birth_date, class: 'petition-edit-input whitespace',
+                     default: 18.years.ago, start_year: 1920
+
+    div.whitespace
+
+    = f.submit class: "start-petition-form-cell-button"

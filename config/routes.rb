@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'profile/edit'
+  patch 'profile/patch'
+
   devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
 
   as :user do
@@ -74,7 +77,7 @@ Rails.application.routes.draw do
   root 'petitions#index'
   # STATIC PAGES
 
-  %w(help about privacy donate contact profile).each do |name|
+  %w(help about privacy donate contact).each do |name|
     get "/#{name}", to: "application##{name}"
   end
 

@@ -21,4 +21,5 @@ class PetitionPolicy < ApplicationPolicy
 
     user.has_role?(:admin) || user.has_role?(:admin, record)
   end
+
 end
