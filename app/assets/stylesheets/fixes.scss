@@ -25,6 +25,15 @@ input[type="button"].petition-form-button {
   background: #e9e9e9;
 }
 
+.profile-details {
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+  width: 44%;
+  padding: 25px 3%;
+  background: #e9e9e9;
+}
+
 .buttonfix {
   display: inline-block;
   box-sizing: border-box;
@@ -80,7 +89,7 @@ h2.start-petition-form-cell.input.error {
 }
 
 .signature_succes_logo {
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
   width: 80px;
   height: 80px;
@@ -123,24 +132,24 @@ h2.start-petition-form-cell.input.error {
 }
 
 
-.petition-edit-label{ 
-  margin:0 0 5px; 
-}  
-
-.petition-edit-input { 
-  width:94%; 
-  margin:0 0 15px; 
-  padding:10px 3%; 
-  background:#fff; 
-  border:1px solid #aaa; 
+.petition-edit-label{
+  margin:0 0 5px;
 }
 
-.petition-edit-input.small { 
-  width:12%; 
+.petition-edit-input {
+  width:94%;
+  margin:0 0 15px;
+  padding:10px 3%;
+  background:#fff;
+  border:1px solid #aaa;
 }
 
-textarea.petition-edit-input { 
-  height:200px; 
+.petition-edit-input.small {
+  width:12%;
+}
+
+textarea.petition-edit-input {
+  height:200px;
 }
 
 
@@ -193,10 +202,10 @@ textarea.petition-edit-input {
     border-bottom: 1px solid #e9e9e9;
 }
 
-.petition-updates 
-.update-container { 
-  width: 70%; 
-  margin: 0 auto 25px; 
+.petition-updates
+.update-container {
+  width: 70%;
+  margin: 0 auto 25px;
 }
 
 .petition-editbutton a {

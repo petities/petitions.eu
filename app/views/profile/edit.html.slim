@@ -1,0 +1,34 @@
+
+
+div.page
+
+  section.petition-intro-container-noimage
+    div.petition-intro-info-container
+      h1.petition-intro-info-title
+        = t('profile.edit_your_information')
+
+  section.petition-details-container
+    = render partial: 'detailbox'
+
+    = render partial: 'edit_details'
+
+    = render partial: 'edit_details_docs'
+
+
+  /<!-- editbutton -->
+  javascript:
+    var showEdit = function(){
+      $('#detailbox').hide();
+      $('#edit_details').show();
+      $('#edit_detail_button').hide();
+    };
+
+    var showDetails = function(){
+      $('#edit_details').hide();
+      $('#detailbox').show();
+      $('#edit_detail_button').show();
+    };
+
+  div class="petition-editbutton-container"
+    div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
+      = t 'edit.petition.edit_details_text'
