@@ -45,6 +45,7 @@ en:
         add_details: Update my signature
         confirm: Confirm
         pledge: I pledge to help
+        send_email: Send the invitation
         update: Update my signature
       bigbrother: You also provided this information to us. This too, remains your property.
       birth_country:
@@ -68,7 +69,7 @@ en:
         update_information: updated
       influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal. 
       influencelabel: Do you have influence? Are you a(n)...       
-      invite: 
+      invite_info: 
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.  
         label: My municipality may send me up to 6 invitations per year
       location:
@@ -118,38 +119,6 @@ en:
       browser: 'Your browser: %{browser}'
       check_information: Please check your information
       donate_petition: Donate
-      mailafriend: Enter e-mail addressess of people you know and who might sign.
-      mailafriend_title: 'You can e-mail this invitation through us:'
-      mailafriend_subject: 'Invitation to sign: %{title}'
-      mailafriend_mail: '
-
-Dear sir or madam,
-
-
-On petitions.eu %{name} - (%{sig_email}) just signed the petition "%{petition_name}" with the note "%{sig_function}".
-
-
-With this e-mail %{name} invites you to read and perhaps sign the petition.
-
-
-If you do not want to sign you do not have to do anything. Your e-mail address is used only once to send you this invite. You will not receive any further invitations about this petition on your e-mail address.
-
-
-You can view the petition at:
-
-
-%{petition_url}
-
-
-%{petition_descr} 
-
-
-Do you have questions about this petition? Please contact the lead petitioner: %{petition_email} 
-
-
-Best Regards,
-Petitions.eu'
-
       help_petition: Help petition
       how_much: How much would you like to contribute?
       how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
@@ -160,7 +129,13 @@ Petitions.eu'
         on_twitter_description: On twitter description
       share_petition: Share the petition
       your_email: Your email
-    title: Confirm your signature for petition "%{name}"
+      your_signature: See your signature in the list
+    mailafriend:
+      description: Invite only people you know and who might sign.
+      input: Enter (another) e-mail address
+      label: 'Preview:'
+      title: Invite others
+    title: Confirm your signature for the petition "%{name}"
   description: Description
   desk:
     intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
@@ -170,15 +145,15 @@ Petitions.eu'
       answered: Answered
       signable: Signable
       withdrawn: Withdrawn
-    text_blue: Text blue
-    text_green: Text green
-    text_grey: Text grey
-    text_grey_2: Text grey 2
-    title: Petition desks
-    title_blue: Title blue
-    title_green: Title green
-    title_grey: Title grey
-    title_grey_2: Title grey 2
+    text_blue: Via petities.nl kunt u contact krijgen met betrokken burgers. Bij het bevestigen van een ondertekening kunnen burgers aangeven uitgenodigd te willen worden voor participatie in beleid.
+    text_green: Onze ervaring sinds 2005 kunnen we met een workshop op maat met u delen.
+    text_grey: Wilt u de zekerheid dat we altijd te bellen zijn voor hulp? Slechts €50 per jaar.
+    text_grey_2: De ondertekeningen in onze database, de petities, de onderwerpen, de trends, dit kunnen we allemaal voor u analyseren.
+    title: Petitieloketten
+    title_blue: Betrokken burgers in de aanbieding!
+    title_green: Workshops
+    title_grey: 24/7 ondersteuning
+    title_grey_2: Analyses
   donate:
     text: "<p>Your donation is most appreciated by <a href=\"../about\">us</a>. You can:</p>\n<p>&nbsp;</p>\n<ul>\n  <li>transfer it to Rabobank account NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands (bank identification code RABONL2U)</li>\n  <li><a href=\"https://www.geef.nl/donatiemodule/taal:en/doel:petities-nl/land:NL/mobile:false/forceer:true\">by creditcard through Geef.nl</a></li> \n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"/assets/btn_donate_LG_en.gif\" border=\"0\" name=\"submit\" alt=\"Donate\"> to webmaster@petities.nl through Paypal.</li>\n  </form>       \n</ul>\n <p>&nbsp;</p>\n<p>Thank you!</p>\n<p>&nbsp;</p>"
     title: Donate
@@ -423,7 +398,11 @@ Petitions.eu'
     withdrawn: Withdrawn
   petitioner: Petitioner
   petitions: Petitions
-  place: limplaats
+  place: Place
+  pledge:
+    feedback:
+      description: Or would you like to help in another way?
+      placeholder: Something else...
   privacy:
     text: |
       <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
@@ -501,6 +480,7 @@ Petitions.eu'
     wrong_email: Wrong email
     wrong_name: Wrong name
   signature:
+    confirm: Confirm
     dear: Dear
     did_you_mean: Did you mean
     help:
@@ -510,7 +490,10 @@ Petitions.eu'
       name: Name
       subscribe: Subscribe
       visible: Visible
+    linkinstruction: Follow below link to confirm
     success: Your information is saved
+    success_send: Invitation sent! One more perhaps?
+    thanks: Thanks
   signatures:
     popular_cities: Popular places
     link: Link

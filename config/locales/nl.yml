@@ -45,6 +45,7 @@ nl:
         add_details: Werk mijn ondertekening bij
         confirm: Bevestig
         pledge: Ik zeg deze hulp toe
+        send_email: Verstuur de uitnodiging
         update: Werk mijn ondertekening bij
       bigbrother: Deze informatie ontvingen we ook van u. Maar ook dit blijft uw eigendom.
       birth_country:
@@ -68,7 +69,7 @@ nl:
         update_information: updated
       influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
       influencelabel: Heeft u invloed? Bent u een... 
-      invite: 
+      invite_info: 
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
         label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
       location:
@@ -118,38 +119,6 @@ nl:
       browser: 'Uw browser: %{browser}'
       check_information: Controleer uw gegevens
       donate_petition: Doneer
-      mailafriend: Voer e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
-      mailafriend_title: 'Deze uitnodiging kunt u via ons mailen:'
-      mailafriend_subject: 'Uitnodiging om te ondertekenen: %{title}'
-      mailafriend_mail: ' 
-
-Geachte heer, mevrouw,
-
-
-Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
-
-
-Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
-
-
-Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
-
-
-De petitie kunt u bekijken op:
-
-
-%{petition_url} 
-
-
-%{petition_descr} 
-
-
-Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
-
-
-Met vriendelijke groet, 
-Petities.nl'
-
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?
       how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
@@ -160,6 +129,12 @@ Petities.nl'
         on_twitter_description: Zet de petitie op Twitter
       share_petition: Deel de petitie
       your_email: Uw e-mailadres
+      your_signature: Uw ondertekening in the lijst
+    mailafriend: 
+      description: Voer alleen e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
+      input: Voer (nog) een e-mailadres in
+      label: 'Voorvertoning'
+      title: Nodig anderen uit
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:
@@ -170,15 +145,15 @@ Petities.nl'
       answered: Beantwoord
       signable: Ondertekenbaar
       withdrawn: Ingetrokken
-    text_blue: Text blue
-    text_green: Text green
-    text_grey: Text grey
-    text_grey_2: Text grey 2
+    text_blue: Via petities.nl kunt u contact krijgen met betrokken burgers. Bij het bevestigen van een ondertekening kunnen burgers aangeven uitgenodigd te willen worden voor participatie in beleid.
+    text_green: Onze ervaring sinds 2005 kunnen we met een workshop op maat met u delen.
+    text_grey: Wilt u de zekerheid dat we altijd te bellen zijn voor hulp? Slechts €50 per jaar.
+    text_grey_2: De ondertekeningen in onze database, de petities, de onderwerpen, de trends, dit kunnen we allemaal voor u analyseren.
     title: Petitieloketten
-    title_blue: Title blue
-    title_green: Title green
-    title_grey: Title grey
-    title_grey_2: Title grey 2
+    title_blue: Betrokken burgers in de aanbieding!
+    title_green: Workshops
+    title_grey: 24/7 ondersteuning
+    title_grey_2: Analyses
   donate:
     text: "<p>Uw donatie aan <a href=\"../about\">ons</a> is van harte welkom. U kunt het:</p>\n <p>&nbsp;</p>\n <ul>\n  <li>overmaken op Rabobankrekening NL14RABO0324616899 van stichting Petities.nl in Amsterdam.</li>\n  <li>overmaken <a href=\"https://www.geef.nl/externalMod.php?gd=1574&taal=NL_NL\">met iDeal via Geef.nl</a></li>\n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"/assets/btn_donate_LG_nl.gif\" border=\"0\" name=\"submit\" alt=\"Doneren\"> via Paypal aan webmaster@petities.nl.</li>\n  </form>        \n</ul>\n<p>&nbsp;</p>\nDank u wel!\n<p>&nbsp;</p>"
     title: Doneer
@@ -424,6 +399,10 @@ Petities.nl'
   petitioner: Petitionaris
   petitions: Petities
   place: Woonplaats
+  pledge:
+    feedback:
+      description: Of wilt u op een andere manier helpen?
+      placeholder: Iets anders...
   privacy:
     text: |
       <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
@@ -513,6 +492,7 @@ Petities.nl'
       visible: Zichtbaar
     linkinstruction: Volg deze link
     success: Uw gegevens zijn bijgewerkt
+    success_send: Invitation sent! One more perhaps?
     thanks: Dank u
   signatures:
     popular_cities: Populaire woonplaatsen
