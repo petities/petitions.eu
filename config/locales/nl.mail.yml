@@ -11,9 +11,10 @@ Is dit en uw e-mailadres? Bevestig dan alstublieft door deze link te volgen:
 
 Anders wordt uw e-mailadres automatisch gewist bij ons. U telt nog niet als ondertekenaar! 
 
-Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.'
-
-      petition: '
+Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken 
+of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
+'
+        petition: '
 DE PETITIE %{subdomain}.petities.nl
 
 
@@ -28,7 +29,8 @@ DE PETITIE %{subdomain}.petities.nl
 
 %{request}
 
-Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}'
+Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
+'
         subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
     dear: Geachte
     signoff: 'Dank u wel voor het gebruiken van Petities.nl!
