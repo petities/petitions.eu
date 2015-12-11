@@ -431,6 +431,30 @@ nl:
       <p>&nbsp;</p>
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
+  profile:
+    address: Adres
+    birth_date: Geboortedatum
+    city: Woonplaats
+    edit_your_information: Bewerk uw gegevens
+    details:
+      fakename: Uw naam moet bij ons wel bekend zijn, maar u kunt zelf bepalen hoe u zichtbaar bent voor de buitenwereld. 
+      please_change: 
+      privacy: Met gegevens over uw laatste sessie kunt u zien of u dat wel was
+      title: Toelichting
+      your_profile: Deze gegevens zijn alleen bij ons bekend. Gebruik het e-mailadres en telefoonnummer waar we u over de petitie goed kunnen (blijven) bereiken. Dus geen gelegenheidsadres die u voor een petitie aanmaakt. 
+    last_ip: Laatste internetadres
+    last_login: Laatste login
+    postalcode: Postcode
+    real_email: Eigen e-mail
+    real_name: Uw naam
+    roles: 'Verantwoordelijk voor de petities:'
+    phone: 'Telefoonnummer(s)'
+    title: Uw persoonlijke gegevens
+    your_city: Uw woonplaats
+    your_name: Uw echte naam alstublieft
+    your_postalcode: Uw postcode
+    your_telephone: Uw telefoonnummer
+    your_street_and_number: Uw straat en huisnummer
   pundit:
     petition_policy:
       edit: U kunt nu een vertaling toevoegen van uw petitie
@@ -569,4 +593,5 @@ nl:
       title: Titel van dit nieuws
       show_on_homepage: Toon op homepage 
     updated: Nieuwtje bijgewerkt
+    read_more: 'Lees meer...'
   when: Wanneer

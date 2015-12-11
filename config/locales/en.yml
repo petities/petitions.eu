@@ -431,6 +431,30 @@ en:
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
+  profile:
+    address: Address
+    birth_date: Date of birth
+    city: Woonplaats
+    edit_your_information: Edit your information
+    details:
+      fakename: Your name should be known to us, but you can choose yourself how the outside world sees you. 
+      please_change: 
+      privacy: Data about your last session to check if it was really you.
+      title: Explanation
+      your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'  
+    last_ip: Last internet address
+    last_login: Last login
+    postalcode: Postal code
+    real_email: Your e-mail
+    real_name: Your name
+    roles: 'Responsible for the petitions:'
+    phone: 'Telephone number(s)'
+    title: Your personal information
+    your_city: Your place of residence
+    your_name: Your real name please
+    your_postalcode: Your postal code
+    your_telephone: Your telephone number
+    your_street_and_number: Your street and house number    
   pundit:
     petition_policy:
       edit: You can now add a translation of the petition
@@ -569,5 +593,6 @@ en:
       text: Your news update about the petition
       title: Title of this update
       show_on_homepage: Show on homepage
+    read_more: 'Read more...'  
     updated: News update updated
   when: When
