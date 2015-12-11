@@ -60,8 +60,10 @@ class ApplicationController < ActionController::Base
   # to a url without subdomain
   def ensure_domain
       if not request.subdomain.empty?
-        if not request.fullpath == '/'
-          redirect_to request.url.sub(request.subdomain + '.', '')
+        if not %w"dev www api".include? request.subdomain
+          if not request.fullpath == '/'
+            redirect_to request.url.sub(request.subdomain + '.', '')
+          end
         end
       end
   end
