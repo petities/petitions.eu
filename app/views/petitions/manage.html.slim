@@ -3,23 +3,28 @@ div.page
     h1.petition-section-title= t('manage.title')
     
     div.petition-overview-title= t('all.count', results_size: @results_size)
-
-    / div.petitions-overview-sort-options-container
-    /   = t('all.sort.title')
-    /   - @sorting_options.each_with_index do |option, index|
-    /     - if @sorting == option[:type]
-    /       span.petitions-overview-sort-option.active= option[:label]
-    /     - else
-    /       = link_to option[:label], url_for(params.merge(sorting: option[:type])), class: 'petitions-overview-sort-option'
-    /     - unless index == @sorting_options.size-1
-    /       = ' | '
-    
+   
     div.petitions-overview-container
-      = render partial: 'list'
 
-      div.clearfix
+      = render partial: 'desks/by_status_list'
 
-    / div.navigation-bar
-    /   a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
+      aside.vervolg-side
+        = link_to t('footer.donate'), donate_path, class: 'button steun-petities whitespace'
 
-    / = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+        div.side-article-container-blue.whitespace
+          h2= t('petitioner.title_blue')
+          p= t('petitioner.text_blue') 
+
+        div.side-article-container-green.whitespace
+          h2= t('petitioner.title_green')
+          p= t('petitioner.text_green') 
+          
+        div.side-article-container.whitespace
+          h2= t('petitioner.title_grey')
+          p= t('petitioner.text_grey') 
+
+        div.side-article-container.whitespace
+          h2= t('petitioner.title_grey_2')
+          p= t('petitioner.text_grey_2') 
+
+          div.clearfix

@@ -1,0 +1,71 @@
+
+section.vervolg-main
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
+      = t("desk.petition.allow_through")
+    div.main-container-grey-itemswrapper
+      - @petitions_allow.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
+      = t("desk.petition.answer")
+    div.main-container-grey-itemswrapper
+      - @petitions_answer.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
+      = t("desk.petition.signable")
+    div.main-container-grey-itemswrapper
+      - @petitions_live.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
+      = t("desk.petition.answered")
+    div.main-container-grey-itemswrapper
+      - @petitions_live.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
+      = t("desk.petition.withdrawn")
+    div.main-container-grey-itemswrapper
+      - @petitions_withdrawn.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+  - if user_signed_in? && (current_user.has_role?(:admin) or current_user.has_role?(:admin, @office))
+    /div.main-container-grey.whitespace
+    /  h2.main-container-grey-title
+    /    = t("desk.add_admin")
+    /  div.main-container-grey-itemswrapper
+    /    div.main-container-grey-item 
+    /      = t("desk.select_user")
+    /    div.main-container-grey-item 
+    /      = select_tag "people", options_from_collection_for_select(@users, "id", "email")
+
+    /div.main-container-grey.whitespace
+    /  h2.main-container-grey-title
+    /    = t("desk.current_office_admins")
+    /  div.main-container-grey-itemswrapper
+    /    - @office_admins.each do |admin|
+    /      div.main-container-grey-item 
+    /        = admin.email
+
+    /  a.donate-button
+    /    = t('desk.add_admin')
+
+    - if @admins
+      div.main-container-grey.whitespace
+        h2.main-container-grey-title
+          = t("desk.general_desk_admins")
+        div.main-container-grey-itemswrapper
+          - @admins.each do |admin|
+            div.main-container-grey-item 
+              = admin.email
