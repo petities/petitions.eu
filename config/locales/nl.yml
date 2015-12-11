@@ -298,7 +298,16 @@ nl:
   logout: Log uit
   manage:
     title: Mijn petities
-  mypetitions: Mijn petities
+  my:
+    activeadmin: beheerscherm
+    create_newsupdate: Schrijf nieuwtje
+    mailpreviews: Previews standaardmails
+    news_updates: Nieuwtjes
+    petitions: Mijn petities
+    profile: Mijn profiel
+    startanother: Start nog een petitie
+    visits: Bezoekstatistieken
+    sidekiq: Taken wachtrij
   name: Name
   password:
     change: Verander uw wachtwoord
@@ -422,9 +431,6 @@ nl:
       <p>&nbsp;</p>
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
-  profile:
-    edit_your_information: Bewerk uw gegevens
-    link: Mijn gegevens
   pundit:
     petition_policy:
       edit: U kunt nu een vertaling toevoegen van uw petitie
@@ -545,7 +551,6 @@ nl:
         label: Wij
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
-  startanother: Start nog een petitie
   statement: Verzoek
   update:
     created: Nieuws toegevoegd

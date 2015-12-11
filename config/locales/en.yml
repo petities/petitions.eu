@@ -298,7 +298,16 @@ en:
   logout: Logout
   manage:
     title: My petitions
-  mypetitions: My petitions
+  my:
+    activeadmin: Manage data
+    create_newsupdate: Write update
+    mailpreviews: Preview default mails
+    news_updates: News
+    petitions: My petitions
+    profile: My profile
+    startanother: Start another petition
+    visits: Visitor statistics
+    sidekiq: Tasks queue
   name: Name
   password:
     change: Change your password
@@ -422,7 +431,6 @@ en:
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
-  profile: My profile
   pundit:
     petition_policy:
       edit: You can now add a translation of the petition

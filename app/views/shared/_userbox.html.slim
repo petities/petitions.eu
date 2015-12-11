@@ -7,16 +7,16 @@ div.header-user-name
 div.header-user-dropdown
 
   - if current_user
-    = link_to t('startanother'), new_petition_path, class: "header-user-dropdown-item"
-    = link_to t('mypetitions'), manage_petitions_path, class: "header-user-dropdown-item"
-    = link_to t('profile.link'), profile_edit_path, class: "header-user-dropdown-item"
-    = link_to t('news_updates'), updates_path, class: "header-user-dropdown-item"
+    = link_to t('my.startanother'), new_petition_path, class: "header-user-dropdown-item"
+    = link_to t('my.petitions'), manage_petitions_path, class: "header-user-dropdown-item"
+    = link_to t('my.profile'), profile_edit_path, class: "header-user-dropdown-item"
+    = link_to t('my.news_updates'), updates_path, class: "header-user-dropdown-item"
     - if current_user.has_role? :admin
-      = link_to t('create_newsupdate'), new_update_path, class: "header-user-dropdown-item"
-      = link_to 'mailpreviews', '/rails/mailers', class: "header-user-dropdown-item"
-      = link_to 'visits', '/visits', class: "header-user-dropdown-item"
-      = link_to 'sidekiq', '/sidekiq', class: "header-user-dropdown-item"
-      = link_to 'activeadmin', '/admin', class: "header-user-dropdown-item"
+      = link_to t('my.create_newsupdate'), new_update_path, class: "header-user-dropdown-item"
+      = link_to t('my.mailpreviews'), '/rails/mailers', class: "header-user-dropdown-item"
+      = link_to t('my.visits'), '/visits', class: "header-user-dropdown-item"
+      = link_to t('my.sidekiq'), '/sidekiq', class: "header-user-dropdown-item"
+      = link_to t('my.activeadmin'), '/admin', class: "header-user-dropdown-item"
     = link_to t('logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
   - else
     = link_to t('login.login'), new_user_session_path, class: "header-user-dropdown-item"
