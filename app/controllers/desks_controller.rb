@@ -13,6 +13,9 @@ class DesksController < ApplicationController
       @office = Office.find_by_subdomain(request.subdomain)
     end
 
+    @signatures_count = Signature.joins(:petition).
+      where(petitions: {office_id: @office.id}).size
+
     if not user_signed_in?
       show_not_logged_in
       return

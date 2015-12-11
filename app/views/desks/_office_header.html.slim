@@ -1,0 +1,22 @@
+
+div.page
+  h1.petition-section-title= "Petition desk: #{@office.name}"
+  div.petition-overview-title= t('all.count', results_size: @results_size)
+
+  section class=(@office.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+    div.petition-intro-image-container
+      = image_tag( @office.images.first.upload.url, class: 'petition-intro-image') unless @office.images.first.nil? || @office.images.first.upload_file_name.nil?
+    div.petition-intro-info-container
+      h1.petition-intro-info-title= @office.name
+      div.petition-intro-info-counter
+        =<> t('office.signatures_count')
+        =<> @signatures_count
+      div.petition-intro-info-text
+        div.update-intro
+          = markdown raw @office.intro_text
+
+          div.read-more-handler.whitespace 
+            | + 
+            = t('update.read_more')
+          div.read-more-content.whitespace
+            = markdown raw @office.read_more_text

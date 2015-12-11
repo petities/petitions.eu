@@ -1,7 +1,8 @@
+
+= render partial: 'office_header'
+
 div.page
   section.petitions-overview-wrapper
-    h1.petition-section-title= "Petition desk: #{@office.name}"
-    
     div.petition-overview-title= t('all.count', results_size: @results_size)
 
     = render partial: 'petitions/sort_options'
