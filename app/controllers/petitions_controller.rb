@@ -123,7 +123,7 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-    @page = params[:page]
+    @page = params[:page] || 1
 
     @owners = find_owners
 
@@ -231,6 +231,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/1/edit
   def edit
     authorize @petition
+
+    @page = params[:page]
 
     @owners = find_owners
 
