@@ -422,6 +422,7 @@ en:
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
+  profile: My profile
   pundit:
     petition_policy:
       edit: You can now add a translation of the petition
@@ -497,6 +498,7 @@ en:
     popular_cities: Popular places
     link: Link
     notify: Notify
+    petitioner_instructions: You can see anonymous signatures because you are logged in
     sign: Sign this petition
     title: Signatures
   signnow: Sign now
