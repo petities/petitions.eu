@@ -167,7 +167,8 @@ en:
       no_signatures_yet: No signatures yet
       of: out of
       older_version: Older version
-      status:
+      sign_page: Show the petition
+      status:          
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
       updated: Petition is updated
       version: version
@@ -338,6 +339,9 @@ en:
     current_news_is: The news
     current_state_is: The petition is
     current_translations: Current translations
+    details:
+      form:
+        title: Edit your personal information
     draft: Draft
     edit_state: Edit state
     editing: Editing
@@ -405,6 +409,7 @@ en:
     user_email: User email
     version: Version
     withdrawn: Withdrawn
+    your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
   petitioner: Petitioner
   petitions: Petitions
   place: Place
@@ -481,6 +486,10 @@ en:
       observe: observe
       request: and request
       share_this: Share this petition with others
+      status: 
+        label: Your petition...
+        was_signable: Your petition is no longer open to collect signatures.
+        will_be_signable: You now receive an e-mail with the login information. 
       title: Petition
       we: We
     petitioner:
@@ -569,6 +578,9 @@ en:
         description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
       submit: Submit petition
+      subdomain: 
+        description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
+        label: Subdomain
       update: Update
       we:
         description: You describe here who you think will sign. Do not exclude signatories. Max 100 characters.

@@ -167,6 +167,7 @@ nl:
       no_signatures_yet: Nog geen ondertekeningen
       of: uit  
       older_version: Oudere versie
+      sign_page: Toon de petitie
       status:
         explanation: Als uw petitietekst eenmaal klaar is, geeft u het aan de moderator om het open te zetten voor ondertekening. Na de sluitingsdatum van de petitie kan er niet meer worden ondertekend. Om de petitie te sluiten of te verlengen moet u de sluitingsdatum veranderen. Gesloten petities moeten worden overhandigd aan de ontvanger. Daarna wachten we op een antwoord.
       updated: Petitie is bijgewerkt
@@ -338,6 +339,9 @@ nl:
     current_news_is: Het nieuws
     current_state_is: De petitie is
     current_translations: Vertalingen
+    details:
+      form:
+        title: Bewerk uw persoonlijke gegevens
     draft: Kladje
     edit_state: Bewerk status
     editing: Bewerken
@@ -405,6 +409,7 @@ nl:
     user_email: E-mail
     version: Versie
     withdrawn: Ingetrokken
+    your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
   petitioner: Petitionaris
   petitions: Petities
   place: Woonplaats
@@ -482,6 +487,10 @@ nl:
       request: en verzoeken
       share_this: Deel deze petitie met anderen
       title: Petitie
+      status: 
+        label: Uw petitie...
+        was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
+        will_be_signable: U ontvangt nu een e-mail met inloggegevens.
       we: Wij
     petitioner:
       real_name: Name
@@ -569,6 +578,9 @@ nl:
         description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
       submit: Petitie aanmaken
+      subdomain:
+        description: Kies als moderator het kortst mogelijke subdomein, maar wel beschrijvend.
+        label: Subdomein
       update: Update
       we:
         description: U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
