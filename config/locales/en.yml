@@ -588,7 +588,6 @@ en:
         label: We
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
-  startanother: Start another petition
   statement: Statement
   update:
     created: News update created
@@ -600,12 +599,14 @@ en:
       date: Date
       image: Image
       title: Title
-    news_updates: Updates
-    no_news_yet: No news about this petition yet.
     label:
       text: Your news update about the petition
       title: Title of this update
       show_on_homepage: Show on homepage
+      show_on_petition: Show on petition
+      show_on_office: Show on petition desk
+    news_updates: Updates
+    no_news_yet: No news about this petition yet.
     read_more: 'Read more...'  
     updated: News update updated
   when: When
