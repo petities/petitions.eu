@@ -3,23 +3,78 @@ div.page
     h1.petition-section-title= t('manage.title')
     
     div.petition-overview-title= t('all.count', results_size: @results_size)
-
-    / div.petitions-overview-sort-options-container
-    /   = t('all.sort.title')
-    /   - @sorting_options.each_with_index do |option, index|
-    /     - if @sorting == option[:type]
-    /       span.petitions-overview-sort-option.active= option[:label]
-    /     - else
-    /       = link_to option[:label], url_for(params.merge(sorting: option[:type])), class: 'petitions-overview-sort-option'
-    /     - unless index == @sorting_options.size-1
-    /       = ' | '
-    
+   
     div.petitions-overview-container
-      = render partial: 'list'
 
-      div.clearfix
+      section.vervolg-main
+        div.main-container-grey.whitespace
+          h2.main-container-grey-title
+            = t("petitioner.drafts")
+          div.main-container-grey-itemswrapper
+            - @petitions_allow.each do |petition|
+              = link_to edit_petition_path(petition), class: "main-container-grey-item"
+                = petition.name
 
-    / div.navigation-bar
-    /   a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
+        div.main-container-grey.whitespace
 
-    / = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+          h2.main-container-grey-title
+            = t("petitioner.awaiting_answer")
+          div.main-container-grey-itemswrapper
+            - @petitions_answer.each do |petition|
+              = link_to edit_petition_path(petition), class: "main-container-grey-item"
+                = petition.name
+
+        div.main-container-grey.whitespace
+          h2.main-container-grey-title
+            = t("petitioner.signable")
+          div.main-container-grey-itemswrapper
+            - @petitions_live.each do |petition|
+              = link_to edit_petition_path(petition), class: "main-container-grey-item"
+                = petition.name
+
+        div.main-container-grey.whitespace
+          h2.main-container-grey-title
+            = t("desk.petition.answered")
+          div.main-container-grey-itemswrapper
+            - @petitions_live.each do |petition|
+              = link_to edit_petition_path(petition), class: "main-container-grey-item"
+                = petition.name
+
+        div.main-container-grey.whitespace
+          h2.main-container-grey-title
+            = t("desk.petition.withdrawn")
+          div.main-container-grey-itemswrapper
+            - @petitions_withdrawn.each do |petition|
+              = link_to edit_petition_path(petition), class: "main-container-grey-item"
+                = petition.name
+
+          - if @admins
+            div.main-container-grey.whitespace
+              h2.main-container-grey-title
+                = t("desk.general_desk_admins")
+              div.main-container-grey-itemswrapper
+                - @admins.each do |admin|
+                  div.main-container-grey-item 
+                    = admin.email
+
+
+      aside.vervolg-side
+        = link_to t('footer.donate'), donate_path, class: 'button steun-petities whitespace'
+
+        div.side-article-container-blue.whitespace
+          h2= t('petitioner.title_blue')
+          p= t('petitioner.text_blue') 
+
+        div.side-article-container-green.whitespace
+          h2= t('petitioner.title_green')
+          p= t('petitioner.text_green') 
+          
+        div.side-article-container.whitespace
+          h2= t('petitioner.title_grey')
+          p= t('petitioner.text_grey') 
+
+        div.side-article-container.whitespace
+          h2= t('petitioner.title_grey_2')
+          p= t('petitioner.text_grey_2') 
+
+          div.clearfix

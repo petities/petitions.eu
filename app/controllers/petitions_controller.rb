@@ -1,5 +1,6 @@
 class PetitionsController < ApplicationController
   include FindPetition
+  include SortPetitions
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
@@ -8,7 +9,7 @@ class PetitionsController < ApplicationController
     @vervolg = true
 
     @page    = (params[:page] || 1).to_i
-    @sorting = params[:sort] || 'active'
+    @sorting = params[:sorting] || 'active'
     @order = params[:order].to_i
 
     # petitions = Petition.joins(:translations).live
@@ -41,39 +42,7 @@ class PetitionsController < ApplicationController
   end
 
   def all
-    @page    = (params[:page] || 1).to_i
-    @sorting = params[:sorting] || 'all'
-    @order   = params[:order].to_i
-
-    # petitions = Petition.joins(:translations).live
-    direction = [:desc, :asc][@order]
-
-    petitions = Petition.live.order(created_at: direction)
-
-    # describe petitions
-    if @sorting == 'all'
-      petitions = Petition.where("status NOT IN ('draft', 'concept', 'staging')")
-    elsif @sorting == 'open'
-      petitions = Petition.live
-    elsif @sorting == 'concluded'
-      petitions = Petition.where(status: 'completed')
-    elsif @sorting == 'rejected'
-      petitions = Petition.where(status: 'rejected')
-    elsif @sorting == 'sign_elsewhere'
-      petitions = Petition.where(status: 'not_signable_here')
-    end
-
-    @sorting_options = [
-      { type: 'all', label: t('all.sort.all') },
-      { type: 'open',           label: t('all.sort.open') },
-      { type: 'concluded',      label: t('all.sort.concluded') },
-      { type: 'rejected',       label: t('all.sort.rejected') },
-      { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
-    ]
-
-    @results_size = petitions.size
-
-    @petitions = petitions.paginate(page: @page, per_page: 12)
+    @petitions = sort_petitions Petition
 
     respond_to do |format|
       format.html
@@ -133,17 +102,8 @@ class PetitionsController < ApplicationController
       @petitions = Petition.with_role(:admin, current_user)
       @results_size = @petitions.size
 
-      @sorting_options = [
-        { type: 'all',            label: t('all.sort.all') },
-        { type: 'open',           label: t('all.sort.open') },
-        { type: 'concluded',      label: t('all.sort.concluded') },
-        { type: 'rejected',       label: t('all.sort.rejected') },
-        { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
-      ]
+      petitions_by_status @petitions
 
-      # state new
-      #
-      # state
     else
       redirect_to new_user_session_path
     end
@@ -163,7 +123,7 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-    @page = params[:page]
+    @page = params[:page] || 1
 
     @owners = find_owners
 
@@ -271,6 +231,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/1/edit
   def edit
     authorize @petition
+
+    @page = params[:page]
 
     @owners = find_owners
 

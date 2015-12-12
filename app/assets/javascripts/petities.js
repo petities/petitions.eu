@@ -196,7 +196,11 @@ $(document).ready(function(){
   $('.navigation-loadmore').click(function(){
     var type = $(this).data('type');
         url = '';
-  
+
+    if(isNaN(window.page)){
+        window.page = 1;
+    }
+
     if(type === 'petitions'){
       window.page += 1;
       url = window.location.pathname + '?page='+ window.page +'&sorting='+ window.sorting;
@@ -207,6 +211,8 @@ $(document).ready(function(){
       window.updates_page += 1;
       url = '/updates?page='+ window.updates_page;
     }
+
+    url = url.replace('/edit/', '/');
 
     $.ajax({
       url: url, 

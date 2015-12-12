@@ -1,0 +1,15 @@
+
+= render partial: 'office_header'
+
+div.page
+  section.petitions-overview-wrapper
+    div.petition-overview-title= t('all.count', results_size: @results_size)
+
+    = render partial: 'petitions/sort_options'
+
+    div.petitions-overview-container
+      = render partial: 'petitions/list'
+
+      div.clearfix
+
+    = will_paginate @petitions, renderer: PetitionsPaginateRenderer
