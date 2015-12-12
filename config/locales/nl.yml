@@ -311,7 +311,7 @@ nl:
     sidekiq: Taken wachtrij
   name: Name
   office:
-    signatures_count: 'Ondertekeningen via dit loket:'
+    signatures_count: 'ondertekeningen'
   password:
     change: Verander uw wachtwoord
     confirm: Bevestig uw nieuwe wachtwoord

@@ -311,7 +311,7 @@ en:
     sidekiq: Tasks queue
   name: Name
   office:
-    signatures_count: 'Signatures through this desk:'
+    signatures_count: 'signatures'
   password:
     change: Change your password
     confirm: Confirm your new password
