@@ -602,6 +602,7 @@ nl:
     label: 
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
+      select_office: Kies bij welk petitieloket
       show_on_homepage: Toon op homepage
       show_on_petition: Toon bij de petitie
       show_on_office: Toon op het petitieloket
@@ -609,4 +610,5 @@ nl:
     no_news_yet: Nog geen nieuws over deze petitie.
     updated: Nieuwtje bijgewerkt
     read_more: 'Lees meer...'
+    title: Een nieuw petitie nieuwtje
   when: Wanneer

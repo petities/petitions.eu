@@ -602,6 +602,7 @@ en:
     label:
       text: Your news update about the petition
       title: Title of this update
+      select_office: Select petition desk
       show_on_homepage: Show on homepage
       show_on_petition: Show on petition
       show_on_office: Show on petition desk
@@ -609,4 +610,5 @@ en:
     no_news_yet: No news about this petition yet.
     read_more: 'Read more...'  
     updated: News update updated
+    title: A new petition update
   when: When
