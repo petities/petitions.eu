@@ -3,7 +3,7 @@ div.page
   section
     h2.petition-section-title= t('show.signatures.title')
     - if user_signed_in? && current_user.has_role?(:admin, @petition)
-      h3.whitespace= t('signature.only_you_can_see_annoymous')
+      h3.whitespace= t('signatures.petitioner_instructions')
 
     div.petition-signatures-container
       - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
