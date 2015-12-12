@@ -454,6 +454,7 @@ en:
     real_name: Your name
     roles: 'Responsible for the petitions:'
     phone: 'Telephone number(s)'
+    submit: Update profile
     title: Your personal information
     your_city: Your place of residence
     your_name: Your real name please
