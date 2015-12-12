@@ -343,7 +343,28 @@ nl:
     current_translations: Vertalingen
     details:
       form:
-        title: Bewerk uw persoonlijke gegevens
+        answer_date_label: Wanneer de petitie een antwoord krijgt
+        due_date_label: Wanneer de petitie wordt ingediend
+        link1: Link naar een campagnepagina voor deze petitie
+        link1_text: Beschrijving van die pagina
+        link2: Nog een site over deze petitie
+        link2_text: Beschrijving van die pagina
+        link3: Nog een site over deze petitie
+        link3_text: Beschrijving van die pagina
+        public_name: Uw openbare naam
+        public_organisation: De organisatie achter deze petitie
+        reference_field: Het referentienummer voor deze petitie
+        submit: Werk deze details bij
+        telephone: Het nummer waarop men u kan bellen
+        title: Verander uw gegevens
+      title: Uitleg
+      public_name: Uw naam verschijnt onder de petitie en in e-mails naar ondertekenaars. Als u een pseudoniem gebruikt zullen minder mensen de petitie vertrouwen.
+      telephone: Journalisten, ondertekenaars die willen helpen en de ontvanger van de petitie willen u misschien bellen.
+      public_organisation: Als u zich georganiseerd heeft kunt u hier de naam van uw groep noemen.
+      due_date: U kunt de datum waarop u de petitie sluit en overhandigt altijd aanpassen. Als u een datum in het verleden zet dan sluit de petitie.
+      answer_date: De ontvanger van de petitie zou een indicatie moeten geven hoe lang het duurt om een antwoord te geven.
+      reference_field: De ontvanger geeft altijd een referentienummer of kenmerk. Daarmee is het makkelijk terug te vinden en zo bestaat het als ontvangen document.
+      links: 'U kunt drie links opgeven bij uw petitie, die beginnen met http:// of https://. Als er nieuwe ontwikkelingen zijn kunt u nieuwtjes schrijven met links erin.'
     draft: Kladje
     edit_state: Bewerk status
     editing: Bewerken
@@ -475,12 +496,14 @@ nl:
     overview:
       addressed: 'Geadresseerd:'
       addressee: 'Ontvanger:'
-      all_owners: Contactinformatie
+      all_owners: Petitionaris
+      answer_end_date: 'Antwoord verwacht:'
       desk: 'Petitieloket:'
       end_date: 'Einddatum:'
       location: 'In:'
       organisation: 'Organisatie:'
       petitioners: 'Petitionaris:'
+      reference: 'Kenmerk:'
       status: 'Status:'
       title: Details
       website: 'Website:'
@@ -496,8 +519,8 @@ nl:
         will_be_signable: U ontvangt nu een e-mail met inloggegevens.
       we: Wij
     petitioner:
-      real_name: Name
-      real_telephone: Telephone
+      real_name: Naam
+      real_telephone: Telefoonnummer
       real_email: E-mail
     share: Deel deze petitie
     sign:

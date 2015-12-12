@@ -343,7 +343,28 @@ en:
     current_translations: Current translations
     details:
       form:
+        answer_date_label: When the petition will be answered
+        due_date_label: When the petition is due
+        link1: Link to the campaign page for this petition
+        link1_text: Description of that page
+        link2: Another webpage about this petition
+        link2_text: Description of that page
+        link3: Another webpage about this petition
+        link3_text: Description of that page
+        public_name: Your public name
+        public_organisation: The organisation behind the petition
+        reference_field: The reference number for the petition
+        submit: Update these details
+        telephone: The number where anyone can call you
         title: Edit your personal information
+      title: Explanation
+      public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
+      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. 
+      public_organisation: If you are organised in any way, you can mention the name of your collective here.
+      due_date: The date on which the petition will close and handed over can always be changed by you. With a date in the past the petition closes.
+      answer_date: The recipient should indicate how long the answer will take. 
+      reference_field: The recipient always gives you a reference. With a reference it is easy to find it and it exists as a received document.
+      links: 'You can supply up to three links to your petition, starting with http:// or https://. When there are new developments you can write a news update containing links.'
     draft: Draft
     edit_state: Edit state
     editing: Editing
@@ -475,12 +496,14 @@ en:
     overview:
       addressed: Addressed
       addressee: 'Addressed to:'
-      all_owners: Contact information
+      all_owners: Lead petitioner
+      answer_end_date: 'Answer expected:'
       desk: 'Petition desk:'
       end_date: 'Closing date:'
       location: 'In:'
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
+      reference: 'Reference:'
       status: 'Status:'
       title: Details
       website: 'Website:'
