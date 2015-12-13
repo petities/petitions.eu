@@ -351,6 +351,7 @@ en:
         link2_text: Description of that page
         link3: Another webpage about this petition
         link3_text: Description of that page
+        public_email: E-mail address for this petition
         public_name: Your public name
         public_organisation: The organisation behind the petition
         reference_field: The reference number for the petition
@@ -358,8 +359,9 @@ en:
         telephone: The number where anyone can call you
         title: Edit your personal information
       title: Explanation
+      public_email: 'You can change your e-mail address into one for this petition. This address appears in e-mails to (potential) signatories.'
       public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
-      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. 
+      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number. 
       public_organisation: If you are organised in any way, you can mention the name of your collective here.
       due_date: The date on which the petition will close and handed over can always be changed by you. With a date in the past the petition closes.
       answer_date: The recipient should indicate how long the answer will take. 
@@ -433,7 +435,17 @@ en:
     version: Version
     withdrawn: Withdrawn
     your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
-  petitioner: Petitioner
+  petitioner:
+    awaiting_answer: Awaiting answer
+    drafts: Drafts
+    signable: Signable
+    text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
+    text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
+    text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
+    text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
+    title_green: Donations 
+    title_grey: Help from signatories
+    title_grey_2: Be aware of the due date
   petitions: Petitions
   place: Place
   pledge:

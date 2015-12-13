@@ -351,6 +351,7 @@ nl:
         link2_text: Beschrijving van die pagina
         link3: Nog een site over deze petitie
         link3_text: Beschrijving van die pagina
+        public_email: Uw e-mailadres voor deze petitie
         public_name: Uw openbare naam
         public_organisation: De organisatie achter deze petitie
         reference_field: Het referentienummer voor deze petitie
@@ -358,8 +359,9 @@ nl:
         telephone: Het nummer waarop men u kan bellen
         title: Verander uw gegevens
       title: Uitleg
+      public_email: 'Hier kunt u uw e-mailadres wijzigen in een adres speciaal voor deze petitie. Dit adres verschijnt onder andere in e-mails aan (toekomstige) ondertekenaars.'
       public_name: Uw naam verschijnt onder de petitie en in e-mails naar ondertekenaars. Als u een pseudoniem gebruikt zullen minder mensen de petitie vertrouwen.
-      telephone: Journalisten, ondertekenaars die willen helpen en de ontvanger van de petitie willen u misschien bellen.
+      telephone: Journalisten, ondertekenaars die willen helpen en de ontvanger van de petitie willen u misschien bellen. Als ze ons erom vragen geven we dit nummer.
       public_organisation: Als u zich georganiseerd heeft kunt u hier de naam van uw groep noemen.
       due_date: U kunt de datum waarop u de petitie sluit en overhandigt altijd aanpassen. Als u een datum in het verleden zet dan sluit de petitie.
       answer_date: De ontvanger van de petitie zou een indicatie moeten geven hoe lang het duurt om een antwoord te geven.
@@ -433,7 +435,18 @@ nl:
     version: Versie
     withdrawn: Ingetrokken
     your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
-  petitioner: Petitionaris
+  petitioner: 
+    awaiting_answer: Wacht op antwoord
+    drafts: Nog niet af
+    signable: Ondertekenbaar
+    text_blue: U kunt e-mail sturen naar de ondertekenaars. Stuur de tekst naar webmaster@petities.nl en wij verzorgen de verzending.
+    text_green: Ondertekenaars kunnen een donatie toezeggen voor de petitie. Daarmee kunt u bijvoorbeeld een lobbyist, jurist of andere specialist inhuren. Vraag ons per e-mail hoeveel er al toegezegd is.
+    text_grey: Ondertekenaars willen u misschien helpen. Na het bevestigen van hun ondertekening kunnen ze aangeven waar ze goed in zijn. Zoekt u een bepaalde persoon of wilt u weten wat men zoal heeft toegezegd? Vraag het ons per e-mail.
+    text_grey_2: Uw petitie wordt automatisch ingediend als de indiendatum is bereikt. U kunt de datum aanpassen, maar doe dat wel tevoren. U krijgt een week voor de sluitingsdatum een e-mail hierover.
+    title_blue: Voortgangsberichten
+    title_green: Donaties 
+    title_grey: Hulp van ondertekenaars
+    title_grey_2: Hou de indiendatum in de gaten
   petitions: Petities
   place: Woonplaats
   pledge:
