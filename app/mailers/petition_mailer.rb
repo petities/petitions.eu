@@ -7,6 +7,8 @@ class PetitionMailer < ApplicationMailer
     subject = t('Petition.status.changed')
 
     if target.nil?
+      # NOTE petitioner_email can be wrong?
+      # should we not send email to admin users?
       target = @petition.petitioner_email
     end
 
@@ -97,6 +99,14 @@ class PetitionMailer < ApplicationMailer
     subject = t('petition.moderation.we_need_new_owner')
 
     mail(to: @signature.person_email, subject: subject)
+  end
+
+  def welcome(user, password)
+
+    @user = user
+    @password = password
+
+    mail(to: user.email)
   end
 
 end
