@@ -402,6 +402,7 @@ class PetitionsController < ApplicationController
   private
 
   def set_petition
+    
     find_petition
 
     # find specific papertrail version
@@ -421,8 +422,11 @@ class PetitionsController < ApplicationController
   def find_owners
     #User.joins(:roles).where(
     #  roles: { resource_type: 'Petition', resource_id: @petition.id })
-    role_id = @petition.roles[0].id
-    User.joins(:roles).where(roles: {id: role_id})
+    if not @petition.roles.empty?
+      role_id = @petition.roles[0].id
+      User.joins(:roles).where(roles: {id: role_id})
+    end
+    []
   end
 
   def update_locale_list
