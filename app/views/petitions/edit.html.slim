@@ -1,28 +1,19 @@
 div.page
 
+  div class="petition-editbutton-container whitespace"
+    div class="petition-editbutton"
+      = link_to t('edit.petition.sign_page'), petition_path(@petition)
+      
+  div class="petition-editbutton-container whitespace"
+     div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
+       = t 'edit.petition.edit_text'
+
   section.petition-intro-container
     div
       h2.petition-section-title
         = @petition_flash
 
 div.page
-
-  - if user_signed_in? && (current_user.has_role?(:admin) || current_user.has_role?(:admin, @petition))
-      section.petition-intro-container-noimage
-        div.petition-intro-info-container
-          div.petition-intro-info-text
-            = t('petition.available_languages')
-            - if @petition.locale_list.present?
-              - @petition.locale_list.each do |locale|
-                =< label_tag locale.upcase, locale
-                => radio_button_tag :locale, locale, I18n.locale.to_sym == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
-            = t('petition.other_language_options')
-            - [:nl, :en, :de, :lim, :fries, :se, :pr].each do |locale|
-              - if not @petition.locale_list.include? locale
-                =< label_tag locale.upcase, locale
-                => radio_button_tag :locale, locale, I18n.locale.to_sym == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
-
-
 
   section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container') id="introContainer"
     div.petition-intro-image-container
@@ -33,16 +24,7 @@ div.page
       div.petition-intro-info-text
         p= @petition.description
 
-    div class="petition-editbutton-container"
-      div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-        = t 'edit.petition.edit_text'
 
-    div class="petition-editbutton-container"
-      = link_to t('edit.petition.sign_page'), petition_path(@petition), class: 'petition-editbutton button'
-
-    - if not %w(concept draft).include? @petition.status
-      div class="petition-editbutton-container"
-        a.petition-editbutton.button href='#petitionnews'= t('edit.petition.add_news')
 
     div class="petition-editbutton-container"
 
