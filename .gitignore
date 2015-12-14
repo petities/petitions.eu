@@ -30,7 +30,6 @@ doc/app
 config/database.yml
 config/secrets.yml
 public/system
-public/assets
 
 config/settings.local.yml
 config/settings/*.local.yml

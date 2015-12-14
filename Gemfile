@@ -73,7 +73,6 @@ gem 'paperclip'
 
 # execute jobs on the side..
 gem 'sidekiq'
-gem 'sinatra', require: nil # sidekiq/web uses sinatra
 
 # create periodic tasks in your project
 gem 'whenever', :require => false
@@ -109,7 +108,7 @@ gem 'countries'
 gem 'country_select'
 
 # Use Unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
