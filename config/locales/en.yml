@@ -592,12 +592,15 @@ en:
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image
+        now: Now
       name:
         description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
         label: Title of the petition
+        placeholder: 80 characters for the title
       observe:
         description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
         label: Observe
+        placeholder: '450 characters with the reason(s) for the petition'
       petitioner:
         email:
           description: Without an e-mail address we can not send you access to your petition.
@@ -620,9 +623,11 @@ en:
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
+        placeholder: 450 characters for what the petition asks
       short_description:
         description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
+        placeholder: 300 characters for a short description
       status:
         description: As moderator, change the status of the petition. For example, open a petition for signing.
       submit: Submit petition
@@ -633,6 +638,7 @@ en:
       we:
         description: You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
         label: We
+        placeholder: 100 characters to describe the signatories
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
   statement: Statement
