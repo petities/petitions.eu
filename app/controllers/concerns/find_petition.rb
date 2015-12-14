@@ -6,17 +6,20 @@ module FindPetition extend ActiveSupport::Concern
   #
   def find_petition
     Globalize.locale = params[:locale] || I18n.locale
-
+    if @petition
+      return
+    end
+    
     # find petition by slug name subdomain, id, friendly_name
     if params[:slug]
-      @petition = Petition.find_by_cached_slug(params[:slug])
-    elsif params[:subdomain]
-      @petition = Petition.find_by_subdomain(params[:subdomain])
+      @petition = Petition.find_by_slug(params[:id])
+    elsif not request.subdomain.empty?
+      @petition = Petition.find_by_subdomain(request.subdomain)
     elsif params[:petition_id]
       @petition = Petition.find(params[:petition_id])
     else
       begin
-        # find by friendly url
+        # find by friendly 
         @petition = Petition.friendly.find(params[:id])
       rescue
         # find in all locales petition that matches..
