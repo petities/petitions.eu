@@ -161,7 +161,8 @@ nl:
     petition:
       add_news: Voeg nieuws toe
       edit_details_text: Bewerk de details
-      edit_text: Bewerk de petitie
+      edit_petition: Bewerk de petitie
+      edit_text: Bewerk de tekst
       newer_version: Nieuwere versie
       newest_version: Petitie versie
       no_signatures_yet: Nog geen ondertekeningen
@@ -404,7 +405,7 @@ nl:
     older_version: Oudere versie
     oldest: Oudste
     optional: Optioneel
-    other_language_options: "Vertaal naar:"    
+    other_language_options: 'Vertalen mogelijk naar:'
     pdf: Bewaar als PDF
     published: Published
     rejected: Afgewezen
@@ -428,13 +429,13 @@ nl:
         in_process: Te behandelen
         closed: Beantwoord
         published: Ondertekenbaar
+        your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
     user_email: E-mail
     version: Versie
     withdrawn: Ingetrokken
-    your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
   petitioner: 
     awaiting_answer: Wacht op antwoord
     drafts: Nog niet af
@@ -601,6 +602,8 @@ nl:
         email:
           description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen.
           label: Uw e-mailadres
+        finalize:
+          finalize_description: 'Klaar, zet deze petitie open voor ondertekenen!'
         name:
           description: Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
           label: Uw voor- en achternaam
@@ -610,17 +613,23 @@ nl:
         password:
           description: Als u geen goed wachtwoord kiest geven wij u een goede.
           label: Uw gewenste wachtwoord
+        update:
+          update_description: Bewaar verbeteringen.  
+      petition_type:
+        description: Kies als moderator het petitietype met consequenties voor de vereisten voor ondertekenaars.
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
       short_description:
         description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
+      status:
+        description: Kies als moderator de status voor de petitie. Bijvoorbeeld, open een petitie voor ondertekenen nadat u de petitie hebt gecontroleerd. Haal de spelfouten eruit en let erop dat het past binnen de wet (privacy, auteursrecht, discriminatie, etc.) en uw eigen reglementen.
       submit: Petitie aanmaken
       subdomain:
         description: Kies als moderator het kortst mogelijke subdomein, maar wel beschrijvend.
         label: Subdomein
-      update: Update
+      update: Werk bij
       we:
         description: U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
         label: Wij

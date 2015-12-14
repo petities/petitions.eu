@@ -39,7 +39,7 @@ div.page
               => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
 
   - if user_signed_in? && current_user.has_role?(:admin, @petition)
-    = link_to t('edit.petition.edit_text'), edit_petition_path(@petition), class: 'button whitespace'
+    = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'button whitespace'
 
   div
     - if not @updates.empty?

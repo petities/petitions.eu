@@ -160,8 +160,9 @@ en:
   edit:
     petition:
       add_news: Add news
-      edit_text: Edit the petition
       edit_details_text: Edit the details
+      edit_petition: Edit the petition
+      edit_text: Edit the text
       newer_version: Newer version
       newest_version: Petition version
       no_signatures_yet: No signatures yet
@@ -404,7 +405,7 @@ en:
     older_version: Older version
     oldest: Oldest
     optional: Optional
-    other_language_options: "Translate into:"
+    other_language_options: 'Translating possible into:'
     pdf: Save in PDF
     published: Published
     rejected: Rejected
@@ -428,13 +429,14 @@ en:
         in_process: In process
         closed: Answered
         published: Published
+        success: Petition was successfully updated
+        your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
     the_next_logical_action: The next logical action
     title: Title
     to_process: To process
     user_email: User email
     version: Version
     withdrawn: Withdrawn
-    your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
   petitioner:
     awaiting_answer: Awaiting answer
     drafts: Drafts
@@ -600,6 +602,8 @@ en:
         email:
           description: Without an e-mail address we can not send you access to your petition.
           label: Your e-mail address
+        finalize:
+          finalize_description: 'Ready, open this petition for signing!'
         name:
           description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname
@@ -609,12 +613,18 @@ en:
         password:
           description: If you do not enter a password we will give you a good one.
           label: Desired password
+        update:
+          update_description: Save improvements.
+      petition_type:
+        description: As moderator, set the appropriate type of petition with consequences for the requirements for signatures.
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
       short_description:
         description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
+      status:
+        description: As moderator, change the status of the petition. For example, open a petition for signing.
       submit: Submit petition
       subdomain: 
         description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
