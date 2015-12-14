@@ -195,7 +195,6 @@ class PetitionsController < ApplicationController
       end
     end
 
-
     if user_signed_in?
       owner = current_user
     else
@@ -205,19 +204,31 @@ class PetitionsController < ApplicationController
         owner = User.where(email: user_params[:email]).first
 
         unless owner
+
+          password = user_params[:password] || Devise.friendly_token.first(8)
+
           owner = User.create(
             email: user_params[:email],
             username: user_params[:email],
             name: user_params[:name],
-            password: user_params[:password]
+            password: password
           )
           owner.save
+
+          # send password if needed
+          if not user_params[:password]
+            PetitionMailer.welcome(owner, password).deliver_later
+          end
+
         end
       end
     end
 
     respond_to do |format|
+      # petition is save. status change causes email(s)
+      # to be send
       if @petition.save
+        # make user owner of the petition
         owner.add_role :admin, @petition if owner
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }

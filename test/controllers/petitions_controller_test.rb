@@ -16,7 +16,7 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create petition" do
+  test "should_create_petition" do
     assert_no_difference('User.count') do
       assert_difference('Petition.count') do
         post :create, {
@@ -39,7 +39,7 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to petition_path(assigns(:petition))
   end
 
-  test "should create petition and user" do
+  test "should_create_petition_and_user" do
     assert_difference('User.count') do
       assert_difference('Petition.count') do
         post :create, {
@@ -63,6 +63,31 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to petition_path(assigns(:petition))
 
   end
+
+  test "should_create_petition_user_and_password" do
+    assert_difference('User.count') do
+      assert_difference('Petition.count') do
+        post :create, {
+          petition: {
+            name: @petition.name + 'x' ,
+            description: @petition.description + 'x',
+            initiators: @petition.initiators + 'y',
+            statement: @petition.statement + 'test',
+            request: @petition.request + 'teest',
+            office_id: 1
+          },
+          user: {
+            email: 'idonotexist@test.com',
+            name: 'nexttest',
+          }
+        }
+      end
+    end
+
+    assert_redirected_to petition_path(assigns(:petition))
+
+  end
+
 
   #test "should show petition" do
   #  get :show, id: @petition
