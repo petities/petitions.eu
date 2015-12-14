@@ -22,7 +22,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_description"
           | 0 / 300
       = f.text_area(:description, class: 'start-petition-form-cell-input validation', style: "height:100px;",
-        'data-chars'=> 300, 'placeholder'=> t('start.form.description.placeholder', default: "sell this petition!"))
+        'data-chars'=> 300, 'placeholder'=> t('start.form.short_description.placeholder', default: "sell this petition!"))
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.short_description.description')
@@ -60,7 +60,7 @@
           | 0 / 450
       = f.text_area(:statement, class: 'start-petition-form-cell-input validation', style: "height:100px;",
         'data-chars' => 450,
-        'placeholder'=> t('start.form.statement.placeholder', default: "what are you upset about?"))
+        'placeholder'=> t('start.form.observe.placeholder', default: "what are you upset about?"))
       div.errors
     div.start-petition-form-cell.label
       p= t('start.form.observe.description')
@@ -77,19 +77,19 @@
     div.start-petition-form-cell.label
       p= t('start.form.request.description')
 
-  - if @images && @images.size > 0
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
-        div.start-petition-form-cell-title Images
-        - @images.each do |image|
-          = image_tag image.upload.url, width: '100'
-
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title= t('start.form.image.label')
       = file_field_tag 'images[]', class: 'start-petition-form-cell-input'
     div.start-petition-form-cell.label
       p= t('start.form.image.description')
+
+      - if @images && @images.size > 0
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('start.form.image.now')
+            - @images.each do |image|
+              = image_tag image.upload.url, width: '100'
 
   - if(user_signed_in? && (current_user.has_role?(:admin) or current_user.has_role?(:admin, @petition)))
 

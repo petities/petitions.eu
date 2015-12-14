@@ -38,9 +38,9 @@ div.page
 
   - cache [@petition, Globalize.locale.to_s, @answer] do
 
-    section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+    section class=(@images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
-        = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+        = image_tag( @images.last.upload.url, class: 'petition-intro-image') unless @images.last.nil? || @images.last.upload_file_name.nil?
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
