@@ -62,20 +62,27 @@ div#detailbox.petition-details
         |&nbsp
       h2.petition-section-title= t('show.overview.all_owners')
       - @owners.each do |owner|
-        div.petition_field_label= t('show.petitioner.real_name')
+      
+        div.petition_field_label= t('show.petitioner.name')
         div.petition_field_data
-          = owner.name
+          = @petition.petitioner_name || owner.name
           |&nbsp
 
-        div.petition_field_label= t('show.petitioner.real_telephone')
+        div.petition_field_label= t('show.petitioner.telephone')
         div.petition_field_data
-          = owner.telephone
+          = @petition.petitioner_telephone || owner.telephone
           |&nbsp
 
-        div.petition_field_label= t('show.petitioner.real_email')
+        div.petition_field_label= t('show.petitioner.email')
         div.petition_field_data
-          = owner.username
+          = @petition.petitioner_email || owner.email
           |&nbsp
+
+        div.petition_field_label
+          |&nbsp
+        div.petition_field_data
+          |&nbsp
+
 
   - if @petition.links[:links].present?
     div.petition_field_label= t('show.overview.website')

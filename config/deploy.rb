@@ -9,7 +9,8 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, fetch(:stage)
+#set :branch, fetch(:stage)
+set :branch, 'master' 
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"

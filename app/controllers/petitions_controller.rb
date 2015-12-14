@@ -437,7 +437,10 @@ class PetitionsController < ApplicationController
     params.require(:petition).permit(
       :name, :description, :statement, :request, :initiators, :status,
       :organisation_id, :organisation_kind,
-      :petitioner_email, :petitioner_name, :petitioner_organisation,
+      :petitioner_email,
+      :petitioner_telephone,
+      :petitioner_name,
+      :petitioner_organisation,
       :petitioner_telephone,
       :petition_type_id,
       :date_projected,

@@ -10,6 +10,16 @@ div.petition-details id="edit_details" style='display: none;'
                    placeholder: t('petition.details.from.your_name', default: 'your public name')
 
     div.petition-edit-label
+      = t('petition.details.form.public_email')
+    = f.text_field :petitioner_email, class: 'petition-edit-input',
+                   placeholder: t('petition.details.from.your_email', default: 'your public email')
+
+    div.petition-edit-label
+      = t('petition.details.form.public_name')
+    = f.text_field :petitioner_name, class: 'petition-edit-input',
+                   placeholder: t('petition.details.from.your_name', default: 'your public name')
+
+    div.petition-edit-label
       = t('petition.details.form.telephone')
     = f.text_field :petitioner_telephone, class: 'petition-edit-input',
                    placeholder: t('petition.details.from.your_number', default: 'your public number')
