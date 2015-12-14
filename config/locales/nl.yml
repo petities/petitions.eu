@@ -292,7 +292,7 @@ nl:
     email: 
       descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
-    login: Log in
+    login: Inloggen
     password:
       descr: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail. Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
       label: Wachtwoord
