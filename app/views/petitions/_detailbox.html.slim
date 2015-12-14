@@ -11,12 +11,12 @@ div#detailbox.petition-details
     div.petition_field_label= t('show.overview.desk')
     div.petition_field_data
       = link_to @office.name, petition_desk_path(@office)
-      |&nbsp
+      |&nbsp 
 
   - if @office and @petition.reference_field
-    div.petition_field_label= t('show.overview.desk')
+    div.petition_field_label= t('show.overview.reference')
     div.petition_field_data
-      = @petition.reference_field
+      = @petition.reference_field 
       |&nbsp
 
 

@@ -160,14 +160,16 @@ en:
   edit:
     petition:
       add_news: Add news
-      edit_text: Edit the petition
       edit_details_text: Edit the details
+      edit_petition: Edit the petition
+      edit_text: Edit the text
       newer_version: Newer version
       newest_version: Petition version
       no_signatures_yet: No signatures yet
       of: out of
       older_version: Older version
-      status:
+      sign_page: Show the petition
+      status:          
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
       updated: Petition is updated
       version: version
@@ -298,8 +300,19 @@ en:
   logout: Logout
   manage:
     title: My petitions
-  mypetitions: My petitions
+  my:
+    activeadmin: Manage data
+    create_newsupdate: Write update
+    mailpreviews: Preview default mails
+    news_updates: News
+    petitions: My petitions
+    profile: My profile
+    startanother: Start another petition
+    visits: Visitor statistics
+    sidekiq: Tasks queue
   name: Name
+  office:
+    signatures_count: 'signatures'
   password:
     change: Change your password
     confirm: Confirm your new password
@@ -329,6 +342,32 @@ en:
     current_news_is: The news
     current_state_is: The petition is
     current_translations: Current translations
+    details:
+      form:
+        answer_date_label: When the petition will be answered
+        due_date_label: When the petition is due
+        link1: Link to the campaign page for this petition
+        link1_text: Description of that page
+        link2: Another webpage about this petition
+        link2_text: Description of that page
+        link3: Another webpage about this petition
+        link3_text: Description of that page
+        public_email: E-mail address for this petition
+        public_name: Your public name
+        public_organisation: The organisation behind the petition
+        reference_field: The reference number for the petition
+        submit: Update these details
+        telephone: The number where anyone can call you
+        title: Edit your personal information
+      title: Explanation
+      public_email: 'You can change your e-mail address into one for this petition. This address appears in e-mails to (potential) signatories.'
+      public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
+      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number. 
+      public_organisation: If you are organised in any way, you can mention the name of your collective here.
+      due_date: The date on which the petition will close and handed over can always be changed by you. With a date in the past the petition closes.
+      answer_date: The recipient should indicate how long the answer will take. 
+      reference_field: The recipient always gives you a reference. With a reference it is easy to find it and it exists as a received document.
+      links: 'You can supply up to three links to your petition, starting with http:// or https://. When there are new developments you can write a news update containing links.'
     draft: Draft
     edit_state: Edit state
     editing: Editing
@@ -366,7 +405,7 @@ en:
     older_version: Older version
     oldest: Oldest
     optional: Optional
-    other_language_options: "Translate into:"
+    other_language_options: 'Translating possible into:'
     pdf: Save in PDF
     published: Published
     rejected: Rejected
@@ -390,13 +429,25 @@ en:
         in_process: In process
         closed: Answered
         published: Published
+        success: Petition was successfully updated
+        your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
     the_next_logical_action: The next logical action
     title: Title
     to_process: To process
     user_email: User email
     version: Version
     withdrawn: Withdrawn
-  petitioner: Petitioner
+  petitioner:
+    awaiting_answer: Awaiting answer
+    drafts: Drafts
+    signable: Signable
+    text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
+    text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
+    text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
+    text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
+    title_green: Donations 
+    title_grey: Help from signatories
+    title_grey_2: Be aware of the due date
   petitions: Petitions
   place: Place
   pledge:
@@ -422,6 +473,31 @@ en:
       <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
     title: Your privacy
+  profile:
+    address: Address
+    birth_date: Date of birth
+    city: Woonplaats
+    edit_your_information: Edit your information
+    details:
+      fakename: Your name should be known to us, but you can choose yourself how the outside world sees you. 
+      please_change: 
+      privacy: Data about your last session to check if it was really you.
+      title: Explanation
+      your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'  
+    last_ip: Last internet address
+    last_login: Last login
+    postalcode: Postal code
+    real_email: Your e-mail
+    real_name: Your name
+    roles: 'Responsible for the petitions:'
+    phone: 'Telephone number(s)'
+    submit: Update profile
+    title: Your personal information
+    your_city: Your place of residence
+    your_name: Your real name please
+    your_postalcode: Your postal code
+    your_telephone: Your telephone number
+    your_street_and_number: Your street and house number    
   pundit:
     petition_policy:
       edit: You can now add a translation of the petition
@@ -434,12 +510,14 @@ en:
     overview:
       addressed: Addressed
       addressee: 'Addressed to:'
-      all_owners: Contact information
+      all_owners: Lead petitioner
+      answer_end_date: 'Answer expected:'
       desk: 'Petition desk:'
       end_date: 'Closing date:'
       location: 'In:'
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
+      reference: 'Reference:'
       status: 'Status:'
       title: Details
       website: 'Website:'
@@ -448,6 +526,10 @@ en:
       observe: observe
       request: and request
       share_this: Share this petition with others
+      status: 
+        label: Your petition...
+        was_signable: Your petition is no longer open to collect signatures.
+        will_be_signable: You now receive an e-mail with the login information. 
       title: Petition
       we: We
     petitioner:
@@ -497,6 +579,7 @@ en:
     popular_cities: Popular places
     link: Link
     notify: Notify
+    petitioner_instructions: You can see anonymous signatures because you are logged in
     sign: Sign this petition
     title: Signatures
   signnow: Sign now
@@ -519,6 +602,8 @@ en:
         email:
           description: Without an e-mail address we can not send you access to your petition.
           label: Your e-mail address
+        finalize:
+          finalize_description: 'Ready, open this petition for signing!'
         name:
           description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname
@@ -528,20 +613,28 @@ en:
         password:
           description: If you do not enter a password we will give you a good one.
           label: Desired password
+        update:
+          update_description: Save improvements.
+      petition_type:
+        description: As moderator, set the appropriate type of petition with consequences for the requirements for signatures.
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
       short_description:
         description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
         label: Short description
+      status:
+        description: As moderator, change the status of the petition. For example, open a petition for signing.
       submit: Submit petition
+      subdomain: 
+        description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
+        label: Subdomain
       update: Update
       we:
         description: You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
         label: We
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
-  startanother: Start another petition
   statement: Statement
   update:
     created: News update created
@@ -553,11 +646,16 @@ en:
       date: Date
       image: Image
       title: Title
-    news_updates: Updates
-    no_news_yet: No news about this petition yet.
     label:
       text: Your news update about the petition
       title: Title of this update
+      select_office: Select petition desk
       show_on_homepage: Show on homepage
+      show_on_petition: Show on petition
+      show_on_office: Show on petition desk
+    news_updates: Updates
+    no_news_yet: No news about this petition yet.
+    read_more: 'Read more...'  
     updated: News update updated
+    title: A new petition update
   when: When

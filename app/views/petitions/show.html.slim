@@ -39,7 +39,7 @@ div.page
               => radio_button_tag :locale, locale, I18n.locale == locale.to_sym, { onclick: "document.location='?locale=#{locale}';" }
 
   - if user_signed_in? && current_user.has_role?(:admin, @petition)
-    = link_to 'Edit', edit_petition_path(@petition), class: 'button whitespace'
+    = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'button whitespace'
 
   div
     - if not @updates.empty?
@@ -96,11 +96,11 @@ div.page
           = render partial: 'signform'
         - else
             div.petition-text
-              h3= t('show.petition.status')
+              h3= t('show.petition.status.label')
               - if @petition.is_draft?
-                = t('show.petition.will_be_singable')
+                = t('show.petition.status.will_be_signable')
               - else
-                = t('show.petition.was_singable')
+                = t('show.petition.status.was_signable')
               p &nbsp;
 
     section.petition-details-container

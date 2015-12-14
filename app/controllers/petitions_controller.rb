@@ -384,7 +384,7 @@ class PetitionsController < ApplicationController
     end
 
     #flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
-    flash[:notice] = t('petition.your_petition_awaiting_moderation')
+    flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
     redirect_to edit_petition_path(@petition)
   end
 

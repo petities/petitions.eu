@@ -6,12 +6,12 @@ div#edit_details.petition-details style='display: none; position:relative'
   = form_for @profile, url: {path: '/profile', action: :patch, method: :patch} do |f|
 
     div.petition-edit-label
-      = t('profile.name')
+      = t('profile.real_name')
     = f.text_field :name, class: 'petition-edit-input',
                    placeholder: t('profile.your_name', default: 'your real name please')
 
     div.petition-edit-label
-      = t('profile.telephone')
+      = t('profile.phone')
     = f.text_field :telephone, class: 'petition-edit-input',
                    placeholder: t('profile.your_telephone', default: 'your telephone number')
 
@@ -37,4 +37,4 @@ div#edit_details.petition-details style='display: none; position:relative'
 
     div.whitespace
 
-    = f.submit class: "start-petition-form-cell-button"
+    = f.submit t('profile.submit'), class: "start-petition-form-cell-button"

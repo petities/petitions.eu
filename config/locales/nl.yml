@@ -161,12 +161,14 @@ nl:
     petition:
       add_news: Voeg nieuws toe
       edit_details_text: Bewerk de details
-      edit_text: Bewerk de petitie
+      edit_petition: Bewerk de petitie
+      edit_text: Bewerk de tekst
       newer_version: Nieuwere versie
       newest_version: Petitie versie
       no_signatures_yet: Nog geen ondertekeningen
       of: uit  
       older_version: Oudere versie
+      sign_page: Toon de petitie
       status:
         explanation: Als uw petitietekst eenmaal klaar is, geeft u het aan de moderator om het open te zetten voor ondertekening. Na de sluitingsdatum van de petitie kan er niet meer worden ondertekend. Om de petitie te sluiten of te verlengen moet u de sluitingsdatum veranderen. Gesloten petities moeten worden overhandigd aan de ontvanger. Daarna wachten we op een antwoord.
       updated: Petitie is bijgewerkt
@@ -298,8 +300,19 @@ nl:
   logout: Log uit
   manage:
     title: Mijn petities
-  mypetitions: Mijn petities
+  my:
+    activeadmin: beheerscherm
+    create_newsupdate: Schrijf nieuwtje
+    mailpreviews: Previews standaardmails
+    news_updates: Nieuwtjes
+    petitions: Mijn petities
+    profile: Mijn profiel
+    startanother: Start nog een petitie
+    visits: Bezoekstatistieken
+    sidekiq: Taken wachtrij
   name: Name
+  office:
+    signatures_count: 'ondertekeningen'
   password:
     change: Verander uw wachtwoord
     confirm: Bevestig uw nieuwe wachtwoord
@@ -329,6 +342,32 @@ nl:
     current_news_is: Het nieuws
     current_state_is: De petitie is
     current_translations: Vertalingen
+    details:
+      form:
+        answer_date_label: Wanneer de petitie een antwoord krijgt
+        due_date_label: Wanneer de petitie wordt ingediend
+        link1: Link naar een campagnepagina voor deze petitie
+        link1_text: Beschrijving van die pagina
+        link2: Nog een site over deze petitie
+        link2_text: Beschrijving van die pagina
+        link3: Nog een site over deze petitie
+        link3_text: Beschrijving van die pagina
+        public_email: Uw e-mailadres voor deze petitie
+        public_name: Uw openbare naam
+        public_organisation: De organisatie achter deze petitie
+        reference_field: Het referentienummer voor deze petitie
+        submit: Werk deze details bij
+        telephone: Het nummer waarop men u kan bellen
+        title: Verander uw gegevens
+      title: Uitleg
+      public_email: 'Hier kunt u uw e-mailadres wijzigen in een adres speciaal voor deze petitie. Dit adres verschijnt onder andere in e-mails aan (toekomstige) ondertekenaars.'
+      public_name: Uw naam verschijnt onder de petitie en in e-mails naar ondertekenaars. Als u een pseudoniem gebruikt zullen minder mensen de petitie vertrouwen.
+      telephone: Journalisten, ondertekenaars die willen helpen en de ontvanger van de petitie willen u misschien bellen. Als ze ons erom vragen geven we dit nummer.
+      public_organisation: Als u zich georganiseerd heeft kunt u hier de naam van uw groep noemen.
+      due_date: U kunt de datum waarop u de petitie sluit en overhandigt altijd aanpassen. Als u een datum in het verleden zet dan sluit de petitie.
+      answer_date: De ontvanger van de petitie zou een indicatie moeten geven hoe lang het duurt om een antwoord te geven.
+      reference_field: De ontvanger geeft altijd een referentienummer of kenmerk. Daarmee is het makkelijk terug te vinden en zo bestaat het als ontvangen document.
+      links: 'U kunt drie links opgeven bij uw petitie, die beginnen met http:// of https://. Als er nieuwe ontwikkelingen zijn kunt u nieuwtjes schrijven met links erin.'
     draft: Kladje
     edit_state: Bewerk status
     editing: Bewerken
@@ -366,7 +405,7 @@ nl:
     older_version: Oudere versie
     oldest: Oudste
     optional: Optioneel
-    other_language_options: "Vertaal naar:"    
+    other_language_options: 'Vertalen mogelijk naar:'
     pdf: Bewaar als PDF
     published: Published
     rejected: Afgewezen
@@ -390,13 +429,25 @@ nl:
         in_process: Te behandelen
         closed: Beantwoord
         published: Ondertekenbaar
+        your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
     user_email: E-mail
     version: Versie
     withdrawn: Ingetrokken
-  petitioner: Petitionaris
+  petitioner: 
+    awaiting_answer: Wacht op antwoord
+    drafts: Nog niet af
+    signable: Ondertekenbaar
+    text_blue: U kunt e-mail sturen naar de ondertekenaars. Stuur de tekst naar webmaster@petities.nl en wij verzorgen de verzending.
+    text_green: Ondertekenaars kunnen een donatie toezeggen voor de petitie. Daarmee kunt u bijvoorbeeld een lobbyist, jurist of andere specialist inhuren. Vraag ons per e-mail hoeveel er al toegezegd is.
+    text_grey: Ondertekenaars willen u misschien helpen. Na het bevestigen van hun ondertekening kunnen ze aangeven waar ze goed in zijn. Zoekt u een bepaalde persoon of wilt u weten wat men zoal heeft toegezegd? Vraag het ons per e-mail.
+    text_grey_2: Uw petitie wordt automatisch ingediend als de indiendatum is bereikt. U kunt de datum aanpassen, maar doe dat wel tevoren. U krijgt een week voor de sluitingsdatum een e-mail hierover.
+    title_blue: Voortgangsberichten
+    title_green: Donaties 
+    title_grey: Hulp van ondertekenaars
+    title_grey_2: Hou de indiendatum in de gaten
   petitions: Petities
   place: Woonplaats
   pledge:
@@ -422,7 +473,31 @@ nl:
       <p>&nbsp;</p>
       <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
     title: Uw privacy
-  profile: Mijn profiel
+  profile:
+    address: Adres
+    birth_date: Geboortedatum
+    city: Woonplaats
+    edit_your_information: Bewerk uw gegevens
+    details:
+      fakename: Uw naam moet bij ons wel bekend zijn, maar u kunt zelf bepalen hoe u zichtbaar bent voor de buitenwereld. 
+      please_change: 
+      privacy: Met gegevens over uw laatste sessie kunt u zien of u dat wel was
+      title: Toelichting
+      your_profile: Deze gegevens zijn alleen bij ons bekend. Gebruik het e-mailadres en telefoonnummer waar we u over de petitie goed kunnen (blijven) bereiken. Dus geen gelegenheidsadres die u voor een petitie aanmaakt. 
+    last_ip: Laatste internetadres
+    last_login: Laatste login
+    postalcode: Postcode
+    real_email: Eigen e-mail
+    real_name: Uw naam
+    roles: 'Verantwoordelijk voor de petities:'
+    phone: 'Telefoonnummer(s)'
+    submit: Werk profiel bij
+    title: Uw persoonlijke gegevens
+    your_city: Uw woonplaats
+    your_name: Uw echte naam alstublieft
+    your_postalcode: Uw postcode
+    your_telephone: Uw telefoonnummer
+    your_street_and_number: Uw straat en huisnummer
   pundit:
     petition_policy:
       edit: U kunt nu een vertaling toevoegen van uw petitie
@@ -435,12 +510,14 @@ nl:
     overview:
       addressed: 'Geadresseerd:'
       addressee: 'Ontvanger:'
-      all_owners: Contactinformatie
+      all_owners: Petitionaris
+      answer_end_date: 'Antwoord verwacht:'
       desk: 'Petitieloket:'
       end_date: 'Einddatum:'
       location: 'In:'
       organisation: 'Organisatie:'
       petitioners: 'Petitionaris:'
+      reference: 'Kenmerk:'
       status: 'Status:'
       title: Details
       website: 'Website:'
@@ -450,10 +527,14 @@ nl:
       request: en verzoeken
       share_this: Deel deze petitie met anderen
       title: Petitie
+      status: 
+        label: Uw petitie...
+        was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
+        will_be_signable: U ontvangt nu een e-mail met inloggegevens.
       we: Wij
     petitioner:
-      real_name: Name
-      real_telephone: Telephone
+      real_name: Naam
+      real_telephone: Telefoonnummer
       real_email: E-mail
     share: Deel deze petitie
     sign:
@@ -492,12 +573,13 @@ nl:
       visible: Zichtbaar
     linkinstruction: Volg deze link
     success: Uw gegevens zijn bijgewerkt
-    success_send: Invitation sent! One more perhaps?
+    success_send: Uitnodiging verstuurd! Nog één misschien?
     thanks: Dank u
   signatures:
     popular_cities: Populaire woonplaatsen
     link: Link
     notify: Meld
+    petitioner_instructions: U kunt anonieme ondertekeningen zien omdat u ingelogd bent
     sign: Teken deze petitie
     title: Ondertekeningen
   signnow: Teken nu
@@ -520,6 +602,8 @@ nl:
         email:
           description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen.
           label: Uw e-mailadres
+        finalize:
+          finalize_description: 'Klaar, zet deze petitie open voor ondertekenen!'
         name:
           description: Een petitie moet een (rechts)persoon hebben die verantwoordelijk is voor de petitie en woordvoerder zal zijn. Ondertekenaars schrijven naar u, journalisten bellen u en politici nemen van u de petitie in ontvangst.
           label: Uw voor- en achternaam
@@ -529,20 +613,28 @@ nl:
         password:
           description: Als u geen goed wachtwoord kiest geven wij u een goede.
           label: Uw gewenste wachtwoord
+        update:
+          update_description: Bewaar verbeteringen.  
+      petition_type:
+        description: Kies als moderator het petitietype met consequenties voor de vereisten voor ondertekenaars.
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
       short_description:
         description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
+      status:
+        description: Kies als moderator de status voor de petitie. Bijvoorbeeld, open een petitie voor ondertekenen nadat u de petitie hebt gecontroleerd. Haal de spelfouten eruit en let erop dat het past binnen de wet (privacy, auteursrecht, discriminatie, etc.) en uw eigen reglementen.
       submit: Petitie aanmaken
-      update: Update
+      subdomain:
+        description: Kies als moderator het kortst mogelijke subdomein, maar wel beschrijvend.
+        label: Subdomein
+      update: Werk bij
       we:
         description: U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
         label: Wij
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
-  startanother: Start nog een petitie
   statement: Verzoek
   update:
     created: Nieuws toegevoegd
@@ -554,11 +646,16 @@ nl:
       date: Datum
       image: Plaatje
       title: Titel
-    news_updates: Nieuwtjes
-    no_news_yet: Nog geen nieuws over deze petitie. 
     label: 
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
-      show_on_homepage: Toon op homepage 
+      select_office: Kies bij welk petitieloket
+      show_on_homepage: Toon op homepage
+      show_on_petition: Toon bij de petitie
+      show_on_office: Toon op het petitieloket
+    news_updates: Nieuwtjes
+    no_news_yet: Nog geen nieuws over deze petitie.
     updated: Nieuwtje bijgewerkt
+    read_more: 'Lees meer...'
+    title: Een nieuw petitie nieuwtje
   when: Wanneer
