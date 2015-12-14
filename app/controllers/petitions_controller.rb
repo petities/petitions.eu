@@ -132,7 +132,8 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signature = @petition.signatures.new
-
+    
+    @images = @petition.images
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 

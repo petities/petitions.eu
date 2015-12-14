@@ -4,8 +4,8 @@
 
     div.petition-overview
       = link_to petition_path(petition), class: 'petition-overview-image-container' do
-        - if petition.images.first.present?
-          = image_tag petition.images.first.upload.url, class: 'petition-overview-image'
+        - if petition.images.last.present?
+          = image_tag petition.images.last.upload.url, class: 'petition-overview-image'
         - else
           canvas id="chartContainer#{id}" data={chartid: id, chartdata: "chartData#{id}", chartlabels: "chartLabels#{id}"} class='petition-overview-image chart-canvas' style="background-color: #bcf9c7; height: 200px;"
 

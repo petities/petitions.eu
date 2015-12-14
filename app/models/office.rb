@@ -41,6 +41,7 @@ class Office < ActiveRecord::Base
     # text.split('. ').slice(0, 2)
     return unless text
     text_array = text.split('. ').slice(0, 2)
+    text_array.push('')
     return text_array.join('. ').html_safe if text_array
   end
 

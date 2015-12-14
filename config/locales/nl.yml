@@ -292,7 +292,7 @@ nl:
     email: 
       descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
-    login: Log in
+    login: Inloggen
     password:
       descr: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail. Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
       label: Wachtwoord
@@ -592,12 +592,15 @@ nl:
       image:
         description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.
         label: Petitie-plaatje
+        now: Nu
       name:
         description: De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
         label: Naam van de petitie
+        placeholder: 80 tekens voor de titel
       observe:
         description: Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
         label: Constateren
+        placeholder: '450 tekens voor de reden(s) van de petitie'
       petitioner:
         email:
           description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen.
@@ -620,9 +623,11 @@ nl:
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
+        placeholder: 450 tekens voor wat de petitie vraagt
       short_description:
         description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Korte beschrijving
+        placeholder: 300 tekens voor een korte beschrijving
       status:
         description: Kies als moderator de status voor de petitie. Bijvoorbeeld, open een petitie voor ondertekenen nadat u de petitie hebt gecontroleerd. Haal de spelfouten eruit en let erop dat het past binnen de wet (privacy, auteursrecht, discriminatie, etc.) en uw eigen reglementen.
       submit: Petitie aanmaken
@@ -633,6 +638,7 @@ nl:
       we:
         description: U beschrijft hiermee de lijst ondertekenaars die u onder uw petitie verwacht. Let op dat u niemand uitsluit. Maximaal 100 karakters.
         label: Wij
+        placeholder: 100 tekens om de ondertekenaars te beschrijven
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
   statement: Verzoek
