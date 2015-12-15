@@ -310,6 +310,8 @@ nl:
     startanother: Start nog een petitie
     visits: Bezoekstatistieken
     sidekiq: Taken wachtrij
+  moderation: 
+    pending: Uw petitie gaat open na het bevestigen van deze e-mail
   name: Name
   office:
     signatures_count: 'ondertekeningen'
