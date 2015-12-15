@@ -3,9 +3,9 @@ require 'test_helper'
 class SignaturesControllerTest < ActionController::TestCase
 
   setup do
-    @petition = petitions(:one)
-    @signature = signatures(:one)
-    @newsignature = new_signatures(:one)
+    @petition = petitions(:two)
+    @signature = signatures(:two)
+    @newsignature = new_signatures(:two)
   end
 
   #test "should get index" do
