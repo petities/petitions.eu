@@ -61,6 +61,7 @@ change the database to utf with the following sql
     ALTER DATABASE petities CHARACTER SET utf8 COLLATE utf8_unicode_ci;
     ALTER TABLE newsitems CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
     ALTER TABLE petitions CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+    ALTER TABLE signatures CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 Convert lating8 special characters to utf8
 
