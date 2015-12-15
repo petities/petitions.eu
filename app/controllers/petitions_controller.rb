@@ -375,7 +375,7 @@ class PetitionsController < ApplicationController
 
     Globalize.with_locale(locale) do
       respond_to do |format|
-        if @petition.update_attributes(petition_params)
+        if @petition.update(petition_params)
           format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
           format.json { render :show, status: :ok, location: @petition }
         else
@@ -428,6 +428,16 @@ class PetitionsController < ApplicationController
 
     @up = @version_index < 0 ? @version_index + 1 : 0
     @down = @version_index.abs < @petition.versions.size ? @version_index - 1 : @version_index
+
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the post_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    if params[:action] == :show
+      if request.path != petition_path(@petition).split('?')[0]
+        return redirect_to @petition, :status => :moved_permanently
+      end
+    end
+
   end
 
   def find_owners

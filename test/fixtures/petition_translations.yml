@@ -1,0 +1,30 @@
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1,
+  petition_id: 1
+  locale: en
+  name: test1,
+  description: description:1,
+  request: request:,
+  statement: statement,
+  initiators: :initiators
+  slug: testslug
+  created_at: 2014-07-14 20:53:32 
+  updated_at: 2014-07-14 20:53:32 
+
+
+two:
+  id: 2,
+  petition_id: 2
+  locale: en
+  name: test1,
+  description: description:1,
+  request: request:,
+  statement: statement,
+  initiators: :initiators
+  slug: test_alkmaar
+  created_at: 2014-07-14 20:53:32 
+  updated_at: 2014-07-14 20:53:32 
+

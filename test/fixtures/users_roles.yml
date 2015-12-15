@@ -1,2 +1,8 @@
-#
-# create some test user roles
+
+one:
+  user_id: 1
+  role_id: 5 
+
+two:
+  user_id: 3
+  role_id: 5
