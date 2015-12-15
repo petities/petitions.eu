@@ -126,9 +126,9 @@ $ ->
     $('#success_share_email').show()
     $('#fail_share_email').hide()
     $('#input_share_email').val("")
-    $('#input_share_email').attr("placeholder", "Great!.. invite more!!")
+    $('#input_share_email').attr("placeholder", "Thank you! Please invite more")
     #console.log(status)
-    #$('#feedback').html('you are awesome!')
+    #$('#feedback').html('Well done!')
   )
 
   # sign email fail
@@ -136,7 +136,7 @@ $ ->
     $('#success_share_email').hide()
     $('#fail_share_email').show()
     $('#input_share_email').val("")
-    $('#input_share_email').attr("placeholder", "Failed! Try again! send more!")
+    $('#input_share_email').attr("placeholder", "Failed! Try again")
     #console.log(data.responseJSON)
     #$('#feedback').html('failed')
   )

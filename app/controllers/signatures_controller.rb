@@ -348,7 +348,8 @@ class SignaturesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def signature_params
     params.require(:signature).permit(
-      :person_city, :person_name, :person_email, :person_street, :person_street_number, :person_born_at, :person_postalcode,
+      :person_city, :more_information, :person_name, :person_email, 
+      :person_street, :person_street_number, :person_born_at, :person_postalcode,
       :person_function, :person_country, :person_famous,
       :person_street_number_suffix,
       :subscribe, :visible,
@@ -357,7 +358,7 @@ class SignaturesController < ApplicationController
 
   def pledge_params
     params.require(:pledge).permit(
-      :skill, :influence, :feedback, :money, :inform_me
+      :skill, :influence, :feedback, :money
     )
   end
 

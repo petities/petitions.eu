@@ -47,7 +47,7 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = f.check_box :more_information
+          = f.check_box :subscribe
           label= t('confirm.form.more_information.label')
         div.start-petition-form-cell.label
           p= t('confirm.form.more_information.description')
@@ -76,6 +76,13 @@ div.page
           = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = f.check_box :more_information
+          label= t('confirm.form.invite_info.label')
+        div.start-petition-form-cell.label
+          p= t('confirm.form.invite_info.description')
 
       /div.start-petition-form-row
       /  div.start-petition-form-cell.input
@@ -152,29 +159,22 @@ div.page
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
+
       span.errors id="confirm_errors" style='display: none;'
 
         div.start-petition-form-row
           h2.start-petition-form-cell.input.error
-            = t('signature.confirm.errors')
+            = t('signature.confirm_errors')
 
           div.start-petition-form-cell.label.empty
             | &nbsp;
             div id="confirm_error_messages"
-
 
       span id="confirm_success" style='display: none;'
 
         div.start-petition-form-row
           h2.start-petition-form-cell.input
             = t('signature.success')
-
-          div.start-petition-form-cell.label.empty
-            | &nbsp;
-
-        div.start-petition-form-row
-          div.start-petition-form-cell.input
-            = link_to t('confirm.see_your_signature'), anchor_petition_signatures_url(@petition, @signature), class: 'start-petition-form-cell-button'
 
           div.start-petition-form-cell.label.empty
             | &nbsp;
@@ -207,13 +207,6 @@ div.page
             = t('confirm.info.help_petition')
         div.start-petition-form-cell.label.empty
           | &nbsp;
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          = f.check_box :inform_me
-          label= t('confirm.form.invite_info.label')
-        div.start-petition-form-cell.label
-          p= t('confirm.form.invite_info.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -334,14 +327,14 @@ div.page
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        input.start-petition-form-cell-button.facebook  type="submit" value="Delen op FaceBook"
+        input.start-petition-form-cell-button.facebook  type="submit" value=t('confirm.info.share.on_facebook')
 
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        input.start-petition-form-cell-button.twitter  type="submit" value="Delen op twitter"
+        input.start-petition-form-cell-button.twitter  type="submit" value=t('confirm.info.share.on_twitter')
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
