@@ -536,9 +536,9 @@ en:
       request: and request
       share_this: Share this petition with others
       status: 
-        label: Your petition...
+        label: What next?
+        will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.       
         was_signable: Your petition is no longer open to collect signatures.
-        will_be_signable: You now receive an e-mail with the login information. 
       title: Petition
       we: We
     petitioner:
@@ -637,6 +637,7 @@ en:
           update_description: Save improvements.
       petition_type:
         description: As moderator, set the appropriate type of petition with consequences for the requirements for signatures.
+        label: Petition type
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request

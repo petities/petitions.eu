@@ -136,9 +136,11 @@ nl:
       your_signature: Uw ondertekening in de lijst
     mailafriend: 
       description: Voer alleen e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
+      failed: Mislukt! Probeer nog eens      
       input: Voer (nog) een e-mailadres in
       label: 'Voorvertoning'
       title: Nodig anderen uit
+      success: Dank u! Zou u meer willen uitnodigen?
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:
@@ -533,11 +535,11 @@ nl:
       observe: constateren
       request: en verzoeken
       share_this: Deel deze petitie met anderen
-      title: Petitie
       status: 
-        label: Uw petitie...
+        label: Hoe nu verder?
         was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
-        will_be_signable: U ontvangt nu een e-mail met inloggegevens.
+        will_be_signable: We hebben u een e-mail gestuurd vanaf info@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen. 
+      title: Petitie
       we: Wij
     petitioner:
       real_name: Naam
@@ -554,7 +556,7 @@ nl:
         name: Voornaam Achternaam
         residence: Woonplaats
         sign_again: Nu iemand anders laten tekenen
-        submit: Ja, Ik onderteken deze petitie
+        submit: Ja, ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
         success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
@@ -635,6 +637,7 @@ nl:
           update_description: Bewaar verbeteringen.  
       petition_type:
         description: Kies als moderator het petitietype met consequenties voor de vereisten voor ondertekenaars.
+        label: Petitietype
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
@@ -645,6 +648,7 @@ nl:
         placeholder: 300 tekens voor een korte beschrijving
       status:
         description: Kies als moderator de status voor de petitie. Bijvoorbeeld, open een petitie voor ondertekenen nadat u de petitie hebt gecontroleerd. Haal de spelfouten eruit en let erop dat het past binnen de wet (privacy, auteursrecht, discriminatie, etc.) en uw eigen reglementen.
+        label: Petitiestatus
       submit: Petitie aanmaken
       subdomain:
         description: Kies als moderator het kortst mogelijke subdomein, maar wel beschrijvend.
