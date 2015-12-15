@@ -4,8 +4,8 @@ class Addslugs < ActiveRecord::Migration
     add_column :petitions, :slug, :string
   end
 
-  def down 
+  def down
     #Petition.remove_column :petition_translations, :slug
-    remove_column :petitions, :slug
+    #remove_column :petitions, :slug
   end
 end

@@ -5,14 +5,12 @@ module FindPetition extend ActiveSupport::Concern
   # Use callbacks to share common setup or constraints between actions.
   #
   def find_petition
+
     Globalize.locale = params[:locale] || I18n.locale
-    if @petition
-      return
-    end
-    
+
     # find petition by slug name subdomain, id, friendly_name
     if params[:slug]
-      @petition = Petition.find_by_slug(params[:id])
+      @petition = Petition.find_by_slug(params[:slug])
     elsif not request.subdomain.empty?
       @petition = Petition.find_by_subdomain(request.subdomain)
     elsif params[:petition_id]
@@ -28,5 +26,5 @@ module FindPetition extend ActiveSupport::Concern
       end
     end
   end
-
 end
+

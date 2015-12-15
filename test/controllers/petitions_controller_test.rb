@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PetitionsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @petition = petitions(:one)
   end
@@ -89,15 +91,31 @@ class PetitionsControllerTest < ActionController::TestCase
   end
 
 
-  #test "should show petition" do
-  #  get :show, id: @petition
-  #  assert_response :success
-  #end
+  test "should show petition" do
+    get :show, id: @petition.id
+    assert_response :success
+  end
+  
+  test "should show petition slug" do
+    get :show, id: @petition.friendly_id
+    assert_response :success
+  end
 
-  #test "should get edit" do
-  #  get :edit, id: @petition
-  #  assert_response :success
-  #end
+  test "should not get edit" do
+    get :edit, id: @petition
+    assert_redirected_to root_path 
+  end
+
+  test "should_get_edit" do
+    # user has admin rights on petition 1
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    u = User.find(1) 
+    u.confirm
+    u.add_role(:admin, @petition)
+    sign_in u
+    get :edit, id: @petition.friendly_id
+    assert_response :success
+  end
 
   #test "should update petition" do
   #  patch :update, id: @petition, petition: { name: 'newtitle', description: @petition.description }

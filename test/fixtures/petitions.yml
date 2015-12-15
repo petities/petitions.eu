@@ -63,8 +63,9 @@
 #  active_rate_value                :float(24)        default(0.0)
 #  owner_id                         :integer
 #  owner_type                       :string(255)
-#  slug                             :string(255)
 #  reference_field                  :string(255)
+#  answer_due_date                  :date
+#  slug                             :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -79,7 +80,8 @@ one:
   petitioner_name: test11,
   statement: statement,
   initiators: :initiators
-
+  slug: testslug
+  subdomain: test
 
 two:
   id: 2,
@@ -90,6 +92,6 @@ two:
   petitioner_email: test@test.nl,
   statement: statement,
   initiators: :initiators
-
-
+  slug: test_alkmaar
+  subdomain: alkmaar
 

@@ -1,0 +1,15 @@
+one:
+  name: testslug
+  sluggable_type: Petition
+  sequence: 1
+
+two_old:
+  name: with-two-slugs
+  sluggable_type: Petition
+  sequence: 1
+
+two_new:
+  name: with-two-slugs-new
+  sluggable_type: Petition
+  sequence: 1
+

@@ -227,4 +227,20 @@ namespace :petition do
       publish_task.save
     end
   end
+
+  desc 'update slugs from petition name'
+  task 'update_slugs' => :environment do
+    Petition.find_each do |p|
+      # NOTE maybe put true
+      # Petition.should_generate_new_friendly_id?
+      if p.slug.nil?
+        #p.set_friendly_id(p.cached_slug, :en)
+        #p.set_friendly_id(p.cached_slug, :nl)
+        begin
+          p.update(name: p.name)
+        rescue
+        end
+      end
+    end
+  end
 end
