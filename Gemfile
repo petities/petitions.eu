@@ -112,6 +112,9 @@ gem 'country_select'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :production do
+  gem 'unicorn'
+end
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
