@@ -296,7 +296,7 @@ nl:
   listing: Lijst
   login:
     email: 
-      descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
+      descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam. Ondertekenaars hebben geen login met wachtwoord, maar gebruiken de toegestuurde link.
       label: E-mailadres
     login: Inloggen
     password:

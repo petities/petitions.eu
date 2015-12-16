@@ -296,7 +296,7 @@ en:
   listing: Listing
   login:
     email:
-      descr: The e-mailaddress you used to start your petition is also your username.
+      descr: The e-mailaddress you used to start your petition is also your username. Signatories do not have a login, but use the link sent by e-mail.
       label: E-mail address
     login: Log in
     password:
