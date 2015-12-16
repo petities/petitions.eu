@@ -56,16 +56,22 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def has_subdomain?
+    if not request.subdomain.empty?
+      if not %w"dev www api".include? request.subdomain
+        return true
+      end
+    end
+    false
+  end
   # redirect subdomains which are not direct 'hits'
   # to a url without subdomain
   def ensure_domain
-      if not request.subdomain.empty?
-        if not %w"dev www api".include? request.subdomain
-          if not request.fullpath == '/'
-            redirect_to request.url.sub(request.subdomain + '.', '')
-          end
-        end
+    if has_subdomain?
+      if not request.fullpath == '/'
+        redirect_to request.url.sub(request.subdomain + '.', '')
       end
+    end
   end
 
   def user_not_authorized(exception)
