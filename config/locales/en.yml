@@ -296,7 +296,7 @@ en:
   listing: Listing
   login:
     email:
-      descr: The e-mailaddress you used to start your petition is also your username. Signatories do not have a login, but use the link sent by e-mail.
+      descr: The e-mailaddress you used to start your petition is also your username.
       label: E-mail address
     login: Log in
     password:
@@ -535,7 +535,7 @@ en:
       news: News
       observe: observe
       request: and request
-      share_this: Share this petition with others
+      share_this: Before you go to the confirmation e-mail you can share the link with the options below. After confirmation you can enter e-mail addresses to send invitations to others through us.
       status: 
         label: What next?
         will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.       
