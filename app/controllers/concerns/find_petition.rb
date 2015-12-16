@@ -11,7 +11,7 @@ module FindPetition extend ActiveSupport::Concern
     # find petition by slug name subdomain, id, friendly_name
     if params[:slug]
       @petition = Petition.find_by_slug(params[:slug])
-    elsif not request.subdomain.empty?
+    elsif has_subdomain? 
       @petition = Petition.find_by_subdomain(request.subdomain)
     elsif params[:petition_id]
       @petition = Petition.find(params[:petition_id])
