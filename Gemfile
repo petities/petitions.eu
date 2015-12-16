@@ -73,6 +73,7 @@ gem 'paperclip'
 
 # execute jobs on the side..
 gem 'sidekiq'
+gem 'sinatra', require: nil # sidekiq/web uses sinatra
 
 # create periodic tasks in your project
 gem 'whenever', :require => false
