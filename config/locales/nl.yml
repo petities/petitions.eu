@@ -44,6 +44,7 @@ nl:
       action:
         add_details: Werk mijn ondertekening bij
         confirm: Bevestig
+        confirm_and_save: Bevestig en bewaar
         pledge: Ik zeg deze hulp toe
         send_email: Verstuur de uitnodiging
         update: Werk mijn ondertekening bij
@@ -69,7 +70,7 @@ nl:
         update_information: updated
       influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
       influencelabel: Heeft u invloed? Bent u een... 
-      invite_info: 
+      invite_info:
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
         label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
       location:
@@ -101,6 +102,7 @@ nl:
       postal_code:
         description: Alleen de ontvanger van de petitie en de petitionaris kunnen uw adres zien. Om het te controleren.
         label: Postcode
+      see_your_signature: Bekijk uw ondertekening in de lijst
       skillslabel: Kunt u iets speciaals om te helpen? Kunt u...       
       skills_offer_description: Een petitionaris heeft misschien uw speciale vaardigheden nodig. Mogelijk kunt u helpen. U ontvangt dan een e-mail met een concreet voorstel.
       street:
@@ -123,18 +125,22 @@ nl:
       how_much: Hoeveel zou u bij willen dragen?
       how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
       ip: 'Uw IP-address: %{ip}'
-      petition_signature_url: Link naar uw ondertekening.
+      petition_signature_url: Deze link naar uw ondertekening kunt u kopieer-plakken. Bijvoorbeeld om te versturen of ergens te publiceren.
       share:
+        on_facebook: Zet deze petitie op Facebook
         on_facebook_description: Zet de petitie op Facebook
+        on_twitter: Zet deze petitie op Twitter
         on_twitter_description: Zet de petitie op Twitter
       share_petition: Deel de petitie
       your_email: Uw e-mailadres
-      your_signature: Uw ondertekening in the lijst
+      your_signature: Uw ondertekening in de lijst
     mailafriend: 
       description: Voer alleen e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
+      failed: Mislukt! Probeer nog eens      
       input: Voer (nog) een e-mailadres in
       label: 'Voorvertoning'
       title: Nodig anderen uit
+      success: Dank u! Zou u meer willen uitnodigen?
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:
@@ -310,6 +316,8 @@ nl:
     startanother: Start nog een petitie
     visits: Bezoekstatistieken
     sidekiq: Taken wachtrij
+  moderation: 
+    pending: Uw petitie gaat open na het bevestigen van deze e-mail
   name: Name
   office:
     signatures_count: 'ondertekeningen'
@@ -397,6 +405,7 @@ nl:
     live_version: Versie
     minimum_age: Minimumleeftijd
     new: Nieuw
+    news: 'Er is nieuws!'
     newer_version: Nieuwere versie
     newest: Nieuwste
     not_processed: Not processed
@@ -429,6 +438,7 @@ nl:
         in_process: Te behandelen
         closed: Beantwoord
         published: Ondertekenbaar
+        success: Petitie is bijgewerkt
         your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
     the_next_logical_action: De volgende stap
     title: Titel
@@ -526,11 +536,11 @@ nl:
       observe: constateren
       request: en verzoeken
       share_this: Deel deze petitie met anderen
-      title: Petitie
       status: 
-        label: Uw petitie...
+        label: Hoe nu verder?
         was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
-        will_be_signable: U ontvangt nu een e-mail met inloggegevens.
+        will_be_signable: We hebben u een e-mail gestuurd vanaf info@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen. 
+      title: Petitie
       we: Wij
     petitioner:
       real_name: Naam
@@ -547,7 +557,7 @@ nl:
         name: Voornaam Achternaam
         residence: Woonplaats
         sign_again: Nu iemand anders laten tekenen
-        submit: Ja, Ik onderteken deze petitie
+        submit: Ja, ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
         success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
@@ -562,8 +572,16 @@ nl:
     wrong_name: Wrong name
   signature:
     confirm: Bevestig
+    confirm_errors: 'Er ontbreekt wat verplichte informatie, uw ondertekening is nog niet bewaard'
     dear: Geachte
     did_you_mean: Bedoelde u 
+    errors:
+      city_too_short: Woonplaatsen zijn zelden zo kort
+      name_invalid: Namen zijn zelden zo kort
+      name_and_surname: 'Dat ziet er niet uit als een voornaam (of initiaal) en achternaam'
+      not_a_number: Dat is geen of niet alleen maar een nummer
+      street_too_short: 'Straatnamen zijn zelden zo kort'
+    failed_send: Mislukt
     help:
       city: Woonplaats
       email: E-mail
@@ -620,6 +638,7 @@ nl:
           update_description: Bewaar verbeteringen.  
       petition_type:
         description: Kies als moderator het petitietype met consequenties voor de vereisten voor ondertekenaars.
+        label: Petitietype
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
         label: Verzoeken
@@ -630,6 +649,7 @@ nl:
         placeholder: 300 tekens voor een korte beschrijving
       status:
         description: Kies als moderator de status voor de petitie. Bijvoorbeeld, open een petitie voor ondertekenen nadat u de petitie hebt gecontroleerd. Haal de spelfouten eruit en let erop dat het past binnen de wet (privacy, auteursrecht, discriminatie, etc.) en uw eigen reglementen.
+        label: Petitiestatus
       submit: Petitie aanmaken
       subdomain:
         description: Kies als moderator het kortst mogelijke subdomein, maar wel beschrijvend.

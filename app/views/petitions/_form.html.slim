@@ -95,7 +95,7 @@
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title Petition type
+        div.start-petition-form-cell-title= t('start.form.petition_type.label')
         = f.select :petition_type_id,
           options_from_collection_for_select(@petition_types, "id", "name", selected: @petition.petition_type_id),
           include_blank: t("start.form.type.blank", default:"select type")
@@ -104,7 +104,7 @@
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title Petition status
+        div.start-petition-form-cell-title= t('start.form.status.label')
         = f.select :status, options_for_select(Petition::STATUS_LIST, selected: @petition.status)
       div.start-petition-form-cell.label
         p= t('start.form.status.description')
@@ -112,10 +112,11 @@
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title Subdomain
+        div.start-petition-form-cell-title= t('start.form.subdomain.label')
         = f.text_field :subdomain, class: 'start-petition-form-cell-input validation'
       div.start-petition-form-cell.label
         p= t('start.form.subdomain.description')
+
 
   - if !user_signed_in? && action_name == 'new'
 

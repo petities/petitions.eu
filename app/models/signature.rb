@@ -55,7 +55,7 @@ class Signature < ActiveRecord::Base
   validates :person_name,
               format: {
                 with: /\A.+( |\.).+\z/,
-                message: t('signature.errors.name_and_surname', default: 'name_and_surname')
+                message: t('signature.errors.name_and_surname', default: 'name and surname')
             }
 
   # keep this simple since we are sending validation emails anyways.
@@ -86,7 +86,7 @@ class Signature < ActiveRecord::Base
   validates :person_city,
             length: {
               in: 3..255,
-              message: t('signature.errors.city_to_short', default: 'to short')
+              message: t('signature.errors.city_too_short', default: 'too short')
             },
             on: :update,
             if: :require_full_address?
@@ -94,7 +94,7 @@ class Signature < ActiveRecord::Base
   validates :person_street,
             length: {
               in: 3..255,
-              message: t('signature.errors.wrong', default: 'invalid')
+              message: t('signature.errors.street_too_short', default: 'too short')
             },
             on: :update,
             if: :require_full_address?
@@ -125,7 +125,7 @@ class Signature < ActiveRecord::Base
   validates :person_birth_city,
             length: {
               in: 3..255,
-              message: t('signature.errors.city', default: 'to short')
+              message: t('signature.errors.city_too_short', default: 'too short')
              },
              on: :update,
              if: :require_person_birth_city?

@@ -44,6 +44,7 @@ en:
       action:
         add_details: Update my signature
         confirm: Confirm
+        confirm_and_save: Confirm and save
         pledge: I pledge to help
         send_email: Send the invitation
         update: Update my signature
@@ -67,9 +68,9 @@ en:
         label: Function or situation
       form:
         update_information: updated
-      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with proposal.
+      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with a specific proposal.
       influencelabel: Do you have influence? Are you a(n)...
-      invite:
+      invite_info:
         description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.
         label: My municipality may send me up to 6 invitations per year
       location:
@@ -101,6 +102,7 @@ en:
       postal_code:
         description: Only the recipient of the petition and the recipient can see your address. To verify it.
         label: Postal code
+      see_your_signature: View your signature in the list
       skillslabel: Do you have special skill? Are you able to...
       skills_offer_description: The lead petitioner might need your special skills. You might be able to help. You will receive an e-mail with a specific proposal.
       street:
@@ -119,22 +121,26 @@ en:
       browser: 'Your browser: %{browser}'
       check_information: Please check your information
       donate_petition: Donate
-      help_petition: Help petition
+      help_petition: Help the petition
       how_much: How much would you like to contribute?
       how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
       ip: 'Your IP-address: %{ip}'
-      petition_signature_url: Link to your signature
+      petition_signature_url: You can copy and paste this link to your signature. To send or publish for example.
       share:
-        on_facebook_description: On facebook description
-        on_twitter_description: On twitter description
+        on_facebook: Share on Facebook
+        on_facebook_description: Share this petition on Facebook
+        on_twitter: Share on Twitter
+        on_twitter_description: Share this petition on Twitter
       share_petition: Share the petition
       your_email: Your email
       your_signature: See your signature in the list
     mailafriend:
       description: Invite only people you know and who might sign.
+      failed: Failed! Try again
       input: Enter (another) e-mail address
       label: 'Preview:'
       title: Invite others
+      success: Thank you! Please invite more
     title: Confirm your signature for the petition "%{name}"
   description: Description
   desk:
@@ -310,6 +316,8 @@ en:
     startanother: Start another petition
     visits: Visitor statistics
     sidekiq: Tasks queue
+  moderation: 
+    pending: Your petition opens after you confirm this e-mail
   name: Name
   office:
     signatures_count: 'signatures'
@@ -397,6 +405,7 @@ en:
     live_version: Live version
     minimum_age: Minimum age
     new: New
+    news: 'There is news!'
     newer_version: Newer version
     newest: Newest
     not_processed: Not processed
@@ -445,6 +454,7 @@ en:
     text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
     text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
     text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
+    text_blue: Progress e-mails
     title_green: Donations 
     title_grey: Help from signatories
     title_grey_2: Be aware of the due date
@@ -527,9 +537,9 @@ en:
       request: and request
       share_this: Share this petition with others
       status: 
-        label: Your petition...
+        label: What next?
+        will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.       
         was_signable: Your petition is no longer open to collect signatures.
-        will_be_signable: You now receive an e-mail with the login information. 
       title: Petition
       we: We
     petitioner:
@@ -562,8 +572,16 @@ en:
     wrong_name: Wrong name
   signature:
     confirm: Confirm
+    confirm_errors: 'Some required information is missing, your signature is not saved yet...'
     dear: Dear
     did_you_mean: Did you mean
+    errors:
+      city_too_short: Place names are rarely that short
+      name_invalid: Names are rarely that short
+      name_and_surname: 'Does not look like a name (or initial) and surname'
+      not_a_number: That is not or not only a number
+      street_too_short: 'Street names are rarely that short'
+    failed_send: Failed
     help:
       city: City
       email: E-mail
@@ -620,6 +638,7 @@ en:
           update_description: Save improvements.
       petition_type:
         description: As moderator, set the appropriate type of petition with consequences for the requirements for signatures.
+        label: Petition type
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
         label: Request
