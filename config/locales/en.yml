@@ -405,6 +405,7 @@ en:
     live_version: Live version
     minimum_age: Minimum age
     new: New
+    news: 'There is news!'
     newer_version: Newer version
     newest: Newest
     not_processed: Not processed
