@@ -233,14 +233,13 @@ namespace :petition do
     Petition.find_each do |p|
       # NOTE maybe put true
       # Petition.should_generate_new_friendly_id?
-      if p.slug.nil?
-        #p.set_friendly_id(p.cached_slug, :en)
-        #p.set_friendly_id(p.cached_slug, :nl)
+      if p.slug.blank?
         begin
           p.update(name: p.name)
         rescue
         end
       end
+      puts p.friendly_id
     end
   end
 end
