@@ -82,6 +82,11 @@ class Signature < ActiveRecord::Base
   #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
   #          on: :update,
   #          if: :require_full_address?
+  before_validation :strip_whitespace
+
+  def strip_whitespace
+    self.person_street_number = self.person_street_number.strip unless self.person_street_number.nil?
+  end
 
   validates :person_city,
             length: {
