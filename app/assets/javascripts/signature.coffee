@@ -55,17 +55,17 @@ $ ->
 # replace content of email form when clicked.
 # and remove the sugestion
 $ ->
-  $('[id^=suggest_]').on "click", ->
+  $('[id^=didyoumean_]').on "click", ->
     #console.log('yes')
     # find email element
     id = $(this)[0].id
-    input_id = id.split('suggest_')[1]
+    input_id = id.split('didyoumean_')[1]
     element = $('#' + input_id)
-    # set value to suggested
-    element.val $(this).html()
+    sugestion_id = '#suggest_' + input_id
+    element.val $(sugestion_id).html()
     #console.log(element)
     # empty suggestion box
-    $(this).html ""
+    $(sugestion_id).html ""
     # hide the tip box
     tip_id = '#didyoumean_' + input_id
     #console.log(tip_id)
