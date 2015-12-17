@@ -1,8 +1,8 @@
 div.header-user-name
   - if current_user
     = current_user.email
-  - else
-    = link_to t('login.login'), new_user_session_path
+  /- else
+  /  = link_to t('login.login'), new_user_session_path
 
 div.header-user-dropdown
 
@@ -18,3 +18,6 @@ div.header-user-dropdown
       = link_to t('my.sidekiq'), '/sidekiq', class: "header-user-dropdown-item"
       = link_to t('my.activeadmin'), '/admin', class: "header-user-dropdown-item"
     = link_to t('logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
+  - else
+    = link_to t("header.new"), new_petition_path, class: 'header-user-dropdown-item'
+    = link_to t('login.login'), new_user_session_path, class: 'header-user-dropdown-item'

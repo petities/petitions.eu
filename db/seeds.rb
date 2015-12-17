@@ -104,7 +104,7 @@ petitions.each do |petition|
         :petition_id => petition[:id],
         :person_name => Faker::Name.name,
         :person_email => Faker::Internet.free_email,
-        :person_city => [:amsterdam, :utrecht, :zaandam, :hilversum].sample,
+        :person_city => [:amsterdam, :Amsterdam, :hilversum].sample,
         :person_function => Faker::Company.name,
         :visible => rand(10) < 8 ? true: false,
         :special => rand(100000) > 79990 ? true: false,
