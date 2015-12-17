@@ -1,8 +1,8 @@
 div.header-user-name
   - if current_user
     = current_user.email
-  /- else
-  /  = link_to t('login.login'), new_user_session_path
+  - else
+    = t('menu.welcome')
 
 div.header-user-dropdown
 
