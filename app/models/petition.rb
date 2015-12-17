@@ -239,8 +239,12 @@ class Petition < ActiveRecord::Base
 
   def is_draft?
     %w(concept
-       draft
-       staging).include? status
+       draft).include? status
+  end
+  
+  def is_staging?
+      %w(concept 
+      staging).include? status
   end
 
   def is_live?

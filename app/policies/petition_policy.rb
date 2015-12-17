@@ -19,7 +19,7 @@ class PetitionPolicy < ApplicationPolicy
   def finalize?
     return false unless user
 
-    user.has_role?(:admin) || user.has_role?(:admin, record)
+    user.has_role?(:admin) || user.has_role?(:admin, record) || user.has_role?(:admin, record.office)
   end
 
 end

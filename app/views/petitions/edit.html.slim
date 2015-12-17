@@ -150,6 +150,14 @@ div
           div.petition-editbutton
             = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
         div.whitespace
+  
+  - if @petition.is_staging?
+    - if user_signed_in? && current_user.has_role?(:admin, @office)
+        div.petition-editbutton-container #style="margin:-20px 0 0; padding:0 0 30px;"
+          div.petition-editbutton
+            = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
+        div.whitespace
+
 
   /<!-- /editbutton -->
 div.page

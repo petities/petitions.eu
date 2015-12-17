@@ -440,6 +440,7 @@ en:
         published: Published
         success: Petition was successfully updated
         your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
+        your_petition_is_live: The petition is now open to collect signatures. The petitioner receives an e-mail about this.
     the_next_logical_action: The next logical action
     title: Title
     to_process: To process

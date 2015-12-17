@@ -440,6 +440,7 @@ nl:
         published: Ondertekenbaar
         success: Petitie is bijgewerkt
         your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
+        your_petition_is_live: De petitie staat nu open om ondertekeningen te verzamelen. De petitionaris ontvangt hier een e-mail over.
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
@@ -606,7 +607,7 @@ nl:
       addressed:
         description: Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
         label: Gericht aan
-      finalize: Klaar
+      finalize: Open de petitie
       image:
         description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.
         label: Petitie-plaatje
