@@ -22,6 +22,19 @@ class SignaturesController < ApplicationController
                                   .map { |group| [group[0], group[1].size] }
                                   .select { |group| group[1] >= 100 }
                                   .sort_by { |group| group[1] }[0..9]
+
+      @filtered_s_c_c = {}
+
+      @signatures_count_by_city.each do |group|
+        city_name = group[0].downcase
+        if @filtered_s_c_c[city_name]
+          @filtered_s_c_c[city_name] += group[1].to_i
+        else
+          @filtered_s_c_c[city_name] = group[1].to_i
+        end
+      end
+      @sorted_city_count = @filtered_s_c_c.sort_by {|city, count| -count}
+
       @per_page = 100
     else
       @per_page = 12
