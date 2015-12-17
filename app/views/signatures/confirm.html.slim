@@ -52,6 +52,7 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.more_information.description')
 
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.name.label')
@@ -61,19 +62,18 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.country.label')
-          /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-          = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
-        div.start-petition-form-cell.label
-          p= t('confirm.form.country.description')
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.location.label')
           - error = ''
           - if not @signature.errors[:person_city].empty?
             - error = ' error'
-          = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
+          - if not @signature.petition.display_city_select_box?
+              = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
+          - else
+              - cities = @signature.petition.petition_type.cities.map(&:name)
+              = f.select(:person_city,
+                       options_for_select(cities),
+                       class: "start-petition-form-cell-select.large")
+
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
 
@@ -84,12 +84,45 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.invite_info.description')
 
-      /div.start-petition-form-row
-      /  div.start-petition-form-cell.input
-      /    div.start-petition-form-cell-title= t('confirm.form.email.label')
-      /    = f.text_field :person_email, class: 'start-petition-form-cell-input'
-      /  div.start-petition-form-cell.label
-      /    p= t('confirm.form.email.description')
+
+
+      - if @signature.require_full_address? || @signature.require_person_country?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.country.label')
+            /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
+            = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
+          div.start-petition-form-cell.label
+            p= t('confirm.form.country.description')
+
+      - if @signature.require_full_address?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.street.label')
+            = f.text_field :person_street, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.street.description')
+
+        div.start-petition-form-row
+          div.start-petition-form-cell.input.double
+
+            div.start-petition-form-cell-half
+              div.start-petition-form-cell-title= t('confirm.form.street_number.label')
+              = f.text_field :person_street_number, class: 'start-petition-form-cell-input'
+
+            div.start-petition-form-cell-half
+              div.start-petition-form-cell-title= t('confirm.form.street_number_suffix.suffixlabel')
+              = f.text_field :person_street_number_suffix, class: 'start-petition-form-cell-input'
+
+          div.start-petition-form-cell.label
+            p= t('confirm.form.street_number.description')
+
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.postal_code.label')
+            = f.text_field :person_postalcode, class: 'start-petition-form-cell-input small'
+          div.start-petition-form-cell.label
+            p= t('confirm.form.postal_code.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -99,34 +132,6 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.function.description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.street.label')
-          = f.text_field :person_street, class: 'start-petition-form-cell-input'
-        div.start-petition-form-cell.label
-          p= t('confirm.form.street.description')
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input.double
-
-          div.start-petition-form-cell-half
-            div.start-petition-form-cell-title= t('confirm.form.street_number.label')
-            = f.text_field :person_street_number, class: 'start-petition-form-cell-input'
-
-          div.start-petition-form-cell-half
-            div.start-petition-form-cell-title= t('confirm.form.street_number_suffix.suffixlabel')
-            = f.text_field :person_street_number_suffix, class: 'start-petition-form-cell-input'
-
-        div.start-petition-form-cell.label
-          p= t('confirm.form.street_number.description')
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.postal_code.label')
-          = f.text_field :person_postalcode, class: 'start-petition-form-cell-input small'
-        div.start-petition-form-cell.label
-          p= t('confirm.form.postal_code.description')
-
       /#- if @signature.require_person_birth_city?
       /div.start-petition-form-row
       /  div.start-petition-form-cell.input
@@ -135,13 +140,17 @@ div.page
       /  div.start-petition-form-cell.label
       /    p= t('confirm.form.city.description')
 
-      /- if @signature.require_born_at? || Rails.env.develpment?
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.born_at.label')
-          = f.date_select :person_born_at, order: [:day, :month, :year], end_year: Date.today.year - 5, start_year: 1920, selected: Date.today.year - 25
-        div.start-petition-form-cell.label
-          p= t('confirm.form.born_at.description')
+      - if @signature.require_born_at? || @signature.require_minimum_age?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title= t('confirm.form.born_at.label')
+            - minium_age = @signature.petition.petition_type.required_minimum_age || 9
+            - newest_date = Date.today.year - minium_age
+            = f.date_select :person_born_at, order: [:day, :month, :year], end_year: newest_date, start_year: 1920, selected: Date.today.year - 25
+          div.start-petition-form-cell.label
+            p
+              =<> t('confirm.form.born_at.description')
+              =<> minium_age
 
       div.start-petition-form-row
           div.start-petition-form-cell.input

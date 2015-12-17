@@ -32,6 +32,7 @@ class Office < ActiveRecord::Base
   has_many :petitions
 
   belongs_to :organisation
+  belongs_to :petition_type
 
   has_many :images, as: :imageable, dependent: :destroy
 

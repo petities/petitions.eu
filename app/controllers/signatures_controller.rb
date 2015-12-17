@@ -166,7 +166,7 @@ class SignaturesController < ApplicationController
       # check if we need to have extra information
       # and inform user about it
       if(@signature.require_full_address? ||
-         @signature.require_person_birth_city? ||
+         #@signature.require_person_birth_city? ||
          @signature.require_born_at? ||
          @signature.require_person_country?
        )
@@ -361,7 +361,7 @@ class SignaturesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def signature_params
     params.require(:signature).permit(
-      :person_city, :more_information, :person_name, :person_email, 
+      :person_city, :more_information, :person_name, :person_email,
       :person_street, :person_street_number, :person_born_at, :person_postalcode,
       :person_function, :person_country, :person_famous,
       :person_street_number_suffix,
