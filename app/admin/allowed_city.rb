@@ -7,10 +7,10 @@ ActiveAdmin.register AllowedCity do
 #
 # or
 #
-# permit_params do
-#   permitted = [:permitted, :attributes]
+ permit_params do
+   permitted = [:petition_type_id, :city_id]
 #   permitted << :other if resource.something?
 #   permitted
-# end
+ end
 
 end
