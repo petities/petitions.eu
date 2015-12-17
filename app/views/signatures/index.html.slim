@@ -39,7 +39,7 @@ div.page.signatures
         div.side-article-container.whitespace
           h2.side-article-title = t('signatures.popular_cities')
           ul
-            - @signatures_count_by_city.each do |group|
+            - @sorted_city_count.each do |group|
               li= "#{group[0]}: #{group[1]}"
 
 
