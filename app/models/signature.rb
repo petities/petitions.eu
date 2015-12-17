@@ -164,27 +164,22 @@ class Signature < ActiveRecord::Base
   end
 
   def require_full_address?
-    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_signature_full_address?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
+    petition.present? && petition.petition_type.present? && petition.petition_type.require_signature_full_address?
+    #return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
   end
 
   def require_born_at?
-    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_born_at?
+    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_born_at?
     # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_born_at?
   end
 
   def require_minimum_age?
-    return true if petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
+    petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
     # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.required_minimum_age.present?
   end
 
-  def require_person_birth_city?
-    return true if petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
-  end
-
   def require_person_country?
-    return true if petition.present? && petition.petition_type.present? && !petition.petition_type.country_code
+    petition.present? && petition.petition_type.present? && petition.petition_type.country_code.present?
     # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
   end
 

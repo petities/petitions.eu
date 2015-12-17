@@ -74,7 +74,7 @@ class Petition < ActiveRecord::Base
   translates :name, :description, :initiators, :statement, :request, :slug, versioning: :paper_trail
   has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
-  
+
   extend FriendlyId # must come after translates
 
   resourcify
@@ -264,6 +264,15 @@ class Petition < ActiveRecord::Base
   def is_answered?
     ['completed'].include? status
   end
+
+  def display_city_select_box?
+    if petition_type.present?
+      petition_type.allowed_cities.present?
+    elsif office.present? && office.petition_type.present?
+      office.petition_type.allowed_cities.present?
+    end
+  end
+
 
   def history_chart_json
     label_size = signatures.confirmed.map(&:confirmed_at)

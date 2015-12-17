@@ -11,8 +11,10 @@ class SignatureMailer < ApplicationMailer
                            host: 'dev.petitions.eu',
                            signature_id: @signature.unique_key)
 
-    logger.debug 'building a confirmation mail.'
+    logger.debug ''
+    logger.debug 'Building a confirmation mail.'
     logger.debug @confirm_url
+    logger.debug ''
 
     # find the petition name
     name = 'noname'
@@ -21,7 +23,7 @@ class SignatureMailer < ApplicationMailer
     subject = t('mail.confirm.signature.subject', petition_name: name)
 
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @signature.person_email, subject: subject)
-    
+
   end
 
   def sig_reminder_confirm_mail(signature)
