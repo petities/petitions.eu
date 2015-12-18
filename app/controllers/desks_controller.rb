@@ -16,11 +16,11 @@ class DesksController < ApplicationController
     @signatures_count = Signature.joins(:petition).
       where(petitions: {office_id: @office.id}).size
 
-    if not user_signed_in?
-      show_not_logged_in
+    if user_signed_in? && current_user.has_role?(:admin, @office)
+      show_office_page
       return
     else
-      show_office_page
+      show_not_logged_in
     end
   end
 

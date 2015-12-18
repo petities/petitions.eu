@@ -390,13 +390,23 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
+    @petition.update(status: 'staging')
+    flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
+
     if @petition.office.present?
+      if user_signed_in?
+        if current_user.has_role?(:admin, @petition.office)
+          @petition.update(status: 'live')
+          flash[:notice] = t('petition.status.flash.your_petition_is_live')
+          
+        end
+      end
+      
       PetitionMailer.finalize_mail(@petition).deliver_later
       PetitionMailer.finalize_mail(@petition, target: 'nederland@petities.nl').deliver_later
+      
     end
-
-    #flash[:notice] = 'Your petition is awaiting moderation. If you are in a hurry, please leave a voicemail at +31207854412'
-    flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
+        
     redirect_to edit_petition_path(@petition)
   end
 

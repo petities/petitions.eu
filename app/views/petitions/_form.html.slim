@@ -91,7 +91,7 @@
             - @images.each do |image|
               = image_tag image.upload.url, width: '100'
 
-  - if(user_signed_in? && (current_user.has_role?(:admin) or current_user.has_role?(:admin, @petition)))
+  - if(user_signed_in? && current_user.has_role?(:admin, @petition))
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
