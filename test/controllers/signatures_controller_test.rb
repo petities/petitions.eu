@@ -46,6 +46,19 @@ class SignaturesControllerTest < ActionController::TestCase
 
     assert_routing("/signatures/xx/confirm", :controller => "signatures",
                    :action => "confirm", :signature_id => "xx")
+
+    assert_recognizes({
+        :controller => "signatures",
+        :action => "confirm", 
+        :signature_id => "oude_id_blabla"},
+      "/ondertekening/oude_id_blabla")
+
+    assert_recognizes({
+        :controller => "signatures",
+        :action => "confirm", 
+        :signature_id => "oude_id_blabla"},
+      "/ondertekening/oude_id_blabla/confirm")
+
   end
 
   test "check confirmation logic" do
@@ -53,6 +66,7 @@ class SignaturesControllerTest < ActionController::TestCase
       get :confirm, :signature_id => @newsignature.unique_key
       #assert_redirected_to @petition
     end
+
     # when we do it again nothing should happen.
     assert_no_difference('Signature.count') do
       get :confirm, :signature_id => @newsignature.unique_key

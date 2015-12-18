@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   as :user do
     get 'login' => 'devise/sessions#new', as: :new_user_session
+    get 'admin' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create', as: :user_session
     delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
     get 'logout' => 'devise/sessions#destroy'
@@ -14,7 +15,10 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  ActiveAdmin.routes(self)
+  scope 'yesmaster' do
+    ActiveAdmin.routes(self)
+    get '/', to: 'admin/dashboard#index'
+  end
 
   # urls for admin only..
   admin_constraint = lambda do |request|
@@ -96,7 +100,11 @@ Rails.application.routes.draw do
 
   get '/signatures/:signature_id/becomeowner',    to: 'signatures#become_petition_owner', as: :signature_become_owner
   get '/signatures/:signature_id/confirm',    to: 'signatures#confirm', as: :signature_confirm
+
+  get '/ondertekening/:signature_id', to: 'signatures#confirm'
   get '/ondertekening/:signature_id/confirm', to: 'signatures#confirm'
+
   get '/petitie/:slug',       to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
+
 end

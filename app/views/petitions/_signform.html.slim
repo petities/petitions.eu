@@ -1,6 +1,6 @@
 
 javascript:
-  window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
+  window.wrong_name_error = "#{t('sign.wrong_name_and_surname', default: 'Name and surname please')}";
   window.wrong_email_error = "#{t('sign.wrong_email', default: 'Email is incorrect')}";
 
 div.petition-form-float-wrapper
@@ -14,7 +14,7 @@ div.petition-form-float-wrapper
     label.petition-form-label for="petition-form-checkbox"
       = t('show.sign.form.checkbox')
 
-    div.signature-form-errors.signaturesuggestbutton
+    div.signature-form-errors.signaturesuggestbutton.error
 
     div#didyoumean_signature_person_email  style="display: none;"
       = t 'signature.did_you_mean'
