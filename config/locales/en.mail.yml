@@ -3,18 +3,30 @@ en:
     confirm:
       nowwhat: nothing 
       signature:
-        linkinstruction: '
-You nearly signed the petition %{petition} with the e-mail address %{email} on %{date} with the name %{name}. 
+        linkinstruction: 'You nearly signed the petition "%{petition}" 
 
-Is this your name and your e-mail address? Please confirm your signature by following this link:
+
+with the e-mail address %{email} and the name %{name} on %{date}. 
+
+
+Is this your e-mail address and name? Then please confirm your signature by following this link:
+
+
 %{confirm_url}
 
-Otherwise your e-mail address with us will be automatically deleted. You do not count as signatory yet! 
 
-After your confirmation you can always return to update your information or invite others to sign. It is therefore good to keep this message.'
+Otherwise we will delete your signature automatically. You do not count as signatory yet! 
 
-        petition: '
-THE PETITION %{subdomain}.petities.nl
+
+After your confirmation you can always return to update your information 
+
+
+or invite others to sign. It is therefore good to keep this message.'
+
+        petition: 'THE PETITION 
+
+
+%{subdomain}.petities.nl
 
 
 %{intro}
@@ -28,13 +40,14 @@ THE PETITION %{subdomain}.petities.nl
 
 %{request}
 
+
 Do you have questions about this petition? Please contact the lead petitioner on: %{petitionermail}'
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
     dear: Dear
     signoff: 'Thank you for using Petities.nl!
 
 
-        The webmaster 
+        The webmaster
 
 
         Would you like to support us? http://petities.nl/donate'

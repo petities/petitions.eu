@@ -3,19 +3,30 @@ nl:
     confirm:
       nowwhat: nothing 
       signature:
-        linkinstruction: '
-U heeft bijna de petitie %{petition} ondertekend met het e-mailadres %{email} op %{date} met de naam %{name}. 
+        linkinstruction: 'U heeft bijna de petitie "%{petition}" ondertekend 
+        
+        
+met het e-mailadres %{email} en de naam %{name} op %{date}. 
 
-Is dit en uw e-mailadres? Bevestig dan alstublieft door deze link te volgen:
+
+Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen:
+    
+
 %{confirm_url}
 
-Anders wordt uw e-mailadres automatisch gewist bij ons. U telt nog niet als ondertekenaar! 
+
+Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
+
 
 Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken 
+
+
 of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
 '
-        petition: '
-DE PETITIE %{subdomain}.petities.nl
+        petition: 'DE PETITIE
+
+
+%{subdomain}.petities.nl
 
 
 %{intro}
@@ -28,6 +39,7 @@ DE PETITIE %{subdomain}.petities.nl
 
 
 %{request}
+
 
 Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
 '

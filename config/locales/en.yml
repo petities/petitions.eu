@@ -312,6 +312,7 @@ en:
     create_newsupdate: Write update
     mailpreviews: Preview default mails
     news_updates: News
+    petitioner: 'You, the petitioner'
     petitions: My petitions
     profile: My profile
     startanother: Start another petition
