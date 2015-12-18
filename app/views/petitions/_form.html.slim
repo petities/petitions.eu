@@ -113,10 +113,19 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.subdomain.label')
-        = f.text_field :subdomain, class: 'start-petition-form-cell-input validation'
+
+        span.error
+        - if @petition.errors['subdomain']
+          = @petition.errors['subdomain'][0]
+
+        - class_names = 'start-petition-form-cell-input validation'
+        - if not @petition.errors['subdomain'].empty?
+          - class_names = class_names + ' error'
+
+        = f.text_field :subdomain, class: class_names
+
       div.start-petition-form-cell.label
         p= t('start.form.subdomain.description')
-
 
   - if !user_signed_in? && action_name == 'new'
 
@@ -148,6 +157,8 @@
       div.start-petition-form-cell.label
         p= t('start.form.petitioner.organisation.description')
 
+  /= action_name
+
   - if action_name == 'new'
     div.start-petition-form-row
       div.start-petition-form-cell.input
@@ -155,7 +166,7 @@
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
-  - elsif action_name == 'edit'
+  - elsif action_name == 'edit' || action_name == 'update'
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title
