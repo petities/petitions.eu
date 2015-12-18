@@ -168,6 +168,13 @@ div.page
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          | &nbsp;
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+
 
       span.errors id="confirm_errors" style='display: none;'
 
@@ -179,7 +186,7 @@ div.page
             | &nbsp;
             div id="confirm_error_messages"
 
-      span id="confirm_success" style='display: none;'
+      span#confirm_success style='display: none;'
 
         div.start-petition-form-row
           h2.start-petition-form-cell.input
@@ -187,15 +194,6 @@ div.page
 
           div.start-petition-form-cell.label.empty
             | &nbsp;
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-      /    = link_to t('confirm.back_to_petition'),
-      /              @petition,
-                    class: 'start-petition-form-cell-button buttonfix'
-
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
 
 
 div.page
@@ -207,7 +205,7 @@ div.page
     div
       /= debug @pledge
 
-    = form_for @pledge, url: @pledge_url, remote: true, data: { type: :json } do |f|
+    = form_for @pledge, url: @pledge_url, remote: true, data: { type: :json } do |pf|
       div
         | &nbsp;
       div.start-petition-form-row
@@ -221,7 +219,7 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('confirm.form.influencelabel')
-            = f.select(:influence,
+            = pf.select(:influence,
                        options_for_select(Pledge::INFLUENCE_OPTIONS,
                         selected: @pledge.influence),
                        include_blank: t("pledge.influence.blank", default:""),
@@ -233,7 +231,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title= t('confirm.form.skillslabel')
-          = f.select(:skill,
+          = pf.select(:skill,
                      options_for_select(Pledge::SKILL_OPTIONS,
                       selected: @pledge.skill),
                      include_blank: t("pledge.skill.blank", default:""),
@@ -247,7 +245,7 @@ div.page
           div.start-petition-form-cell-title
             | &nbsp;
 
-          = f.text_area(:feedback,
+          = pf.text_area(:feedback,
                        class: "start-petition-form-cell-input",
                        placeholder: t('pledge.feedback.placeholder', default: '...'))
 
@@ -268,7 +266,7 @@ div.page
             = t('confirm.info.how_much')
           - Pledge::MONEY_OPTIONS.each do |label, value|
             label.start-petition-form-cell-label
-              = f.radio_button :money, value
+              = pf.radio_button :money, value
               = label
 
         div.start-petition-form-cell.label
@@ -277,10 +275,17 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = f.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
+          = pf.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
-          h1 id='pledge_thanks' style="display: none;"
-            = t('pledge.thankyou!')
+          | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          h1.pledge_thanks style="display: none;"
+            = t('pledge.thank_you')
+          | &nbsp;
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
 
 
 div.page
