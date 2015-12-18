@@ -1,5 +1,4 @@
-class PetitionMailer < ApplicationMailer
-
+class PetitionMailer <  ApplicationMailer
   #
   def status_change_mail(petition, target: nil)
     @petition = petition
@@ -101,12 +100,19 @@ class PetitionMailer < ApplicationMailer
     mail(to: @signature.person_email, subject: subject)
   end
 
-  def welcome(user, password)
+  def welcome_petitioner_mail(petition, user, password)
 
     @user = user
     @password = password
+    @token = user.confirmation_token
+    @password = password
+    @petition = petition
 
-    mail(to: user.email)
+    subject = t('mail.petition.confirm.subject', {
+      petition_name: petition.name
+    })
+
+    mail(to: user.email, subject: subject)
   end
 
 end

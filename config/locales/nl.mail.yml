@@ -3,19 +3,30 @@ nl:
     confirm:
       nowwhat: nothing 
       signature:
-        linkinstruction: '
-U heeft bijna de petitie %{petition} ondertekend met het e-mailadres %{email} op %{date} met de naam %{name}. 
+        linkinstruction: 'U heeft bijna de petitie "%{petition}" ondertekend 
+        
+        
+met het e-mailadres %{email} en de naam %{name} op %{date}. 
 
-Is dit en uw e-mailadres? Bevestig dan alstublieft door deze link te volgen:
+
+Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen:
+    
+
 %{confirm_url}
 
-Anders wordt uw e-mailadres automatisch gewist bij ons. U telt nog niet als ondertekenaar! 
+
+Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
+
 
 Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken 
+
+
 of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
 '
-        petition: '
-DE PETITIE %{subdomain}.petities.nl
+        petition: 'DE PETITIE
+
+
+%{subdomain}.petities.nl
 
 
 %{intro}
@@ -28,6 +39,7 @@ DE PETITIE %{subdomain}.petities.nl
 
 
 %{request}
+
 
 Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
 '
@@ -67,3 +79,24 @@ De petitie kunt u bekijken op:
 
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}'
     note:  met de aantekening
+    petition: 
+      confirm: 
+        instructions: '%{petitioner}, 
+
+
+Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
+
+          confirmlink
+
+          als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$. Met $e-mailadres$ en $wachtwoord$ kunt u inloggen op https://petities.nl/login
+
+          Zorg ervoor dat dit uw dagelijkse, normale e-mailadres is waar wij belangrijke e-mail over uw petitie naar toe kunnen sturen.
+
+          Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om u om ongewenste e-mail te voorkomen.
+
+          Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
+
+          Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
+
+          Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.'
+        subject: Verder met uw petitie "%{petition_name}" met deze inloggegevens 

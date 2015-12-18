@@ -211,20 +211,25 @@ class PetitionsController < ApplicationController
 
         unless owner
 
-          password = user_params[:password] || Devise.friendly_token.first(8)
+          password = user_params[:password]
+          if password.blank? 
+            password = Devise.friendly_token.first(8)
+          end
 
-          owner = User.create(
+          owner = User.new(
             email: user_params[:email],
             username: user_params[:email],
             name: user_params[:name],
             password: password
           )
+          owner.send(:generate_confirmation_token)
+          owner.skip_confirmation!
+          owner.skip_confirmation_notification!
+          owner.confirmed_at = nil
           owner.save
 
-          # send password if needed
-          if not user_params[:password]
-            PetitionMailer.welcome(owner, password).deliver_later
-          end
+          # send welcome / password if needed
+          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver
 
         end
       end

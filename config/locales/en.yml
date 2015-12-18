@@ -149,6 +149,7 @@ en:
       allow_through: Allow through
       answer: Answer
       answered: Answered
+      draft: Not yet finished
       signable: Signable
       withdrawn: Withdrawn
     text_blue: Via petities.nl kunt u contact krijgen met betrokken burgers. Bij het bevestigen van een ondertekening kunnen burgers aangeven uitgenodigd te willen worden voor participatie in beleid.
@@ -311,6 +312,7 @@ en:
     create_newsupdate: Write update
     mailpreviews: Preview default mails
     news_updates: News
+    petitioner: 'You, the petitioner'
     petitions: My petitions
     profile: My profile
     startanother: Start another petition
@@ -380,7 +382,7 @@ en:
     edit_state: Edit state
     editing: Editing
     editors: Editors
-    finalize: Finalize
+    finalize: Open de petition
     ghost: Ghost
     help:
       description: Description
@@ -455,7 +457,7 @@ en:
     text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
     text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
     text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
-    text_blue: Progress e-mails
+    title_blue: Progress e-mails
     title_green: Donations 
     title_grey: Help from signatories
     title_grey_2: Be aware of the due date

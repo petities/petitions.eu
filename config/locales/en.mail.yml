@@ -3,18 +3,30 @@ en:
     confirm:
       nowwhat: nothing 
       signature:
-        linkinstruction: '
-You nearly signed the petition %{petition} with the e-mail address %{email} on %{date} with the name %{name}. 
+        linkinstruction: 'You nearly signed the petition "%{petition}" 
 
-Is this your name and your e-mail address? Please confirm your signature by following this link:
+
+with the e-mail address %{email} and the name %{name} on %{date}. 
+
+
+Is this your e-mail address and name? Then please confirm your signature by following this link:
+
+
 %{confirm_url}
 
-Otherwise your e-mail address with us will be automatically deleted. You do not count as signatory yet! 
 
-After your confirmation you can always return to update your information or invite others to sign. It is therefore good to keep this message.'
+Otherwise we will delete your signature automatically. You do not count as signatory yet! 
 
-        petition: '
-THE PETITION %{subdomain}.petities.nl
+
+After your confirmation you can always return to update your information 
+
+
+or invite others to sign. It is therefore good to keep this message.'
+
+        petition: 'THE PETITION 
+
+
+%{subdomain}.petities.nl
 
 
 %{intro}
@@ -28,13 +40,14 @@ THE PETITION %{subdomain}.petities.nl
 
 %{request}
 
+
 Do you have questions about this petition? Please contact the lead petitioner on: %{petitionermail}'
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
     dear: Dear
     signoff: 'Thank you for using Petities.nl!
 
 
-        The webmaster 
+        The webmaster
 
 
         Would you like to support us? http://petities.nl/donate'
@@ -65,3 +78,23 @@ You can view the petition at:
 
 Do you have questions about this petition? Please contact the lead petitioner: %{petition_email}'
       note:  with the note
+    petition: 
+      confirm: 
+        instructions: '%{petitioner}, 
+        
+        
+Thank you for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+
+        confirmlink
+
+        as confirmation. We then know we can reach you on $e-mailadres$. With $e-mailadres$ and $password$ you can log in at https://petities.nl/login
+
+        Please make sure that this is your daily, normal e-mail address where we can send important e-mail about your petition to.
+
+        If you prefer not to share $e-mailadres$ with signatories you can fill in, now or later, an extra address next to the petition itself. At http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories. The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail.
+
+        Do you need help for your petition, please check our handbook at http://handboek.petities.nl
+
+        As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions. You can also send up to three e-mails to the signatories. Just e-mail us the text without attachments.
+
+        For other questions you can contact the petition desk at $petitieloketadres$ or call $lokettelefoon$.'
