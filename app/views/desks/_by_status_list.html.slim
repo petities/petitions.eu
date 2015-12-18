@@ -27,9 +27,18 @@ section.vervolg-main
 
   div.main-container-grey.whitespace
     h2.main-container-grey-title
+      = t("desk.petition.awaiting_answer")
+    div.main-container-grey-itemswrapper
+      - @petitions_inproces.each do |petition|
+        = link_to edit_petition_path(petition), class: "main-container-grey-item"
+          = petition.name
+
+
+  div.main-container-grey.whitespace
+    h2.main-container-grey-title
       = t("desk.petition.answered")
     div.main-container-grey-itemswrapper
-      - @petitions_answer.each do |petition|
+      - @petitions_completed.each do |petition|
         = link_to edit_petition_path(petition), class: "main-container-grey-item"
           = petition.name
 
