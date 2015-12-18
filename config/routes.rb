@@ -100,7 +100,11 @@ Rails.application.routes.draw do
 
   get '/signatures/:signature_id/becomeowner',    to: 'signatures#become_petition_owner', as: :signature_become_owner
   get '/signatures/:signature_id/confirm',    to: 'signatures#confirm', as: :signature_confirm
+
+  get '/ondertekening/:signature_id', to: 'signatures#confirm'
   get '/ondertekening/:signature_id/confirm', to: 'signatures#confirm'
+
   get '/petitie/:slug',       to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
+
 end
