@@ -119,7 +119,7 @@
           = @petition.errors['subdomain'][0]
 
         - class_names = 'start-petition-form-cell-input validation'
-        - if @petition.errors['subdomain']
+        - if not @petition.errors['subdomain'].empty?
           - class_names = class_names + ' error'
 
         = f.text_field :subdomain, class: class_names
