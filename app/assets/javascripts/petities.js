@@ -125,8 +125,8 @@ $(document).ready(function(){
 
 
   $('#new_signature').submit(function(){
-    var nameRegex = /^\w+\s+\w+[\w+\s+]{0,}$/,
-        emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+    var nameRegex = /(.*)\s(.*)/,
+        emailRegex = /\S+@\S+\.\S+/,
         $nameField = $('#signature_person_name'),
         $emailField = $('#signature_person_email'),
         $errorsBlock = $('.signature-form-errors'),
@@ -134,7 +134,6 @@ $(document).ready(function(){
         result = true;
 
     $errorsBlock.html('');
-  
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');
