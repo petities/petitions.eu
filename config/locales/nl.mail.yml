@@ -81,18 +81,22 @@ Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{
     note:  met de aantekening
     petition: 
       confirm: 
-        instructions: 'Thank you $naampetitionaris$ for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+        instructions: '%{petitioner}, 
+
+
+Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
 
           confirmlink
 
-          as confirmation. We then know we can reach you on $e-mailadres$. With $e-mailadres$ and $password$ you can log in at https://petities.nl/login
+          als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$. Met $e-mailadres$ en $wachtwoord$ kunt u inloggen op https://petities.nl/login
 
-          Please make sure that this is your daily, normal e-mail address where we can send important e-mail about your petition to.
+          Zorg ervoor dat dit uw dagelijkse, normale e-mailadres is waar wij belangrijke e-mail over uw petitie naar toe kunnen sturen.
 
-          If you prefer not to share $e-mailadres$ with signatories you can fill in, now or later, an extra address next to the petition itself. At http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories. The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail.
+          Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om u om ongewenste e-mail te voorkomen.
 
-          Do you need help for your petition, please check our handbook at http://handboek.petities.nl
+          Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
 
-          As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions. You can also send up to three e-mails to the signatories. Just e-mail us the text without attachments.
+          Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
 
-          For other questions you can contact the petition desk at $petitieloketadres$ or call $lokettelefoon$.'
+          Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.'
+        subject: Verder met uw petitie "%{petition_name}" met deze inloggegevens 

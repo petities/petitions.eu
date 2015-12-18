@@ -63,7 +63,7 @@ class PetitionMailerPreview < ActionMailer::Preview
 
   def welcome_with_password_mail
     password = Devise.friendly_token.first(8)
-    PetitionMailer.welcome_petitioner_mail(User.first, password)
+    PetitionMailer.welcome_petitioner_mail(Petition.first, User.first, password)
   end
 
 end

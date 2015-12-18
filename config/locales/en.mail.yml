@@ -80,7 +80,10 @@ Do you have questions about this petition? Please contact the lead petitioner: %
       note:  with the note
     petition: 
       confirm: 
-        instructions: 'Thank you $naampetitionaris$ for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+        instructions: '%{petitioner}, 
+        
+        
+Thank you for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
 
         confirmlink
 

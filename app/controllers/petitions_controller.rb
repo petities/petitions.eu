@@ -222,12 +222,14 @@ class PetitionsController < ApplicationController
             name: user_params[:name],
             password: password
           )
+          owner.send(:generate_confirmation_token)
           owner.skip_confirmation!
           owner.skip_confirmation_notification!
+          owner.confirmed_at = nil
           owner.save
 
           # send welcome / password if needed
-          PetitionMailer.welcome_petitioner_mail(owner, password).deliver_later
+          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver
 
         end
       end
