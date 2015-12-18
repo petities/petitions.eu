@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   as :user do
     get 'login' => 'devise/sessions#new', as: :new_user_session
+    get 'admin' => 'devise/sessions#new'
     post 'login' => 'devise/sessions#create', as: :user_session
     delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
     get 'logout' => 'devise/sessions#destroy'
@@ -14,7 +15,10 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  ActiveAdmin.routes(self)
+  scope 'yesmaster' do
+    ActiveAdmin.routes(self)
+    get '/', to: 'admin/dashboard#index'
+  end
 
   # urls for admin only..
   admin_constraint = lambda do |request|
