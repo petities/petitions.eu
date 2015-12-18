@@ -29,16 +29,6 @@ div.page
     div class="petition-editbutton-container"
 
       h2
-        /- unless @version_index < 0
-        /  =<> t 'edit.petition.newest_version'
-
-        /- if @petition.versions.size > 0
-        /  =<> t 'edit.petition.version'
-        /  =<> @version_index
-        /  - if @petition.versions.size > 1
-        /    =<> t 'edit.petition.of'
-        /    =<> @petition.versions.size
-
       - if @version_index < 0
         div.petition-editbutton.pull-left
           =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})

@@ -15,6 +15,7 @@ ActiveAdmin.register Petition do
     selectable_column
     id_column
     column :name
+    column :subdomain
     column :initiators
     column :date_projected
     column :petitioner_name

@@ -111,6 +111,8 @@ class PetitionsController < ApplicationController
 
   def set_petition_vars
 
+    @page = params[:page] || 1
+
     if @petition.organisation_id
       @organisation = Organisation.find(@petition.organisation_id)
     end
@@ -119,11 +121,12 @@ class PetitionsController < ApplicationController
 
     @chart_data, @chart_labels = @petition.history_chart_json
 
+    @updates = @petition.updates.paginate(page: @page, per_page: 3)
+
   end
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-    @page = params[:page] || 1
 
     @owners = find_owners
 
@@ -132,7 +135,7 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signature = @petition.signatures.new
-    
+
     @images = @petition.images
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
@@ -141,7 +144,6 @@ class PetitionsController < ApplicationController
       petition_id: @petition.id
     )
 
-    @updates = @petition.updates.paginate(page: 1, per_page: 3)
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
@@ -161,7 +163,6 @@ class PetitionsController < ApplicationController
   def new
     @petition = Petition.new
 
-    @petition_types = PetitionType.all
     set_organisation_helper
 
     if user_signed_in?
@@ -187,7 +188,12 @@ class PetitionsController < ApplicationController
 
     @petition.locale_list << I18n.locale
 
+    set_petition_vars
+
     set_office
+
+    set_organisation_helper
+
 
     if params[:images].present?
       params[:images].each do |image|
@@ -268,7 +274,7 @@ class PetitionsController < ApplicationController
       petition_id: @petition.id
     )
 
-    @updates = @petition.updates.paginate(page: 1, per_page: 3)
+    @updates = @petition.updates.paginate(page: @page, per_page: 3)
 
   end
 
@@ -281,6 +287,9 @@ class PetitionsController < ApplicationController
   end
 
   def set_organisation_helper
+
+    @petition_types = PetitionType.all
+
     @organisation_types = Organisation.all.where(visible: true).sort_by(&:name).group_by(&:kind)
     #@organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
 
@@ -306,10 +315,12 @@ class PetitionsController < ApplicationController
   #
   def update_owners
     authorize @petition
+
     @owners = find_owners
 
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
+
 
     # remove ownership for users not in owners_ids
 
@@ -363,7 +374,11 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
 
+    set_petition_vars
+
     set_office
+
+    set_organisation_helper
 
     update_locale_list
 
@@ -379,6 +394,7 @@ class PetitionsController < ApplicationController
           format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
           format.json { render :show, status: :ok, location: @petition }
         else
+          @petition_flash = t('petition.errors.look_at_form')
           format.html { render :edit }
           format.json { render json: @petition.errors, status: :unprocessable_entity }
         end
@@ -398,15 +414,11 @@ class PetitionsController < ApplicationController
         if current_user.has_role?(:admin, @petition.office)
           @petition.update(status: 'live')
           flash[:notice] = t('petition.status.flash.your_petition_is_live')
-          
         end
       end
-      
       PetitionMailer.finalize_mail(@petition).deliver_later
       PetitionMailer.finalize_mail(@petition, target: 'nederland@petities.nl').deliver_later
-      
     end
-        
     redirect_to edit_petition_path(@petition)
   end
 
@@ -423,7 +435,7 @@ class PetitionsController < ApplicationController
   private
 
   def set_petition
-    
+
     find_petition
 
     # find specific papertrail version
