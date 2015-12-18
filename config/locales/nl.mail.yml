@@ -71,7 +71,7 @@ Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenm
 De petitie kunt u bekijken op:
 
 
-%{petition_url} 
+%{petition_subdomain}.petities.nl 
 
 
 %{petition_descr} 

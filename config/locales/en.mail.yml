@@ -26,7 +26,7 @@ or invite others to sign. It is therefore good to keep this message.'
         petition: 'THE PETITION 
 
 
-%{subdomain}.petities.nl
+%{petition_subdomain}.petities.nl
 
 
 %{intro}

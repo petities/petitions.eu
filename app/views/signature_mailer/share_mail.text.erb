@@ -6,6 +6,7 @@
   sig_function: @person_function, 
   petition_url: petition_url({id: @petition.cached_slug || @petition.slug }),  
   petition_descr: @petition.description,
-  petition_email: @petition.petitioner_email}) %>
+  petition_email: @petition.petitioner_email,
+  petition_subdomain: @petition.subdomain}) %>
 
 <%= t("mail.signoff") %>

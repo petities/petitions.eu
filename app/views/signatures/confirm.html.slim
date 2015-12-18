@@ -331,7 +331,8 @@ div.page
             sig_function: @signature.person_function,
             petition_url: petition_url({id: @petition.slug || @petition.id}),
             petition_descr: @petition.description,
-            petition_email: @petition.petitioner_email)
+            petition_email: @petition.petitioner_email,
+            petition_subdomain: @petition.subdomain)
 
 
     div.start-petition-form-row
