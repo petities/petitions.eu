@@ -133,7 +133,7 @@ class Signature < ActiveRecord::Base
               message: t('signature.errors.city_too_short', default: 'too short')
              },
              on: :update,
-             if: :require_person_birth_city?
+             if: :require_person_city?
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
@@ -176,6 +176,10 @@ class Signature < ActiveRecord::Base
   def require_minimum_age?
     petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
     # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.required_minimum_age.present?
+  end
+
+  def require_person_city?
+    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
   end
 
   def require_person_country?
