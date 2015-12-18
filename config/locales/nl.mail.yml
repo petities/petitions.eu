@@ -79,3 +79,20 @@ De petitie kunt u bekijken op:
 
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}'
     note:  met de aantekening
+    petition: 
+      confirm: 
+        instructions: 'Thank you $naampetitionaris$ for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+
+          confirmlink
+
+          as confirmation. We then know we can reach you on $e-mailadres$. With $e-mailadres$ and $password$ you can log in at https://petities.nl/login
+
+          Please make sure that this is your daily, normal e-mail address where we can send important e-mail about your petition to.
+
+          If you prefer not to share $e-mailadres$ with signatories you can fill in, now or later, an extra address next to the petition itself. At http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories. The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail.
+
+          Do you need help for your petition, please check our handbook at http://handboek.petities.nl
+
+          As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions. You can also send up to three e-mails to the signatories. Just e-mail us the text without attachments.
+
+          For other questions you can contact the petition desk at $petitieloketadres$ or call $lokettelefoon$.'
