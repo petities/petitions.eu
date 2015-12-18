@@ -8,6 +8,10 @@ div.header-user-dropdown
 
   - if current_user
     = link_to t('my.startanother'), new_petition_path, class: "header-user-dropdown-item"
+
+    - Office.with_role(:admin, current_user).each do |office|
+      = link_to t('my.desk') + ' : ' + office.name, petition_desk_path(office), class: "header-user-dropdown-item"
+
     = link_to t('my.petitions'), manage_petitions_path, class: "header-user-dropdown-item"
     = link_to t('my.profile'), profile_edit_path, class: "header-user-dropdown-item"
     = link_to t('my.news_updates'), updates_path, class: "header-user-dropdown-item"
