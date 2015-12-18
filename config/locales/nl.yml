@@ -467,6 +467,7 @@ nl:
     feedback:
       description: Of wilt u op een andere manier helpen?
       placeholder: Iets anders...
+    thank_you: Dank u!
   privacy:
     text: |
       <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>

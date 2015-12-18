@@ -467,6 +467,7 @@ en:
     feedback:
       description: Or would you like to help in another way?
       placeholder: Something else...
+    thank_you: Thank you!  
   privacy:
     text: |
       <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
