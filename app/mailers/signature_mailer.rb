@@ -8,7 +8,7 @@ class SignatureMailer < ApplicationMailer
     @confirm_url = url_for(controller: 'signatures',
                            action: 'confirm',
                            #host: 'localhost:3000',
-                           host: 'dev.petitions.eu',
+                           host: 'petities.nl',
                            signature_id: @signature.unique_key)
 
     logger.debug ''
@@ -35,11 +35,12 @@ class SignatureMailer < ApplicationMailer
       controller: 'signatures',
       action: 'confirm',
       #host: 'localhost:3000',
-      host: 'dev.petitions.eu',
+      host: 'petities.nl',
       signature_id: @signature.unique_key)
 
     name = @signature.petition.name if @signature.petition.present?
-    subject = t('mail.confirm.signature.subject', petition_name: name)
+
+    subject = t('mail.confirm.signature.subject_again', petition_name: name)
 
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @signature.person_email, subject: subject)
   end

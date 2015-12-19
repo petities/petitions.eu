@@ -18,7 +18,7 @@ Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen
 Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
 
 
-Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken 
+Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken 
 
 
 of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
@@ -43,7 +43,33 @@ of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap 
 
 Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
 '
+        reminder_mail: 'Vorige week heeft u de petitie "%{petition}" ondertekend 
+
+
+met het e-mailadres %{email} en de naam %{name} op %{date}. U heeft er al een e-mail over ontvangen.
+
+
+Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen:
+
+
+%{confirm_url}
+
+
+Anders wissen wij uw ondertekening automatisch als de petitie sluit. 
+
+
+Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer eens deze e-mail door te sturen 
+
+
+naar een andere computer, telefoon of tablet en probeer bovenstaande link. U kunt het ook proberen via een ander 
+
+
+netwerk. Sommige werkgevers en bepaalde software blokkeren toegang tot onze website wegens controversiële politieke inhoud. 
+
+
+Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis bent, probeer het buitenshuis op uw telefoon.'        
         subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
+        subject_again: 'Herinnering Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
     dear: Geachte
     signoff: 'Dank u wel voor het gebruiken van Petities.nl!
 
@@ -71,7 +97,7 @@ Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenm
 De petitie kunt u bekijken op:
 
 
-%{petition_subdomain}.petities.nl 
+%{subdomain}.petities.nl 
 
 
 %{petition_descr} 
