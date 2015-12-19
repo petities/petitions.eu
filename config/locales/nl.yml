@@ -453,6 +453,7 @@ nl:
     withdrawn: Ingetrokken
   petitioner: 
     awaiting_answer: Wacht op antwoord
+    awaiting_moderation: Nog doorlaten
     drafts: Nog niet af
     signable: Ondertekenbaar
     text_blue: U kunt e-mail sturen naar de ondertekenaars. Stuur de tekst naar webmaster@petities.nl en wij verzorgen de verzending.

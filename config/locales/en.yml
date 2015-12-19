@@ -453,6 +453,7 @@ en:
     withdrawn: Withdrawn
   petitioner:
     awaiting_answer: Awaiting answer
+    awaiting_moderation: Awaiting moderation
     drafts: Drafts
     signable: Signable
     text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
