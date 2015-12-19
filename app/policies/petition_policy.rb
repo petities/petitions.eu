@@ -3,23 +3,28 @@ class PetitionPolicy < ApplicationPolicy
     true
   end
 
+  def can_edit user, petition
+    user.has_role?(:admin) ||
+    user.has_role?(:admin, petition) ||
+    user.has_role?(:admin, petition.office)
+  end
+
   def edit?
     # allow edit view on petition.
     return false unless user
-    user.has_role?(:admin) || user.has_role?(:admin, record)
+    can_edit user, record
   end
 
   def update?
     return false unless user
-    user.has_role?(:admin) || user.has_role?(:admin, record)
+    can_edit user, record
     # allow updates on petition..?
     # user.has_role? :admin or user.has_role? :admin, record
   end
 
   def finalize?
     return false unless user
-
-    user.has_role?(:admin) || user.has_role?(:admin, record) || user.has_role?(:admin, record.office)
+    can_edit user, record
   end
 
 end

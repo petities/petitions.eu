@@ -82,7 +82,6 @@ $ ->
 
 $ ->
 
-
   $('.edit_signature input').bind('keyup', ->
     if $(this).hasClass('error')
       $(this).removeClass('error')
@@ -118,7 +117,7 @@ $ ->
 
   # pledge succes note
   $('.edit_pledge, .new_pledge').on('ajax:success', (e, data, status, xhr) ->
-    $('#pledge_tanks').show()
+    $('.pledge_thanks').show()
   )
 
   # sign email success..

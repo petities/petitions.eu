@@ -39,7 +39,7 @@ class DesksController < ApplicationController
 
     @office_admins = User.with_role(:admin, @office)
 
-    @admins = User.with_role(:admin)
+    @admins = Office.with_role(:admin, @office)
   end
 
   def show_not_logged_in

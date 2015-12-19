@@ -24,6 +24,8 @@
 class Office < ActiveRecord::Base
   default_scope { order('name ASC') }
 
+  resourcify
+
   extend FriendlyId
 
   friendly_id :name, :use => [:slugged, :finders], slug_column: :cached_slug

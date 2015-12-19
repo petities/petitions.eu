@@ -79,7 +79,6 @@ class Petition < ActiveRecord::Base
 
   resourcify
 
-
   serialize :locale_list, Array
 
   # add slug_column?
@@ -241,9 +240,9 @@ class Petition < ActiveRecord::Base
     %w(concept
        draft).include? status
   end
-  
+
   def is_staging?
-      %w(concept 
+      %w(concept
       staging).include? status
   end
 

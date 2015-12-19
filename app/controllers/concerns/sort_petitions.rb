@@ -45,13 +45,13 @@ module SortPetitions extend ActiveSupport::Concern
   def petitions_by_status petitions
 
     # find petition in state of allow
-    @petitions_draft = petitions.where(status: ['draft', 'concept', 'staging']).limit(20)
+    @petitions_draft = petitions.where(status: ['draft', 'concept']).limit(20)
     # find petitions in state of answer
-    @petitions_moderate = petitions.where(status: 'stageing').limit(20)
+    @petitions_moderate = petitions.where(status: 'staging').limit(20)
     # find petition in state of signable
     @petitions_live = petitions.live.limit(20)
     # find petition in state of answered
-    @petitions_answer = petitions.where("status IN ('to_process', 'in_process')").limit(20)
+    @petitions_inproces = petitions.where("status IN ('to_process', 'in_process')").limit(20)
     #
     @petitions_completed = petitions.where(status: 'completed').limit(20)
     # find petition in state of done/ingetrokken
