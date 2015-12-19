@@ -311,6 +311,7 @@ nl:
   my:
     activeadmin: beheerscherm
     create_newsupdate: Schrijf nieuwtje
+    desk: Petitieloket
     mailpreviews: Previews standaardmails
     news_updates: Nieuwtjes
     petitioner: 'U, de petitionaris'

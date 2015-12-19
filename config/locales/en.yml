@@ -311,6 +311,7 @@ en:
   my:
     activeadmin: Manage data
     create_newsupdate: Write update
+    desk: Petition desk 
     mailpreviews: Preview default mails
     news_updates: News
     petitioner: 'You, the petitioner'
