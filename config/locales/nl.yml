@@ -145,6 +145,7 @@ nl:
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:
+    general_desk_admins: Petitieloket logins
     intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
     petition:
       allow_through: Nog doorlaten

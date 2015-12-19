@@ -145,6 +145,7 @@ en:
     title: Confirm your signature for the petition "%{name}"
   description: Description
   desk:
+    general_desk_admins: Petition desk accounts
     intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
     petition:
       allow_through: Allow through
