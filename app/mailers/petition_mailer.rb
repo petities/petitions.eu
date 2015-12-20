@@ -25,7 +25,7 @@ class PetitionMailer <  ApplicationMailer
       target = @petition.office.email
     end
 
-    subject = t('petition.moderation.pending')
+    subject = t('mail.moderation.pending_subject')
 
     mail(to: target, subject: subject)
 

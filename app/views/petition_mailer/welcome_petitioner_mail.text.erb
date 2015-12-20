@@ -1,16 +1,13 @@
-<%= t("mail.dear") %>
+<%= t("mail.dear") %> <%= @user.name %>, 
 
 <%= t("mail.petition.confirm.instructions",{
 	petition: @petition.name,
 	petitioner: @user.name,
-	password: @password
+	password: @password,
+	confirmation_url: @token
 }) %>
 
-"<%= @user.name %>".
-
-Your password "<%= @password %>"
-
-<p><%= link_to 'Confirm my account', confirmation_url(@user, confirmation_token: @token) %></p>
+<%= confirmation_url(@user, confirmation_token: @token) %>
 
 
 <%= t("mail.signoff") %> 

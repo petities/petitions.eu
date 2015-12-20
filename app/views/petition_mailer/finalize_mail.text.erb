@@ -1,1 +1,9 @@
-Petition #<%= link_to @petition.id, edit_petition_url(@petition, only_path: false) %> was finalized and waits for moderation.
+<%= t("mail.dear") %> user
+
+<%= t("mail.moderation.pending") %>
+
+<%= link_to @petition.id, edit_petition_url(@petition, only_path: false) %>
+
+<%= t("mail.moderation.petition") %>
+
+<%= t("mail.moderation.signoff") %> 
