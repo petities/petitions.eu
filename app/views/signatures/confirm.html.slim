@@ -48,9 +48,9 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           = f.check_box :subscribe
-          label= t('confirm.form.more_information.label')
+          label= t('confirm.form.subscribe.label')
         div.start-petition-form-cell.label
-          p= t('confirm.form.more_information.description')
+          p= t('confirm.form.subscribe.description')
 
 
       div.start-petition-form-row
@@ -335,9 +335,9 @@ div.page
             petition_name: @petition.name,
             sig_function: @signature.person_function,
             petition_url: petition_url({id: @petition.slug || @petition.id}),
-            petition_descr: @petition.description,
+            intro: @petition.description,
             petition_email: @petition.petitioner_email,
-            petition_subdomain: @petition.subdomain)
+            subdomain: @petition.subdomain)
 
 
     div.start-petition-form-row
