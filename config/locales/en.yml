@@ -669,6 +669,15 @@ en:
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
   statement: Statement
+  survey:
+    answers: This petition is not handed over. We asked $signatures met pledge=1$ signatories wether the petition could close and $survey-results$ opted for the following.
+    request_is_met: the request of the petition has been met without a hand over
+    too_late: the petition came too late, the request can not be realised anymore
+    situation: the situation has changed, the petition should change too
+    no_majority: there is no political support for it
+    different: we should continue differently, not (now) with a petition 
+    personal: peronally I can not run the petition (too busy, not my think)
+    other_answers: 'something else, being:'
   update:
     created: News update created
     earlier_updates: Earlier updates

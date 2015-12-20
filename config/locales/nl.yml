@@ -670,6 +670,15 @@ nl:
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
   statement: Verzoek
+  survey:
+    answers: Deze petitie is niet overhandigd. We vroegen $signatures met pledge=1$ ondertekenaars of de petitie dicht kon en $survey-results$ gaven het volgende als reden.
+    request_is_met: het verzoek van de petitie is al gerealiseerd zonder de petitie in te dienen
+    too_late: de petitie kwam te laat, het veroek is niet meer te realiseren
+    situation: de situatie is veranderd, de petitie zou ook moeten veranderen
+    no_majority: er is geen politiek draagvlak voor
+    different: we moeten anders verder, (nu) niet met een petitie 
+    personal: persoonlijk kan ik de petitie niet overnemen (te druk, niet iets voor mij)
+    other_answers: 'iets anders, namelijk:'
   update:
     created: Nieuws toegevoegd
     earlier_updates: Eerder toegevoegd
