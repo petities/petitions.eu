@@ -1,5 +1,7 @@
 
-<%= t('petition.has_answer_mail', {
+<%= t("mail.dear") %> <%= @signature.person_name %>,
+
+<%= t('mail.petition.has_answer', {
   name: @signature.person_name,
   sig_email: @signature.person_email,
   petition_name: @petition.name,
@@ -8,3 +10,6 @@
   petition_email: @petition.petitioner_email},
   answer: @petition.answer)
   %>
+<%= t("mail.petition.now_hide_signature", {unique_key: @signature.unique_key})%>
+<%= t("mail.signoff") %>
+

@@ -45,6 +45,10 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.handed_over_signatories_mail(Petition.live.first)
   end
 
+  def inform_users_of_answer_mail
+    PetitionMailer.inform_users_of_answer_mail(Petition.completed.first)
+  end
+
   def answer_due_date_request_mail
     PetitionMailer.answer_due_date_request_mail(Petition.live.first)
   end

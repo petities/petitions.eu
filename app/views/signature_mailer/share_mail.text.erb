@@ -5,8 +5,8 @@
   petition_name: @petition.name,
   sig_function: @person_function, 
   petition_url: petition_url({id: @petition.cached_slug || @petition.slug }),  
-  petition_descr: @petition.description,
+  intro: @petition.description,
   petition_email: @petition.petitioner_email,
-  petition_subdomain: @petition.subdomain}) %>
+  subdomain: @petition.subdomain}) %>
 
 <%= t("mail.signoff") %>

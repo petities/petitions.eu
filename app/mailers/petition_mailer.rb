@@ -114,5 +114,20 @@ class PetitionMailer <  ApplicationMailer
 
     mail(to: user.email, subject: subject)
   end
+  
+  def inform_user_of_answer_mail(signature, petition, answer)
+    @signature = signature
+    @petition = petition
+    @answer = answer
+    @unique_key = url_for(
+      controller: 'signatures',
+      host: 'petities.nl',
+      signature_id: @signature.unique_key)
+
+    subject = t('mail.petition.is_answered', {
+      title: @petition.name})
+
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+  end
 
 end

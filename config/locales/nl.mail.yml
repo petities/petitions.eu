@@ -21,8 +21,7 @@ Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaa
 Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken 
 
 
-of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
-'
+of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.'
         petition: 'DE PETITIE
 
 
@@ -41,8 +40,7 @@ of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap 
 %{request}
 
 
-Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
-'
+Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}'
         reminder_mail: 'Vorige week heeft u de petitie "%{petition}" ondertekend 
 
 
@@ -85,13 +83,13 @@ Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis bent, probee
 Geachte heer, mevrouw,
 
 
-Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
+Op petities.nl ondertekende %{name} (%{sig_email}) zojuist de petitie "%{petition_name}"%{sig_function}.
 
 
 Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
 
 
-Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
+Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen van petities.nl tenzij een ondertekenaar uw adres weer invoert.
 
 
 De petitie kunt u bekijken op:
@@ -100,11 +98,11 @@ De petitie kunt u bekijken op:
 %{subdomain}.petities.nl 
 
 
-%{petition_descr} 
+%{intro} 
 
 
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}'
-    note:  met de aantekening
+      note:  met de aantekening
     petition: 
       confirm: 
         instructions: '%{petitioner}, 
@@ -112,17 +110,19 @@ Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{
 
 Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
 
-          confirmlink
+confirmlink
 
-          als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$. Met $e-mailadres$ en $wachtwoord$ kunt u inloggen op https://petities.nl/login
+als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$. Met $e-mailadres$ en $wachtwoord$ kunt u inloggen op https://petities.nl/login
 
-          Zorg ervoor dat dit uw dagelijkse, normale e-mailadres is waar wij belangrijke e-mail over uw petitie naar toe kunnen sturen.
+Zorg ervoor dat dit uw dagelijkse, normale e-mailadres is waar wij belangrijke e-mail over uw petitie naar toe kunnen sturen.
 
-          Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om u om ongewenste e-mail te voorkomen.
+Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om u om ongewenste e-mail te voorkomen.
 
-          Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
+Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
 
-          Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
+Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
 
-          Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.'
+Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.'
         subject: Verder met uw petitie "%{petition_name}" met deze inloggegevens 
+      has_answer: 'Op %{date} heeft u de petitie %{petition.name} getekend. De petitie is nu beantwoord door de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden.'
+      now_hide_signature: 'Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende kon u aangegeven of u zichtbaar wilt zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.'
