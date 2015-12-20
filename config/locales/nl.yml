@@ -79,9 +79,6 @@ nl:
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
-      more_information:
-        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
-        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       pledge:
         asseenontv: bekende persoon die herkend wordt
         carpooler: een lift geven naar een bijeenkomst
@@ -114,6 +111,9 @@ nl:
         label: Huisnummer
       street_number_suffix:
         suffixlabel: Huisnummertoevoeging
+      subscribe:
+        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.

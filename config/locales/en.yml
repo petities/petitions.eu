@@ -79,9 +79,6 @@ en:
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
-      more_information:
-        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
-        label: "Yes, send me up to three e-mails with updates about this petition"
       pledge:
         asseenontv: known person who gets recognised
         carpooler: give a ride to a meeting
@@ -114,6 +111,9 @@ en:
         label: Street number
       street_number_suffix:
         suffixlabel: Suffix
+      subscribe:
+        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
+        label: "Yes, send me up to three e-mails with updates about this petition"
       update_information: Update your information
       visible:
         description: A public signature can be found with search engines, for example when someone looks up your name.
