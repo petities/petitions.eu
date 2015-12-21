@@ -1,8 +1,9 @@
-namespace :new_signatures do
+namespace :signature do
 
   desc 'Delete unconfirmed signatures older then a week'
   task :delete_old_signatures => :environment do
     Rails.logger = ActiveSupport::Logger.new('log/deleted_sigs.log')
+
     invalid = NewSignature.where('created_at < ?', 10.days.ago)
     size = invalid.size
     invalid.delete_all
