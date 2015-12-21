@@ -29,6 +29,7 @@ Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitie
       due_next_week: '
 Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. Als u inlogt kunt u onder petitiedetails de datum aanpassen, zo vaak als nodig is.
 '
+      due_next_week_subject: 'Volgende week sluit uw petitie, kom in actie!'
       due_next_week_write: '
 Na $datum$ is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
 kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
@@ -68,6 +69,13 @@ Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de 
 zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. 
 Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
 '
+      write_about_hand_over: 'Als het goed is gaat u op %{date} de petitie overhandigen. De ondertekenaars willen waarschijnlijk wel weten 
+hoe het gegaan is met de petitie die ze hebben ondertekend. Zou u een update willen schrijven over hoe het ging? Wie, wat, waar, wanneer en hoe? Heeft u het 
+fysiek gedaan of was de petitie een ingekomen stuk? Was er een bijeenkomst waar men het besprak? Of werd het ook in ontvangst genomen waarbij 
+u het woord mocht nemen? Wie hebben er allemaal kennis van genomen? Heeft u namen van de aanwezigen? De ondertekenaars kunnen nu namelijk 
+iedereen die de petitie heeft ontvangen daarop aanspreken. U kunt het tekstje onder de petitie zetten, maar het is ook mogelijk het te 
+versturen naar de ondertekenaars. Tot drie keer toe kunt u een e-mail versturen. Als u een nieuwtje onder de petitie zet kunt u dat aangeven.'
+      write_about_hand_over_subject: 'De overhandiging van uw petitie "%{petition_name}", hoe ging het?'
     handover: '
 De aangehangen petitie hebben wij aan u overhandigd. Deze petitie heeft van u bij ontvangst het kenmerk $reference$ gekregen. 
 Bij deze ook nog eens de lijst ondertekenaars digitaal. We vertrouwen erop dat u deze vertrouwelijk behandelt onder de Wet Bescherming 
@@ -78,7 +86,8 @@ We kijken uit naar het inhoudelijke antwoord op de petitie. We verwachten dat er
 petitie. Uitgeschreven, als een video-registratie of allebei.
 '
     signoff: '
-U kunt inloggen op uw petitie via https://petities.nl/login met $e-mailadres$ en uw wachtwoord.
+U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_email} en uw wachtwoord.
+
 
 Dank u wel voor het gebruiken van Petities.nl!
 

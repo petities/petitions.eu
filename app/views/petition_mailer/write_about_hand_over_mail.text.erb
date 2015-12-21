@@ -1,4 +1,9 @@
-the hand over took place
-please write a news update about it
-this news update will appear under the petition
-you can also e-mail it to those who subscribed
+<%= t("mail.dear") %> <%= @petition.petitioner_name %>, 
+
+<%= t("mail.petition.write_about_hand_over",{
+	petition: @petition.name,
+	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	petitioner: @petition.petitioner_name
+}) %>
+
+<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>

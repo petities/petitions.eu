@@ -13,7 +13,12 @@ Wij kijken uit naar de procedurele behandeling zodat we snel weten wanneer we de
 We verwachten dat u een inhoudelijk antwoord heeft op onze petitie. De behandeling ervan is geweest en mogelijk kunt u ons verwijzingen 
 geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-registratie.
 '
-      due_date: We verwachten een datum waarop u een antwoord heeft.
+      answer_subject: Het is zover, heeft u een antwoord op de petitie PETITIE?
+      due_date: '
+Op DATUM hebben we u de lijst ondertekenaars overhandigd voor de petitie PETITIE. Weet u al wanneer u hier een antwoord op verwacht?
+Een datum waarop u een antwoord heeft? Bijvoorbeeld wanneer de petitie besproken wordt in een vergadering. 
+'
+      due_date_subject: Weet u wanneer de petitie PETITIE besproken wordt?
       reference: '
 Op $datum$ mailden we een petitie naar u. We hebben nog geen ontvangstbevestiging met een referentienummer ontvangen 
 op $subdomain$@petities.nl. Zou u ons alsnog kunnen laten weten welk referentienummer het heeft gekregen?
