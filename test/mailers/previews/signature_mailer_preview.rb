@@ -17,7 +17,14 @@ class SignatureMailerPreview < ActionMailer::Preview
     answer = petition.updates.where(show_on_petition: true).first
     SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
   end
-  
+
+  # subscribed signatory gets a copy of news update with mail flag
+  def inform_user_of_news_update_mail
+    petition = Petition.where(status: 'live').first
+    answer = petition.updates.where(show_on_petition: true).first
+    SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
+  end
+
   def reminder_mail
     SignatureMailer.sig_reminder_confirm_mail(NewSignature.first)
   end

@@ -69,6 +69,22 @@ Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de 
 zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. 
 Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
 '
+      progress: '
+Op %{date} heeft u de petitie "%{petition_name}" ondertekend als %{sig_name} uit %{place}. U heeft aangegeven op de hoogte te willen 
+blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u het één van de drie 
+voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op %{petitionermail}.
+'
+      progress_subject: 'Petitie "%{petition_name}", voortgangsbericht'
+      progress_unsubscribe: '
+STOPZETTEN E-MAILS
+
+U heeft bij het ondertekenen aangegeven maximaal drie e-mails te willen ontvangen. Als u van gedachten bent veranderd en de 
+resterende e-mails niet wilt ontvangen dan kunt u dat aangeven op: 
+%{unique_link}
+
+We verzekeren u dat uw persoonlijke gegevens goed beschermd zijn door de Wet Bescherming Persoonsgegevens. Dat wil zeggen dat 
+uw gegevens nergens voor gebruikt worden behalve voor het doel waarvoor u ze heeft opgegeven.
+'
       write_about_hand_over: 'Als het goed is gaat u op %{date} de petitie overhandigen. De ondertekenaars willen waarschijnlijk wel weten 
 hoe het gegaan is met de petitie die ze hebben ondertekend. Zou u een update willen schrijven over hoe het ging? Wie, wat, waar, wanneer en hoe? Heeft u het 
 fysiek gedaan of was de petitie een ingekomen stuk? Was er een bijeenkomst waar men het besprak? Of werd het ook in ontvangst genomen waarbij 
@@ -94,6 +110,7 @@ Dank u wel voor het gebruiken van Petities.nl!
 
 De webmaster 
 
+STEUN PETITIES.NL
 
-Wilt u ons steunen? http://petities.nl/donate
+Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
 '

@@ -33,6 +33,22 @@ class SignatureMailer < ApplicationMailer
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end
 
+  # subscribed signatory gets a copy of news update with mail flag
+  def inform_user_of_news_update_mail(signature, petition)
+    @signature = signature
+    @petition = petition
+    @unique_key = url_for(
+      controller: 'signatures',
+      action: 'confirm',
+      host: 'petities.nl',
+      signature_id: @signature.unique_key)
+
+    subject = t('mail.petition.progress_subject', {
+      title: @petition.name})
+
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+  end
+
   def sig_confirmation_mail(signature)
 
     @signature = signature
