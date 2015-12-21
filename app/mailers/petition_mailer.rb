@@ -61,9 +61,12 @@ class PetitionMailer <  ApplicationMailer
       target = @petition.office.email
     end
 
-    subject = t('mail.moderation.pending_subject')
+    tld = get_tld(target)
 
-    mail(to: target, subject: subject)
+    I18n.with_locale(tld) do
+      subject = t('mail.moderation.pending_subject')
+      mail(to: target, subject: subject)
+    end
 
   end
 
@@ -102,8 +105,15 @@ class PetitionMailer <  ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subject = t('mail.request.announcement_subject')
-    mail(to: target, subject: subject )
+    
+
+    tld = get_tld(target)
+
+    I18n.with_locale(tld) do
+      subject = t('mail.request.announcement_subject')
+      mail(to: target, subject: subject )
+    end
+    
   end
 
   # explain office what we expect
@@ -176,5 +186,15 @@ class PetitionMailer <  ApplicationMailer
 
     mail(to: user.email, subject: subject)
   end
-  
+
+  private
+
+  def get_tld(target)
+    locale = :nl
+    tld = target.split('.').last
+    if I18n.available_locales.include? tld.to_sym
+      locale = tld
+    end
+    return locale
+  end
 end
