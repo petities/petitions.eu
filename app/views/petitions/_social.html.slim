@@ -1,16 +1,26 @@
 div.social-bar
+  - if @petition.subdomain && request.domain
+    - share_url = '%s.%s' % [@petition.subdomain ,request.domain]
+  - else
+    - share_url = petition_url(@petition)
+
   div.social-bar-content
     div.social-bar-label= t('show.share')
-    a.social-bar-button.facebook    href="javascript:fbShare('#{petition_url(@petition)}', '#{@petition.name}', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350);"
-    a.social-bar-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_url(@petition)}&text="
-    a.social-bar-button.googleplus  href="javascript:gPlusShare('#{petition_url(@petition)}');"
-    a.social-bar-button.linkedin    href="javascript:lnShare('#{petition_url(@petition)}');"
+    - image = 'http://goo.gl/dS52U'
+    - if @images.last
+      - image = image_url(@images.last.upload.url)
+    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', 'sign petition', '#{image}' , 520, 350);"
+
+    a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{@petition.name}');"
+    a.social-bar-button.googleplus  href="javascript:gPlusShare('#{share_url}');"
+    a.social-bar-button.linkedin    href="javascript:lnShare('#{share_url}');"
     = mail_to nil, nil,
           class: "social-bar-button email",
           subject: "Share a petition: #{@petition.name}",
-          body: petition_url(@petition)
+          body: share_url
     div.social-bar-url
-      span#social_url= petition_url(@petition) 
+      span#social_url
+        = share_url
       a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
       /javascript:

@@ -183,8 +183,10 @@ div.page
     div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
       = t 'edit.petition.edit_details_text'
 
-= render partial: 'social'
+- if not @petition.is_draft?
 
-= render partial: 'signatures'
+  = render partial: 'social'
 
-= render partial: 'petition_updates'
+  = render partial: 'signatures'
+
+  = render partial: 'petition_updates'

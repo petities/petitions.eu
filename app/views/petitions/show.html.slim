@@ -31,8 +31,9 @@ div.page
 
   div
     - if not @updates.empty?
-      = link_to t('petition.news'), '#petitionnews', class: 'button' 
-      p &nbsp;
+      - if @updates.first.created_at > 10.days.ago
+        = link_to t('petition.news'), '#petitionnews', class: 'button'
+        p &nbsp;
 
   javascript:
     window.page = 1;
@@ -97,8 +98,9 @@ div.page
 
       = render partial: 'history_chart'
 
-= render partial: 'social'
+- if not @petition.is_draft?
+  = render partial: 'social'
 
-= render partial: 'signatures'
+  = render partial: 'signatures'
 
-= render partial: 'petition_updates'
+  = render partial: 'petition_updates'
