@@ -212,7 +212,7 @@ class PetitionsController < ApplicationController
         unless owner
 
           password = user_params[:password]
-          if password.blank? 
+          if password.blank?
             password = Devise.friendly_token.first(8)
           end
 
@@ -229,7 +229,7 @@ class PetitionsController < ApplicationController
           owner.save
 
           # send welcome / password if needed
-          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver
+          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_now
 
         end
       end

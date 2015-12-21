@@ -166,6 +166,17 @@ class Petition < ActiveRecord::Base
   has_many :updates
   has_many :task_statuses
 
+  before_validation :strip_whitespace
+
+  def strip_whitespace
+    self.name = self.name.strip unless self.name.nil?
+    self.description = self.description.strip unless self.description.nil?
+    self.initiators = self.initiators.strip unless self.initiators.nil?
+    self.statement = self.statement.strip unless self.statement.nil?
+    self.request = self.request.strip unless self.request.nil?
+  end
+
+
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :initiators
