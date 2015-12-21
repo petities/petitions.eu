@@ -67,6 +67,18 @@ class PetitionMailer <  ApplicationMailer
 
   end
 
+  # petitioner with failed petition asked to fix it
+  def improve_and_reopen_mail
+    @signature = signature
+    @petition = petition
+    @user = user
+    subject = t('mail.petition.improve_and_reopen_subject', {
+       petition_name: petition.name
+     })
+     mail(to: user.email, subject: subject)
+    
+  end
+
   # signatory gets the answer to the petition
   def inform_user_of_answer_mail(signature, petition, answer)
     @signature = signature
@@ -94,6 +106,15 @@ class PetitionMailer <  ApplicationMailer
     mail(to: target, subject: subject )
   end
 
+  # explain office what we expect
+  def process_explanation_mail(petition)
+    @petition = petition
+    @office = petition.office
+    target = @petition.office.email
+    subject = t('mail.request.procedural_subject')
+    mail(to: target, subject: subject )    
+  end  
+  
   # ask office for reference number
   def reference_number_mail(petition, target="")
     Logger.debug('building reference number mail..')
@@ -123,6 +144,21 @@ class PetitionMailer <  ApplicationMailer
     if @petition.petitioner_email
       mail(to: target, subject: subject )
     end
+  end
+
+  # a virtual hand over of the signatories list
+  def hand_over_to_office_mail
+    PetitionMailer.hand_over_to_office_mail(Petition.live.first)
+  end
+
+  # all signatories get a mail that the hand over took place
+  def handed_over_signatories_mail
+    PetitionMailer.handed_over_signatories_mail(Petition.live.first)
+  end
+
+  # petitioner is asked to write an update about the hand over
+  def write_about_hand_over_mail
+    PetitionMailer.write_about_hand_over_mail(Petition.live.first)
   end
 
   # ask petitioner to confirm, give user and password
