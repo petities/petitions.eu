@@ -20,7 +20,7 @@ div.header-user-dropdown
       = link_to t('my.mailpreviews'), '/rails/mailers', class: "header-user-dropdown-item"
       = link_to t('my.visits'), '/visits', class: "header-user-dropdown-item"
       = link_to t('my.sidekiq'), '/sidekiq', class: "header-user-dropdown-item"
-      = link_to t('my.activeadmin'), '/admin', class: "header-user-dropdown-item"
+      = link_to t('my.activeadmin'), admin_dashboard_path, class: "header-user-dropdown-item"
     = link_to t('logout'), destroy_user_session_path, method: :delete, class: "header-user-dropdown-item"
   - else
     = link_to t("header.new"), new_petition_path, class: 'header-user-dropdown-item'
