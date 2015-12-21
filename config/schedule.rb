@@ -41,6 +41,16 @@ every 10.minutes do
   rake "signature:send_reminder"
 end
 
+every 30.minutes do
+  # send a reminder to confirm petition
+  rake "petition:publish_news_to_subscribers"
+end
+
+every :day, at: '1am' do
+  # send a reminder to confirm petition
+  rake "petition:publish_answer_to_subscribers"
+end
+
 
 # Petition maintenance
 
@@ -49,11 +59,11 @@ every 8.hours do
 end
 
 
-every 9.hours do
+every :day, at: '4am' do
   rake "petition:send_warning_due_date"
 end
 
-every 11.hours do
+every :day, at:  '3am' do
   rake "petition:get_reference"
 end
 
