@@ -172,6 +172,63 @@ namespace :petition do
     end
   end
 
+  desc 'publish news to subscribers'
+  task 'publish_news_to_subscribers' => :environment do
+    Rails.logger = ActiveSupport::Logger.new('log/publish_news.log')
+
+    has_news = Petition.where(status: 'live').
+      joins(:updates).
+      where('newsitems.created_at > ?', 1.days.ago).limit(10)
+
+    has_news.each do |petition|
+
+      publish_task = TaskStatus.find_or_create_by(
+        task_name: 'publish_news',
+        petition_id: petition.id)
+
+      #(task_status.last_action < 7.days.ago && task_status.count < 3)
+      if publish_task.count.nil?
+        publish_task.count = 0
+      end
+
+      if publish_task.count == 0  or (publish_task.count < 3 && (publish_task.last_action < 2.days.ago))
+        # store progres
+        publish_task.count += 1
+        publish_task.last_action = Time.now
+        publish_task.save
+      else
+        # skip
+        Rails.logger.debug('we only publish 3 times')
+        Rails.logger.debug('and at most and once a day %s' % petition.name)
+        next
+      end
+
+       # find all people that want to be informed
+       inform_me = Signature.
+         where(petition_id: petition.id).
+         where(subscribe: true)
+
+       message = '%s people get newsupdate on %s'% [inform_me.size, petition.name]
+       Rails.logger.debug(message)
+       publish_task.message = message
+
+       # find the answer
+       news_update = petition.updates.first
+
+       # inform each pledged user of answer
+       inform_me.each do |signature|
+         m = SignatureMailer.inform_user_of_news_mail(
+           signature, petition, news_update
+         )
+         # deliver the news
+         m.deliver_later
+       end
+       # store progres
+       publish_task.save
+
+    end
+  end
+
 
   desc 'publish answer to interested people'
   task 'publish_answer_to_subscribers' => :environment do

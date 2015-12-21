@@ -33,37 +33,37 @@
 
 every 10.minutes do
   # remove unconfirmed garbadge
-  rake signatures:delete_old_signatures
+  rake "signature:delete_old_signatures"
 end
 
 every 10.minutes do
   # send a reminder to confirm petition
-  rake signatures:send_reminder
+  rake "signature:send_reminder"
 end
 
 
 # Petition maintenance
 
 every 8.hours do
-  rake petition:handle_overdue_petitions
+  rake "petition:handle_overdue_petitions"
 end
 
 
 every 9.hours do
-  rake petition:send_warning_due_date
+  rake "petition:send_warning_due_date"
 end
 
 every 11.hours do
-  rake petition:get_reference
+  rake "petition:get_reference"
 end
 
 every :day, at: '2am' do
   #rake petition:send_answers
-  rake petition:get_reference
+  rake "petition:get_reference"
 end
 
 every 12.hours do
-  rake petition:get_answer_from_office
+  rake "petition:get_answer_from_office"
 end
 
 
