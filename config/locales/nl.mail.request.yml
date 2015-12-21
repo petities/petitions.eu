@@ -1,0 +1,56 @@
+nl:
+  mail:
+    request:
+      announcement: '
+Onderstaande petitie willen we graag overhandigen. Voor deze petitie zijn $signature_count$ ondertekeningen verzameld sinds $creationdate$. 
+Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op $subdomain$@petities.nl. 
+Bij deze heeft u toestemming om dit bericht te publiceren in een openbaar register met inkomende stukken, als dat mogelijk is. 
+
+Wij kijken uit naar de procedurele behandeling zodat we snel weten wanneer we de inhoudelijke behandeling kunnen verwachten.
+'
+      announcement_subject: Graag een overhandigingsdatum voor deze petitie
+      answer: '
+We verwachten dat u een inhoudelijk antwoord heeft op onze petitie. De behandeling ervan is geweest en mogelijk kunt u ons verwijzingen 
+geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-registratie.
+'
+      due_date: We verwachten een datum waarop u een antwoord heeft.
+      reference: '
+Op $datum$ mailden we een petitie naar u. We hebben nog geen ontvangstbevestiging met een referentienummer ontvangen 
+op $subdomain$@petities.nl. Zou u ons alsnog kunnen laten weten welk referentienummer het heeft gekregen?
+'
+      reference_reminder: '
+Eerder mailde ik u met de vraag om een referentienummer. Op $datum$ $datum$ $datum$ was dat. Heeft u die voor mij? 
+Het gaat om een petitie die we op $datum$ stuurden naar dit adres. 
+'
+      sign_off: '
+Met vriendelijke groet, 
+$naampetitionaris$. 
+
+P.S. Deze petitie is mede mogelijk gemaakt dankzij Stichting Petities.nl. Uw organisatie kan daar gratis een transparant petitieloket nemen 
+om digitaal petities te begeleiden, ontvangen en beantwoorden. 
+
+
+Petities.nl bestaat sinds 2005 dankzij het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties, sponsoren, vrijwilligers en betaalde diensten.
+'
+      procedural: '
+Dank u wel voor het bevestigen van de ontvangst van de petitie met referentienummer $referentie$. We verwachten de 
+volgende procedure. Ofwel heeft u een datum voor de inhoudelijke behandeling. Bijvoorbeeld met één van deze opties:
+1. op de lijst ingekomen stukken voor een bepaalde vergadering (ter inzage, verspreid of gepubliceerd)
+2. op de agenda van een commissievergadering
+3. op de agenda van een vergadering
+
+In dat geval kijken we uit naar die datum die we dan graag bekend maken bij de ondertekenaars zodat ze dit in hun agenda kunnen schrijven.
+
+Of u kunt nog geen datum noemen. Het kan bijvoorbeeld zijn dat de petitie aan een ambtenaar is gegeven voor een inhoudelijk advies. In dat 
+geval komen we er over een tijdje op terug. 
+
+Als u de petitie voor kennisgeving heeft aangenomen dan horen we graag wie er op welke datum kennis van hebben kunnen nemen en hoe. 
+We zullen de ondertekenaars daar dan van op de hoogte brengen. Zij kunnen dan naar deze ter kennisgeving verwijzen als ze er met de 
+lezers van de petitie op terug willen komen.
+'
+      speed_norm: '
+Op basis van de e-mailgedragslijn voor overheden Altijd antwoord, tijdig antwoord (zie 
+https://www.overheid.nl/contact/e-mailgedragslijn-voor-overheden/) verwachten wij binnen een dag een (geautomatiseerde) 
+ontvangstbevestiging met een kenmerk. Dit kenmerk openbaren we dan onder de online petitie als ontvangstbewijs. 
+U kunt ons helpen door dit kenmerk in te vullen op deze pagina $reference$.
+'
