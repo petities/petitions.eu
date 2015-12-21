@@ -14,18 +14,18 @@ div.page
     div.navigation-bar
       - if @signatures.blank?
         div.whitespace = t('edit.petition.no_signatures_yet')
-      - else
+      - elsif @signatures.count > 12
         a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
-      
+
       div.clearfix
-      
+
       = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
       - if current_user && (current_user.has_role? :admin, @petition)
         - if @petition.signatures.count > 2
           div.whitespace
             = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
-        
+
           div.whitespace
             = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
 
