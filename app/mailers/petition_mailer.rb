@@ -9,6 +9,8 @@ class PetitionMailer <  ApplicationMailer
     mail(to: target, subject: subject )
   end
 
+  # get a reference
+
   def announcement_reminder_mail(petition)
 
     @petition = petition
@@ -43,9 +45,12 @@ class PetitionMailer <  ApplicationMailer
       target = @petition.office.email
     end
 
-    subject = t('mail.moderation.pending_subject')
+    tld = get_tld(target)
 
-    mail(to: target, subject: subject)
+    I18n.with_locale(tld) do
+      subject = t('mail.moderation.pending_subject')
+      mail(to: target, subject: subject)
+    end
 
   end
 
@@ -62,11 +67,16 @@ class PetitionMailer <  ApplicationMailer
 
     @office = petition.office
 
-    subject = t('petition.office.please_answer')
 
     @petition = petition
+    target = @petition.office.email
 
-    mail(to: @petition.office.email, subject: subject)
+    tld = get_tld(target)
+
+    I18n.with_locale(tld) do
+      subject = t('petition.office.please_answer')
+      mail(to: target, subject: subject)
+    end
   end
 
   def reference_number_mail(petition, target="")
@@ -134,7 +144,7 @@ class PetitionMailer <  ApplicationMailer
 
     mail(to: user.email, subject: subject)
   end
-  
+
   def inform_user_of_answer_mail(signature, petition, answer)
     @signature = signature
     @petition = petition
@@ -149,6 +159,17 @@ class PetitionMailer <  ApplicationMailer
       title: @petition.name})
 
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+  end
+
+  private
+
+  def get_tld(target)
+    locale = :en
+    tld = target.split('.').last
+    if I18n.available_locales.include? tld.to_sym
+      locale = tld
+    end
+    return locale
   end
 
 end
