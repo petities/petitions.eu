@@ -94,4 +94,17 @@ class SignatureMailer < ApplicationMailer
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: target_email, subject: subject)
   end
 
+  def inform_user_of_answer_mail(signature, petition, news_update)
+
+    # TODO for reinder
+
+  end
+
+  def inform_user_of_news_mail(signature, petition, news_update)
+
+    # TODO for reinder
+
+  end
+
+
 end
