@@ -64,10 +64,6 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.adoption_request_signatory_mail(Signature.last.petition, Signature.last)
   end
 
-  def adoption_result_signatories_mail
-    PetitionMailer.adoption_result_signatories_mail(Petition.live.first)
-  end
-
   def welcome_with_password_mail
     password = Devise.friendly_token.first(8)
     PetitionMailer.welcome_petitioner_mail(Petition.first, User.first, password)
