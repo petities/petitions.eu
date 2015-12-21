@@ -9,8 +9,8 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.finalize_mail(Petition.live.first)
   end
 
-  def warning_due_date_mail
-    PetitionMailer.warning_due_date_mail(Petition.live.first)
+  def due_next_week_warning_mail
+    PetitionMailer.due_next_week_warning_mail(Petition.live.first)
   end
 
   def write_about_hand_over_mail
@@ -45,8 +45,11 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.handed_over_signatories_mail(Petition.live.first)
   end
 
-  def inform_users_of_answer_mail
-    PetitionMailer.inform_users_of_answer_mail(Petition.completed.first)
+  def inform_user_of_answer_mail  
+    petition = Petition.where(status: 'live').first
+    signature = petition.signatures.first
+    answer = petition.updates.where(show_on_petition: true).first
+    PetitionMailer.inform_user_of_answer_mail(signature, petition, answer)
   end
 
   def answer_due_date_request_mail

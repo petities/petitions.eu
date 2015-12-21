@@ -1,0 +1,88 @@
+nl:
+  mail:
+    petition:
+      adoption_request: '
+U heeft de petitie %{petition_name} op %{date} ondertekend. De indiendatum is verstreken en de petitionaris 
+reageert niet (op tijd) op e-mails van ons. De petitie is nu verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen
+namens de $signaturecount$ ondertekenaars. We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
+verzoek iets te willen doen of te willen doneren.
+
+Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit dan verschijnt dit 
+als antwoord op de petitie.
+'
+      confirm:
+        instructions: '
+Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
+%{confirmation_url}
+  
+als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$ met belangrijke informatie over uw petitie. Met $e-mailadres$ en %{password} kunt u inloggen op https://petities.nl/login
+  
+Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen.
+  
+Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
+  
+Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
+  
+Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.
+'
+        subject: 'Verder met uw petitie "%{petition_name}" met deze inloggegevens'
+      due_next_week: '
+Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. Als u inlogt kunt u onder petitiedetails de datum aanpassen, zo vaak als nodig is.
+'
+      due_next_week_write: '
+Na $datum$ is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
+kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
+naar de ondertekenaars als u dat ons vraagt op webmaster@petities.nl. Ondertussen is het zaak om de exacte datum af te spreken voor de 
+overhandiging. Als u bij uw profiel uw telefoonnummer heeft ingevuld wordt u er misschien ook zelf over gebeld omdat we uw petitie 
+volautomatisch versturen. Zodra u zekerheid heeft over de exacte datum van overhandiging, past u het dan gelijk aan? Ons systeem 
+zal daarna dan een antwoord op de petitie (blijven) vragen namens u.
+
+Als u nu geen update bij de petitie zet dan veronderstellen we dat u geen interesse of tijd meer heeft of onbereikbaar bent geworden. 
+De petitie is dan verweesd en iemand anders kan de petitie adopteren. De ondertekenaars die hebben aangegeven zich 
+in te willen zetten voor de petitie krijgen na elkaar een e-mail met de vraag de petitie te adopteren. Leest u dit na $datum$ en uw 
+petitie is nog niet geadopteerd, log dan snel in, verander de indiendatum, schrijf een update en ons een e-mail om het beheer over 
+uw petitie niet kwijt te raken.
+
+Wilt u de petitie intrekken? Dat kan door de datum te veranderen naar iets in het verleden. Zou u dan ook een update willen schrijven
+waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Ga daarvoor naar $survey$.
+'
+      has_answer: '
+Op %{date} heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. De petitie is nu beantwoord door 
+de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden %{answer}
+'
+      has_no_answer: '
+Op DATUM heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. Helaas is de petitie genegeerd 
+door de ontvanger. Op $indiendatum$ is de petitie verstuurd naar $ontvanger$. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
+maar we kregen geen antwoord. Als u misschien weet wat de situatie is rond de petitie is, zou u het ons willen laten weten?
+'
+      improve_and_reopen: '
+Uw petitie heeft weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
+Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie beter kan of dat te weinig mensen weten dat de petitie bestaat. 
+U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op http://handboek.petities.nl staan tips over hoe u aandacht 
+voor uw petitie kunt krijgen. Succes!
+'
+      now_hide_signature: '
+Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende kon u aangegeven of u zichtbaar wilt 
+zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. 
+Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
+'
+    handover: '
+De aangehangen petitie hebben wij aan u overhandigd. Deze petitie heeft van u bij ontvangst het kenmerk $reference$ gekregen. 
+Bij deze ook nog eens de lijst ondertekenaars digitaal. We vertrouwen erop dat u deze vertrouwelijk behandelt onder de Wet Bescherming 
+Persoonsgegevens. Dat betekent dat de persoonsgegevens alleen gebruikt worden voor het doeleinde waar ze voor verzameld zijn. 
+In dit geval als steunbetuigingen voor deze petitie. U kunt bijvoorbeeld de identiteit van de ondertekenaars controleren of patronen analyseren.
+
+We kijken uit naar het inhoudelijke antwoord op de petitie. We verwachten dat er verwijzingen in staan naar een inhoudelijke discussie over de 
+petitie. Uitgeschreven, als een video-registratie of allebei.
+'
+    signoff: '
+U kunt inloggen op uw petitie via https://petities.nl/login met $e-mailadres$ en uw wachtwoord.
+
+Dank u wel voor het gebruiken van Petities.nl!
+
+
+De webmaster 
+
+
+Wilt u ons steunen? http://petities.nl/donate
+'

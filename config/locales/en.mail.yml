@@ -1,9 +1,9 @@
 en:
   mail:
     confirm:
-      nowwhat: nothing 
       signature:
-        linkinstruction: 'You nearly signed the petition "%{petition}" 
+        linkinstruction: '
+You nearly signed the petition "%{petition}" 
 
 
 with the e-mail address %{email} and the name %{name} on %{date}. 
@@ -156,5 +156,32 @@ For other questions you can contact the petition desk at $petitieloketadres$ or 
         subject: Continue with your petition "%{petition_name}" with this login         
       has_answer: 'On %{date} you signed the petition %{petition.name}. The petition is now answered by the recipient of the petition. You can also find this answer next to the petition.'
       now_hide_signature: 'Now that the petition is closed, you might want to hide your name and signature. When you signed you were asked if you want to show your name on public display as signatory of the petition. Your signature might show up when someone searches the web for your name. You might like that or perhaps not. To turn this off or on again, go to the page where you confirmed your signature at %{unique_url}.'
-      moderation:
-        pending: Petition #<a href="http://localhost/petitions/132/edit">132</a> was finalized and waits for moderation.
+      status: 
+        changed: Your petition has changed status. It is now %{status}. Go to your petition at %{petition}
+        changed_subject: Your petition has changed status to $status$
+      request:
+        announcement: 'Onderstaande petitie willen we graag overhandigen. Voor deze petitie zijn $signature_count$ ondertekeningen verzameld sinds $creationdate$. 
+Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op subdomain@petities.nl. 
+Bij deze heeft u toestemming om dit bericht te publiceren in een openbaar register met inkomende stukken, als dat mogelijk is. 
+
+Wij kijken uit naar de procedurele behandeling zodat we snel weten wanneer we de inhoudelijke behandeling kunnen verwachten.'
+        reference: Heeft u een referentienummer voor mij? Ik mailde u met een petitie. 
+        reference_reminder: Ik vroeg om een referentienummer. Heeft u die voor mij?
+        signoff: 'Met vriendelijke groet, 
+$naampetitionaris$. 
+
+P.S. Deze petitie is mede mogelijk gemaakt dankzij Stichting Petities.nl. Uw organisatie kan daar gratis een transparant petitieloket nemen 
+om digitaal petities te begeleiden, ontvangen en beantwoorden. 
+
+
+Petities.nl bestaat sinds 2005 dankzij het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties, sponsoren, vrijwilligers en betaalde diensten.'
+        procedural: We verwachten de volgende procedure nu we een referentienummer hebben. 
+        speed_norm: |
+          Op basis van de e-mailgedragslijn voor overheden 'Altijd antwoord, tijdig antwoord' (zie https://www.overheid.nl/contact/e-mailgedragslijn-voor-overheden/) verwachten wij binnen een dag een (geautomatiseerde) ontvangstbevestiging met een kenmerk. Dit kenmerk openbaren we dan onder de online petitie als ontvangstbewijs. U kunt ons helpen door dit kenmerk in te vullen op deze pagina $reference$.
+        due_date: We verwachten een datum waarop u een antwoord heeft.
+        answer: 'De dag is gekomen. We verwachten een antwoord.'
+      handover: 'De aangehangen petitie hebben wij aan u overhandigd. Deze petitie heeft van u bij ontvangst het kenmerk $reference$ gekregen. 
+Bij deze ook nog eens de lijst ondertekenaars digitaal. We vertrouwen erop dat u deze vertrouwelijk behandeld onder de 
+Wet Bescherming Persoonsgegevens. Dat betekent dat de persoonsgegevens alleen 
+gebruikt worden voor het doeleinde waar ze voor verzameld zijn. In dit geval als steunbetuigingen voor deze petitie. U kunt bijvoorbeeld de 
+identiteit van de ondertekenaars controleren of patronen analyseren.'

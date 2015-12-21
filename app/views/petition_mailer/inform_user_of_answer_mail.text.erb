@@ -1,15 +1,35 @@
 
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
-<%= t('mail.petition.has_answer', {
-  name: @signature.person_name,
-  sig_email: @signature.person_email,
-  petition_name: @petition.name,
-  petition_url: petition_url({id: @petition.slug}),
-  petition_descr: @petition.description,
-  petition_email: @petition.petitioner_email},
-  answer: @petition.answer)
-  %>
-<%= t("mail.petition.now_hide_signature", {unique_key: @signature.unique_key})%>
+
+<% if not @petition.get_answer.nil? %>
+	<%= t('mail.petition.has_answer', {
+	  name: @signature.person_name,
+	  sig_email: @signature.person_email,
+	  petition_name: @petition.name,
+	  petition_url: petition_url({id: @petition.slug}),
+	  unique_url: @unique_key,
+	  petition_descr: @petition.description,
+	  petition_email: @petition.petitioner_email,
+	  answer: @petition.get_answer})
+	  %>
+
+<% else %>
+
+	<%= t('mail.petition.has_no_answer', {
+	  name: @signature.person_name,
+	  sig_email: @signature.person_email,
+	  petition_name: @petition.name,
+	  petition_url: petition_url({id: @petition.slug}),
+	  petition_descr: @petition.description,
+	  petition_email: @petition.petitioner_email})
+	  %>
+<% end %>
+
+
+<%= t("mail.petition.now_hide_signature") %>
+
+<%= @unique_key %>
+
 <%= t("mail.signoff") %>
 
