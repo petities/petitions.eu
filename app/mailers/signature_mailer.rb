@@ -1,6 +1,38 @@
 
 class SignatureMailer < ApplicationMailer
 
+  # all signatories get a mail that the hand over took place
+  def handed_over_signatories_mail(signature)
+    @signature = signature
+    @petition = @signature.petition
+    @unique_key = url_for(
+      controller: 'signatures',
+      action: 'confirm',
+      host: 'petities.nl',
+      signature_id: @signature.unique_key)
+
+    subject = t('mail.petition.handed_over', {
+      title: @petition.name})
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+  end
+
+  # signatory gets the answer to the petition
+  def inform_user_of_answer_mail(signature, petition, answer)
+    @signature = signature
+    @petition = petition
+    @answer = answer
+    @unique_key = url_for(
+      controller: 'signatures',
+      action: 'confirm',
+      host: 'petities.nl',
+      signature_id: @signature.unique_key)
+
+    subject = t('mail.petition.is_answered', {
+      title: @petition.name})
+
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+  end
+
   def sig_confirmation_mail(signature)
 
     @signature = signature

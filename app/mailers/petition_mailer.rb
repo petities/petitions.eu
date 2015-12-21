@@ -2,8 +2,8 @@ class PetitionMailer <  ApplicationMailer
 
   #ask signatories with any pledge to adopt orphaned petition
   def adoption_request_signatory_mail(petition, signature)
-    @petition = petition
     @signature = signature
+    @petition = petition
 
     if signature.unique_key.nil?
       signature.send(:generate_unique_key)
@@ -23,11 +23,11 @@ class PetitionMailer <  ApplicationMailer
 
   # ask office which date petition should get an answer
   def ask_office_answer_due_date_mail(petition)
-    Logger.debug('build ask for answer due date mail..')
+    logger.debug('build ask for answer due date mail..')
 
     @office = petition.office
 
-    subject = t('petition.office.please_answer')
+    subject = t('mail.request.due_date_subject')
 
     @petition = petition
 
@@ -36,20 +36,22 @@ class PetitionMailer <  ApplicationMailer
 
   # ask office for answer to petition
   def ask_office_for_answer_mail(petition)
-    Logger.debug('build ask for answer mail..')
+    logger.debug('build ask for answer mail..')
 
-    subject = t('petition.moderation.we_need_answer')
+    @office = petition.office
+    
+    @petition = petition
+
+    subject = t('mail.request.answer_subject')
 
     mail(to: @petition.office.email, subject: subject)
-
   end
 
   # call petitioner into action about closing petition
   def due_next_week_warning_mail(petition)
-
-    subject = t('petition.is.due')
-    target = petition.office.email
-    mail(to: target, subject: subject)
+    @petition = petition
+    subject = t('mail.petition.due_next_week_subject')
+    mail(to: petition.petitioner_email, subject: subject)
   end
 
   # finalize petition, ready for moderation
@@ -67,45 +69,31 @@ class PetitionMailer <  ApplicationMailer
       subject = t('mail.moderation.pending_subject')
       mail(to: target, subject: subject)
     end
+  end
 
+  # a virtual hand over of the signatories list
+  def hand_over_to_office_mail(petition)
+    @petition = petition
+    @office = petition.office
+    target = @petition.office.email
+    subject = t('mail.request.procedural_subject')
+    mail(to: target, subject: subject )    
   end
 
   # petitioner with failed petition asked to fix it
-  def improve_and_reopen_mail
-    @signature = signature
+  def improve_and_reopen_mail(petition)
     @petition = petition
-    @user = user
     subject = t('mail.petition.improve_and_reopen_subject', {
        petition_name: petition.name
      })
-     mail(to: user.email, subject: subject)
-    
-  end
-
-  # signatory gets the answer to the petition
-  def inform_user_of_answer_mail(signature, petition, answer)
-    @signature = signature
-    @petition = petition
-    @answer = answer
-    @unique_key = url_for(
-      controller: 'signatures',
-      action: 'confirm',
-      host: 'petities.nl',
-      signature_id: @signature.unique_key)
-
-    subject = t('mail.petition.is_answered', {
-      title: @petition.name})
-
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
+     mail(to: petition.petitioner_email, subject: subject)    
   end
 
   # announce petition to office
   def petition_announcement_mail(petition)
-
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    
 
     tld = get_tld(target)
 
@@ -113,7 +101,6 @@ class PetitionMailer <  ApplicationMailer
       subject = t('mail.request.announcement_subject')
       mail(to: target, subject: subject )
     end
-    
   end
 
   # explain office what we expect
@@ -127,7 +114,7 @@ class PetitionMailer <  ApplicationMailer
   
   # ask office for reference number
   def reference_number_mail(petition, target="")
-    Logger.debug('building reference number mail..')
+    logger.debug('building reference number mail..')
     @petition = petition
     @office = petition.office
     target = @petition.office.email
@@ -156,29 +143,22 @@ class PetitionMailer <  ApplicationMailer
     end
   end
 
-  # a virtual hand over of the signatories list
-  def hand_over_to_office_mail
-    PetitionMailer.hand_over_to_office_mail(Petition.live.first)
-  end
-
-  # all signatories get a mail that the hand over took place
-  def handed_over_signatories_mail
-    PetitionMailer.handed_over_signatories_mail(Petition.live.first)
-  end
-
   # petitioner is asked to write an update about the hand over
-  def write_about_hand_over_mail
-    PetitionMailer.write_about_hand_over_mail(Petition.live.first)
+  def write_about_hand_over_mail(petition)
+    @petition = petition
+      subject = t('mail.petition.write_about_hand_over_subject', {
+        petition_name: petition.name
+      })
+
+      mail(to: petition.petitioner_email, subject: subject)
   end
 
   # ask petitioner to confirm, give user and password
   def welcome_petitioner_mail(petition, user, password)
-
-    @user = user
     @password = password
     @token = user.confirmation_token
-    @password = password
     @petition = petition
+    @user = user
 
     subject = t('mail.petition.confirm.subject', {
       petition_name: petition.name
