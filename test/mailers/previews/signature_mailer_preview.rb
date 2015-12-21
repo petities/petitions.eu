@@ -5,6 +5,19 @@ class SignatureMailerPreview < ActionMailer::Preview
     SignatureMailer.sig_confirmation_mail(NewSignature.first)
   end
 
+  # all signatories get a mail that the hand over took place
+   def handed_over_signatories_mail
+     petition = Petition.where(status: 'live').first
+     SignatureMailer.handed_over_signatories_mail(Signature.last)
+   end
+
+  # signatory gets the answer to the petition
+  def inform_user_of_answer_mail
+    petition = Petition.where(status: 'live').first
+    answer = petition.updates.where(show_on_petition: true).first
+    SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
+  end
+  
   def reminder_mail
     SignatureMailer.sig_reminder_confirm_mail(NewSignature.first)
   end
