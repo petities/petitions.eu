@@ -61,9 +61,7 @@ namespace :petition do
           task_name: 'find_owner',
           petition_id: petition.id)
 
-      if task_status.count.nil?
-        task_status.count = 0
-      else
+      if task_status.count
         # already launched a search before..
         if task_status.last_action < 7.days.ago
           # no owner found.
@@ -81,9 +79,9 @@ namespace :petition do
         joins(:task_status).
         where(task_statuses: {inform_me: true}).limit(100)
 
-      #
       Rails.logger.debug('found %s candidates for %s' % [candidates.size, petition.name])
 
+      # email each candiate to be admin
       candidates.each do |candidate|
         PetitionMailer.adoption_request_signatory_mail(petition, candidate.signature).deliver_later
       end
@@ -108,28 +106,14 @@ namespace :petition do
         task_name: 'get_reference_number',
         petition_id: petition.id)
 
-      if task_status.count.nil?
-        task_status.count = 0
-      end
-
-      if task_status.last_action.nil?
-        task_status.last_action = Time.now
+      if task_status.should_execute?(7.days.ago, 3)
         m = PetitionMailer.reference_number_mail(petition)
-        # m.deliver_later
-        Rails.logger.debug('sending first mail.')
+        m.deliver_later
+        Rails.logger.debug('sending reference mail.')
         task_status.count += 1
-      elsif
-        if task_status.count < 3
-          if task_status.last_action < 7.days.ago
-            task_status.last_action = Time.now
-            m = PetitionMailer.reference_number_mail(petition)
-            #m.deliver_later
-            Rails.logger.debug('sending %s mail..' % task_status.count)
-          end
-        end
+        task_status.save
       end
       # save the current task status
-      task_status.save
     end
   end
 
@@ -150,12 +134,7 @@ namespace :petition do
         task_name: 'get_answer',
         petition_id: petition.id)
 
-       if task_status.count.nil?
-         task_status.count = 0
-         task_status.last_action = Time.now
-       end
-
-       if task_status.count == 0 or (task_status.last_action < 7.days.ago && task_status.count < 3)
+       if task_status.should_execute(7.days.ago, 3)
          # send office reminder
          task_status.count += 1
          task_status.last_action = Time.now
@@ -186,45 +165,36 @@ namespace :petition do
         task_name: 'publish_news',
         petition_id: petition.id)
 
-      #(task_status.last_action < 7.days.ago && task_status.count < 3)
-      if publish_task.count.nil?
-        publish_task.count = 0
-      end
-
-      if publish_task.count == 0  or (publish_task.count < 3 && (publish_task.last_action < 2.days.ago))
-        # store progres
-        publish_task.count += 1
-        publish_task.last_action = Time.now
-        publish_task.save
-      else
+      if not publish_task.should_execute(2.days.ago, 3)
         # skip
         Rails.logger.debug('we only publish 3 times')
         Rails.logger.debug('and at most and once a day %s' % petition.name)
         next
       end
 
-       # find all people that want to be informed
-       inform_me = Signature.
-         where(petition_id: petition.id).
-         where(subscribe: true)
+      # find all people that want to be informed
+      inform_me = Signature.
+        where(petition_id: petition.id).
+        where(subscribe: true)
 
-       message = '%s people get newsupdate on %s'% [inform_me.size, petition.name]
-       Rails.logger.debug(message)
-       publish_task.message = message
+      message = '%s people get newsupdate on %s'% [inform_me.size, petition.name]
+      Rails.logger.debug(message)
+      publish_task.message = message
 
-       # find the answer
-       news_update = petition.updates.first
+      # find the answer
+      news_update = petition.updates.first
 
-       # inform each pledged user of answer
-       inform_me.each do |signature|
-         m = SignatureMailer.inform_user_of_news_mail(
-           signature, petition, news_update
-         )
-         # deliver the news
-         m.deliver_later
-       end
-       # store progres
-       publish_task.save
+      # inform each pledged user of answer
+      inform_me.each do |signature|
+        m = SignatureMailer.inform_user_of_news_mail(
+          signature, petition, news_update
+        )
+        # deliver the news
+        m.deliver_later
+      end
+
+      # store progres
+      publish_task.save
 
     end
   end
@@ -247,10 +217,7 @@ namespace :petition do
         task_name: 'publish_answer',
         petition_id: petition.id)
 
-       if publish_task.count.nil?
-         publish_task.count = 0
-         publish_task.last_action = Time.now
-       else
+       if not publish_task.should_execute?(nil, 1)
          # skip
          Rails.logger.debug('we only publish once %s' % petition.name)
          next
