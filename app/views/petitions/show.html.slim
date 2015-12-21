@@ -31,8 +31,9 @@ div.page
 
   div
     - if not @updates.empty?
-      = link_to t('petition.news'), '#petitionnews', class: 'button' 
-      p &nbsp;
+      - if @updates.first.created_at > 10.days.ago
+        = link_to t('petition.news'), '#petitionnews', class: 'button'
+        p &nbsp;
 
   javascript:
     window.page = 1;
