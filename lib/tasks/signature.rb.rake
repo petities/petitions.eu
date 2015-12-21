@@ -1,4 +1,4 @@
-namespace :signatures do
+namespace :signature do
 
   desc 'Delete unconfirmed signatures older then a week'
   task :delete_old_signatures => :environment do
