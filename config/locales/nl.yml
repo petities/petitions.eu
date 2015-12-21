@@ -79,12 +79,10 @@ nl:
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam
-      more_information:
-        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
-        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       pledge:
         asseenontv: bekende persoon die herkend wordt
         carpooler: een lift geven naar een bijeenkomst
+        communicator: e-mails en telefoontjes beantwoorden
         copywriter: persberichten of nieuwsbrieven schrijven
         employer: werkgever met veel werknemers
         experienced: ervaringen vertellen aan een journalist
@@ -113,6 +111,9 @@ nl:
         label: Huisnummer
       street_number_suffix:
         suffixlabel: Huisnummertoevoeging
+      subscribe:
+        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
       update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
@@ -144,6 +145,7 @@ nl:
     title: Bevestig uw ondertekening van de petitie "%{name}"
   description: Beschrijving
   desk:
+    general_desk_admins: Petitieloket logins
     intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
     petition:
       allow_through: Nog doorlaten
@@ -310,6 +312,7 @@ nl:
   my:
     activeadmin: beheerscherm
     create_newsupdate: Schrijf nieuwtje
+    desk: Petitieloket
     mailpreviews: Previews standaardmails
     news_updates: Nieuwtjes
     petitioner: 'U, de petitionaris'
@@ -451,6 +454,7 @@ nl:
     withdrawn: Ingetrokken
   petitioner: 
     awaiting_answer: Wacht op antwoord
+    awaiting_moderation: Nog doorlaten
     drafts: Nog niet af
     signable: Ondertekenbaar
     text_blue: U kunt e-mail sturen naar de ondertekenaars. Stuur de tekst naar webmaster@petities.nl en wij verzorgen de verzending.
@@ -467,6 +471,7 @@ nl:
     feedback:
       description: Of wilt u op een andere manier helpen?
       placeholder: Iets anders...
+    thank_you: Dank u!
   privacy:
     text: |
       <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
@@ -665,6 +670,15 @@ nl:
     overview: 'Een petitie bestaat uit drie delen: namens wie, waar gaat het over, wat wilt u? Alles wat u hier invult is te wijzigen totdat de petitie ondertekend is.'
     title: Start een petitie
   statement: Verzoek
+  survey:
+    answers: Deze petitie is niet overhandigd. We vroegen $signatures met pledge=1$ ondertekenaars of de petitie dicht kon en $survey-results$ gaven het volgende als reden.
+    request_is_met: het verzoek van de petitie is al gerealiseerd zonder de petitie in te dienen
+    too_late: de petitie kwam te laat, het veroek is niet meer te realiseren
+    situation: de situatie is veranderd, de petitie zou ook moeten veranderen
+    no_majority: er is geen politiek draagvlak voor
+    different: we moeten anders verder, (nu) niet met een petitie 
+    personal: persoonlijk kan ik de petitie niet overnemen (te druk, niet iets voor mij)
+    other_answers: 'iets anders, namelijk:'
   update:
     created: Nieuws toegevoegd
     earlier_updates: Eerder toegevoegd

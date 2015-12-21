@@ -1,9 +1,27 @@
 class PetitionMailer <  ApplicationMailer
   #
+  def petition_announcement_mail(petition)
+
+    @petition = petition
+    @office = petition.office
+    target = @petition.office.email
+    subject = t('mail.request.announcement_subject')
+    mail(to: target, subject: subject )
+  end
+
+  def announcement_reminder_mail(petition)
+
+    @petition = petition
+    @office = petition.office
+    target = @petition.office.email
+    subject = t('mail.request.announcement_subject')
+    mail(to: target, subject: subject )
+  end
+
   def status_change_mail(petition, target: nil)
     @petition = petition
 
-    subject = t('Petition.status.changed')
+    subject = t('mail.petition.status.changed_subject')
 
     if target.nil?
       # NOTE petitioner_email can be wrong?
@@ -25,14 +43,14 @@ class PetitionMailer <  ApplicationMailer
       target = @petition.office.email
     end
 
-    subject = t('petition.moderation.pending')
+    subject = t('mail.moderation.pending_subject')
 
     mail(to: target, subject: subject)
 
   end
 
   # petition is sending a subject
-  def warning_due_date_mail(petition)
+  def due_next_week_warning_mail(petition)
 
     subject = t('petition.is.due')
     target = petition.office.email
@@ -40,7 +58,9 @@ class PetitionMailer <  ApplicationMailer
   end
 
   # petition should get an answer
-  def due_date_ask_for_answer_mail(petition)
+  def answer_due_date_request_mail(petition)
+
+    @office = petition.office
 
     subject = t('petition.office.please_answer')
 
@@ -113,6 +133,22 @@ class PetitionMailer <  ApplicationMailer
     })
 
     mail(to: user.email, subject: subject)
+  end
+  
+  def inform_user_of_answer_mail(signature, petition, answer)
+    @signature = signature
+    @petition = petition
+    @answer = answer
+    @unique_key = url_for(
+      controller: 'signatures',
+      action: 'confirm',
+      host: 'petities.nl',
+      signature_id: @signature.unique_key)
+
+    subject = t('mail.petition.is_answered', {
+      title: @petition.name})
+
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end
 
 end

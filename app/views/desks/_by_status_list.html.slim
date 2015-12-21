@@ -27,7 +27,7 @@ section.vervolg-main
 
   div.main-container-grey.whitespace
     h2.main-container-grey-title
-      = t("desk.petition.awaiting_answer")
+      = t("desk.petition.answer")
     div.main-container-grey-itemswrapper
       - @petitions_inproces.each do |petition|
         = link_to edit_petition_path(petition), class: "main-container-grey-item"

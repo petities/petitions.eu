@@ -31,6 +31,7 @@ class Pledge < ActiveRecord::Base
 
   SKILL_OPTIONS = [
     [t('confirm.form.pledge.experienced'), 'experienced'],
+    [t('confirm.form.pledge.communicator'), 'communicator'],
     [t('confirm.form.pledge.researcher'), 'researcher'],
     [t('confirm.form.pledge.copywriter'), 'copywriter'],
     [t('confirm.form.pledge.publicspeaker'), 'publicspeaker'],

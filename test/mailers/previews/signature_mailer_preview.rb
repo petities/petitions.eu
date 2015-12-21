@@ -10,10 +10,9 @@ class SignatureMailerPreview < ActionMailer::Preview
   end
 
   def share_mail
-    SignatureMailer.share_mail(NewSignature.first, 'test@petitions.eu')
+    SignatureMailer.share_mail(Signature.first, 'test@petitions.eu')
   end
   def share_mail2
-    SignatureMailer.share_mail(NewSignature.last, 'test@petitions.eu')
+    SignatureMailer.share_mail(Signature.last, 'test@petitions.eu')
   end
-
 end

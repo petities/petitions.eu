@@ -79,13 +79,11 @@ en:
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
-      more_information:
-        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
-        label: "Yes, send me up to three e-mails with updates about this petition"
       pledge:
         asseenontv: known person who gets recognised
         carpooler: give a ride to a meeting
         copywriter: write press releases or newsletters
+        communicator: answer e-mails and phone calls
         employer: employer with many employees
         experienced: tell experiences to a journalist
         expert: expert
@@ -113,6 +111,9 @@ en:
         label: Street number
       street_number_suffix:
         suffixlabel: Suffix
+      subscribe:
+        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
+        label: "Yes, send me up to three e-mails with updates about this petition"
       update_information: Update your information
       visible:
         description: A public signature can be found with search engines, for example when someone looks up your name.
@@ -144,6 +145,7 @@ en:
     title: Confirm your signature for the petition "%{name}"
   description: Description
   desk:
+    general_desk_admins: Petition desk accounts
     intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
     petition:
       allow_through: Allow through
@@ -310,6 +312,7 @@ en:
   my:
     activeadmin: Manage data
     create_newsupdate: Write update
+    desk: Petition desk 
     mailpreviews: Preview default mails
     news_updates: News
     petitioner: 'You, the petitioner'
@@ -451,6 +454,7 @@ en:
     withdrawn: Withdrawn
   petitioner:
     awaiting_answer: Awaiting answer
+    awaiting_moderation: Awaiting moderation
     drafts: Drafts
     signable: Signable
     text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
@@ -467,6 +471,7 @@ en:
     feedback:
       description: Or would you like to help in another way?
       placeholder: Something else...
+    thank_you: Thank you!  
   privacy:
     text: |
       <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
@@ -664,6 +669,15 @@ en:
     overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
     title: Start a petition
   statement: Statement
+  survey:
+    answers: This petition is not handed over. We asked $signatures met pledge=1$ signatories wether the petition could close and $survey-results$ opted for the following.
+    request_is_met: the request of the petition has been met without a hand over
+    too_late: the petition came too late, the request can not be realised anymore
+    situation: the situation has changed, the petition should change too
+    no_majority: there is no political support for it
+    different: we should continue differently, not (now) with a petition 
+    personal: peronally I can not run the petition (too busy, not my think)
+    other_answers: 'something else, being:'
   update:
     created: News update created
     earlier_updates: Earlier updates
