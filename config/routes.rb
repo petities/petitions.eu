@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     get 'logout' => 'devise/sessions#destroy'
   end
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
 
   scope 'yesmaster' do
+    devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
     get '/', to: 'admin/dashboard#index'
   end

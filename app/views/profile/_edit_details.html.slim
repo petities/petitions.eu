@@ -11,6 +11,11 @@ div#edit_details.petition-details style='display: none; position:relative'
                    placeholder: t('profile.your_name', default: 'your real name please')
 
     div.petition-edit-label
+      = t('profile.email')
+    = f.text_field :email, class: 'petition-edit-input',
+                   placeholder: t('profile.your_new_email', default: 'your new email (confirmation needed)')
+
+    div.petition-edit-label
       = t('profile.phone')
     = f.text_field :telephone, class: 'petition-edit-input',
                    placeholder: t('profile.your_telephone', default: 'your telephone number')

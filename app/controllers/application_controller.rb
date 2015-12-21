@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) ||
       if resource.is_a?(AdminUser)
         admin_dashboard_path
-      elsif Office.with_role(:admin, resource)
+      elsif not Office.with_role(:admin, resource).empty?
         office = Office.with_role(:admin, resource).first
         petition_desk_path(office)
       else
