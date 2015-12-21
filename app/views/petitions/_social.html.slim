@@ -10,7 +10,11 @@ div.social-bar
           subject: "Share a petition: #{@petition.name}",
           body: petition_url(@petition)
     div.social-bar-url
-      span#social_url= petition_url(@petition) 
+      span#social_url
+        - if @petition.subdomain && request.domain
+          = '%s.%s' % [@petition.subdomain ,request.domain]
+        - else
+          = petition_url(@petition)
       a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
       /javascript:
