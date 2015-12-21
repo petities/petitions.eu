@@ -15,7 +15,7 @@ namespace :petition do
     almost_petitions.each do |petition|
       if almost_petitions.signatures.confirmed.size < 10
         m = PetitionMailer.warning_due_date_mail(petition)
-        m.deliver_later
+        m.deliver_later(queue: :petitioners)
       end
     end
   end
@@ -41,7 +41,7 @@ namespace :petition do
         # change status to to_process
         petition.status == 'to_process'
         m = PetitionMailer.office_ask_for_answer_due_date_mail(petition)
-        m.deliver_later
+        m.deliver_later(queue: :process)
       end
       petition.save
     end
@@ -108,7 +108,7 @@ namespace :petition do
 
       if task_status.should_execute?(7.days.ago, 3)
         m = PetitionMailer.reference_number_mail(petition)
-        m.deliver_later
+        m.deliver_later(queue: :office)
         Rails.logger.debug('sending reference mail.')
         task_status.count += 1
         task_status.save
@@ -139,7 +139,7 @@ namespace :petition do
          task_status.count += 1
          task_status.last_action = Time.now
          mail = PetitionMailer.office_ask_for_answer_mail(petition)
-         mail.deliver_later
+         mail.deliver_later(queue: :office_mail)
          Rails.logger.debug(
            'asked %s x %s for answer on %s' % [
              petition.office.name,
@@ -165,8 +165,10 @@ namespace :petition do
         task_name: 'publish_news',
         petition_id: petition.id)
 
-      if not publish_task.should_execute(2.days.ago, 3)
+      if not publish_task.should_execute?(2.days.ago, 3)
         # skip
+        #publish_task.update(count: 0 ,last_action: 3.days.ago)
+        #publish_task.save
         Rails.logger.debug('we only publish 3 times')
         Rails.logger.debug('and at most and once a day %s' % petition.name)
         next
@@ -186,16 +188,14 @@ namespace :petition do
 
       # inform each pledged user of answer
       inform_me.each do |signature|
-        m = SignatureMailer.inform_user_of_news_mail(
+        m = SignatureMailer.inform_user_of_newsupdate_mail(
           signature, petition, news_update
         )
         # deliver the news
-        m.deliver_later
+        m.deliver_later(queue: :newsupdates)
       end
-
       # store progres
       publish_task.save
-
     end
   end
 
@@ -241,7 +241,7 @@ namespace :petition do
           pledge.signature, pledge.petition, answer
         )
         # deliver the answer
-        m.deliver_later
+        m.deliver_later(queue: :answers)
       end
 
       # set petition status on completed

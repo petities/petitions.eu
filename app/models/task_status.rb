@@ -29,7 +29,7 @@ class TaskStatus < ActiveRecord::Base
     end
 
     # did we already run to many times?
-    if self.last_action && self.last_action < time_ago
+    if self.last_action && self.last_action > time_ago
       return false
     end
 
