@@ -6,7 +6,7 @@
 	email: @signature.person_email,
 	date: @signature.signed_at.to_formatted_s(:short),
 	name: @signature.person_name,
-	confirm_url: @confirm_url	
+	confirm_url: @confirm_url
 }) %>
 
 <%= t("mail.signoff") %> 
@@ -19,4 +19,3 @@
 	request: @signature.petition.request,
 	petitionermail: @signature.petition.petitioner_email
 }) %>
-

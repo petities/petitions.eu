@@ -1,35 +1,55 @@
 nl:
   mail:
-    confirm:
-      nowwhat: nothing 
-      signature:
-        linkinstruction: 'U heeft bijna de petitie "%{petition}" ondertekend 
-        
-        
-met het e-mailadres %{email} en de naam %{name} op %{date}. 
+    dear: Geachte
+    mailafriend:
+      mail: ' 
+Geachte heer, mevrouw,
 
 
-Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen:
-    
-
-%{confirm_url}
+Op petities.nl ondertekende %{name} (%{sig_email}) zojuist de petitie "%{petition_name}"%{sig_function}.
 
 
-Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
+Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
 
 
-Na uw bevestiging kunt altijd terugkomen om uw gegevens bij te werken 
+Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen van petities.nl tenzij een ondertekenaar uw adres weer invoert.
 
 
-of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap te bewaren.
+De petitie kunt u bekijken op:
+
+
+%{subdomain}.petities.nl 
+
+
+%{intro} 
+
+
+Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
 '
-        petition: 'DE PETITIE
+      note:  met de aantekening
+      subject: 'Uitnodiging om te ondertekenen: %{title}'
+    moderation:
+      pending: '
+Er is een nieuwe petitie binnengekomen voor u, $naam$, om door te laten. 
+U kunt nu controleren of deze petitie voldoet aan de eisen. Is de petitie aan de juiste ontvanger gericht? 
+Is het misschien een speciale petitie met extra eisen voor ondertekeningen? Dit kunt u eventueel navragen bij de petitionaris.
+Ook kunt u de petitionaris inhoudelijk advies geven voor u de petitie open zet. De petitionaris is te bereiken op $e-mail_petitioner$ $phone_petitioner$. 
 
+U voorkomt veel onnodige e-mails van lezers als u kleine spelfoutjes in de tekst herstelt. 
+Zolang u de essentie en de stijl van de petitie niet verandert worden verbeteringen door iedereen gewaardeerd.
+Ook kunt u zinnen of zinsdelen verplaatsen zodat de beschrijving van de afzenders in de eerste, constateringen in de tweede 
+en het verzoek in de derde onderdeel staan. 
 
-%{subdomain}.petities.nl
+De petitie heeft wel een subdomein nodig. Dat is de kortst mogelijke beschrijving zonder spaties of leestekens. 
+Dit wordt het korte adres voor ondertekenaars om door te vertellen over de telefoon, op radio en tv, in gesprek, 
+via twitter en dergelijke. Formuleer het bij voorkeur actief: veiliger, groener, mooier, beter, ander en concreet: 
+behoud, stop, red, verander, pas aan, etc.
 
-
-%{intro}
+De petitie kunt u vinden op $linktopetition$ of in uw overzicht van uw petitieloket op $petition desk$.
+'
+      pending_subject: 'Nieuwe petitie om door te laten: petition_name in uw petitieloket'
+      petition: '
+DE PETITIE
 
 
 %{we}
@@ -39,64 +59,17 @@ of om anderen uit te nodigen te ondertekenen. Daarom is het goed deze boodschap 
 
 
 %{request}
-
-
-Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
 '
-        subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
-    dear: Geachte
-    signoff: 'Dank u wel voor het gebruiken van Petities.nl!
+      signoff: '
+Dank u wel voor het gebruiken van Petities.nl!
 
+met vriendelijke groet, 
 
-        De webmaster 
+de webmaster
 
-
-        Wilt u ons steunen? http://petities.nl/donate'
-    mailafriend:
-      subject: 'Uitnodiging om te ondertekenen: %{title}'
-      mail: ' 
-
-Geachte heer, mevrouw,
-
-
-Op petities.nl heeft %{name} (%{sig_email}) zojuist de petitie "%{petition_name}" ondertekend met de aantekening "%{sig_function}".
-
-
-Met deze e-mail nodigt %{name} u uit om deze petitie ook te bekijken en eventueel te ondertekenen.
-
-
-Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is enkel eenmalig gebruikt voor het versturen van deze uitnodiging. U ontvangt verder geen uitnodigingen meer over deze petitie op dit e-mailadres.
-
-
-De petitie kunt u bekijken op:
-
-
-%{petition_url} 
-
-
-%{petition_descr} 
-
-
-Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}'
-    note:  met de aantekening
-    petition: 
-      confirm: 
-        instructions: '%{petitioner}, 
-
-
-Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
-
-          confirmlink
-
-          als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$. Met $e-mailadres$ en $wachtwoord$ kunt u inloggen op https://petities.nl/login
-
-          Zorg ervoor dat dit uw dagelijkse, normale e-mailadres is waar wij belangrijke e-mail over uw petitie naar toe kunnen sturen.
-
-          Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om u om ongewenste e-mail te voorkomen.
-
-          Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
-
-          Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
-
-          Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.'
-        subject: Verder met uw petitie "%{petition_name}" met deze inloggegevens 
+Wilt u onze hulp of advies? U kunt ons bijvoorbeeld inhuren voor een workshop, een 24/7 hotline, mailings aan de 
+burgers in onze database, analyses en meer. Telefoon 020-7854412 of e-mail webmaster@petities.nl.
+'
+  status: 
+    changed: 'Uw petitie is van status veranderd. Het is nu %{status}. Ga naar de petitie op %{petition} om te zien wat er nu moet gebeuren.'
+    changed_subject: 'Uw petitie is van status veranderd naar $status$'

@@ -279,6 +279,10 @@ class Petition < ActiveRecord::Base
     ['completed'].include? status
   end
 
+  def get_answer
+    updates.where(show_on_petition: true).first
+  end
+
   def display_city_select_box?
     if petition_type.present?
       petition_type.allowed_cities.present?

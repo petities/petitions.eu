@@ -1,10 +1,22 @@
 
-<%= t('mail.confirm.reminder_mail', {
+<%= t("mail.dear") %> <%= @signature.person_name %>,
+
+<%= t('mail.confirm.signature.reminder_mail', {
   name: @signature.person_name,
-  sig_email: @signature.person_email,
-  sig_link: @confirm_url,
-  petition_name: @petition.name,
-  sig_function: @signature.person_function, 
-  petition_url: petition_url({id: @petition.slug}),  
-  petition_descr: @petition.description,
-  petition_email: @petition.petitioner_email}) %>
+  email: @signature.person_email,
+  date: @signature.signed_at.to_formatted_s(:short),
+  confirm_url: @confirm_url,
+  petition: @signature.petition.name
+}) %>
+
+<%= t("mail.signoff") %> 
+
+<%= t("mail.confirm.signature.petition", {
+	subdomain: @signature.petition.subdomain,
+	intro: @signature.petition.description,
+	we: @signature.petition.initiators,
+	observe: @signature.petition.statement,
+	request: @signature.petition.request,
+	petitionermail: @signature.petition.petitioner_email
+}) %>
+
