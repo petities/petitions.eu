@@ -34,8 +34,9 @@ class SignatureMailer < ApplicationMailer
   end
 
   # subscribed signatory gets a copy of news update with mail flag
-  def inform_user_of_news_update_mail(signature, petition)
+  def inform_user_of_news_update_mail(signature, petition, update)
     @signature = signature
+    @update = update
     @petition = petition
     @unique_key = url_for(
       controller: 'signatures',

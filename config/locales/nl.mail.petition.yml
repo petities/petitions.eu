@@ -70,11 +70,11 @@ zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op
 Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
 '
       progress: '
-Op %{date} heeft u de petitie "%{petition_name}" ondertekend als %{sig_name} uit %{place}. U heeft aangegeven op de hoogte te willen 
+Op DATUM heeft u de petitie PETITIONNAME ondertekend als SIGNAME uit PLACE. U heeft aangegeven op de hoogte te willen 
 blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u het één van de drie 
-voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op %{petitionermail}.
+voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op PETITIONERMAIL.
 '
-      progress_subject: 'Petitie "%{petition_name}", voortgangsbericht'
+      progress_subject: 'Petitie PETITIONNAME, voortgangsbericht'
       progress_unsubscribe: '
 STOPZETTEN E-MAILS
 
