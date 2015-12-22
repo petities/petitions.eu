@@ -22,11 +22,16 @@
 #
 
 one:
-  id: 1,
-  name: NL,
-  subdomain: nl,
+  id: 1
+  name: NL
+  subdomain: nl
 
 two:
-  id: 2,
-  name: gemeente amsterdam,
-  subdomain: amsterdam,
+  id: 2
+  name: gemeente amsterdam
+  subdomain: amsterdam
+
+three:
+  id: 3
+  name: gemeente alkmaar
+  subdomain: alkmaar

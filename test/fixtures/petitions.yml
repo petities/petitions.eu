@@ -71,27 +71,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1,
-  name: test1,
-  description: description:1,
-  office_id: 1,
-  request: request:,
-  petitioner_email: test@test.nl,
-  petitioner_name: test11,
-  statement: statement,
+  id: 1
+  name: test1
+  description: description
+  office_id: 1
+  request: request
+  petitioner_email: test@test.nl
+  petitioner_name: test11
+  statement: statement
   initiators: :initiators
   slug: testslug
-  subdomain: test
+  subdomain: testsubdomain
 
 two:
-  id: 2,
-  name: test1,
-  description: description:1,
-  request: request:,
-  office_id: 2,
-  petitioner_email: test@test.nl,
-  statement: statement,
+  id: 2
+  name: test1
+  description: description
+  request: request
+  office_id: 2
+  petitioner_email: test@test.nl
+  statement: statement
   initiators: :initiators
   slug: test_alkmaar
-  subdomain: alkmaar
+  subdomain: weghiermee
 
