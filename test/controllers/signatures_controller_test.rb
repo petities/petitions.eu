@@ -1,10 +1,16 @@
 require 'test_helper'
 
 class SignaturesControllerTest < ActionController::TestCase
+  fixtures :all
 
   setup do
-    @petition = petitions(:two)
-    @signature = signatures(:two)
+
+    @petition = petitions(:one)
+    @signature = signatures(:one)
+
+    @petition2 = petitions(:two)
+    @signature2 = signatures(:two)
+
     @newsignature = new_signatures(:two)
   end
 
@@ -39,6 +45,54 @@ class SignaturesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  # this petition / signature requires full address
+  test "should not update signature" do
+    #byebug
+    post :confirm_submit, format: :json, :petition_id=>@petition2,
+      :signature_id=>@signature2.unique_key,  signature: {
+        :visible => true,
+        :special => true,
+        :subscribe => true,
+      }
+    assert_response :unprocessable_entity
+  end
+
+  # this petition / signature requires NOTHING
+  test "should update signature" do
+    post :confirm_submit, format: :json,:petition_id=>@petition,
+      :signature_id=>@signature.unique_key,  signature: {
+        :visible => true,
+        :special => true,
+        :subscribe => true,
+        :persone_function => true,
+        :street_number => 'X',
+      }
+    assert_response :success
+  end
+
+  # test the validation
+  test "valdation signature" do
+    post :confirm_submit, format: :json,:petition_id=>@petition2,
+      :signature_id=>@signature2.unique_key,  signature: {
+        :visible => true,
+        :special => true,
+        :subscribe => true,
+        :persone_function => true,
+        # wrond values
+        :street_number => 'X',
+        :person_street => 'XX',
+        :person_birth_city => 'X',
+        :person_born_at => 'X',
+      }
+    assert_response :unprocessable_entity
+
+    error_keys = JSON.load(response.body).keys
+    assert_empty(error_keys - [
+      "person_street", "person_street_number", "person_born_at",
+      "person_birth_city"])
+  end
+
+
 
   test "signature confirmation links" do
     assert_routing("/signatures/10/confirm", :controller => "signatures",
@@ -49,13 +103,13 @@ class SignaturesControllerTest < ActionController::TestCase
 
     assert_recognizes({
         :controller => "signatures",
-        :action => "confirm", 
+        :action => "confirm",
         :signature_id => "oude_id_blabla"},
       "/ondertekening/oude_id_blabla")
 
     assert_recognizes({
         :controller => "signatures",
-        :action => "confirm", 
+        :action => "confirm",
         :signature_id => "oude_id_blabla"},
       "/ondertekening/oude_id_blabla/confirm")
 
@@ -72,6 +126,8 @@ class SignaturesControllerTest < ActionController::TestCase
       get :confirm, :signature_id => @newsignature.unique_key
     end
   end
+
+
 
   test "take_owner_ship" do
     assert_difference('User.count') do

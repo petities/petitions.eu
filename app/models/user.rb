@@ -27,10 +27,11 @@
 #  telephone              :string(255)
 #  birth_date             :date
 #  birth_city             :string(255)
+#  encrypted_password     :string(255)      default("")
+#  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
-#  encrypted_password     :string(255)
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0)
+#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
@@ -38,9 +39,8 @@
 #  confirmation_token     :string(255)
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
-#  reset_password_token   :string(255)
-#  remember_token         :string(255)
 #  unconfirmed_email      :string(255)
+#  remember_token         :string(255)
 #
 
 class User < ActiveRecord::Base

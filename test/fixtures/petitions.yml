@@ -81,15 +81,17 @@ one:
   statement: statement
   initiators: :initiators
   slug: testslug
+  petition_type_id: 1
   subdomain: testsubdomain
 
 two:
   id: 2
-  name: test1
+  name: test2
   description: description
   request: request
   office_id: 2
   petitioner_email: test@test.nl
+  petition_type_id: 2
   statement: statement
   initiators: :initiators
   slug: test_alkmaar
