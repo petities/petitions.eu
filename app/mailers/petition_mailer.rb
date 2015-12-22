@@ -16,7 +16,10 @@ class PetitionMailer <  ApplicationMailer
       host: 'dev.petitions.eu',
       signature_id: @signature.unique_key)
 
-    subject = t('petition.moderation.we_need_new_owner')
+    subject = t('mail.petition.adoption_request_subject', {
+      petition: petition.name
+      })
+    
 
     mail(to: @signature.person_email, subject: subject)
   end

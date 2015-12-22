@@ -18,7 +18,7 @@ Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is eenmalig g
 De petitie kunt u bekijken op:
 
 
-%{subdomain}.petities.nl 
+http://%{subdomain}.petities.nl 
 
 
 %{intro} 
@@ -27,7 +27,7 @@ De petitie kunt u bekijken op:
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
 '
       note:  met de aantekening
-      subject: 'Uitnodiging om te ondertekenen: %{title}'
+      subject: 'Uitnodiging om de petitie "%{title}" te ondertekenen'
     moderation:
       pending: '
 Er is een nieuwe petitie binnengekomen voor u, $naam$, om door te laten. 

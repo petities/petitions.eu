@@ -1,14 +1,24 @@
-<%= t("mail.dear") %> $name user$, 
+<%= t("mail.dear") %> <%= @signature.person_name %>, 
 
-<%= t("mail.petition.adoption_request") %>
+<%= t("mail.petition.adoption_request" ,{
+	petition: @petition.name,
+	petitioner: @petition.petitioner_name,
+    date: @signature.signed_at.to_formatted_s(:short), 
+    signaturescount: @petition.signatures_count
+}) %>
 
- Devise::Mailer
+<%= t("mail.petition.adoption_instructions" ,{
+    becomeownerurl: @become_owner_url
+}) %>
 
-If you feel like changing the world and take some responsibility
-follow below link
+<%= t("mail.petition.adoption_survey") %>:
+<%= t("survey.request_is_met") %>
+<%= t("survey.too_late") %>
+<%= t("survey.situation") %>
+<%= t("survey.no_majority") %>
+<%= t("survey.different") %>
+<%= t("survey.personal") %>
+<%= t("survey.other_answers") %>
 
-go to:
-<%= @become_owner_url %>
 
-login the website using your email
-ask for 'forgot my password' to create a password for your account
+<%= t("mail.confirm.signoff")%>

@@ -45,6 +45,8 @@ THE PETITION
 
 
 END
+
+
 Do you have questions about this petition? Please contact the lead petitioner on: %{petitionermail}
 '
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
