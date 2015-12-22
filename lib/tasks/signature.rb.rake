@@ -4,7 +4,7 @@ namespace :signature do
   task :delete_old_signatures => :environment do
     Rails.logger = ActiveSupport::Logger.new('log/deleted_sigs.log')
 
-    invalid = NewSignature.where('created_at < ?', 10.days.ago)
+    invalid = NewSignature.where('created_at < ?', 30.days.ago)
     size = invalid.size
     invalid.delete_all
     Rails.logger.debug('deleted %s signatures' % size)

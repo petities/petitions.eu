@@ -11,7 +11,7 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false 
+  config.action_controller.perform_caching = false
 
   #config.cache_store = :mem_cache_store, "127.0.0.1"
 
@@ -60,6 +60,6 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # Devise user handling
-  config.action_mailer.default_url_options = { :host => "localhost" }
+  config.action_mailer.default_url_options = { :host => "localhost", :port => 3000}
 
 end

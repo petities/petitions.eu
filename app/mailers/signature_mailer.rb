@@ -1,5 +1,7 @@
 
 class SignatureMailer < ApplicationMailer
+  # TODO host should be set in the config
+  #ActionMailer::Base.default_url_options[:host]
 
   # all signatories get a mail that the hand over took place
   def handed_over_signatories_mail(signature)
@@ -17,6 +19,7 @@ class SignatureMailer < ApplicationMailer
   end
 
   # signatory gets the answer to the petition
+  # rake petition:publish_answer_to_subscribers
   def inform_user_of_answer_mail(signature, petition, answer)
     @signature = signature
     @petition = petition
@@ -34,6 +37,7 @@ class SignatureMailer < ApplicationMailer
   end
 
   # subscribed signatory gets a copy of news update with mail flag
+  # rake petition:publish_news_to_subscribers
   def inform_user_of_news_update_mail(signature, petition, update)
     @signature = signature
     @update = update
@@ -50,6 +54,8 @@ class SignatureMailer < ApplicationMailer
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end
 
+  # users must confirm their signature
+  # by following the confirm_url link in this email
   def sig_confirmation_mail(signature)
 
     @signature = signature
@@ -57,13 +63,8 @@ class SignatureMailer < ApplicationMailer
     @confirm_url = url_for(controller: 'signatures',
                            action: 'confirm',
                            #host: 'localhost:3000',
-                           host: 'petities.nl',
+                           #host: 'petities.nl',
                            signature_id: @signature.unique_key)
-
-    logger.debug ''
-    logger.debug 'Building a confirmation mail.'
-    logger.debug @confirm_url
-    logger.debug ''
 
     # find the petition name
     name = 'noname'
@@ -84,7 +85,7 @@ class SignatureMailer < ApplicationMailer
       controller: 'signatures',
       action: 'confirm',
       #host: 'localhost:3000',
-      host: 'petities.nl',
+      #host: 'petities.nl',
       signature_id: @signature.unique_key)
 
     name = @signature.petition.name if @signature.petition.present?
@@ -94,6 +95,8 @@ class SignatureMailer < ApplicationMailer
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @signature.person_email, subject: subject)
   end
 
+  # send a default email informing recipient of petition
+  #
   def share_mail(signature, target_email)
 
     # build the required globals for the template

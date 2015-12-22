@@ -14,7 +14,7 @@ namespace :petition do
 
     almost_petitions.each do |petition|
       if almost_petitions.signatures.confirmed.size < 10
-        m = PetitionMailer.warning_due_date_mail(petition)
+        m = PetitionMailer.due_next_week_warning_mail(petition)
         m.deliver_later(queue: :petitioners)
       end
     end
@@ -37,10 +37,10 @@ namespace :petition do
         Rails.logger.debug('orphaned %s %s' % [petition.id, petition.name])
       else
         Rails.logger.debug('request answer due date %s %s' % [petition.id, petition.name])
-        # send request to answer to office
+        # send request for answer due date to office
         # change status to to_process
         petition.status == 'to_process'
-        m = PetitionMailer.office_ask_for_answer_due_date_mail(petition)
+        m = PetitionMailer.ask_office_answer_due_date_mail(petition)
         m.deliver_later(queue: :process)
       end
       petition.save
@@ -138,7 +138,7 @@ namespace :petition do
          # send office reminder
          task_status.count += 1
          task_status.last_action = Time.now
-         mail = PetitionMailer.office_ask_for_answer_mail(petition)
+         mail = PetitionMailer.ask_office_for_answer_mail(petition)
          mail.deliver_later(queue: :office_mail)
          Rails.logger.debug(
            'asked %s x %s for answer on %s' % [
@@ -188,7 +188,7 @@ namespace :petition do
 
       # inform each pledged user of answer
       inform_me.each do |signature|
-        m = SignatureMailer.inform_user_of_newsupdate_mail(
+        m = SignatureMailer.inform_user_of_news_update_mail(
           signature, petition, news_update
         )
         # deliver the news
