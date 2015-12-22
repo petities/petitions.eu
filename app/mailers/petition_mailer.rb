@@ -1,6 +1,7 @@
 class PetitionMailer <  ApplicationMailer
 
   #ask signatories with any pledge to adopt orphaned petition
+  # rake petition:find_new_owner
   def adoption_request_signatory_mail(petition, signature)
     @signature = signature
     @petition = petition
@@ -19,12 +20,13 @@ class PetitionMailer <  ApplicationMailer
     subject = t('mail.petition.adoption_request_subject', {
       petition: petition.name
       })
-    
+
 
     mail(to: @signature.person_email, subject: subject)
   end
 
   # ask office which date petition should get an answer
+  # rake petitions:handle_overdue_petitions
   def ask_office_answer_due_date_mail(petition)
     logger.debug('build ask for answer due date mail..')
 
@@ -38,11 +40,12 @@ class PetitionMailer <  ApplicationMailer
   end
 
   # ask office for answer to petition
+  # rake petition:get_anwer_from_office
   def ask_office_for_answer_mail(petition)
     logger.debug('build ask for answer mail..')
 
     @office = petition.office
-    
+
     @petition = petition
 
     subject = t('mail.request.answer_subject')
@@ -51,6 +54,7 @@ class PetitionMailer <  ApplicationMailer
   end
 
   # call petitioner into action about closing petition
+  # rake petition:send_warning_due_date
   def due_next_week_warning_mail(petition)
     @petition = petition
     subject = t('mail.petition.due_next_week_subject')
@@ -80,7 +84,7 @@ class PetitionMailer <  ApplicationMailer
     @office = petition.office
     target = @petition.office.email
     subject = t('mail.request.procedural_subject')
-    mail(to: target, subject: subject )    
+    mail(to: target, subject: subject )
   end
 
   # petitioner with failed petition asked to fix it
@@ -89,7 +93,7 @@ class PetitionMailer <  ApplicationMailer
     subject = t('mail.petition.improve_and_reopen_subject', {
        petition_name: petition.name
      })
-     mail(to: petition.petitioner_email, subject: subject)    
+     mail(to: petition.petitioner_email, subject: subject)
   end
 
   # announce petition to office
@@ -112,9 +116,9 @@ class PetitionMailer <  ApplicationMailer
     @office = petition.office
     target = @petition.office.email
     subject = t('mail.request.procedural_subject')
-    mail(to: target, subject: subject )    
-  end  
-  
+    mail(to: target, subject: subject )
+  end
+
   # ask office for reference number
   def reference_number_mail(petition, target="")
     logger.debug('building reference number mail..')
