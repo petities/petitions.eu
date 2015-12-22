@@ -39,6 +39,7 @@ class PetitionMailer <  ApplicationMailer
     logger.debug('build ask for answer mail..')
 
     @office = petition.office
+    @petition = petition
 
     @petition = petition
     subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
@@ -96,6 +97,7 @@ class PetitionMailer <  ApplicationMailer
     petition: petition.name
     })
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: petition.petitioner_email, subject: subject)    
+  end
 
   # announce petition to office
   def petition_announcement_mail(petition)
