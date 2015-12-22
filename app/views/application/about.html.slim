@@ -9,11 +9,3 @@ div.page.vervolg
 
 div.page.vervolg
   section.vervolg-main
-
-  - if user_signed_in?
-    ul
-      - current_user.roles.each do |role|
-        li
-          = role.name
-          = role.resource_type
-          = role.resource_id
