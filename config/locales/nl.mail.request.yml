@@ -3,7 +3,7 @@ nl:
     request:
       announcement: '
 Onderstaande petitie wil ik graag overhandigen. Voor deze petitie zijn %{signatures_count} ondertekeningen verzameld sinds %{date} op %{subdomain}.petities.nl. 
-Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op %{subdomain}@petities.nl. 
+Zou u mij kunnen adviseren welke datum het beste schikt en waar ik wordt verwacht? U kunt mij bereiken op %{subdomain}@petities.nl. 
 
 
 Bij deze heeft u mijn toestemming om dit bericht te publiceren in een openbaar register met inkomende stukken, als dat mogelijk is. 
@@ -19,18 +19,19 @@ geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-regist
       answer_subject: Het is zover, heeft u een antwoord op de petitie PETITIE?
       dear: ontvanger namens 
       due_date: '
-Op DATUM hebben we u de lijst ondertekenaars overhandigd voor de petitie PETITIE. Weet u al wanneer u hier een antwoord op verwacht?
+Op %{date} hebben we u de lijst ondertekenaars overhandigd voor de petitie "%{petition}". Weet u al wanneer u hier een antwoord op verwacht?
 Een datum waarop u een antwoord heeft? Bijvoorbeeld wanneer de petitie besproken wordt in een vergadering. 
 '
       due_date_subject: Weet u wanneer de petitie PETITIE besproken wordt?
       reference: '
-Op $datum$ mailden we een petitie naar u. We hebben nog geen ontvangstbevestiging met een referentienummer ontvangen 
-op $subdomain$@petities.nl. Zou u ons alsnog kunnen laten weten welk referentienummer het heeft gekregen?
+Op %{date} mailde ik de petitie "%{petition}" naar u. Ik heb nog geen ontvangstbevestiging met een referentienummer ontvangen 
+op %{subdomain}@petities.nl. Zou u mij alsnog kunnen laten weten welk referentienummer de petitie heeft gekregen?
 '
       reference_reminder: '
 Eerder mailde ik u met de vraag om een referentienummer. Op $datum$ $datum$ $datum$ was dat. Heeft u die voor mij? 
 Het gaat om een petitie die we op $datum$ stuurden naar dit adres. 
 '
+      reference_subject: Heeft u een referentienummer voor mijn petitie "%{petition}"?
       signoff: '
 Met vriendelijke groet, 
 
@@ -68,7 +69,7 @@ volgers van de petitie er op terug willen komen.
 '
       speed_norm: '
 Op basis van de e-mailgedragslijn voor overheden Altijd antwoord, tijdig antwoord (zie 
-https://www.overheid.nl/contact/e-mailgedragslijn-voor-overheden/) verwachten wij binnen een dag een (geautomatiseerde) 
-ontvangstbevestiging met een kenmerk. Dit kenmerk openbaren we dan onder de online petitie als ontvangstbewijs. 
-U kunt ons helpen door dit kenmerk in te vullen op deze pagina $reference$.
+https://www.overheid.nl/contact/e-mailgedragslijn-voor-overheden/) verwachtte ik binnen een dag een (geautomatiseerde) 
+ontvangstbevestiging met een kenmerk. Dit kenmerk zet ik onder de online petitie als ontvangstbewijs. 
+Als uw gemeente een petitieloket heeft op Petities.nl kunt u dat zelf invullen bij de details.
 '

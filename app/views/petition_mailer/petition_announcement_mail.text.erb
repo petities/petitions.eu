@@ -8,9 +8,10 @@
 	subdomain: @petition.subdomain
 }) %>
 
-<%= @petition.petitioner_name%>
+<%= t("mail.request.signoff",{
+	petitioner: @petition.petitioner_name
+}) %>
 
-<%= t("mail.request.signoff") %>
 
 <%= t("mail.moderation.petition", {
 	subdomain: @petition.subdomain,

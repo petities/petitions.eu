@@ -121,8 +121,11 @@ class PetitionMailer <  ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subject = t('mail.request.announcement_subject')
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: target, subject: subject )
+    subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
+    subject = t('mail.request.reference_subject', {
+       petition: petition.name
+     })
+    mail(from: 'bounces@petities.nl', reply_to: subdomain, to: target, subject: subject )
 
     if not target
       target = @petition.office.email
