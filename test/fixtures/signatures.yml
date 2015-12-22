@@ -41,42 +41,45 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1,
-  petition_id: 1,
-  person_name: test name2,
-  person_email: test31@gmail.com,
-  person_city: test city3,
-  visible: 1,
-  special: 1,
-  subscribe: 1,
+  id: 1
+  petition_id: 1
+  person_name: test name2
+  person_email: test31@gmail.com
+  person_city: test city3
+  visible: 1
+  special: 1
+  subscribe: 1
   #created_at: now,
   #updated_at: now,
-  signed_at: 2014-07-14 20:53:32 
+  signed_at: 2014-07-14 20:53:32
   confirmed_at: 2014-08-14 20:53:32
-  confirmed: 1,
+  confirmed: 1
+  unique_key: testkey
 
 two:
   id: 2,
   petition_id: 2,
-  person_name: test name3,
-  person_email: test32@gmail.com,
-  person_city: test city3,
-  visible: 1,
-  special: 1,
-  subscribe: 1,
-  confirmed: 1,
-  signed_at: 2014-07-14 20:53:32 
+  person_name: test name3
+  person_email: test32@gmail.com
+  person_city: test city3
+  visible: 1
+  special: 1
+  subscribe: 1
+  confirmed: 1
+  signed_at: 2014-07-14 20:53:32
   confirmed_at: 2014-08-14 20:53:32
+  unique_key: testkey2
 
 three:
-  id: 3,
-  petition_id: 1,
+  id: 3
+  petition_id: 1
   person_name: test name32,
-  person_email: test33@gmail.com,
-  person_city: test city33,
-  visible: 1,
-  special: 1,
-  subscribe: 1,
-  confirmed: 1,
-  signed_at: 2014-07-14 20:53:32 
+  person_email: test33@gmail.com
+  person_city: test city33
+  visible: 1
+  special: 1
+  subscribe: 1
+  confirmed: 1
+  signed_at: 2014-07-14 20:53:32
   confirmed_at: 2014-08-14 20:53:32
+  unique_key: testkey3

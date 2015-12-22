@@ -164,7 +164,9 @@ class Signature < ActiveRecord::Base
   end
 
   def require_full_address?
-    petition.present? && petition.petition_type.present? && petition.petition_type.require_signature_full_address?
+    petition.present? &&
+      petition.petition_type.present? &&
+      petition.petition_type.require_signature_full_address?
     #return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
   end
 

@@ -6,7 +6,7 @@
 #  task_name   :string(255)
 #  petition_id :integer
 #  message     :string(255)
-#  count       :integer
+#  count       :integer          default(0)
 #  last_action :datetime
 #  created_at  :datetime
 #  updated_at  :datetime

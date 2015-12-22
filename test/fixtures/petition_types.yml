@@ -1,0 +1,63 @@
+# == Schema Information
+#
+# Table name: petition_types
+#
+#  id                                          :integer          not null, primary key
+#  name                                        :string(255)
+#  description                                 :text(65535)
+#  required_minimum_age                        :integer
+#  created_at                                  :datetime
+#  updated_at                                  :datetime
+#  display_person_born_at                      :boolean
+#  display_person_birth_city                   :boolean
+#  require_person_born_at                      :boolean
+#  require_person_birth_city                   :boolean
+#  display_signature_person_citizen            :boolean
+#  display_signature_full_address              :boolean
+#  require_signature_full_address              :boolean
+#  custom_additional_info_visible              :string(255)
+#  custom_additional_info_person_name          :string(255)
+#  custom_additional_info_person_street        :string(255)
+#  custom_additional_info_person_postalcode    :string(255)
+#  custom_additional_info_person_function      :string(255)
+#  custom_additional_info_subscribe            :string(255)
+#  custom_additional_info_person_birth_date    :string(255)
+#  custom_additional_info_person_birth_city    :string(255)
+#  custom_additional_info_person_dutch_citizen :string(255)
+#  custom_additional_info_more_information     :string(255)
+#  country_code                                :boolean
+#
+
+netherlands:
+  id: 1
+  name: nederland
+  description: allok
+  created_at: 2014-08-14 20:53:32
+  updated_at: 2014-08-14 20:53:32
+
+  display_person_born_at: false
+  display_person_birth_city: false
+  require_person_born_at: false
+  require_person_birth_city: false
+  display_signature_person_citizen: false
+  display_signature_full_address: false
+  require_signature_full_address: false
+  country_code: false
+
+
+all_needed:
+  id: 2
+  name: all_needed
+  description: allneeded
+  required_minimum_age: 10
+  created_at: 2014-08-14 20:53:32
+  updated_at: 2014-08-14 20:53:32
+
+  display_person_born_at: true
+  display_person_birth_city: true
+  require_person_born_at: true
+  require_person_birth_city: true
+  display_signature_person_citizen: true
+  display_signature_full_address: true
+  require_signature_full_address: true
+  country_code: true
