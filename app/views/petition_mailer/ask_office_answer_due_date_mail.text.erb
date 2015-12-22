@@ -1,1 +1,7 @@
-<%= t("mail.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
+
+
+
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name
+}) %>

@@ -1,5 +1,15 @@
-<%= t("mail.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
-<%= t("mail.petition.request.announcement") %>
+<%= t("mail.petition.request.announcement",{
+	petition: @petition.name,
+	date: @petition.created_at,
+	petitioner: @petition.petitioner_name,
+	subdomain: @petition.subdomain
+}) %>
 
-<%= t("mail.petition.request.signoff") %>
+<%= t("mail.petition.speed_norm")%>
+
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name
+}) %>
+

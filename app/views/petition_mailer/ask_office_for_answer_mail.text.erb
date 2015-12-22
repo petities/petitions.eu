@@ -1,4 +1,4 @@
-<%= t("mail.dear") %> organisation,
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
 
 "<%= @petition.name %>".
@@ -6,3 +6,5 @@
 the reference number is now
 
 <% @petition.reference_field %>
+
+<%= t("mail.petition.request.signoff") %>

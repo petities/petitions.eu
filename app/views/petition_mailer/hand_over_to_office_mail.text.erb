@@ -1,1 +1,9 @@
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
+
+<%= t("mail.petition.request.announcement") %>
+
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name
+}) %>
+
 here, a list of signatures. enjoy

@@ -2,11 +2,14 @@ nl:
   mail:
     request:
       announcement: '
-Onderstaande petitie willen we graag overhandigen. Voor deze petitie zijn $signature_count$ ondertekeningen verzameld sinds $creationdate$. 
-Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op $subdomain$@petities.nl. 
-Bij deze heeft u toestemming om dit bericht te publiceren in een openbaar register met inkomende stukken, als dat mogelijk is. 
+Onderstaande petitie wil ik graag overhandigen. Voor deze petitie zijn %{signatures_count} ondertekeningen verzameld sinds %{date} op %{subdomain}.petities.nl. 
+Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op %{subdomain}@petities.nl. 
 
-Wij kijken uit naar de procedurele behandeling zodat we snel weten wanneer we de inhoudelijke behandeling kunnen verwachten.
+
+Bij deze heeft u mijn toestemming om dit bericht te publiceren in een openbaar register met inkomende stukken, als dat mogelijk is. 
+
+
+Ik kijk uit naar de procedurele behandeling zodat ik snel weet wanneer ik de inhoudelijke behandeling kan verwachten.
 '
       announcement_subject: Graag een overhandigingsdatum voor deze petitie
       answer: '
@@ -14,6 +17,7 @@ We verwachten dat u een inhoudelijk antwoord heeft op onze petitie. De behandeli
 geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-registratie.
 '
       answer_subject: Het is zover, heeft u een antwoord op de petitie PETITIE?
+      dear: ontvanger namens 
       due_date: '
 Op DATUM hebben we u de lijst ondertekenaars overhandigd voor de petitie PETITIE. Weet u al wanneer u hier een antwoord op verwacht?
 Een datum waarop u een antwoord heeft? Bijvoorbeeld wanneer de petitie besproken wordt in een vergadering. 
@@ -29,29 +33,38 @@ Het gaat om een petitie die we op $datum$ stuurden naar dit adres.
 '
       signoff: '
 Met vriendelijke groet, 
-$naampetitionaris$. 
+
+
+%{petitioner}
+
 
 P.S. Deze petitie is mede mogelijk gemaakt dankzij Stichting Petities.nl. Uw organisatie kan daar gratis een transparant petitieloket nemen 
-om digitaal petities te begeleiden, ontvangen en beantwoorden. 
-
-
-Petities.nl bestaat sinds 2005 dankzij het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties, sponsoren, vrijwilligers en betaalde diensten.
+om digitaal petities te begeleiden, ontvangen en beantwoorden. Ze bestaan sinds 2005 dankzij het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties, sponsoren, vrijwilligers en betaalde diensten.
 '
       procedural: '
-Dank u wel voor het bevestigen van de ontvangst van de petitie met referentienummer $referentie$. We verwachten de 
+Dank u wel voor het bevestigen van de ontvangst van de petitie "%{petition}" met referentienummer $referentie$. We verwachten de 
 volgende procedure. Ofwel heeft u een datum voor de inhoudelijke behandeling. Bijvoorbeeld met één van deze opties:
+    
+    
 1. op de lijst ingekomen stukken voor een bepaalde vergadering (ter inzage, verspreid of gepubliceerd)
+
+
 2. op de agenda van een commissievergadering
+
+
 3. op de agenda van een vergadering
+
 
 In dat geval kijken we uit naar die datum die we dan graag bekend maken bij de ondertekenaars zodat ze dit in hun agenda kunnen schrijven.
 
-Of u kunt nog geen datum noemen. Het kan bijvoorbeeld zijn dat de petitie aan een ambtenaar is gegeven voor een inhoudelijk advies. In dat 
+
+Ofwel u kunt nog geen datum noemen. Het kan bijvoorbeeld zijn dat de petitie aan een ambtenaar is gegeven voor een inhoudelijk advies. In dat 
 geval komen we er over een tijdje op terug. 
 
+
 Als u de petitie voor kennisgeving heeft aangenomen dan horen we graag wie er op welke datum kennis van hebben kunnen nemen en hoe. 
-We zullen de ondertekenaars daar dan van op de hoogte brengen. Zij kunnen dan naar deze ter kennisgeving verwijzen als ze er met de 
-lezers van de petitie op terug willen komen.
+We zullen de ondertekenaars daar dan van op de hoogte brengen. Zij kunnen dan naar deze ter kennisgeving verwijzen als de 
+volgers van de petitie er op terug willen komen.
 '
       speed_norm: '
 Op basis van de e-mailgedragslijn voor overheden Altijd antwoord, tijdig antwoord (zie 

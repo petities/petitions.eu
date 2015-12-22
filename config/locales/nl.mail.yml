@@ -63,13 +63,26 @@ DE PETITIE
       signoff: '
 Dank u wel voor het gebruiken van Petities.nl!
 
+
 met vriendelijke groet, 
 
+
 de webmaster
+
 
 Wilt u onze hulp of ons advies? U kunt ons bijvoorbeeld inhuren voor een workshop, een 24/7 hotline, mailings aan de 
 burgers in onze database, analyses en meer. Telefoon 020-7854412 of e-mail webmaster@petities.nl.
 '
-  status: 
-    changed: 'Uw petitie is van status veranderd. Het is nu %{status}. Ga naar de petitie op %{petition} om te zien wat er nu moet gebeuren.'
-    changed_subject: 'Uw petitie is van status veranderd naar $status$'
+    status: 
+      changed: '
+De petitie "%{petition}" is van status veranderd naar "%{status}". U kunt de petitie bewerken door in te loggen op uw petitieloket
+via https://petities.nl/login als %{email} en het wachtwoord dat u alleen kent. Of die u opnieuw kunt opvragen op dezelfde pagina voor uw adres %{email}.
+
+
+Als een petitie open gezet moet worden is de meeste haast geboden. De petitionaris zit dan doorgaans vol ongeduld te wachten om ondertekenaars te verzamelen. 
+
+
+Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de petitie. Omdat u een loket heeft kunt u dit allemaal zelf af.
+'
+      changed_subject: 'De petitie "%{petition}" is van status veranderd naar "%{status}"'
+      dear: bemensing van petitieloket 

@@ -1,2 +1,12 @@
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
-nl.mail.request.procedural
+<%= t("mail.request.procedural",{
+	petition: @petition.name,
+	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	petitioner: @petition.petitioner_name
+}) %>
+
+
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name
+}) %>
