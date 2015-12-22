@@ -1,0 +1,19 @@
+<%= t("mail.dear") %> <%= @signature.person_name %>,
+
+<%= t('mail.petition.progress', {
+  name: @signature.person_name,
+  sig_email: @signature.person_email,
+  petition_name: @petition.name,
+  petition_url: petition_url({id: @petition.slug}),
+  unique_url: @unique_key,
+  petition_descr: @petition.description,
+  petition_email: @petition.petitioner_email,
+  update: @update.title})
+  %>
+
+<%= t("mail.petition.now_hide_signature") %>
+
+<%= @unique_key %>
+
+<%= t("mail.signoff") %>
+
