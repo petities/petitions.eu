@@ -1,0 +1,83 @@
+en:
+  mail:
+    confirm:
+      signature:
+        linkinstruction: '
+You nearly signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. Is this not 
+what you want? You can then ignore this. 
+
+
+Please confirm your signature by following this link:
+
+
+%{confirm_url}
+
+
+Otherwise we will delete your signature automatically. You do not count as signatory yet! 
+
+
+After your confirmation you can always return to update your information or invite others to sign. It is therefore good to 
+keep this message. On that confirmation page you also find a link to your signature in the list with signatories. Your name will be 
+public when you opt in for this. You can also choose to show, or no longer show, your name later on. 
+
+
+This e-mail is confidential because only %{name} with address %{email} may confirm the signature. Do not send this message to others 
+and do not publish it with the unique link which is only for you. If others can visit the confirmation page only the name that is 
+last added is valid. On the confirmation page you can send invitations and share the petition. 
+'
+        petition: '
+THE PETITION 
+
+
+%{subdomain}.petities.nl
+
+
+%{intro}
+
+
+%{we}
+
+
+%{observe}
+
+
+%{request}
+
+
+END
+
+
+Do you have questions about this petition? Please contact the lead petitioner on: %{petitionermail}
+'
+        subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
+      reminder_mail: '
+Last week you signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. 
+You received an e-mail about this already. 
+
+
+Is this your e-mail address and name? Then please confirm your signature by following this link:
+
+
+%{confirm_url}
+
+
+Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes. 
+
+
+If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or 
+tablet. You can also try it through another network. Some employers and certain software block access to our website because 
+of controversial political content. If you are at work for example, try it at home. If you are at home, try it outdoors on your 
+phone.
+'
+      signoff: '
+Best regards, 
+
+Petitions.nl Foundation
+
+
+SUPPORT PETITIES.NL
+
+
+With your donation (money or time) our website improves. See http://petities.nl/donate voor details.
+'
+      subject_again: 'Reminder: please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'

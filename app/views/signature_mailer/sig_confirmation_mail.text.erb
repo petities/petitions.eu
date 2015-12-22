@@ -1,4 +1,3 @@
-
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
 <%= t("mail.confirm.signature.linkinstruction",{
@@ -9,7 +8,7 @@
 	confirm_url: @confirm_url
 }) %>
 
-<%= t("mail.signoff") %> 
+<%= t("mail.confirm.signoff") %> 
 
 <%= t("mail.confirm.signature.petition", {
 	subdomain: @signature.petition.subdomain,

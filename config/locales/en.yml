@@ -165,6 +165,7 @@ en:
     title_grey_2: Analyses
   donate:
     text: "<p>Your donation is most appreciated by <a href=\"../about\">us</a>. You can:</p>\n<p>&nbsp;</p>\n<ul>\n  <li>transfer it to Rabobank account NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands (bank identification code RABONL2U)</li>\n  <li><a href=\"https://www.geef.nl/donatiemodule/taal:en/doel:petities-nl/land:NL/mobile:false/forceer:true\">by creditcard through Geef.nl</a></li> \n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"/assets/btn_donate_LG_en.gif\" border=\"0\" name=\"submit\" alt=\"Donate\"> to webmaster@petities.nl through Paypal.</li>\n  </form>       \n</ul>\n <p>&nbsp;</p>\n<p>Thank you!</p>\n<p>&nbsp;</p>"
+    more: "<p>You can also donate time. For example by searching for news about petitions on our site. E-mail your findings to us and we will ask the lead petitioner to update the petition. </p><p>&nbsp;</p><p>Also when you find spelling, language or translation mistakes on our site you appreciate it tremendously if you e-mail it to us.<p>&nbsp;</p><a href=\"https://github.com/petities\">You can also improve our software</a> by finding mistakes or improvements by yourself or choose something from our wishlist.</p><p>&nbsp;</p></p>"
     title: Donate
   edit:
     petition:
