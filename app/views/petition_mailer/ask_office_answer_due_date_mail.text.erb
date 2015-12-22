@@ -1,7 +1,13 @@
 <%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
+<%= t("mail.request.due_date",{
+	petition: @petition.name,
+	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	reference: @petition.reference_field
+}) %>
 
 
 <%= t("mail.request.signoff", {
-	petitioner: @petition.petitioner_name
+	petitioner: @petition.petitioner_name,
+	office_email: @petition.office.email
 }) %>

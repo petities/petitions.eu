@@ -1,9 +1,15 @@
 <%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
-<%= t("mail.petition.request.announcement") %>
-
-<%= t("mail.request.signoff", {
-	petitioner: @petition.petitioner_name
+<%= t("mail.request.handover",{
+	petition: @petition.name,
+	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	petitioner: @petition.petitioner_name,
+	signatures_count: @petition.signatures_count,
+	subdomain: @petition.subdomain,
+	slug: @petition.slug
 }) %>
 
-here, a list of signatures. enjoy
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name, 
+	office_email: @petition.office.email
+}) %>

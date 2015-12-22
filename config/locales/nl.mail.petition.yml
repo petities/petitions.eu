@@ -35,21 +35,23 @@ Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. 
 '
       due_next_week_subject: 'Volgende week sluit uw petitie, kom in actie!'
       due_next_week_write: '
-Na $datum$ is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
+Na %{date} is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
 kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
 naar de ondertekenaars als u dat ons vraagt op webmaster@petities.nl. Ondertussen is het zaak om de exacte datum af te spreken voor de 
 overhandiging. Als u bij uw profiel uw telefoonnummer heeft ingevuld wordt u er misschien ook zelf over gebeld omdat we uw petitie 
 volautomatisch versturen. Zodra u zekerheid heeft over de exacte datum van overhandiging, past u het dan gelijk aan? Ons systeem 
-zal daarna dan een antwoord op de petitie (blijven) vragen namens u.
+zal daarna een antwoord op de petitie (blijven) vragen namens u, daar heeft u geen omkijken naar.
+
 
 Als u nu geen update bij de petitie zet dan veronderstellen we dat u geen interesse of tijd meer heeft of onbereikbaar bent geworden. 
 De petitie is dan verweesd en iemand anders kan de petitie adopteren. De ondertekenaars die hebben aangegeven zich 
-in te willen zetten voor de petitie krijgen na elkaar een e-mail met de vraag de petitie te adopteren. Leest u dit na $datum$ en uw 
+in te willen zetten voor de petitie krijgen na elkaar een e-mail met de vraag de petitie te adopteren. Leest u dit na %{date} en uw 
 petitie is nog niet geadopteerd, log dan snel in, verander de indiendatum, schrijf een update en ons een e-mail om het beheer over 
 uw petitie niet kwijt te raken.
 
+
 Wilt u de petitie intrekken? Dat kan door de datum te veranderen naar iets in het verleden. Zou u dan ook een update willen schrijven
-waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Ga daarvoor naar $survey$.
+waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Bijvoorbeeld 
 '
       has_answer: '
 Op %{date} heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. De petitie is nu beantwoord door 

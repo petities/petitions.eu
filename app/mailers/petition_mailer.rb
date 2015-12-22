@@ -4,12 +4,10 @@ class PetitionMailer <  ApplicationMailer
   def adoption_request_signatory_mail(petition, signature)
     @signature = signature
     @petition = petition
-
     if signature.unique_key.nil?
       signature.send(:generate_unique_key)
       signature.save
     end
-
     @become_owner_url = url_for(
       controller: 'signatures',
       action: 'become_petition_owner',
@@ -18,22 +16,19 @@ class PetitionMailer <  ApplicationMailer
     subject = t('mail.petition.adoption_request_subject', {
       petition: petition.name
       })
-    
-
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @signature.person_email, subject: subject)
   end
 
   # ask office which date petition should get an answer
   def ask_office_answer_due_date_mail(petition)
     logger.debug('build ask for answer due date mail..')
-
     @office = petition.office
-
-    subject = t('mail.request.due_date_subject')
-
     @petition = petition
-
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @petition.office.email, subject: subject)
+    subject = t('mail.request.due_date_subject', {
+      petition: petition.name
+    })
+    subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
+    mail(from: 'bounces@petities.nl', reply_to: subdomain, to: @petition.office.email, subject: subject)
   end
 
   # ask office for answer to petition
@@ -43,24 +38,26 @@ class PetitionMailer <  ApplicationMailer
     @office = petition.office
     
     @petition = petition
-
-    subject = t('mail.request.answer_subject')
-
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: @petition.office.email, subject: subject)
+    subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
+    subject = t('mail.request.answer_subject', {
+      petition: petition.name
+    })
+    mail(from: 'bounces@petities.nl', reply_to: subdomain, to: @petition.office.email, subject: subject)
   end
 
   # call petitioner into action about closing petition
   def due_next_week_warning_mail(petition)
     @petition = petition
-    subject = t('mail.petition.due_next_week_subject')
+    subject = t('mail.petition.due_next_week_subject', {
+      petition: petition.name
+    })
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: petition.petitioner_email, subject: subject)
   end
 
   # finalize petition, ready for moderation
   def finalize_mail(petition, target: nil)
-
     @petition = petition
-
+    @office = petition.office
     if target.nil?
       target = @petition.office.email
     end
@@ -68,7 +65,10 @@ class PetitionMailer <  ApplicationMailer
     tld = get_tld(target)
 
     I18n.with_locale(tld) do
-      subject = t('mail.moderation.pending_subject')
+      subject = t('mail.moderation.pending_subject', {
+        petition: petition.name
+      })
+      
       mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: target, subject: subject)
     end
   end
@@ -78,17 +78,20 @@ class PetitionMailer <  ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subject = t('mail.request.procedural_subject')
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: target, subject: subject )    
+    subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
+    subject = t('mail.request.procedural_subject', {
+    petition: petition.name
+    })
+    mail(from: 'bounces@petities.nl', reply_to: subdomain, to: target, subject: subject )    
   end
 
   # petitioner with failed petition asked to fix it
   def improve_and_reopen_mail(petition)
     @petition = petition
     subject = t('mail.petition.improve_and_reopen_subject', {
-       petition_name: petition.name
-     })
-     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: petition.petitioner_email, subject: subject)    
+    petition: petition.name
+    })
+    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: petition.petitioner_email, subject: subject)    
   end
 
   # announce petition to office
@@ -111,8 +114,11 @@ class PetitionMailer <  ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subject = t('mail.request.procedural_subject')
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: target, subject: subject )    
+    subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
+    subject = t('mail.request.procedural_subject', {
+      petition: petition.name
+    })
+    mail(from: 'bounces@petities.nl', reply_to: subdomain, to: target, subject: subject )    
   end  
   
   # ask office for reference number
@@ -124,7 +130,7 @@ class PetitionMailer <  ApplicationMailer
     subdomain = '%s@%s' % [@petition.subdomain, "petities.nl" ]
     subject = t('mail.request.reference_subject', {
        petition: petition.name
-     })
+    })
     mail(from: 'bounces@petities.nl', reply_to: subdomain, to: target, subject: subject )
 
     if not target
@@ -139,7 +145,7 @@ class PetitionMailer <  ApplicationMailer
     subject = t('mail.status.changed_subject', {
        petition: petition.name,
        status: petition.status
-     })
+    })
     if target.nil?
       # NOTE petitioner_email can be wrong?
       # should we not send email to admin users?
@@ -166,7 +172,6 @@ class PetitionMailer <  ApplicationMailer
     @token = user.confirmation_token
     @petition = petition
     @user = user
-
     subject = t('mail.petition.confirm.subject', {
       petition_name: petition.name
     })

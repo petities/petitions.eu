@@ -13,16 +13,36 @@ Ik kijk uit naar de procedurele behandeling zodat ik snel weet wanneer ik de inh
 '
       announcement_subject: Graag een overhandigingsdatum voor deze petitie
       answer: '
-We verwachten dat u een inhoudelijk antwoord heeft op onze petitie. De behandeling ervan is geweest en mogelijk kunt u ons verwijzingen 
-geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-registratie.
+Op %{date} ontving u mijn petitie %{petition}. U gaf het als kenmerk %{reference}. 
+
+
+Ondertussen verwacht ik dat u een inhoudelijk antwoord heeft. De behandeling ervan is geweest 
+en mogelijk kunt u ons verwijzingen geven naar de discussie. Bijvoorbeeld een geschreven verslag of een video-registratie.
 '
-      answer_subject: Het is zover, heeft u een antwoord op de petitie PETITIE?
+      answer_subject: Het is zover, heeft u een antwoord op de petitie "%{petition}"?
       dear: ontvanger namens 
       due_date: '
 Op %{date} hebben we u de lijst ondertekenaars overhandigd voor de petitie "%{petition}". Weet u al wanneer u hier een antwoord op verwacht?
-Een datum waarop u een antwoord heeft? Bijvoorbeeld wanneer de petitie besproken wordt in een vergadering. 
+Een datum waarop u een antwoord heeft? Bijvoorbeeld wanneer de petitie besproken wordt in een vergadering?
+
+
+U gaf de petitie als kenmerk %{reference}. 
 '
-      due_date_subject: Weet u wanneer de petitie PETITIE besproken wordt?
+      due_date_subject: Weet u wanneer mijn petitie "%{petition}" besproken wordt?
+      handover: '
+Vandaag is de dag voor de overhandiging van de petitie "%{petition}". Voor deze petitie zijn %{signatures_count} ondertekeningen verzameld 
+sinds %{date} op %{subdomain}.petities.nl. Dit is een virtuele overhandiging naast een eventuele ceremoniële overhandiging. 
+
+
+Op https://petities.nl/petitions/%{slug}/signatures vindt u een interactieve lijst opgedeeld in stukjes van 100. De ondertekenaars die niet 
+openbaar zichtbaar willen zijn worden extra beschermd en vallen natuurlijk onder de Wet Bescherming Persoonsgegevens. U kunt ze alleen 
+gebruiken voor het doel waarvoor ze zijn verzameld. Bijvoorbeeld om ze te analyseren of te controleren. Om die lijst persoonsgegevens goed te 
+beschermen kunt u inloggen op http://petities.nl/login nadat u een wachtwoord heeft opgevraagd. 
+
+
+Met uw antwoord op de petitie kunt u alle ondertekenaars bereiken. Ik kijk ernaar uit! U kunt mij bereiken op %{subdomain}@petities.nl.
+'
+      handover_subject: Bij deze de ondertekenaars van de petitie 
       reference: '
 Op %{date} mailde ik de petitie "%{petition}" naar u. Ik heb nog geen ontvangstbevestiging met een referentienummer ontvangen 
 op %{subdomain}@petities.nl. Zou u mij alsnog kunnen laten weten welk referentienummer de petitie heeft gekregen?
@@ -40,10 +60,11 @@ Met vriendelijke groet,
 
 
 P.S. Deze petitie is mede mogelijk gemaakt dankzij Stichting Petities.nl. Uw organisatie kan daar gratis een transparant petitieloket nemen 
-om digitaal petities te begeleiden, ontvangen en beantwoorden. Ze bestaan sinds 2005 dankzij het Ministerie van Binnenlandse Zaken en Koninkrijksrelaties, sponsoren, vrijwilligers en betaalde diensten.
+om digitaal petities te begeleiden, ontvangen en beantwoorden. Voor %{office_email} kunt u een wachtwoord aanvragen en u kunt op uw petitieloket 
+inloggen. De stichting bestaat sinds 2005 dankzij het ministerie, sponsoren en vrijwilligers.
 '
       procedural: '
-Dank u wel voor het bevestigen van de ontvangst van de petitie "%{petition}" met referentienummer $referentie$. We verwachten de 
+Dank u wel voor het bevestigen van de ontvangst van de petitie "%{petition}" met referentienummer %{reference}. Ik verwacht de 
 volgende procedure. Ofwel heeft u een datum voor de inhoudelijke behandeling. Bijvoorbeeld met één van deze opties:
     
     
@@ -56,17 +77,18 @@ volgende procedure. Ofwel heeft u een datum voor de inhoudelijke behandeling. Bi
 3. op de agenda van een vergadering
 
 
-In dat geval kijken we uit naar die datum die we dan graag bekend maken bij de ondertekenaars zodat ze dit in hun agenda kunnen schrijven.
+In deze gevallen kijk ik uit naar die datum die ik dan graag bekend wil maken bij de ondertekenaars zodat ze dit in hun agenda kunnen schrijven.
 
 
 Ofwel u kunt nog geen datum noemen. Het kan bijvoorbeeld zijn dat de petitie aan een ambtenaar is gegeven voor een inhoudelijk advies. In dat 
-geval komen we er over een tijdje op terug. 
+geval kom ik er over een tijdje op terug. 
 
 
-Als u de petitie voor kennisgeving heeft aangenomen dan horen we graag wie er op welke datum kennis van hebben kunnen nemen en hoe. 
-We zullen de ondertekenaars daar dan van op de hoogte brengen. Zij kunnen dan naar deze ter kennisgeving verwijzen als de 
-volgers van de petitie er op terug willen komen.
+Als u de petitie voor kennisgeving heeft aangenomen dan hoor ik graag wie er op welke datum kennis van hebben kunnen nemen en hoe. 
+Ik kan de ondertekenaars daar dan van op de hoogte brengen. De volgers van de petitie kunnen dan naar deze "ter kennisgeving" verwijzen als ze 
+er op terug willen komen.
 '
+      procedural_subject: Komt de petitie "%{petition}" op de agenda of is het ter kennisgeving?
       speed_norm: '
 Op basis van de e-mailgedragslijn voor overheden Altijd antwoord, tijdig antwoord (zie 
 https://www.overheid.nl/contact/e-mailgedragslijn-voor-overheden/) verwachtte ik binnen een dag een (geautomatiseerde) 

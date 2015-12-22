@@ -1,9 +1,20 @@
-<%= t("mail.dear") %> user
+<%= t("mail.dear") %> <%= t("mail.status.dear") %> <%= @office.name %>, 
 
-<%= t("mail.moderation.pending") %>
+<%= t("mail.moderation.pending", {
+	petitioner: @petition.petitioner_name, 
+	petitioner_email: @petition.petitioner_email,
+	petitioner_phone: @petition.petitioner_telephone,
+	petition: @petition.name,
+	office_email: @petition.office.email
+}) %>
 
-<%= link_to @petition.id, edit_petition_url(@petition, only_path: false) %>
+<%= edit_petition_url(@petition, only_path: false) %>
 
-<%= t("mail.moderation.petition") %>
+<%= t("mail.moderation.petition", {
+	subdomain: @petition.subdomain,
+	we: @petition.initiators,
+	observe: @petition.statement,
+	request: @petition.request
+}) %>
 
 <%= t("mail.moderation.signoff") %> 

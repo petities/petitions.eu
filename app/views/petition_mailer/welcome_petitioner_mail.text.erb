@@ -7,7 +7,7 @@
 	confirmation_url: confirmation_url(@user, confirmation_token: @token)
 }) %>
 
-<%=  %>
-
-
-<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name, 
+	office_email: @petition.office.email
+}) %>

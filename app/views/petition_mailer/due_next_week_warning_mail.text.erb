@@ -2,8 +2,23 @@
 
 <%= t("mail.petition.due_next_week") %>
 
-$when more than 10 signatures also$
+<% if @petition.signatures_count > 10 %>
+  <%= t("mail.petition.due_next_week_write",{
+	  petition: @petition.name,
+	  date: @petition.date_projected.strftime('%d-%m-%Y'),
+	  petitioner: @petition.petitioner_name,
+	  signatures_count: @petition.signatures_count,
+	  subdomain: @petition.subdomain
+}) %>
 
-<%= t("mail.petition.due_next_week_write") %>
+* <%= t("survey.request_is_met") %>
+* <%= t("survey.too_late") %>
+* <%= t("survey.situation") %>
+* <%= t("survey.no_majority") %>
+* <%= t("survey.different") %>
+* <%= t("survey.personal") %>
+* <%= t("survey.other_answers") %>
 
-<%= t("mail.signoff") %> 
+<% end %>
+
+<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
