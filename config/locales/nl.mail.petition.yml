@@ -17,17 +17,24 @@ Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wac
       confirm:
         instructions: '
 Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
+
+
 %{confirmation_url}
+
+
+als bevestiging. We weten dan dat wij u kunnen bereiken op %{email} met belangrijke informatie over uw petitie. Met %{email} en %{password} 
+kunt u inloggen op https://petities.nl/login
+
+
+Als u %{email} niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres 
+invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt 
+alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen. Heeft u hulp nodig bij de petitie, kijkt u 
+dan vooral ook even in het handboek op http://handboek.petities.nl
+
+
+Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. 
   
-als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$ met belangrijke informatie over uw petitie. Met $e-mailadres$ en %{password} kunt u inloggen op https://petities.nl/login
-  
-Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen.
-  
-Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
-  
-Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
-  
-Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.
+Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op %{office_email} of telefoonnummer %{office_phone}.
 '
         subject: 'Verder met uw petitie "%{petition_name}" met deze inloggegevens'
       due_next_week: '

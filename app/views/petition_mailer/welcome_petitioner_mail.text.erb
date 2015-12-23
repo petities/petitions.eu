@@ -3,11 +3,11 @@
 <%= t("mail.petition.confirm.instructions",{
 	petition: @petition.name,
 	petitioner: @petition.petitioner_name,
+	email: @petition.petitioner_email,
 	password: @password,
-	confirmation_url: confirmation_url(@user, confirmation_token: @token)
+	confirmation_url: confirmation_url(@user, confirmation_token: @token), 
+	office_email: @petition.office.email,
+	office_phone: @petition.office.telephone
 }) %>
 
-<%= t("mail.request.signoff", {
-	petitioner: @petition.petitioner_name, 
-	office_email: @petition.office.email
-}) %>
+<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
