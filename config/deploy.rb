@@ -7,6 +7,8 @@ set :repo_url, 'git@github.com:petities/petitions.eu.git'
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 
+set :rbenv_path, '~/.rbenv'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 #set :branch, fetch(:stage)
