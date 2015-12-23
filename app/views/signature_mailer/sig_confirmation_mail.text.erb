@@ -3,7 +3,7 @@
 <%= t("mail.confirm.signature.linkinstruction",{
 	petition: @signature.petition.name,
 	email: @signature.person_email,
-	date: @signature.signed_at.to_formatted_s(:short),
+	date: @signature.signed_at.strftime('%d-%m-%Y'),
 	name: @signature.person_name,
 	confirm_url: @confirm_url
 }) %>

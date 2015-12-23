@@ -33,7 +33,7 @@ Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitie
       due_next_week: '
 Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. Als u inlogt kunt u onder petitiedetails de datum aanpassen, zo vaak als nodig is.
 '
-      due_next_week_subject: 'Volgende week sluit uw petitie, kom in actie!'
+      due_next_week_subject: 'Volgende week sluit uw petitie "%{petition}", kom in actie!'
       due_next_week_write: '
 Na %{date} is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
 kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
@@ -63,24 +63,25 @@ door de ontvanger. Op $indiendatum$ is de petitie verstuurd naar $ontvanger$. We
 maar we kregen geen antwoord. Als u misschien weet wat de situatie is rond de petitie is, zou u het ons willen laten weten?
 '
       improve_and_reopen: '
-Uw petitie heeft weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
+Uw petitie heeft nog weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
 Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie beter kan of dat te weinig mensen weten dat de petitie bestaat. 
 U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op http://handboek.petities.nl staan tips over hoe u aandacht 
-voor uw petitie kunt krijgen. Succes!
+voor uw petitie kunt krijgen. Ook kunt u ons natuurlijk mailen op webmaster@petities.nl. Succes!
 '
       improve_and_reopen_subject: '
-Uw petitie is gesloten. U kunt de petitie na aanpassing weer openen.'
+Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer openen.'
       now_hide_signature: '
-Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende kon u aangegeven of u zichtbaar wilt 
-zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. 
-Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
+Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt 
+zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt. 
+Misschien wilt u dat niet, misschien ook juist wel. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd 
+op %{unique_url}.
 '
       progress: '
-Op DATUM heeft u de petitie PETITIONNAME ondertekend als SIGNAME uit PLACE. U heeft aangegeven op de hoogte te willen 
-blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u het één van de drie 
-voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op PETITIONERMAIL.
+Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. U heeft aangegeven op de hoogte te willen 
+blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u één van de drie 
+voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op %{petitioner_email}.
 '
-      progress_subject: 'Petitie PETITIONNAME, voortgangsbericht'
+      progress_subject: 'Petitie "%{petition}", voortgangsbericht'
       progress_unsubscribe: '
 STOPZETTEN E-MAILS
 

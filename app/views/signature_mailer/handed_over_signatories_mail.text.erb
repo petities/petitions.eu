@@ -1,5 +1,26 @@
-dear all
-yes, the petition is handed over to the recipient
-now we wait for answer
 
-now it is closed, you might want to hide your signature
+<%= t("mail.dear") %> <%= @signature.person_name %>,
+
+<%= t('mail.handed_over', {
+  date: @signature.signed_at.strftime('%d-%m-%Y'),
+  name: @signature.person_name,
+  place: @signature.person_city,
+  email: @signature.person_email,
+  petition: @petition.name,
+  date_projected: @petition.date_projected,
+  date_created: @petition.created_at.strftime('%d-%m-%Y'),
+  petition_url: petition_url({id: @petition.slug}),
+  signatures_count: @petition.signatures_count,
+  unique_url: @unique_key,
+  petitioner_email: @petition.petitioner_email
+}) %>
+
+<%= t("mail.petition.now_hide_signature", {
+  petitioner_email: @signature.petition.petitioner_email, 
+  unique_url: @unique_key	
+}) %>
+
+
+
+<%= t("mail.confirm.signoff") %>
+

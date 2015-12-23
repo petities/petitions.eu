@@ -1,19 +1,27 @@
+
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
 <%= t('mail.petition.progress', {
+  date: @signature.signed_at.strftime('%d-%m-%Y'),
   name: @signature.person_name,
-  sig_email: @signature.person_email,
-  petition_name: @petition.name,
+  place: @signature.person_city,
+  email: @signature.person_email,
+  petition: @petition.name,
   petition_url: petition_url({id: @petition.slug}),
   unique_url: @unique_key,
-  petition_descr: @petition.description,
-  petition_email: @petition.petitioner_email,
-  update: @update.title})
-  %>
+  petitioner_email: @petition.petitioner_email
+}) %>
 
-<%= t("mail.petition.now_hide_signature") %>
 
-<%= @unique_key %>
+<%= @update.title %>
 
-<%= t("mail.signoff") %>
+<%= @update.text %>
+
+
+<%= t("mail.petition.now_hide_signature", {
+  petitioner_email: @signature.petition.petitioner_email, 
+  unique_url: @unique_key	
+}) %>
+
+<%= t("mail.confirm.signoff") %>
 
