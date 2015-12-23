@@ -108,7 +108,7 @@ h2.start-petition-form-cell.input.error {
   margin-right: auto;
   width: 80px;
   height: 80px;
-  background: url('success.png') 0 0 no-repeat;
+  background: asset-url('success.png') 0 0 no-repeat;
 }
 
 
@@ -208,7 +208,7 @@ textarea.petition-edit-input {
     flex: 0 0 10%;
     height: 46px;
     width: 49px;
-    background: url('edit.gif') 0 0 no-repeat;
+    background: asset-url('edit.gif') 0 0 no-repeat;
     cursor: pointer;
 }
 
@@ -235,7 +235,7 @@ textarea.petition-edit-input {
     height: 41px;
     width: 100px;
     margin: 0;
-    background: url('logo-xsmall.png') 0 0 no-repeat;
+    background: asset-url('logo-xsmall.png') 0 0 no-repeat;
   }
 
   .vervolg .header-button-container {
