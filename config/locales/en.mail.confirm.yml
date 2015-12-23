@@ -2,6 +2,7 @@ en:
   mail:
     confirm:
       signature:
+        ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"
         linkinstruction: '
 You nearly signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. Is this not 
 what you want? You can then ignore this. 
@@ -55,7 +56,6 @@ request
 
 END
 '
-        ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
         subject_again: 'Reminder, please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
         reminder_mail: '
