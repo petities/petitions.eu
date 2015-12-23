@@ -12,6 +12,9 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 #set :branch, fetch(:stage)
 set :branch, 'master'
 
+
+load 'deploy/assets'
+
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
 
