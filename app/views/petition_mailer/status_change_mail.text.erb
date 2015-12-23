@@ -1,9 +1,10 @@
-<%= t("mail.dear") %> $user$, 
+<%= t("mail.dear") %> <%= t("mail.status.dear") %> <%= @office.name %>, 
 
+<%= t("mail.status.changed", {
+	petition: @petition.name,
+	status: @petition.status,
+	email: @petition.office.email,
+	petitioner: @petition.petitioner_name
+}) %>
 
-The status of your petition has been changed to "<%= @petition.status %>".
-
-
-<%= t("mail.signoff") %> 
-
-
+<%= t("mail.moderation.signoff") %>

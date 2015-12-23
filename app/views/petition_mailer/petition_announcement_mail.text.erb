@@ -1,5 +1,22 @@
-<%= t("mail.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
 
-<%= t("mail.petition.request.announcement") %>
+<%= t("mail.request.announcement",{
+	petition: @petition.name,
+	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	petitioner: @petition.petitioner_name,
+	signatures_count: @petition.signatures_count,
+	subdomain: @petition.subdomain
+}) %>
 
-<%= t("mail.petition.request.signoff") %>
+<%= t("mail.request.signoff", {
+	petitioner: @petition.petitioner_name, 
+	office_email: @petition.office.email
+}) %>
+
+
+<%= t("mail.moderation.petition", {
+	subdomain: @petition.subdomain,
+	we: @petition.initiators,
+	observe: @petition.statement,
+	request: @petition.request
+}) %>

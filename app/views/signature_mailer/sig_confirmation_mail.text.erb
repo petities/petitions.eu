@@ -15,6 +15,9 @@
 	intro: @signature.petition.description,
 	we: @signature.petition.initiators,
 	observe: @signature.petition.statement,
-	request: @signature.petition.request,
+	request: @signature.petition.request
+}) %>
+
+<%= t("mail.confirm.signature.ask_petitioner", {
 	petitionermail: @signature.petition.petitioner_email
 }) %>

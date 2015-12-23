@@ -35,23 +35,30 @@ DE PETITIE
 %{intro}
 
 
+Wij, 
+
+
 %{we}
 
 
+constateren 
+
+
 %{observe}
+
+
+verzoeken
 
 
 %{request}
 
 
 EINDE
-
-
-
-Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}
 '
+        ask_petitioner: "Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}"
         subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
-      reminder_mail: '
+        subject_again: 'Herinnering, bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
+        reminder_mail: '
 Vorige week heeft u de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}. 
 U heeft er al een e-mail over ontvangen.
 
@@ -81,4 +88,3 @@ STEUN PETITIES.NL
 
 Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
 '
-      subject_again: 'Herinnering Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
