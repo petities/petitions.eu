@@ -115,8 +115,8 @@ nav ul {
 }
 
 ul {
-  //list-style-image: url('list_icon_blue.png');
-  list-style-image: url('blue-arrow-right.png');
+  //list-style-image: asset-url('list_icon_blue.png');
+  list-style-image: asset-url('blue-arrow-right.png');
   margin: 0 0 0 20px;
 }
 
@@ -153,8 +153,8 @@ li {
 
 @font-face {
   font-family: 'VAGRoundedLtNormal';
-  src: url('vagrounded_lt_normal-webfont.eot');
-  src: url('vagrounded_lt_normal-webfont.eot?#iefix') format("embedded-opentype"), url('vagrounded_lt_normal-webfont.woff') format("woff"), url('vagrounded_lt_normal-webfont.ttf') format("truetype"), url('vagrounded_lt_normal-webfont.svg#VAGRoundedLtNormal') format("svg");
+  src: asset-url('vagrounded_lt_normal-webfont.eot');
+  src: asset-url('vagrounded_lt_normal-webfont.eot?#iefix') format("embedded-opentype"), asset-url('vagrounded_lt_normal-webfont.woff') format("woff"), asset-url('vagrounded_lt_normal-webfont.ttf') format("truetype"), asset-url('vagrounded_lt_normal-webfont.svg#VAGRoundedLtNormal') format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -255,7 +255,7 @@ input[type="text"].search-container-input {
   height: 42px;
   width: 42px;
   border: 0;
-  background: #4fa6d0 url('search.png') 9px 8px no-repeat;
+  background: #4fa6d0 asset-url('search.png') 9px 8px no-repeat;
   cursor: pointer;
   &:hover {
     background-position: 9px -42px;
@@ -376,7 +376,7 @@ input[type="text"].search-container-input {
   height: 75px;
   width: 372px;
   margin: 0 0 36px;
-  background: url('logo.png') 0 0 no-repeat;
+  background: asset-url('logo.png') 0 0 no-repeat;
 }
 
 .header-button {
@@ -411,7 +411,7 @@ input[type="text"].search-container-input {
     height: 41px;
     width: 205px;
     margin: 0;
-    background: url('logo-small.png') 0 0 no-repeat;
+    background: asset-url('logo-small.png') 0 0 no-repeat;
   }
 }
 
@@ -420,7 +420,7 @@ input[type="text"].search-container-input {
   height: 43px;
   width: 43px;
   margin: 10px 0 0;
-  background: #4fa6d0 url("search.png") no-repeat scroll 9px 8px;
+  background: #4fa6d0 asset-url("search.png") no-repeat scroll 9px 8px;
   cursor: pointer;
   display: none;
 }
@@ -431,13 +431,13 @@ input[type="text"].search-container-input {
   height: 43px;
   margin: 10px 17px 0 0;
   font: 400 15px/23px 'Open Sans',arial,sans-serif;
-  background: #4fa6d0 url('beheer-icon.png') right center no-repeat;
+  background: #4fa6d0 asset-url('beheer-icon.png') right center no-repeat;
   color: #fff;
   cursor: pointer;
   z-index: 99;
 
   &:hover {
-    background: #8cc362 url('beheer-icon.png') right center no-repeat;
+    background: #8cc362 asset-url('beheer-icon.png') right center no-repeat;
   }
 }
 
@@ -481,10 +481,10 @@ input[type="text"].search-container-input {
 .header-languages-container-active {
   height: 42px;
   width: 48px;
-  background: #4fa6d0 url('flags.gif') 0 0 no-repeat;
+  background: #4fa6d0 asset-url('flags.gif') 0 0 no-repeat;
 
   &:hover {
-    background: #8cc362 url('flags.gif') 0 0 no-repeat;
+    background: #8cc362 asset-url('flags.gif') 0 0 no-repeat;
   }
 }
 
@@ -504,7 +504,7 @@ input[type="text"].search-container-input {
 .header-languages-container-active-dropdown-item {
   height: 42px;
   width: 48px;
-  background: #4fa6d0 url('flags.gif') 0 0 no-repeat;
+  background: #4fa6d0 asset-url('flags.gif') 0 0 no-repeat;
 }
 
 .header-languages-container-active.nl, .header-languages-container-active-dropdown-item.nl {
@@ -521,7 +521,7 @@ input[type="text"].search-container-input {
   }
 
   &.nl:hover, &.en:hover {
-    background: #8cc362 url('gflags.gif') no-repeat;
+    background: #8cc362 asset-url('gflags.gif') no-repeat;
   }
 }
 
@@ -582,7 +582,7 @@ input[type="text"].search-container-input {
 
   &.hot-item {
     padding: 0 0 0 15px;
-    background: url('flame.png') 0 4px no-repeat;
+    background: asset-url('flame.png') 0 4px no-repeat;
   }
 }
 
@@ -600,7 +600,7 @@ input[type="text"].search-container-input {
 
 .petitions-list-item-more-link {
   padding: 0 0 0 15px;
-  background: url('blue-arrow-right.png') 0 6px no-repeat;
+  background: asset-url('blue-arrow-right.png') 0 6px no-repeat;
   font: 300 16px/21px 'Open Sans', arial, sans-serif;
   color: #000;
 }
@@ -683,7 +683,7 @@ input[type="text"].search-container-input {
   flex: 1;
   width: 44%;
   padding: 25px 3%;
-  background: #f5f5f5 url('petitie-form-background.gif') 0 0 repeat-y;
+  background: #f5f5f5 asset-url('petitie-form-background.gif') 0 0 repeat-y;
 }
 
 .petition-form-float-wrapper {
@@ -823,7 +823,7 @@ input[type="button"].petition-form-button {
   height: 62px;
   width: 62px;
   margin: 0 4px 0 0;
-  background: url('social-icons.gif') 0 0 no-repeat;
+  background: asset-url('social-icons.gif') 0 0 no-repeat;
 
   &.facebook {
     background-position: -2px -2px;
@@ -853,7 +853,7 @@ input[type="button"].petition-form-button {
   width: 20%;
   padding: 18px 3% 2px;
   color: #000;
-  background: url('bg_urlbox.png') 0 0 no-repeat;
+  background: asset-url('bg_urlbox.png') 0 0 no-repeat;
 
   span {
     display: block;
@@ -869,7 +869,7 @@ input[type="button"].petition-form-button {
   right: -31px;
   top: 0px;
   z-index: 4;
-  background: url('share_url.png') 0 0 no-repeat;
+  background: asset-url('share_url.png') 0 0 no-repeat;
 }
 
 .social-bar-side {
@@ -893,7 +893,7 @@ input[type="button"].petition-form-button {
   height: 51px;
   width: 51px;
   margin: 0 4px 0 0;
-  background: url('social-icons-small.gif') 0 0 no-repeat;
+  background: asset-url('social-icons-small.gif') 0 0 no-repeat;
 
   &.facebook {
     background-position: -2px -2px;
@@ -923,7 +923,7 @@ input[type="button"].petition-form-button {
   margin: 0 15px;
   padding: 18px 3% 2px;
   color: #000;
-  background: url('bg_urlbox-small.png') 0 0 no-repeat;
+  background: asset-url('bg_urlbox-small.png') 0 0 no-repeat;
 
   span {
     display: block;
@@ -938,7 +938,7 @@ input[type="button"].petition-form-button {
   position: absolute;
   right: -31px;
   top: 0;
-  background: url('share_url-small.png') 0 0 no-repeat;
+  background: asset-url('share_url-small.png') 0 0 no-repeat;
   z-index: 4;
 }
 
@@ -976,7 +976,7 @@ input[type="button"].petition-form-button {
 .petition-state-container {
   width: 190px;
   margin: 0 auto;
-  background: url('indicator.png') 0 18px no-repeat;
+  background: asset-url('indicator.png') 0 18px no-repeat;
 }
 
 .petition-state-label {
@@ -989,7 +989,7 @@ input[type="button"].petition-form-button {
   }
 
   &.active {
-    background: url('indicator-dot.png') 7px 25px no-repeat;
+    background: asset-url('indicator-dot.png') 7px 25px no-repeat;
     color: #000;
   }
 }
@@ -1029,10 +1029,10 @@ a {
     font-size: 13px;
     padding: 0 0 0 18px;
     margin: 0 15px 0 0;
-    background: url('icon_link.gif') 1px 5px no-repeat;
+    background: asset-url('icon_link.gif') 1px 5px no-repeat;
 
     &:hover {
-      background: url('icon_link.gif') 1px -31px no-repeat;
+      background: asset-url('icon_link.gif') 1px -31px no-repeat;
       color: #555;
     }
   }
@@ -1043,10 +1043,10 @@ a {
     font-size: 13px;
     padding: 0 0 0 18px;
     margin: 0 15px 0 0;
-    background: url('icon_report.gif') 1px 5px no-repeat;
+    background: asset-url('icon_report.gif') 1px 5px no-repeat;
 
     &:hover {
-      background: url('icon_report.gif') 1px -31px no-repeat;
+      background: asset-url('icon_report.gif') 1px -31px no-repeat;
       color: #555;
     }
   }
@@ -1322,13 +1322,13 @@ h2.start-petition-form-cell-title {
   &.facebook {
     padding: 2% 2% 2% 12%;
     text-align: left;
-    background: #4fa6d0 url('social-media-icons.png') 9px 9px no-repeat;
+    background: #4fa6d0 asset-url('social-media-icons.png') 9px 9px no-repeat;
   }
 
   &.twitter {
     padding: 2% 2% 2% 12%;
     text-align: left;
-    background: #4fa6d0 url('social-media-icons.png') 10px -56px no-repeat;
+    background: #4fa6d0 asset-url('social-media-icons.png') 10px -56px no-repeat;
   }
 }
 
@@ -1458,7 +1458,7 @@ h2.start-petition-form-cell-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: url('blue-arrow-right.png') 98% center no-repeat;
+  background: asset-url('blue-arrow-right.png') 98% center no-repeat;
 }
 
 /**
@@ -1648,7 +1648,7 @@ a.tag {
   right: 10px;
   height: 30px;
   width: 30px;
-  background: #4fa6d0 url('x.png') 0 0 no-repeat;
+  background: #4fa6d0 asset-url('x.png') 0 0 no-repeat;
   cursor: pointer;
 
   &:hover {
@@ -1668,7 +1668,7 @@ a.tag {
   height: 13px;
   width: 13px;
   margin: 0 5px 0 0;
-  background: #aaa url('edit-buttons.gif') 0 0 no-repeat;
+  background: #aaa asset-url('edit-buttons.gif') 0 0 no-repeat;
   cursor: pointer;
 
   &.star {
@@ -1740,7 +1740,7 @@ a.tag {
   .header-logo {
     height: 44px;
     margin: 0;
-    background: url('logo-small.png') 0 0 no-repeat;
+    background: asset-url('logo-small.png') 0 0 no-repeat;
   }
 
   .page {
