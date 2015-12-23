@@ -11,12 +11,20 @@ class SignatureMailerPreview < ActionMailer::Preview
      SignatureMailer.handed_over_signatories_mail(Signature.last)
    end
 
-  # signatory gets the answer to the petition
-  def inform_user_of_answer_mail
+  # signatory gets the answer to the (answered) petition
+  def inform_user_of_answer_mail_answered
     petition = Petition.where(status: 'live').first
     answer = petition.updates.where(show_on_petition: true).first
     SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
   end
+
+  # signatory gets the answer to the (unanswered) petition
+  def inform_user_of_answer_mail_ignored
+    petition = Petition.where(status: 'live').first
+    answer = petition.updates.where(show_on_petition: false).first
+    SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
+  end
+
 
   # subscribed signatory gets a copy of news update with mail flag
   def inform_user_of_news_update_mail

@@ -54,13 +54,21 @@ Wilt u de petitie intrekken? Dat kan door de datum te veranderen naar iets in he
 waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Bijvoorbeeld 
 '
       has_answer: '
-Op %{date} heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. De petitie is nu beantwoord door 
-de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden %{answer}
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. De petitie is nu beantwoord door 
+de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden, daar staat
+
+
+%{answer}
+
+
+ We horen graag of dit is wat u van de petitie verwachtte, 
+zodat wij kunnen ons werk kunnen verbeteren.
 '
+      has_answer_subject: Het eindresultaat voor de petitie "%{petition}"
       has_no_answer: '
-Op DATUM heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. Helaas is de petitie genegeerd 
-door de ontvanger. Op $indiendatum$ is de petitie verstuurd naar $ontvanger$. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
-maar we kregen geen antwoord. Als u misschien weet wat de situatie is rond de petitie is, zou u het ons willen laten weten?
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. Helaas lijkt de petitie genegeerd 
+door de ontvanger. Op %{petition_handover} is de petitie verstuurd naar de %{petition_office}. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
+maar we kregen geen antwoord. Als u misschien weet wat de situatie rond de petitie is, zou u het ons willen laten weten? Dan kunnen we dat melden bij de petitie.
 '
       improve_and_reopen: '
 Uw petitie heeft nog weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
@@ -74,7 +82,7 @@ Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer opene
 Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt 
 zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt. 
 Misschien wilt u dat niet, misschien ook juist wel. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd 
-op %{unique_url}.
+op 
 '
       progress: '
 Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. U heeft aangegeven op de hoogte te willen 
