@@ -13,8 +13,8 @@ class SignatureMailer < ApplicationMailer
       host: 'petities.nl',
       signature_id: @signature.unique_key)
 
-    subject = t('mail.petition.handed_over', {
-      title: @petition.name})
+    subject = t('mail.handed_over_subject', {
+      petition: @petition.name})
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end
 
@@ -30,8 +30,8 @@ class SignatureMailer < ApplicationMailer
       host: 'petities.nl',
       signature_id: @signature.unique_key)
 
-    subject = t('mail.petition.is_answered', {
-      title: @petition.name})
+    subject = t('mail.petition.has_answer_subject', {
+      petition: @petition.name})
 
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end
@@ -49,7 +49,7 @@ class SignatureMailer < ApplicationMailer
       signature_id: @signature.unique_key)
 
     subject = t('mail.petition.progress_subject', {
-      title: @petition.name})
+      petition: @petition.name})
 
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl', to: signature.person_email, subject: subject)
   end

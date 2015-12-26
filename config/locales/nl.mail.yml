@@ -1,6 +1,21 @@
 nl:
   mail:
     dear: Geachte
+    handed_over: '
+Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. De petitie is overhandigd!
+
+
+Er zijn %{signatures_count} ondertekeningen geplaatst sinds de petitie begon op %{date_created}. Het wachten is nu op een antwoord. 
+
+
+Als het zover is ontvangt u het antwoord op dit e-mailadres. Daarna wissen we uw gegevens, tenzij u zichtbaar de petitie heeft ondertekend.
+
+
+De petitie, alle ondertekeningen, statistieken en eventuele nieuwtjes staan op %{petition_url}.
+
+
+'
+    handed_over_subject: De petitie "%{petition}" is overhandigd!
     mailafriend:
       mail: ' 
 Geachte heer, mevrouw,

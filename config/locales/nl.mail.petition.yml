@@ -17,23 +17,31 @@ Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wac
       confirm:
         instructions: '
 Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
+
+
 %{confirmation_url}
-  
-als bevestiging. We weten dan dat wij u kunnen bereiken op $e-mailadres$ met belangrijke informatie over uw petitie. Met $e-mailadres$ en %{password} kunt u inloggen op https://petities.nl/login
-  
-Als u $e-mailadres$ niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen.
-  
-Heeft u hulp nodig bij de petitie, kijkt u dan vooral ook even in het handboek op http://handboek.petities.nl
-  
-Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. U kunt via ons ook e-mails sturen naar de ondertekenaars, maximaal drie. Mail ons de tekst, zonder aanhangsels.
-  
-Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op $petitieloketadres$ of telefoonnummer $lokettelefoon$.
+
+
+als bevestiging. We weten dan dat wij u kunnen bereiken op %{email} met belangrijke informatie over uw petitie. Met %{email} en %{password} 
+kunt u inloggen op https://petities.nl/login
+
+
+Als u %{email} niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres 
+invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt 
+alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen. Heeft u hulp nodig bij de petitie, kijkt u 
+dan vooral ook even in het handboek op http://handboek.petities.nl
+
+
+Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. 
+
+
+Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op %{office_email} of telefoonnummer %{office_phone}.
 '
         subject: 'Verder met uw petitie "%{petition_name}" met deze inloggegevens'
       due_next_week: '
 Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. Als u inlogt kunt u onder petitiedetails de datum aanpassen, zo vaak als nodig is.
 '
-      due_next_week_subject: 'Volgende week sluit uw petitie, kom in actie!'
+      due_next_week_subject: 'Volgende week sluit uw petitie "%{petition}", kom in actie!'
       due_next_week_write: '
 Na %{date} is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
 kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
@@ -54,33 +62,42 @@ Wilt u de petitie intrekken? Dat kan door de datum te veranderen naar iets in he
 waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Bijvoorbeeld 
 '
       has_answer: '
-Op %{date} heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. De petitie is nu beantwoord door 
-de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden %{answer}
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. De petitie is nu beantwoord door 
+de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden, daar staat
+
+
+%{answer}
+
+
+ We horen graag of dit is wat u van de petitie verwachtte, 
+zodat wij kunnen ons werk kunnen verbeteren.
 '
+      has_answer_subject: Het eindresultaat voor de petitie "%{petition}"
       has_no_answer: '
-Op DATUM heeft u de petitie %{petition.name} getekend met e-mailadres %{sig_email}. Helaas is de petitie genegeerd 
-door de ontvanger. Op $indiendatum$ is de petitie verstuurd naar $ontvanger$. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
-maar we kregen geen antwoord. Als u misschien weet wat de situatie is rond de petitie is, zou u het ons willen laten weten?
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. Helaas lijkt de petitie genegeerd 
+door de ontvanger. Op %{petition_handover} is de petitie verstuurd naar de %{petition_office}. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
+maar we kregen geen antwoord. Als u misschien weet wat de situatie rond de petitie is, zou u het ons willen laten weten? Dan kunnen we dat melden bij de petitie.
 '
       improve_and_reopen: '
-Uw petitie heeft weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
+Uw petitie heeft nog weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
 Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie beter kan of dat te weinig mensen weten dat de petitie bestaat. 
 U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op http://handboek.petities.nl staan tips over hoe u aandacht 
-voor uw petitie kunt krijgen. Succes!
+voor uw petitie kunt krijgen. Ook kunt u ons natuurlijk mailen op webmaster@petities.nl. Succes!
 '
       improve_and_reopen_subject: '
-Uw petitie is gesloten. U kunt de petitie na aanpassing weer openen.'
+Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer openen.'
       now_hide_signature: '
-Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende kon u aangegeven of u zichtbaar wilt 
-zijn als ondertekenaar. Uw ondertekening komt misschien naar boven als iemand op uw naam zoekt. Misschien wilt u dat, misschien ook niet. 
-Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd op %{unique_url}.
+Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt 
+zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt. 
+Misschien wilt u dat niet, misschien ook juist wel. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd 
+op 
 '
       progress: '
-Op DATUM heeft u de petitie PETITIONNAME ondertekend als SIGNAME uit PLACE. U heeft aangegeven op de hoogte te willen 
-blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u het één van de drie 
-voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op PETITIONERMAIL.
+Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. U heeft aangegeven op de hoogte te willen 
+blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u één van de drie 
+voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op %{petitioner_email}.
 '
-      progress_subject: 'Petitie PETITIONNAME, voortgangsbericht'
+      progress_subject: 'Petitie "%{petition}", voortgangsbericht'
       progress_unsubscribe: '
 STOPZETTEN E-MAILS
 

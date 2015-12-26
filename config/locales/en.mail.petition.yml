@@ -2,9 +2,9 @@ en:
   mail:
     petition: 
       adoption_request: '
-U heeft de petitie %{petition} op %{date} ondertekend. De indiendatum is verstreken en de petitionaris 
+U heeft de petitie "%{petition}" op %{date} ondertekend. De indiendatum is verstreken en de petitionaris 
 reageert niet (op tijd) op e-mails van ons. De petitie is nu verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen
-namens de $signaturecount$ ondertekenaars. We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
+namens de %{signaturescount} ondertekenaars. We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
 verzoek iets te willen doen of te willen doneren.
 
 Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit dan verschijnt dit 
@@ -12,19 +12,28 @@ als antwoord op de petitie.
 '
       adoption_request_subject: 'Would you like to take over the petition "%{petition_name}"?'
       confirm: 
-        instructions: 'Thank you for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+        instructions: '
+Thank you for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
+
 
 %{confirmation_url}
 
-as confirmation. We then know we can reach you on $e-mailadres$ with important information about your petition. With $e-mailadres$ and %{password} you can log in at https://petities.nl/login
 
-If you prefer not to share $e-mailadres$ with signatories you can fill in, now or later, an extra address next to the petition itself. At http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories. The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail.
+as confirmation. We then know we can reach you on %{email} with important information about your petition. With %{email} and %{password} 
+you can log in at https://petities.nl/login
 
-Do you need help for your petition, please check our handbook at http://handboek.petities.nl
 
-As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions. You can also send up to three e-mails to the signatories. Just e-mail us the text without attachments.
+If you prefer not to share %{email} with signatories you can fill in, now or later, an extra address next to the petition itself. At 
+http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories. 
+The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail. If you need help 
+with your petition, please consult our handbook at http://handboek.petities.nl
 
-For other questions you can contact the petition desk at $petitieloketadres$ or call $lokettelefoon$.'
+
+As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions. 
+
+
+For other questions you can contact the petition desk at %{office_email} or call %{office_phone}.
+'
         subject: Continue with your petition "%{petition_name}" with this login         
       has_answer: 'On %{date} you signed the petition %{petition.name}. The petition is now answered by the recipient of the petition. You can also find this answer next to the petition.'
       now_hide_signature: 'Now that the petition is closed, you might want to hide your name and signature. When you signed you were asked if you want to show your name on public display as signatory of the petition. Your signature might show up when someone searches the web for your name. You might like that or perhaps not. To turn this off or on again, go to the page where you confirmed your signature at %{unique_url}.'

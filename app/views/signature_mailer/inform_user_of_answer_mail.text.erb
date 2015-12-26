@@ -5,24 +5,31 @@
 <% if not @petition.get_answer.nil? %>
 	<%= t('mail.petition.has_answer', {
 	  name: @signature.person_name,
-	  sig_email: @signature.person_email,
-	  petition_name: @petition.name,
+	  email: @signature.person_email,
+	  date: @signature.signed_at.strftime('%d-%m-%Y'),
+	  petition: @petition.name,
+	  petition_handover: @petition.date_projected,
 	  petition_url: petition_url({id: @petition.slug}),
 	  unique_url: @unique_key,
 	  petition_descr: @petition.description,
-	  petition_email: @petition.petitioner_email,
-	  answer: @petition.get_answer})
+	  petitioner_email: @petition.petitioner_email,
+	  petition_office: @petition.organisation_name})
 	  %>
+
+<% @petition.get_answer %>
 
 <% else %>
 
 	<%= t('mail.petition.has_no_answer', {
 	  name: @signature.person_name,
-	  sig_email: @signature.person_email,
-	  petition_name: @petition.name,
+	  email: @signature.person_email,
+	  date: @signature.signed_at.strftime('%d-%m-%Y'),
+	  petition: @petition.name,
+	  petition_handover: @petition.date_projected,
 	  petition_url: petition_url({id: @petition.slug}),
 	  petition_descr: @petition.description,
-	  petition_email: @petition.petitioner_email})
+	  petition_office: @petition.organisation_name,
+	  petitioner_email: @petition.petitioner_email})
 	  %>
 <% end %>
 
@@ -31,5 +38,5 @@
 
 <%= @unique_key %>
 
-<%= t("mail.signoff") %>
+<%= t("mail.confirm.signoff") %>
 

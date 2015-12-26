@@ -2,6 +2,7 @@ en:
   mail:
     confirm:
       signature:
+        ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"
         linkinstruction: '
 You nearly signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. Is this not 
 what you want? You can then ignore this. 
@@ -35,22 +36,29 @@ THE PETITION
 %{intro}
 
 
+We
+
+
 %{we}
 
 
+observe
+
+
 %{observe}
+
+
+request
 
 
 %{request}
 
 
 END
-
-
-Do you have questions about this petition? Please contact the lead petitioner on: %{petitionermail}
 '
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
-      reminder_mail: '
+        subject_again: 'Reminder, please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
+        reminder_mail: '
 Last week you signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. 
 You received an e-mail about this already. 
 
@@ -80,4 +88,3 @@ SUPPORT PETITIES.NL
 
 With your donation (money or time) our website improves. See http://petities.nl/donate voor details.
 '
-      subject_again: 'Reminder: please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
