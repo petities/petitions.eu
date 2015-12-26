@@ -22,7 +22,6 @@ server 'boy.opendomein.nl', user: 'petitions.eu', roles: %w{app db web}
 # role :db,  %w{deploy@example.com}
 
 
-
 # Configuration
 # =============
 # You can set any configuration variable like in config/deploy.rb
