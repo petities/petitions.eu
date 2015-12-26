@@ -519,7 +519,7 @@ en:
     your_street_and_number: Your street and house number    
   pundit:
     petition_policy:
-      edit: You can now add a translation of the petition
+      edit: Please login first, then you can do this
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"

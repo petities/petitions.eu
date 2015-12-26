@@ -519,7 +519,7 @@ nl:
     your_street_and_number: Uw straat en huisnummer
   pundit:
     petition_policy:
-      edit: U kunt nu een vertaling toevoegen van uw petitie
+      edit: Helaas, eerst inloggen graag, eerder kan dit niet
   request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
