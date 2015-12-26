@@ -188,7 +188,8 @@ class PetitionMailer <  ApplicationMailer
   # ask petitioner to confirm, give user and password
   def welcome_petitioner_mail(petition, user, password)
     @password = password
-    @token = user.confirmation_token
+    user.send(:generate_confirmation_token!)
+    @token = user.confirmation_token || 'broken token'
     @petition = petition
     @user = user
     target = @petition.petitioner_email
