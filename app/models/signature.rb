@@ -47,22 +47,22 @@ class Signature < ActiveRecord::Base
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
   validates :person_name,
-              length: {
-                in: 3..255,
-                message: t('signature.errors.name_invalid', default: 'invalid')
-              }
+            length: {
+              in: 3..255,
+              message: t('signature.errors.name_invalid', default: 'invalid')
+            }
 
   validates :person_name,
-              format: {
-                with: /\A.+( |\.).+\z/,
-                message: t('signature.errors.name_and_surname', default: 'name and surname')
+            format: {
+              with: /\A.+( |\.).+\z/,
+              message: t('signature.errors.name_and_surname', default: 'name and surname')
             }
 
   # keep this simple since we are sending validation emails anyways.
   validates :person_email, format: { with: /@/ }
 
   # FIXME
-  #def country_postalcode_validation
+  # def country_postalcode_validation
   #  case I18n.locale
   #    when :en
   #      # check for latin characters
@@ -75,17 +75,17 @@ class Signature < ActiveRecord::Base
   #    return true
   #  end
   #  return true
-  #end
+  # end
 
   # Some petitions require a full address
-  #validates :person_postalcode,
+  # validates :person_postalcode,
   #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
   #          on: :update,
   #          if: :require_full_address?
   before_validation :strip_whitespace
 
   def strip_whitespace
-    self.person_street_number = self.person_street_number.strip unless self.person_street_number.nil?
+    self.person_street_number = person_street_number.strip unless person_street_number.nil?
   end
 
   validates :person_city,
@@ -131,9 +131,9 @@ class Signature < ActiveRecord::Base
             length: {
               in: 3..255,
               message: t('signature.errors.city_too_short', default: 'too short')
-             },
-             on: :update,
-             if: :require_person_city?
+            },
+            on: :update,
+            if: :require_person_city?
 
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
@@ -167,7 +167,7 @@ class Signature < ActiveRecord::Base
     petition.present? &&
       petition.petition_type.present? &&
       petition.petition_type.require_signature_full_address?
-    #return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
+    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
   end
 
   def require_born_at?
@@ -206,15 +206,15 @@ class Signature < ActiveRecord::Base
     self.last_reminder_sent_at = Time.now
 
     # update the reminder sent value
-    if self.reminders_sent == nil
+    if reminders_sent.nil?
       self.reminders_sent = 1
     else
-      self.reminders_sent = self.reminders_sent + 1
+      self.reminders_sent = reminders_sent + 1
     end
     # save the resulting sig
-    if not self.save
+    unless save
       Rails.logger.debug 'destroyed invalid email %s' % person_email
-      self.destroy
+      destroy
     end
   end
 
@@ -238,5 +238,4 @@ class Signature < ActiveRecord::Base
     petition.save
     true
   end
-
 end

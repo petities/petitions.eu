@@ -74,7 +74,6 @@ class Petition < ActiveRecord::Base
   translates :name, :description, :initiators, :statement, :request, :slug, versioning: :paper_trail
   has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
-
   extend FriendlyId # must come after translates
 
   resourcify
@@ -83,7 +82,7 @@ class Petition < ActiveRecord::Base
 
   # add slug_column?
   # write migration?
-  friendly_id :name, :use => [:globalize, :finders] #, slug_column: :cached_slug
+  friendly_id :name, use: [:globalize, :finders] # , slug_column: :cached_slug
 
   STATUS_LIST = [
     # we can view it but not sign?
@@ -169,13 +168,12 @@ class Petition < ActiveRecord::Base
   before_validation :strip_whitespace
 
   def strip_whitespace
-    self.name = self.name.strip unless self.name.nil?
-    self.description = self.description.strip unless self.description.nil?
-    self.initiators = self.initiators.strip unless self.initiators.nil?
-    self.statement = self.statement.strip unless self.statement.nil?
-    self.request = self.request.strip unless self.request.nil?
+    self.name = name.strip unless name.nil?
+    self.description = description.strip unless description.nil?
+    self.initiators = initiators.strip unless initiators.nil?
+    self.statement = statement.strip unless statement.nil?
+    self.request = request.strip unless request.nil?
   end
-
 
   validates_presence_of :name
   validates_presence_of :description
@@ -243,45 +241,45 @@ class Petition < ActiveRecord::Base
 
   # All users who signed this petition should get an
   # answer
-  def email_answer(answer=nil)
+  def email_answer(answer = nil)
     ## fixme
   end
 
   def is_draft?
     %w(concept
        staging
-       draft).include? self.status
+       draft).include? status
   end
 
   def is_staging?
-      %w(concept
-      staging).include? self.status
+    %w(concept
+       staging).include? status
   end
 
   def is_live?
     %w(live
-       not_signable_here).include? self.status
+       not_signable_here).include? status
   end
 
   def is_closed?
     %w(withdrawn
        rejected
        to_process
-       not_processed).include? self.status
+       not_processed).include? status
   end
 
   def in_treatment?
     %w(in_process
        to_process
-       not_processed).include? self.status
+       not_processed).include? status
   end
 
   def is_answered?
-    ['completed'].include? self.status
+    ['completed'].include? status
   end
 
   def get_answer
-    updates.where(show_on_petition: true).first
+    updates.find_by(show_on_petition: true)
   end
 
   def display_city_select_box?
@@ -292,21 +290,20 @@ class Petition < ActiveRecord::Base
     end
   end
 
-
   def history_chart_json
     label_size = signatures.confirmed.map(&:confirmed_at)
-      .compact
-      .group_by { |signature| signature.strftime('%Y-%m-%d') }
-      .map { |group| [group[0], group[1].size] } # .to_json.html_safe
+                 .compact
+                 .group_by { |signature| signature.strftime('%Y-%m-%d') }
+                 .map { |group| [group[0], group[1].size] } # .to_json.html_safe
 
-    labels = label_size.map.with_index{|d_s, i| d_s[0] }
+    labels = label_size.map.with_index { |d_s, _i| d_s[0] }
 
     if labels.size > 20
       factor = (labels.size / 20.0).ceil
-      labels = labels.map.with_index{|l, i| i % factor == 0 ? l: "" }
+      labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
-    data = label_size.map{|d_s| d_s[1]}
-    return data, labels
+    data = label_size.map { |d_s| d_s[1] }
+    [data, labels]
   end
 
   def inc_signatures_count!

@@ -6,15 +6,14 @@ class DesksController < ApplicationController
   end
 
   def show
-
     if params[:id]
       @office = Office.find(params[:id])
     elsif request.subdomain
       @office = Office.find_by_subdomain(request.subdomain)
     end
 
-    @signatures_count = Signature.joins(:petition).
-      where(petitions: {office_id: @office.id}).size
+    @signatures_count = Signature.joins(:petition)
+                        .where(petitions: { office_id: @office.id }).size
 
     if user_signed_in? && current_user.has_role?(:admin, @office)
       show_office_page
@@ -43,7 +42,6 @@ class DesksController < ApplicationController
   end
 
   def show_not_logged_in
-
     petitions = Petition.where(office_id: @office.id)
 
     @petitions = sort_petitions petitions
@@ -51,4 +49,3 @@ class DesksController < ApplicationController
     render 'show_not_logged_in'
   end
 end
-

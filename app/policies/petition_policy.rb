@@ -3,10 +3,10 @@ class PetitionPolicy < ApplicationPolicy
     true
   end
 
-  def can_edit user, petition
+  def can_edit(user, petition)
     user.has_role?(:admin) ||
-    user.has_role?(:admin, petition) ||
-    user.has_role?(:admin, petition.office)
+      user.has_role?(:admin, petition) ||
+      user.has_role?(:admin, petition.office)
   end
 
   def edit?
@@ -26,5 +26,4 @@ class PetitionPolicy < ApplicationPolicy
     return false unless user
     can_edit user, record
   end
-
 end

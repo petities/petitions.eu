@@ -1,5 +1,5 @@
 # set path to application
-base_dir = File.expand_path("../../../..", __FILE__)
+base_dir = File.expand_path('../../../..', __FILE__)
 app_dir = "#{base_dir}/current"
 shared_dir = "#{base_dir}/shared"
 working_directory app_dir
@@ -10,7 +10,7 @@ preload_app true
 timeout 30
 
 # Set up socket location
-listen "#{shared_dir}/tmp/sockets/unicorn.sock", :backlog => 64
+listen "#{shared_dir}/tmp/sockets/unicorn.sock", backlog: 64
 
 # Logging
 stderr_path "#{shared_dir}/log/unicorn.stderr.log"

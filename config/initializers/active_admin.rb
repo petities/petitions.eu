@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Petition App"
+  config.site_title = 'Petition App'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -232,7 +232,6 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 
   ActiveAdmin::BaseController.class_eval do
-      skip_before_filter :authenticate_user!
+    skip_before_filter :authenticate_user!
   end
-
 end

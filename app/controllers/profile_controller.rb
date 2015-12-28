@@ -1,5 +1,4 @@
 class ProfileController < ApplicationController
-
   before_action :set_profile
   # load the edit my details page
   #
@@ -9,7 +8,6 @@ class ProfileController < ApplicationController
   def edit
     authorize :profile, :edit?
   end
-
 
   # update user data
   def patch
@@ -30,12 +28,11 @@ class ProfileController < ApplicationController
       :telephone,
       :birth_date,
       :city,
-      :name,
+      :name
     )
   end
 
   def set_profile
     @profile = current_user
   end
-
 end

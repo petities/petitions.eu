@@ -45,5 +45,4 @@ class NewSignature < Signature
   after_save :send_confirmation_mail
 
   validates_uniqueness_of :person_email, scope: :petition_id
-
 end

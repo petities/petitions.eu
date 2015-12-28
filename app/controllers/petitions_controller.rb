@@ -67,7 +67,6 @@ class PetitionsController < ApplicationController
   end
 
   def admin
-
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'live'
     @order   = params[:order].to_i
@@ -110,7 +109,6 @@ class PetitionsController < ApplicationController
   end
 
   def set_petition_vars
-
     @page = params[:page] || 1
 
     if @petition.organisation_id
@@ -122,12 +120,11 @@ class PetitionsController < ApplicationController
     @chart_data, @chart_labels = @petition.history_chart_json
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
-
   end
+
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-
     @owners = find_owners
 
     set_petition_vars
@@ -143,7 +140,6 @@ class PetitionsController < ApplicationController
     @update = Update.new(
       petition_id: @petition.id
     )
-
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
@@ -167,7 +163,7 @@ class PetitionsController < ApplicationController
 
     if user_signed_in?
       owner = current_user
-      #copy user info
+      # copy user info
       @petition.petitioner_name = owner.username
       @petition.petitioner_address = owner.address
       @petition.petitioner_postalcode = owner.postalcode
@@ -175,7 +171,6 @@ class PetitionsController < ApplicationController
       @petition.petitioner_email = owner.email
       @petition.petitioner_city = owner.city
     end
-
   end
 
   # POST /petitions
@@ -194,7 +189,6 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-
     if params[:images].present?
       params[:images].each do |image|
         @petition.images << Image.new(upload: image)
@@ -212,9 +206,7 @@ class PetitionsController < ApplicationController
         unless owner
 
           password = user_params[:password]
-          if password.blank?
-            password = Devise.friendly_token.first(8)
-          end
+          password = Devise.friendly_token.first(8) if password.blank?
 
           owner = User.new(
             email: user_params[:email],
@@ -267,9 +259,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
 
-    if @petition.status.nil?
-      @petition.status = 'draft'
-    end
+    @petition.status = 'draft' if @petition.status.nil?
 
     @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
 
@@ -280,41 +270,37 @@ class PetitionsController < ApplicationController
     )
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
-
   end
 
-
-  def makeI18noption o_t
+  def makeI18noption(o_t)
     value = o_t[0]
     visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0])
 
-    return [visible_value, value]
+    [visible_value, value]
   end
 
   def set_organisation_helper
-
     @petition_types = PetitionType.all
 
     @organisation_types = Organisation.all.where(visible: true).sort_by(&:name).group_by(&:kind)
-    #@organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
+    # @organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
-      i18n_col = collection.map{|org| [t('petition.organisations.%s' % org.name, default: org.name), org.id]}
+      i18n_col = collection.map { |org| [t('petition.organisations.%s' % org.name, default: org.name), org.id] }
       @organisation_type_prepared[type] = i18n_col
     end
 
     @publicbodies_sort_order = [
-      [t('petition.organisations.%s' %  'counsil') , 'counsil'],
-      [t('petition.organisations.%s' %  'plusregion'), 'plusregion'],
-      [t('petition.organisations.%s' %  'water_county'), 'water_county'],
-      [t('petition.organisations.%s' %  'district'), 'district'],
-      [t('petition.organisations.%s' %  'governement'), 'governement'],
-      [t('petition.organisations.%s' %  'parliament'), 'parliament'],
-      [t('petition.organisations.%s' %  'european_union'), 'european_union'],
-      [t('petition.organisations.%s' %  'collective') , 'collective']
+      [t('petition.organisations.%s' % 'counsil'), 'counsil'],
+      [t('petition.organisations.%s' % 'plusregion'), 'plusregion'],
+      [t('petition.organisations.%s' % 'water_county'), 'water_county'],
+      [t('petition.organisations.%s' % 'district'), 'district'],
+      [t('petition.organisations.%s' % 'governement'), 'governement'],
+      [t('petition.organisations.%s' % 'parliament'), 'parliament'],
+      [t('petition.organisations.%s' % 'european_union'), 'european_union'],
+      [t('petition.organisations.%s' % 'collective'), 'collective']
     ]
-
   end
 
   #
@@ -325,7 +311,6 @@ class PetitionsController < ApplicationController
 
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
-
 
     # remove ownership for users not in owners_ids
 
@@ -352,19 +337,18 @@ class PetitionsController < ApplicationController
   end
 
   def set_office
-
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
       @petition.organisation_kind = organisation.kind
       @petition.organisation_name = organisation.name
 
       office = Office.find_by_organisation_id(organisation.id)
-      if office and not office.hidden
+      if office && !office.hidden
         @petition.office = office
       else
         @petition.office = Office.find_by_email('nederland@petities.nl')
       end
-    #  @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
+      #  @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
     end
 
     if petition_params[:organisation_id].present?
@@ -440,7 +424,6 @@ class PetitionsController < ApplicationController
   private
 
   def set_petition
-
     find_petition
 
     # find specific papertrail version
@@ -461,18 +444,17 @@ class PetitionsController < ApplicationController
     # a 301 redirect that uses the current friendly id.
     if params[:action] == :show
       if request.path != petition_path(@petition).split('?')[0]
-        return redirect_to @petition, :status => :moved_permanently
+        return redirect_to @petition, status: :moved_permanently
       end
     end
-
   end
 
   def find_owners
-    #User.joins(:roles).where(
+    # User.joins(:roles).where(
     #  roles: { resource_type: 'Petition', resource_id: @petition.id })
-    if not @petition.roles.empty?
+    unless @petition.roles.empty?
       role_id = @petition.roles[0].id
-      User.joins(:roles).where(roles: {id: role_id})
+      User.joins(:roles).where(roles: { id: role_id })
     end
     []
   end
@@ -509,8 +491,8 @@ class PetitionsController < ApplicationController
   # add remove locales
   def locale_params
     params.require(:petition).permit(
-     :add_locale,
-     :remove_locale
+      :add_locale,
+      :remove_locale
     )
   end
 
