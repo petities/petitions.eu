@@ -543,7 +543,7 @@ en:
         draft: Draft
         in_treatment: In treatment
         is_answered: Answered
-        indication: Status
+        indication: 'Status:'
         signable: Signable
       title: Details
       website: 'Website:'

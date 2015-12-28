@@ -542,7 +542,7 @@ nl:
         draft: Nog niet af
         in_treatment: In behandeling
         is_answered: Beantwoord
-        indication: Status
+        indication: 'Status:'
         signable: Ondertekenbaar
       title: Details
       website: 'Website:'
