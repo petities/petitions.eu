@@ -179,7 +179,7 @@ en:
       of: out of
       older_version: Older version
       sign_page: Show the petition
-      status:          
+      status:
         explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
       updated: Petition is updated
       version: version
@@ -313,7 +313,7 @@ en:
   my:
     activeadmin: Manage data
     create_newsupdate: Write update
-    desk: Petition desk 
+    desk: Petition desk
     mailpreviews: Preview default mails
     news_updates: News
     petitioner: 'You, the petitioner'
@@ -322,7 +322,7 @@ en:
     startanother: Start another petition
     visits: Visitor statistics
     sidekiq: Tasks queue
-  moderation: 
+  moderation:
     pending: Your petition opens after you confirm this e-mail
   name: Name
   office:
@@ -376,10 +376,10 @@ en:
       title: Explanation
       public_email: 'You can change your e-mail address into one for this petition. This address appears in e-mails to (potential) signatories.'
       public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
-      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number. 
+      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number.
       public_organisation: If you are organised in any way, you can mention the name of your collective here.
       due_date: The date on which the petition will close and handed over can always be changed by you. With a date in the past the petition closes.
-      answer_date: The recipient should indicate how long the answer will take. 
+      answer_date: The recipient should indicate how long the answer will take.
       reference_field: The recipient always gives you a reference. With a reference it is easy to find it and it exists as a received document.
       links: 'You can supply up to three links to your petition, starting with http:// or https://. When there are new developments you can write a news update containing links.'
     draft: Draft
@@ -463,7 +463,7 @@ en:
     text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
     text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
     title_blue: Progress e-mails
-    title_green: Donations 
+    title_green: Donations
     title_grey: Help from signatories
     title_grey_2: Be aware of the due date
   petitions: Petitions
@@ -472,7 +472,7 @@ en:
     feedback:
       description: Or would you like to help in another way?
       placeholder: Something else...
-    thank_you: Thank you!  
+    thank_you: Thank you!
   privacy:
     text: |
       <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
@@ -498,11 +498,11 @@ en:
     city: Woonplaats
     edit_your_information: Edit your information
     details:
-      fakename: Your name should be known to us, but you can choose yourself how the outside world sees you. 
-      please_change: 
+      fakename: Your name should be known to us, but you can choose yourself how the outside world sees you.
+      please_change:
       privacy: Data about your last session to check if it was really you.
       title: Explanation
-      your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'  
+      your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'
     last_ip: Last internet address
     last_login: Last login
     postalcode: Postal code
@@ -516,10 +516,11 @@ en:
     your_name: Your real name please
     your_postalcode: Your postal code
     your_telephone: Your telephone number
-    your_street_and_number: Your street and house number    
+    your_street_and_number: Your street and house number
   pundit:
     petition_policy:
-      edit: You can now add a translation of the petition
+      edit?: You can now add a translation of the petition
+      create?: Well done!
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -545,9 +546,9 @@ en:
       observe: observe
       request: and request
       share_this: This is a good moment to share the link to the petitions from the bar below. After confirmation you can enter e-mail addresses to send invitations to others through us.
-      status: 
+      status:
         label: What next?
-        will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.       
+        will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.
         was_signable: Your petition is no longer open to collect signatures.
       title: Petition
       we: We
@@ -659,7 +660,7 @@ en:
       status:
         description: As moderator, change the status of the petition. For example, open a petition for signing.
       submit: Submit petition
-      subdomain: 
+      subdomain:
         description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
         label: Subdomain
       update: Update
@@ -676,7 +677,7 @@ en:
     too_late: the petition came too late, the request can not be realised anymore
     situation: the situation has changed, the petition should change too
     no_majority: there is no political support for it
-    different: we should continue differently, not (now) with a petition 
+    different: we should continue differently, not (now) with a petition
     personal: peronally I can not run the petition (too busy, not my think)
     other_answers: 'something else, being:'
   update:
@@ -698,7 +699,7 @@ en:
       show_on_office: Show on petition desk
     news_updates: Updates
     no_news_yet: No news about this petition yet.
-    read_more: 'Read more...'  
+    read_more: 'Read more...'
     updated: News update updated
     title: A new petition update
   when: When
