@@ -249,34 +249,35 @@ class Petition < ActiveRecord::Base
 
   def is_draft?
     %w(concept
-       draft).include? status
+       staging
+       draft).include? self.status
   end
 
   def is_staging?
       %w(concept
-      staging).include? status
+      staging).include? self.status
   end
 
   def is_live?
     %w(live
-       not_signable_here).include? status
+       not_signable_here).include? self.status
   end
 
   def is_closed?
     %w(withdrawn
        rejected
        to_process
-       not_processed).include? status
+       not_processed).include? self.status
   end
 
   def in_treatment?
     %w(in_process
        to_process
-       not_processed).include? status
+       not_processed).include? self.status
   end
 
   def is_answered?
-    ['completed'].include? status
+    ['completed'].include? self.status
   end
 
   def get_answer
