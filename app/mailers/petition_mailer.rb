@@ -191,6 +191,16 @@ class PetitionMailer <  ApplicationMailer
     user.send(:generate_confirmation_token!)
     @token = user.confirmation_token || 'broken token'
     @petition = petition
+    @office = petition.office
+
+    if @office.nil?
+      @office_email = 'petition has no office'
+      @office_telephone = 'petition has no office'
+    else
+      @office_email = @office.email || 'office has no email set'
+      @office_telephone = @office.telephone || 'office has not telephone set'
+    end
+
     @user = user
     target = @petition.petitioner_email
     subject = t('mail.petition.confirm.subject', {
