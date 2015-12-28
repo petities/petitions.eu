@@ -28,8 +28,8 @@ class Office < ActiveRecord::Base
 
   extend FriendlyId
 
-  friendly_id :name, :use => [:slugged, :finders], slug_column: :cached_slug
-  #friendly_id :title, use: :slugged, slug_column: :cached_slug
+  friendly_id :name, use: [:slugged, :finders], slug_column: :cached_slug
+  # friendly_id :title, use: :slugged, slug_column: :cached_slug
 
   has_many :petitions
 
@@ -54,5 +54,4 @@ class Office < ActiveRecord::Base
     text_array = text.split('. ').slice(2, text.length)
     return text_array.join('. ').html_safe if text_array
   end
-
 end

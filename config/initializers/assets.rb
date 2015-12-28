@@ -14,5 +14,5 @@ Rails.application.config.assets.precompile += %w(
   petitions4.css fonts.css fixes.css petitions.js
   social_share ZeroClipboard.min.js paralax.js
   vagrounded_lt_normal-webfont.woff
-  vagrounded_lt_normal-webfont.ttf 
-  )
+  vagrounded_lt_normal-webfont.ttf
+)

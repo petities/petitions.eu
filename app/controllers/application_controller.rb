@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   # around_action :with_locale
-  before_filter :set_locale
-  before_filter :ensure_domain
+  before_action :set_locale
+  before_action :ensure_domain
 
-  before_filter do
-    #@news = Update.website_news.limit(12) if request.get?
+  before_action do
+    # @news = Update.website_news.limit(12) if request.get?
     @news = Update.show_on_home.limit(12) if request.get?
   end
 
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) ||
       if resource.is_a?(AdminUser)
         admin_dashboard_path
-      elsif not Office.with_role(:admin, resource).empty?
+      elsif !Office.with_role(:admin, resource).empty?
         office = Office.with_role(:admin, resource).first
         petition_desk_path(office)
       else
@@ -60,18 +60,17 @@ class ApplicationController < ActionController::Base
   private
 
   def has_subdomain?
-    if not request.subdomain.empty?
-      if not %w"dev www api".include? request.subdomain
-        return true
-      end
+    unless request.subdomain.empty?
+      return true unless %w(dev www api).include? request.subdomain
     end
     false
   end
+
   # redirect subdomains which are not direct 'hits'
   # to a url without subdomain
   def ensure_domain
     if has_subdomain?
-      if not request.fullpath == '/'
+      unless request.fullpath == '/'
         redirect_to request.url.sub(request.subdomain + '.', '')
       end
     end

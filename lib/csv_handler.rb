@@ -11,12 +11,12 @@ module CsvHandler
   end
 
   class Handler
-    def self.call (template)
-      %{
+    def self.call(template)
+      %(
         CsvHandler::CsvGenerator.generate do |csv|
           #{template.source}
         end
-      }
+      )
     end
   end
 end

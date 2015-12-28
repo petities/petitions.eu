@@ -1,5 +1,4 @@
 class AddslugsTranslation < ActiveRecord::Migration
-
   def up
     Petition.add_translation_fields! slug: :string
   end

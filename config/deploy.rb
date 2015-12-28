@@ -8,17 +8,15 @@ set :rbenv_type, :user
 
 set :rbenv_ruby, File.read('.ruby-version').strip
 
-#set :rbenv_path, '/home/production/.rbenv'
+# set :rbenv_path, '/home/production/.rbenv'
 #
 set :rbenv_path, '/var/projects/petitions.eu/.rbenv'
-#set :rbenv_path, "~/.rbenv"
+# set :rbenv_path, "~/.rbenv"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-#set :branch, fetch(:stage)
+# set :branch, fetch(:stage)
 set :branch, 'master'
-
-
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
@@ -53,7 +51,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
@@ -70,5 +67,4 @@ namespace :deploy do
       # end
     end
   end
-
 end

@@ -21,7 +21,7 @@ class Pledge < ActiveRecord::Base
   has_one :signature
 
   INFLUENCE_OPTIONS = [
-    [t('confirm.form.pledge.expert') , 'expert'],
+    [t('confirm.form.pledge.expert'), 'expert'],
     [t('confirm.form.pledge.asseenontv'), 'asseenontv'],
     [t('confirm.form.pledge.withreaders'), 'withreaders'],
     [t('confirm.form.pledge.ngomember'), 'ngomember'],
@@ -50,5 +50,4 @@ class Pledge < ActiveRecord::Base
     [t('confirm.form.money.25'), '25'],
     [t('confirm.form.money.50'), '50']
   ]
-
 end

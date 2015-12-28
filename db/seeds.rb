@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-#def random_petition
+# def random_petition
 #   rand_id = rand(Petition.count)
 #   Petition.where("id >= :rand_id", {rand_id: rand_id}).first
-#end
+# end
 
 # start = Time.now
 # total_signatures = 0
@@ -54,7 +54,7 @@
 
 # puts Time.now - start, total_signatures
 
-#100.times do
+# 100.times do
 #  petition = Petition.create({
 #    name: Faker::Lorem.sentence,
 #    description: Faker::Lorem.paragraph,
@@ -84,44 +84,38 @@
 petitions = Petition.live.limit(20)
 
 petitions.each do |petition|
-
   puts '%-6s signatures %5s' % [petition.id, petition.signatures.count]
 
-  if not petition.live? then
-    next
-  end
+  next unless petition.live?
 
-  if petition.signatures.count > 4000 then
-    next
-  end
+  next if petition.signatures.count > 4000
 
   count = rand(5..5000)
 
   puts '%-6s add signatures %5s' % [petition.id, count]
 
   count.times do
-    signature = Signature.create({
-        :petition_id => petition[:id],
-        :person_name => Faker::Name.name,
-        :person_email => Faker::Internet.free_email,
-        :person_city => [:amsterdam, :Amsterdam, :hilversum].sample,
-        :person_function => Faker::Company.name,
-        :visible => rand(10) < 8 ? true: false,
-        :special => rand(100000) > 79990 ? true: false,
-        :subscribe => rand(2) > 1 ? true: false,
-        :created_at => Faker::Time.between(100.days.ago, Time.now, :morning),
-        :updated_at => Faker::Time.between(90.days.ago, Time.now, :afternoon),
-        :signed_at => Faker::Time.between(100.days.ago, Time.now, :evening),
-        :confirmed_at => Faker::Time.between(100.days.ago, Time.now),
-        #:confirmed => rand(10) > 8 ? true: false,
-        :confirmed => true,
-        #:description => Faker::Lorem.sentence,
-      })
-      # signature.save
+    signature = Signature.create(
+      petition_id: petition[:id],
+      person_name: Faker::Name.name,
+      person_email: Faker::Internet.free_email,
+      person_city: [:amsterdam, :Amsterdam, :hilversum].sample,
+      person_function: Faker::Company.name,
+      visible: rand(10) < 8 ? true : false,
+      special: rand(100_000) > 79_990 ? true : false,
+      subscribe: rand(2) > 1 ? true : false,
+      created_at: Faker::Time.between(100.days.ago, Time.now, :morning),
+      updated_at: Faker::Time.between(90.days.ago, Time.now, :afternoon),
+      signed_at: Faker::Time.between(100.days.ago, Time.now, :evening),
+      confirmed_at: Faker::Time.between(100.days.ago, Time.now),
+      #:confirmed => rand(10) > 8 ? true: false,
+      confirmed: true,
+    #:description => Faker::Lorem.sentence,
+    )
+    # signature.save
   end
 
   count = petition.signatures.count
   petition.update(signatures_count: count)
   petition.update_active_rate!
-
 end

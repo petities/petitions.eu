@@ -8,7 +8,6 @@ class SignaturesController < ApplicationController
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:update]
 
-
   # GET /signatures
   # GET /signatures.json
   def index
@@ -33,7 +32,7 @@ class SignaturesController < ApplicationController
           @filtered_s_c_c[city_name] = group[1].to_i
         end
       end
-      @sorted_city_count = @filtered_s_c_c.sort_by {|city, count| -count}
+      @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
 
       @per_page = 100
     else
@@ -59,7 +58,7 @@ class SignaturesController < ApplicationController
   end
 
   def search
-    #@petition = Petition.friendly.find(params[:petition_id])
+    # @petition = Petition.friendly.find(params[:petition_id])
     @petition = PetitionsController.send(:set_petition)
 
     @query = params[:query]
@@ -84,7 +83,7 @@ class SignaturesController < ApplicationController
     email = signature_params[:person_email]
     @signature = Signature.where(person_email: email, petition_id: @petition.id).first
 
-    if not @signature
+    unless @signature
       @signature = NewSignature.where(person_email: email, petition_id: @petition.id).first
     end
 
@@ -94,7 +93,7 @@ class SignaturesController < ApplicationController
       # to this moron :)
       @signature.send(:send_confirmation_mail)
       respond_to do |format|
-        format.js { render json: { is_resend: 'true',  status: 'ok' } }
+        format.js { render json: { is_resend: 'true', status: 'ok' } }
       end
       # DONE!
       return
@@ -113,7 +112,6 @@ class SignaturesController < ApplicationController
         format.js { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # get admin rights of the petition you have link for
@@ -143,10 +141,9 @@ class SignaturesController < ApplicationController
       format.json { render :show, status: :ok }
       format.html do
         redirect_to @petition,
-          notice: t('confirmed.now_you_can_edit', default: 'you can manage this petition now')
+                    notice: t('confirmed.now_you_can_edit', default: 'you can manage this petition now')
       end
     end
-
   end
 
   # get signature confirm page
@@ -158,25 +155,24 @@ class SignaturesController < ApplicationController
 
     set_pledge
 
-    #@url = petition_signature_confirm_submit
+    # @url = petition_signature_confirm_submit
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
 
       # check if we need to have extra information
       # and inform user about it
-      if(@signature.require_full_address? ||
-         #@signature.require_person_birth_city? ||
+      if @signature.require_full_address? ||
+         # @signature.require_person_birth_city? ||
          @signature.require_born_at? ||
          @signature.require_person_country?
-       )
 
-       # create the information needed messages
-       @action = t('confirm.form.action.confirm_and_save')
-       @message = t('confirm.form.add_information_and_confirm')
+        # create the information needed messages
+        @action = t('confirm.form.action.confirm_and_save')
+        @message = t('confirm.form.add_information_and_confirm')
 
       else
-        #signature is confirmed no extra data needed
+        # signature is confirmed no extra data needed
         @signature.confirmed = true
         # we don't need extra information so everything is fine
         @message = t('confirm.form.is_confirmed_add_information')
@@ -195,33 +191,26 @@ class SignaturesController < ApplicationController
     @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
   end
 
-
   # Add all the element_id's that need to be correct
   # highlight them in javascript
   # TODO add proper validation
   def add_check_fields
     @check_fields = []
     if @signature.require_full_address?
-      new_fields = [
-        'person_street',
-        'person_city',
-        'person_street_number',
-        'person_postalcode',
-      ]
+      new_fields = %w(
+        person_street
+        person_city
+        person_street_number
+        person_postalcode)
       @check_fields.push(*new_fields)
     end
-    if @signature.require_person_country?
-      @check_fields.push('person_country')
-    end
-    if @signature.require_born_at?
-      @check_fields.push('person_born_at')
-    end
+    @check_fields.push('person_country') if @signature.require_person_country?
+    @check_fields.push('person_born_at') if @signature.require_born_at?
   end
 
   # POST a singnature update by user
   # a save update on a signature.
   def confirm_submit
-
     @petition = @signature.petition
 
     if @petition && @signature.update(signature_params) && @signature.valid?
@@ -232,7 +221,7 @@ class SignaturesController < ApplicationController
         format.json { render :show, status: :ok }
         format.html do
           redirect_to @petition,
-            notice: t('confirmed.signaturesuccessfully', default: 'signature successfully confirmed')
+                      notice: t('confirmed.signaturesuccessfully', default: 'signature successfully confirmed')
         end
       end
     else
@@ -257,7 +246,7 @@ class SignaturesController < ApplicationController
 
   def set_pledge
     @pledge = Pledge.where(signature_id: @signature.id).first
-    if not @pledge
+    unless @pledge
       @pledge = Pledge.new
       @pledge.signature_id = @signature.id
       @pledge.petition_id = @petition.id
@@ -300,15 +289,13 @@ class SignaturesController < ApplicationController
         format.json { render :show, status: :ok, location: @signature }
       else
         # format.html { redirect_to signature_confirm(@signature.unique_key)}
-        format.html { render :edit}
+        format.html { render :edit }
         format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
   end
 
-
   def mail_submit
-
     target = email_params[:share_email]
 
     if target.empty?
@@ -319,27 +306,27 @@ class SignaturesController < ApplicationController
     end
 
     # do mail via sidekiq
-    #SignatureMailer.share_mail(@signature, target).deliver_later
+    # SignatureMailer.share_mail(@signature, target).deliver_later
     # to test.
     SignatureMailer.share_mail(@signature, target).deliver_later
 
     respond_to do |format|
-        format.json { render :show, status: :ok}
+      format.json { render :show, status: :ok }
     end
   end
 
   # DELETE /signatures/1
   # DELETE /signatures/1.json
   def destroy
-   @petition = @signature.petition
-   # only allow deletes from owners
-   authorize @petition
+    @petition = @signature.petition
+    # only allow deletes from owners
+    authorize @petition
 
-   @signature.destroy
-   respond_to do |format|
-     format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
-     format.json { head :no_content }
-   end
+    @signature.destroy
+    respond_to do |format|
+      format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -355,7 +342,6 @@ class SignaturesController < ApplicationController
     unless @signature
       @signature = NewSignature.find_by_unique_key(params[:signature_id])
     end
-
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -365,7 +351,7 @@ class SignaturesController < ApplicationController
       :person_street, :person_street_number, :person_born_at, :person_postalcode,
       :person_function, :person_country, :person_famous,
       :person_street_number_suffix,
-      :subscribe, :visible,
+      :subscribe, :visible
     )
   end
 
@@ -396,5 +382,4 @@ class SignaturesController < ApplicationController
     old_signature.delete
     @signature.save
   end
-
 end

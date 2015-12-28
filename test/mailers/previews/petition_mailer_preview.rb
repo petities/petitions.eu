@@ -1,7 +1,6 @@
 # Preview all emails at http://localhost:3000/rails/mailers/petition_mailer
 class PetitionMailerPreview < ActionMailer::Preview
-
-  #ask signatories with any pledge to adopt orphaned petition
+  # ask signatories with any pledge to adopt orphaned petition
   def adoption_request_signatory_mail
     petition = Petition.where(status: 'live').first
     PetitionMailer.adoption_request_signatory_mail(Signature.last.petition, Signature.last)
@@ -31,7 +30,6 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.due_next_week_warning_mail(Petition.live.first)
   end
 
-
   # finalize petition, ready for moderation
   def finalize_mail
     petition = Petition.where(status: 'live').first
@@ -56,7 +54,7 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.process_explanation_mail(Petition.live.first)
   end
 
-  # ask office for reference number  
+  # ask office for reference number
   def reference_number_mail
     petition = Petition.where(status: 'live').first
     PetitionMailer.reference_number_mail(Petition.live.first)
@@ -85,5 +83,4 @@ class PetitionMailerPreview < ActionMailer::Preview
     password = Devise.friendly_token.first(8)
     PetitionMailer.welcome_petitioner_mail(Petition.first, User.first, password)
   end
-
 end

@@ -26,7 +26,7 @@ ActiveAdmin.register User do
       row :telephone
     end
 
-    panel "user roles" do
+    panel 'user roles' do
       table_for user.roles do
         column :name
         column :resource_type
@@ -42,15 +42,13 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
 
-      panel "website roles" do
+      panel 'website roles' do
         f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
-
       end
 
-      panel "office roles" do
-        f.input :roles, as: :check_boxes, collection: Role.where(resource_type: 'Office').map{|r| [r.name + ' ' + Office.find(r.resource_id).name, r.id]}
+      panel 'office roles' do
+        f.input :roles, as: :check_boxes, collection: Role.where(resource_type: 'Office').map { |r| [r.name + ' ' + Office.find(r.resource_id).name, r.id] }
       end
-
     end
     f.actions
   end
@@ -65,5 +63,4 @@ ActiveAdmin.register User do
       super
     end
   end
-
 end
