@@ -117,6 +117,9 @@ group :production do
   gem 'unicorn'
 end
 
+# Track errors in production
+gem 'rollbar', '~> 2.5.0'
+
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', '~> 2.0.3'
