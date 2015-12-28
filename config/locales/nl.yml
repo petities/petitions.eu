@@ -537,7 +537,13 @@ nl:
       organisation: 'Organisatie:'
       petitioners: 'Petitionaris:'
       reference: 'Kenmerk:'
-      status: 'Status:'
+      status:
+        closed: Gesloten
+        draft: Nog niet af
+        in_treatment: In behandeling
+        is_answered: Beantwoord
+        indication: Status
+        signable: Ondertekenbaar
       title: Details
       website: 'Website:'
     petition:

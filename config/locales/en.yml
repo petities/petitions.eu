@@ -538,7 +538,13 @@ en:
       organisation: 'Organisation:'
       petitioners: 'Lead petitioner:'
       reference: 'Reference:'
-      status: 'Status:'
+      status:
+        closed: Closed
+        draft: Draft
+        in_treatment: In treatment
+        is_answered: Answered
+        indication: Status
+        signable: Signable
       title: Details
       website: 'Website:'
     petition:

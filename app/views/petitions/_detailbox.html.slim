@@ -32,9 +32,9 @@ div#detailbox.petition-details
       |&nbsp
 
   - if @petition.status.present?
-    div.petition_field_label= t('show.overview.status')
+    div.petition_field_label= t('show.overview.status.indication')
     div.petition_field_data
-      = @petition.state_summary
+      = t("show.overview.status.#{@petition.state_summary}")
       |&nbsp
 
   - if @petition.petitioner_name.present?
