@@ -59,7 +59,7 @@ class Signature < ActiveRecord::Base
             }
 
   # keep this simple since we are sending validation emails anyways.
-  validates :person_email, format: { with: /@/ }
+  validates :person_email, format: { with: /\A.*@.*\z/ }
 
   # FIXME
   # def country_postalcode_validation
