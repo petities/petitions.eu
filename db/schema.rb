@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208124940) do
+ActiveRecord::Schema.define(version: 20151229220625) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(version: 20151208124940) do
     t.integer  "reminders_sent",              limit: 4
     t.datetime "last_reminder_sent_at"
     t.date     "unconverted_person_born_at"
-    t.string   "person_birth_country",        limit: 2
     t.string   "person_country",              limit: 2
   end
 

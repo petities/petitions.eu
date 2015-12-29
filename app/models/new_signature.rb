@@ -34,7 +34,6 @@
 #  reminders_sent              :integer
 #  last_reminder_sent_at       :datetime
 #  unconverted_person_born_at  :date
-#  person_birth_country        :string(2)
 #  person_country              :string(2)
 
 class NewSignature < Signature

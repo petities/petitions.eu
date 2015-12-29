@@ -371,7 +371,7 @@ class SignaturesController < ApplicationController
   def confirm_signature
     old_signature = @signature
     @signature.id = nil
-    # create a new signature in the signarure table.
+    # create a new signature in the signature table.
     @signature = Signature.new(@signature.as_json)
     @signature.confirmed = true
     @signature.confirmation_remote_addr = request.remote_ip
