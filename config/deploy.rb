@@ -51,6 +51,9 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+# Configure sidekiq
+set :sidekiq_config, 'config/sidekiq.yml'
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
