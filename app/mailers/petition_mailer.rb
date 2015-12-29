@@ -137,7 +137,8 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @office = petition.office
     subject = t('mail.status.changed_subject',        petition: petition.name,
-                                                      status: petition.status)
+                                                      status: petition.status) + t("show.overview.status.#{@petition.state_summary}")
+
     if target.nil?
       # NOTE petitioner_email can be wrong?
       # should we not send email to admin users?
