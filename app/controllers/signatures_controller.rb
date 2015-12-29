@@ -157,6 +157,12 @@ class SignaturesController < ApplicationController
     set_pledge
 
     # @url = petition_signature_confirm_submit
+    @remote_ip = request.remote_ip
+    @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
+
+    @signature.signature_remote_addr = @remote_ip
+    @signature.signature_remote_browser = @remote_browser
+
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
