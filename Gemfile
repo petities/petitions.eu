@@ -120,11 +120,15 @@ end
 # Track errors in production
 gem 'rollbar', '~> 2.5.0'
 
+# Use CodeClimate and Semaphore CI for testing
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', '~> 2.0.3'
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano3-unicorn', '~> 0.2.1'
+  gem 'capistrano-sidekiq', '~> 0.5.4'
 end
 
 group :development, :test do
