@@ -28,7 +28,6 @@ class PetitionsController < ApplicationController
 
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
-      { type: 'biggest', label: t('index.sort.biggest') },
       { type: 'newest',      label: t('index.sort.new') },
       { type: 'sign_quick', label: t('index.sort.sign_quick') }
     ]

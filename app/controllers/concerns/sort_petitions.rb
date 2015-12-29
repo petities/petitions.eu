@@ -1,9 +1,7 @@
 require 'active_support/concern'
 
 module SortPetitions extend ActiveSupport::Concern
-
-  def sort_petitions petitions
-
+  def sort_petitions(petitions)
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'all'
     @order   = params[:order].to_i
@@ -38,14 +36,12 @@ module SortPetitions extend ActiveSupport::Concern
     @results_size = petitions.size
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
-    return @petitions
+    @petitions
   end
 
-
-  def petitions_by_status petitions
-
+  def petitions_by_status(petitions)
     # find petition in state of allow
-    @petitions_draft = petitions.where(status: ['draft', 'concept']).limit(20)
+    @petitions_draft = petitions.where(status: %w(draft concept)).limit(20)
     # find petitions in state of answer
     @petitions_moderate = petitions.where(status: 'staging').limit(20)
     # find petition in state of signable
@@ -59,7 +55,5 @@ module SortPetitions extend ActiveSupport::Concern
     # withdrawn..
     @petitions_withdrawn = petitions.where(status: 'withdrawn').limit(20)
     # @petitions = @petitions.paginate(page: @page, per_page: 12)
-
   end
-
 end

@@ -11,9 +11,10 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
+
     find_petition
 
-    @all_signatures = @petition.signatures.special
+    @all_signatures = @petition.signatures.special.limit(1000)
 
     unless request.xhr?
       @chart_data, @chart_labels = @petition.history_chart_json
@@ -371,7 +372,9 @@ class SignaturesController < ApplicationController
     old_signature = @signature
     @signature.id = nil
     # create a new signature in the signarure table.
-    @signature = Signature.new(@signature.as_json)
+    #@signature = Signature.new(@signature.as_json)
+    @signature = Signature.new(old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
+
     @signature.confirmed = true
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
