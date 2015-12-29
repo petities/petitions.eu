@@ -98,6 +98,6 @@ Rails.application.routes.draw do
   get '/ondertekening/:signature_id', to: 'signatures#confirm'
   get '/ondertekening/:signature_id/confirm', to: 'signatures#confirm'
 
-  get '/petitie/:slug',       to: 'petitions#show'
+  get '/petitie/:id',         to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
 end
