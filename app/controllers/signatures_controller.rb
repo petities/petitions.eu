@@ -11,9 +11,10 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
+
     find_petition
 
-    @all_signatures = @petition.signatures.special
+    @all_signatures = @petition.signatures.special.limit(1000)
 
     unless request.xhr?
       @chart_data, @chart_labels = @petition.history_chart_json
