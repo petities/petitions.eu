@@ -91,7 +91,7 @@ verzoeken
 
 EINDE
 '
-      signoff: '
+      signoff_desks: '
 Dank u wel voor het gebruiken van Petities.nl!
 
 
@@ -106,15 +106,40 @@ Wilt u onze hulp of ons advies? U kunt ons bijvoorbeeld inhuren voor een worksho
 burgers in onze database, analyses en meer. Telefoon 020-7854412 of e-mail webmaster@petities.nl.
 '
     status: 
-      changed: '
-De petitie "%{petition}" is van status veranderd naar "%{status}". U kunt de petitie bewerken door in te loggen op uw petitieloket
-via https://petities.nl/login als %{email} en het wachtwoord dat u alleen kent. Of die u opnieuw kunt opvragen op dezelfde pagina voor uw adres %{email}.
+      changed: 'Uw petitie "%{petition}" is van status veranderd naar '
+      changed_instructions_petitioner: '
+U kunt de petitie bewerken door in te loggen op uw petitie(s). Als u uw wachtwoord niet meer weet kunt u een nieuwe opvragen voor uw 
+adres %{email} op dezelfde pagina waar u inlogt.
 
 
-Als een petitie open gezet moet worden is de meeste haast geboden. De petitionaris zit dan doorgaans vol ongeduld te wachten om ondertekenaars te verzamelen. 
-
-
-Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de petitie. Omdat u een loket heeft kunt u dit allemaal zelf af.
+Vergeet u als petitionaris niet om zelf ook uw eigen petitie(s) te ondertekenen? Dan kunt u ook zelf de e-mails ontvangen die u naar de 
+ondertekenaars stuurt.
 '
-      changed_subject: 'De petitie "%{petition}" is van status veranderd naar "%{status}"'
+      changed_instructions_desk: '
+U kunt de petitie "%{petition}" bewerken door in te loggen op uw petitie(s) via 
+https://petities.nl/login als %{email} en met het wachtwoord dat u alleen kent. Of die u opnieuw kunt opvragen op dezelfde pagina voor uw 
+adres %{email}. 
+
+
+Als een petitie open gezet moet worden is de meeste haast geboden. De petitionaris zit dan doorgaans vol ongeduld te wachten om ondertekenaars 
+te verzamelen. 
+
+
+Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de 
+petitie. Omdat u een loket heeft kunt u dit allemaal zelf af.
+'
+      changed_subject: 'De petitie "%{petition}" is van status veranderd naar: '
       dear: bemensing van petitieloket 
+    signoff: '
+U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_email} en uw wachtwoord.
+
+
+Dank u wel voor het gebruiken van Petities.nl!
+
+
+De webmaster 
+
+STEUN PETITIES.NL
+
+Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
+'

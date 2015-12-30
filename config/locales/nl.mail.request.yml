@@ -30,8 +30,9 @@ U gaf de petitie als kenmerk %{reference}.
 '
       due_date_subject: Weet u wanneer mijn petitie "%{petition}" besproken wordt?
       handover: '
-Vandaag is de dag voor de overhandiging van de petitie "%{petition}". Voor deze petitie zijn %{signatures_count} ondertekeningen verzameld 
-sinds %{date} op %{subdomain}.petities.nl. Dit is een virtuele overhandiging naast een eventuele ceremoniële overhandiging. 
+Vandaag is de dag voor de overhandiging van de petitie "%{petition}". Deze petitie heeft van u bij ontvangst het kenmerk %{reference} gekregen. 
+Voor deze petitie zijn %{signatures_count} ondertekeningen verzameld sinds %{date} op %{subdomain}.petities.nl. Dit is een virtuele overhandiging 
+naast een eventuele ceremoniële overhandiging. 
 
 
 Op https://petities.nl/petitions/%{slug}/signatures vindt u een interactieve lijst opgedeeld in stukjes van 100. De ondertekenaars die niet 

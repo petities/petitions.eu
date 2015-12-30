@@ -115,25 +115,3 @@ u het woord mocht nemen? Wie hebben er allemaal kennis van genomen? Heeft u name
 iedereen die de petitie heeft ontvangen daarop aanspreken. U kunt het tekstje onder de petitie zetten, maar het is ook mogelijk het te 
 versturen naar de ondertekenaars. Tot drie keer toe kunt u een e-mail versturen. Als u een nieuwtje onder de petitie zet kunt u dat aangeven.'
       write_about_hand_over_subject: 'De overhandiging van uw petitie "%{petition_name}", hoe ging het?'
-    handover: '
-De aangehangen petitie hebben wij aan u overhandigd. Deze petitie heeft van u bij ontvangst het kenmerk $reference$ gekregen. 
-Bij deze ook nog eens de lijst ondertekenaars digitaal. We vertrouwen erop dat u deze vertrouwelijk behandelt onder de Wet Bescherming 
-Persoonsgegevens. Dat betekent dat de persoonsgegevens alleen gebruikt worden voor het doeleinde waar ze voor verzameld zijn. 
-In dit geval als steunbetuigingen voor deze petitie. U kunt bijvoorbeeld de identiteit van de ondertekenaars controleren of patronen analyseren.
-
-We kijken uit naar het inhoudelijke antwoord op de petitie. We verwachten dat er verwijzingen in staan naar een inhoudelijke discussie over de 
-petitie. Uitgeschreven, als een video-registratie of allebei.
-'
-    signoff: '
-U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_email} en uw wachtwoord.
-
-
-Dank u wel voor het gebruiken van Petities.nl!
-
-
-De webmaster 
-
-STEUN PETITIES.NL
-
-Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
-'

@@ -1,10 +1,13 @@
-<%= t("mail.dear") %> <%= t("mail.status.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= @petition.petitioner_name %>, 
 
 <%= t("mail.status.changed", {
-	petition: @petition.name,
-	status: @petition.status,
-	email: @petition.office.email,
-	petitioner: @petition.petitioner_name
+	petition: @petition.name
 }) %>
 
-<%= t("mail.moderation.signoff") %>
+<%= t("show.overview.status.#{@petition.state_summary}") %>
+
+<%= t("mail.status.changed_instructions_petitioner", {
+	email: @petition.petitioner_email
+}) %>
+
+<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>

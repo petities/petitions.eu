@@ -1,6 +1,25 @@
 en:
   mail:
     dear: Dear
+    handed_over: '
+On %{date} you signed the petition "%{petition}" as %{name} from %{place}. The petition is handed over!
+
+
+%{signatures_count} signatures are put since the petition began at %{date_created}. We now wait for an answer.
+
+
+When the answer comes you will receive it on this e-mail address. After that we delete your data, unless you are signed the petition publicly.
+
+
+The petition, all signatures, statistics and possibly some updates can be found at %{petition_url}.
+
+
+'    
+    handover: 'De aangehangen petitie hebben wij aan u overhandigd. Deze petitie heeft van u bij ontvangst het kenmerk $reference$ gekregen. 
+Bij deze ook nog eens de lijst ondertekenaars digitaal. We vertrouwen erop dat u deze vertrouwelijk behandeld onder de 
+Wet Bescherming Persoonsgegevens. Dat betekent dat de persoonsgegevens alleen 
+gebruikt worden voor het doeleinde waar ze voor verzameld zijn. In dit geval als steunbetuigingen voor deze petitie. U kunt bijvoorbeeld de 
+identiteit van de ondertekenaars controleren of patronen analyseren.'
     mailafriend:
       subject: 'Invitation to sign the petition "%{title}"'
       mail: '
@@ -56,7 +75,7 @@ De petitie kunt u vinden op $linktopetition$ of in uw overzicht van uw petitielo
 
 
 %{request}'
-      signoff: 'Dank u wel voor het gebruiken van Petities.nl!
+      signoff_desks: 'Dank u wel voor het gebruiken van Petities.nl!
 
 met vriendelijke groet, 
 
@@ -81,9 +100,28 @@ For other questions you can contact the petition desk at $petitieloketadres$ or 
         subject: Continue with your petition "%{petition_name}" with this login         
       has_answer: 'On %{date} you signed the petition %{petition.name}. The petition is now answered by the recipient of the petition. You can also find this answer next to the petition.'
       now_hide_signature: 'Now that the petition is closed, you might want to hide your name and signature. When you signed you were asked if you want to show your name on public display as signatory of the petition. Your signature might show up when someone searches the web for your name. You might like that or perhaps not. To turn this off or on again, go to the page where you confirmed your signature at %{unique_url}.'
-      status: 
-        changed: Your petition has changed status. It is now %{status}. Go to your petition at %{petition}
-        changed_subject: Your petition has changed status to $status$
+    status: 
+      changed: 'Your petition "%{petition}" now changed status to' 
+      changed_instructions_petitioner: '
+You can edit your petition(s) by logging in with the password only you know. Or you can ask for a new one for the address %{email} on that 
+same page.
+
+
+Will you not forget to sign your petition(s) yourself? Then you can also receive the e-mails you send to the signatories.            
+'
+      changed_instructions_desk: '
+You can edit the petition "%{petition}" by logging in at 
+https://petities.nl/login with %{email} and the password only you know. Or you can ask for a new one for the address %{email} on that 
+same page.
+
+
+It is most urgent to login when a petition needs to be moderated. The petitioner is usually waiting impatiently to start collecting signatures. 
+
+
+When a petition closes because the hand over date is reached you will automatically receive e-mails from us about answering the petition.
+Because you have access to a petition desk you can process all this by yourself.
+'
+      changed_subject: Your "%{petition}" has changed status to 
       request:
         announcement: 'Onderstaande petitie willen we graag overhandigen. Voor deze petitie zijn $signature_count$ ondertekeningen verzameld sinds $creationdate$. 
 Zou u ons kunnen adviseren welke datum het beste schikt en waar we worden verwacht? U kunt mij bereiken op subdomain@petities.nl. 
