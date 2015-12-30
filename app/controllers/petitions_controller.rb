@@ -194,10 +194,11 @@ class PetitionsController < ApplicationController
       end
     end
 
+    @password = 'you already have'
+
     if user_signed_in?
       owner = current_user
       # send welcome mail anyways..
-      PetitionMailer.welcome_petitioner_mail(@petition, owner, 'you already have').deliver_later
     else
       user_params = params[:user]
 
@@ -220,8 +221,8 @@ class PetitionsController < ApplicationController
           owner.skip_confirmation_notification!
           owner.confirmed_at = nil
           owner.save
+          @password = password
           # send welcome / password if needed
-          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
         end
       end
     end
@@ -232,6 +233,7 @@ class PetitionsController < ApplicationController
       if @petition.save
         # make user owner of the petition
         owner.add_role :admin, @petition if owner
+        PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }
