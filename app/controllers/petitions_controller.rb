@@ -196,6 +196,8 @@ class PetitionsController < ApplicationController
 
     if user_signed_in?
       owner = current_user
+      # send welcome mail anyways..
+      PetitionMailer.welcome_petitioner_mail(@petition, owner, 'you already have').deliver_now
     else
       user_params = params[:user]
 
@@ -218,10 +220,8 @@ class PetitionsController < ApplicationController
           owner.skip_confirmation_notification!
           owner.confirmed_at = nil
           owner.save
-
           # send welcome / password if needed
           PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_now
-
         end
       end
     end
