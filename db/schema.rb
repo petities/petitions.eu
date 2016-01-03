@@ -453,9 +453,8 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.integer  "resource_id",       limit: 4
   end
 
-  add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
-  add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "roles_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -496,6 +495,7 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.integer  "reminders_sent",              limit: 4
     t.datetime "last_reminder_sent_at"
     t.date     "unconverted_person_born_at"
+    t.string   "person_birth_country",        limit: 2
     t.string   "person_country",              limit: 2
   end
 
@@ -574,7 +574,7 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.string   "task_name",   limit: 255
     t.integer  "petition_id", limit: 4
     t.string   "message",     limit: 255
-    t.integer  "count",       limit: 4,   default: 0
+    t.integer  "count",       limit: 4
     t.datetime "last_action"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -631,6 +631,7 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.string   "telephone",              limit: 255
     t.date     "birth_date"
     t.string   "birth_city",             limit: 255
+    t.datetime "reset_password_sent_at"
     t.string   "encrypted_password",     limit: 255
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",          limit: 4,   default: 0
@@ -642,7 +643,6 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token",   limit: 255
-    t.datetime "reset_password_sent_at"
     t.string   "remember_token",         limit: 255
     t.string   "unconfirmed_email",      limit: 255
   end
