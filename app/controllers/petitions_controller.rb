@@ -97,7 +97,8 @@ class PetitionsController < ApplicationController
   def manage
     if current_user
       # @petitions = current_user.petitions
-      @petitions = Petition.with_role(:admin, current_user)
+      @petitions = Petition.with_role(:admin, current_user).limit(100)
+
       @results_size = @petitions.size
 
       petitions_by_status @petitions

@@ -1,6 +1,7 @@
 require 'active_support/concern'
 
 module SortPetitions extend ActiveSupport::Concern
+
   def sort_petitions(petitions)
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'all'

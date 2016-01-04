@@ -60,7 +60,8 @@ class SignaturesController < ApplicationController
 
   def search
     # @petition = Petition.friendly.find(params[:petition_id])
-    @petition = PetitionsController.send(:set_petition)
+    #@petition = PetitionsController.send(:set_petition)
+    find_petition
 
     @query = params[:query]
 
