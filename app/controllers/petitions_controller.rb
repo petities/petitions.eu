@@ -124,6 +124,13 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
+
+    unless @petition
+      flash[:notice] = t('petition.we_could_not_find_petition_try_search')
+      redirect_to root_path
+      return
+    end
+
     @owners = find_owners
 
     set_petition_vars
@@ -426,6 +433,10 @@ class PetitionsController < ApplicationController
 
   def set_petition
     find_petition
+
+    if @petition.nil?
+      return
+    end
 
     # find specific papertrail version
     @version_index = 0
