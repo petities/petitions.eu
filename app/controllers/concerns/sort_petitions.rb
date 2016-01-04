@@ -13,17 +13,17 @@ module SortPetitions extend ActiveSupport::Concern
     # describe petitions
     case @sorting
     when 'all'
-      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')")
+      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')").limit(100)
     when 'open'
-      petitions = petitions.live
+      petitions = petitions.live.limit(100)
     when 'concluded'
-      petitions = petitions.where(status: 'completed')
+      petitions = petitions.where(status: 'completed').limit(100)
     when 'rejected'
-      petitions = petitions.where(status: 'rejected')
+      petitions = petitions.where(status: 'rejected').limit(100)
     when 'sign_elsewhere'
-      petitions = petitions.where(status: 'not_signable_here')
+      petitions = petitions.where(status: 'not_signable_here').limit(100)
     else
-      petitions = petitions.live.order(created_at: direction)
+      petitions = petitions.live.order(created_at: direction).limit(100)
     end
 
     @sorting_options = [

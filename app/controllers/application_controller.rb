@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 
   # redirect users..
   def after_sign_in_path_for(resource)
+
     stored_location_for(resource) ||
       if resource.is_a?(AdminUser)
         admin_dashboard_path
@@ -31,7 +32,8 @@ class ApplicationController < ActionController::Base
         office = Office.with_role(:admin, resource).first
         petition_desk_path(office)
       else
-        manage_petitions_path
+        root_path
+        #manage_petitions_path
       end
   end
 
