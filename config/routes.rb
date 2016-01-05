@@ -74,11 +74,15 @@ Rails.application.routes.draw do
   # resource :signatures
 
   root 'petitions#index'
-  # STATIC PAGES
 
-  %w(help about privacy donate contact).each do |name|
-    get "/#{name}", to: "application##{name}"
+  # STATIC PAGES
+  PagesController::STATIC_PAGES.each do |name|
+    get "/#{name}", to: "pages##{name}"
   end
+
+  get '/contact', to: 'contact#new', as: :contact
+  post '/contact', to: 'contact#create'
+  get '/contact/thanks', to: 'contact#thanks'
 
   post '/contact_submit', to: 'application#contact_submit'
 

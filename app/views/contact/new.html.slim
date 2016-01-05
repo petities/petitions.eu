@@ -1,0 +1,34 @@
+div.page
+  section.start-petition-form-container
+    h1.petition-section-title= t('contact.title')
+
+    = form_for @contact_form, url: contact_path do |f|
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('contact.form.name.label')
+          = f.text_field :name, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          = t('contact.form.name.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('contact.form.mail.label')
+          = f.email_field :mail, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          = t('contact.form.mail.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('contact.form.text.label')
+          = f.text_area :message, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label.empty
+          = t('contact.form.text.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          = f.submit t('contact.form.submit'), class: 'start-petition-form-cell-button'
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
