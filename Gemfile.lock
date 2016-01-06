@@ -143,6 +143,8 @@ GEM
       json
       thread
       thread_safe
+    email_validator (1.6.0)
+      activemodel
     erubis (2.7.0)
     eventmachine (1.0.8)
     execjs (2.6.0)
@@ -426,6 +428,7 @@ DEPENDENCIES
   devise
   devise-encryptable
   devise-i18n
+  email_validator (~> 1.6)
   faker
   friendly_id
   friendly_id-globalize

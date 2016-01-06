@@ -108,6 +108,9 @@ gem 'i18n-country-translations'
 gem 'countries'
 gem 'country_select'
 
+# Validate e-mail addresses
+gem 'email_validator', '~> 1.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
