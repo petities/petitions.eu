@@ -204,7 +204,7 @@ class Petition < ActiveRecord::Base
 
   def active_rate
     if signatures_count > 0
-      signatures.confirmed.where('confirmed_at >= ?', 1.day.ago).size.to_f / signatures_count.to_f
+      signatures.confirmed.where('confirmed_at >= ?', 3.hour.ago).size.to_f / signatures_count.to_f
     else
       0
     end
@@ -291,7 +291,9 @@ class Petition < ActiveRecord::Base
   end
 
   def history_chart_json
-    label_size = signatures.confirmed.map(&:confirmed_at)
+    #return [[],[]]
+
+    label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
                  .compact
                  .group_by { |signature| signature.strftime('%Y-%m-%d') }
                  .map { |group| [group[0], group[1].size] } # .to_json.html_safe
@@ -303,6 +305,7 @@ class Petition < ActiveRecord::Base
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
     data = label_size.map { |d_s| d_s[1] }
+
     [data, labels]
   end
 

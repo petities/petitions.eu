@@ -17,8 +17,8 @@ module FindPetition extend ActiveSupport::Concern
         @petition = Petition.friendly.find(params[:id])
       rescue
         # find in all locales petition that matches..
-        @petition = Petition.joins(:translations)
-                    .where('petition_translations.slug like ?', "%#{params[:id]}%").first
+        #@petition = Petition.joins(:translations)
+        #            .where('petition_translations.slug like ?', "%#{params[:id]}%").first
       end
     end
   end

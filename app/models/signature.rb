@@ -157,8 +157,10 @@ class Signature < ActiveRecord::Base
   end
 
   def update_petition
-    petition.last_confirmed_at = Time.now.utc if self.confirmed?
-    petition.save
+    if self.confirmed?
+      petition.last_confirmed_at = Time.now.utc 
+      petition.save
+    end
     true
   end
 
@@ -232,9 +234,4 @@ class Signature < ActiveRecord::Base
     true
   end
 
-  def update_petition
-    petition.last_confirmed_at = Time.now.utc if self.confirmed?
-    petition.save
-    true
-  end
 end

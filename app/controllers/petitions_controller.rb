@@ -97,7 +97,9 @@ class PetitionsController < ApplicationController
   def manage
     if current_user
       # @petitions = current_user.petitions
-      @petitions = Petition.with_role(:admin, current_user)
+      # TODO we should convert managers to admin..
+      @petitions = Petition.with_role([:admin, :manager], current_user)
+
       @results_size = @petitions.size
 
       petitions_by_status @petitions
@@ -124,6 +126,13 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
+
+    unless @petition
+      flash[:notice] = t('petition.we_could_not_find_petition_try_search')
+      redirect_to root_path
+      return
+    end
+
     @owners = find_owners
 
     set_petition_vars
@@ -426,6 +435,10 @@ class PetitionsController < ApplicationController
 
   def set_petition
     find_petition
+
+    if @petition.nil?
+      return
+    end
 
     # find specific papertrail version
     @version_index = 0

@@ -14,13 +14,13 @@ class SignaturesController < ApplicationController
 
     find_petition
 
-    @all_signatures = @petition.signatures.special.limit(1000)
+    @all_signatures = @petition.signatures.special.limit(900)
 
     unless request.xhr?
       @chart_data, @chart_labels = @petition.history_chart_json
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
-                                  .select { |group| group[1] >= 100 }
+                                  .select { |group| group[1] >= 50 }
                                   .sort_by { |group| group[1] }[0..9]
 
       @filtered_s_c_c = {}
@@ -60,7 +60,8 @@ class SignaturesController < ApplicationController
 
   def search
     # @petition = Petition.friendly.find(params[:petition_id])
-    @petition = PetitionsController.send(:set_petition)
+    #@petition = PetitionsController.send(:set_petition)
+    find_petition
 
     @query = params[:query]
 

@@ -606,7 +606,7 @@ en:
       subscribe: Subscribe
       visible: Visible
     linkinstruction: Follow below link to confirm
-    success: Your information is saved
+    success: 'Your information is saved, thank you. Send invites or help in other ways? See below \/'
     success_send: Invitation sent! One more perhaps?
     thanks: Thanks
   signatures:
