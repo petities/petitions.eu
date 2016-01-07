@@ -157,8 +157,7 @@ class Signature < ActiveRecord::Base
 
   def update_petition
     if self.confirmed?
-      petition.last_confirmed_at = Time.now.utc
-      petition.save
+      petition.update_attribute(:last_confirmed_at, Time.now.utc)
     end
     true
   end
