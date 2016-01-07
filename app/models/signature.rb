@@ -57,8 +57,7 @@ class Signature < ActiveRecord::Base
               message: t('signature.errors.name_and_surname', default: 'name and surname')
             }
 
-  # keep this simple since we are sending validation emails anyways.
-  validates :person_email, format: { with: /\A.*@.*\z/ }
+  validates :person_email, email: true
 
   # FIXME
   # def country_postalcode_validation
@@ -158,7 +157,7 @@ class Signature < ActiveRecord::Base
 
   def update_petition
     if self.confirmed?
-      petition.last_confirmed_at = Time.now.utc 
+      petition.last_confirmed_at = Time.now.utc
       petition.save
     end
     true

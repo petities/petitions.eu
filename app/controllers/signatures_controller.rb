@@ -157,13 +157,11 @@ class SignaturesController < ApplicationController
 
     set_pledge
 
-    # @url = petition_signature_confirm_submit
     @remote_ip = request.remote_ip
     @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
 
     @signature.signature_remote_addr = @remote_ip
     @signature.signature_remote_browser = @remote_browser
-
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
@@ -178,7 +176,6 @@ class SignaturesController < ApplicationController
         # create the information needed messages
         @action = t('confirm.form.action.confirm_and_save')
         @message = t('confirm.form.add_information_and_confirm')
-
       else
         # signature is confirmed no extra data needed
         @signature.confirmed = true
@@ -195,8 +192,6 @@ class SignaturesController < ApplicationController
     # add some javascript data to allow for data checking
     @check_fields = []
     add_check_fields
-    @remote_ip = request.remote_ip
-    @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
   end
 
   # Add all the element_id's that need to be correct
@@ -216,7 +211,7 @@ class SignaturesController < ApplicationController
     @check_fields.push('person_born_at') if @signature.require_born_at?
   end
 
-  # POST a singnature update by user
+  # POST a signature update by user
   # a save update on a signature.
   def confirm_submit
     @petition = @signature.petition

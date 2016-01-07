@@ -1,0 +1,63 @@
+div.page.vervolg
+  section.vervolg-main
+    h1.petition-section-title.left= t('help.title')
+
+    div.update-container
+      div.update
+        h2=t('help.general_items') 
+
+        - @general.each do |general_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = general_item[:title] 
+          div.read-more-help-content
+            h3= general_item[:title] 
+            p= raw general_item[:answer] 
+      div.update
+        h2=t('help.whilesigning_item')
+
+        - @whilesigning.each do |whilesigning_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = whilesigning_item[:title] 
+          div.read-more-help-content
+            h3= whilesigning_item[:title] 
+            p= raw whilesigning_item[:answer] 
+      div.update
+        h2=t('help.aftersigning_item') 
+
+        - @aftersigning.each do |aftersigning_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = aftersigning_item[:title] 
+          div.read-more-help-content
+            h3= aftersigning_item[:title] 
+            p= raw aftersigning_item[:answer] 
+      div.update
+
+        h2=t('help.writingpetition_item') 
+        - @writingpetition.each do |writingpetition_item|
+
+          div.read-more-help-handler
+            | &#43; 
+            = writingpetition_item[:title] 
+          div.read-more-help-content
+            h3= writingpetition_item[:title] 
+            p= raw writingpetition_item[:answer] 
+
+  aside.vervolg-side
+
+    div.side-article-container.whitespace
+      h2= t('help.changesig.title')
+      p= raw t('help.changesig.descr')
+      
+    div.side-article-container.whitespace
+      h2= t('help.handbook.title')
+      p= raw t('help.handbook.descr')
+
+    div.side-article-container.whitespace
+      h2= t('help.opinionpiece.title')
+      p= raw t('help.opinionpiece.descr')

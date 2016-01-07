@@ -58,18 +58,18 @@ nl:
         description: De plaats waar u geboren bent. Niet verplicht.
         label: Geboorteplaats
       country:
-        description: Nederlanders in het buitenland mogen wel tekenen.  
+        description: Nederlanders in het buitenland mogen wel tekenen.
         label: Het land waar u nu leeft.
       email:
-        description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie. 
+        description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie.
         label: E-mail
       function:
         description: "U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet."
         label: Functie of situatie
       form:
         update_information: updated
-      influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel. 
-      influencelabel: Heeft u invloed? Bent u een... 
+      influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel.
+      influencelabel: Heeft u invloed? Bent u een...
       invite_info:
         description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
         label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
@@ -101,19 +101,19 @@ nl:
         description: Alleen de ontvanger van de petitie en de petitionaris kunnen uw adres zien. Om het te controleren.
         label: Postcode
       see_your_signature: Bekijk uw ondertekening in de lijst
-      skillslabel: Kunt u iets speciaals om te helpen? Kunt u...       
+      skillslabel: Kunt u iets speciaals om te helpen? Kunt u...
       skills_offer_description: Een petitionaris heeft misschien uw speciale vaardigheden nodig. Mogelijk kunt u helpen. U ontvangt dan een e-mail met een concreet voorstel.
       street:
         description: Uw adres zoals in het bevolkingsregister staat is noodzakelijk voor dit soort petities. Dit adres staat ook op post van de overheid.
         label: Straatnaam
       street_number:
-        description: Uw adres wordt nooit openbaar. 
+        description: Uw adres wordt nooit openbaar.
         label: Huisnummer
       street_number_suffix:
         suffixlabel: Huisnummertoevoeging
       subscribe:
         description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
-        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails." 
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails."
       update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
@@ -135,14 +135,33 @@ nl:
       share_petition: Deel de petitie
       your_email: Uw e-mailadres
       your_signature: Uw ondertekening in de lijst
-    mailafriend: 
+    mailafriend:
       description: Voer alleen e-mailadressen in van mensen die u kent en misschien zullen ondertekenen.
-      failed: Mislukt! Probeer nog eens      
+      failed: Mislukt! Probeer nog eens
       input: Voer (nog) een e-mailadres in
       label: 'Voorvertoning'
       title: Nodig anderen uit
       success: Dank u! Zou u meer willen uitnodigen?
     title: Bevestig uw ondertekening van de petitie "%{name}"
+  contact:
+    title: Contact met Stichting Petities.nl
+    form:
+      name:
+        label: Uw naam
+        description: Uw naam
+      mail:
+        label: Uw e-mailadres
+        description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht.
+      text:
+        label: Uw bericht
+        description: Uw bericht aan Stichting Petities.nl. Wilt u bij uw berichten vermelden over welke petitie het gaat?
+      submit: Verstuur
+    thanks:
+      title: Uw bericht is verzonden
+      description: Dank voor uw bericht. We nemen met enkele dagen contact met u op.
+  contact_mailer:
+    webmaster_message:
+      subject: Bericht vanaf petities.nl
   description: Beschrijving
   desk:
     general_desk_admins: Petitieloket logins
@@ -176,14 +195,14 @@ nl:
       newer_version: Nieuwere versie
       newest_version: Petitie versie
       no_signatures_yet: Nog geen ondertekeningen
-      of: uit  
+      of: uit
       older_version: Oudere versie
       sign_page: Toon de petitie
       status:
         explanation: Als uw petitietekst eenmaal klaar is, geeft u het aan de moderator om het open te zetten voor ondertekening. Na de sluitingsdatum van de petitie kan er niet meer worden ondertekend. Om de petitie te sluiten of te verlengen moet u de sluitingsdatum veranderen. Gesloten petities moeten worden overhandigd aan de ontvanger. Daarna wachten we op een antwoord.
       updated: Petitie is bijgewerkt
       version: versie
-      write_news: Schrijf een nieuwtje      
+      write_news: Schrijf een nieuwtje
   errors:
     messages:
       empty: Dit veld is leeg, maar er moet tekst in staan.
@@ -211,28 +230,22 @@ nl:
     search: Zoeken in petities
   help:
     aftersigning:
-      question01:
-        answer: Onderteken door uw naam en e-mailadres in te voeren en bevestig uw ondertekening vanuit de e-mail die u dan ontvangt. U kunt uitnodigingen per e-mail versturen of de petitie via sociale media delen. Op dezelfde pagina kunt u aangeven dat u wilt helpen of wat wil doneren.
+      - answer: Onderteken door uw naam en e-mailadres in te voeren en bevestig uw ondertekening vanuit de e-mail die u dan ontvangt. U kunt uitnodigingen per e-mail versturen of de petitie via sociale media delen. Op dezelfde pagina kunt u aangeven dat u wilt helpen of wat wil doneren.
         title: Hoe kan ik een petitie verder helpen?
-      question02:
-        answer: Helaas, zo is Petities.nl opgezet voor de gebruikersvriendelijkheid van de meerderheid. Geen wachtwoord nodig en elke ondertekening is gekoppeld aan een persoon die e-mail kan lezen. De oplossing is om op papier te tekenen en die te sturen/mailen naar de petitionaris of om (extra) e-mailadres te nemen. U kunt een extra gratis e-mailadres te nemen bij de vereniging Open Domein die ook Petities.nl mogelijk maakt. Meer details en oplossingen in ons <a href="http://handboek.petities.nl">handboek.</a>
+      - answer: Helaas, zo is Petities.nl opgezet voor de gebruikersvriendelijkheid van de meerderheid. Geen wachtwoord nodig en elke ondertekening is gekoppeld aan een persoon die e-mail kan lezen. De oplossing is om op papier te tekenen en die te sturen/mailen naar de petitionaris of om (extra) e-mailadres te nemen. U kunt een extra gratis e-mailadres te nemen bij de vereniging Open Domein die ook Petities.nl mogelijk maakt. Meer details en oplossingen in ons <a href="http://handboek.petities.nl">handboek.</a>
         title: Wij delen een e-mailadres of mijn vrienden hebben geen e-mail. Kunnen we maar 1 keer ondertekenen?
-      question03:
-        answer: Als u hier rechtsonder uw e-mailadres invult dan sturen we u een e-mail met een link voor elke petitie die u ondertekend heeft. Volgt u de link in de e-mail dan kunt u uw naam of beschrijving aanpassen of verbergen voor de buitenwereld.
+      - answer: Als u hier rechtsonder uw e-mailadres invult dan sturen we u een e-mail met een link voor elke petitie die u ondertekend heeft. Volgt u de link in de e-mail dan kunt u uw naam of beschrijving aanpassen of verbergen voor de buitenwereld.
         title: Welke petities heb ik al ondertekend?
     aftersigning_item: Na het ondertekenen
     changesig:
       descr: "<p>Uw ondertekening van een petitie kunt u altijd aanpassen of verbergen. Dat kan heel makkelijk door opnieuw te klikken op de link die we u toestuurden in de e-mail ter bevestiging. Op de pagina die dan verschijnt vindt u hier de mogelijkheden toe.</p><p>&nbsp;</p><p>Heeft u die e-mail niet meer? Teken dan opnieuw en u krijgt die e-mail weer.</p>"
       title: Uw ondertekening wijzigen
     general:
-      question01:
-        answer: Petities.nl wil de tekortkomingen van online petities opheffen door&#58;<br>&#149; een duidelijke geadressseerde die de petitie moet ontvangen en in de positie is om wat te veranderen<br>&#149; een petitionaris die de petitie binnen een gestelde termijn tot het einde beheert<br>&#149; een petitionaris die woordvoerder en contactpersoon is; geen anonieme petities waar niemand voor verantwoordelijk is<br>&#149; geen petities over consumentenzaken toe te staan, alleen petities over zaken van algemeen belang<br>&#149; constructieve petities aan te moedigen omdat afzender, analyse en eis helder geformuleerd moeten worden<br>&#149; spam over de petitie te voorkomen.<br>In het algemeen willen we het grondwettelijke petitierecht ondersteunen en verbeteren.
+      - answer: Petities.nl wil de tekortkomingen van online petities opheffen door&#58;<br>&#149; een duidelijke geadressseerde die de petitie moet ontvangen en in de positie is om wat te veranderen<br>&#149; een petitionaris die de petitie binnen een gestelde termijn tot het einde beheert<br>&#149; een petitionaris die woordvoerder en contactpersoon is; geen anonieme petities waar niemand voor verantwoordelijk is<br>&#149; geen petities over consumentenzaken toe te staan, alleen petities over zaken van algemeen belang<br>&#149; constructieve petities aan te moedigen omdat afzender, analyse en eis helder geformuleerd moeten worden<br>&#149; spam over de petitie te voorkomen.<br>In het algemeen willen we het grondwettelijke petitierecht ondersteunen en verbeteren.
         title: Online petities zijn altijd onzin heb ik geleerd. Waarom is petities.nl anders?
-      question02:
-        answer: Anoniem ondertekenen mag niet. U mag wel ondertekenen zonder dat uw naam voor iedereen te zien is. Als u een petitie ondertekent zet u een vinkje om uw naam zichtbaar te maken voor iedereen. Doet u dat niet, dan is uw naam voor drie personen te zien&#58;<br>&#149; De ontvanger van de petitie, meestal de overheid<br>&#149; De petitionaris, die de petitie beheert<br>&#149; Petities.nl, die de website beheert.<br>Dit vinkje kunt u altijd terugzetten of weer weghalen.
+      - answer: Anoniem ondertekenen mag niet. U mag wel ondertekenen zonder dat uw naam voor iedereen te zien is. Als u een petitie ondertekent zet u een vinkje om uw naam zichtbaar te maken voor iedereen. Doet u dat niet, dan is uw naam voor drie personen te zien&#58;<br>&#149; De ontvanger van de petitie, meestal de overheid<br>&#149; De petitionaris, die de petitie beheert<br>&#149; Petities.nl, die de website beheert.<br>Dit vinkje kunt u altijd terugzetten of weer weghalen.
         title: Waarom mag men anoniem ondertekenen?
-      question03:
-        answer: Degene die de petitie uiteindelijk ontvangt krijgt een uitdraai van uw gegevens om te controleren. In theorie kunt u persoonlijk door een politicus of beleidsambtenaar benaderd worden als ze gegronde vermoedens hebben dat ze waardevolle toelichting op de petitie kunnen krijgen op die manier. In de praktijk wordt er alleen met de petitionaris gesproken, als woordvoerder van alle ondertekenaars. De ontvanger van een petitie kan geen mailing versturen naar de lijst ondertekenaars, want de <a href="https://www.cbpweb.nl/">Wet op de Bescherming Persoonsgegevens</a> verhindert dat. Deze database is immers niet met die bedoeling aangelegd, dus dat mag niet. De webmaster en de systeembeheerder van petities.nl hebben toegang tot alle gegevens. De Stichting Petities.nl wil zich onderscheiden van concurrende aktiesites door de betrouwbaarheid en neutraliteit. We vallen onder de Nederlandse wetgeving en staan op servers in Nederland bij een non-profit organisatie die niet te koop is. Gegevens die niet gebruikt zijn worden zelfs actief gewist (niets bewaren is altijd het veiligst in dit verband). De petitionaris heeft krijgt alleen toegang tot de naam-titel-woonplaats gegevens om te overhandigen. Dit is de lijst inclusief de op de website onzichtbare ondertekenaars. Deze lijst mag dus niet gepubliceerd worden (beschermd door de Wet Bescherming Persoonsgegevens) en mag alleen overhandigd worden om te worden gecontroleerd op echtheid. En om indruk te maken natuurlijk! Volksvertegenwoordigers weten als geen ander hoe moeilijk het is om iemand uit vrije wil ergens voor te laten tekenen...
+      - answer: Degene die de petitie uiteindelijk ontvangt krijgt een uitdraai van uw gegevens om te controleren. In theorie kunt u persoonlijk door een politicus of beleidsambtenaar benaderd worden als ze gegronde vermoedens hebben dat ze waardevolle toelichting op de petitie kunnen krijgen op die manier. In de praktijk wordt er alleen met de petitionaris gesproken, als woordvoerder van alle ondertekenaars. De ontvanger van een petitie kan geen mailing versturen naar de lijst ondertekenaars, want de <a href="https://www.cbpweb.nl/">Wet op de Bescherming Persoonsgegevens</a> verhindert dat. Deze database is immers niet met die bedoeling aangelegd, dus dat mag niet. De webmaster en de systeembeheerder van petities.nl hebben toegang tot alle gegevens. De Stichting Petities.nl wil zich onderscheiden van concurrende aktiesites door de betrouwbaarheid en neutraliteit. We vallen onder de Nederlandse wetgeving en staan op servers in Nederland bij een non-profit organisatie die niet te koop is. Gegevens die niet gebruikt zijn worden zelfs actief gewist (niets bewaren is altijd het veiligst in dit verband). De petitionaris heeft krijgt alleen toegang tot de naam-titel-woonplaats gegevens om te overhandigen. Dit is de lijst inclusief de op de website onzichtbare ondertekenaars. Deze lijst mag dus niet gepubliceerd worden (beschermd door de Wet Bescherming Persoonsgegevens) en mag alleen overhandigd worden om te worden gecontroleerd op echtheid. En om indruk te maken natuurlijk! Volksvertegenwoordigers weten als geen ander hoe moeilijk het is om iemand uit vrije wil ergens voor te laten tekenen...
         title: Wie krijgen mijn gegevens te zien?
     general_items: Algemene vragen
     handbook:
@@ -244,7 +257,7 @@ nl:
     petition:
       update:
         help: Vat samen
-        descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet**gedrukt." 
+        descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet**gedrukt."
         descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
         descr3: |
               <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
@@ -254,37 +267,27 @@ nl:
         tips: Zie het handboek
     title: Help
     whilesigning:
-      question01:
-        answer: Onder gesloten petities verschijnt de onderteken-knop niet. Petitie sluiten bij de overhandiging en wacht dan op een antwoord. Neemt u desnoods even contact op met de petitionaris, mogelijk kan zij of hij uw gegevens nog handmatig toevoegen als de petitie nog niet overhandigd is.
+      - answer: Onder gesloten petities verschijnt de onderteken-knop niet. Petitie sluiten bij de overhandiging en wacht dan op een antwoord. Neemt u desnoods even contact op met de petitionaris, mogelijk kan zij of hij uw gegevens nog handmatig toevoegen als de petitie nog niet overhandigd is.
         title: Waarom kan ik de petitie niet ondertekenen via de onderteken-knop?
-      question02:
-        answer: Het kan gebeuren dat u een e-mailadres heeft ingevuld waar u geen toegang (meer) toe heeft. Dit merkt u als u het kwartiertje na ondertekenen geen e-mail krijgt van petities.nl om de ondertekening te bevestigen. Het na laten sturen van de bevestigingsmail helpt dan ook niet, want dat gaat dan naar een adres waar u het niet kunt lezen. Niets aan de hand, gewoon opnieuw ondertekenen en uw gegevens opnieuw invullen, maar dan met het goede adres.
+      - answer: Het kan gebeuren dat u een e-mailadres heeft ingevuld waar u geen toegang (meer) toe heeft. Dit merkt u als u het kwartiertje na ondertekenen geen e-mail krijgt van petities.nl om de ondertekening te bevestigen. Het na laten sturen van de bevestigingsmail helpt dan ook niet, want dat gaat dan naar een adres waar u het niet kunt lezen. Niets aan de hand, gewoon opnieuw ondertekenen en uw gegevens opnieuw invullen, maar dan met het goede adres.
         title: Ik heb ondertekend met een verkeerd e-mailadres, wat nu?
-      question03:
-        answer: Ja, u tekent standaard anoniem. De petitionaris en de ontvanger van de petitie krijgen wel te zien wie (naam en uw zelfbeschrijving) uit welke woonplaats getekend heeft. Pas als u aanvinkt dat u uw naam openbaar op het web onder de petitie wilt tonen verschijnt uw naam. Dit kunt u altijd ongedaan maken, maar het kan al gearchiveerd zijn door anderen.
+      - answer: Ja, u tekent standaard anoniem. De petitionaris en de ontvanger van de petitie krijgen wel te zien wie (naam en uw zelfbeschrijving) uit welke woonplaats getekend heeft. Pas als u aanvinkt dat u uw naam openbaar op het web onder de petitie wilt tonen verschijnt uw naam. Dit kunt u altijd ongedaan maken, maar het kan al gearchiveerd zijn door anderen.
         title: Zonder mijn naam openbaar op het web ondertekenen, kan dat?
-      question04:
-        answer: Nee, dat kan niet. U kunt wel zelf een verbeterde petitie opstellen die de concurrentie aangaat met de bestaande. Bedenk dat u niet de enige bent die zich achter de petitie schaart. De grote kracht van een petitie is dat er één eis in staat die ondersteund wordt door alle ondertekenaars. Als iedereen zijn eigen mening laat horen valt de kracht van de petitie weg. Daarom kunt u beter een opmerking, anecdote of ondersteuning aan de petitionaris mailen. Hij of zij zal u daarvoor dankbaar zijn en u mogelijk citeren in een interview aan een journalist of bij vragen van de petitie-ontvanger. Als u mee wilt denken over verdere actie en/of ervaringen wilt uitwisselen met andere ondertekenaars meldt u zich bij de petitionaris.
+      - answer: Nee, dat kan niet. U kunt wel zelf een verbeterde petitie opstellen die de concurrentie aangaat met de bestaande. Bedenk dat u niet de enige bent die zich achter de petitie schaart. De grote kracht van een petitie is dat er één eis in staat die ondersteund wordt door alle ondertekenaars. Als iedereen zijn eigen mening laat horen valt de kracht van de petitie weg. Daarom kunt u beter een opmerking, anecdote of ondersteuning aan de petitionaris mailen. Hij of zij zal u daarvoor dankbaar zijn en u mogelijk citeren in een interview aan een journalist of bij vragen van de petitie-ontvanger. Als u mee wilt denken over verdere actie en/of ervaringen wilt uitwisselen met andere ondertekenaars meldt u zich bij de petitionaris.
         title: Ik ben het niet exact eens met petitie. Kan ik een extra conditie opgeven bij mijn ondertekening?
-      question05:
-        answer: Na het ondertekenen krijgt u een bevestigingsmail met daarin het e-mailadres van de petitionaris. Die kunt u uw commentaar terugschrijven. Ook kunt u iets van commentaar kwijt in het functie-veld bij het ondertekenen. Als u het niet eens bent met een petitie kunt u een tegen-petitie starten.
+      - answer: Na het ondertekenen krijgt u een bevestigingsmail met daarin het e-mailadres van de petitionaris. Die kunt u uw commentaar terugschrijven. Ook kunt u iets van commentaar kwijt in het functie-veld bij het ondertekenen. Als u het niet eens bent met een petitie kunt u een tegen-petitie starten.
         title: Hoe kan ik aan een petitie persoonlijk commentaar toevoegen?
     whilesigning_item: Tijdens het ondertekenen
     writingpetition:
-      question01:
-        answer: De tekst van uw petitie is overtuigender als u links maakt naar extra materiaal elders. Voor u is uw petitie waarschijnlijk bijzonder vanzelfsprekend, anderen hebben soms net wat meer nodig om overtuigd te worden. De link naar een discussie is noodzakelijk omdat heel veel mensen een aantekening willen maken bij de petitie. Als u die mogelijkheid niet geeft, tekent men eerder niet dan wel.
+      - answer: De tekst van uw petitie is overtuigender als u links maakt naar extra materiaal elders. Voor u is uw petitie waarschijnlijk bijzonder vanzelfsprekend, anderen hebben soms net wat meer nodig om overtuigd te worden. De link naar een discussie is noodzakelijk omdat heel veel mensen een aantekening willen maken bij de petitie. Als u die mogelijkheid niet geeft, tekent men eerder niet dan wel.
         title: Waarom moet ik als petitionaris extra links opgeven?
-      question02:
-        answer: Het is niet noodzakelijk om zelf een discussieforum te hebben. Het is mogelijk een link te maken naar een bepaalde bijdrage in een weblog of nieuwsartikel waar het het onderwerp is of een discussiedraad in een webforum.
+      - answer: Het is niet noodzakelijk om zelf een discussieforum te hebben. Het is mogelijk een link te maken naar een bepaalde bijdrage in een weblog of nieuwsartikel waar het het onderwerp is of een discussiedraad in een webforum.
         title: Ik heb geen discussieforum, waar moet ik naar linken in mijn petitie?
-      question03:
-        answer: Petities.nl gaat over zaken die burgers aangaan, zaken van algemeen belang. Als een bedrijf u slechte service biedt of een slecht product verkoopt dan kunt u als consument allerlei acties ondernemen die vallen onder het consumentenrecht. Als het consumentenrecht tekort schiet dan kunt u daar wel een petitie over starten natuurlijk! In het geval van een monopolie heeft u geen alternatieven als consument. In dat geval dient u een petitie te richten tot de politiek verantwoordelijken die het monopolie niet aanpakken. Ook als u denkt dat een monopolie door de staat juist noodzakelijk is zult u zich daarvoor tot de politiek moeten richten. De noodzaak/rechtvaardiging van een monopolie is een prima onderwerp voor een petitie.Als u een petitie wilt starten over een bepaald soort schadelijke of wenselijke producten kunt u die behalve tot volksvertegenwoordigers ook richten aan de desbetreffende brancheorganisatie of een aantal bedrijven. U kunt als burger een bepaald bedrijf wel aanspreken op sociaal verantwoordelijk gedrag middels een petitie.
+      - answer: Petities.nl gaat over zaken die burgers aangaan, zaken van algemeen belang. Als een bedrijf u slechte service biedt of een slecht product verkoopt dan kunt u als consument allerlei acties ondernemen die vallen onder het consumentenrecht. Als het consumentenrecht tekort schiet dan kunt u daar wel een petitie over starten natuurlijk! In het geval van een monopolie heeft u geen alternatieven als consument. In dat geval dient u een petitie te richten tot de politiek verantwoordelijken die het monopolie niet aanpakken. Ook als u denkt dat een monopolie door de staat juist noodzakelijk is zult u zich daarvoor tot de politiek moeten richten. De noodzaak/rechtvaardiging van een monopolie is een prima onderwerp voor een petitie.Als u een petitie wilt starten over een bepaald soort schadelijke of wenselijke producten kunt u die behalve tot volksvertegenwoordigers ook richten aan de desbetreffende brancheorganisatie of een aantal bedrijven. U kunt als burger een bepaald bedrijf wel aanspreken op sociaal verantwoordelijk gedrag middels een petitie.
         title: Waarom mogen petities over een product of bedrijf niet?
-      question04:
-        answer: U richt een petitie aan iemand die door zijn of haar handelen de door u beoogde situatie kan (helpen) realiseren. Zoals volksvertegenwoordigers, bestuurders van organisaties en dergelijken. U kunt kiezen uit een aantal standaard ontvangers, maar u kunt ook geadresseerden aan deze voorselectie laten toevoegen door de webmaster. Het is verstandig om voor het starten van de petitie te controleren of de geadresseerde bereid is om de petitie in ontvangst te nemen in een later stadium. Gemeenten die hebben aangegeven altijd bereid zijn een petitie te willen ontvangen hebben een petitieloket geopend op deze website. U en de ondertekenaars van uw petitie krijgen dan gegarandeerd antwoord op uw petitie.
+      - answer: U richt een petitie aan iemand die door zijn of haar handelen de door u beoogde situatie kan (helpen) realiseren. Zoals volksvertegenwoordigers, bestuurders van organisaties en dergelijken. U kunt kiezen uit een aantal standaard ontvangers, maar u kunt ook geadresseerden aan deze voorselectie laten toevoegen door de webmaster. Het is verstandig om voor het starten van de petitie te controleren of de geadresseerde bereid is om de petitie in ontvangst te nemen in een later stadium. Gemeenten die hebben aangegeven altijd bereid zijn een petitie te willen ontvangen hebben een petitieloket geopend op deze website. U en de ondertekenaars van uw petitie krijgen dan gegarandeerd antwoord op uw petitie.
         title: Aan wie adresseer ik een petitie?
-      question05:
-        answer: U kunt een stukje code op uw pagina plakken. Zie ons <a href="http://handboek.petities.nl">handboek</a> voor details hierover.
+      - answer: U kunt een stukje code op uw pagina plakken. Zie ons <a href="http://handboek.petities.nl">handboek</a> voor details hierover.
         title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
     writingpetition_item: Bij het schrijven van een petitie
   index:
@@ -299,7 +302,7 @@ nl:
       title: 'Sorteren op: '
   listing: Lijst
   login:
-    email: 
+    email:
       descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
     login: Inloggen
@@ -322,7 +325,7 @@ nl:
     startanother: Start nog een petitie
     visits: Bezoekstatistieken
     sidekiq: Taken wachtrij
-  moderation: 
+  moderation:
     pending: Uw petitie gaat open na het bevestigen van deze e-mail
   name: Name
   office:
@@ -335,7 +338,7 @@ nl:
     new: Uw nieuwe wachtwoord
     save: Bewaar nieuw wachtwoord
     send: Stuur mij die wachtwoordlink
-    wisdom: 
+    wisdom:
       'Wij adviseren <a href="https://en.wikipedia.org/wiki/List_of_password_managers">speciale software</a> te gebruiken om een wachtwoord mee te maken en om wachtwoorden in te bewaren. Bijvoorbeeld 1Password of LastPass.'
   petition:
     Edit: Bewerk
@@ -437,7 +440,7 @@ nl:
       we: Wij
     steps: Stappen
     status:
-      flash: 
+      flash:
         concept: Nog niet af
         live: Ondertekenbaar
         in_treatment: In behandeling
@@ -453,7 +456,7 @@ nl:
     user_email: E-mail
     version: Versie
     withdrawn: Ingetrokken
-  petitioner: 
+  petitioner:
     awaiting_answer: Wacht op antwoord
     awaiting_moderation: Nog doorlaten
     drafts: Nog niet af
@@ -463,7 +466,7 @@ nl:
     text_grey: Ondertekenaars willen u misschien helpen. Na het bevestigen van hun ondertekening kunnen ze aangeven waar ze goed in zijn. Zoekt u een bepaalde persoon of wilt u weten wat men zoal heeft toegezegd? Vraag het ons per e-mail.
     text_grey_2: Uw petitie wordt automatisch ingediend als de indiendatum is bereikt. U kunt de datum aanpassen, maar doe dat wel tevoren. U krijgt een week voor de sluitingsdatum een e-mail hierover.
     title_blue: Voortgangsberichten
-    title_green: Donaties 
+    title_green: Donaties
     title_grey: Hulp van ondertekenaars
     title_grey_2: Hou de indiendatum in de gaten
   petitions: Petities
@@ -498,11 +501,11 @@ nl:
     city: Woonplaats
     edit_your_information: Bewerk uw gegevens
     details:
-      fakename: Uw naam moet bij ons wel bekend zijn, maar u kunt zelf bepalen hoe u zichtbaar bent voor de buitenwereld. 
-      please_change: 
+      fakename: Uw naam moet bij ons wel bekend zijn, maar u kunt zelf bepalen hoe u zichtbaar bent voor de buitenwereld.
+      please_change:
       privacy: Met gegevens over uw laatste sessie kunt u zien of u dat wel was
       title: Toelichting
-      your_profile: Deze gegevens zijn alleen bij ons bekend. Gebruik het e-mailadres en telefoonnummer waar we u over de petitie goed kunnen (blijven) bereiken. Dus geen gelegenheidsadres die u voor een petitie aanmaakt. 
+      your_profile: Deze gegevens zijn alleen bij ons bekend. Gebruik het e-mailadres en telefoonnummer waar we u over de petitie goed kunnen (blijven) bereiken. Dus geen gelegenheidsadres die u voor een petitie aanmaakt.
     last_ip: Laatste internetadres
     last_login: Laatste login
     postalcode: Postcode
@@ -551,10 +554,10 @@ nl:
       observe: constateren
       request: en verzoeken
       share_this: Dit is een goed moment om de link naar de petitie te delen vanuit de balk hieronder. Na het bevestigen kunt u door e-mailadressen in te voeren uitnodigingen via ons versturen.
-      status: 
+      status:
         label: Hoe nu verder?
         was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
-        will_be_signable: We hebben u een e-mail gestuurd vanaf info@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen. 
+        will_be_signable: We hebben u een e-mail gestuurd vanaf info@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
       title: Petitie
       we: Wij
     petitioner:
@@ -589,7 +592,7 @@ nl:
     confirm: Bevestig
     confirm_errors: 'Er ontbreekt wat verplichte informatie, uw ondertekening is nog niet bewaard'
     dear: Geachte
-    did_you_mean: Bedoelde u 
+    did_you_mean: Bedoelde u
     errors:
       city_too_short: Woonplaatsen zijn zelden zo kort
       name_invalid: Namen zijn zelden zo kort
@@ -650,7 +653,7 @@ nl:
           description: Als u geen goed wachtwoord kiest geven wij u een goede.
           label: Uw gewenste wachtwoord
         update:
-          update_description: Bewaar verbeteringen.  
+          update_description: Bewaar verbeteringen.
       petition_type:
         description: Kies als moderator het petitietype met consequenties voor de vereisten voor ondertekenaars.
         label: Petitietype
@@ -683,7 +686,7 @@ nl:
     too_late: de petitie kwam te laat, het veroek is niet meer te realiseren
     situation: de situatie is veranderd, de petitie zou ook moeten veranderen
     no_majority: er is geen politiek draagvlak voor
-    different: we moeten anders verder, (nu) niet met een petitie 
+    different: we moeten anders verder, (nu) niet met een petitie
     personal: persoonlijk kan ik de petitie niet overnemen (te druk, niet iets voor mij)
     other_answers: 'iets anders, namelijk:'
   update:
@@ -696,7 +699,7 @@ nl:
       date: Datum
       image: Plaatje
       title: Titel
-    label: 
+    label:
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
       select_office: Kies bij welk petitieloket

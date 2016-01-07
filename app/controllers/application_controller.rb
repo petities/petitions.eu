@@ -37,24 +37,6 @@ class ApplicationController < ActionController::Base
       end
   end
 
-  def help
-    @general = I18n.t('help.general').map { |_key, value| value }
-    @whilesigning = I18n.t('help.whilesigning').map { |_key, value| value }
-    @aftersigning = I18n.t('help.aftersigning').map { |_key, value| value }
-    @writingpetition = I18n.t('help.writingpetition').map { |_key, value| value }
-  end
-
-  %w(about privacy donate contact).each do |name|
-    define_method(name) {}
-  end
-
-  def contact_submit
-    ApplicationMailer.contact_mail(params[:from], params[:body]).deliver
-
-    flash[:notice] = 'Your email was successfully sent to website administrator!'
-    redirect_to contact_path
-  end
-
   def render_404
     render 'shared/404'
   end

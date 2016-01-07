@@ -77,7 +77,7 @@ class SignaturesControllerTest < ActionController::TestCase
                             special: true,
                             subscribe: true,
                             persone_function: true,
-                            # wrond values
+                            # wrong values
                             street_number: 'X',
                             person_street: 'XX',
                             person_birth_city: 'X',
