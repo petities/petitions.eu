@@ -160,7 +160,7 @@ class PetitionMailer < ApplicationMailer
   end
 
   # ask petitioner to confirm, give user and password
-  def welcome_petitioner_mail(petition, user, password)
+  def welcome_petitioner_mail(petition, user, password, target: nil)
     @password = password
     @token = user.confirmation_token || 'broken token'
     @petition = petition
@@ -175,12 +175,23 @@ class PetitionMailer < ApplicationMailer
     end
 
     @user = user
-    target = @petition.petitioner_email
-    subject = t('mail.petition.confirm.subject', petition_name: petition.name)
 
-    mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl',
+    if target.nil?
+      # NOTE petitioner_email can be wrong?
+      # should we not send email to admin users?
+      target = @user.email
+    end
+
+    tld = get_tld(target)
+
+    I18n.with_locale(tld) do
+      subject = t('mail.petition.confirm.subject', petition_name: petition.name)
+
+      mail(from: 'webmaster@petities.nl', reply_to: 'webmaster@petities.nl',
          to: target, subject: subject)
+    end
   end
+
 
   private
 
