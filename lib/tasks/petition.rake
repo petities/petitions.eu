@@ -1,4 +1,26 @@
 namespace :petition do
+
+  desc 'fix signature counts'
+  task fix_signature_counts: :environment do
+    
+    Petition.live.each do |petition|
+      count = petition.signatures.count
+      old_count = petition.signatures_count
+      if count == old_count
+        next
+      end
+
+      puts '%s - %s - %s' % [count, old_count, petition.name]
+      petition.signatures_count = petition.signatures.count
+
+      if not petition.save
+        puts 'Error saving %s' % [petition.name]
+      end
+
+    end
+  end
+
+
   desc 'Send warning of expiring due date'
   task send_warning_due_date: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/send_petition_due_date_warning.log')
