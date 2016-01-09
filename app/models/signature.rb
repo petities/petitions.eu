@@ -38,26 +38,18 @@
 #
 
 class Signature < ActiveRecord::Base
-  extend ActionView::Helpers::TranslationHelper
-  belongs_to :petition # , :counter_cache => true
+  belongs_to :petition
   has_one :petition_type, through: :petition
+
+  has_secure_token :unique_key
 
   # has_many :reminders, :class_name => 'SignaturesReminder'
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
-  validates :person_name,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.name_invalid', default: 'invalid')
-            }
-
-  validates :person_name,
-            format: {
-              with: /\A.+( |\.).+\z/,
-              message: t('signature.errors.name_and_surname', default: 'name and surname')
-            }
-
+  validates :person_name, length: { in: 3..255 }
+  validates :person_name, format: { with: /\A.+( |\.).+\z/ }
   validates :person_email, email: true
+  validates :person_email, uniqueness: { scope: :petition_id }
 
   # FIXME
   # def country_postalcode_validation
@@ -80,56 +72,35 @@ class Signature < ActiveRecord::Base
   #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
   #          on: :update,
   #          if: :require_full_address?
-  before_validation :strip_whitespace
-
-  def strip_whitespace
-    self.person_street_number = person_street_number.strip unless person_street_number.nil?
-  end
 
   validates :person_city,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.city_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_full_address?
 
   validates :person_street,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.street_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_full_address?
 
   validates :person_street_number,
-            numericality: {
-              only_integer: true,
-              message: t('signature.errors.not_a_number', default: 'not a number')
-            },
+            numericality: { only_integer: true },
             on: :update,
             if: :require_full_address?
 
   validates :person_street_number_suffix,
-            length: {
-              in: 1..255,
-              message: t('signature.errors.not_ok', default: 'not a suffix')
-            },
+            length: { in: 1..255 },
             allow_blank: true,
             on: :update,
             if: :require_full_address?
 
-  # Some petitions require a minimum age
   validates_date :person_born_at,
                  on_or_before: :required_minimum_age,
                  on: :update,
                  if: :require_minimum_age?
 
   validates :person_birth_city,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.city_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_person_city?
 
@@ -139,22 +110,11 @@ class Signature < ActiveRecord::Base
   scope :special, -> { where(special: true, confirmed: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
 
+  before_validation :strip_whitespace, :lowercase_person_email
   before_save :fill_confirmed_at
   before_create :fill_signed_at
 
   after_save :update_petition
-
-  # protected
-
-  def fill_confirmed_at
-    self.confirmed_at = Time.now.utc if confirmed_at.nil? && self.confirmed?
-    true
-  end
-
-  def fill_signed_at
-    self.signed_at = Time.now.utc if signed_at.nil?
-    true
-  end
 
   def update_petition
     if self.confirmed?
@@ -166,34 +126,34 @@ class Signature < ActiveRecord::Base
   end
 
   def require_full_address?
-    petition.present? &&
-      petition.petition_type.present? &&
-      petition.petition_type.require_signature_full_address?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
+    petition_type.present? && petition_type.require_signature_full_address?
   end
 
   def require_born_at?
-    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_born_at?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_born_at?
+    petition_type.present? && petition_type.require_person_born_at?
   end
 
   def require_minimum_age?
-    petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.required_minimum_age.present?
+    petition_type.present? && petition_type.required_minimum_age.present?
   end
 
   def require_person_city?
-    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
+    petition_type.present? && petition_type.require_person_birth_city?
   end
 
   def require_person_country?
-    petition.present? && petition.petition_type.present? && petition.petition_type.country_code.present?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
+    petition_type.present? && petition_type.country_code.present?
   end
 
-  validates_uniqueness_of :person_email, scope: :petition_id
+  private
 
-  protected
+  def strip_whitespace
+    self.person_street_number = person_street_number.strip unless person_street_number.nil?
+  end
+
+  def lowercase_person_email
+    self.person_email = person_email.to_s.downcase
+  end
 
   def send_confirmation_mail
     # puts 'sending mail???'
@@ -220,19 +180,11 @@ class Signature < ActiveRecord::Base
     end
   end
 
-  def generate_unique_key
-    self.unique_key = SecureRandom.urlsafe_base64(16) if unique_key.nil?
-    true
-  end
-
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if confirmed_at.nil? && self.confirmed?
-    true
   end
 
   def fill_signed_at
     self.signed_at = Time.now.utc if signed_at.nil?
-    true
   end
-
 end

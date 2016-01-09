@@ -26,6 +26,30 @@ nl:
     dashboard_welcome:
       call_to_action: Oproep
       welcome: U bent ingelogd
+  activerecord:
+    errors:
+      models:
+        signature:
+          attributes:
+            person_name:
+              too_short: 'Namen zijn zelden zo kort'
+              too_long: 'Namen zijn zelden zo lang'
+              invalid: 'Dat ziet er niet uit als een voornaam (of initiaal) en achternaam'
+            person_city:
+              too_short: Woonplaatsen zijn zelden zo kort
+              too_long: Woonplaatsen zijn zelden zo lang
+            person_street:
+              too_short: 'Straatnamen zijn zelden zo kort'
+              too_long: 'Straatnamen zijn zelden zo lang'
+            person_street_number:
+              not_a_integer: 'Dat is geen of niet alleen maar een nummer'
+              not_a_number: 'Dat is geen of niet alleen maar een nummer'
+            person_street_number_suffix:
+              too_short: 'Nummertoevoeging is te kort'
+              too_long: 'Nummertoevoeging is te lang'
+            person_birth_city:
+              too_short: 'Woonplaatsen zijn zelden zo kort'
+              too_long: 'Woonplaatsen zijn zelden zo lang'
   admin:
     sorting: Sorting
   all:
@@ -593,12 +617,6 @@ nl:
     confirm_errors: 'Er ontbreekt wat verplichte informatie, uw ondertekening is nog niet bewaard'
     dear: Geachte
     did_you_mean: Bedoelde u
-    errors:
-      city_too_short: Woonplaatsen zijn zelden zo kort
-      name_invalid: Namen zijn zelden zo kort
-      name_and_surname: 'Dat ziet er niet uit als een voornaam (of initiaal) en achternaam'
-      not_a_number: Dat is geen of niet alleen maar een nummer
-      street_too_short: 'Straatnamen zijn zelden zo kort'
     failed_send: Mislukt
     help:
       city: Woonplaats

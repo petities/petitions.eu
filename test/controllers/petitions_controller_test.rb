@@ -100,10 +100,18 @@ class PetitionsControllerTest < ActionController::TestCase
   test 'should_get_edit' do
     # user has admin rights on petition 1
     @request.env['devise.mapping'] = Devise.mappings[:user]
-    u = User.find(1)
-    u.confirm
-    u.add_role(:admin, @petition)
-    sign_in u
+    user = users(:one)
+    user.add_role(:admin, @petition)
+    sign_in user
+    get :edit, id: @petition.friendly_id
+    assert_response :success
+  end
+
+  test 'should get edit as office admin' do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    user = users(:one)
+    user.add_role(:admin, @petition.office)
+    sign_in user
     get :edit, id: @petition.friendly_id
     assert_response :success
   end

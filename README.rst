@@ -1,7 +1,20 @@
 README
 ======
 
-* Ruby version 2.2.2
+.. image:: https://codeclimate.com/github/petities/petitions.eu/badges/gpa.svg
+   :target: https://codeclimate.com/github/petities/petitions.eu
+   :alt: Code Climate
+
+.. image:: https://codeclimate.com/github/petities/petitions.eu/badges/coverage.svg
+   :target: https://codeclimate.com/github/petities/petitions.eu/coverage
+   :alt: Test Coverage
+
+.. image:: https://codeclimate.com/github/petities/petitions.eu/badges/issue_count.svg
+   :target: https://codeclimate.com/github/petities/petitions.eu
+   :alt: Issue Count
+
+
+* Ruby version 2.2.3
 
 * System dependencies
 
@@ -30,6 +43,8 @@ README
     memcached
 
     sidekiq -q mailers
+
+    redis
 
 * Deployment instructions
 

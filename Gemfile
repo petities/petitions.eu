@@ -111,8 +111,7 @@ gem 'country_select'
 # Validate e-mail addresses
 gem 'email_validator', '~> 1.6'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'has_secure_token', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
