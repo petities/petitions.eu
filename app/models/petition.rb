@@ -204,7 +204,8 @@ class Petition < ActiveRecord::Base
 
   def active_rate
     if signatures_count > 0
-      signatures.confirmed.where('confirmed_at >= ?', 3.hour.ago).size.to_f / signatures_count.to_f
+      signatures.confirmed.where('created_at >= ?', 8.hour.ago).size.to_f / 
+      signatures.confirmed.where('created_at >= ?', 1.hour.ago).size.to_f
     else
       0
     end
@@ -311,7 +312,6 @@ class Petition < ActiveRecord::Base
 
   def inc_signatures_count!
     self.signatures_count += 1
-    save
   end
 
   def links

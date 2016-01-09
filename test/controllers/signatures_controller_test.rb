@@ -111,16 +111,22 @@ class SignaturesControllerTest < ActionController::TestCase
                       '/ondertekening/oude_id_blabla/confirm')
   end
 
+
   test 'check confirmation logic' do
+    
     assert_difference('Signature.count') do
-      get :confirm, signature_id: @newsignature.unique_key
-      # assert_redirected_to @petition
+      assert_difference('Petition.find(2).signatures_count') do
+        get :confirm, signature_id: @newsignature.unique_key
+      end
     end
 
     # when we do it again nothing should happen.
     assert_no_difference('Signature.count') do
-      get :confirm, signature_id: @newsignature.unique_key
+      assert_no_difference('Petition.find(2).signatures_count') do
+        get :confirm, signature_id: @newsignature.unique_key
+      end
     end
+
   end
 
   test 'take_owner_ship' do

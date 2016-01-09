@@ -141,6 +141,7 @@ class Signature < ActiveRecord::Base
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at
+
   after_save :update_petition
 
   # protected
@@ -157,7 +158,9 @@ class Signature < ActiveRecord::Base
 
   def update_petition
     if self.confirmed?
-      petition.update_attribute(:last_confirmed_at, Time.now.utc)
+      petition.last_confirmed_at = Time.now.utc
+      petition.signatures_count += 1
+      petition.update_active_rate!
     end
     true
   end

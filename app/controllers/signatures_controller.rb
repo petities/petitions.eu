@@ -79,6 +79,7 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
+
     find_petition
 
     # try to find old signature first
@@ -177,8 +178,6 @@ class SignaturesController < ApplicationController
         @action = t('confirm.form.action.confirm_and_save')
         @message = t('confirm.form.add_information_and_confirm')
       else
-        # signature is confirmed no extra data needed
-        @signature.confirmed = true
         # we don't need extra information so everything is fine
         @message = t('confirm.form.is_confirmed_add_information')
       end
@@ -378,11 +377,10 @@ class SignaturesController < ApplicationController
     @signature = Signature.new(old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
 
     @signature.confirmed = true
+    @signature.confirmed_at = Time.now
+
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-
-    @petition.inc_signatures_count!
-    @petition.update_active_rate!
     # expire_fragment @petition
     old_signature.delete
     @signature.save
