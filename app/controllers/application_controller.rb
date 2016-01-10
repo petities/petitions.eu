@@ -37,6 +37,10 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def render_404
+    render 'pages#error'
+  end
+
   private
 
   def has_subdomain?

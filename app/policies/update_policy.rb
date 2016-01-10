@@ -23,6 +23,6 @@ class UpdatePolicy < ApplicationPolicy
   def petition_update?
     return false unless record.petition_id
     petition = Petition.find(record.petition_id)
-    user.has_role?([:admin, :manager], petition)
+    user.has_role?(:admin, petition)
   end
 end
