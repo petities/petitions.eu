@@ -67,11 +67,14 @@
 #  answer_due_date                  :date
 #  slug                             :string(255)
 #
+Globalize.fallbacks = {:en => [:en, :nl], :nl => [:nl, :en]}
 
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
 
-  translates :name, :description, :initiators, :statement, :request, :slug, versioning: :paper_trail
+  translates :name, :description, :initiators, 
+    :statement, :request, :slug, :fallbacks_for_empty_translations => true,
+    versioning: :paper_trail
   has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
   extend FriendlyId # must come after translates

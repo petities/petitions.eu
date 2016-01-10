@@ -21,7 +21,7 @@ module PetitionApp
 
     config.i18n.available_locales = [:nl, :de, :en, :pl, :fr, :es]
 
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :nl
     config.i18n.enforce_available_locales = false
     config.i18n.fallbacks = true
     # Do not swallow errors in after_commit/after_rollback callbacks.
