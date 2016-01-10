@@ -23,14 +23,15 @@ class PetitionsController < ApplicationController
       petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
-    elsif @sorting == 'sign_quick'
+    elsif @sorting == 'signquick'
       petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
     end
 
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
-      { type: 'newest',      label: t('index.sort.new') },
-      { type: 'sign_quick', label: t('index.sort.sign_quick') }
+      { type: 'newest', label: t('index.sort.new') },
+      { type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
