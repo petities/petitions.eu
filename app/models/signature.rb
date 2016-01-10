@@ -149,6 +149,8 @@ class Signature < ActiveRecord::Base
 
   def strip_whitespace
     self.person_street_number = person_street_number.strip unless person_street_number.nil?
+    self.person_name = person_name.strip unless person_name.nil?
+    self.person_email = person_email.strip unless person_email.nil?
   end
 
   def lowercase_person_email
