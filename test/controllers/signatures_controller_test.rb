@@ -114,9 +114,11 @@ class SignaturesControllerTest < ActionController::TestCase
 
   test 'check confirmation logic' do
     
-    assert_difference('Signature.count') do
-      assert_difference('Petition.find(2).signatures_count') do
-        get :confirm, signature_id: @newsignature.unique_key
+    assert_difference('NewSignature.count', -1) do
+      assert_difference('Signature.count') do
+        assert_difference('Petition.find(2).signatures_count') do
+          get :confirm, signature_id: @newsignature.unique_key
+        end
       end
     end
 
