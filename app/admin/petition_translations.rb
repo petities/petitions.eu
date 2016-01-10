@@ -1,4 +1,11 @@
 ActiveAdmin.register PetitionTranslation do
+  permit_params :name, :description, :required_minimum_age,
+                :display_person_born_at, :display_person_birth_city,
+                :require_person_born_at, :require_person_birth_city,
+                :display_signature_person_citizen,
+                :display_signature_full_address, :require_signature_full_address
+
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
