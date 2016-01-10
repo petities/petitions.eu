@@ -576,7 +576,7 @@ ActiveRecord::Schema.define(version: 20160107035649) do
     t.string   "task_name",   limit: 255
     t.integer  "petition_id", limit: 4
     t.string   "message",     limit: 255
-    t.integer  "count",       limit: 4,   default: 0
+    t.integer  "count",       limit: 4
     t.datetime "last_action"
     t.datetime "created_at"
     t.datetime "updated_at"

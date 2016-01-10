@@ -16,7 +16,6 @@ namespace :petition do
       if not petition.save
         puts 'Error saving %s' % [petition.name]
       end
-
     end
   end
 
