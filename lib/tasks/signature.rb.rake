@@ -9,6 +9,22 @@ namespace :signature do
     Rails.logger.debug('deleted %s signatures' % size)
   end
 
+  desc 'fix migration signatures..'
+  task migrate_signatures: :environment do
+    migrate = Signature
+      .where('created_at < ?', Time.new(2015, 12, 28))
+      .where(confirmed: false)
+      .where(last_reminder_sent_at: nil).limit(100)
+
+    migrate.each do |signature|
+      puts "%s %s %s" % [
+        signature.petition_id,
+        signature.person_name,
+        signature.person_email
+      ]
+    end
+  end
+
   desc 'Send reminder to confirm signature'
   task send_reminder: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/send_reminders.log')
