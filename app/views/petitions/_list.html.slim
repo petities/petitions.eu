@@ -1,5 +1,5 @@
 - @petitions.each do |petition|
-  - cache [petition, I18n.locale] do
+  - cache [petition, I18n.locale || :nl] do
     - id = petition.id
 
     div.petition-overview
@@ -17,7 +17,7 @@
       div.petition-overview-info-container
         h2.petition-overview-info-title
           = link_to petition_path(petition) do
-            = petition.name
+            = petition.name || 'name missing?'
         div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
           = petition.signatures_count
         - if petition.last_confirmed_at
