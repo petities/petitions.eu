@@ -185,10 +185,10 @@ class Signature < ActiveRecord::Base
     end
 
     # save the resulting sig
-    unless save
-      Rails.logger.debug 'destroyed invalid email %s' % person_email
-      #destroy
-    end
+    self.save
+    Rails.logger.debug 'reminder email to %s' % person_email
+    #destroy
+    #end
   end
 
   def fill_confirmed_at
