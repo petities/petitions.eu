@@ -11,6 +11,7 @@ class ContactMailerTest < ActionMailer::TestCase
     assert_equal 'Message from petities.nl', mail.subject
     assert_equal ['webmaster@petities.nl'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
+    assert_equal [contact_form.mail], mail.cc
     assert_equal contact_form.mail, mail.sender
 
     [:name, :mail, :message].each do |attribute|

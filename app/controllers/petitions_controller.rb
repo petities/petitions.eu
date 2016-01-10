@@ -1,6 +1,7 @@
 class PetitionsController < ApplicationController
   include FindPetition
   include SortPetitions
+
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
@@ -116,8 +117,6 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @petition_types = PetitionType.all
-
     @chart_data, @chart_labels = @petition.history_chart_json
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
@@ -144,10 +143,6 @@ class PetitionsController < ApplicationController
     @images = @petition.images
 
     @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
-
-    @update = Update.new(
-      petition_id: @petition.id
-    )
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
@@ -263,8 +258,6 @@ class PetitionsController < ApplicationController
 
     @owners = find_owners
 
-    @petition_types = PetitionType.all
-
     set_petition_vars
 
     set_organisation_helper
@@ -276,26 +269,12 @@ class PetitionsController < ApplicationController
     @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
 
     @images = @petition.images
-
-    @update = Update.new(
-      petition_id: @petition.id
-    )
-
-    @updates = @petition.updates.paginate(page: @page, per_page: 3)
-  end
-
-  def makeI18noption(o_t)
-    value = o_t[0]
-    visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0])
-
-    [visible_value, value]
   end
 
   def set_organisation_helper
     @petition_types = PetitionType.all
 
-    @organisation_types = Organisation.all.where(visible: true).sort_by(&:name).group_by(&:kind)
-    # @organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
+    @organisation_types = Organisation.visible.sort_by(&:name).group_by(&:kind)
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|

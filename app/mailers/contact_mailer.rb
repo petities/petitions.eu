@@ -4,6 +4,7 @@ class ContactMailer < ApplicationMailer
 
     mail to: 'webmaster@petities.nl',
          from: 'webmaster@petities.nl',
+         cc: contact_form.mail,
          sender: contact_form.mail
   end
 end

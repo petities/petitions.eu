@@ -39,9 +39,9 @@
 class NewSignature < Signature
   self.table_name  = 'new_signatures'
 
-  before_save :generate_unique_key, :fill_confirmed_at
+  before_save :fill_confirmed_at
   before_create :fill_signed_at
   after_save :send_confirmation_mail
 
-  validates_uniqueness_of :person_email, scope: :petition_id
+  validates :person_email, uniqueness: { scope: :petition_id }
 end
