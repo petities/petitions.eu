@@ -118,6 +118,7 @@ class Signature < ActiveRecord::Base
 
   def update_petition
     if self.confirmed?
+      # TODO should be redis ranking
       petition.last_confirmed_at = Time.now.utc
       petition.signatures_count += 1
       petition.update_active_rate!

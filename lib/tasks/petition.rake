@@ -6,6 +6,7 @@ namespace :petition do
     Petition.live.each do |petition|
       count = petition.signatures.count
       old_count = petition.signatures_count
+
       if count == old_count
         next
       end

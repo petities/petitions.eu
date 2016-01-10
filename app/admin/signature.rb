@@ -11,6 +11,8 @@ ActiveAdmin.register Signature do
                 :last_reminder_sent_at, :unconverted_person_born_at,
                 :person_country
 
+  filter :petition_id
+
   filter :person_name
   filter :person_street
   filter :person_street_number
