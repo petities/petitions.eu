@@ -122,8 +122,14 @@ class Signature < ActiveRecord::Base
       petition.last_confirmed_at = Time.now.utc
       petition.signatures_count += 1
       petition.update_active_rate!
+      petition.save
     end
-    true
+  end
+
+  def set_redis_counts
+    if self.confirmed?
+      
+    end
   end
 
   def require_full_address?

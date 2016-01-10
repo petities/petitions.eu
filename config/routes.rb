@@ -104,4 +104,6 @@ Rails.application.routes.draw do
 
   get '/petitie/:id',         to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
+
+  match "*path", to: "pages#error", via: :all
 end

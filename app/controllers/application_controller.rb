@@ -37,10 +37,6 @@ class ApplicationController < ActionController::Base
       end
   end
 
-  def render_404
-    render 'shared/404'
-  end
-
   private
 
   def has_subdomain?
