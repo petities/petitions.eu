@@ -26,6 +26,30 @@ en:
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+  activerecord:
+    errors:
+      models:
+        signature:
+          attributes:
+            person_name:
+              too_short: 'Names are rarely that short'
+              too_long: 'Names are rarely that long'
+              invalid: 'Does not look like a name (or initial) and surname'
+            person_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
+            person_street:
+              too_short: 'Street names are rarely that short'
+              too_long: 'Street names are rarely that long'
+            person_street_number:
+              not_a_integer: 'That is not or not only a number'
+              not_a_number: 'That is not or not only a number'
+            person_street_number_suffix:
+              too_short: 'Number suffixes are rarely that short'
+              too_long: 'Number suffixes are rarely that long'
+            person_birth_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
   admin:
     sorting: Sorting
   all:
@@ -594,12 +618,6 @@ en:
     confirm_errors: 'Some required information is missing, your signature is not saved yet...'
     dear: Dear
     did_you_mean: Did you mean
-    errors:
-      city_too_short: Place names are rarely that short
-      name_invalid: Names are rarely that short
-      name_and_surname: 'Does not look like a name (or initial) and surname'
-      not_a_number: That is not or not only a number
-      street_too_short: 'Street names are rarely that short'
     failed_send: Failed
     help:
       city: City
