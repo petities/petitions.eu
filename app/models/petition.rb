@@ -207,8 +207,8 @@ class Petition < ActiveRecord::Base
 
   def active_rate
     if signatures_count > 0
-      signatures.confirmed.where('created_at >= ?', 8.hour.ago).size.to_f / 
-      signatures.confirmed.where('created_at >= ?', 1.hour.ago).size.to_f
+      signatures.confirmed.where('created_at >= ?', 8.hour.ago).size.to_f || 100 / 
+      signatures.confirmed.where('created_at >= ?', 1.hour.ago).size.to_f || 1
     else
       0
     end
