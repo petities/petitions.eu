@@ -74,7 +74,7 @@ namespace :signature do
     Rails.logger.debug('new_reminders %s' % new_reminder.size)
     # send the first reminder
     new_reminder.each do |new_signature|
-      logging.debug new_signature.person_email
+      Rails.logger.debug new_signature.person_email
       new_signature.send(:send_reminder_mail)
     end
   end

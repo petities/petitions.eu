@@ -187,7 +187,7 @@ class Signature < ActiveRecord::Base
     # save the resulting sig
     unless save
       Rails.logger.debug 'destroyed invalid email %s' % person_email
-      destroy
+      #destroy
     end
   end
 
