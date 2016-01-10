@@ -83,6 +83,7 @@ one:
   slug: testslug
   petition_type_id: 1
   subdomain: testsubdomain
+  status: live
 
 two:
   id: 2

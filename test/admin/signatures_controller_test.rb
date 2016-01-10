@@ -1,11 +1,11 @@
-require 'test_helper'
+require 'active_admin_helper'
 
 module Admin
   # Make sure we can perform basic signature administration
   class SignaturesControllerTest < ActionController::TestCase
-    include Devise::TestHelpers
+    include ActiveAdminHelper
 
-    setup :login_admin, :initialize_signature
+    setup :initialize_signature
 
     test 'should get index' do
       get :index
@@ -22,12 +22,12 @@ module Admin
       assert_response :success
     end
 
-    test 'should update signature' do
+    test 'should update' do
       patch :update, id: @signature.id, signature: @signature.attributes
       assert_redirected_to admin_signature_path(assigns(:signature))
     end
 
-    test 'should destroy signature' do
+    test 'should destroy' do
       assert_difference('Signature.count', -1) do
         delete :destroy, id: @signature.id
       end
@@ -36,11 +36,6 @@ module Admin
     end
 
     private
-
-    def login_admin
-      @request.env['devise.mapping'] = Devise.mappings[:admin]
-      sign_in admin_users(:one)
-    end
 
     def initialize_signature
       @signature = signatures(:one)

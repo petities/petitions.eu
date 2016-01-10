@@ -128,8 +128,6 @@ class PetitionMailer < ApplicationMailer
     subject = t('mail.request.reference_subject', petition: petition.name)
     mail(from: 'bounces@petities.nl', reply_to: subdomain,
          to: target, subject: subject)
-
-    target = @petition.office.email unless target
   end
 
   # each petition status change by e-mail to admin
@@ -188,10 +186,9 @@ class PetitionMailer < ApplicationMailer
       subject = t('mail.petition.confirm.subject', petition_name: petition.name)
 
       mail(from: 'webmaster@petities.nl', reply_to: 'webmaster@petities.nl',
-         to: target, subject: subject)
+           to: target, subject: subject)
     end
   end
-
 
   private
 

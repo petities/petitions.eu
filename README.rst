@@ -13,6 +13,10 @@ README
    :target: https://codeclimate.com/github/petities/petitions.eu
    :alt: Issue Count
 
+.. image:: https://semaphoreci.com/api/v1/projects/f50e2ded-59d5-452d-bf8d-abd3e7dd9648/645425/shields_badge.svg
+   :target: https://semaphoreci.com/petities/petitions-eu
+   :alt: Build Status
+
 
 * Ruby version 2.2.3
 
