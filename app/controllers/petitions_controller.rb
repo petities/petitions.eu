@@ -3,6 +3,7 @@ class PetitionsController < ApplicationController
   include SortPetitions
 
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
+  before_action :initialize_update, only: [:show, :edit]
 
   # GET /petitions
   # GET /petitions.json
@@ -335,16 +336,11 @@ class PetitionsController < ApplicationController
       @petition.organisation_name = organisation.name
 
       office = Office.find_by_organisation_id(organisation.id)
-      if office && !office.hidden
+      if office && !office.hidden?
         @petition.office = office
       else
         @petition.office = Office.find_by_email('nederland@petities.nl')
       end
-      #  @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
-    end
-
-    if petition_params[:organisation_id].present?
-      organisation = Organisation.find(petition_params[:organisation_id])
     end
   end
 
@@ -460,6 +456,11 @@ class PetitionsController < ApplicationController
     # update the locale menu here
     @petition.locale_list << locale.to_sym
     @petition.locale_list.uniq!
+  end
+
+  # TODO: Refactor update form to use RJS and remove this
+  def initialize_update
+    @update = @petition.updates.new
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

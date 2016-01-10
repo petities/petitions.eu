@@ -1,8 +1,8 @@
 
 - if @update
   - update = @update
-  - command = "toggleUpdateEdit(%s)" % -1 
-  - update_id = "update%s" % -1 
+  - command = "toggleUpdateEdit(%s)" % -1
+  - update_id = "update%s" % -1
   - update_edit_id = "updateEdit%s" % -1
 
   - visible = style="display:flex;"
@@ -13,30 +13,30 @@
     - style_view = visible
   - else
     - style_edit = visible
-    - style_view = invisible 
+    - style_view = invisible
 
   div.update id=update_id style=style_view
     - if can_edit_update?
       div.update-icon onclick=command
-      
+
     div.update-content.whitespace
-      = render partial: 'updates/single_noreadmore_update', locals: { update: update}
+      = render partial: 'updates/single_noreadmore_update', locals: { update: update }
 
   - if can_edit_update?
     div.update-edit id=update_edit_id style=style_edit
       div.update-icon onclick=command
       div.update-content.whitespace
-        = render partial: 'updates/form', locals: { update: update}
+        = render partial: 'updates/form', locals: { update: update }
 
   div.update-content.whitespace
 
   - if not @updates.empty?
-    h1.petition-section-title.left 
+    h1.petition-section-title.left
       = t('update.earlier_updates')
 
-- if @updates.empty? 
+- if @updates.empty?
    = t('update.no_news_yet')
-     
+
 - @updates.each do |update|
 
   - command = "toggleUpdateEdit(%s)" % update.id
@@ -48,11 +48,11 @@
       div.update-icon onclick=command
     - else
     div.update-content.whitespace
-      = render partial: 'updates/single_update', locals: { update: update}
+      = render partial: 'updates/single_update', locals: { update: update }
 
   - if can_edit_update? #user_signed_in? && current_user.has_role?(:admin)
     div.update-edit id=update_edit_id
       div.update-icon onclick=command
       div.update-content.whitespace
-        = render partial: 'updates/form', locals: { update: update}
+        = render partial: 'updates/form', locals: { update: update }
 
