@@ -34,11 +34,11 @@
 #  rake 'signature:delete_old_signatures'
 #end
 
-every 10.minutes do
-  # send a reminder to confirm petition
-  rake 'signature:send_reminder'
-end
-
+#every 10.minutes do
+#  # send a reminder to confirm petition
+#  rake 'signature:send_reminder'
+#end
+#
 #every 30.minutes do
 #  # send a reminder to confirm petition
 #  rake 'petition:publish_news_to_subscribers'
