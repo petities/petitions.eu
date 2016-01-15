@@ -188,8 +188,11 @@ class Signature < ActiveRecord::Base
   end
 
   def send_confirmation_mail
+
+    if last_reminder_sent_at.nil?
     # puts 'sending mail???'
-    SignatureMailer.sig_confirmation_mail(self).deliver_later
+      SignatureMailer.sig_confirmation_mail(self).deliver_later
+    end
     true
   end
 
@@ -221,6 +224,7 @@ class Signature < ActiveRecord::Base
     else
       Rails.logger.debug 'ERROR reminder email to %s' % person_email
       Rails.logger.debug 'for petition %s' % petition.name 
+      self.destroy
     end
  
     #destroy
