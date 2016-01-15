@@ -17,6 +17,7 @@ class SignaturesController < ApplicationController
     @all_signatures = @petition.signatures.special.limit(900)
 
     unless request.xhr?
+      # make redis!
       @chart_data, @chart_labels = @petition.history_chart_json
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
@@ -48,7 +49,11 @@ class SignaturesController < ApplicationController
               1
             end
 
-    @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+    if request.xhr?
+      @signatures = @all_signatures.reverse_order.paginate(page: @page, per_page: @per_page)
+    else
+      @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+    end
 
     respond_to do |format|
       format.html

@@ -146,7 +146,10 @@ class PetitionsController < ApplicationController
 
     @images = @petition.images
 
-    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+    @signatures = @petition.signatures
+                  .special
+                  .reverse_order
+                  .paginate(page: params[:page], per_page: 12)
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
