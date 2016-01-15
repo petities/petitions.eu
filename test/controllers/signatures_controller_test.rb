@@ -121,9 +121,11 @@ class SignaturesControllerTest < ActionController::TestCase
     end
 
     # when we do it again nothing should happen.
-    assert_no_difference('Signature.count') do
-      assert_no_difference('Petition.find(2).signatures_count') do
-        get :confirm, signature_id: @newsignature.unique_key
+    assert_no_difference('NewSignature.count') do
+      assert_no_difference('Signature.count') do
+        assert_no_difference('Petition.find(2).signatures_count') do
+          get :confirm, signature_id: @newsignature.unique_key
+        end
       end
     end
   end

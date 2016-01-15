@@ -120,30 +120,38 @@ class Signature < ActiveRecord::Base
 
     self.set_redis_counts
 
-    if self.confirmed_changed?
-      petition.last_confirmed_at = Time.now.utc
-      petition.signatures_count += 1
-      petition.update_active_rate!
-      petition.save
-    end
+    #if self.confirmed_changed?
+    #  petition.last_confirmed_at = Time.now.utc
+    #  petition.signatures_count += 1
+    #  petition.update_active_rate!
+    #  petition.save
+    #end
+
   end
 
   def set_redis_counts
 
     if self.confirmed_changed?
-      t = self.created_at
-       
+      t = created_at
+
+      #petition.last_confirmed_at = Time.now.utc
+      #petition.last_confirmed_at = Time.now.utc
+      $reids.incr('p%s-last-' % [petition.id, t.to_i])
+
       $redis.incr('p%s-count' % petition.id)
 
       $redis.incr('p%s-%s-count' % [
         petition.id, t.year])
- 
+
       $redis.incr('p%s-%s-%s-count' % [
         petition.id, t.year, t.month])
- 
+
       $redis.incr('p%s-%s-%s-%s-count' % [
         petition.id, t.year, t.month, t.day])
-      
+
+      $redis.incr('p%s-%s-%s-%s-count' % [
+        petition.id, t.year, t.month, t.day, t.hour])
+
     end
   end
 
