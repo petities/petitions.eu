@@ -38,7 +38,11 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404
-    render 'pages#error'
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/pages/error", :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
 
   private

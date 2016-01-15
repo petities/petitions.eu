@@ -463,9 +463,10 @@ class PetitionsController < ApplicationController
   end
 
   # TODO: Refactor update form to use RJS and remove this
-  def initialize_update
-    @update = @petition.updates.new
-  end
+  # WELL THIS CRASHES :)
+  #def initialize_update
+  #  @update = @petition.updates.new
+  #end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def petition_params
