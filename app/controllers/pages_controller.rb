@@ -1,5 +1,6 @@
 # Serves simple pages
 class PagesController < ApplicationController
+
   before_filter :initialize_help_topics, only: :help
 
   STATIC_PAGES = %w(about donate help privacy error).freeze
