@@ -195,23 +195,25 @@ class Signature < ActiveRecord::Base
 
   def send_reminder_mail
 
-    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
-
     # update the time
     self.last_reminder_sent_at = Time.now
 
     # update the reminder sent value
-    if reminders_sent.nil?
+
+    if reminders_sent.blank?
       self.reminders_sent = 1
     else
-      self.reminders_sent = reminders_sent + 1
+      self.reminders_sent += 1
     end
 
     # save the resulting sig
-    if not self.save
-      Rails.logger.debug 'reminder email to %s' % person_email
+    if save
+      SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
+    else
+      Rails.logger.debug 'ERROR reminder email to %s' % person_email
       Rails.logger.debug 'for petition %s' % petition.name 
     end
+ 
     #destroy
     #end
   end
