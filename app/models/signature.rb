@@ -117,8 +117,8 @@ class Signature < ActiveRecord::Base
   after_save :update_petition
 
   def update_petition
-    if self.confirmed?
-      # TODO should be redis ranking
+    if self.confirmed_changed?
+      $redis.incr('p%s-count' % petition.id)
       petition.last_confirmed_at = Time.now.utc
       petition.signatures_count += 1
       petition.update_active_rate!

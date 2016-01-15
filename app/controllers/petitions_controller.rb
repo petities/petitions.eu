@@ -3,7 +3,7 @@ class PetitionsController < ApplicationController
   include SortPetitions
 
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
-  before_action :initialize_update, only: [:show, :edit]
+  before_action only: [:show, :edit]
 
   # GET /petitions
   # GET /petitions.json
@@ -419,6 +419,8 @@ class PetitionsController < ApplicationController
     if @petition.nil?
       return
     end
+
+    @update = @petition.updates.new
 
     # find specific papertrail version
     @version_index = 0
