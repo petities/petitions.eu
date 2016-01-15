@@ -24,6 +24,16 @@ namespace :signature do
       ]
     end
   end
+  
+  desc 'fix office admins..'
+  task fix_office_admin: :environment do
+
+    user = User.find_by_email('reinder@rustema.nl')
+    Office.all.each do |office|
+      user.add_role(:admin, office)
+    end
+
+  end
 
   desc 'fix migration signatures..28-12-2015'
   task migrate_signatures: :environment do
