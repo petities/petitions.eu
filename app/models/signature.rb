@@ -206,6 +206,15 @@ class Signature < ActiveRecord::Base
       self.reminders_sent += 1
     end
 
+    confirmed_sig = Signature.find_by_person_email_and_petition_id(
+      person_email, petition_id)
+
+    if confirmed_sig
+      self.destroy
+      Rails.logger.debug 'DESTROYED existing to %s' % person_email
+      return
+    end
+
     # save the resulting sig
     if save
       SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
