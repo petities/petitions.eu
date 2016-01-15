@@ -72,7 +72,7 @@ namespace :signature do
     #               .where('reminders_sent < ?', 3).limit(100)
 
     new_reminder = NewSignature
-                   .where('created_at < ?', 6.days.ago)
+                   .where('created_at < ?', 7.days.ago)
                    .where(last_reminder_sent_at: nil).limit(100)
 
     #Rails.logger.debug('old_reminders %s' % old_reminder.size)

@@ -208,8 +208,10 @@ class Signature < ActiveRecord::Base
     end
 
     # save the resulting sig
-    self.save
-    Rails.logger.debug 'reminder email to %s' % person_email
+    if not self.save
+      Rails.logger.debug 'reminder email to %s' % person_email
+      Rails.logger.debug 'for petition %s' % petition.name 
+    end
     #destroy
     #end
   end
