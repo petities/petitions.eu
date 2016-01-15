@@ -12,7 +12,8 @@ namespace :petition do
       end
 
       puts '%s - %s - %s' % [count, old_count, petition.name]
-      petition.signatures_count = petition.signatures.count
+
+      petition.signatures_count = count
 
       if not petition.save
         puts 'Error saving %s' % [petition.name]
