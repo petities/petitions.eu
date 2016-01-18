@@ -261,6 +261,8 @@ class PetitionsController < ApplicationController
   def edit
     authorize @petition
 
+    @exclude_list = policy(@petition).invalid_attributes
+
     @page = params[:page]
 
     @owners = find_owners
