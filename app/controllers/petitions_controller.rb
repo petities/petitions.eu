@@ -370,9 +370,16 @@ class PetitionsController < ApplicationController
       end
     end
 
+    # update params_with permissions
+    # only update what is allowed
+    exclude_list = policy(@petition).invalid_attributes
+    filtered_params = petition_params.except(*exclude_list)
+
+    #crashh_please
+
     Globalize.with_locale(locale) do
       respond_to do |format|
-        if @petition.update(petition_params)
+        if @petition.update(filtered_params)
           format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
           format.json { render :show, status: :ok, location: @petition }
         else
