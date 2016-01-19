@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
 
   # redirect users..
   def after_sign_in_path_for(resource)
+
     stored_location_for(resource) ||
       if resource.is_a?(AdminUser)
         admin_dashboard_path
@@ -31,30 +32,17 @@ class ApplicationController < ActionController::Base
         office = Office.with_role(:admin, resource).first
         petition_desk_path(office)
       else
-        manage_petitions_path
+        root_path
+        #manage_petitions_path
       end
   end
 
-  def help
-    @general = I18n.t('help.general').map { |_key, value| value }
-    @whilesigning = I18n.t('help.whilesigning').map { |_key, value| value }
-    @aftersigning = I18n.t('help.aftersigning').map { |_key, value| value }
-    @writingpetition = I18n.t('help.writingpetition').map { |_key, value| value }
-  end
-
-  %w(about privacy donate contact).each do |name|
-    define_method(name) {}
-  end
-
-  def contact_submit
-    ApplicationMailer.contact_mail(params[:from], params[:body]).deliver
-
-    flash[:notice] = 'Your email was successfully sent to website administrator!'
-    redirect_to contact_path
-  end
-
   def render_404
-    render 'shared/404'
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/pages/error", :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
 
   private
@@ -68,10 +56,14 @@ class ApplicationController < ActionController::Base
 
   # redirect subdomains which are not direct 'hits'
   # to a url without subdomain
+  # only for get requests
+
   def ensure_domain
-    if has_subdomain?
-      unless request.fullpath == '/'
-        redirect_to request.url.sub(request.subdomain + '.', '')
+    if request.get?
+      if has_subdomain?
+        unless request.fullpath == '/'
+          redirect_to request.url.sub(request.subdomain + '.', '')
+        end
       end
     end
   end

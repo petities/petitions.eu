@@ -108,8 +108,10 @@ gem 'i18n-country-translations'
 gem 'countries'
 gem 'country_select'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+# Validate e-mail addresses
+gem 'email_validator', '~> 1.6'
+
+gem 'has_secure_token', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

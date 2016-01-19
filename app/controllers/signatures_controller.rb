@@ -14,13 +14,14 @@ class SignaturesController < ApplicationController
 
     find_petition
 
-    @all_signatures = @petition.signatures.special.limit(1000)
+    @all_signatures = @petition.signatures.special.limit(900)
 
     unless request.xhr?
+      # make redis!
       @chart_data, @chart_labels = @petition.history_chart_json
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
-                                  .select { |group| group[1] >= 100 }
+                                  .select { |group| group[1] >= 50 }
                                   .sort_by { |group| group[1] }[0..9]
 
       @filtered_s_c_c = {}
@@ -48,7 +49,11 @@ class SignaturesController < ApplicationController
               1
             end
 
-    @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+    if request.xhr?
+      @signatures = @all_signatures.reverse_order.paginate(page: @page, per_page: @per_page)
+    else
+      @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+    end
 
     respond_to do |format|
       format.html
@@ -60,7 +65,8 @@ class SignaturesController < ApplicationController
 
   def search
     # @petition = Petition.friendly.find(params[:petition_id])
-    @petition = PetitionsController.send(:set_petition)
+    #@petition = PetitionsController.send(:set_petition)
+    find_petition
 
     @query = params[:query]
 
@@ -78,6 +84,7 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
+
     find_petition
 
     # try to find old signature first
@@ -156,13 +163,11 @@ class SignaturesController < ApplicationController
 
     set_pledge
 
-    # @url = petition_signature_confirm_submit
     @remote_ip = request.remote_ip
     @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
 
     @signature.signature_remote_addr = @remote_ip
     @signature.signature_remote_browser = @remote_browser
-
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
@@ -177,10 +182,7 @@ class SignaturesController < ApplicationController
         # create the information needed messages
         @action = t('confirm.form.action.confirm_and_save')
         @message = t('confirm.form.add_information_and_confirm')
-
       else
-        # signature is confirmed no extra data needed
-        @signature.confirmed = true
         # we don't need extra information so everything is fine
         @message = t('confirm.form.is_confirmed_add_information')
       end
@@ -194,8 +196,6 @@ class SignaturesController < ApplicationController
     # add some javascript data to allow for data checking
     @check_fields = []
     add_check_fields
-    @remote_ip = request.remote_ip
-    @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
   end
 
   # Add all the element_id's that need to be correct
@@ -215,7 +215,7 @@ class SignaturesController < ApplicationController
     @check_fields.push('person_born_at') if @signature.require_born_at?
   end
 
-  # POST a singnature update by user
+  # POST a signature update by user
   # a save update on a signature.
   def confirm_submit
     @petition = @signature.petition
@@ -376,19 +376,21 @@ class SignaturesController < ApplicationController
 
   def confirm_signature
     old_signature = @signature
-    @signature.id = nil
     # create a new signature in the signarure table.
-    #@signature = Signature.new(@signature.as_json)
-    @signature = Signature.new(old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
+    @signature = Signature.new(
+      old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
+
+    old_signature.delete
 
     @signature.confirmed = true
+    @signature.confirmed_at = Time.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-
-    @petition.inc_signatures_count!
-    @petition.update_active_rate!
     # expire_fragment @petition
-    old_signature.delete
+    #puts 'Destroy %s' % old_signature.person_email
+    #puts old_signature.destroyed?
+    #old_signature.deleted?
     @signature.save
+
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229220625) do
+ActiveRecord::Schema.define(version: 20160107035649) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -397,9 +397,9 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.float    "active_rate_value",                limit: 24,    default: 0.0
     t.integer  "owner_id",                         limit: 4
     t.string   "owner_type",                       limit: 255
-    t.string   "slug",                             limit: 255
     t.string   "reference_field",                  limit: 255
     t.date     "answer_due_date"
+    t.string   "slug",                             limit: 255
   end
 
   add_index "petitions", ["cached_slug"], name: "index_petitions_on_cached_slug", using: :btree
@@ -659,6 +659,8 @@ ActiveRecord::Schema.define(version: 20151229220625) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  limit: 255,   null: false

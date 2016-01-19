@@ -21,4 +21,6 @@ class Organisation < ActiveRecord::Base
   scope :european_union, -> { where(kind: 'european_union') }
   scope :parliament,     -> { where(kind: 'parliament') }
   scope :plusregion,     -> { where(kind: 'plusregion') }
+
+  scope :visible,        -> { where(visible: true) }
 end

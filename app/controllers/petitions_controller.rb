@@ -1,7 +1,9 @@
 class PetitionsController < ApplicationController
   include FindPetition
   include SortPetitions
+
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
+  before_action only: [:show, :edit]
 
   # GET /petitions
   # GET /petitions.json
@@ -22,14 +24,15 @@ class PetitionsController < ApplicationController
       petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
-    elsif @sorting == 'sign_quick'
+    elsif @sorting == 'signquick'
       petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
     end
 
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
-      { type: 'newest',      label: t('index.sort.new') },
-      { type: 'sign_quick', label: t('index.sort.sign_quick') }
+      { type: 'newest', label: t('index.sort.new') },
+      #{ type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
@@ -56,9 +59,11 @@ class PetitionsController < ApplicationController
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
-    petitions = Petition.joins(:translations).
+    petitions = Petition.joins(:translations)
+                .where('petition_translations.name like ?', "%#{@search}%")
+                .distinct
                 # with_locales(I18n.available_locales).
-                where('petition_translations.name like ?', "%#{@search}%")
+
 
     @results_size = petitions.size
 
@@ -97,7 +102,9 @@ class PetitionsController < ApplicationController
   def manage
     if current_user
       # @petitions = current_user.petitions
+      # TODO we should convert managers to admin..
       @petitions = Petition.with_role(:admin, current_user)
+
       @results_size = @petitions.size
 
       petitions_by_status @petitions
@@ -114,8 +121,6 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @petition_types = PetitionType.all
-
     @chart_data, @chart_labels = @petition.history_chart_json
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
@@ -124,6 +129,13 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
+
+    unless @petition
+      flash[:notice] = t('petition.we_could_not_find_petition_try_search')
+      redirect_to root_path
+      return
+    end
+
     @owners = find_owners
 
     set_petition_vars
@@ -134,11 +146,10 @@ class PetitionsController < ApplicationController
 
     @images = @petition.images
 
-    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
-
-    @update = Update.new(
-      petition_id: @petition.id
-    )
+    @signatures = @petition.signatures
+                  .special
+                  .reverse_order
+                  .paginate(page: params[:page], per_page: 12)
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
@@ -232,8 +243,10 @@ class PetitionsController < ApplicationController
       # to be send
       if @petition.save
         # make user owner of the petition
-        owner.add_role :admin, @petition if owner
+        owner.add_role(:admin, @petition) if owner
         PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
+        PetitionMailer.welcome_petitioner_mail(
+          @petition, owner, password, target: 'webmaster@petities.nl').deliver_later
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }
@@ -248,11 +261,11 @@ class PetitionsController < ApplicationController
   def edit
     authorize @petition
 
+    @exclude_list = policy(@petition).invalid_attributes
+
     @page = params[:page]
 
     @owners = find_owners
-
-    @petition_types = PetitionType.all
 
     set_petition_vars
 
@@ -265,26 +278,12 @@ class PetitionsController < ApplicationController
     @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
 
     @images = @petition.images
-
-    @update = Update.new(
-      petition_id: @petition.id
-    )
-
-    @updates = @petition.updates.paginate(page: @page, per_page: 3)
-  end
-
-  def makeI18noption(o_t)
-    value = o_t[0]
-    visible_value = t('petition.organisations.%s' % o_t[0], default: o_t[0])
-
-    [visible_value, value]
   end
 
   def set_organisation_helper
     @petition_types = PetitionType.all
 
-    @organisation_types = Organisation.all.where(visible: true).sort_by(&:name).group_by(&:kind)
-    # @organisation_type_options = @organisation_types.map{|o_t| makeI18noption(o_t) }
+    @organisation_types = Organisation.visible.sort_by(&:name).group_by(&:kind)
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
@@ -344,16 +343,11 @@ class PetitionsController < ApplicationController
       @petition.organisation_name = organisation.name
 
       office = Office.find_by_organisation_id(organisation.id)
-      if office && !office.hidden
+      if office && !office.hidden?
         @petition.office = office
       else
         @petition.office = Office.find_by_email('nederland@petities.nl')
       end
-      #  @petition.organisation_kind, @petition.organisation_name = organisation.kind, organisation.name
-    end
-
-    if petition_params[:organisation_id].present?
-      organisation = Organisation.find(petition_params[:organisation_id])
     end
   end
 
@@ -378,9 +372,16 @@ class PetitionsController < ApplicationController
       end
     end
 
+    # update params_with permissions
+    # only update what is allowed
+    exclude_list = policy(@petition).invalid_attributes
+    filtered_params = petition_params.except(*exclude_list)
+
+    #crashh_please
+
     Globalize.with_locale(locale) do
       respond_to do |format|
-        if @petition.update(petition_params)
+        if @petition.update(filtered_params)
           format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
           format.json { render :show, status: :ok, location: @petition }
         else
@@ -427,6 +428,12 @@ class PetitionsController < ApplicationController
   def set_petition
     find_petition
 
+    if @petition.nil?
+      return
+    end
+
+    @update = @petition.updates.new
+
     # find specific papertrail version
     @version_index = 0
 
@@ -466,6 +473,12 @@ class PetitionsController < ApplicationController
     @petition.locale_list << locale.to_sym
     @petition.locale_list.uniq!
   end
+
+  # TODO: Refactor update form to use RJS and remove this
+  # WELL THIS CRASHES :)
+  #def initialize_update
+  #  @update = @petition.updates.new
+  #end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def petition_params

@@ -77,7 +77,7 @@ class SignaturesControllerTest < ActionController::TestCase
                             special: true,
                             subscribe: true,
                             persone_function: true,
-                            # wrond values
+                            # wrong values
                             street_number: 'X',
                             person_street: 'XX',
                             person_birth_city: 'X',
@@ -112,14 +112,21 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'check confirmation logic' do
-    assert_difference('Signature.count') do
-      get :confirm, signature_id: @newsignature.unique_key
-      # assert_redirected_to @petition
+    assert_difference('NewSignature.count', -1) do
+      assert_difference('Signature.count') do
+        assert_difference('Petition.find(2).signatures_count') do
+          get :confirm, signature_id: @newsignature.unique_key
+        end
+      end
     end
 
     # when we do it again nothing should happen.
-    assert_no_difference('Signature.count') do
-      get :confirm, signature_id: @newsignature.unique_key
+    assert_no_difference('NewSignature.count') do
+      assert_no_difference('Signature.count') do
+        assert_no_difference('Petition.find(2).signatures_count') do
+          get :confirm, signature_id: @newsignature.unique_key
+        end
+      end
     end
   end
 

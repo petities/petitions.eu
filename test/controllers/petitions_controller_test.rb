@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PetitionsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-
   setup do
     @petition = petitions(:one)
   end
@@ -92,18 +90,38 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should show petitioner form to add news' do
+    sign_in_admin_for @petition
+    [:show, :edit].each do |action|
+      get action, id: @petition
+      assert assigns(:update)
+      assert_select 'form#new_update'
+    end
+  end
+
+  test 'should show my petitions' do
+    sign_in_admin_for @petition
+    [:manage].each do |action|
+      get action, id: @petition
+      assert assigns(:petitions)
+      assert_select 'h1' #petition-section-title'
+    end
+  end
+
+
   test 'should not get edit' do
     get :edit, id: @petition
     assert_redirected_to root_path
   end
 
   test 'should_get_edit' do
-    # user has admin rights on petition 1
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    u = User.find(1)
-    u.confirm
-    u.add_role(:admin, @petition)
-    sign_in u
+    sign_in_admin_for @petition
+    get :edit, id: @petition.friendly_id
+    assert_response :success
+  end
+
+  test 'should get edit as office admin' do
+    sign_in_admin_for @petition.office
     get :edit, id: @petition.friendly_id
     assert_response :success
   end
@@ -120,4 +138,13 @@ class PetitionsControllerTest < ActionController::TestCase
 
   #  assert_redirected_to petitions_path
   # end
+
+  private
+
+  def sign_in_admin_for(subject)
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    user = users(:one)
+    user.add_role(:admin, subject)
+    sign_in user
+  end
 end

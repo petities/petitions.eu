@@ -1,15 +1,15 @@
 - @signatures.each do |signature|
   div.petition-signature-list
-    - if !params[:page] && params[:signature_id] && params[:signature_id] == signature.id.to_s
+    - if params[:signature_id] && params[:signature_id] == signature.id.to_s
       div#anchor-scroll
-      
+
       javascript:
         $(document).ready(function(){
           $('html, body').animate({
             scrollTop: $("#anchor-scroll").offset().top
           }, 250);
         })
-    
+
     div.petition-signature-name
       - if signature.visible?
         = signature.person_name
@@ -17,12 +17,12 @@
         = t "anonymous"
     - if signature.visible?
       div.petition-signature-location= signature.person_city
-      div.petition-signature-occupation 
+      div.petition-signature-occupation
         = signature.person_function
     div.petition-signature-actions
-      = link_to t('signatures.link'), anchor_petition_signatures_path(@petition, signature), class: "signature-link"
+      = link_to t('signatures.link'), anchor_petition_signatures_path(@petition, signature, page: @page), class: "signature-link"
       = mail_to 'webmaster@petities.nl', t('signatures.notify'),
           class: "signature-report",
           subject: "Notification: #{@petition.name}",
-          body: anchor_petition_signatures_url(@petition, signature)
+          body: anchor_petition_signatures_url(@petition, signature, page: @page)
     span.signature-time= distance_of_time_in_words_to_now(signature.signed_at)

@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :telephone, role_ids: []
+  permit_params :email, :first_name, :last_name, 
+                :password, :password_confirmation, 
+                :telephone, :petition_id, role_ids: []
 
   index do
     selectable_column
@@ -37,24 +39,62 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs 'User Details' do
+
       f.input :email
       f.input :telephone
       f.input :password
       f.input :password_confirmation
 
-      panel 'website roles' do
-        f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
+      panel 'add petition role' do
+        text_field_tag 'petition_id'
       end
 
-      panel 'office roles' do
-        f.input :roles, as: :check_boxes, collection: Role.where(resource_type: 'Office').map { |r| [r.name + ' ' + Office.find(r.resource_id).name, r.id] }
+      panel 'website roles' do
+        f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
+        #f.input :roles, as: :check_boxes, collection: user.roles #Role.where(resource_id: nil, resource_type: nil)
       end
+
+      panel 'petition roles' do
+        f.input :roles, as: :check_boxes,
+          collection: Role.where(resource_type: 'Petition')
+                          .where(id: user.roles.map { |r| r.id }),
+          member_label:  Proc.new { |r| "%10s %30s" % [r.name ,Petition.find(r.resource_id).name ]}
+      end
+
+
+      panel 'office roles' do
+        f.input :roles, as: :check_boxes, 
+          collection: Role.where(resource_type: 'Office'),
+          member_label: Proc.new { |r| "%10s %20s" % [r.name, Office.find(r.resource_id).name] }
+      end
+
     end
+
     f.actions
+
   end
 
   controller do
     def update
+      if not params[:petition_id].blank?
+        #petition = Petition.find(params[:petition_id])
+        #user = User.find(params[:id])
+
+        role = Role.where(
+          resource_id: params[:petition_id], 
+          resource_type: 'Petition').first
+
+        if role
+          params[:user][:role_ids].push(role.id)
+        end
+
+        #if petition
+        #  user.add_role(:admin, petition)
+        #  user.save
+        #end
+
+      end
+
       if params[:user][:password].blank?
         params[:user].delete('password')
         params[:user].delete('password_confirmation')

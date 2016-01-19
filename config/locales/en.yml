@@ -26,6 +26,30 @@ en:
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+  activerecord:
+    errors:
+      models:
+        signature:
+          attributes:
+            person_name:
+              too_short: 'Names are rarely that short'
+              too_long: 'Names are rarely that long'
+              invalid: 'Does not look like a name (or initial) and surname'
+            person_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
+            person_street:
+              too_short: 'Street names are rarely that short'
+              too_long: 'Street names are rarely that long'
+            person_street_number:
+              not_a_integer: 'That is not or not only a number'
+              not_a_number: 'That is not or not only a number'
+            person_street_number_suffix:
+              too_short: 'Number suffixes are rarely that short'
+              too_long: 'Number suffixes are rarely that long'
+            person_birth_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
   admin:
     sorting: Sorting
   all:
@@ -143,6 +167,25 @@ en:
       title: Invite others
       success: Thank you! Please invite more
     title: Confirm your signature for the petition "%{name}"
+  contact:
+    title: Contact form
+    form:
+      name:
+        label: Name
+        description: Your name address
+      mail:
+        label: E-mail
+        description: Your e-mail address
+      text:
+        label: Message
+        description: Your message
+      submit: Send
+    thanks:
+      title: Your message has been sent
+      description: Thank you for contacting us. We will reply in a few days.
+  contact_mailer:
+    webmaster_message:
+      subject: Message from petities.nl
   description: Description
   desk:
     general_desk_admins: Petition desk accounts
@@ -211,28 +254,22 @@ en:
     search: Search in petitions
   help:
     aftersigning:
-      question01:
-        answer: Sign by entering your name and e-mail address and confirm your signature from the e-mail you receive. On the page where you confirm, you can invite others to sign. You can send invitations by e-mail or use social media. On the same page you can also indicate you would like to help or donate.
+      - answer: Sign by entering your name and e-mail address and confirm your signature from the e-mail you receive. On the page where you confirm, you can invite others to sign. You can send invitations by e-mail or use social media. On the same page you can also indicate you would like to help or donate.
         title: How can I support a petition more?
-      question02:
-        answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="http://handboek.petities.nl">handbook</a>.
+      - answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="http://handboek.petities.nl">handbook</a>.
         title: We share an e-mail address or my friends do not have e-mail. Can we sign only once?
-      question03:
-        answer: Fill in your e-mail address here and we send you an e-mail with a link to each petition you signed. You can follow this link to a page where you can hide or modify your name or description.
+      - answer: Fill in your e-mail address here and we send you an e-mail with a link to each petition you signed. You can follow this link to a page where you can hide or modify your name or description.
         title: Which petitions did I already sign?
     aftersigning_item: After signing
     changesig:
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
       title: Change your signature
     general:
-      question01:
-        answer: Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
+      - answer: Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
         title: Online petitions are pointless I am told. Why is Petities.nl different?
-      question02:
-        answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
+      - answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
         title: Why are anonymous signatures allowed?
-      question03:
-        answer: Those who receive your petition are handed a list of signatures to verify. Hypothetically a politician or civil servant might contact you personally when they expect you can give a valuable insight on the petition. Practically they only talk to the petitioner, as spokesperson for all signatories. The recipient of a petition can not send a mailing to all signatories, because this is prohibited by the <a href="https://www.cbpweb.nl/">dataprotection law</a>. After all, our database is not created for that purpose and therefore the data can not be used for it. The webmaster and systeemadministrator of petities.nl have access to all this data. The Petities.nl Foundation aims for distinction from competing action sites with reliability and neutrality. We operate under Dutch legislation on servers in the Netherlands from a non-profit organisation which is not for sale. Unused data is actively deleted (storing no data is always the safest policy). The lead petitioner only has access to the name-function-place data for the hand over. Included are the 'anonymous' signatories, not publicly visible on the website. This list may not be published (protected by the dataprotection act) and may only be handed over to be verified. And to impress of course! Elected representatives know how difficult it is to voluntarily make someone sign for something...
+      - answer: Those who receive your petition are handed a list of signatures to verify. Hypothetically a politician or civil servant might contact you personally when they expect you can give a valuable insight on the petition. Practically they only talk to the petitioner, as spokesperson for all signatories. The recipient of a petition can not send a mailing to all signatories, because this is prohibited by the <a href="https://www.cbpweb.nl/">dataprotection law</a>. After all, our database is not created for that purpose and therefore the data can not be used for it. The webmaster and systeemadministrator of petities.nl have access to all this data. The Petities.nl Foundation aims for distinction from competing action sites with reliability and neutrality. We operate under Dutch legislation on servers in the Netherlands from a non-profit organisation which is not for sale. Unused data is actively deleted (storing no data is always the safest policy). The lead petitioner only has access to the name-function-place data for the hand over. Included are the 'anonymous' signatories, not publicly visible on the website. This list may not be published (protected by the dataprotection act) and may only be handed over to be verified. And to impress of course! Elected representatives know how difficult it is to voluntarily make someone sign for something...
         title: Who gets to see my data?
     general_items: General questions
     handbook:
@@ -254,37 +291,27 @@ en:
         tips: See the handbook
     title: Help
     whilesigning:
-      question01:
-        answer: When a petition is closed for signing the button to sign does not appear under a petition. A petition closes before the hand over and then awaits an answer. You could contact the lead petitioner to add your signature if the petition is not formally handed over.
+      - answer: When a petition is closed for signing the button to sign does not appear under a petition. A petition closes before the hand over and then awaits an answer. You could contact the lead petitioner to add your signature if the petition is not formally handed over.
         title: Why can I not sign a certain petition?
-      question02:
-        answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address.
+      - answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address.
         title: I used the wrong e-mail address to sign, what to do?
-      question03:
-        answer: Yes, you sign anonymously by default. The recipient of the petition and the lead petitioner can see who (your name and self description) signed from where. Only if you opted in for showing your name on the web it appears under the petition. You can reverse this by yourself anytime but it might already be archived by others in the meantime.
+      - answer: Yes, you sign anonymously by default. The recipient of the petition and the lead petitioner can see who (your name and self description) signed from where. Only if you opted in for showing your name on the web it appears under the petition. You can reverse this by yourself anytime but it might already be archived by others in the meantime.
         title: Can I sign without my name publicly on the web?
-      question04:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Ik ben het niet exact eens met petitie. Kan ik een extra conditie opgeven bij mijn ondertekening?
-      question05:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Hoe kan ik aan een petitie persoonlijk commentaar toevoegen?
     whilesigning_item: While signing
     writingpetition:
-      question01:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Waarom moet ik als petitionaris extra links opgeven?
-      question02:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Ik heb geen discussieforum, waar moet ik naar linken in mijn petitie?
-      question03:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Waarom mogen petities over een product of bedrijf niet?
-      question04:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Aan wie adresseer ik een petitie?
-      question05:
-        answer: awaiting translation
+      - answer: awaiting translation
         title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
     writingpetition_item: While writing a petition
   index:
@@ -591,12 +618,6 @@ en:
     confirm_errors: 'Some required information is missing, your signature is not saved yet...'
     dear: Dear
     did_you_mean: Did you mean
-    errors:
-      city_too_short: Place names are rarely that short
-      name_invalid: Names are rarely that short
-      name_and_surname: 'Does not look like a name (or initial) and surname'
-      not_a_number: That is not or not only a number
-      street_too_short: 'Street names are rarely that short'
     failed_send: Failed
     help:
       city: City

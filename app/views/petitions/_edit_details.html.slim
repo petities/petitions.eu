@@ -15,11 +15,6 @@ div.petition-details id="edit_details" style='display: none;'
                    placeholder: t('petition.details.from.your_email', default: 'your public email')
 
     div.petition-edit-label
-      = t('petition.details.form.public_name')
-    = f.text_field :petitioner_name, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_name', default: 'your public name')
-
-    div.petition-edit-label
       = t('petition.details.form.telephone')
     = f.text_field :petitioner_telephone, class: 'petition-edit-input',
                    placeholder: t('petition.details.from.your_number', default: 'your public number')
@@ -40,7 +35,7 @@ div.petition-details id="edit_details" style='display: none;'
       = t('petition.details.form.answer_date_label')
     = f.date_select :answer_due_date, class: 'petition-edit-input whitespace',
                      default: 100.days.from_now
- 
+
     div.whitespace
 
     div.petition-edit-label.whitespace
@@ -83,4 +78,4 @@ div.petition-details id="edit_details" style='display: none;'
                    placeholder: t('petition.details.from.link_text', default: 'link text')
 
     = f.submit t('petition.details.form.submit'), class: "start-petition-form-cell-button" 
-      
+

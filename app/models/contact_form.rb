@@ -1,0 +1,14 @@
+class ContactForm
+  include ActiveModel::Model
+  include ActiveModel::Validations
+
+  attr_accessor :name, :name, :mail, :message
+
+  validates :name, length: { in: 1..255 }
+  validates :mail, email: true
+  validates :message, presence: true
+
+  def deliver
+    ContactMailer.webmaster_message(self).deliver_now if valid?
+  end
+end

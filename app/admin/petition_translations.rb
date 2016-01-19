@@ -1,4 +1,13 @@
 ActiveAdmin.register PetitionTranslation do
+  permit_params :locale, 
+                :name, 
+                :description, 
+                :initiators,
+                :statement,
+                :request,
+                :slug
+
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

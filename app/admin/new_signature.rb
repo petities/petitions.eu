@@ -12,6 +12,7 @@ ActiveAdmin.register NewSignature do
   #   permitted
   # end
 
+  filter :petition_id
   filter :person_name
   filter :person_street
   filter :person_street_number

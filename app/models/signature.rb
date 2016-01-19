@@ -38,27 +38,18 @@
 #
 
 class Signature < ActiveRecord::Base
-  extend ActionView::Helpers::TranslationHelper
-  belongs_to :petition # , :counter_cache => true
+  belongs_to :petition
   has_one :petition_type, through: :petition
+
+  has_secure_token :unique_key
 
   # has_many :reminders, :class_name => 'SignaturesReminder'
   # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
-  validates :person_name,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.name_invalid', default: 'invalid')
-            }
-
-  validates :person_name,
-            format: {
-              with: /\A.+( |\.).+\z/,
-              message: t('signature.errors.name_and_surname', default: 'name and surname')
-            }
-
-  # keep this simple since we are sending validation emails anyways.
-  validates :person_email, format: { with: /\A.*@.*\z/ }
+  validates :person_name, length: { in: 3..255 }
+  validates :person_name, format: { with: /\A.+( |\.).+\z/ }
+  validates :person_email, email: true
+  validates :person_email, uniqueness: { scope: :petition_id }
 
   # FIXME
   # def country_postalcode_validation
@@ -81,56 +72,35 @@ class Signature < ActiveRecord::Base
   #          #format: { with: /\A[1-9]{1}\d{3} ?[A-Z]{2}\z/ },
   #          on: :update,
   #          if: :require_full_address?
-  before_validation :strip_whitespace
-
-  def strip_whitespace
-    self.person_street_number = person_street_number.strip unless person_street_number.nil?
-  end
 
   validates :person_city,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.city_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_full_address?
 
   validates :person_street,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.street_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_full_address?
 
   validates :person_street_number,
-            numericality: {
-              only_integer: true,
-              message: t('signature.errors.not_a_number', default: 'not a number')
-            },
+            numericality: { only_integer: true },
             on: :update,
             if: :require_full_address?
 
   validates :person_street_number_suffix,
-            length: {
-              in: 1..255,
-              message: t('signature.errors.not_ok', default: 'not a suffix')
-            },
+            length: { in: 1..255 },
             allow_blank: true,
             on: :update,
             if: :require_full_address?
 
-  # Some petitions require a minimum age
   validates_date :person_born_at,
                  on_or_before: :required_minimum_age,
                  on: :update,
                  if: :require_minimum_age?
 
   validates :person_birth_city,
-            length: {
-              in: 3..255,
-              message: t('signature.errors.city_too_short', default: 'too short')
-            },
+            length: { in: 3..255 },
             on: :update,
             if: :require_person_city?
 
@@ -140,101 +110,132 @@ class Signature < ActiveRecord::Base
   scope :special, -> { where(special: true, confirmed: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
 
+  before_validation :strip_whitespace, :lowercase_person_email
   before_save :fill_confirmed_at
   before_create :fill_signed_at
+
   after_save :update_petition
 
-  # protected
-
-  def fill_confirmed_at
-    self.confirmed_at = Time.now.utc if confirmed_at.nil? && self.confirmed?
-    true
-  end
-
-  def fill_signed_at
-    self.signed_at = Time.now.utc if signed_at.nil?
-    true
-  end
-
   def update_petition
-    petition.last_confirmed_at = Time.now.utc if self.confirmed?
-    petition.save
-    true
+
+    self.set_redis_counts
+
+    if self.confirmed_changed?
+      petition.last_confirmed_at = Time.now.utc
+      petition.signatures_count += 1
+      petition.update_active_rate!
+      petition.save
+    end
+
+  end
+
+  def set_redis_counts
+
+    if self.confirmed_changed?
+      t = created_at
+
+      #petition.last_confirmed_at = Time.now.utc
+      #petition.last_confirmed_at = Time.now.utc
+      $redis.incr('p%s-last-' % [petition.id, t.to_i])
+
+      $redis.incr('p%s-count' % petition.id)
+
+      $redis.incr('p%s-%s-count' % [
+        petition.id, t.year])
+
+      $redis.incr('p%s-%s-%s-count' % [
+        petition.id, t.year, t.month])
+
+      $redis.incr('p%s-%s-%s-%s-count' % [
+        petition.id, t.year, t.month, t.day])
+
+      $redis.incr('p%s-%s-%s-%s-count' % [
+        petition.id, t.year, t.month, t.day, t.hour])
+
+    end
   end
 
   def require_full_address?
-    petition.present? &&
-      petition.petition_type.present? &&
-      petition.petition_type.require_signature_full_address?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_signature_full_address?
+    petition_type.present? && petition_type.require_signature_full_address?
   end
 
   def require_born_at?
-    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_born_at?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_born_at?
+    petition_type.present? && petition_type.require_person_born_at?
   end
 
   def require_minimum_age?
-    petition.present? && petition.petition_type.present? && petition.petition_type.required_minimum_age.present?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.required_minimum_age.present?
+    petition_type.present? && petition_type.required_minimum_age.present?
   end
 
   def require_person_city?
-    petition.present? && petition.petition_type.present? && petition.petition_type.require_person_birth_city?
+    petition_type.present? && petition_type.require_person_birth_city?
   end
 
   def require_person_country?
-    petition.present? && petition.petition_type.present? && petition.petition_type.country_code.present?
-    # return true if petition.present? && petition.office.present? && petition.office.petition_type.present? && petition.office.petition_type.require_person_birth_city?
+    petition_type.present? && petition_type.country_code.present?
   end
 
-  validates_uniqueness_of :person_email, scope: :petition_id
+  private
 
-  protected
+  def strip_whitespace
+    self.person_street_number = person_street_number.strip unless person_street_number.nil?
+    self.person_name = person_name.strip unless person_name.nil?
+    self.person_email = person_email.strip unless person_email.nil?
+  end
+
+  def lowercase_person_email
+    self.person_email = person_email.to_s.downcase
+  end
 
   def send_confirmation_mail
+
+    if last_reminder_sent_at.nil?
     # puts 'sending mail???'
-    SignatureMailer.sig_confirmation_mail(self).deliver_later
+      SignatureMailer.sig_confirmation_mail(self).deliver_later
+    end
     true
   end
 
   def send_reminder_mail
-    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
 
     # update the time
     self.last_reminder_sent_at = Time.now
 
     # update the reminder sent value
-    if reminders_sent.nil?
+
+    if reminders_sent.blank?
       self.reminders_sent = 1
     else
-      self.reminders_sent = reminders_sent + 1
+      self.reminders_sent += 1
     end
-    # save the resulting sig
-    unless save
-      Rails.logger.debug 'destroyed invalid email %s' % person_email
-      destroy
-    end
-  end
 
-  def generate_unique_key
-    self.unique_key = SecureRandom.urlsafe_base64(16) if unique_key.nil?
-    true
+    confirmed_sig = Signature.find_by_person_email_and_petition_id(
+      person_email, petition_id)
+
+    if confirmed_sig
+      self.destroy
+      Rails.logger.debug 'DESTROYED existing to %s' % person_email
+      return
+    end
+
+    # save the resulting sig
+    if save
+      SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
+    else
+      Rails.logger.debug 'ERROR reminder email to %s' % person_email
+      Rails.logger.debug 'for petition %s' % petition.name 
+      self.destroy
+    end
+ 
+    #destroy
+    #end
   end
 
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if confirmed_at.nil? && self.confirmed?
-    true
   end
 
   def fill_signed_at
     self.signed_at = Time.now.utc if signed_at.nil?
-    true
-  end
-
-  def update_petition
-    petition.last_confirmed_at = Time.now.utc if self.confirmed?
-    petition.save
-    true
   end
 end

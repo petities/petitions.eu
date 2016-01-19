@@ -1,11 +1,8 @@
-
-
-
-- if user_signed_in? && (current_user.has_role?(:admin))
+- if can_edit_update?
   - if (@petition && %w(concept draft).include?(@petition.status))
     - return
 
-  = form_for update, html:{ multipart: true } do |f|
+  = form_for update, html: { multipart: true } do |f|
     div.petition-edit-label
       = t('update.label.title')
 
@@ -33,15 +30,15 @@
       div.petition-edit-label
         = t('update.label.show_on_office')
 
-      = f.check_box :show_on_office, {checked: false}
+      = f.check_box :show_on_office, { checked: false }
 
       div.petition-edit-label
         = t('update.label.select_office')
 
-      = f.select :office_id, options_from_collection_for_select(@offices, "id", "name", 5), class: 'petition-edit-input'
+      = f.select :office_id, options_from_collection_for_select(@offices, 'id', 'name', 5), class: 'petition-edit-input'
 
     - if @petition
-      = f.hidden_field :petition_id, :value => @petition.id
+      = f.hidden_field :petition_id, value: @petition.id
 
     div.petition-edit-label
     - if update.title.nil?
