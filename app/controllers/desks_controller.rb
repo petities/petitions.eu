@@ -7,7 +7,7 @@ class DesksController < ApplicationController
 
   def show
     if params[:id]
-      @office = Office.find(params[:id])
+      @office = Office.friendly.find(params[:id])
     elsif request.subdomain
       @office = Office.find_by_subdomain(request.subdomain)
     end
