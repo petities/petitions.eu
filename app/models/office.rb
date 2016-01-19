@@ -39,19 +39,4 @@ class Office < ActiveRecord::Base
   has_many :images, as: :imageable, dependent: :destroy
 
   accepts_nested_attributes_for :images
-
-  def intro_text
-    # text.split('. ').slice(0, 2)
-    return unless text
-    text_array = text.split('. ').slice(0, 2)
-    text_array.push('')
-    return text_array.join('. ').html_safe if text_array
-  end
-
-  def read_more_text
-    return unless text
-
-    text_array = text.split('. ').slice(2, text.length)
-    return text_array.join('. ').html_safe if text_array
-  end
 end
