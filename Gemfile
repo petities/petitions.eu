@@ -123,7 +123,7 @@ end
 gem 'rollbar', '~> 2.5.0'
 
 # Use CodeClimate and Semaphore CI for testing
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
@@ -134,7 +134,8 @@ group :development do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger
+  # console
   gem 'byebug'
   gem 'quiet_assets'
   gem 'better_errors'
@@ -145,6 +146,7 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the
+  # background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

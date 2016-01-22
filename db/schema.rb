@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118194021) do
+ActiveRecord::Schema.define(version: 20160119205207) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -199,7 +199,6 @@ ActiveRecord::Schema.define(version: 20160118194021) do
 
   create_table "newsitems", force: :cascade do |t|
     t.string   "title",            limit: 255
-    t.string   "title_clean",      limit: 255
     t.text     "text",             limit: 4294967295
     t.integer  "petition_id",      limit: 4
     t.integer  "office_id",        limit: 4
@@ -213,15 +212,15 @@ ActiveRecord::Schema.define(version: 20160118194021) do
     t.boolean  "show_on_home"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug",      limit: 255
+    t.string   "slug",             limit: 255
     t.boolean  "show_on_petition"
   end
 
-  add_index "newsitems", ["cached_slug"], name: "index_newsitems_on_cached_slug", using: :btree
   add_index "newsitems", ["date_from"], name: "index_newsitems_on_date_from", using: :btree
   add_index "newsitems", ["date_until"], name: "index_newsitems_on_date_until", using: :btree
   add_index "newsitems", ["office_id"], name: "index_newsitems_on_office_id", using: :btree
   add_index "newsitems", ["petition_id"], name: "index_newsitems_on_petition_id", using: :btree
+  add_index "newsitems", ["slug"], name: "index_newsitems_on_slug", unique: true, using: :btree
 
   create_table "newsletters", force: :cascade do |t|
     t.integer  "petition_id",                limit: 4

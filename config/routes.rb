@@ -84,8 +84,6 @@ Rails.application.routes.draw do
   post '/contact', to: 'contact#create'
   get '/contact/thanks', to: 'contact#thanks'
 
-  post '/contact_submit', to: 'application#contact_submit'
-
   # dashboard statistics
   constraints admin_constraint do
     mount RedisAnalytics::Dashboard::Engine => '/visits'
