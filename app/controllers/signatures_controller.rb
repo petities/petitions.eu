@@ -11,7 +11,6 @@ class SignaturesController < ApplicationController
   # GET /signatures
   # GET /signatures.json
   def index
-
     find_petition
 
     @all_signatures = @petition.signatures.special.limit(900)
@@ -123,36 +122,36 @@ class SignaturesController < ApplicationController
   end
 
   # get admin rights of the petition you have link for
-  def become_petition_owner
-    @petition = @signature.petition
-
-    u = User.find_or_create_by(email: @signature.person_email)
-    u.name = @signature.person_email
-
-    # new user?
-    # send password instructions
-    if u.confirmed_at.nil?
-      u.confirmed_at = Time.now
-      u.send_reset_password_instructions
-    end
-
-    # save
-    u.save
-
-    # give user admin permission
-    u.add_role(:admin, @petition)
-    # set petition back to live
-    @petition.status = 'live'
-    @petition.save
-
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-      format.html do
-        redirect_to @petition,
-                    notice: t('confirmed.now_you_can_edit', default: 'you can manage this petition now')
-      end
-    end
-  end
+  # def become_petition_owner
+  #   @petition = @signature.petition
+  #
+  #   u = User.find_or_create_by(email: @signature.person_email)
+  #   u.name = @signature.person_email
+  #
+  #   # new user?
+  #   # send password instructions
+  #   if u.confirmed_at.nil?
+  #     u.confirmed_at = Time.now
+  #     u.send_reset_password_instructions
+  #   end
+  #
+  #   # save
+  #   u.save
+  #
+  #   # give user admin permission
+  #   u.add_role(:admin, @petition)
+  #   # set petition back to live
+  #   @petition.status = 'live'
+  #   @petition.save
+  #
+  #   respond_to do |format|
+  #     format.json { render :show, status: :ok }
+  #     format.html do
+  #       redirect_to @petition,
+  #                   notice: t('confirmed.now_you_can_edit', default: 'you can manage this petition now')
+  #     end
+  #   end
+  # end
 
   # get signature confirm page
   # view the details of your signarture
@@ -376,7 +375,7 @@ class SignaturesController < ApplicationController
 
   def confirm_signature
     old_signature = @signature
-    # create a new signature in the signarure table.
+    # create a new signature in the signature table.
     @signature = Signature.new(
       old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
 
@@ -387,10 +386,9 @@ class SignaturesController < ApplicationController
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
     # expire_fragment @petition
-    #puts 'Destroy %s' % old_signature.person_email
-    #puts old_signature.destroyed?
-    #old_signature.deleted?
+    # puts 'Destroy %s' % old_signature.person_email
+    # puts old_signature.destroyed?
+    # old_signature.deleted?
     @signature.save
-
   end
 end
