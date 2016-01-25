@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119205207) do
+ActiveRecord::Schema.define(version: 20160125193952) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -335,7 +335,6 @@ ActiveRecord::Schema.define(version: 20160119205207) do
 
   create_table "petitions", force: :cascade do |t|
     t.string   "name",                             limit: 255
-    t.string   "name_clean",                       limit: 255
     t.string   "subdomain",                        limit: 255
     t.text     "description",                      limit: 65535
     t.text     "initiators",                       limit: 65535
@@ -389,7 +388,6 @@ ActiveRecord::Schema.define(version: 20160119205207) do
     t.integer  "petition_type_id",                 limit: 4
     t.boolean  "display_person_born_at"
     t.boolean  "display_person_birth_city"
-    t.boolean  "delta",                                          default: true,  null: false
     t.text     "locale_list",                      limit: 65535
     t.float    "active_rate_value",                limit: 24,    default: 0.0
     t.integer  "owner_id",                         limit: 4
@@ -404,7 +402,6 @@ ActiveRecord::Schema.define(version: 20160119205207) do
   add_index "petitions", ["last_confirmed_at"], name: "index_petitions_on_last_confirmed_at", using: :btree
   add_index "petitions", ["lat_lng"], name: "index_petitions_on_lat_lng", using: :btree
   add_index "petitions", ["name"], name: "name_2", using: :btree
-  add_index "petitions", ["name_clean"], name: "name_clean", using: :btree
   add_index "petitions", ["office_id"], name: "office_id", using: :btree
   add_index "petitions", ["petitioner_name"], name: "petitioner_name", using: :btree
   add_index "petitions", ["status"], name: "index_petitions_on_status", using: :btree

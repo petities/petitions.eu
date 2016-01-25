@@ -32,7 +32,7 @@ gem 'rolify'
 
 gem 'validates_timeliness'
 
-# roles mamangement
+# roles management
 gem 'pundit'
 
 # cache

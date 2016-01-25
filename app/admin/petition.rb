@@ -1,16 +1,23 @@
 ActiveAdmin.register Petition do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+  permit_params :name, :subdomain, :description, :initiators, :statement,
+                :request, :date_projected, :office_id, :organisation_id,
+                :organisation_name, :petitioner_organisation,
+                :petitioner_birth_date, :petitioner_birth_city,
+                :petitioner_name, :petitioner_address, :petitioner_postalcode,
+                :petitioner_city, :petitioner_email, :petitioner_telephone,
+                :maps_query, :office_suggestion, :organisation_kind, :link1,
+                :link2, :link3, :link1_text, :link2_text, :link3_text, :site1,
+                :site1_text, :signatures_count, :number_of_signatures_on_paper,
+                :number_of_newsletters_sent, :cached_slug, :last_confirmed_at,
+                :status, :manager_id, :show_twitter, :show_history, :show_map,
+                :twitter_query, :lat_lng, :lat_lng_sw, :lat_lng_ne,
+                :special_count, :display_more_information,
+                :display_signature_person_citizen,
+                :display_signature_full_address, :archived, :petition_type_id,
+                :display_person_born_at, :display_person_birth_city,
+                :locale_list, :active_rate_value, :owner_id, :owner_type, :slug,
+                :reference_field, :answer_due_date
+
   index do
     selectable_column
     id_column
