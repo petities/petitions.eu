@@ -166,7 +166,7 @@ en:
       label: 'Preview:'
       title: Invite others
       success: Thank you! Please invite more
-    title: Confirm your signature for the petition "%{name}"
+    title: Thank you for the confirmation of your signature!
   contact:
     title: Contact form
     form:

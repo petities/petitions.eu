@@ -166,7 +166,7 @@ nl:
       label: 'Voorvertoning'
       title: Nodig anderen uit
       success: Dank u! Zou u meer willen uitnodigen?
-    title: Bevestig uw ondertekening van de petitie "%{name}"
+    title: Dank u wel voor het bevestigen van uw ondertekening!
   contact:
     title: Contact met Stichting Petities.nl
     form:
