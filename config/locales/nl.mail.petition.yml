@@ -2,18 +2,29 @@ nl:
   mail:
     petition:
       adoption_request: '
-U heeft de petitie "%{petition}" op %{date} ondertekend. De indiendatum is verstreken en de petitionaris 
-reageert niet (op tijd) op e-mails van ons. De petitie is nu verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen
-namens de %{signaturescount} ondertekenaars. We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
-verzoek iets te willen doen of te willen doneren.
+U heeft de petitie "%{petition}" op %{date} ondertekend. 
 
-Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit dan verschijnt dit 
-als antwoord op de petitie.
+De indiendatum is verstreken en de petitionaris reageert niet (op tijd) op e-mails van ons. De petitie is nu 
+
+verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen namens de %{signaturescount} ondertekenaars. 
+
+We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op 
+
+verzoek iets te willen doen of te willen doneren. 
 '
-      adoption_instructions: 'Om de petitie te adopteren, ga naar %{becomeownerurl} en vraag een wachtwoord aan die u per e-mail ontvangt.
-Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wachtwoord om de petitie te beheren.'
+      adoption_instructions: 'Om de petitie te adopteren, ga naar %{becomeownerurl} 
+
+en vraag een wachtwoord aan die u per e-mail ontvangt.
+
+
+Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wachtwoord om de petitie te beheren.
+'
       adoption_request_subject: 'Zou u de petitie "%{petition}" willen overnemen?'
-      adoption_survey: "Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit dan verschijnt dit als antwoord op de petitie"
+      adoption_survey: '
+Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit, 
+
+dan verschijnt dit als antwoord op de petitie.
+'
       confirm:
         instructions: '
 Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie afmaken en open zetten voor ondertekeningen. Maar volg eerst deze link
@@ -69,8 +80,7 @@ de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden, da
 %{answer}
 
 
- We horen graag of dit is wat u van de petitie verwachtte, 
-zodat wij kunnen ons werk kunnen verbeteren.
+We horen graag of dit is wat u van de petitie verwachtte, zodat wij kunnen ons werk kunnen verbeteren.
 '
       has_answer_subject: Het eindresultaat voor de petitie "%{petition}"
       has_no_answer: '
