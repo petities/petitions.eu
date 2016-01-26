@@ -41,7 +41,7 @@ div.page
         h2.news-intro-block-title= news.title
         div.news-intro-block-date= news.created_at.strftime("%d-%m-%Y")
         div.news-intro-block-intro
-          = markdown news.intro_text
+          = markdown intro_text(news.text)
         = link_to update_path(news)
           = t('index.read')
 

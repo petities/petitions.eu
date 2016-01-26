@@ -4,7 +4,6 @@
 #
 #  id                               :integer          not null, primary key
 #  name                             :string(255)
-#  name_clean                       :string(255)
 #  subdomain                        :string(255)
 #  description                      :text(65535)
 #  initiators                       :text(65535)
@@ -58,7 +57,6 @@
 #  petition_type_id                 :integer
 #  display_person_born_at           :boolean
 #  display_person_birth_city        :boolean
-#  delta                            :boolean          default(TRUE), not null
 #  locale_list                      :text(65535)
 #  active_rate_value                :float(24)        default(0.0)
 #  owner_id                         :integer
