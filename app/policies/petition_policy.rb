@@ -53,8 +53,7 @@ class PetitionPolicy < ApplicationPolicy
     unless user.has_role?(:admin, petition.office)
       unless petition.is_draft? or petition.is_staging?
          remove += [
-          :name, 
-          :subdomain,
+          :name, :subdomain,
           :initiators, 
           :statement,
           :request,                      
