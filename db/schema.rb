@@ -397,9 +397,9 @@ ActiveRecord::Schema.define(version: 20160107035649) do
     t.float    "active_rate_value",                limit: 24,    default: 0.0
     t.integer  "owner_id",                         limit: 4
     t.string   "owner_type",                       limit: 255
+    t.string   "slug",                             limit: 255
     t.string   "reference_field",                  limit: 255
     t.date     "answer_due_date"
-    t.string   "slug",                             limit: 255
   end
 
   add_index "petitions", ["cached_slug"], name: "index_petitions_on_cached_slug", using: :btree
@@ -453,6 +453,8 @@ ActiveRecord::Schema.define(version: 20160107035649) do
     t.integer  "resource_id",       limit: 4
   end
 
+  add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
+  add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
