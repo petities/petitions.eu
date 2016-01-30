@@ -120,7 +120,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.5.0'
+gem 'rollbar', '~> 2.7', '>= 2.7.1'
 
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil

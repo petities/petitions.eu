@@ -3,7 +3,6 @@ class PetitionsController < ApplicationController
   include SortPetitions
 
   before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
-  before_action only: [:show, :edit]
 
   # GET /petitions
   # GET /petitions.json
@@ -31,7 +30,7 @@ class PetitionsController < ApplicationController
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
       { type: 'newest', label: t('index.sort.new') },
-      #{ type: 'biggest', label: t('index.sort.biggest') },
+      # { type: 'biggest', label: t('index.sort.biggest') },
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
@@ -63,7 +62,6 @@ class PetitionsController < ApplicationController
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
-
 
     @results_size = petitions.size
 
@@ -129,7 +127,6 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-
     unless @petition
       flash[:notice] = t('petition.we_could_not_find_petition_try_search')
       redirect_to root_path

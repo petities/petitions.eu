@@ -98,7 +98,7 @@ div.page
 
       = render partial: 'history_chart'
 
-- if not @petition.is_draft?
+- unless @petition.is_draft?
   = render partial: 'social'
 
   = render partial: 'signatures'
