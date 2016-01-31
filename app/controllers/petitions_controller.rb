@@ -20,9 +20,9 @@ class PetitionsController < ApplicationController
 
     if @sorting == 'active'
       #petitions = petitions.order(active_rate_value: direction)
-      petitions = $redis.zrange('active_rate', 0, 160)
+      petitions = $redis.zrevrange('active_rate', 0, 160)
     elsif @sorting == 'biggest'
-      petitions = $redis.zrange('petition_size', 0, 160)
+      petitions = $redis.zrevrange('petition_size', 0, 160)
       #petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)

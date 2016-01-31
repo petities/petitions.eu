@@ -5,7 +5,7 @@
     - if not petition
      - next
 
-  - cache [petition, I18n.locale || :nl] do
+  - cache [petition, petition.get_count, I18n.locale || :nl] do
     - id = petition.id
 
     div.petition-overview
@@ -25,6 +25,6 @@
           = link_to petition_path(petition) do
             = petition.name || 'name missing?'
         div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
-          = petition.signatures_count
+          = petition.get_count
 
         div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)

@@ -52,11 +52,10 @@ namespace :petition do
 
     require "benchmark"
 
-
     r = Redis.new
     # delete old rankings
-    #r.del('petition_size')
-    #r.del('active_rate')
+    r.del('petition_size')
+    r.del('active_rate')
 
     def delete_petition_keys petition
       r = Redis.new
@@ -80,7 +79,8 @@ namespace :petition do
     end
 
     Petition.live.each_with_index do |petition, index|
-      start = DateTime.now.to_s
+
+      r = Redis.new
 
       count = petition.signatures.confirmed.count
 
@@ -99,7 +99,9 @@ namespace :petition do
 
       # count scores and ranking
       r.set('p%s-count' % petition.id, count)
-      $redis.zadd('petition_size', count,  petition.id)
+      #$redis.zadd('petition_size', count,  petition.id)
+      $redis.zrem('petition_size', petition.id)
+      $redis.zadd('petition_size', count, petition.id)
 
       puts Benchmark.measure {
         create_barchart_keys petition
