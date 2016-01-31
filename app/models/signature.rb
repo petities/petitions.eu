@@ -78,6 +78,11 @@ class Signature < ActiveRecord::Base
             on: :update,
             if: :require_full_address?
 
+  validates :person_function,
+            length: { maximum: 254 },
+            on: :update
+            
+
   validates :person_street,
             length: { in: 3..255 },
             on: :update,
@@ -119,11 +124,13 @@ class Signature < ActiveRecord::Base
   def update_petition
 
     if self.confirmed_changed?
-      set_redis_counts
-      petition.active_rate
-      #petition.last_confirmed_at = Time.now.utc
-      #petition.signatures_count += 1
-      #petition.save
+
+      self.set_redis_counts
+
+      petition.last_confirmed_at = Time.now.utc
+      petition.signatures_count += 1
+      petition.update_active_rate!
+      petition.save
     end
 
   end
@@ -142,7 +149,6 @@ class Signature < ActiveRecord::Base
 
     $redis.pipelined do
 
-
       # year count
       $redis.incr('p%s-%s-y' % [
         petition.id, Date.new(t.year, 1,1).to_s])
@@ -153,6 +159,7 @@ class Signature < ActiveRecord::Base
       # graph data counts
       # only make keys of recent signatures
       if t > 50.days.ago
+
         #$redis.incr('p%s-%s-m' % [
         #  petition.id, Date.new(t.year, t.month).to_s])
 

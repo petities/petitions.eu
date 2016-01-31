@@ -1,6 +1,11 @@
 require 'test_helper'
 
+ActiveJob::Base.queue_adapter = :test
+
 class PetitionsControllerTest < ActionController::TestCase
+
+  include ActiveJob::TestHelper
+
   setup do
     @petition = petitions(:one)
   end
@@ -59,26 +64,6 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to petition_path(assigns(:petition))
   end
 
-  test 'should_create_petition_user_and_password' do
-    assert_difference('User.count') do
-      assert_difference('Petition.count') do
-        post :create, petition: {
-          name: @petition.name + 'x',
-          description: @petition.description + 'x',
-          initiators: @petition.initiators + 'y',
-          statement: @petition.statement + 'test',
-          request: @petition.request + 'teest',
-          office_id: 1
-        },
-                      user: {
-                        email: 'idonotexist@test.com',
-                        name: 'nexttest'
-                      }
-      end
-    end
-
-    assert_redirected_to petition_path(assigns(:petition))
-  end
 
   test 'should show petition' do
     get :show, id: @petition.id
@@ -120,16 +105,50 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should_get_limited_edit' do
+    sign_in_admin_for @petition
+    $redis.set('p%s-count' % @petition.id, 200)
+    get :edit, id: @petition.friendly_id
+    assert_response :success
+    assert_not_nil assigns(:exclude_list)
+    assert_equal(
+      [:name, :subdomain, :initiators, :statement, :request],
+      assigns(:exclude_list)
+    )
+  end
+
   test 'should get edit as office admin' do
     sign_in_admin_for @petition.office
     get :edit, id: @petition.friendly_id
     assert_response :success
   end
 
-  # test "should update petition" do
-  #  patch :update, id: @petition, petition: { name: 'newtitle', description: @petition.description }
-  #  assert_redirected_to petition_path(assigns(:petition))
-  # end
+  test "should update petition" do
+    sign_in_admin_for @petition
+    patch :update, id: @petition.id, petition: { 
+      name: 'newtitle', 
+      description: @petition.description 
+    }
+    assert_redirected_to edit_petition_path(assigns(:petition))
+   end
+
+  test "should status change petition" do
+    sign_in_admin_for @petition
+    # two mails should be send on status change
+  
+    assert_enqueued_jobs 0
+
+    status = @petition.status
+
+    patch :update, id: @petition.id, petition: { 
+      status: 'draft', 
+    }
+
+    assert_redirected_to edit_petition_path(assigns(:petition))
+
+    assert_enqueued_jobs 4
+
+   end
 
   # test "should destroy petition" do
   #  assert_difference('Petition.count', -1) do

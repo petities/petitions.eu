@@ -2,15 +2,29 @@ en:
   mail:
     petition: 
       adoption_request: '
-U heeft de petitie "%{petition}" op %{date} ondertekend. De indiendatum is verstreken en de petitionaris 
-reageert niet (op tijd) op e-mails van ons. De petitie is nu verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen
-namens de %{signaturescount} ondertekenaars. We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
-verzoek iets te willen doen of te willen doneren.
+You signed the petition "%{petition}" on %{date}. 
 
-Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit dan verschijnt dit 
-als antwoord op de petitie.
+The hand over date has passed and the lead petitioner does react (in time) to our e-mails. The petition is now 
+
+orphaned. You can adopt the petition and hand it over some other time on behalf of the %{signaturescount} signatories. 
+
+We ask you because you once indicated you would like to do something for the petition
+
+or make a donation. 
+'
+      adoption_instructions: 'To adopt the petition, go to %{becomeownerurl} 
+
+and ask for a password, which you will receive by e-mail.
+
+
+Afterwards you can log in at http://petities.nl/login with your e-mail address and your password to manage the petition.
 '
       adoption_request_subject: 'Would you like to take over the petition "%{petition_name}"?'
+      adoption_survey: '
+If you decline we would like to hear why. Choose one of the options below and when the petition closes as an orphan 
+
+it will appear as an answer to the petition.
+'
       confirm: 
         instructions: '
 Thank you for using Petities.nl! You can now log in, finish your petition and open it up for signatures. But please first follow this link
@@ -35,7 +49,45 @@ As petitioner you can reach us by e-mail at webmaster@petities.nl for technical 
 For other questions you can contact the petition desk at %{office_email} or call %{office_phone}.
 '
         subject: Continue with your petition "%{petition_name}" with this login         
-      has_answer: 'On %{date} you signed the petition %{petition.name}. The petition is now answered by the recipient of the petition. You can also find this answer next to the petition.'
+      due_next_week: '
+Your petition closes next week. If the is too early you can change the datum. Once you log in you change the date under petition details. As many times as necessary. 
+'
+      due_next_week_subject: 'Your petition "%{petition}" closes next week, please take action!'
+      due_next_week_write: '
+After %{date} is the hand over. You can write an news update about this under the petition. Signatories can then read what is 
+going to happen. You can for example mobilise them to come to the hand over. This news update can also go by e-mail to the 
+signatories if you ask us at webmaster@petities.nl. Meanwhile you need to agree on the exact date of the hand over. 
+If you filled in your telephone number in your profile you might be called about this because we send in your petition 
+automatically. As soon as you are certain about the exact date of the hand over, would you like to change it? Our system 
+will then (continue to) ask for an answer to your petition on your behalf. You do not need to take care of that. 
+
+
+If you do not write an update to the petition we assume you are not interested, are too busy or can not be reached. 
+The petition is than orphaned and someone ales can adopt the petition. The signatories who pledged to do something for 
+the petitionwill then receive an e-mail with the question to adopt the petition. If you read this after %{date} and your 
+petition is not yet adopted, then you should immediately log in, change the hand over date, write an update and e-mail us 
+in order not to lose control over your petition.
+
+
+Would you like to withdraw your petition? Then change the date to something in the past. Would you also like to write an update 
+why you withdraw the petition? You can also choose from these options, completed with your explanation. For example 
+'
+      has_answer: '
+On %{date} you signed the petition %{petition} with e-mail address %{email}. The petition is now answered by 
+the recipient of the petition. You can also find this answer next to the petition, there it says
+
+
+%{answer}
+
+
+We are pleased to hear about what you expected from the petition, so we can improve our work.
+'
+      has_answer_subject: The end result for the petition "%{petition}"
+      has_no_answer: '
+On %{date} you signed the petition "%{petition}" with e-mail address %{email}. Unfortunately the petition seems to be ignored 
+by the recipient. At %{petition_handover} the petition is sent to %{petition_office}. We asked four times for a confirmation receipt, 
+but got no answer. Perhaps you know what the situation of the petition is now? We would love to know, so we can publish it next to the petition.
+'
       now_hide_signature: 'Now that the petition is closed, you might want to hide your name and signature. When you signed you were asked if you want to show your name on public display as signatory of the petition. Your signature might show up when someone searches the web for your name. You might like that or perhaps not. To turn this off or on again, go to the page where you confirmed your signature at %{unique_url}.'
       status: 
         changed: Your petition has changed status. It is now %{status}. Go to your petition at %{petition}

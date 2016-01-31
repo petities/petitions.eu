@@ -4,7 +4,6 @@
 #
 #  id               :integer          not null, primary key
 #  title            :string(255)
-#  title_clean      :string(255)
 #  text             :text(4294967295)
 #  petition_id      :integer
 #  office_id        :integer
@@ -24,9 +23,9 @@
 
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
-  extend FriendlyId
 
-  friendly_id :title, use: [:slugged, :finders], slug_column: :cached_slug
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
 
   default_scope { order('created_at DESC') }
 
@@ -48,7 +47,6 @@ class Update < ActiveRecord::Base
 
   def read_more_text
     return unless text
-
     text_array = text.split('. ').slice(2, text.length)
     text = text_array.join('. ').html_safe if text_array
     text

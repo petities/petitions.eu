@@ -4,7 +4,6 @@
 #
 #  id                :integer          not null, primary key
 #  name              :string(255)
-#  name_clean        :string(255)
 #  text              :text(65535)
 #  url               :string(255)
 #  hidden            :boolean
@@ -14,7 +13,7 @@
 #  organisation_kind :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
-#  cached_slug       :string(255)
+#  slug              :string(255)
 #  subdomain         :string(255)
 #  url_text          :string(255)
 #  telephone         :string(255)
@@ -26,12 +25,14 @@ one:
   name: NL
   subdomain: nl
 
-two:
+amsterdam:
   id: 2
   name: gemeente amsterdam
   subdomain: amsterdam
+  slug: amsterdam
 
 three:
   id: 3
   name: gemeente alkmaar
   subdomain: alkmaar
+  slug: alkmaar

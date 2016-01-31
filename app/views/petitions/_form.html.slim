@@ -3,6 +3,25 @@
     div.errors-empty: p= t('errors.messages.empty')
     div.errors-too-long: p= t('errors.messages.too_long')
 
+  - if @exclude_list.size > 0
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title.has_error_help
+          = t('start.form.cannot_edit_live_petition')
+      div.start-petition-form-cell.label.has_error_help
+        p= t('start.form.cannot_edit_live_petition')
+
+  - if @missing_email
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title.has_error_help
+          = t('start.form.cannot_start_without_email')
+      div.start-petition-form-cell.label.has_error_help
+        p= t('start.form.we_need_to_know_identity')
+
+
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title
@@ -132,7 +151,7 @@
       div.start-petition-form-cell.label
         p= t('start.form.subdomain.description')
 
-  - if !user_signed_in? && action_name == 'new'
+  - if !user_signed_in? && ['new', 'create'].include?(action_name)
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
@@ -165,9 +184,7 @@
       div.start-petition-form-cell.label
         p= t('start.form.petitioner.organisation.description')
 
-  /= action_name
-
-  - if action_name == 'new'
+  - if ['new', 'create'].include?(action_name)
     div.start-petition-form-row
       div.start-petition-form-cell.input
         = f.submit t('start.form.submit'), class: 'start-petition-form-cell-button'

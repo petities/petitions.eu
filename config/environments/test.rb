@@ -42,5 +42,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Devise user handling
-  config.action_mailer.default_url_options = { host: 'localhost' }
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    protocol: 'https'
+  }
 end

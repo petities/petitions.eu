@@ -13,7 +13,7 @@ en:
       <p>&nbsp;</p>
       <p>Technically the site is made possible by the volunteers of the 'Open Domein' association. From them you can get a <a href="http://deds.nl">free e-mailadres without advertising with respect for your privacy</a>. Then you can also <a href="http://opendomein.nl/lidmaatschap/">become member (for €15 per year)</a> if you appreciate the technical support of this kind of internet projects.</p>&#13;
       <p>&nbsp;</p>
-      <p>From 2011 onwards the hosting is done by internetprovider <a href="https://www.xs4all.nl/welcome-to-xs4all.htm">XS4ALL</a> because XS4ALL supports "initiatives aimed at the free exchange of information, democracy, privacy and the innovative use of the internet." The servers of Open Domein find shelter at XS4ALL because of that. The certificates for the secure communication with petities.nl are provided by <a href="https://www.xolphin.nl/Xolphin">Xolphin SSL Certificaten</a>. The number +31207854412 and the telephone exchange behind it by <a href="http://callvoip.nl/">CallVOIP</a>.</p>&#13;
+      <p>From 2011 onwards the hosting is done by internetprovider <a href="https://www.xs4all.nl/welcome-to-xs4all.htm">XS4ALL</a> because XS4ALL supports "initiatives aimed at the free exchange of information, democracy, privacy and the innovative use of the internet." The servers of Open Domein find shelter at XS4ALL because of that. The certificates for the secure communication with petities.nl are provided by <a href="https://www.xolphin.nl/Xolphin">Xolphin SSL Certificaten</a>. Error analytics and other insights we get through <a href="https://rollbar.com">Rollbar.com</a> who monitor our website. The number +31207854412 and the telephone exchange behind it by <a href="http://callvoip.nl/">CallVOIP</a>.</p>&#13;
       <p>&nbsp;</p>
       <p><a href="http://www.netdem.nl">Netwerk Democratie</a>, the platform voor democratic innovation, supports Petities.nl with office space amongst others.</p>&#13;
       <p>&nbsp;</p>
@@ -166,7 +166,7 @@ en:
       label: 'Preview:'
       title: Invite others
       success: Thank you! Please invite more
-    title: Confirm your signature for the petition "%{name}"
+    title: Thank you for the confirmation of your signature!
   contact:
     title: Contact form
     form:

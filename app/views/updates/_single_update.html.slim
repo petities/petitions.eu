@@ -1,13 +1,13 @@
 h2= update.title
 div.update-intro
-  = markdown raw update.intro_text
+  = markdown raw intro_text(update.text)
 
-- unless update.read_more_text.blank?
-  div.read-more-handler.whitespace 
-    | + 
+- if read_more_text(update.text).present?
+  div.read-more-handler.whitespace
+    | +
     = t('update.read_more')
   div.read-more-content.whitespace
-    = markdown raw update.read_more_text
+    = markdown raw read_more_text(update.text)
     - if update.url
       = link_to  update.url
         = update.url_text
@@ -19,6 +19,6 @@ div.update-date
     = update.created_at.strftime('%d-%m-%Y')
 
   - if update.petition.present?
-    = ' | ' 
-    | Petition: 
+    = ' | '
+    | Petition:
     = link_to update.petition.name, petition_path(update.petition)

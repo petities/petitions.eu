@@ -55,7 +55,7 @@ class SignaturesControllerTest < ActionController::TestCase
                           }
     assert_response :unprocessable_entity
   end
-
+ 
   # this petition / signature requires NOTHING
   test 'should update signature' do
     post :confirm_submit, format: :json, petition_id: @petition,
@@ -90,6 +90,27 @@ class SignaturesControllerTest < ActionController::TestCase
       person_street person_street_number person_born_at
       person_birth_city))
   end
+
+  # test person_function 
+  test 'should update signature function' do
+
+    post :confirm_submit, format: :json, petition_id: @petition,
+                          signature_id: @signature.unique_key, signature: {
+                            person_function: '1' * 500,
+                          }
+
+    assert_response :unprocessable_entity
+
+
+    post :confirm_submit, format: :json, petition_id: @petition,
+                          signature_id: @signature.unique_key, signature: {
+                            person_function: '1' * 253
+                          }
+
+    assert_response :success
+
+  end
+ 
 
   test 'signature confirmation links' do
     assert_routing('/signatures/10/confirm', controller: 'signatures',
@@ -132,13 +153,13 @@ class SignaturesControllerTest < ActionController::TestCase
     end
   end
 
-  test 'take_owner_ship' do
-    assert_difference('User.count') do
-      assert_difference('Role.count') do
-        get :become_petition_owner, signature_id: @newsignature.unique_key
-      end
-    end
-  end
+  # test 'take_owner_ship' do
+  #   assert_difference('User.count') do
+  #     assert_difference('Role.count') do
+  #       get :become_petition_owner, signature_id: @newsignature.unique_key
+  #     end
+  #   end
+  # end
 
   # test "should show signature" do
   #  get :show, id: @signature
