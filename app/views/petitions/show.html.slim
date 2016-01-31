@@ -45,7 +45,7 @@ div.page
         = image_tag( @images.last.upload.url, class: 'petition-intro-image') unless @images.last.nil? || @images.last.upload_file_name.nil?
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
-        div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
+        div.petition-intro-info-counter= t('show.signatures_count', count: $redis.get('p%s-count' % @petition.id) || @petition.signatures_count)
         div.petition-intro-info-text
           = markdown @petition.description
 

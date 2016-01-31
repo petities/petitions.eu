@@ -206,21 +206,42 @@ class Petition < ActiveRecord::Base
   end
 
   def active_rate
-    if signatures_count > 0
-      signatures.confirmed.where('created_at >= ?', 8.hour.ago).size.to_f || 100 / 
-      signatures.confirmed.where('created_at >= ?', 1.hour.ago).size.to_f || 1
-    else
-      0
+    # get counts 18 hours
+    # get counts 2 hour
+    last_hours = $redis.keys('p%s*h' % id).sort.last(12)
+
+    total = 100.0 
+
+    last_hours.first(10).each do |key|
+      v =  $redis.get(key)       
+      v = v.to_f
+      total = total + v 
     end
+
+    short = 1.0
+
+    last_hours.last(2).each do |key|
+      v = $redis.get(key)
+      v = v.to_f
+      total = total + v 
+      short = short + v
+    end
+
+    a_rate = short / total
+
+    $redis.zrem('active_rate', id)
+    $redis.zadd('active_rate', a_rate, id)
+
+    a_rate
+
   end
 
   def update_active_rate!
-    self.active_rate_value = active_rate
-    save
+    self.active_rate
   end
 
   def is_hot?
-    active_rate_value > 0.05
+    $redis.get('p%s-activity' % id).to_f  > 0.05
   end
 
   ## petition status summary
@@ -293,6 +314,25 @@ class Petition < ActiveRecord::Base
       office.petition_type.allowed_cities.present?
     end
   end
+  
+  def redis_history_chart_json(hist=60)
+    last_30_days = $redis.keys('p%s*d' % id).sort.last(hist)
+
+    data = last_30_days.map.with_index { |key, _i| $redis.get(key).to_i }
+    
+    labels = last_30_days.map do |key| 
+      key = key.remove('p%s-' % id)
+      key[0..-3]
+    end
+
+    if labels.size > 20
+      factor = (labels.size / 20.0).ceil
+      labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
+    end
+
+
+    return [data, labels]
+  end
 
   def history_chart_json
     #return [[],[]]
@@ -308,6 +348,7 @@ class Petition < ActiveRecord::Base
       factor = (labels.size / 20.0).ceil
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
+
     data = label_size.map { |d_s| d_s[1] }
 
     [data, labels]

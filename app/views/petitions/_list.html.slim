@@ -1,4 +1,10 @@
 - @petitions.each do |petition|
+
+  - if petition.is_a?(String)
+    - petition = Petition.live.find_by_id(petition)
+    - if not petition
+     - next
+
   - cache [petition, I18n.locale || :nl] do
     - id = petition.id
 
@@ -9,7 +15,7 @@
         - else
           canvas id="chartContainer#{id}" data={chartid: id, chartdata: "chartData#{id}", chartlabels: "chartLabels#{id}"} class='petition-overview-image chart-canvas' style="background-color: #bcf9c7; height: 200px;"
 
-          - data, labels = petition.history_chart_json
+          - data, labels = petition.redis_history_chart_json 10
           javascript:
             window.chartData#{id} = #{raw data},
             window.chartLabels#{id} = #{raw labels};
@@ -20,5 +26,5 @@
             = petition.name || 'name missing?'
         div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
           = petition.signatures_count
-        - if petition.last_confirmed_at
-          div.petition-overview-info-time= distance_of_time_in_words(petition.last_confirmed_at, Time.now)
+
+        div.petition-overview-info-time= distance_of_time_in_words(last_sig_update(petition), Time.now)

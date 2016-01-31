@@ -36,6 +36,8 @@ class Update < ActiveRecord::Base
   belongs_to :petition
   belongs_to :office
 
+  # not empty update!
+
   def intro_text
     # text.split('. ').slice(0, 2)
     return unless text

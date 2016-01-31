@@ -19,9 +19,11 @@ class PetitionsController < ApplicationController
     direction = [:desc, :asc][@order]
 
     if @sorting == 'active'
-      petitions = petitions.order(active_rate_value: direction)
+      #petitions = petitions.order(active_rate_value: direction)
+      petitions = $redis.zrange('active_rate', 0, 160)
     elsif @sorting == 'biggest'
-      petitions = petitions.order(signatures_count: direction)
+      petitions = $redis.zrange('petition_size', 0, 160)
+      #petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
     elsif @sorting == 'signquick'
@@ -31,12 +33,23 @@ class PetitionsController < ApplicationController
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
       { type: 'newest', label: t('index.sort.new') },
-      #{ type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'biggest', label: t('index.sort.biggest') },
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
-    @petitions = petitions.paginate(page: @page, per_page: 12)
 
+    #if petitions.is_a?(Array)
+    #  p2 = []
+    #  petitions.each do |id| 
+    #    petition = Petition.live.find_by_id(id)
+    #    if petition
+    #      p2.push(petition)
+    #    end
+    #  end 
+    #  petitions = p2
+    #end
+
+    @petitions = petitions.paginate(page: @page, per_page: 12)
     respond_to do |format|
       format.html
       format.js
@@ -121,7 +134,7 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @chart_data, @chart_labels = @petition.history_chart_json
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=40)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
   end
@@ -168,6 +181,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/new
   def new
     @petition = Petition.new
+
+    @exclude_list = []
 
     set_organisation_helper
 
