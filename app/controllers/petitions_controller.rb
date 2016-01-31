@@ -59,7 +59,7 @@ class PetitionsController < ApplicationController
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
-    petitions = Petition.joins(:translations)
+    petitions = Petition.live.joins(:translations)
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
