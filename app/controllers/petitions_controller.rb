@@ -169,6 +169,8 @@ class PetitionsController < ApplicationController
   def new
     @petition = Petition.new
 
+    @exclude_list = [] 
+
     set_organisation_helper
 
     if user_signed_in?
