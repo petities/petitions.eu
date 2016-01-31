@@ -49,6 +49,13 @@ class PetitionPolicy < ApplicationPolicy
         :petitioner_telephone,           
       ]
     end
+
+    # if signature count < 100
+    # petition can still be edited
+
+    if petition.get_count.to_i < 100
+      return remove
+    end
     
     unless user.has_role?(:admin, petition.office)
       unless petition.is_draft? or petition.is_staging?

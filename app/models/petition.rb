@@ -168,6 +168,10 @@ class Petition < ActiveRecord::Base
 
   before_validation :strip_whitespace
 
+  def get_count
+    $redis.get('p%s-count' % id).to_i || signatures_count
+  end
+
   def strip_whitespace
     self.name = name.strip unless name.nil?
     self.description = description.strip unless description.nil?

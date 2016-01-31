@@ -3,6 +3,15 @@
     div.errors-empty: p= t('errors.messages.empty')
     div.errors-too-long: p= t('errors.messages.too_long')
 
+  - if @exclude_list.size > 0
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title.has_error_help
+          = t('start.form.cannot_edit_live_petition')
+      div.start-petition-form-cell.label.has_error_help
+        p= t('start.form.cannot_edit_live_petition')
+
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title
