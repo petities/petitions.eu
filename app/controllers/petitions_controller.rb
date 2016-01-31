@@ -207,6 +207,8 @@ class PetitionsController < ApplicationController
       end
     end
 
+    @exclude_list = []
+
     @password = 'you already have'
 
     if user_signed_in?
@@ -215,7 +217,7 @@ class PetitionsController < ApplicationController
     else
       user_params = params[:user]
 
-      if user_params[:email]
+      unless user_params[:email].blank?
         owner = User.where(email: user_params[:email]).first
 
         unless owner
@@ -237,6 +239,17 @@ class PetitionsController < ApplicationController
           @password = password
           # send welcome / password if needed
         end
+      else
+
+        @missing_email = t('petition.missing_email')
+
+        respond_to do |format|
+          format.html { render :new, flash: { success: t('petition.missing_email') } }
+          format.json { render json: @petition.errors, status: :unprocessable_entity }
+        end
+
+        return
+
       end
     end
 
