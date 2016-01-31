@@ -13,7 +13,7 @@ class SignaturesController < ApplicationController
   def index
     find_petition
 
-    @all_signatures = @petition.signatures.special.limit(900)
+    @all_signatures = @petition.signatures.confirmed.limit(900)
 
     unless request.xhr?
       # make redis!

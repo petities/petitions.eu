@@ -217,8 +217,17 @@ class Petition < ActiveRecord::Base
     end
   end
 
+  def last_sig_update
+    last = $redis.get('p%s-last' % id)
+    if last
+      last = Time.parse(last)
+      return last
+    end
+    last_confirmed_at || Time.now
+  end
+
   def elapsed_time
-    Time.now - (last_confirmed_at || Time.now)
+        Time.now - (last_confirmed_at || Time.now)
   end
 
   def active_rate
@@ -245,7 +254,9 @@ class Petition < ActiveRecord::Base
 
     a_rate = short / total
 
+    # remove old active rate
     $redis.zrem('active_rate', id)
+    # add new active rate
     $redis.zadd('active_rate', a_rate, id)
 
     a_rate
@@ -346,13 +357,11 @@ class Petition < ActiveRecord::Base
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
 
-
     return [data, labels]
   end
 
   def history_chart_json
     #return [[],[]]
-
     label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
                  .compact
                  .group_by { |signature| signature.strftime('%Y-%m-%d') }

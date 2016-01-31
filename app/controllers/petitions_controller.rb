@@ -50,10 +50,12 @@ class PetitionsController < ApplicationController
     #end
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
+
     respond_to do |format|
       format.html
       format.js
     end
+
   end
 
   def all

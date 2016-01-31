@@ -127,10 +127,10 @@ class Signature < ActiveRecord::Base
 
       self.set_redis_counts
 
-      petition.last_confirmed_at = Time.now.utc
-      petition.signatures_count += 1
-      petition.update_active_rate!
-      petition.save
+      #petition.last_confirmed_at = Time.now.utc
+      #petition.signatures_count += 1
+      #petition.update_active_rate!
+      #petition.save
     end
 
   end
@@ -139,42 +139,41 @@ class Signature < ActiveRecord::Base
 
     t = created_at
 
-    if t > 40.days.ago
-      # last updates
-      last = $redis.get('p%s-last' % petition.id)
-      if last and created_at < Time.parse(last)
-        $redis.set('p%s-last' % petition.id, t.to_i)
-      end
+    # last updates
+    last = $redis.get('p%s-last' % petition.id)
+    if last and created_at < Time.parse(last)
+      $redis.set('p%s-last' % petition.id, t.to_i)
     end
 
     $redis.pipelined do
 
       # year count
-      $redis.incr('p%s-%s-y' % [
-        petition.id, Date.new(t.year, 1,1).to_s])
-
-      # city count
-      $redis.zincrby('p%s_city' % id, 1,  person_city.downcase)
-
+      #
+      #$redis.incr('p%s-%s-y' % [
+      #  petition.id, Date.new(t.year, 1,1).to_s])
+      #
       # graph data counts
       # only make keys of recent signatures
-      if t > 50.days.ago
 
-        #$redis.incr('p%s-%s-m' % [
-        #  petition.id, Date.new(t.year, t.month).to_s])
+      #$redis.incr('p%s-%s-m' % [
+      #  petition.id, Date.new(t.year, t.month).to_s])
 
-        #$redis.incr('p%s-%s-d' % [
-        #  petition.id, Date.new(t.year, t.month, t.day).to_s])
+      $redis.incr('p%s-%s-d' % [
+        petition.id, Date.new(t.year, t.month, t.day).to_s])
 
-        $redis.incr('p%s-%s-h' % [
-          petition.id, Date.new(t.year, t.month, t.day, t.hour).to_s])
-      end
+      #$redis.incr('p%s-%s-h' % [
+      #  petition.id, Date.new(t.year, t.month, t.day, t.hour).to_s])
 
     end
 
     if not task
+      # city count
+      $redis.zincrby('p%s-city' % id, 1,  person_city.downcase)
+      # size rating
       $redis.zincrby('petition_size', 1,  petition.id)
+      # size count
       $redis.incr('p%s-count' % petition.id)
+      # activity rating
       petition.update_active_rate!
     end
 
