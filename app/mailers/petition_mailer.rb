@@ -114,7 +114,7 @@ class PetitionMailer < ApplicationMailer
     target = @petition.office.email
     subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.procedural_subject', petition: petition.name)
-    mail(from: 'bounces@petities.nl', reply_to: subdomain,
+    mail(from: 'webmaster@petities.nl', reply_to: subdomain,
          to: target, subject: subject)
   end
 
@@ -126,7 +126,7 @@ class PetitionMailer < ApplicationMailer
     target = @petition.office.email
     subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.reference_subject', petition: petition.name)
-    mail(from: 'bounces@petities.nl', reply_to: subdomain,
+    mail(from: 'webmaster@petities.nl', reply_to: subdomain,
          to: target, subject: subject)
   end
 
@@ -134,17 +134,21 @@ class PetitionMailer < ApplicationMailer
   def status_change_mail(petition, target: nil)
     @petition = petition
     @office = petition.office
-    subject = t('mail.status.changed_subject',        petition: petition.name,
-                                                      status: petition.status) + t("show.overview.status.#{@petition.state_summary}")
+
+    subject = t('mail.status.changed_subject',
+                petition: petition.name,
+                status: petition.status) + 
+                t("show.overview.status.#{@petition.state_summary}")
 
     if target.nil?
       # NOTE petitioner_email can be wrong?
       # should we not send email to admin users?
       target = @petition.petitioner_email
     end
-    if @petition.petitioner_email
-      mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl',
-           to: target, subject: subject)
+
+    if target 
+      mail(from: 'webmaster@petities.nl', reply_to: 'webmaster@petities.nl',
+         to: target, subject: subject)
     end
   end
 

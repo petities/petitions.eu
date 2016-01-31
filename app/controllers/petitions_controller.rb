@@ -136,7 +136,7 @@ class PetitionsController < ApplicationController
       return
     end
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -267,7 +267,7 @@ class PetitionsController < ApplicationController
 
     @page = params[:page]
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -309,7 +309,7 @@ class PetitionsController < ApplicationController
   def update_owners
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
@@ -358,7 +358,7 @@ class PetitionsController < ApplicationController
   def update
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -457,16 +457,6 @@ class PetitionsController < ApplicationController
         return redirect_to @petition, status: :moved_permanently
       end
     end
-  end
-
-  def find_owners
-    # User.joins(:roles).where(
-    #  roles: { resource_type: 'Petition', resource_id: @petition.id })
-    unless @petition.roles.empty?
-      role_id = @petition.roles[0].id
-      User.joins(:roles).where(roles: { id: role_id })
-    end
-    []
   end
 
   def update_locale_list

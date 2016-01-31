@@ -196,9 +196,23 @@ class Petition < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
+
+  def find_owners
+    unless self.roles.empty?
+      role_id = self.roles[0].id
+      return User.joins(:roles).where(roles: { id: role_id })
+    end
+    []
+  end
+
+
   def send_status_mail
     if self.status_changed?
-      PetitionMailer.status_change_mail(self).deliver_later
+
+      self.find_owners.each do |user|
+        PetitionMailer.status_change_mail(self, target: user.email).deliver_later
+      end
+
       PetitionMailer.status_change_mail(self, target: 'nederland@petities.nl').deliver_later
     end
   end
