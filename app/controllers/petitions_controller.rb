@@ -59,7 +59,7 @@ class PetitionsController < ApplicationController
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
-    petitions = Petition.joins(:translations)
+    petitions = Petition.live.joins(:translations)
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
@@ -136,7 +136,7 @@ class PetitionsController < ApplicationController
       return
     end
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -207,6 +207,8 @@ class PetitionsController < ApplicationController
       end
     end
 
+    @exclude_list = []
+
     @password = 'you already have'
 
     if user_signed_in?
@@ -215,7 +217,7 @@ class PetitionsController < ApplicationController
     else
       user_params = params[:user]
 
-      if user_params[:email]
+      unless user_params[:email].blank?
         owner = User.where(email: user_params[:email]).first
 
         unless owner
@@ -237,6 +239,17 @@ class PetitionsController < ApplicationController
           @password = password
           # send welcome / password if needed
         end
+      else
+
+        @missing_email = t('petition.missing_email')
+
+        respond_to do |format|
+          format.html { render :new, flash: { success: t('petition.missing_email') } }
+          format.json { render json: @petition.errors, status: :unprocessable_entity }
+        end
+
+        return
+
       end
     end
 
@@ -267,7 +280,7 @@ class PetitionsController < ApplicationController
 
     @page = params[:page]
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -309,7 +322,7 @@ class PetitionsController < ApplicationController
   def update_owners
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
@@ -358,7 +371,7 @@ class PetitionsController < ApplicationController
   def update
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -457,16 +470,6 @@ class PetitionsController < ApplicationController
         return redirect_to @petition, status: :moved_permanently
       end
     end
-  end
-
-  def find_owners
-    # User.joins(:roles).where(
-    #  roles: { resource_type: 'Petition', resource_id: @petition.id })
-    unless @petition.roles.empty?
-      role_id = @petition.roles[0].id
-      User.joins(:roles).where(roles: { id: role_id })
-    end
-    []
   end
 
   def update_locale_list
