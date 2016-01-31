@@ -106,7 +106,6 @@ $(document).ready(function(){
   });
 
 
-
   $("#petition_organisation_kind").change(function () {
     $(this).select_org_menu();
   });

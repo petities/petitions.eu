@@ -3,6 +3,15 @@
     div.errors-empty: p= t('errors.messages.empty')
     div.errors-too-long: p= t('errors.messages.too_long')
 
+  - if @exclude_list.size > 0
+
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title.has_error_help
+          = t('start.form.cannot_edit_live_petition')
+      div.start-petition-form-cell.label.has_error_help
+        p= t('start.form.cannot_edit_live_petition')
+
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title
@@ -10,6 +19,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_name"
           | 0 / 80
       = f.text_field(:name, class: 'start-petition-form-cell-input validation',
+        disabled: @exclude_list.include?(:name), 
         'data-chars'=> 80, 'placeholder'=> t('start.form.name.placeholder', default: "clear slogan!"))
       div.errors
     div.start-petition-form-cell.label
@@ -22,6 +32,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_description"
           | 0 / 300
       = f.text_area(:description, class: 'start-petition-form-cell-input validation', style: "height:100px;",
+        disabled: @exclude_list.include?(:description), 
         'data-chars'=> 300, 'placeholder'=> t('start.form.short_description.placeholder', default: "sell this petition!"))
       div.errors
     div.start-petition-form-cell.label
@@ -46,6 +57,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_initiators"
           | 0 / 100
       = f.text_area(:initiators, class: 'start-petition-form-cell-input validation',
+        :disabled => @exclude_list.include?(:initiators),
         style: "height:100px;", 'data' => {'chars'=> 100},
         'placeholder'=> t('start.form.we.placeholder', default: "who are you!?"))
       div.errors
@@ -59,6 +71,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_statement"
           | 0 / 450
       = f.text_area(:statement, class: 'start-petition-form-cell-input validation', style: "height:100px;",
+        :disabled => @exclude_list.include?(:statement),
         'data-chars' => 450,
         'placeholder'=> t('start.form.observe.placeholder', default: "what are you upset about?"))
       div.errors
@@ -72,6 +85,7 @@
         div.start-petition-form-cell-charcount.charCount id="charCount_petition_request"
           | 0 / 450
       = f.text_area :request, class: 'start-petition-form-cell-input validation', style: "height:100px;",
+        :disabled => @exclude_list.include?(:request),
         'data-chars' => 450, 'placeholder'=> t('start.form.request.placeholder', default: "what should be done about it?")
       div.errors
     div.start-petition-form-cell.label
@@ -153,7 +167,10 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.organisation.label')
-        = f.text_field :petitioner_organisation, class: 'start-petition-form-cell-input'
+        = f.text_field(:petitioner_organisation, 
+          :disabled => @exclude_list.include?(:petitioner_organisation),
+          class: 'start-petition-form-cell-input')
+ 
       div.start-petition-form-cell.label
         p= t('start.form.petitioner.organisation.description')
 

@@ -169,6 +169,8 @@ class PetitionsController < ApplicationController
   def new
     @petition = Petition.new
 
+    @exclude_list = [] 
+
     set_organisation_helper
 
     if user_signed_in?
@@ -260,6 +262,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/1/edit
   def edit
     authorize @petition
+
+    @exclude_list = policy(@petition).invalid_attributes
 
     @page = params[:page]
 

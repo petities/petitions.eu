@@ -78,6 +78,11 @@ class Signature < ActiveRecord::Base
             on: :update,
             if: :require_full_address?
 
+  validates :person_function,
+            length: { maximum: 254 },
+            on: :update
+            
+
   validates :person_street,
             length: { in: 3..255 },
             on: :update,
@@ -118,9 +123,11 @@ class Signature < ActiveRecord::Base
 
   def update_petition
 
-    self.set_redis_counts
 
     if self.confirmed_changed?
+
+      self.set_redis_counts
+
       petition.last_confirmed_at = Time.now.utc
       petition.signatures_count += 1
       petition.update_active_rate!
@@ -131,28 +138,26 @@ class Signature < ActiveRecord::Base
 
   def set_redis_counts
 
-    if self.confirmed_changed?
-      t = created_at
+    t = created_at
 
-      #petition.last_confirmed_at = Time.now.utc
-      #petition.last_confirmed_at = Time.now.utc
-      $redis.incr('p%s-last-' % [petition.id, t.to_i])
+    #petition.last_confirmed_at = Time.now.utc
+    #petition.last_confirmed_at = Time.now.utc
+    $redis.incr('p%s-last-' % [petition.id, t.to_i])
 
-      $redis.incr('p%s-count' % petition.id)
+    $redis.incr('p%s-count' % petition.id)
 
-      $redis.incr('p%s-%s-count' % [
-        petition.id, t.year])
+    $redis.incr('p%s-%s-count' % [
+      petition.id, t.year])
 
-      $redis.incr('p%s-%s-%s-count' % [
-        petition.id, t.year, t.month])
+    $redis.incr('p%s-%s-%s-count' % [
+      petition.id, t.year, t.month])
 
-      $redis.incr('p%s-%s-%s-%s-count' % [
-        petition.id, t.year, t.month, t.day])
+    $redis.incr('p%s-%s-%s-%s-count' % [
+      petition.id, t.year, t.month, t.day])
 
-      $redis.incr('p%s-%s-%s-%s-count' % [
-        petition.id, t.year, t.month, t.day, t.hour])
+    $redis.incr('p%s-%s-%s-%s-count' % [
+      petition.id, t.year, t.month, t.day, t.hour])
 
-    end
   end
 
   def require_full_address?

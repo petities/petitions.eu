@@ -120,6 +120,20 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should_get_limited_edit' do
+    sign_in_admin_for @petition
+    $redis.set('p%s-count' % @petition.id, 200)
+    get :edit, id: @petition.friendly_id
+    assert_response :success
+    assert_not_nil assigns(:exclude_list)
+    assert_equal(
+      [:name, :subdomain, :initiators, :statement, :request],
+      assigns(:exclude_list)
+    )
+  end
+
+
+
   test 'should get edit as office admin' do
     sign_in_admin_for @petition.office
     get :edit, id: @petition.friendly_id

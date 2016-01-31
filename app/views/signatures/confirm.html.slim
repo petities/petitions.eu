@@ -126,8 +126,16 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          div.start-petition-form-cell-title= t('confirm.form.function.label')
-          = f.text_area :person_function, class: 'start-petition-form-cell-input'
+          div.start-petition-form-cell-title
+            = t('confirm.form.function.label')
+            div.start-petition-form-cell-charcount.charCount id="charCount_signature_person_function"
+              | 0 / 253
+
+          = f.text_area(:person_function,
+                'data-chars': 253,
+                class: 'start-petition-form-cell-input validation')
+          div.errors
+
           /input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
         div.start-petition-form-cell.label
           p= t('confirm.form.function.description')
