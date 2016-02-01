@@ -54,13 +54,13 @@ namespace :petition do
 
     r = Redis.new
     # delete old rankings
-    r.del('petition_size')
-    r.del('active_rate')
+    #r.del('petition_size')
+    #r.del('active_rate')
 
     def delete_petition_keys petition
       r = Redis.new
       keys = r.keys('p%s-*' % petition.id)
-      puts 'Delete old keys %s' % keys.size
+      #puts 'Delete old keys %s' % keys.size
       if keys.size > 0
         r.del(*keys)
       end
@@ -104,11 +104,11 @@ namespace :petition do
       $redis.zadd('petition_size', count, petition.id)
 
       puts Benchmark.measure {
-        create_barchart_keys petition
+       create_barchart_keys petition
       }
 
       # calculate active rate once
-      puts 'active_rate %s' % petition.active_rate
+      puts '%s active_rate %f' % [index, petition.active_rate]
       puts ''
 
       # petition top score!

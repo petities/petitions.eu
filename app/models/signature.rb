@@ -161,8 +161,9 @@ class Signature < ActiveRecord::Base
       $redis.incr('p%s-%s-d' % [
         petition.id, Date.new(t.year, t.month, t.day).to_s])
 
-      #$redis.incr('p%s-%s-h' % [
-      #  petition.id, Date.new(t.year, t.month, t.day, t.hour).to_s])
+      # used for activity rate
+      $redis.incr('p%s-%s-h' % [
+        petition.id, Date.new(t.year, t.month, t.day, t.hour).to_s])
 
     end
 
