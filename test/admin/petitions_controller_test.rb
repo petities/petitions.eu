@@ -1,7 +1,7 @@
 require 'active_admin_helper'
 
 module Admin
-  # Make sure we can perform basic cities administration
+  # Make sure we can perform basic petition administration
   class PetitionsControllerTest < ActionController::TestCase
     include ActiveAdminHelper
 
@@ -13,23 +13,23 @@ module Admin
     end
 
     test 'should get show' do
-      get :show, id: @petition.id
+      get :show, id: @petition
       assert_response :success
     end
 
     test 'should get edit' do
-      get :edit, id: @petition.id
+      get :edit, id: @petition
       assert_response :success
     end
 
     test 'should update' do
-      patch :update, id: @petition.id, update: @petition.attributes
+      patch :update, id: @petition, update: @petition.attributes
       assert_redirected_to admin_petition_path(assigns(:petition))
     end
 
     test 'should destroy' do
       assert_difference('Petition.count', -1) do
-        delete :destroy, id: @petition.id
+        delete :destroy, id: @petition
       end
 
       assert_redirected_to admin_petitions_path
