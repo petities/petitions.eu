@@ -61,10 +61,12 @@ namespace :petition do
     def delete_petition_keys petition
       r = Redis.new
       keys = r.keys('p%s-*' % petition.id)
-      #puts 'Delete old keys %s' % keys.size
+      puts 'Delete old keys %s' % keys.size
+
       if keys.size > 0
         r.del(*keys)
       end
+
     end
 
     def create_barchart_keys petition

@@ -344,7 +344,7 @@ class Petition < ActiveRecord::Base
     
     labels = last_30_days.map do |key| 
       key = key.remove('p%s-' % id)
-      key[0..-3]
+      key = key[0..-3]
     end
 
     if labels.size > 20
