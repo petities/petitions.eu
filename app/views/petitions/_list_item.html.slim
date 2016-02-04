@@ -19,7 +19,7 @@ div.petition-overview
       = petition.name || 'name missing?'
     div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
       = petition.get_count
-      - ar = '%f' % petition.active_rate
-      =<> ar
+      //- ar = '%f' % petition.active_rate
+      //=<> ar
 
     div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)
