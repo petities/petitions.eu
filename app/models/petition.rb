@@ -233,23 +233,18 @@ class Petition < ActiveRecord::Base
   def active_rate
     # get counts 18 hours
     # get counts 2 hour
-    last_hours = $redis.keys('p%s*h' % id).sort.last(12)
+    last_hours = $redis.keys('p%s-*-h' % id).sort.last(12)
 
     total = 100.0 
+    short = 1.0
 
-    last_hours.first(10).each do |key|
+    last_hours.last(12).each_with_index do |key, index|
       v =  $redis.get(key)       
       v = v.to_f
       total = total + v 
-    end
-
-    short = 1.0
-
-    last_hours.last(2).each do |key|
-      v = $redis.get(key)
-      v = v.to_f
-      total = total + v 
-      short = short + v
+      if index > 9
+        short = short + v
+      end
     end
 
     a_rate = short / total

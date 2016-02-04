@@ -81,7 +81,7 @@
 #   puts petition.friendly_id
 # end
 #
-petitions = Petition.live.limit(20)
+petitions = Petition.live.limit(200)
 
 petitions.each do |petition|
   puts '%-6s signatures %5s' % [petition.id, petition.signatures.count]
@@ -112,10 +112,10 @@ petitions.each do |petition|
       confirmed: true,
     #:description => Faker::Lorem.sentence,
     )
-    # signature.save
+    signature.save
   end
 
-  count = petition.signatures.count
-  petition.update(signatures_count: count)
-  petition.update_active_rate!
+  #count = petition.signatures.count
+  #petition.update(signatures_count: count)
+  #petition.update_active_rate!
 end
