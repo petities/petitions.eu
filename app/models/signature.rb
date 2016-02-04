@@ -134,7 +134,11 @@ class Signature < ActiveRecord::Base
 
   def set_redis_counts(task=false)
 
-    t = created_at
+    t = created_at || updated_at
+
+    unless t
+      return
+    end
 
     # last updates
     last = $redis.get('p%s-last' % petition.id)
