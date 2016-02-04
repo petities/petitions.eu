@@ -126,11 +126,8 @@ class Signature < ActiveRecord::Base
     if self.confirmed_changed?
 
       self.set_redis_counts
+      # no more hit/edit/save on petition! YAY
 
-      #petition.last_confirmed_at = Time.now.utc
-      #petition.signatures_count += 1
-      #petition.update_active_rate!
-      #petition.save
     end
 
   end

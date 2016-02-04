@@ -54,6 +54,7 @@ namespace :petition do
 
     r = Redis.new
     # delete old rankings
+    #
     #r.del('petition_size')
     #r.del('active_rate')
 
