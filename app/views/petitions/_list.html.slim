@@ -1,30 +1,9 @@
-- @petitions.each do |petition|
+- list = @petitions
+- if @ranked_petitions
+  - unless @ranked_petitions.empty?
+    - list = @ranked_petitions
 
-  - if petition.is_a?(String)
-    - petition = Petition.live.find_by_id(petition)
-    - if not petition
-     - next
-
+- list.each do |petition|
   - cache [petition, petition.get_count, I18n.locale || :nl] do
-    - id = petition.id
 
-    div.petition-overview
-      = link_to petition_path(petition), class: 'petition-overview-image-container' do
-        - if petition.images.last.present?
-          = image_tag petition.images.last.upload.url, class: 'petition-overview-image'
-        - else
-          canvas id="chartContainer#{id}" data={chartid: id, chartdata: "chartData#{id}", chartlabels: "chartLabels#{id}"} class='petition-overview-image chart-canvas' style="background-color: #bcf9c7; height: 200px;"
-
-          - data, labels = petition.redis_history_chart_json 10
-          javascript:
-            window.chartData#{id} = #{raw data},
-            window.chartLabels#{id} = #{raw labels};
-
-      div.petition-overview-info-container
-        h2.petition-overview-info-title
-          = link_to petition_path(petition) do
-            = petition.name || 'name missing?'
-        div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
-          = petition.get_count
-
-        div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)
+    = render partial: 'petitions/list_item', locals: {petition: petition} 

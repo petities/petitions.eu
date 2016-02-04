@@ -37,19 +37,21 @@ class PetitionsController < ApplicationController
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
-
-    #if petitions.is_a?(Array)
-    #  p2 = []
-    #  petitions.each do |id| 
-    #    petition = Petition.live.find_by_id(id)
-    #    if petition
-    #      p2.push(petition)
-    #    end
-    #  end 
-    #  petitions = p2
-    #end
-
     @petitions = petitions.paginate(page: @page, per_page: 12)
+
+    @ranked_petitions = []
+
+    if @petitions.is_a?(Array)
+      petitions = Petition.live.where(id: @petitions)
+      @ranked_petitions = petitions
+
+      # to make test pass.(redis can have data)
+      # TODO proper test redis
+      if @ranked_petitions.empty?
+        @petitions.clear() 
+      end
+
+    end
 
     respond_to do |format|
       format.html
