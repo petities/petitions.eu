@@ -1,5 +1,6 @@
 en:
   mail:
+    confirm_from: confirm.signature@petities.nl
     confirm:
       signature:
         ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"

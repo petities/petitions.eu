@@ -7,7 +7,7 @@ class SignatureMailerTest < ActionMailer::TestCase
 
     assert_equal 'Bevestig alstublieft uw ondertekening voor de petitie "test1," (vertrouwelijk, stuur niet door)', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
-    assert_equal ['bounces@petities.nl'], mail.from
+    assert_equal ['bevestig.handtekening@petities.nl'], mail.from
 
     assert_match signature.person_name, mail.body.encoded
     assert_match 'https://localhost/signatures/testkey/confirm', mail.body.encoded
