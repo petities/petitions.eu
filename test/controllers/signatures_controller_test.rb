@@ -135,7 +135,8 @@ class SignaturesControllerTest < ActionController::TestCase
   test 'check confirmation logic' do
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
-        assert_difference('Petition.find(2).signatures_count') do
+        assert_difference('$redis.get("p2-count").to_i') do
+        #assert_difference('Petition.find(2).signatures_count') do
           get :confirm, signature_id: @newsignature.unique_key
         end
       end
@@ -144,7 +145,8 @@ class SignaturesControllerTest < ActionController::TestCase
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
       assert_no_difference('Signature.count') do
-        assert_no_difference('Petition.find(2).signatures_count') do
+        #assert_no_difference('Petition.find(2).signatures_count') do
+        assert_no_difference('$redis.get("p2-count").to_i') do
           get :confirm, signature_id: @newsignature.unique_key
         end
       end

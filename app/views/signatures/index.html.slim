@@ -7,7 +7,7 @@ div.page.top
       = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
     div.petition-intro-info-container
       h1.petition-intro-info-title= @petition.name
-      div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
+      div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
       div.petition-intro-info-text.whitespace
         p= @petition.description
 

@@ -1,5 +1,6 @@
 nl:
   mail:
+    confirm_from: bevestig.handtekening@petities.nl
     dear: Geachte
     handed_over: '
 Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. De petitie is overhandigd!

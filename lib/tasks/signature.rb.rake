@@ -61,8 +61,6 @@ namespace :signature do
     end
   end
 
-
-
   desc 'Send reminder to confirm signature'
   task send_reminder: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/send_reminders.log')

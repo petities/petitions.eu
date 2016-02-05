@@ -19,9 +19,11 @@ class PetitionsController < ApplicationController
     direction = [:desc, :asc][@order]
 
     if @sorting == 'active'
-      petitions = petitions.order(active_rate_value: direction)
+      #petitions = petitions.order(active_rate_value: direction)
+      petitions = $redis.zrevrange('active_rate', 0, 160)
     elsif @sorting == 'biggest'
-      petitions = petitions.order(signatures_count: direction)
+      petitions = $redis.zrevrange('petition_size', 0, 160)
+      #petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
     elsif @sorting == 'signquick'
@@ -31,16 +33,30 @@ class PetitionsController < ApplicationController
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
       { type: 'newest', label: t('index.sort.new') },
-      #{ type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'biggest', label: t('index.sort.biggest') },
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
+    @ranked_petitions = []
+
+    if @petitions.is_a?(Array)
+      @petitions.each do |id| 
+        petition = Petition.live.find_by_id(id)
+        if petition
+          @ranked_petitions.push(petition)
+        end
+        petition = nil
+      end 
+      @petitions.clear 
+    end
+
     respond_to do |format|
       format.html
       format.js
     end
+
   end
 
   def all
@@ -121,7 +137,7 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @chart_data, @chart_labels = @petition.history_chart_json
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=20)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
   end
@@ -169,7 +185,7 @@ class PetitionsController < ApplicationController
   def new
     @petition = Petition.new
 
-    @exclude_list = [] 
+    @exclude_list = []
 
     set_organisation_helper
 

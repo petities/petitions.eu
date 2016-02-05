@@ -123,40 +123,42 @@ class Signature < ActiveRecord::Base
 
   def update_petition
 
-
     if self.confirmed_changed?
-
       self.set_redis_counts
-
-      petition.last_confirmed_at = Time.now.utc
-      petition.signatures_count += 1
-      petition.update_active_rate!
-      petition.save
+      # no more hit/edit/save on petition! YAY
     end
 
   end
 
-  def set_redis_counts
+  def set_redis_counts(task=false)
 
-    t = created_at
+    t = created_at || updated_at
 
-    #petition.last_confirmed_at = Time.now.utc
-    #petition.last_confirmed_at = Time.now.utc
-    $redis.incr('p%s-last-' % [petition.id, t.to_i])
+    unless t
+      return
+    end
 
-    $redis.incr('p%s-count' % petition.id)
+    # last updates
+    last = $redis.get('p-last-%s' % petition.id).to_i || 3600
+    last =  Time.at(last)
 
-    $redis.incr('p%s-%s-count' % [
-      petition.id, t.year])
+    if t > last
+      $redis.set('p-last-%s' % petition.id, t.to_i)
+    end
 
-    $redis.incr('p%s-%s-%s-count' % [
-      petition.id, t.year, t.month])
-
-    $redis.incr('p%s-%s-%s-%s-count' % [
+    $redis.incr('p-d-%s-%s-%s-%s' % [
       petition.id, t.year, t.month, t.day])
 
-    $redis.incr('p%s-%s-%s-%s-count' % [
-      petition.id, t.year, t.month, t.day, t.hour])
+    if not task
+      # city count
+      $redis.zincrby('p%s-city' % id, 1,  person_city.downcase)
+      # size rating
+      $redis.zincrby('petition_size', 1,  petition.id)
+      # size count
+      $redis.incr('p%s-count' % petition.id)
+      # activity rating
+      petition.update_active_rate!
+    end
 
   end
 
@@ -195,7 +197,6 @@ class Signature < ActiveRecord::Base
   def send_confirmation_mail
 
     if last_reminder_sent_at.nil?
-    # puts 'sending mail???'
       SignatureMailer.sig_confirmation_mail(self).deliver_later
     end
     true

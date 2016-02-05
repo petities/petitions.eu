@@ -26,7 +26,7 @@ class SignatureMailer < ApplicationMailer
       signature_id: @signature.unique_key)
 
     subject = t('mail.petition.has_answer_subject', petition: @petition.name)
-
+    
     mail(to: signature.person_email, subject: subject)
   end
 
@@ -60,8 +60,10 @@ class SignatureMailer < ApplicationMailer
     name = @signature.petition.name if @signature.petition.present?
 
     subject = t('mail.confirm.signature.subject', petition_name: name)
-
-    mail(to: @signature.person_email, subject: subject)
+   
+    mail(
+      from: t('mail.confirm_from'),
+      to: @signature.person_email, subject: subject)
   end
 
   def sig_reminder_confirm_mail(signature)

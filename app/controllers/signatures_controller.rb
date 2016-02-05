@@ -13,11 +13,13 @@ class SignaturesController < ApplicationController
   def index
     find_petition
 
-    @all_signatures = @petition.signatures.special.limit(900)
+    @all_signatures = @petition.signatures.confirmed.limit(900)
 
     unless request.xhr?
       # make redis!
-      @chart_data, @chart_labels = @petition.history_chart_json
+      @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
+
+      # redis ranking!
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
                                   .select { |group| group[1] >= 50 }

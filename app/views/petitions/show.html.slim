@@ -38,16 +38,16 @@ div.page
   javascript:
     window.page = 1;
 
-  - cache [@petition, Globalize.locale.to_s, @answer] do
+  - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
 
     section class=(@images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
         = image_tag( @images.last.upload.url, class: 'petition-intro-image') unless @images.last.nil? || @images.last.upload_file_name.nil?
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
-        div.petition-intro-info-counter= t('show.signatures_count', count: @petition.signatures_count)
+        div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
         div.petition-intro-info-text
-          = markdown @petition.description
+          p= markdown @petition.description
 
     section.petition-container
       div.petition-text-wrapper

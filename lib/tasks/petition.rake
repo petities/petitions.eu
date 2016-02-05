@@ -2,7 +2,7 @@ namespace :petition do
 
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
-    
+
     Petition.live.each do |petition|
       count = petition.signatures.confirmed.count
       old_count = petition.signatures_count
@@ -18,6 +18,113 @@ namespace :petition do
       if not petition.save
         puts 'Error saving %s' % [petition.name]
       end
+
+    end
+  end
+
+  desc 'create redis signature CITY counts'
+  task set_redis_city_counts: :environment do
+
+    def city_counts
+      @signatures_count_by_city = @all_signatures.group_by(&:person_city)
+                                  .map { |group| [group[0], group[1].size] }
+                                  .select { |group| group[1] >= 20 }
+                                  .sort_by { |group| group[1] }
+    end
+
+    r = Redis.new
+
+    r.del('p%s_city')
+    Petition.live.each_with_index do |petition, index|
+      puts i
+      city_counts(petition).each do |group|
+        city_name = group[0].downcase
+        count = group[1].to_i
+        r.zincrby('p%s_city', count, city_name)
+      end
+    end
+
+  end
+
+
+  desc 'create redis signature counts'
+  task set_redis_signature_counts: :environment do
+
+    require "benchmark"
+
+    r = Redis.new
+
+    def delete_all
+      r = Redis.new
+
+      # delete old rankings
+      r.del('petition_size')
+      r.del('active_rate')
+
+      # delete all petition related keys
+      keys = r.keys('p*')
+      puts 'Delete old keys %s' % keys.size
+      if keys.size > 0
+        r.del(*keys)
+      end
+    end
+
+    # delete everything!
+    delete_all
+
+    def create_barchart_keys petition
+      # create year/day/hour scores!
+      recent_signatures = petition.signatures
+        .confirmed
+        .order('created_at DESC')
+        .limit(2000)
+
+      recent_signatures.each do |signature|
+        signature.set_redis_counts(task=true)
+      end
+    end
+
+    Petition.live.each_with_index do |petition, index|
+
+      r = Redis.new
+
+      count = petition.signatures.confirmed.count
+
+      p_key = 'p%s-count' % petition.id
+
+      old_count = r.get(p_key).to_i || 0
+
+      if petition.name.blank?
+        next
+      end
+
+      puts '%5s - %6s - %6s - %s' % [
+        petition.id, count, old_count, petition.name]
+
+      #delete_petition_keys petition
+
+      # count scores and ranking
+      r.set('p%s-count' % petition.id, count)
+      #$redis.zadd('petition_size', count,  petition.id)
+      $redis.zrem('petition_size', petition.id)
+      $redis.zadd('petition_size', count, petition.id)
+
+      puts
+
+      puts Benchmark.measure {
+       create_barchart_keys petition
+
+      # calculate active rate once
+      puts '%s' % index
+      puts '      active_rate %20f' % petition.active_rate
+      puts '      %s %s' % [r.get(p_key), count]
+
+      }
+      puts
+      # petition top score!
+
+      raise 'Counts mismatch' if r.get(p_key).to_i != count
+
     end
   end
 

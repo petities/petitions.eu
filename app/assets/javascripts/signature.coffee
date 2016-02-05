@@ -14,7 +14,7 @@ suggested = (element, sugestion) ->
   sugestion_id = '#suggest_' + element[0].id
   #console.log(sugestion_id)
   sugElement = $(sugestion_id)
-  sugElement.html sugestion.full
+  sugElement.text sugestion.full
   tipElement = $(tip_id)
   tipElement.show()
 
@@ -22,7 +22,7 @@ empty = (elements, suggestion) ->
   tip_id = '#didyoumean_' + elements[0].id
   sugestion_id = '#suggest_' + elements[0].id
   sugElement = $(sugestion_id)
-  $(sugestion_id).html ""
+  $(sugestion_id).text ""
   tipElement = $(tip_id)
   tipElement.hide()
 

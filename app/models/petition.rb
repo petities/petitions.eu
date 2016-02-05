@@ -217,26 +217,52 @@ class Petition < ActiveRecord::Base
     end
   end
 
+  def last_sig_update
+    last = $redis.get('p-last-%s' % id)
+    if last
+      last = Time.at(last.to_i)
+      return last
+    end
+    1000.days.ago 
+  end
+
   def elapsed_time
-    Time.now - (last_confirmed_at || Time.now)
+        Time.now - (last_confirmed_at || Time.now)
   end
 
   def active_rate
-    if signatures_count > 0
-      signatures.confirmed.where('created_at >= ?', 8.hour.ago).size.to_f || 100 / 
-      signatures.confirmed.where('created_at >= ?', 1.hour.ago).size.to_f || 1
-    else
-      0
+
+    short = 1.0
+    total = 100.0 
+
+    now = Time.now
+
+    15.times do |i|
+      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
+      v =  $redis.get(key) || 0       
+      v = v.to_f
+      short += v 
+      now = now - 1.day
     end
+
+    a_rate = short / total
+
+    # remove old active rate
+    $redis.zrem('active_rate', id)
+    # add new active rate
+    $redis.zadd('active_rate', a_rate, id)
+
+    a_rate
+
   end
 
   def update_active_rate!
-    self.active_rate_value = active_rate
-    save
+    self.active_rate
   end
 
   def is_hot?
-    active_rate_value > 0.05
+    score = $redis.zscore('active_rate', id)  || 0
+    score > 0.4
   end
 
   ## petition status summary
@@ -309,10 +335,33 @@ class Petition < ActiveRecord::Base
       office.petition_type.allowed_cities.present?
     end
   end
+  
+  def redis_history_chart_json(hist=10)
+
+    now = Time.now - hist.day
+
+    day_counts = [] 
+    labels = []
+
+    hist.times do |i|
+      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
+      c =  $redis.get(key) || 0       
+      c = c.to_i
+      day_counts.push(c)
+      labels.push('%s-%s-%s' % [now.year, now.month, now.day])
+      now = now + 1.day
+    end
+
+    if labels.size > 20
+      factor = (labels.size / 20.0).ceil
+      labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
+    end
+
+    return [day_counts, labels]
+  end
 
   def history_chart_json
     #return [[],[]]
-
     label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
                  .compact
                  .group_by { |signature| signature.strftime('%Y-%m-%d') }
@@ -324,6 +373,7 @@ class Petition < ActiveRecord::Base
       factor = (labels.size / 20.0).ceil
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
+
     data = label_size.map { |d_s| d_s[1] }
 
     [data, labels]
