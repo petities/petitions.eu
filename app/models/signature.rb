@@ -141,18 +141,13 @@ class Signature < ActiveRecord::Base
     # last updates
     last = $redis.get('p-last-%s' % petition.id).to_i || 3600
     last =  Time.at(last)
-    # puts last, last.to_i
 
-    if created_at > last
-      $redis.set('p-last-%s' % petition.id, created_at.to_i)
+    if t > last
+      $redis.set('p-last-%s' % petition.id, t.to_i)
     end
 
-    $redis.pipelined do
-
-      $redis.incr('p-d-%s-%s-%s-%s' % [
-        petition.id, t.year, t.month, t.day])
-
-    end
+    $redis.incr('p-d-%s-%s-%s-%s' % [
+      petition.id, t.year, t.month, t.day])
 
     if not task
       # city count
