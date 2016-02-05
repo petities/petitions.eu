@@ -137,7 +137,7 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=40)
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=20)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
   end

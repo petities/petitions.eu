@@ -336,13 +336,20 @@ class Petition < ActiveRecord::Base
     end
   end
   
-  def redis_history_chart_json(hist=60)
-    last_30_days = $redis.keys('p-d-%s*' % id).sort.last(hist)
+  def redis_history_chart_json(hist=10)
 
-    data = last_30_days.map.with_index { |key, _i| $redis.get(key).to_i }
-    
-    labels = last_30_days.map do |key| 
-      key = key.remove('p-d-%s-' % id)
+    now = Time.now - hist.day
+
+    day_counts = [] 
+    labels = []
+
+    hist.times do |i|
+      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
+      c =  $redis.get(key) || 0       
+      c = c.to_i
+      day_counts.push(c)
+      labels.push('%s-%s-%s' % [now.year, now.month, now.day])
+      now = now + 1.day
     end
 
     if labels.size > 20
@@ -350,7 +357,7 @@ class Petition < ActiveRecord::Base
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
 
-    return [data, labels]
+    return [day_counts, labels]
   end
 
   def history_chart_json
