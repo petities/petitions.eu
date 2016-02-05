@@ -62,7 +62,9 @@ class ApplicationController < ActionController::Base
     if request.get?
       if has_subdomain?
         unless request.fullpath == '/'
+          
           redirect_to request.url.sub(request.subdomain + '.', '')
+
         end
       end
     end
