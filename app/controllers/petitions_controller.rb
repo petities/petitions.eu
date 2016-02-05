@@ -42,16 +42,15 @@ class PetitionsController < ApplicationController
     @ranked_petitions = []
 
     if @petitions.is_a?(Array)
-      petitions = Petition.live.where(id: @petitions)
-      @ranked_petitions = petitions
-
-      # to make test pass.(redis can have data)
-      # TODO proper test redis
-      if @ranked_petitions.empty?
-        @petitions.clear() 
-      end
-
+      @petitions.each do |id| 
+        petition = Petition.live.find_by_id(id)
+        if petition
+          @ranked_petitions.push(petition)
+        end
+        petition = nil
+      end 
     end
+
 
     respond_to do |format|
       format.html

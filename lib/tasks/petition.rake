@@ -53,21 +53,24 @@ namespace :petition do
     require "benchmark"
 
     r = Redis.new
-    # delete old rankings
-    #
-    #r.del('petition_size')
-    #r.del('active_rate')
 
-    def delete_petition_keys petition
+    def delete_all
       r = Redis.new
-      keys = r.keys('p%s-*' % petition.id)
-      puts 'Delete old keys %s' % keys.size
 
+      # delete old rankings
+      r.del('petition_size')
+      r.del('active_rate')
+
+      # delete all petition related keys
+      keys = r.keys('p*')
+      puts 'Delete old keys %s' % keys.size
       if keys.size > 0
         r.del(*keys)
       end
-
     end
+
+    # delete everything!
+    delete_all
 
     def create_barchart_keys petition
       # create year/day/hour scores!
@@ -98,7 +101,7 @@ namespace :petition do
       puts '%5s - %6s - %6s - %s' % [
         petition.id, count, old_count, petition.name]
 
-      delete_petition_keys petition
+      #delete_petition_keys petition
 
       # count scores and ranking
       r.set('p%s-count' % petition.id, count)
@@ -106,16 +109,21 @@ namespace :petition do
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)
 
+      puts
+
       puts Benchmark.measure {
        create_barchart_keys petition
-      }
 
       # calculate active rate once
-      puts '%s active_rate %f' % [index, petition.active_rate]
-      puts ''
+      puts '%s' % index
+      puts '      active_rate %20f' % petition.active_rate
+      puts '      %s %s' % [r.get(p_key), count]
 
+      }
+      puts
       # petition top score!
-      raise 'Counts mismatch' unless  r.get(p_key) != count
+
+      raise 'Counts mismatch' if r.get(p_key).to_i != count
 
     end
   end

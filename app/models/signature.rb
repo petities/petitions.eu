@@ -124,10 +124,8 @@ class Signature < ActiveRecord::Base
   def update_petition
 
     if self.confirmed_changed?
-
       self.set_redis_counts
       # no more hit/edit/save on petition! YAY
-
     end
 
   end
@@ -141,30 +139,18 @@ class Signature < ActiveRecord::Base
     end
 
     # last updates
-    last = $redis.get('p%s-last' % petition.id)
-    if last and created_at < Time.parse(last)
-      $redis.set('p%s-last' % petition.id, t.to_i)
+    last = $redis.get('p-last-%s' % petition.id).to_i || 3600
+    last =  Time.at(last)
+    # puts last, last.to_i
+
+    if created_at > last
+      $redis.set('p-last-%s' % petition.id, created_at.to_i)
     end
 
     $redis.pipelined do
 
-      # year count
-      #
-      #$redis.incr('p%s-%s-y' % [
-      #  petition.id, Date.new(t.year, 1,1).to_s])
-      #
-      # graph data counts
-      # only make keys of recent signatures
-
-      #$redis.incr('p%s-%s-m' % [
-      #  petition.id, Date.new(t.year, t.month).to_s])
-
-      $redis.incr('p%s-%s-d' % [
-        petition.id, Date.new(t.year, t.month, t.day).to_s])
-
-      # used for activity rate
-      $redis.incr('p%s-%s-h' % [
-        petition.id, Date.new(t.year, t.month, t.day, t.hour).to_s])
+      $redis.incr('p-d-%s-%s-%s-%s' % [
+        petition.id, t.year, t.month, t.day])
 
     end
 
@@ -216,7 +202,6 @@ class Signature < ActiveRecord::Base
   def send_confirmation_mail
 
     if last_reminder_sent_at.nil?
-    # puts 'sending mail???'
       SignatureMailer.sig_confirmation_mail(self).deliver_later
     end
     true

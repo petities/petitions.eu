@@ -218,12 +218,12 @@ class Petition < ActiveRecord::Base
   end
 
   def last_sig_update
-    last = $redis.get('p%s-last' % id)
+    last = $redis.get('p-last-%s' % id)
     if last
-      last = Time.parse(last)
+      last = Time.at(last.to_i)
       return last
     end
-    last_confirmed_at || Time.now
+    1000.days.ago 
   end
 
   def elapsed_time
@@ -231,20 +231,18 @@ class Petition < ActiveRecord::Base
   end
 
   def active_rate
-    # get counts 18 hours
-    # get counts 2 hour
-    last_hours = $redis.keys('p%s-*-h' % id).sort.last(12)
 
-    total = 100.0 
     short = 1.0
+    total = 100.0 
 
-    last_hours.last(12).each_with_index do |key, index|
-      v =  $redis.get(key)       
+    now = Time.now
+
+    15.times do |i|
+      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
+      v =  $redis.get(key) || 0       
       v = v.to_f
-      total = total + v 
-      if index > 9
-        short = short + v
-      end
+      short += v 
+      now = now - 1.day
     end
 
     a_rate = short / total
@@ -263,7 +261,8 @@ class Petition < ActiveRecord::Base
   end
 
   def is_hot?
-    $redis.get('p%s-activity' % id).to_f  > 0.05
+    score = $redis.zscore('active_rate', id)  || 0
+    score > 0.4
   end
 
   ## petition status summary
@@ -338,13 +337,12 @@ class Petition < ActiveRecord::Base
   end
   
   def redis_history_chart_json(hist=60)
-    last_30_days = $redis.keys('p%s*d' % id).sort.last(hist)
+    last_30_days = $redis.keys('p-d-%s*' % id).sort.last(hist)
 
     data = last_30_days.map.with_index { |key, _i| $redis.get(key).to_i }
     
     labels = last_30_days.map do |key| 
-      key = key.remove('p%s-' % id)
-      key = key[0..-3]
+      key = key.remove('p-d-%s-' % id)
     end
 
     if labels.size > 20
