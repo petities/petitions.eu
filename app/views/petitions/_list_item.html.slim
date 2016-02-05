@@ -21,5 +21,6 @@ div.petition-overview
       = petition.get_count
       //- ar = '%f' % petition.active_rate
       //=<> ar
+      //= $redis.zscore('active_rate', id)
 
     div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)

@@ -68,7 +68,6 @@ en:
       action:
         add_details: Update my signature
         confirm: Confirm
-        confirm_from: confirm.signature
         confirm_and_save: Confirm and save
         pledge: I pledge to help
         send_email: Send the invitation
