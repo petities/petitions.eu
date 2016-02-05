@@ -49,8 +49,8 @@ class PetitionsController < ApplicationController
         end
         petition = nil
       end 
+      @petitions.clear 
     end
-
 
     respond_to do |format|
       format.html
