@@ -6,7 +6,7 @@ div.page
       h3.whitespace= t('signatures.petitioner_instructions')
 
     div.petition-signatures-container
-      - cache [cache_key_for_signatures(@petition), @page, @sorting, @order, @search, I18n.locale] do
+      - cache [@petition, @petition.get_count, @page, @sorting, @order, @search, I18n.locale] do
         = render partial: 'signatures/list'
 
       div.clearfix

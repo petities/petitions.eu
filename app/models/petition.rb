@@ -338,7 +338,12 @@ class Petition < ActiveRecord::Base
   
   def redis_history_chart_json(hist=10)
 
-    now = Time.now - hist.day
+    now = Time.now
+
+    start = Time.now - hist.day
+    if created_at and start < created_at
+      start = created_at
+    end
 
     day_counts = [] 
     labels = []
@@ -349,7 +354,10 @@ class Petition < ActiveRecord::Base
       c = c.to_i
       day_counts.push(c)
       labels.push('%s-%s-%s' % [now.year, now.month, now.day])
-      now = now + 1.day
+      start = start + 1.day
+      if start > now
+        break
+      end
     end
 
     if labels.size > 20

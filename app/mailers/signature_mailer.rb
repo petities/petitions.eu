@@ -1,5 +1,7 @@
 class SignatureMailer < ApplicationMailer
-  default from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl'
+  default from: 'bounces@petities.nl', 
+          reply_to: 'webmaster@petities.nl',
+          return_path: 'bounces@petities.nl'
 
   # all signatories get a mail that the hand over took place
   def handed_over_signatories_mail(signature)
