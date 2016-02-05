@@ -22,20 +22,22 @@ class PetitionsControllerTest < ActionController::TestCase
   end
 
   test 'should_create_petition' do
-    assert_no_difference('User.count') do
-      assert_difference('Petition.count') do
-        post :create, petition: {
-          name: @petition.name + 'x',
-          description: @petition.description + 'x',
-          initiators: @petition.initiators + 'y',
-          statement: @petition.statement + 'test',
-          request: @petition.request + 'teest',
-          office_id: 1
-        },
-                      user: {
-                        email: 'test@test.com', # user already exists
-                        name: 'test'
-                      }
+    assert_no_difference('Update.count') do
+      assert_no_difference('User.count') do
+        assert_difference('Petition.count') do
+          post :create, petition: {
+            name: @petition.name + 'x',
+            description: @petition.description + 'x',
+            initiators: @petition.initiators + 'y',
+            statement: @petition.statement + 'test',
+            request: @petition.request + 'teest',
+            office_id: 1
+          },
+                        user: {
+                          email: 'test@test.com', # user already exists
+                          name: 'test'
+                        }
+        end
       end
     end
 
@@ -43,21 +45,23 @@ class PetitionsControllerTest < ActionController::TestCase
   end
 
   test 'should_create_petition_and_user' do
-    assert_difference('User.count') do
-      assert_difference('Petition.count') do
-        post :create, petition: {
-          name: @petition.name + 'x',
-          description: @petition.description + 'x',
-          initiators: @petition.initiators + 'y',
-          statement: @petition.statement + 'test',
-          request: @petition.request + 'teest',
-          office_id: 1
-        },
-                      user: {
-                        email: 'idonotexist@test.com',
-                        name: 'nexttest',
-                        password: 'idonotexist@test.com'
-                      }
+    assert_no_difference('Update.count') do
+      assert_difference('User.count') do
+        assert_difference('Petition.count') do
+          post :create, petition: {
+            name: @petition.name + 'x',
+            description: @petition.description + 'x',
+            initiators: @petition.initiators + 'y',
+            statement: @petition.statement + 'test',
+            request: @petition.request + 'teest',
+            office_id: 1
+          },
+                        user: {
+                          email: 'idonotexist@test.com',
+                          name: 'nexttest',
+                          password: 'idonotexist@test.com'
+                        }
+        end
       end
     end
 

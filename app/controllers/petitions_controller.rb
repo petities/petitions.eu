@@ -463,7 +463,7 @@ class PetitionsController < ApplicationController
       return
     end
 
-    @update = @petition.updates.new
+    @update = Update.new(petition_id: @petition.id)
 
     # find specific papertrail version
     @version_index = 0
