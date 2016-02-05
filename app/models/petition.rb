@@ -341,6 +341,7 @@ class Petition < ActiveRecord::Base
     now = Time.now
 
     start = Time.now - hist.day
+
     if created_at and start < created_at
       start = created_at
     end
@@ -348,14 +349,16 @@ class Petition < ActiveRecord::Base
     day_counts = [] 
     labels = []
 
+    d = start
+
     hist.times do |i|
-      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
+      key = 'p-d-%s-%s-%s-%s' % [id, d.year, d.month, d.day]
       c =  $redis.get(key) || 0       
       c = c.to_i
       day_counts.push(c)
-      labels.push('%s-%s-%s' % [now.year, now.month, now.day])
-      start = start + 1.day
-      if start > now
+      labels.push('%s-%s-%s' % [d.year, d.month, d.day])
+      d = d + 1.day
+      if d > now
         break
       end
     end
