@@ -79,6 +79,8 @@ class PetitionsController < ApplicationController
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
+    
+    petitions = petitions.all.sort_by {|p| -$redis.zscore('active_rate', p.id)}
 
 
     @results_size = petitions.size
