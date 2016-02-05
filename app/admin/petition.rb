@@ -1,6 +1,6 @@
 ActiveAdmin.register Petition do
   permit_params :name, :subdomain, :description, :initiators, :statement,
-                :request, :date_projected, :office_id, :organisation_id,
+                :request, :date_projected, :organisation_id,
                 :organisation_name, :petitioner_organisation,
                 :petitioner_birth_date, :petitioner_birth_city,
                 :petitioner_name, :petitioner_address, :petitioner_postalcode,
@@ -15,8 +15,10 @@ ActiveAdmin.register Petition do
                 :display_signature_person_citizen,
                 :display_signature_full_address, :archived, :petition_type_id,
                 :display_person_born_at, :display_person_birth_city,
-                :locale_list, :active_rate_value, :owner_id, :owner_type, :slug,
-                :reference_field, :answer_due_date
+                :active_rate_value, :owner_id, :owner_type, :slug,
+                :reference_field, :answer_due_date, :office_id,
+                locale_list: []
+
 
   index do
     selectable_column
@@ -24,6 +26,8 @@ ActiveAdmin.register Petition do
     column :name
     column :subdomain
     column :initiators
+    column :office
+    column :organisation
     column :date_projected
     column :petitioner_name
     column :petitioner_email
@@ -34,6 +38,8 @@ ActiveAdmin.register Petition do
 
   filter :name
   filter :subdomain
+  filter :organisation
+  filter :office
   filter :signatures_count
   filter :description
   filter :initiators
