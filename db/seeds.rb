@@ -81,16 +81,16 @@
 #   puts petition.friendly_id
 # end
 #
-petitions = Petition.live.limit(200)
+petitions = Petition.live
 
 petitions.each do |petition|
   puts '%-6s signatures %5s' % [petition.id, petition.signatures.count]
 
   next unless petition.live?
 
-  next if petition.signatures.count > 4000
+  next if petition.signatures.count > 80
 
-  count = rand(5..5000)
+  count = rand(60)
 
   puts '%-6s add signatures %5s' % [petition.id, count]
 
@@ -104,18 +104,13 @@ petitions.each do |petition|
       visible: rand(10) < 8 ? true : false,
       special: rand(100_000) > 79_990 ? true : false,
       subscribe: rand(2) > 1 ? true : false,
-      created_at: Faker::Time.between(100.days.ago, Time.now, :morning),
-      updated_at: Faker::Time.between(90.days.ago, Time.now, :afternoon),
-      signed_at: Faker::Time.between(100.days.ago, Time.now, :evening),
-      confirmed_at: Faker::Time.between(100.days.ago, Time.now),
-      #:confirmed => rand(10) > 8 ? true: false,
+      created_at: Faker::Time.between(10.days.ago, Time.now, :morning),
+      updated_at: Faker::Time.between(10.days.ago, Time.now, :afternoon),
+      signed_at: Faker::Time.between(10.days.ago, Time.now, :evening),
+      confirmed_at: Faker::Time.between(10.days.ago, Time.now),
       confirmed: true,
-    #:description => Faker::Lorem.sentence,
     )
-    signature.save
-  end
 
-  #count = petition.signatures.count
-  #petition.update(signatures_count: count)
-  #petition.update_active_rate!
+  end
+  puts petition.active_rate 
 end
