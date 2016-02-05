@@ -47,7 +47,7 @@ div.page
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
         div.petition-intro-info-text
-          = markdown @petition.description
+          p= markdown @petition.description
 
     section.petition-container
       div.petition-text-wrapper
