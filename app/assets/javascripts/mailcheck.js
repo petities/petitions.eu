@@ -12,9 +12,9 @@ var Mailcheck = {
   domainThreshold: 4,
   topLevelThreshold: 3,
 
-  defaultDomains: ["yahoo.com", "google.com", "hotmail.com", "gmail.com", "me.com", "aol.com", "mac.com",
-    "live.com", "comcast.net", "googlemail.com", "msn.com", "hotmail.co.uk", "yahoo.co.uk",
-    "facebook.com", "verizon.net", "sbcglobal.net", "att.net", "gmx.com", "mail.com", "outlook.com", "icloud.com"],
+  defaultDomains: ["yahoo.com", "live.nl", "hotmail.com", "gmail.com", "me.com", "home.nl", "hetnet.nl",
+    "live.com", "ziggo.nl", "xs4all.nl", "msn.com", "zeelandnet.nl", "chello.nl",
+    "upcmail.nl", "casema.nl", "kpnplanet.nl", "quicknet.nl", "gmx.com", "hotmail.nl", "outlook.com", "zeelandnet.nl"],
 
   defaultTopLevelDomains: ["co.jp", "co.uk", "com", "net", "org", "info", "edu", "gov", "mil", "ca"],
 
