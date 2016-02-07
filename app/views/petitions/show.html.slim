@@ -93,10 +93,10 @@ div.page
                 = t('show.petition.status.was_signable')
               p &nbsp;
 
-    section.petition-details-container
-      = render partial: 'detailbox'
+  section.petition-details-container
+    = render partial: 'detailbox'
 
-      = render partial: 'history_chart'
+    = render partial: 'history_chart'
 
 - if not @petition.is_draft?
   = render partial: 'social'
