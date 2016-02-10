@@ -35,6 +35,7 @@ namespace :petition do
     r = Redis.new
 
     r.del('p%s_city')
+
     Petition.live.each_with_index do |petition, index|
       puts i
       city_counts(petition).each do |group|
@@ -70,7 +71,7 @@ namespace :petition do
     end
 
     # delete everything!
-    delete_all
+    # delete_all
 
     def create_barchart_keys petition
       # create year/day/hour scores!
