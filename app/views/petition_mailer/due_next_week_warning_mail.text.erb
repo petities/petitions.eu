@@ -2,12 +2,12 @@
 
 <%= t("mail.petition.due_next_week") %>
 
-<% if @petition.signatures_count > 10 %>
+<% if @petition.get_count > 10 %>
   <%= t("mail.petition.due_next_week_write",{
 	  petition: @petition.name,
 	  date: @petition.date_projected.strftime('%d-%m-%Y'),
 	  petitioner: @petition.petitioner_name,
-	  signatures_count: @petition.signatures_count,
+	  signatures_count: @petition.get_count,
 	  subdomain: @petition.subdomain
 }) %>
 

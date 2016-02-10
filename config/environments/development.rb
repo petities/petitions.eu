@@ -10,12 +10,13 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = true 
+  #config.action_controller.perform_caching = true
   config.action_controller.perform_caching = false
 
   # config.cache_store = :mem_cache_store, "127.0.0.1"
 
-  # config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes  }
+  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes  }
 
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
@@ -35,6 +36,7 @@ Rails.application.configure do
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
+  #
   config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.

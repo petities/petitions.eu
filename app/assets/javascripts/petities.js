@@ -49,7 +49,7 @@ $.fn.select_org_menu = function(){
     $(type).attr('disabled', false);
     $(type).show();
   }
-}
+};
 
 $(document).ready(function(){
 

@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-Mailcheck.defaultDomains.push('uva.nl', 'petities.nl', 'xs4all.nl', 'gmail.com', 'hotmail.com', 'deds.nl', 'dds.nl', ) # // extend existing domains
+Mailcheck.defaultDomains.push('uva.nl', 'versatel.nl', 'xs4all.nl', 'tiscali.nl', 'hotmail.com', 'deds.nl', 'dds.nl', 'tele2.nl', 'wxs.nl', 'hccnet.nl', 'telenet.be' ) # // extend existing domains
 #Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
 Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
 
@@ -14,7 +14,7 @@ suggested = (element, sugestion) ->
   sugestion_id = '#suggest_' + element[0].id
   #console.log(sugestion_id)
   sugElement = $(sugestion_id)
-  sugElement.html sugestion.full
+  sugElement.text sugestion.full
   tipElement = $(tip_id)
   tipElement.show()
 
@@ -22,7 +22,7 @@ empty = (elements, suggestion) ->
   tip_id = '#didyoumean_' + elements[0].id
   sugestion_id = '#suggest_' + elements[0].id
   sugElement = $(sugestion_id)
-  $(sugestion_id).html ""
+  $(sugestion_id).text ""
   tipElement = $(tip_id)
   tipElement.hide()
 

@@ -17,9 +17,11 @@ div.petition-form-float-wrapper
     div.signature-form-errors.signaturesuggestbutton.error
 
     div#didyoumean_signature_person_email  style="display: none;"
-      = t 'signature.did_you_mean'
-      div.email-suggest-button id='suggest_signature_person_email'
-        'test
+      div.email-suggest-button 
+        span
+          = t 'signature.did_you_mean'
+        div#suggest_signature_person_email
+    | &nbsp;
 
     = f.submit t('show.sign.form.submit'), class: 'petition-form-button'
 

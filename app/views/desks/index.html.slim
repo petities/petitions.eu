@@ -1,9 +1,9 @@
 div.page
   section.petitions-overview-wrapper
-    
+
     h1.petition-section-title = t('desk.title')
     div.petition-overview-title = t('desk.intro')
-      
+
     div.petitions-overview-container
       - @offices.each do |office|
         - if not office.hidden

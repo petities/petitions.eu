@@ -78,6 +78,11 @@ class Signature < ActiveRecord::Base
             on: :update,
             if: :require_full_address?
 
+  validates :person_function,
+            length: { maximum: 254 },
+            on: :update
+            
+
   validates :person_street,
             length: { in: 3..255 },
             on: :update,
@@ -118,41 +123,43 @@ class Signature < ActiveRecord::Base
 
   def update_petition
 
-    self.set_redis_counts
-
     if self.confirmed_changed?
-      petition.last_confirmed_at = Time.now.utc
-      petition.signatures_count += 1
-      petition.update_active_rate!
-      petition.save
+      self.set_redis_counts
+      # no more hit/edit/save on petition! YAY
     end
 
   end
 
-  def set_redis_counts
+  def set_redis_counts(task=false)
 
-    if self.confirmed_changed?
-      t = created_at
+    t = created_at || updated_at
 
-      #petition.last_confirmed_at = Time.now.utc
-      #petition.last_confirmed_at = Time.now.utc
-      $redis.incr('p%s-last-' % [petition.id, t.to_i])
-
-      $redis.incr('p%s-count' % petition.id)
-
-      $redis.incr('p%s-%s-count' % [
-        petition.id, t.year])
-
-      $redis.incr('p%s-%s-%s-count' % [
-        petition.id, t.year, t.month])
-
-      $redis.incr('p%s-%s-%s-%s-count' % [
-        petition.id, t.year, t.month, t.day])
-
-      $redis.incr('p%s-%s-%s-%s-count' % [
-        petition.id, t.year, t.month, t.day, t.hour])
-
+    unless t
+      return
     end
+
+    # last updates
+    last = $redis.get('p-last-%s' % petition.id).to_i || 3600
+    last =  Time.at(last)
+
+    if t > last
+      $redis.set('p-last-%s' % petition.id, t.to_i)
+    end
+
+    $redis.incr('p-d-%s-%s-%s-%s' % [
+      petition.id, t.year, t.month, t.day])
+
+    if not task
+      # city count
+      $redis.zincrby('p%s-city' % id, 1,  person_city.downcase)
+      # size rating
+      $redis.zincrby('petition_size', 1,  petition.id)
+      # size count
+      $redis.incr('p%s-count' % petition.id)
+      # activity rating
+      petition.update_active_rate!
+    end
+
   end
 
   def require_full_address?
@@ -190,7 +197,6 @@ class Signature < ActiveRecord::Base
   def send_confirmation_mail
 
     if last_reminder_sent_at.nil?
-    # puts 'sending mail???'
       SignatureMailer.sig_confirmation_mail(self).deliver_later
     end
     true

@@ -18,9 +18,11 @@ class PetitionsController < ApplicationController
     direction = [:desc, :asc][@order]
 
     if @sorting == 'active'
-      petitions = petitions.order(active_rate_value: direction)
+      #petitions = petitions.order(active_rate_value: direction)
+      petitions = $redis.zrevrange('active_rate', 0, 160)
     elsif @sorting == 'biggest'
-      petitions = petitions.order(signatures_count: direction)
+      petitions = $redis.zrevrange('petition_size', 0, 160)
+      #petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
     elsif @sorting == 'signquick'
@@ -30,16 +32,30 @@ class PetitionsController < ApplicationController
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
       { type: 'newest', label: t('index.sort.new') },
-      # { type: 'biggest', label: t('index.sort.biggest') },
+      { type: 'biggest', label: t('index.sort.biggest') },
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
+    @ranked_petitions = []
+
+    if @petitions.is_a?(Array)
+      @petitions.each do |id|
+        petition = Petition.live.find_by_id(id)
+        if petition
+          @ranked_petitions.push(petition)
+        end
+        petition = nil
+      end
+      @petitions.clear
+    end
+
     respond_to do |format|
       format.html
       format.js
     end
+
   end
 
   def all
@@ -58,10 +74,12 @@ class PetitionsController < ApplicationController
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
-    petitions = Petition.joins(:translations)
+    petitions = Petition.live.joins(:translations)
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
+
+    petitions = petitions.all.sort_by {|p| -$redis.zscore('active_rate', p.id)}
 
     @results_size = petitions.size
 
@@ -119,7 +137,7 @@ class PetitionsController < ApplicationController
       @organisation = Organisation.find(@petition.organisation_id)
     end
 
-    @chart_data, @chart_labels = @petition.history_chart_json
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=20)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
   end
@@ -133,7 +151,7 @@ class PetitionsController < ApplicationController
       return
     end
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -165,6 +183,8 @@ class PetitionsController < ApplicationController
   # GET /petitions/new
   def new
     @petition = Petition.new
+
+    @exclude_list = []
 
     set_organisation_helper
 
@@ -202,6 +222,8 @@ class PetitionsController < ApplicationController
       end
     end
 
+    @exclude_list = []
+
     @password = 'you already have'
 
     if user_signed_in?
@@ -210,7 +232,7 @@ class PetitionsController < ApplicationController
     else
       user_params = params[:user]
 
-      if user_params[:email]
+      unless user_params[:email].blank?
         owner = User.where(email: user_params[:email]).first
 
         unless owner
@@ -232,6 +254,17 @@ class PetitionsController < ApplicationController
           @password = password
           # send welcome / password if needed
         end
+      else
+
+        @missing_email = t('petition.missing_email')
+
+        respond_to do |format|
+          format.html { render :new, flash: { success: t('petition.missing_email') } }
+          format.json { render json: @petition.errors, status: :unprocessable_entity }
+        end
+
+        return
+
       end
     end
 
@@ -258,9 +291,11 @@ class PetitionsController < ApplicationController
   def edit
     authorize @petition
 
+    @exclude_list = policy(@petition).invalid_attributes
+
     @page = params[:page]
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -302,7 +337,7 @@ class PetitionsController < ApplicationController
   def update_owners
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
@@ -351,7 +386,7 @@ class PetitionsController < ApplicationController
   def update
     authorize @petition
 
-    @owners = find_owners
+    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -427,7 +462,7 @@ class PetitionsController < ApplicationController
       return
     end
 
-    @update = @petition.updates.new
+    @update = Update.new(petition_id: @petition.id)
 
     # find specific papertrail version
     @version_index = 0
@@ -450,16 +485,6 @@ class PetitionsController < ApplicationController
         return redirect_to @petition, status: :moved_permanently
       end
     end
-  end
-
-  def find_owners
-    # User.joins(:roles).where(
-    #  roles: { resource_type: 'Petition', resource_id: @petition.id })
-    unless @petition.roles.empty?
-      role_id = @petition.roles[0].id
-      User.joins(:roles).where(roles: { id: role_id })
-    end
-    []
   end
 
   def update_locale_list

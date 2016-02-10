@@ -450,6 +450,7 @@ ActiveRecord::Schema.define(version: 20160125193952) do
   add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
   add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "roles_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    limit: 4

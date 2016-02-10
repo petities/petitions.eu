@@ -10,7 +10,7 @@
   date_projected: @petition.date_projected,
   date_created: @petition.created_at.strftime('%d-%m-%Y'),
   petition_url: petition_url({id: @petition.slug}),
-  signatures_count: @petition.signatures_count,
+  signatures_count: @petition.get_count,
   unique_url: @unique_key,
   petitioner_email: @petition.petitioner_email
 }) %>

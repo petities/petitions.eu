@@ -55,7 +55,7 @@ class SignaturesControllerTest < ActionController::TestCase
                           }
     assert_response :unprocessable_entity
   end
-
+ 
   # this petition / signature requires NOTHING
   test 'should update signature' do
     post :confirm_submit, format: :json, petition_id: @petition,
@@ -91,6 +91,27 @@ class SignaturesControllerTest < ActionController::TestCase
       person_birth_city))
   end
 
+  # test person_function 
+  test 'should update signature function' do
+
+    post :confirm_submit, format: :json, petition_id: @petition,
+                          signature_id: @signature.unique_key, signature: {
+                            person_function: '1' * 500,
+                          }
+
+    assert_response :unprocessable_entity
+
+
+    post :confirm_submit, format: :json, petition_id: @petition,
+                          signature_id: @signature.unique_key, signature: {
+                            person_function: '1' * 253
+                          }
+
+    assert_response :success
+
+  end
+ 
+
   test 'signature confirmation links' do
     assert_routing('/signatures/10/confirm', controller: 'signatures',
                                              action: 'confirm', signature_id: '10')
@@ -114,7 +135,8 @@ class SignaturesControllerTest < ActionController::TestCase
   test 'check confirmation logic' do
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
-        assert_difference('Petition.find(2).signatures_count') do
+        assert_difference('$redis.get("p2-count").to_i') do
+        #assert_difference('Petition.find(2).signatures_count') do
           get :confirm, signature_id: @newsignature.unique_key
         end
       end
@@ -123,7 +145,8 @@ class SignaturesControllerTest < ActionController::TestCase
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
       assert_no_difference('Signature.count') do
-        assert_no_difference('Petition.find(2).signatures_count') do
+        #assert_no_difference('Petition.find(2).signatures_count') do
+        assert_no_difference('$redis.get("p2-count").to_i') do
           get :confirm, signature_id: @newsignature.unique_key
         end
       end
