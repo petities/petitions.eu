@@ -28,11 +28,7 @@ Rails.application.routes.draw do
   end
 
   constraints OfficeSubdomain do
-    #get '', to: 'desks#show'
-    get '', to: redirect { |params, request|
-      desk = request.subdomain 
-      "https://petities.nl/petitions/desks/#{desk}"
-    }
+    get '', to: 'desks#redirect'
   end
 
   resources :petitions do

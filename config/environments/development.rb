@@ -1,5 +1,6 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -10,13 +11,14 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true 
-  #config.action_controller.perform_caching = true
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
   # config.cache_store = :mem_cache_store, "127.0.0.1"
 
-  config.cache_store = :redis_store, 'redis://localhost:6379/0/cache', { expires_in: 90.minutes  }
+  config.cache_store = :redis_store,
+                       'redis://localhost:6379/0/cache',
+                       { expires_in: 90.minutes }
 
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
@@ -34,9 +36,8 @@ Rails.application.configure do
   config.assets.debug = true
   config.action_controller.asset_host = '//'
 
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
-  # yet still be able to expire them through the digest params.
-  #
+  # Asset digests allow you to set far-future HTTP expiration dates on all
+  # assets, yet still be able to expire them through the digest params.
   config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.
@@ -47,7 +48,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025 }
   config.action_mailer.smtp_settings = {
     user_name: '4155773f2e7c84081',
     password: '71cf1b4f69f629',
@@ -56,9 +56,6 @@ Rails.application.configure do
     port: '2525',
     authentication: :cram_md5
   }
-  ##
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

@@ -20,6 +20,8 @@ class Pledge < ActiveRecord::Base
   has_one :petition
   has_one :signature
 
+  validates :feedback, length: { maximum: 255 }, allow_blank: true
+
   INFLUENCE_OPTIONS = [
     [t('confirm.form.pledge.expert'), 'expert'],
     [t('confirm.form.pledge.asseenontv'), 'asseenontv'],

@@ -1,30 +1,22 @@
 namespace :petition do
-
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
-
     Petition.live.each do |petition|
       count = petition.signatures.confirmed.count
       old_count = petition.signatures_count
 
-      if count == old_count
-        next
-      end
+      next if count == old_count
 
-      puts '%s - %s - %s' % [count, old_count, petition.name]
+      puts [count, old_count, petition.name].join(' - ')
 
       petition.signatures_count = count
 
-      if not petition.save
-        puts 'Error saving %s' % [petition.name]
-      end
-
+      puts "Error saving #{petition.name}" unless petition.save
     end
   end
 
   desc 'create redis signature CITY counts'
   task set_redis_city_counts: :environment do
-
     def city_counts
       @signatures_count_by_city = @all_signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
@@ -44,14 +36,11 @@ namespace :petition do
         r.zincrby('p%s_city', count, city_name)
       end
     end
-
   end
-
 
   desc 'create redis signature counts'
   task set_redis_signature_counts: :environment do
-
-    require "benchmark"
+    require 'benchmark'
 
     r = Redis.new
 
@@ -64,40 +53,36 @@ namespace :petition do
 
       # delete all petition related keys
       keys = r.keys('p*')
-      puts 'Delete old keys %s' % keys.size
-      if keys.size > 0
-        r.del(*keys)
-      end
+      puts "Delete old keys #{keys.size}"
+
+      r.del(*keys) if keys.size > 0
     end
 
     # delete everything!
     # delete_all
 
-    def create_barchart_keys petition
+    def create_barchart_keys(petition)
       # create year/day/hour scores!
       recent_signatures = petition.signatures
-        .confirmed
-        .order('created_at DESC')
-        .limit(2000)
+                                  .confirmed
+                                  .order('created_at DESC')
+                                  .limit(2000)
 
-      recent_signatures.each do |signature|
-        signature.set_redis_counts(task=true)
+      recent_signatures.find_each do |signature|
+        signature.update_redis_counts(true)
       end
     end
 
     Petition.live.each_with_index do |petition, index|
-
       r = Redis.new
 
       count = petition.signatures.confirmed.count
 
-      p_key = 'p%s-count' % petition.id
+      p_key = "p#{petition.id}-count"
 
       old_count = r.get(p_key).to_i || 0
 
-      if petition.name.blank?
-        next
-      end
+      next if petition.name.blank?
 
       puts '%5s - %6s - %6s - %s' % [
         petition.id, count, old_count, petition.name]
@@ -113,35 +98,33 @@ namespace :petition do
       puts
 
       puts Benchmark.measure {
-       create_barchart_keys petition
+        create_barchart_keys petition
 
-      # calculate active rate once
-      puts '%s' % index
-      puts '      active_rate %20f' % petition.active_rate
-      puts '      %s %s' % [r.get(p_key), count]
-
+        # calculate active rate once
+        puts '%s' % index
+        puts '      active_rate %20f' % petition.active_rate
+        puts '      %s %s' % [r.get(p_key), count]
       }
       puts
       # petition top score!
 
       raise 'Counts mismatch' if r.get(p_key).to_i != count
-
     end
   end
 
-
   desc 'Send warning of expiring due date'
   task send_warning_due_date: :environment do
-    Rails.logger = ActiveSupport::Logger.new('log/send_petition_due_date_warning.log')
+    Rails.logger = ActiveSupport::Logger.new(
+      'log/send_petition_due_date_warning.log'
+    )
 
-    almost_petitions = Petition
-                       .where('date_projected < ?', 7.days.from_now)
-                       .where('date_projected > ?', 6.days.from_now)
-                       .where(status: :live).limit(100)
+    almost_petitions = Petition.where('date_projected < ?', 7.days.from_now)
+                               .where('date_projected > ?', 6.days.from_now)
+                               .where(status: :live).limit(100)
 
-    Rails.logger.debug('due date warnings %s' % almost_petitions.size)
+    Rails.logger.debug("due date warnings #{almost_petitions.size}")
 
-    almost_petitions.each do |petition|
+    almost_petitions.find_each do |petition|
       if almost_petitions.signatures.confirmed.size < 10
         m = PetitionMailer.due_next_week_warning_mail(petition)
         m.deliver_later(queue: :petitioners)
@@ -152,11 +135,10 @@ namespace :petition do
   desc 'handle over due petitions'
   task handle_overdue_petitions: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/clear_failed_petition.log')
-    overdue_petitions = Petition
-                        .where('date_projected < ?', Time.now)
-                        .where(status: :live).limit(100)
+    overdue_petitions = Petition.where('date_projected < ?', Time.now)
+                                .where(status: :live).limit(100)
 
-    overdue_petitions.each do |petition|
+    overdue_petitions.find_each do |petition|
       if petition.signatures.confirmed.size < 10
         Rails.logger.debug('withdrawn %s %s' % [petition.id, petition.name])
         petition.status == 'withdrawn'
@@ -202,12 +184,13 @@ namespace :petition do
       end
 
       # find at most 100 candiates
-      candidates = Pledge
-                   .where(petition_id: orphan.id)
-                   .joins(:task_status)
-                   .where(task_statuses: { inform_me: true }).limit(100)
+      candidates = Pledge.where(petition_id: orphan.id)
+                         .joins(:task_status)
+                         .where(task_statuses: { inform_me: true }).limit(100)
 
-      Rails.logger.debug('found %s candidates for %s' % [candidates.size, petition.name])
+      Rails.logger.debug(
+        "found #{candidates.size} candidates for #{petition.name}"
+      )
 
       # email each candiate to be admin
       candidates.each do |candidate|
@@ -249,9 +232,10 @@ namespace :petition do
 
     # find all petitions that not have an answer yet
     need_answers = Petition.where(status: 'in_process')
-                   .where('date_projected < ?', Time.now)
-                   .joins(:updates)
-                   .where(newsitems: { show_on_petition: [nil, false] }).limit(100)
+                           .where('date_projected < ?', Time.now)
+                           .joins(:updates)
+                           .where(newsitems: { show_on_petition: [nil, false] })
+                           .limit(100)
 
     Rails.logger.debug(need_answers.size)
 
@@ -280,8 +264,8 @@ namespace :petition do
     Rails.logger = ActiveSupport::Logger.new('log/publish_news.log')
 
     has_news = Petition.where(status: 'live')
-               .joins(:updates)
-               .where('newsitems.created_at > ?', 1.day.ago).limit(10)
+                       .joins(:updates)
+                       .where('newsitems.created_at > ?', 1.day.ago).limit(10)
 
     has_news.each do |petition|
       publish_task = TaskStatus.find_or_create_by(
@@ -293,7 +277,7 @@ namespace :petition do
         # publish_task.update(count: 0 ,last_action: 3.days.ago)
         # publish_task.save
         Rails.logger.debug('we only publish 3 times')
-        Rails.logger.debug('and at most and once a day %s' % petition.name)
+        Rails.logger.debug("and at most and once a day #{petition.name}")
         next
       end
 
@@ -302,7 +286,7 @@ namespace :petition do
                   .where(petition_id: petition.id)
                   .where(subscribe: true)
 
-      message = '%s people get newsupdate on %s' % [inform_me.size, petition.name]
+      message = "#{inform_me.size} people get newsupdate on #{petition.name}"
       Rails.logger.debug(message)
       publish_task.message = message
 
@@ -310,14 +294,14 @@ namespace :petition do
       news_update = petition.updates.first
 
       # inform each pledged user of answer
-      inform_me.each do |signature|
+      inform_me.find_each do |signature|
         m = SignatureMailer.inform_user_of_news_update_mail(
           signature, petition, news_update
         )
         # deliver the news
         m.deliver_later(queue: :newsupdates)
       end
-      # store progres
+      # store progress
       publish_task.save
     end
   end
@@ -328,19 +312,20 @@ namespace :petition do
 
     # find all petitions with an answer and are not completed
     have_answer = Petition.where(status: 'in_process')
-                  .where('answer_due_date < ?', Time.now)
-                  .joins(:updates)
-                  .where(newsitems: { show_on_petition: true }).limit(10)
+                          .where('answer_due_date < ?', Time.now)
+                          .joins(:updates)
+                          .where(newsitems: { show_on_petition: true })
+                          .limit(10)
 
     # find users that want to know about the answer
-    have_answer.each do |petition|
+    have_answer.find_each do |petition|
       publish_task = TaskStatus.find_or_create_by(
         task_name: 'publish_answer',
         petition_id: petition.id)
 
       unless publish_task.should_execute?(nil, 1)
         # skip
-        Rails.logger.debug('we only publish once %s' % petition.name)
+        Rails.logger.debug("we only publish once #{petition.name}")
         next
       end
 
@@ -349,7 +334,7 @@ namespace :petition do
                   .where(petition_id: petition.id)
                   .where(inform_me: true)
 
-      message = '%s people want answer on %s' % [inform_me.size, petition.name]
+      message = "#{inform_me.size} people want answer on #{petition.name}"
       Rails.logger.debug(message)
       publish_task.message = message
 
@@ -367,7 +352,7 @@ namespace :petition do
 
       # set petition status on completed
       petition.status = 'completed'
-      Rails.logger.debug('completed publish %s ' % petition.name)
+      Rails.logger.debug("completed publish #{petition.name}")
       petition.save
       publish_task.save
     end
@@ -378,12 +363,7 @@ namespace :petition do
     Petition.find_each do |p|
       # NOTE maybe put true
       # Petition.should_generate_new_friendly_id?
-      if p.slug.blank?
-        begin
-          p.update(name: p.name)
-        rescue
-        end
-      end
+      p.update(name: p.name) if p.slug.blank?
       puts p.friendly_id
     end
   end

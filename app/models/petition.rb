@@ -65,14 +65,15 @@
 #  answer_due_date                  :date
 #  slug                             :string(255)
 #
-Globalize.fallbacks = {:en => [:en, :nl], :nl => [:nl, :en]}
+Globalize.fallbacks = { en: [:en, :nl], nl: [:nl, :en] }
 
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
 
-  translates :name, :description, :initiators, 
-    :statement, :request, :slug, :fallbacks_for_empty_translations => true,
-    versioning: :paper_trail
+  translates :name, :description, :initiators,
+             :statement, :request, :slug,
+             fallbacks_for_empty_translations: true,
+             versioning: :paper_trail
   has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
   extend FriendlyId # must come after translates
@@ -169,7 +170,7 @@ class Petition < ActiveRecord::Base
   before_validation :strip_whitespace
 
   def get_count
-    $redis.get('p%s-count' % id).to_i || signatures_count
+    $redis.get("p#{id}-count").to_i || signatures_count
   end
 
   def strip_whitespace
@@ -196,20 +197,18 @@ class Petition < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
-
   def find_owners
-    unless self.roles.empty?
-      role_id = self.roles[0].id
+    unless roles.empty?
+      role_id = roles[0].id
       return User.joins(:roles).where(roles: { id: role_id })
     end
     []
   end
 
-
   def send_status_mail
-    if self.status_changed?
+    if status_changed?
 
-      self.find_owners.each do |user|
+      find_owners.each do |user|
         PetitionMailer.status_change_mail(self, target: user.email).deliver_later
       end
 
@@ -218,31 +217,30 @@ class Petition < ActiveRecord::Base
   end
 
   def last_sig_update
-    last = $redis.get('p-last-%s' % id)
+    last = $redis.get("p-last-#{id}")
     if last
       last = Time.at(last.to_i)
       return last
     end
-    1000.days.ago 
+    1000.days.ago
   end
 
   def elapsed_time
-        Time.now - (last_confirmed_at || Time.now)
+    Time.now - (last_confirmed_at || Time.now)
   end
 
   def active_rate
-
     short = 1.0
-    total = 100.0 
+    total = 100.0
 
     now = Time.now
 
-    15.times do |i|
-      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
-      v =  $redis.get(key) || 0       
+    15.times do
+      key = "'p-d-#{id}-#{now.year}-#{now.month}-now.day"
+      v = $redis.get(key) || 0
       v = v.to_f
-      short += v 
-      now = now - 1.day
+      short += v
+      now -= 1.day
     end
 
     a_rate = short / total
@@ -253,25 +251,24 @@ class Petition < ActiveRecord::Base
     $redis.zadd('active_rate', a_rate, id)
 
     a_rate
-
   end
 
   def update_active_rate!
-    self.active_rate
+    active_rate
   end
 
   def is_hot?
-    score = $redis.zscore('active_rate', id)  || 0
+    score = $redis.zscore('active_rate', id) || 0
     score > 0.4
   end
 
   ## petition status summary
   def state_summary
-    return 'draft' if self.is_draft?
-    return 'closed' if self.is_closed?
-    return 'signable' if self.is_live?
-    return 'in_treatment' if self.in_treatment?
-    return 'is_answered' if self.is_answered?
+    return 'draft' if is_draft?
+    return 'closed' if is_closed?
+    return 'signable' if is_live?
+    return 'in_treatment' if in_treatment?
+    return 'is_answered' if is_answered?
   end
 
   ## edit a given petition
@@ -292,36 +289,27 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept
-       staging
-       draft).include? status
+    %w(concept staging draft).include? status
   end
 
   def is_staging?
-    %w(concept
-       staging).include? status
+    %w(concept staging).include? status
   end
 
   def is_live?
-    %w(live
-       not_signable_here).include? status
+    %w(live not_signable_here).include? status
   end
 
   def is_closed?
-    %w(withdrawn
-       rejected
-       to_process
-       not_processed).include? status
+    %w(withdrawn rejected to_process not_processed).include? status
   end
 
   def in_treatment?
-    %w(in_process
-       to_process
-       not_processed).include? status
+    %w(in_process to_process not_processed).include? status
   end
 
   def is_answered?
-    ['completed'].include? status
+    'completed' == status
   end
 
   def get_answer
@@ -335,32 +323,25 @@ class Petition < ActiveRecord::Base
       office.petition_type.allowed_cities.present?
     end
   end
-  
-  def redis_history_chart_json(hist=10)
 
+  def redis_history_chart_json(hist = 10)
     now = Time.now
+    start = now - hist.day
+    start = created_at if created_at && start < created_at
 
-    start = Time.now - hist.day
-
-    if created_at and start < created_at
-      start = created_at
-    end
-
-    day_counts = [] 
+    day_counts = []
     labels = []
 
     d = start
 
-    hist.times do |i|
-      key = 'p-d-%s-%s-%s-%s' % [id, d.year, d.month, d.day]
-      c =  $redis.get(key) || 0       
+    hist.times do
+      key = "p-d-#{id}-#{d.year}-#{d.month}-#{d.day}"
+      c = $redis.get(key) || 0
       c = c.to_i
       day_counts.push(c)
-      labels.push('%s-%s-%s' % [d.year, d.month, d.day])
-      if d > now
-        break
-      end
-      d = d + 1.day
+      labels.push("#{d.year}-#{d.month}-#{d.day}")
+      break if d > now
+      d += 1.day
     end
 
     if labels.size > 20
@@ -368,11 +349,10 @@ class Petition < ActiveRecord::Base
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
 
-    return [day_counts, labels]
+    [day_counts, labels]
   end
 
   def history_chart_json
-    #return [[],[]]
     label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
                  .compact
                  .group_by { |signature| signature.strftime('%Y-%m-%d') }

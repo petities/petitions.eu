@@ -4,14 +4,9 @@ class PetitionMailer < ApplicationMailer
   def adoption_request_signatory_mail(petition, signature)
     @signature = signature
     @petition = petition
-    if signature.unique_key.nil?
-      signature.send(:generate_unique_key)
-      signature.save
-    end
     @become_owner_url = url_for(
       controller: 'signatures',
       action: 'become_petition_owner',
-      host: 'dev.petitions.eu',
       signature_id: @signature.unique_key)
     subject = t('mail.petition.adoption_request_subject', petition: petition.name)
     mail(from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl',
@@ -25,8 +20,7 @@ class PetitionMailer < ApplicationMailer
     @office = petition.office
     @petition = petition
     subject = t('mail.request.due_date_subject', petition: petition.name)
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
-    mail(from: 'bounces@petities.nl', reply_to: subdomain,
+    mail(from: 'bounces@petities.nl', reply_to: subdomain_address(@petition),
          to: @petition.office.email, subject: subject)
   end
 
@@ -36,13 +30,10 @@ class PetitionMailer < ApplicationMailer
     logger.debug('build ask for answer mail..')
 
     @office = petition.office
-
     @petition = petition
 
-    @petition = petition
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.answer_subject', petition: petition.name)
-    mail(from: 'bounces@petities.nl', reply_to: subdomain,
+    mail(from: 'bounces@petities.nl', reply_to: subdomain_address(@petition),
          to: @petition.office.email, subject: subject)
   end
 
@@ -76,10 +67,9 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.procedural_subject', petition: petition.name)
     mail(from: 'bounces@petities.nl',
-         reply_to: subdomain, to: target, subject: subject)
+         reply_to: subdomain_address(@petition), to: target, subject: subject)
   end
 
   # petitioner with failed petition asked to fix it
@@ -96,13 +86,12 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
 
     tld = get_tld(target)
 
     I18n.with_locale(tld) do
       subject = t('mail.request.announcement_subject')
-      mail(from: 'bounces@petities.nl', reply_to: subdomain,
+      mail(from: 'bounces@petities.nl', reply_to: subdomain_address(@petition),
            to: target, subject: subject)
     end
   end
@@ -112,9 +101,8 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.procedural_subject', petition: petition.name)
-    mail(from: 'webmaster@petities.nl', reply_to: subdomain,
+    mail(from: 'webmaster@petities.nl', reply_to: subdomain_address(@petition),
          to: target, subject: subject)
   end
 
@@ -124,9 +112,8 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     @office = petition.office
     target = @petition.office.email
-    subdomain = '%s@%s' % [@petition.subdomain, 'petities.nl']
     subject = t('mail.request.reference_subject', petition: petition.name)
-    mail(from: 'webmaster@petities.nl', reply_to: subdomain,
+    mail(from: 'webmaster@petities.nl', reply_to: subdomain_address(@petition),
          to: target, subject: subject)
   end
 
@@ -137,7 +124,7 @@ class PetitionMailer < ApplicationMailer
 
     subject = t('mail.status.changed_subject',
                 petition: petition.name,
-                status: petition.status) + 
+                status: petition.status) +
                 t("show.overview.status.#{@petition.state_summary}")
 
     if target.nil?
@@ -146,9 +133,9 @@ class PetitionMailer < ApplicationMailer
       target = @petition.petitioner_email
     end
 
-    if target 
+    if target
       mail(from: 'webmaster@petities.nl', reply_to: 'webmaster@petities.nl',
-         to: target, subject: subject)
+           to: target, subject: subject)
     end
   end
 
@@ -201,5 +188,9 @@ class PetitionMailer < ApplicationMailer
     tld = target.split('.').last
     locale = tld if I18n.available_locales.include? tld.to_sym
     locale
+  end
+
+  def subdomain_address(petition)
+    "#{petition.subdomain}@%petities.nl"
   end
 end
