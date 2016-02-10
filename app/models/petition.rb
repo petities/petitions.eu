@@ -357,10 +357,10 @@ class Petition < ActiveRecord::Base
       c = c.to_i
       day_counts.push(c)
       labels.push('%s-%s-%s' % [d.year, d.month, d.day])
-      d = d + 1.day
       if d > now
         break
       end
+      d = d + 1.day
     end
 
     if labels.size > 20
