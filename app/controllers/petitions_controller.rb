@@ -62,6 +62,8 @@ class PetitionsController < ApplicationController
   def all
     @petitions = sort_petitions Petition
 
+    @results_size = @petitions.count
+
     respond_to do |format|
       format.html
       format.js
@@ -79,7 +81,7 @@ class PetitionsController < ApplicationController
                 .where('petition_translations.name like ?', "%#{@search}%")
                 .distinct
                 # with_locales(I18n.available_locales).
-    
+
     petitions = petitions.all.sort_by {|p| -$redis.zscore('active_rate', p.id)}
 
 
@@ -106,6 +108,8 @@ class PetitionsController < ApplicationController
     Petition::STATUS_LIST.each do |label, status|
       sort_list.push(type: status, label: label)
     end
+
+    @results_size = petitions.count
 
     @sorting_options = sort_list
 
@@ -165,9 +169,8 @@ class PetitionsController < ApplicationController
     @images = @petition.images
 
     @signatures = @petition.signatures
-                  .special
-                  .reverse_order
-                  .paginate(page: params[:page], per_page: 12)
+                  .order(special: :desc, confirmed_at: :desc)
+                  .paginate(page: 1, per_page: 12)
 
     if @petition.office_id
       @office = Office.find(@petition.office_id)
@@ -304,7 +307,9 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+    @signatures = @petition.signatures
+      .order(special: :desc, confirmed_at: :desc)
+      .paginate(page: params[:page], per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
 

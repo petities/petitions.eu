@@ -14,4 +14,5 @@
       div.petition-signature-location= signature.person_city
       div.petition-signature-occupation
         = signature.person_function
-    div.petition-signature-time= distance_of_time_in_words_to_now(signature.signed_at)
+    div.petition-signature-time
+      = distance_of_time_in_words_to_now(signature.confirmed_at)

@@ -62,4 +62,20 @@ Rails.application.configure do
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+
+  ## Enable the logstasher logs for the current environment
+  #config.logstasher.enabled = true
+  ##
+  ## # This line is optional if you do not want to suppress app logs in your <environment>.log
+  #config.logstasher.suppress_app_log = true
+  ##
+  ## # This line is optional, it allows you to set a custom value for the @source field of the log event
+  #config.logstasher.source = 'developerbox'
+  ##
+  ## # This line is optional if you do not want to log the backtrace of exceptions
+  #config.logstasher.backtrace = true 
+  ##
+  ## # This line is optional, defaults to log/logstasher_<environment>.log
+  ## config.logstasher.logger_path = 'log/logstasher.log'
 end

@@ -122,6 +122,9 @@ $(document).ready(function(){
   });
 
 
+  $('.special_check').click(function(){
+    $(this).parent('form:first').submit();
+  });
 
   $('#new_signature').submit(function(){
     var nameRegex = /(.*)\s(.*)/,
@@ -192,24 +195,21 @@ $(document).ready(function(){
   });
 
   $('.navigation-loadmore').click(function(){
-    var type = $(this).data('type');
-        url = '';
+    var url = $(this).data('url');
 
     if(isNaN(window.page)){
         window.page = 1;
     }
 
-    if(type === 'petitions'){
-      window.page += 1;
-      url = window.location.pathname + '?page='+ window.page +'&sorting='+ window.sorting;
-    } else if(type === 'signatures'){
-      window.page += 1;
-      url = window.location.pathname + '/signatures?page='+ window.page;
-    } else if(type === 'updates'){
-      window.updates_page += 1;
-      url = '/updates?page='+ window.updates_page;
+    window.page += 1;
+
+    if(url.match('\\?')){
+      url = url + '&page='+ window.page;
+    } else{
+      url = url + '?page='+ window.page;
     }
 
+    //make buttons also work on edit pages
     url = url.replace('/edit/', '/');
 
     $.ajax({

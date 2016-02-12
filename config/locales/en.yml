@@ -629,6 +629,7 @@ en:
     linkinstruction: Follow below link to confirm
     success: 'Your information is saved, thank you. Send invites or help in other ways? See below \/'
     success_send: Invitation sent! One more perhaps?
+    promote: Show on top of the list?
     thanks: Thanks
   signatures:
     popular_cities: Popular places

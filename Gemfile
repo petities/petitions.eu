@@ -122,6 +122,8 @@ end
 
 # Track errors in production
 gem 'rollbar', '~> 2.5.0'
+# track everything..
+# gem 'logstasher'
 
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil

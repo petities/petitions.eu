@@ -6,7 +6,7 @@ class SignaturesController < ApplicationController
     :user_update, :become_petition_owner]
 
   # allow petitioner to modify signatures
-  before_action :set_signature, only: [:update]
+  before_action :set_signature, only: [:special_update]
 
   # GET /signatures
   # GET /signatures.json
@@ -51,14 +51,19 @@ class SignaturesController < ApplicationController
             end
 
     if request.xhr?
-      @signatures = @all_signatures.reverse_order.paginate(page: @page, per_page: @per_page)
+      @signatures = @all_signatures
+                      .order(special: :desc, confirmed_at: :desc)
+                      .paginate(page: @page, per_page: @per_page)
     else
-      @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+      @signatures = @all_signatures
+                      .order(special: :desc, confirmed_at: :desc)
+                      .paginate(page: @page, per_page: @per_page)
     end
 
     respond_to do |format|
       format.html
       format.js
+      format.json
       format.pdf
       format.csv
     end
@@ -284,19 +289,20 @@ class SignaturesController < ApplicationController
   end
 
   # ONLY ALLOWED FOR ADMINS
-  # NOW ANYONE CAN CHANGE SIGNATURES BY ID
+  # TO update special status of signature
   # PATCH/PUT /signatures/1
   # PATCH/PUT /signatures/1.json
-  def update
+  def special_update
     @petition = @signature.petition
+
     # only allow updates from
-    # authorize @petition
+    authorize @petition
+
     respond_to do |format|
-      if @signature.update(signature_params)
+      if @signature.update(special_params)
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
-        format.json { render :show, status: :ok, location: @signature }
+        format.json { render :show, status: :ok }
       else
-        # format.html { redirect_to signature_confirm(@signature.unique_key)}
         format.html { render :edit }
         format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
@@ -341,7 +347,7 @@ class SignaturesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_signature
-    @signature = Signature.find_by_unique_key(params[:id])
+    @signature = Signature.find(params[:id])
   end
 
   def find_signature_by_unique_key
@@ -361,6 +367,10 @@ class SignaturesController < ApplicationController
       :person_street_number_suffix,
       :subscribe, :visible
     )
+  end
+
+  def special_params
+    params.require(:signature).permit(:special)
   end
 
   def pledge_params
