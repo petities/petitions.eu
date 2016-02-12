@@ -295,7 +295,7 @@ class SignaturesController < ApplicationController
   def special_update
     @petition = @signature.petition
 
-    # only allow updates from
+    # only allow updates from admins
     authorize @petition
 
     respond_to do |format|
@@ -303,7 +303,7 @@ class SignaturesController < ApplicationController
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
         format.json { render :show, status: :ok }
       else
-        format.html { render :edit }
+        format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
         format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
     end

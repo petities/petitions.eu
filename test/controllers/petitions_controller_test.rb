@@ -154,6 +154,23 @@ class PetitionsControllerTest < ActionController::TestCase
 
    end
 
+  test "should not status change petition" do
+
+    assert_enqueued_jobs 0
+
+    status = @petition.status
+
+    patch :update, id: @petition.id, petition: { 
+      status: 'draft', 
+    }
+
+    assert_redirected_to root_path
+
+    assert_enqueued_jobs 0
+
+   end
+
+
   # test "should destroy petition" do
   #  assert_difference('Petition.count', -1) do
   #    delete :destroy, id: @petition
