@@ -62,7 +62,7 @@ class SignaturesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      format.js {render content_type: 'text/javascript'}
       format.json
       format.pdf
       format.csv
