@@ -60,10 +60,11 @@ class SignaturesController < ApplicationController
                       .paginate(page: @page, per_page: @per_page)
     end
 
+
     respond_to do |format|
       format.html
-      format.js {render content_type: 'text/javascript'}
-      format.json
+      format.js   {render content_type: 'text/javascript'}
+      format.json {render content_type: 'text/javascript'}
       format.pdf
       format.csv
     end
