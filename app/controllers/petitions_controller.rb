@@ -436,6 +436,7 @@ class PetitionsController < ApplicationController
     authorize @petition
 
     @petition.update(status: 'staging')
+
     flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
 
     if @petition.office.present?

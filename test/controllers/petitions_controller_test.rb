@@ -136,6 +136,17 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to edit_petition_path(assigns(:petition))
    end
 
+  test "should finalize petition" do
+    sign_in_admin_for @petition.office
+
+    get :finalize, petition_id: @petition.id
+
+    @petition.reload
+
+    assert_equal('live', @petition.status)
+
+  end
+
   test "should status change petition" do
     sign_in_admin_for @petition
     # two mails should be send on status change
@@ -147,6 +158,10 @@ class PetitionsControllerTest < ActionController::TestCase
     patch :update, id: @petition.id, petition: { 
       status: 'draft', 
     }
+
+    @petition.reload
+
+    assert_equal('draft', @petition.status)
 
     assert_redirected_to edit_petition_path(assigns(:petition))
 
@@ -163,6 +178,8 @@ class PetitionsControllerTest < ActionController::TestCase
     patch :update, id: @petition.id, petition: { 
       status: 'draft', 
     }
+
+    assert_equal(status, @petition.status)
 
     assert_redirected_to root_path
 

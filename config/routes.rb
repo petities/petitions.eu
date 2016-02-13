@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     # resources :new_signatures
     resources :updates, only: [:index, :show]
 
+    get :finalize
+
     # is this used?
     # get 'add_translation'
     # patch 'update_owners'
