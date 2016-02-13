@@ -722,8 +722,10 @@ en:
       text: Your news update about the petition
       title: Title of this update
       select_office: Select petition desk
-      show_on_homepage: Show on homepage
-      show_on_petition: Show on petition
+      show_on_homepage: Show on news of petities.nl 
+      show_on_petition: Show on petition (above the sign form)
+      publish_to_signatures: Publish via mail to all signatures 
+      publish_review: The news will be reviewed before publishing
       show_on_office: Show on petition desk
     news_updates: Updates
     no_news_yet: No news about this petition yet.
