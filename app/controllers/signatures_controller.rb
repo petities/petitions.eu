@@ -1,6 +1,8 @@
 class SignaturesController < ApplicationController
   include FindPetition
 
+  protect_from_forgery except: :index
+
   before_action :find_signature_by_unique_key, only: [
     :show, :confirm, :confirm_submit, :pledge_submit, :mail_submit,
     :user_update, :become_petition_owner]
@@ -15,7 +17,7 @@ class SignaturesController < ApplicationController
 
     @all_signatures = @petition.signatures.confirmed.limit(900)
 
-    unless request.xhr?
+    unless request.xhr? || request.format.json? || request.format.js?
       # make redis!
       @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
 
@@ -60,11 +62,10 @@ class SignaturesController < ApplicationController
                       .paginate(page: @page, per_page: @per_page)
     end
 
-
     respond_to do |format|
+      format.js
       format.html
-      format.js   {render content_type: 'text/javascript'}
-      format.json {render content_type: 'text/javascript'}
+      format.json
       format.pdf
       format.csv
     end
