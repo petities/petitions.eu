@@ -21,18 +21,16 @@
 #
 
 one:
-  id: 1
   name: NL
   subdomain: nl
 
 amsterdam:
-  id: 2
   name: gemeente amsterdam
   subdomain: amsterdam
   slug: amsterdam
+  email: office@example.com
 
 three:
-  id: 3
   name: gemeente alkmaar
   subdomain: alkmaar
   slug: alkmaar

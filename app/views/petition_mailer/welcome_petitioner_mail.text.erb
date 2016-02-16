@@ -5,7 +5,7 @@
 	petitioner: @petition.petitioner_name,
 	email: @petition.petitioner_email,
 	password: @password,
-	confirmation_url: confirmation_url(@user, confirmation_token: @token),
+	confirmation_url: confirmation_url(@user, confirmation_token: @user.confirmation_token),
 	office_email: @office_email,
 	office_phone: @office_telephone
 }) %>

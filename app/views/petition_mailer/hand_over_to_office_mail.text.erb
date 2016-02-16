@@ -1,4 +1,4 @@
-<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= t("mail.request.dear") %> <%= @petition.office.name %>,
 
 <%= t("mail.request.handover",{
 	petition: @petition.name,
@@ -11,6 +11,6 @@
 }) %>
 
 <%= t("mail.request.signoff", {
-	petitioner: @petition.petitioner_name, 
+	petitioner: @petition.petitioner_name,
 	office_email: @petition.office.email
 }) %>
