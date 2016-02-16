@@ -5,80 +5,79 @@ div#detailbox.petition-details
     div.petition_field_label= t('show.overview.addressee')
     div.petition_field_data
       = @organisation.name
-      |&nbsp
+      | &nbsp;
 
   - if @office
     div.petition_field_label= t('show.overview.desk')
     div.petition_field_data
       = link_to @office.name, petition_desk_path(@office)
-      |&nbsp 
+      | &nbsp;
 
   - if @office and @petition.reference_field
     div.petition_field_label= t('show.overview.reference')
     div.petition_field_data
-      = @petition.reference_field 
-      |&nbsp
+      = @petition.reference_field
+      | &nbsp;
 
   - if @petition.date_projected
     div.petition_field_label= t('show.overview.end_date')
     div.petition_field_data
       = @petition.date_projected.strftime('%d-%m-%Y')
-      |&nbsp
+      | &nbsp;
 
   - if @petition.answer_due_date
     div.petition_field_label= t('show.overview.answer_end_date')
     div.petition_field_data
       = @petition.answer_due_date.strftime('%d-%m-%Y')
-      |&nbsp
+      | &nbsp;
 
   - if @petition.status.present?
     div.petition_field_label= t('show.overview.status.indication')
     div.petition_field_data
       = t("show.overview.status.#{@petition.state_summary}")
-      |&nbsp
+      | &nbsp;
 
   - if @petition.petitioner_name.present?
     div.petition_field_label= t('show.overview.petitioners')
     div.petition_field_data
       = @petition.petitioner_name
-      |&nbsp
+      | &nbsp;
 
   - if @petition.petitioner_organisation.present?
     div.petition_field_label= t('show.overview.organisation')
     div.petition_field_data
       = @petition.petitioner_organisation
-      |&nbsp
+      | &nbsp;
 
   - if ((user_signed_in? && current_user.has_role?(:admin, @petition)) || (user_signed_in? && current_user.has_role?(:admin, @office)))
     - if not @owners.empty?
       /adds some whitespace..
       div.petition_field_label
-        |&nbsp
+        | &nbsp;
       div.petition_field_data
-        |&nbsp
+        | &nbsp;
       h2.petition-section-title= t('show.overview.all_owners')
       - @owners.each do |owner|
-      
+
         div.petition_field_label= t('show.petitioner.real_name')
         div.petition_field_data
           = owner.name
-          |&nbsp
+          | &nbsp;
 
         div.petition_field_label= t('show.petitioner.real_telephone')
         div.petition_field_data
           = owner.telephone
-          |&nbsp
+          | &nbsp;
 
         div.petition_field_label= t('show.petitioner.real_email')
         div.petition_field_data
           = owner.email
-          |&nbsp
+          | &nbsp;
 
         div.petition_field_label
-          |&nbsp
+          | &nbsp;
         div.petition_field_data
-          |&nbsp
-
+          | &nbsp;
 
   - if @petition.links[:links].present?
     div.petition_field_label= t('show.overview.website')
@@ -88,4 +87,3 @@ div#detailbox.petition-details
         br
 
   div.clearfix
-

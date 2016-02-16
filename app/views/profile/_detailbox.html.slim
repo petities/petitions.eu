@@ -6,49 +6,49 @@ div#detailbox.profile-details
   div.petition_field_label= t('profile.real_email')
   div.petition_field_data
     = @profile.email
-    |&nbsp
+    | &nbsp;
 
   div.petition_field_label= t('profile.real_name')
   div.petition_field_data
     = @profile.name
-    |&nbsp
+    | &nbsp;
 
   div.petition_field_label= t('profile.phone')
   div.petition_field_data
     = @profile.telephone
-    |&nbsp
+    | &nbsp;
 
   div.petition_field_label= t('profile.city')
   div.petition_field_data
     = @profile.city
-    |&nbsp
+    | &nbsp;
 
   div.petition_field_label= t('profile.address')
   div.petition_field_data
     = @profile.address
-    |&nbsp
+    | &nbsp;
 
   -if @profile.postalcode
     div.petition_field_label= t('profile.postalcode')
     div.petition_field_data
       = @profile.postalcode
-      |&nbsp
+      | &nbsp;
 
   - if @profile.birth_date
     div.petition_field_label= t('profile.birth_date')
     div.petition_field_data
       = @profile.birth_date.to_date.to_formatted_s(:long_ordinal)
-      |&nbsp
+      | &nbsp;
 
   div.petition_field_label= t('profile.last_login')
   div.petition_field_data
     = @profile.last_sign_in_at
-    |&nbsp
+    | &nbsp;
 
   div.petition_field_label= t('profile.last_ip')
   div.petition_field_data
     = @profile.last_sign_in_ip
-    |&nbsp
+    | &nbsp;
 
   div.clearfix.whitespace
 
@@ -69,5 +69,4 @@ div#detailbox.profile-details
       - else
         =<> role.resource_id
         =<> role.resource_type
-      |&nbsp
-
+      | &nbsp;
