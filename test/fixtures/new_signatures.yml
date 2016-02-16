@@ -46,7 +46,7 @@ one:
   person_email: new3@gmail.com
   person_city: new city3
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   confirmed: 0
   unique_key: 'test_key'
@@ -58,7 +58,7 @@ two:
   person_email: new3@gmail.com
   person_city: new city3
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   confirmed: 0
   unique_key: 'test_two'
@@ -69,7 +69,7 @@ three:
   person_email: new3@gmail.com
   person_city: new city33
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   confirmed: 0
   unique_key: 'test_three'

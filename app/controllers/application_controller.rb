@@ -79,6 +79,19 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(_options = {})
-    { locale: I18n.locale }
+
+    protocol = 'https' 
+
+    if Rails.env.test?
+      protocol = 'http' 
+    end
+    
+    if Rails.env.development?
+      protocol = 'http' 
+    end
+
+    { locale: I18n.locale,
+      protocol: protocol 
+    }
   end
 end

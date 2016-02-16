@@ -25,7 +25,7 @@ div.page
       div.clearfix
 
     div.navigation-bar
-      a.navigation-loadmore.button data={type: 'petitions'} href='javascript:void(0);' = t('index.more')
+      a.navigation-loadmore.button data={url: petitions_url(subdomain:false, sorting:@sorting)} href='javascript:void(0);' = t('index.more')
 
       div.pagination
         = will_paginate @petitions, renderer: PetitionsPaginateRenderer

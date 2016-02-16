@@ -16,15 +16,27 @@
 
     - if current_user.has_role? :admin
       div.petition-edit-label
-        = t('update.label.show_on_homepage')
+        | &nbsp 
 
       = f.check_box :show_on_home
+      = t('update.label.show_on_homepage')
 
     - if current_user.has_role? :admin or current_user.has_role?(:admin, @office)
       div.petition-edit-label
-        = t('update.label.show_on_petition')
+        | &nbsp 
 
       = f.check_box :show_on_petition
+      = t('update.label.show_on_petition')
+
+      div.petition-edit-label
+        | &nbsp 
+
+      = f.check_box :show_on_petition
+      = t('update.label.publish_to_signatures')
+      p
+        |(The programmer is still working on this functionality..)
+      p= t('update.label.publish_review')
+
 
     - if @offices
       div.petition-edit-label
@@ -42,6 +54,8 @@
 
     div.petition-edit-label
     - if update.title.nil?
+      p &nbsp;
       = f.submit t('update.form.create', default: 'create news'), class: 'petition-edit-save'
     - else
+      p &nbsp;
       = f.submit t('update.form.update', default: 'update news'), class: 'petition-edit-save'

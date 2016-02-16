@@ -36,6 +36,7 @@ div.page
           h2.start-petition-form-cell-title
             = t('confirm.info.check_information')
         div.start-petition-form-cell.label
+          = link_to @petition.name, petition_path(@petition)
           | &nbsp;
 
       div.start-petition-form-row
@@ -171,6 +172,7 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          | &nbsp;
           = f.submit @action, class: 'start-petition-form-cell-button'
 
         div.start-petition-form-cell.label.empty

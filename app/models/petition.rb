@@ -170,7 +170,12 @@ class Petition < ActiveRecord::Base
   before_validation :strip_whitespace
 
   def get_count
-    $redis.get("p#{id}-count").to_i || signatures_count
+    count = $redis.get("p#{id}-count").to_i
+    if !count || count == 0
+      signatures_count
+    else
+      count
+    end
   end
 
   def strip_whitespace

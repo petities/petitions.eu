@@ -628,6 +628,7 @@ nl:
     linkinstruction: Volg deze link
     success: 'Uw gegevens zijn bijgewerkt, dank u. Uitnodigingen versturen of op een andere manier helpen? Zie hieronder \/'
     success_send: Uitnodiging verstuurd! Nog één misschien?
+    promote: Zet bovenaan in de lijst?
     thanks: Dank u
   signatures:
     popular_cities: Populaire woonplaatsen
@@ -721,8 +722,10 @@ nl:
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
       select_office: Kies bij welk petitieloket
-      show_on_homepage: Toon op homepage
-      show_on_petition: Toon bij de petitie
+      show_on_homepage: Toon op nieuws van petities.nl
+      show_on_petition: Toon bij de petitie (boven handtekening formulier)
+      publish_to_signatures: Publiceer nieuws via email naar alle ondertekenaars
+      publish_review: Het nieuws-item word eerst gereviewed voordat deze verstuurd word
       show_on_office: Toon op het petitieloket
     news_updates: Nieuwtjes
     no_news_yet: Nog geen nieuws over deze petitie.

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       get :manage
 
       constraints admin_constraint do
-        get :admin
+        get :admin, as: :petition_admin
       end
 
       resources :desks, as: :petition_desks
@@ -65,8 +65,8 @@ Rails.application.routes.draw do
     get :finalize
 
     # is this used?
-    get 'add_translation'
-    patch 'update_owners'
+    # get 'add_translation'
+    # patch 'update_owners'
   end
 
   resources :updates
@@ -79,6 +79,8 @@ Rails.application.routes.draw do
   PagesController::STATIC_PAGES.each do |name|
     get "/#{name}", to: "pages##{name}"
   end
+
+  patch '/special_signature/:id', to: 'signatures#special_update', as: :special_signature
 
   get '/contact', to: 'contact#new', as: :contact
   post '/contact', to: 'contact#create'

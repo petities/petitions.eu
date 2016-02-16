@@ -57,6 +57,8 @@ class PetitionsController < ApplicationController
   def all
     @petitions = sort_petitions Petition
 
+    @results_size = @petitions.count
+
     respond_to do |format|
       format.html
       format.js
@@ -101,6 +103,8 @@ class PetitionsController < ApplicationController
       sort_list.push(type: status, label: label)
     end
 
+    @results_size = petitions.count
+
     @sorting_options = sort_list
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
@@ -129,8 +133,8 @@ class PetitionsController < ApplicationController
   def set_petition_vars
     @page = params[:page] || 1
 
-    if @petition.organisation_id
-      @organisation = Organisation.find(@petition.organisation_id)
+    if @petition.organisation_id and @petition.organisation_id > 0
+      @organisation = Organisation.find_by_id(@petition.organisation_id)
     end
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
@@ -158,9 +162,8 @@ class PetitionsController < ApplicationController
     @images = @petition.images
 
     @signatures = @petition.signatures
-                           .special
-                           .reverse_order
-                           .paginate(page: params[:page], per_page: 12)
+                           .order(special: :desc, confirmed_at: :desc)
+                           .paginate(page: 1, per_page: 12)
 
     @office = if @petition.office_id
                 Office.find(@petition.office_id)
@@ -295,7 +298,9 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-    @signatures = @petition.signatures.special.paginate(page: params[:page], per_page: 12)
+    @signatures = @petition.signatures
+                           .order(special: :desc, confirmed_at: :desc)
+                           .paginate(page: params[:page], per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
 
@@ -421,6 +426,7 @@ class PetitionsController < ApplicationController
     authorize @petition
 
     @petition.update(status: 'staging')
+
     flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
 
     if @petition.office.present?

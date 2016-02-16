@@ -47,7 +47,7 @@ one:
   person_email: test31@gmail.com
   person_city: test city3
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   #created_at: now,
   #updated_at: now,
@@ -63,7 +63,7 @@ two:
   person_email: test32@gmail.com
   person_city: test city3
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   confirmed: 1
   signed_at: 2014-07-14 20:53:32
@@ -77,7 +77,7 @@ three:
   person_email: test33@gmail.com
   person_city: test city33
   visible: 1
-  special: 1
+  special: 0
   subscribe: 1
   confirmed: 1
   signed_at: 2014-07-14 20:53:32

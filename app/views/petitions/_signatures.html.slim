@@ -15,7 +15,7 @@ div.page
       - if @petition.get_count == 0
         div.whitespace = t('edit.petition.no_signatures_yet')
       - elsif @petition.get_count > 12
-        a.navigation-loadmore.button data={type: 'signatures'} href='javascript:void(0);' = t('show.signatures.more')
+        a.navigation-loadmore.button data={url: petition_signatures_url(petition_id: @petition.id, subdomain: false, format: :js) } href='javascript:void(0);' = t('show.signatures.more')
 
       div.clearfix
 
@@ -28,5 +28,4 @@ div.page
 
           div.whitespace
             = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
-
 
