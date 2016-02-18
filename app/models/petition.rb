@@ -135,8 +135,7 @@ class Petition < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :office
   belongs_to :petition_type
-
-  # belongs_to :organisation
+  belongs_to :organisation
 
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images

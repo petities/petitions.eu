@@ -1,10 +1,10 @@
 div#detailbox.petition-details
   h2.petition-section-title= t('show.overview.title')
 
-  - if @organisation
+  - if @petition.organisation
     div.petition_field_label= t('show.overview.addressee')
     div.petition_field_data
-      = @organisation.name
+      = @petition.organisation.name
       | &nbsp;
 
   - if @office

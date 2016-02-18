@@ -133,10 +133,6 @@ class PetitionsController < ApplicationController
   def set_petition_vars
     @page = params[:page] || 1
 
-    if @petition.organisation_id and @petition.organisation_id > 0
-      @organisation = Organisation.find_by_id(@petition.organisation_id)
-    end
-
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
