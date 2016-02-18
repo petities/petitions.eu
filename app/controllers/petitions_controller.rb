@@ -42,14 +42,14 @@ class PetitionsController < ApplicationController
     @ranked_petitions = []
 
     if @petitions.is_a?(Array)
-      @petitions.each do |id| 
+      @petitions.each do |id|
         petition = Petition.live.find_by_id(id)
         if petition
           @ranked_petitions.push(petition)
         end
         petition = nil
-      end 
-      @petitions.clear 
+      end
+      @petitions.clear
     end
 
     respond_to do |format|
@@ -321,7 +321,7 @@ class PetitionsController < ApplicationController
   def set_organisation_helper
     @petition_types = PetitionType.all
 
-    @organisation_types = Organisation.visible.sort_by(&:name).group_by(&:kind)
+    @organisation_types = Organisation.visible.order(:name).group_by(&:kind)
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
