@@ -308,7 +308,7 @@ class PetitionsController < ApplicationController
   def set_organisation_helper
     @petition_types = PetitionType.all
 
-    @organisation_types = Organisation.visible.sort_by(&:name).group_by(&:kind)
+    @organisation_types = Organisation.visible.order(:name).group_by(&:kind)
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
