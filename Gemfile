@@ -13,7 +13,7 @@ gem 'friendly_id-globalize'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3', group: :development
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2', '~> 0.3.20'
 
 # legacy utf 8 issues..
 gem 'utf8-cleaner'
@@ -23,7 +23,7 @@ gem 'rack-utf8_sanitizer'
 gem 'jquery-turbolinks'
 
 # authentication
-gem 'devise'
+gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'rolify'
@@ -119,7 +119,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.7', '>= 2.7.1'
+gem 'rollbar', '~> 2.8'
 # track everything..
 # gem 'logstasher'
 
