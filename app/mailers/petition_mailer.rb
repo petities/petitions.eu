@@ -1,6 +1,4 @@
 class PetitionMailer < ApplicationMailer
-  default from: 'bounces@petities.nl', reply_to: 'webmaster@petities.nl'
-
   # ask signatories with any pledge to adopt orphaned petition
   # rake petition:find_new_owner
   def adoption_request_signatory_mail(petition, signature)
@@ -89,8 +87,7 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     target = @petition.office.email
     subject = t('mail.request.procedural_subject', petition: petition.name)
-    mail(from: 'webmaster@petities.nl', reply_to: subdomain_address(@petition),
-         to: target, subject: subject)
+    mail(reply_to: subdomain_address(@petition), to: target, subject: subject)
   end
 
   # ask office for reference number
@@ -98,8 +95,7 @@ class PetitionMailer < ApplicationMailer
     logger.debug('building reference number mail..')
     @petition = petition
     subject = t('mail.request.reference_subject', petition: petition.name)
-    mail(from: 'webmaster@petities.nl', reply_to: subdomain_address(@petition),
-         to: @petition.office.email, subject: subject)
+    mail(reply_to: subdomain_address(@petition), to: @petition.office.email, subject: subject)
   end
 
   # each petition status change by e-mail to admin
@@ -115,9 +111,7 @@ class PetitionMailer < ApplicationMailer
     # should we not send email to admin users?
     target = @petition.petitioner_email if target.nil?
 
-    if target
-      mail(from: 'webmaster@petities.nl', to: target, subject: subject)
-    end
+    mail(to: target, subject: subject) if target
   end
 
   # petitioner is asked to write an update about the hand over
@@ -125,8 +119,7 @@ class PetitionMailer < ApplicationMailer
     @petition = petition
     subject = t('mail.petition.write_about_hand_over_subject', petition_name: petition.name)
 
-    mail(reply_to: 'webmaster@petities.nl', to: petition.petitioner_email,
-         subject: subject)
+    mail(to: petition.petitioner_email, subject: subject)
   end
 
   # ask petitioner to confirm, give user and password
@@ -151,7 +144,7 @@ class PetitionMailer < ApplicationMailer
 
     I18n.with_locale(tld) do
       subject = t('mail.petition.confirm.subject', petition_name: petition.name)
-      mail(from: 'webmaster@petities.nl', to: target, subject: subject)
+      mail(to: target, subject: subject)
     end
   end
 

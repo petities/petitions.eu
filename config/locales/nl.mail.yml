@@ -1,12 +1,11 @@
 nl:
   mail:
-    confirm_from: bevestig.handtekening@petities.nl
     dear: Geachte
     handed_over: '
 Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. De petitie is overhandigd!
 
 
-Er zijn %{signatures_count} ondertekeningen geplaatst sinds de petitie begon op %{date_created}. Het wachten is nu op een antwoord. 
+Er zijn %{signatures_count} ondertekeningen geplaatst sinds de petitie begon op %{date_created}. Het wachten is nu op een antwoord.
 
 
 Als het zover is ontvangt u het antwoord op dit e-mailadres. Daarna wissen we uw gegevens, tenzij u zichtbaar de petitie heeft ondertekend.
@@ -18,7 +17,7 @@ De petitie, alle ondertekeningen, statistieken en eventuele nieuwtjes staan op %
 '
     handed_over_subject: De petitie "%{petition}" is overhandigd!
     mailafriend:
-      mail: ' 
+      mail: '
 Geachte heer, mevrouw,
 
 
@@ -34,10 +33,10 @@ Als u niet wilt ondertekenen hoeft u niets te doen. Uw e-mailadres is eenmalig g
 De petitie kunt u bekijken op:
 
 
-http://%{subdomain}.petities.nl 
+http://%{subdomain}.petities.nl
 
 
-%{intro} 
+%{intro}
 
 
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
@@ -46,26 +45,26 @@ Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{
       subject: 'Uitnodiging om de petitie "%{title}" te ondertekenen'
     moderation:
       pending: '
-Er is een nieuwe petitie binnengekomen voor u om door te laten. 
-U kunt nu controleren of deze petitie voldoet aan de eisen. Is de petitie aan de juiste ontvanger gericht? 
+Er is een nieuwe petitie binnengekomen voor u om door te laten.
+U kunt nu controleren of deze petitie voldoet aan de eisen. Is de petitie aan de juiste ontvanger gericht?
 Is het misschien een speciale petitie met extra eisen voor ondertekeningen? Dit kunt u eventueel navragen bij de petitionaris.
-Ook kunt u de petitionaris inhoudelijk advies geven voor u de petitie open zet. 
-De petitionaris is te bereiken op %{petitioner_email} %{petitioner_phone}. 
+Ook kunt u de petitionaris inhoudelijk advies geven voor u de petitie open zet.
+De petitionaris is te bereiken op %{petitioner_email} %{petitioner_phone}.
 
 
-U voorkomt veel onnodige e-mails van lezers als u kleine spelfoutjes in de tekst herstelt. 
+U voorkomt veel onnodige e-mails van lezers als u kleine spelfoutjes in de tekst herstelt.
 Zolang u de essentie en de stijl van de petitie niet verandert worden verbeteringen door iedereen gewaardeerd.
-Ook kunt u zinnen of zinsdelen verplaatsen zodat de beschrijving van de afzenders in de eerste, constateringen in de tweede 
-en het verzoek in de derde onderdeel staan. 
+Ook kunt u zinnen of zinsdelen verplaatsen zodat de beschrijving van de afzenders in de eerste, constateringen in de tweede
+en het verzoek in de derde onderdeel staan.
 
 
-De petitie heeft wel een subdomein nodig. Dat is de kortst mogelijke beschrijving zonder spaties of leestekens. 
-Dit wordt het korte adres voor ondertekenaars om door te vertellen over de telefoon, op radio en tv, in gesprek, 
-via twitter en dergelijke. Formuleer het bij voorkeur positief (veiliger, groener, mooier, beter, ander, etc.) en 
+De petitie heeft wel een subdomein nodig. Dat is de kortst mogelijke beschrijving zonder spaties of leestekens.
+Dit wordt het korte adres voor ondertekenaars om door te vertellen over de telefoon, op radio en tv, in gesprek,
+via twitter en dergelijke. Formuleer het bij voorkeur positief (veiliger, groener, mooier, beter, ander, etc.) en
 concreet (behoud, stop, red, verander, pas aan, etc.)
 
 
-De petitie kunt u vinden in uw overzicht van uw petitieloket of op 
+De petitie kunt u vinden in uw overzicht van uw petitieloket of op
 '
       pending_subject: 'Nieuwe petitie om door te laten: "%{petition}" in uw petitieloket'
       petition: '
@@ -96,41 +95,41 @@ EINDE
 Dank u wel voor het gebruiken van Petities.nl!
 
 
-met vriendelijke groet, 
+met vriendelijke groet,
 
 
 de webmaster namens
 Stichting Petities.nl
 
 
-Wilt u onze hulp of ons advies? U kunt ons bijvoorbeeld inhuren voor een workshop, een 24/7 hotline, mailings aan de 
+Wilt u onze hulp of ons advies? U kunt ons bijvoorbeeld inhuren voor een workshop, een 24/7 hotline, mailings aan de
 burgers in onze database, analyses en meer. Telefoon 020-7854412 of e-mail webmaster@petities.nl.
 '
-    status: 
+    status:
       changed: 'Uw petitie "%{petition}" is van status veranderd naar '
       changed_instructions_petitioner: '
-U kunt de petitie bewerken door in te loggen op uw petitie(s). Als u uw wachtwoord niet meer weet kunt u een nieuwe opvragen voor uw 
+U kunt de petitie bewerken door in te loggen op uw petitie(s). Als u uw wachtwoord niet meer weet kunt u een nieuwe opvragen voor uw
 adres %{email} op dezelfde pagina waar u inlogt.
 
 
-Vergeet u als petitionaris niet om zelf ook uw eigen petitie(s) te ondertekenen? Dan kunt u ook zelf de e-mails ontvangen die u naar de 
+Vergeet u als petitionaris niet om zelf ook uw eigen petitie(s) te ondertekenen? Dan kunt u ook zelf de e-mails ontvangen die u naar de
 ondertekenaars stuurt.
 '
       changed_instructions_desk: '
-U kunt de petitie "%{petition}" bewerken door in te loggen op uw petitie(s) via 
-https://petities.nl/login als %{email} en met het wachtwoord dat u alleen kent. Of die u opnieuw kunt opvragen op dezelfde pagina voor uw 
-adres %{email}. 
+U kunt de petitie "%{petition}" bewerken door in te loggen op uw petitie(s) via
+https://petities.nl/login als %{email} en met het wachtwoord dat u alleen kent. Of die u opnieuw kunt opvragen op dezelfde pagina voor uw
+adres %{email}.
 
 
-Als een petitie open gezet moet worden is de meeste haast geboden. De petitionaris zit dan doorgaans vol ongeduld te wachten om ondertekenaars 
-te verzamelen. 
+Als een petitie open gezet moet worden is de meeste haast geboden. De petitionaris zit dan doorgaans vol ongeduld te wachten om ondertekenaars
+te verzamelen.
 
 
-Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de 
+Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de
 petitie. Omdat u een loket heeft kunt u dit allemaal zelf af.
 '
       changed_subject: 'De petitie "%{petition}" is van status veranderd naar: '
-      dear: bemensing van petitieloket 
+      dear: bemensing van petitieloket
     signoff: '
 U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_email} en uw wachtwoord.
 
@@ -138,7 +137,7 @@ U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_ema
 Dank u wel voor het gebruiken van Petities.nl!
 
 
-De webmaster 
+De webmaster
 
 STEUN PETITIES.NL
 

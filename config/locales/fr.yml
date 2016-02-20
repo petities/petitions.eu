@@ -324,7 +324,7 @@ fr:
       <p>&nbsp;</p>
       <p>Als u mailt met de webmaster wordt uw e-mailadres alleen gebruikt voor correspondentie die te maken heeft met uw vraag, klacht of opmerking. U ontvangt geen onpersoonlijke informatie (zoals een nieuwsbrief), tenzij <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">u zelf een abonnement op de nieuwsbrief vraagt.</a></p>
       <p>&nbsp;</p>
-      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van info@petities.nl:</p>
+      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van webmaster@petities.nl:</p>
       <ol>
         <li>om te bevestigen, binnen enkele minuten tot een dag na uw ondertekening</li>
         <li>om aan te kondigen dat de petitie gaat sluiten en wordt overhandigd, weken of maanden na uw ondertekening</li>
@@ -370,9 +370,9 @@ fr:
         sign_again: Sign again
         submit: Yes, I sign this petition
         success: |
-          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+          Thank you, your signature only needs your confirmation. On <span>%email</span> you will receive an e-mail from webmaster@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
         success1: Thank you, your signature only needs your confirmation. On your address
-        success2: you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+        success2: you will receive an e-mail from webmaster@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature with. Your data will not be shared with third parties and remain with the Stichting Petities.nl. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
