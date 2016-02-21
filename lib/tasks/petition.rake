@@ -60,8 +60,14 @@ namespace :petition do
       r.del(*keys) if keys.size > 0
     end
 
-    # delete everything!
-    # delete_all
+    desc 'create redis summary graph'
+    task create_redis_month_counts: :environment do
+
+      Petition.where(status: false).each_with_index do |petition, index|
+
+      end
+
+    end
 
     def create_barchart_keys(petition)
       # create year/day/hour scores!
@@ -101,16 +107,12 @@ namespace :petition do
 
       puts Benchmark.measure {
         create_barchart_keys petition
-
         # calculate active rate once
         puts '%s' % index
         puts '      active_rate %20f' % petition.active_rate
         puts '      %s %s' % [r.get(p_key), count]
       }
       puts
-      # petition top score!
-
-      raise 'Counts mismatch' if r.get(p_key).to_i != count
     end
   end
 
