@@ -72,8 +72,6 @@ class SignaturesController < ApplicationController
   end
 
   def search
-    # @petition = Petition.friendly.find(params[:petition_id])
-    #@petition = PetitionsController.send(:set_petition)
     find_petition
 
     @query = params[:query]
@@ -92,7 +90,6 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-
     find_petition
 
     # try to find old signature first
@@ -391,7 +388,7 @@ class SignaturesController < ApplicationController
     old_signature = @signature
     # create a new signature in the signature table.
     @signature = Signature.new(
-      old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
+      old_signature.attributes.select { |key, _| Signature.attribute_names.include? key })
 
     old_signature.delete
 
@@ -399,10 +396,6 @@ class SignaturesController < ApplicationController
     @signature.confirmed_at = Time.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-    # expire_fragment @petition
-    # puts 'Destroy %s' % old_signature.person_email
-    # puts old_signature.destroyed?
-    # old_signature.deleted?
     @signature.save
   end
 end

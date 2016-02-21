@@ -1,6 +1,8 @@
 class DesksController < ApplicationController
   include SortPetitions
 
+  skip_before_action :ensure_domain, only: :redirect
+
   def index
     @offices = Office.all
   end
@@ -13,8 +15,6 @@ class DesksController < ApplicationController
     end
 
     @signatures_count = 0
-    #@signatures_count = Signature.joins(:petition)
-    #                    .where(petitions: { office_id: @office.id }).size
     Petition.where(office_id: @office.id).all.each do |p|
       @signatures_count += p.get_count
     end
@@ -25,6 +25,11 @@ class DesksController < ApplicationController
     else
       show_not_logged_in
     end
+  end
+
+  def redirect
+    @office = Office.find_by_subdomain(request.subdomain)
+    redirect_to petition_desk_url(@office, subdomain: nil, locale: nil)
   end
 
   private

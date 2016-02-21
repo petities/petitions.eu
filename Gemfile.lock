@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
-  revision: efcddc16bfc05006828a0b311617d9162458ad0f
+  remote: https://github.com/activeadmin/activeadmin.git
+  revision: 0e09bfd81a57a0f59f0f9ca99866aca6f172a915
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -15,17 +15,10 @@ GIT
       rails (>= 3.2, < 5.0)
       ransack (~> 1.3)
       sass-rails
-
-GIT
-  remote: git://github.com/railsconfig/config.git
-  revision: 60ecef49a3da926cb2bbeb0b6cf5e590758f197e
-  specs:
-    config (1.0.0)
-      activesupport (>= 3.0)
-      deep_merge (~> 1.0.0)
+      sprockets (< 4)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.5.1)
       actionpack (= 4.2.5.1)
@@ -117,7 +110,7 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
-    countries (1.2.2)
+    countries (1.2.5)
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
     country_select (2.5.1)
@@ -127,8 +120,7 @@ GEM
     daemons (1.2.3)
     dalli (2.7.5)
     debug_inspector (0.0.2)
-    deep_merge (1.0.1)
-    devise (3.5.3)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -152,7 +144,7 @@ GEM
       i18n (~> 0.5)
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
-    formtastic_i18n (0.4.1)
+    formtastic_i18n (0.5.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     friendly_id-globalize (1.0.0.alpha2)
@@ -239,7 +231,7 @@ GEM
     paper_trail (3.0.9)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    paperclip (4.3.2)
+    paperclip (4.3.5)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -334,7 +326,7 @@ GEM
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rolify (5.0.0)
-    rollbar (2.5.2)
+    rollbar (2.8.0)
       multi_json
     sass (3.4.20)
     sass-rails (5.0.4)
@@ -411,7 +403,7 @@ GEM
       activesupport
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
-    warden (1.2.4)
+    warden (1.2.6)
       rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
@@ -439,11 +431,10 @@ DEPENDENCIES
   capistrano3-unicorn (~> 0.2.1)
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
-  config!
   countries
   country_select
   dalli
-  devise
+  devise (~> 3.5, >= 3.5.6)
   devise-encryptable
   devise-i18n
   email_validator (~> 1.6)
@@ -460,7 +451,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   mailcatcher
-  mysql2 (~> 0.3.18)
+  mysql2 (~> 0.3.20)
   paperclip
   prawn
   prawn-table
@@ -474,7 +465,7 @@ DEPENDENCIES
   redis-rails
   redis_analytics
   rolify
-  rollbar (~> 2.5.0)
+  rollbar (~> 2.8)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq

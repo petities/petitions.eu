@@ -74,13 +74,14 @@ one:
   id: 1
   name: test1
   description: description
-  office_id: 1
+  office: amsterdam
   request: request
   petitioner_email: test@test.nl
   petitioner_name: test11
   statement: statement
   initiators: :initiators
   slug: testslug
+  date_projected: <%= 2.months.from_now.to_date %>
   petition_type_id: 1
   subdomain: testsubdomain
   status: live

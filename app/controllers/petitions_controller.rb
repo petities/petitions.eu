@@ -2,8 +2,8 @@ class PetitionsController < ApplicationController
   include FindPetition
   include SortPetitions
 
-  before_action :set_petition, only: [:show, :edit, :update, :finalize, :update_owners]
-  before_action only: [:show, :edit]
+  before_action :set_petition,
+                only: [:show, :edit, :update, :finalize, :update_owners]
 
   # GET /petitions
   # GET /petitions.json
@@ -19,11 +19,9 @@ class PetitionsController < ApplicationController
     direction = [:desc, :asc][@order]
 
     if @sorting == 'active'
-      #petitions = petitions.order(active_rate_value: direction)
       petitions = $redis.zrevrange('active_rate', 0, 160)
     elsif @sorting == 'biggest'
       petitions = $redis.zrevrange('petition_size', 0, 160)
-      #petitions = petitions.order(signatures_count: direction)
     elsif @sorting == 'newest'
       petitions = petitions.order(created_at: direction)
     elsif @sorting == 'signquick'
@@ -44,9 +42,7 @@ class PetitionsController < ApplicationController
     if @petitions.is_a?(Array)
       @petitions.each do |id|
         petition = Petition.live.find_by_id(id)
-        if petition
-          @ranked_petitions.push(petition)
-        end
+        @ranked_petitions.push(petition) if petition
         petition = nil
       end
       @petitions.clear
@@ -56,7 +52,6 @@ class PetitionsController < ApplicationController
       format.html
       format.js
     end
-
   end
 
   def all
@@ -82,8 +77,7 @@ class PetitionsController < ApplicationController
                 .distinct
                 # with_locales(I18n.available_locales).
 
-    petitions = petitions.all.sort_by {|p| -$redis.zscore('active_rate', p.id)}
-
+    petitions = petitions.all.sort_by { |p| -$redis.zscore('active_rate', p.id) }
 
     @results_size = petitions.size
 
@@ -139,11 +133,7 @@ class PetitionsController < ApplicationController
   def set_petition_vars
     @page = params[:page] || 1
 
-    if @petition.organisation_id and @petition.organisation_id > 0
-      @organisation = Organisation.find_by_id(@petition.organisation_id)
-    end
-
-    @chart_data, @chart_labels = @petition.redis_history_chart_json(hist=20)
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
     @updates = @petition.updates.paginate(page: @page, per_page: 3)
   end
@@ -151,7 +141,6 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-
     unless @petition
       flash[:notice] = t('petition.we_could_not_find_petition_try_search')
       redirect_to root_path
@@ -169,14 +158,14 @@ class PetitionsController < ApplicationController
     @images = @petition.images
 
     @signatures = @petition.signatures
-                  .order(special: :desc, confirmed_at: :desc)
-                  .paginate(page: 1, per_page: 12)
+                           .order(special: :desc, confirmed_at: :desc)
+                           .paginate(page: 1, per_page: 12)
 
-    if @petition.office_id
-      @office = Office.find(@petition.office_id)
-    else
-      @office = Office.find_by_email('nederland@petities.nl')
-    end
+    @office = if @petition.office_id
+                Office.find(@petition.office_id)
+              else
+                Office.find_by_email('nederland@petities.nl')
+              end
 
     @answer = @petition.updates.where(show_on_petition: true).first
 
@@ -238,7 +227,7 @@ class PetitionsController < ApplicationController
     else
       user_params = params[:user]
 
-      unless user_params[:email].blank?
+      if user_params[:email].present?
         owner = User.where(email: user_params[:email]).first
 
         unless owner
@@ -261,7 +250,6 @@ class PetitionsController < ApplicationController
           # send welcome / password if needed
         end
       else
-
         @missing_email = t('petition.missing_email')
 
         respond_to do |format|
@@ -270,7 +258,6 @@ class PetitionsController < ApplicationController
         end
 
         return
-
       end
     end
 
@@ -308,12 +295,12 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signatures = @petition.signatures
-      .order(special: :desc, confirmed_at: :desc)
-      .paginate(page: params[:page], per_page: 12)
+                           .order(special: :desc, confirmed_at: :desc)
+                           .paginate(page: params[:page], per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
 
-    @petition_flash = t('petition.status.flash.%s' % @petition.status, default: @petition.status)
+    @petition_flash = t("petition.status.flash.#{@petition.status}", default: @petition.status)
 
     @images = @petition.images
   end
@@ -325,19 +312,21 @@ class PetitionsController < ApplicationController
 
     @organisation_type_prepared = {}
     @organisation_types.each  do |type, collection|
-      i18n_col = collection.map { |org| [t('petition.organisations.%s' % org.name, default: org.name), org.id] }
+      i18n_col = collection.map do |org|
+        [t("petition.organisations.#{org.name}", default: org.name), org.id]
+      end
       @organisation_type_prepared[type] = i18n_col
     end
 
     @publicbodies_sort_order = [
-      [t('petition.organisations.%s' % 'counsil'), 'counsil'],
-      [t('petition.organisations.%s' % 'plusregion'), 'plusregion'],
-      [t('petition.organisations.%s' % 'water_county'), 'water_county'],
-      [t('petition.organisations.%s' % 'district'), 'district'],
-      [t('petition.organisations.%s' % 'governement'), 'governement'],
-      [t('petition.organisations.%s' % 'parliament'), 'parliament'],
-      [t('petition.organisations.%s' % 'european_union'), 'european_union'],
-      [t('petition.organisations.%s' % 'collective'), 'collective']
+      [t('petition.organisations.counsil'), 'counsil'],
+      [t('petition.organisations.plusregion'), 'plusregion'],
+      [t('petition.organisations.water_county'), 'water_county'],
+      [t('petition.organisations.district'), 'district'],
+      [t('petition.organisations.governement'), 'governement'],
+      [t('petition.organisations.parliament'), 'parliament'],
+      [t('petition.organisations.european_union'), 'european_union'],
+      [t('petition.organisations.collective'), 'collective']
     ]
   end
 
@@ -353,7 +342,6 @@ class PetitionsController < ApplicationController
     # remove ownership for users not in owners_ids
 
     unless owner_ids.empty?
-
       diff1 = @owners.ids - owner_ids
 
       diff1.each do |id|
@@ -381,11 +369,11 @@ class PetitionsController < ApplicationController
       @petition.organisation_name = organisation.name
 
       office = Office.find_by_organisation_id(organisation.id)
-      if office && !office.hidden?
-        @petition.office = office
-      else
-        @petition.office = Office.find_by_email('nederland@petities.nl')
-      end
+      @petition.office = if office && !office.hidden?
+                           office
+                         else
+                           Office.find_by_email('nederland@petities.nl')
+                         end
     end
   end
 
@@ -414,8 +402,6 @@ class PetitionsController < ApplicationController
     # only update what is allowed
     exclude_list = policy(@petition).invalid_attributes
     filtered_params = petition_params.except(*exclude_list)
-
-    #crashh_please
 
     Globalize.with_locale(locale) do
       respond_to do |format|
@@ -467,9 +453,7 @@ class PetitionsController < ApplicationController
   def set_petition
     find_petition
 
-    if @petition.nil?
-      return
-    end
+    return if @petition.nil?
 
     @update = Update.new(petition_id: @petition.id)
 

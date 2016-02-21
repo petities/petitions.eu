@@ -1,0 +1,6 @@
+one:
+  name: Gemeente Amsterdam
+  kind: counsil
+  code:
+  region: NH
+  visible: true

@@ -8,8 +8,6 @@ set :rbenv_type, :user
 
 set :rbenv_ruby, File.read('.ruby-version').strip
 
-# set :rbenv_path, '/home/production/.rbenv'
-#
 set :rbenv_path, '/var/projects/petitions.eu/.rbenv'
 # set :rbenv_path, "~/.rbenv"
 
@@ -23,7 +21,6 @@ set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
 
 # Default value for :scm is :git
 # set :scm, :git
-#
 
 # Defaults to [:web]
 set :assets_roles, [:web, :app]
@@ -40,10 +37,19 @@ set :keep_assets, 2
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push(
+  'config/database.yml', 'config/secrets.yml'
+)
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log',
+  'tmp/pids',
+  'tmp/cache',
+  'tmp/sockets',
+  'vendor/bundle',
+  'public/system'
+)
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

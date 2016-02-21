@@ -78,10 +78,7 @@ class Signature < ActiveRecord::Base
             on: :update,
             if: :require_full_address?
 
-  validates :person_function,
-            length: { maximum: 254 },
-            on: :update
-            
+  validates :person_function, length: { maximum: 255 }, allow_blank: true
 
   validates :person_street,
             length: { in: 3..255 },
@@ -122,44 +119,33 @@ class Signature < ActiveRecord::Base
   after_save :update_petition
 
   def update_petition
-
-    if self.confirmed_changed?
-      self.set_redis_counts
-      # no more hit/edit/save on petition! YAY
-    end
-
+    # no more hit/edit/save on petition! YAY
+    update_redis_counts if confirmed_changed?
   end
 
-  def set_redis_counts(task=false)
-
+  def update_redis_counts(task = false)
     t = created_at || updated_at
 
-    unless t
-      return
-    end
+    return unless t
 
     # last updates
-    last = $redis.get('p-last-%s' % petition.id).to_i || 3600
-    last =  Time.at(last)
+    last = $redis.get("p-last-#{petition.id}").to_i || 3600
+    last = Time.at(last)
 
-    if t > last
-      $redis.set('p-last-%s' % petition.id, t.to_i)
-    end
+    $redis.set("p-last-#{petition.id}", t.to_i) if t > last
 
-    $redis.incr('p-d-%s-%s-%s-%s' % [
-      petition.id, t.year, t.month, t.day])
+    $redis.incr("p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}")
 
-    if not task
+    unless task
       # city count
-      $redis.zincrby('p%s-city' % id, 1,  person_city.downcase)
+      $redis.zincrby("p#{id}-city", 1, person_city.downcase)
       # size rating
-      $redis.zincrby('petition_size', 1,  petition.id)
+      $redis.zincrby('petition_size', 1, petition.id)
       # size count
-      $redis.incr('p%s-count' % petition.id)
+      $redis.incr("p#{petition.id}-count")
       # activity rating
       petition.update_active_rate!
     end
-
   end
 
   def require_full_address?
@@ -195,7 +181,6 @@ class Signature < ActiveRecord::Base
   end
 
   def send_confirmation_mail
-
     if last_reminder_sent_at.nil?
       SignatureMailer.sig_confirmation_mail(self).deliver_later
     end
@@ -203,9 +188,8 @@ class Signature < ActiveRecord::Base
   end
 
   def send_reminder_mail
-
     # update the time
-    self.last_reminder_sent_at = Time.now
+    self.last_reminder_sent_at = Time.now.utc
 
     # update the reminder sent value
 
@@ -219,8 +203,8 @@ class Signature < ActiveRecord::Base
       person_email, petition_id)
 
     if confirmed_sig
-      self.destroy
-      Rails.logger.debug 'DESTROYED existing to %s' % person_email
+      destroy
+      Rails.logger.debug "DESTROYED existing to #{person_email}"
       return
     end
 
@@ -228,17 +212,14 @@ class Signature < ActiveRecord::Base
     if save
       SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
     else
-      Rails.logger.debug 'ERROR reminder email to %s' % person_email
-      Rails.logger.debug 'for petition %s' % petition.name 
-      self.destroy
+      Rails.logger.debug "ERROR reminder email to #{person_email}"
+      Rails.logger.debug "for petition #{petition.name}"
+      destroy
     end
- 
-    #destroy
-    #end
   end
 
   def fill_confirmed_at
-    self.confirmed_at = Time.now.utc if confirmed_at.nil? && self.confirmed?
+    self.confirmed_at = Time.now.utc if confirmed_at.nil? && confirmed?
   end
 
   def fill_signed_at

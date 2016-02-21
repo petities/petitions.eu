@@ -1,8 +1,4 @@
 class SignatureMailer < ApplicationMailer
-  default from: 'webmaster@petities.nl', 
-          reply_to: 'webmaster@petities.nl',
-          return_path: 'bounces@petities.nl'
-
   # all signatories get a mail that the hand over took place
   def handed_over_signatories_mail(signature)
     @signature = signature
@@ -28,7 +24,7 @@ class SignatureMailer < ApplicationMailer
       signature_id: @signature.unique_key)
 
     subject = t('mail.petition.has_answer_subject', petition: @petition.name)
-    
+
     mail(to: signature.person_email, subject: subject)
   end
 
@@ -62,10 +58,8 @@ class SignatureMailer < ApplicationMailer
     name = @signature.petition.name if @signature.petition.present?
 
     subject = t('mail.confirm.signature.subject', petition_name: name)
-   
-    mail(
-      from: t('mail.confirm_from'),
-      to: @signature.person_email, subject: subject)
+
+    mail(to: @signature.person_email, subject: subject)
   end
 
   def sig_reminder_confirm_mail(signature)
@@ -81,9 +75,7 @@ class SignatureMailer < ApplicationMailer
 
     subject = t('mail.confirm.signature.subject_again', petition_name: name)
 
-    mail(to: @signature.person_email, 
-         from: t('mail.confirm_from'),
-         subject: subject)
+    mail(to: @signature.person_email, subject: subject)
   end
 
   # send a default email informing recipient of petition
@@ -93,7 +85,7 @@ class SignatureMailer < ApplicationMailer
     @petition = @signature.petition
     @person_function = ''
     unless @signature.person_function.nil?
-      @person_function = t('mail.mailafriend.note') + ' "%s"' % @signature.person_function
+      @person_function = t('mail.mailafriend.note') + " \"#{@signature.person_function}\""
     end
     # build a catch subject line
     subject = t('mail.mailafriend.subject', title: @petition.name)
@@ -104,5 +96,4 @@ class SignatureMailer < ApplicationMailer
   def inform_user_of_news_mail(signature, petition, news_update)
     # TODO: for reinder
   end
-
 end

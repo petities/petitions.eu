@@ -510,7 +510,7 @@ en:
       <p>&nbsp;</p>
       <p>When you e-mail the webmaster your e-mail address is only used for correspondence regarding that question, complaint or remark. You do not receive impersonal information (like a newsletter), unless you <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">subscribe yourself to the newsletter.</a></p>
       <p>&nbsp;</p>
-      <p>When you sign a petition, you will always receive three e-mails from info@petities.nl:</p>
+      <p>When you sign a petition, you will always receive three e-mails from webmaster@petities.nl:</p>
       <ol>
         <li>to confirm your signature, within minutes up to a day after your signature</li>
         <li>to announce the closing and hand over of the petition, weeks or months after your signature</li>
@@ -581,7 +581,7 @@ en:
       share_this: This is a good moment to share the link to the petitions from the bar below. After confirmation you can enter e-mail addresses to send invitations to others through us.
       status:
         label: What next?
-        will_be_signable: We have send you an e-mail from info@petities.nl. To continue with your petition you must follow the link in it.
+        will_be_signable: We have send you an e-mail from webmaster@petities.nl. To continue with your petition you must follow the link in it.
         was_signable: Your petition is no longer open to collect signatures.
       title: Petition
       we: We
@@ -602,7 +602,7 @@ en:
         sign_again: Let someone else sign now
         submit: Yes, I sign this petition
         success1: Thank you. It is now important to confirm your signature. On your address
-        success2: you will receive an e-mail from info@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+        success2: you will receive an e-mail from webmaster@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
       note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
       title: Sign this petition
     signatures:
@@ -722,9 +722,9 @@ en:
       text: Your news update about the petition
       title: Title of this update
       select_office: Select petition desk
-      show_on_homepage: Show on news of petities.nl 
+      show_on_homepage: Show on news of petities.nl
       show_on_petition: Show on petition (above the sign form)
-      publish_to_signatures: Publish via mail to all signatures 
+      publish_to_signatures: Publish via mail to all signatures
       publish_review: The news will be reviewed before publishing
       show_on_office: Show on petition desk
     news_updates: Updates
