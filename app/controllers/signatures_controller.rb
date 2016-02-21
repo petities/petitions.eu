@@ -282,7 +282,7 @@ class SignaturesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @signature.errors, status: :unprocessable_entity }
+        format.json { render json: @pledge.errors, status: :unprocessable_entity }
       end
     end
   end
