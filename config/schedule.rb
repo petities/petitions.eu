@@ -56,9 +56,9 @@ end
 #  rake 'petition:handle_overdue_petitions'
 #end
 
-#every :day, at: '4am' do
-#  rake 'petition:send_warning_due_date'
-#end
+every :day, at: '4am' do
+  rake 'petition:fix_signature_counts'
+end
 
 #every :day, at:  '3am' do
 #  rake 'petition:get_reference'

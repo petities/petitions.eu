@@ -68,10 +68,13 @@ div.page
           - if not @signature.errors[:person_city].empty?
             - error = ' error'
           - if not @signature.petition.display_city_select_box?
-              = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
+            = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
           - else
+            - cities = ["something is wrong..webmaster@petities.nl"]
+            - if @signature.petition.petition_type
               - cities = @signature.petition.petition_type.cities.map(&:name)
-              = f.select(:person_city,
+
+            = f.select(:person_city,
                        options_for_select(cities),
                        class: "start-petition-form-cell-select.large")
 

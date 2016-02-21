@@ -1,6 +1,8 @@
 namespace :petition do
   desc 'fix signature counts'
+
   task fix_signature_counts: :environment do
+
     Petition.live.each do |petition|
       count = petition.signatures.confirmed.count
       old_count = petition.signatures_count
