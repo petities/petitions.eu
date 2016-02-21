@@ -1,6 +1,5 @@
 namespace :petition do
   desc 'fix signature counts'
-
   task fix_signature_counts: :environment do
 
     Petition.live.each do |petition|
@@ -28,17 +27,28 @@ namespace :petition do
 
     r = Redis.new
 
-    r.del('p%s_city')
-
     Petition.live.each_with_index do |petition, index|
+      r.del("p#{petition.id}_city")
       puts i
+
       city_counts(petition).each do |group|
         city_name = group[0].downcase
         count = group[1].to_i
-        r.zincrby('p%s_city', count, city_name)
+        r.zincrby("p#{petition.id}_city", count, city_name)
       end
     end
+
   end
+
+  desc 'create redis summary graph'
+  task create_redis_month_counts: :environment do
+
+    Petition.where(status: false).each_with_index do |petition, index|
+
+    end
+
+  end
+
 
   desc 'create redis signature counts'
   task set_redis_signature_counts: :environment do
@@ -60,15 +70,6 @@ namespace :petition do
       r.del(*keys) if keys.size > 0
     end
 
-    desc 'create redis summary graph'
-    task create_redis_month_counts: :environment do
-
-      Petition.where(status: false).each_with_index do |petition, index|
-
-      end
-
-    end
-
     def create_barchart_keys(petition)
       # create year/day/hour scores!
       recent_signatures = petition.signatures
@@ -76,10 +77,12 @@ namespace :petition do
                                   .order('created_at DESC')
                                   .limit(2000)
 
-      recent_signatures.find_each do |signature|
-        signature.update_redis_counts(true)
+      recent_signatures.each do |signature|
+        signature.update_redis_counts(task=true)
       end
     end
+
+    # delete_all
 
     Petition.live.each_with_index do |petition, index|
       r = Redis.new
@@ -95,16 +98,13 @@ namespace :petition do
       puts '%5s - %6s - %6s - %s' % [
         petition.id, count, old_count, petition.name]
 
-      #delete_petition_keys petition
-
       # count scores and ranking
       r.set('p%s-count' % petition.id, count)
-      #$redis.zadd('petition_size', count,  petition.id)
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)
 
+      # day barchart keys for graph
       puts
-
       puts Benchmark.measure {
         create_barchart_keys petition
         # calculate active rate once

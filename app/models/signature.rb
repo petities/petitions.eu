@@ -119,33 +119,48 @@ class Signature < ActiveRecord::Base
   after_save :update_petition
 
   def update_petition
+ 
     # no more hit/edit/save on petition! YAY
-    update_redis_counts if confirmed_changed?
+    if self.confirmed_changed?
+      self.update_redis_counts
+      # no more hit/edit/save on petition! YAY
+    end
+
   end
 
   def update_redis_counts(task = false)
-    t = created_at || updated_at
 
-    return unless t
+    t = confirmed_at
+
+    if not t
+      puts 'no time..'
+      return
+    end
 
     # last updates
     last = $redis.get("p-last-#{petition.id}").to_i || 3600
+
     last = Time.at(last)
 
-    $redis.set("p-last-#{petition.id}", t.to_i) if t > last
+    if t > last
+      $redis.set("p-last-#{petition.id}", t.to_i)
+    end
 
-    $redis.incr("p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}")
+    day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"
 
-    unless task
-      # city count
-      $redis.zincrby("p#{id}-city", 1, person_city.downcase)
+    $redis.incr(day_key)
+
+    if not task
       # size rating
       $redis.zincrby('petition_size', 1, petition.id)
+      # city count
+      $redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
       $redis.incr("p#{petition.id}-count")
       # activity rating
       petition.update_active_rate!
     end
+
   end
 
   def require_full_address?

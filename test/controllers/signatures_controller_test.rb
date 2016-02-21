@@ -158,6 +158,13 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'check confirmation logic' do
+
+    # remove redis keys
+    # mabe we should have a test prefix..
+    if $redis.keys("p-d-2-*").size > 0
+      $redis.del($redis.keys("p-d-2-*"))
+    end
+
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
         assert_difference('$redis.get("p2-count").to_i') do
@@ -166,6 +173,11 @@ class SignaturesControllerTest < ActionController::TestCase
         end
       end
     end
+
+    old_value = @petition2.active_rate
+    assert_equal($redis.keys("p-d-2-*").size, 1)
+    assert_not_equal(@petition2.active_rate , 0.01)
+    assert_equal(@petition.active_rate , 0.01)
 
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
@@ -176,6 +188,9 @@ class SignaturesControllerTest < ActionController::TestCase
         end
       end
     end
+
+    assert_equal(@petition2.active_rate, old_value)
+
   end
 
   # test 'take_owner_ship' do

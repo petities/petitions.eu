@@ -234,17 +234,19 @@ class Petition < ActiveRecord::Base
   end
 
   def active_rate
+
     short = 1.0
+
     total = 100.0
 
-    now = Time.now
+    now = Time.now + 1.day
 
     15.times do
-      key = "'p-d-#{id}-#{now.year}-#{now.month}-now.day"
+      key = "p-d-#{id}-#{now.year}-#{now.month}-#{now.day}"
       v = $redis.get(key) || 0
       v = v.to_f
       short += v
-      now -= 1.day
+      now = now - 1.day
     end
 
     a_rate = short / total
@@ -293,23 +295,32 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept staging draft).include? status
+    %w(concept
+       staging
+       draft).include? status
   end
 
   def is_staging?
-    %w(concept staging).include? status
+    %w(concept
+       staging).include? status
   end
 
   def is_live?
-    %w(live not_signable_here).include? status
+    %w(live
+       not_signable_here).include? status
   end
 
   def is_closed?
-    %w(withdrawn rejected to_process not_processed).include? status
+    %w(withdrawn
+       rejected
+       to_process
+       not_processed).include? status
   end
 
   def in_treatment?
-    %w(in_process to_process not_processed).include? status
+    %w(in_process
+       to_process
+       not_processed).include? status
   end
 
   def is_answered?
@@ -329,11 +340,16 @@ class Petition < ActiveRecord::Base
   end
 
   def redis_history_chart_json(hist = 10)
-    now = Time.now
-    start = now - hist.day
-    start = created_at if created_at && start < created_at
 
-    day_counts = []
+    now = Time.now
+
+    start = Time.now - hist.day
+
+    if created_at and start < created_at
+      start = created_at
+    end
+
+    day_counts = [] 
     labels = []
 
     d = start
@@ -343,9 +359,13 @@ class Petition < ActiveRecord::Base
       c = $redis.get(key) || 0
       c = c.to_i
       day_counts.push(c)
+
       labels.push("#{d.year}-#{d.month}-#{d.day}")
-      break if d > now
-      d += 1.day
+
+      if d > now
+        break
+      end
+      d = d + 1.day
     end
 
     if labels.size > 20
@@ -388,4 +408,5 @@ class Petition < ActiveRecord::Base
       site: { link: site1, text: site1_text }
     }
   end
+
 end
