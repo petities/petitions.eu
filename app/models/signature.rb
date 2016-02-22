@@ -139,7 +139,6 @@ class Signature < ActiveRecord::Base
 
     # last updates
     last = $redis.get("p-last-#{petition.id}").to_i || 3600
-
     last = Time.at(last)
 
     if t > last

@@ -5,5 +5,8 @@
 
 - list.each do |petition|
   - cache [petition, petition.get_count, I18n.locale || :nl] do
+    div.petition-overview
+      = render partial: 'petitions/list_item', locals: {petition: petition} 
 
-    = render partial: 'petitions/list_item', locals: {petition: petition} 
+      - if(user_signed_in? && current_user.has_role?(:admin, petition))
+        =<> $redis.zscore('active_rate', petition.id)

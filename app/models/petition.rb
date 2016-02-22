@@ -242,10 +242,14 @@ class Petition < ActiveRecord::Base
     now = Time.now + 1.day
 
     15.times do
-      key = "p-d-#{id}-#{now.year}-#{now.month}-#{now.day}"
-      v = $redis.get(key) || 0
-      v = v.to_f
-      short += v
+      key_d = "p-d-#{id}-#{now.year}-#{now.month}-#{now.day}"
+      key_h = "p-h-#{id}-#{now.year}-#{now.month}-#{now.day}-#{now.hour}"
+      vd = $redis.get(key_d) || 0
+      vd = vd.to_f
+      vh = $redis.get(key_h) || 0
+      vh = vh.to_f
+      short += vd
+      short += vh
       now = now - 1.day
     end
 

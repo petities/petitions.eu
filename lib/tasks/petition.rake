@@ -75,7 +75,7 @@ namespace :petition do
       recent_signatures = petition.signatures
                                   .confirmed
                                   .order('created_at DESC')
-                                  .limit(2000)
+                                  .limit(3000)
 
       recent_signatures.each do |signature|
         signature.update_redis_counts(task=true)
