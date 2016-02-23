@@ -421,7 +421,8 @@ class Petition < ActiveRecord::Base
      DATE_FORMAT(created_at, '%Y/%m/%d') as theday 
      FROM signatures 
      WHERE petition_id=#{id} 
-     AND confirmed=true
+     AND confirmed=true 
+     AND created_at IS NOT NULL
      GROUP BY 
      YEAR(confirmed_at), MONTH(confirmed_at), DAY(confirmed_at)
      ORDER BY theday;" 
