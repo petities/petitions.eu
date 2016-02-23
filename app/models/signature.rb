@@ -147,6 +147,14 @@ class Signature < ActiveRecord::Base
 
     day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"
 
+    # keep track of signature counts the last hours
+    if t > (Time.now - 1.day)
+      hour_key = "p-h-#{petition.id}-#{t.year}-#{t.month}-#{t.day}-#{t.hour}"
+      $redis.incr(hour_key)
+      # forget hour keys after 24 hours
+      $redis.expire hour_key, 3600 * 24
+    end
+
     $redis.incr(day_key)
 
     if not task
