@@ -122,17 +122,15 @@ class Signature < ActiveRecord::Base
  
     # no more hit/edit/save on petition! YAY
     if self.confirmed_changed?
-      self.update_redis_counts
+      self.set_redis_keys
       # no more hit/edit/save on petition! YAY
     end
 
   end
 
-  def update_redis_counts(task = false)
+  def set_last_key(last)
 
-    t = confirmed_at
-
-    if not t
+    if not confirmed_at
       puts 'no time..'
       return
     end
@@ -141,12 +139,15 @@ class Signature < ActiveRecord::Base
     last = $redis.get("p-last-#{petition.id}").to_i || 3600
     last = Time.at(last)
 
-    if t > last
-      $redis.set("p-last-#{petition.id}", t.to_i)
+    if confirmed_at > last
+      $redis.set("p-last-#{petition.id}", confirmed_at.to_i)
     end
 
-    day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"
+  end
 
+  def set_hour_key(time)
+    t = confirmed_at
+ 
     # keep track of signature counts the last hours
     if t > (Time.now - 1.day)
       hour_key = "p-h-#{petition.id}-#{t.year}-#{t.month}-#{t.day}-#{t.hour}"
@@ -155,9 +156,18 @@ class Signature < ActiveRecord::Base
       $redis.expire hour_key, 3600 * 24
     end
 
-    $redis.incr(day_key)
+  end
 
+  def set_redis_keys(task = false)
+
+    set_last_key(confirmed_at)
+
+    set_hour_key(confirmed_at)
+   
     if not task
+      t = confirmed_at
+      day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"
+      $redis.incr(day_key)
       # size rating
       $redis.zincrby('petition_size', 1, petition.id)
       # city count

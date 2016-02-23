@@ -128,9 +128,10 @@ class Petition < ActiveRecord::Base
   ]
 
   scope :live,      -> { where(status: 'live') }
+  scope :live!,     -> { where('status != "live"') }
   scope :big,       -> { order(signatures_count: :desc) }
-  scope :active,     -> { order(active_rate_value: :desc) }
-  scope :newest,     -> { order(created_at: :desc) }
+  scope :active,    -> { order(active_rate_value: :desc) }
+  scope :newest,    -> { order(created_at: :desc) }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office
@@ -412,5 +413,57 @@ class Petition < ActiveRecord::Base
       site: { link: site1, text: site1_text }
     }
   end
+
+  def create_raw_sql_barchart_keys
+     sql = "
+     SELECT 
+     COUNT(id), petition_id, 
+     DATE_FORMAT(created_at, '%Y/%m/%d') as theday 
+     FROM signatures 
+     WHERE petition_id=#{id} 
+     AND confirmed=true
+     GROUP BY 
+     YEAR(confirmed_at), MONTH(confirmed_at), DAY(confirmed_at)
+     ORDER BY theday;" 
+
+     day_counts_array = ActiveRecord::Base.connection.execute(sql)
+
+     puts
+     puts "ACTIVE DAYS: #{day_counts_array.count}"
+     puts
+
+     day_counts_array.each do |row|
+      count = row[0]
+      id = row[1]
+      year, month, day = row[2].split('/')
+      day_key = "p-d-#{id}-#{year}-#{month}-#{day}"
+      $redis.set(day_key, count)
+     end
+
+  end
+
+  def create_hour_keys
+
+    # create year/day/hour scores!
+    recent_signatures = self.signatures
+                            .confirmed
+                            .order("confirmed_at DESC")
+                            .where("confirmed_at >= ?", 
+                                   Time.zone.now.beginning_of_day)
+
+    if recent_signatures.count == 0
+      return
+    end
+
+    puts
+    puts "SIGS TODAY: #{recent_signatures.count}"
+    puts
+
+    recent_signatures.each do |signature|
+      signature.set_redis_keys(true)
+    end
+    
+  end
+
 
 end

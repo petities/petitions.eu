@@ -70,18 +70,6 @@ namespace :petition do
       r.del(*keys) if keys.size > 0
     end
 
-    def create_barchart_keys(petition)
-      # create year/day/hour scores!
-      recent_signatures = petition.signatures
-                                  .confirmed
-                                  .order('created_at DESC')
-                                  .limit(3000)
-
-      recent_signatures.each do |signature|
-        signature.update_redis_counts(task=true)
-      end
-    end
-
     # delete_all
 
     Petition.live.each_with_index do |petition, index|
@@ -89,30 +77,34 @@ namespace :petition do
 
       count = petition.signatures.confirmed.count
 
-      p_key = "p#{petition.id}-count"
-
-      old_count = r.get(p_key).to_i || 0
-
       next if petition.name.blank?
 
-      puts '%5s - %6s - %6s - %s' % [
-        petition.id, count, old_count, petition.name]
+      puts '%5s - %6s - %s' % [
+        petition.id, count, petition.name]
 
-      # count scores and ranking
+      # general count
       r.set('p%s-count' % petition.id, count)
+      # Main rankings
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)
+
+      # last hours activity rate
+      puts
+      puts Benchmark.measure {
+        petition.create_hour_keys
+      }
 
       # day barchart keys for graph
       puts
       puts Benchmark.measure {
-        create_barchart_keys petition
-        # calculate active rate once
-        puts '%s' % index
-        puts '      active_rate %20f' % petition.active_rate
-        puts '      %s %s' % [r.get(p_key), count]
+        petition.create_raw_sql_barchart_keys
       }
+      # call this only once!
       puts
+      puts "Active rate: #{petition.update_active_rate!}"
+      puts
+      puts
+
     end
   end
 
