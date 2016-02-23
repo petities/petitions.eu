@@ -70,9 +70,9 @@ namespace :petition do
       r.del(*keys) if keys.size > 0
     end
 
-    # delete_all
+    #delete_all
 
-    Petition.live.each_with_index do |petition, index|
+    Petition.live.order(:id).each_with_index do |petition, index|
       r = Redis.new
 
       count = petition.signatures.confirmed.count
@@ -97,6 +97,7 @@ namespace :petition do
       # day barchart keys for graph
       puts
       puts Benchmark.measure {
+        petition.delete_keys
         petition.create_raw_sql_barchart_keys
       }
       # call this only once!

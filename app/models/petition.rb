@@ -414,6 +414,18 @@ class Petition < ActiveRecord::Base
     }
   end
 
+  def delete_keys
+
+    r = $redis
+
+    keys_d = r.keys("p-d-#{id}-*")
+    keys_h = r.keys("p-h-#{id}-*")
+
+    r.del(*keys_d) if keys_d.size > 0
+    r.del(*keys_h) if keys_h.size > 0
+
+  end
+
   def create_raw_sql_barchart_keys
      sql = "
      SELECT 
@@ -437,7 +449,7 @@ class Petition < ActiveRecord::Base
       count = row[0]
       id = row[1]
       year, month, day = row[2].split('/')
-      day_key = "p-d-#{id}-#{year}-#{month}-#{day}"
+      day_key = "p-d-#{id}-#{year}-#{month.to_i}-#{day.to_i}"
       $redis.set(day_key, count)
      end
 
