@@ -54,8 +54,6 @@ namespace :petition do
   task set_redis_signature_counts: :environment do
     require 'benchmark'
 
-    r = Redis.new
-
     def delete_all
       r = Redis.new
 
@@ -71,9 +69,8 @@ namespace :petition do
     end
 
     #delete_all
-
-    Petition.live.order(:id).each_with_index do |petition, index|
-      r = Redis.new
+    #
+    Petition.live.order(id: :desc).each_with_index do |petition, index|
 
       count = petition.signatures.confirmed.count
 
@@ -83,7 +80,7 @@ namespace :petition do
         petition.id, count, petition.name]
 
       # general count
-      r.set('p%s-count' % petition.id, count)
+      $redis.set('p%s-count' % petition.id, count)
       # Main rankings
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)
@@ -107,6 +104,8 @@ namespace :petition do
       puts
 
     end
+    # clear the cache
+    Rails.cache.clear
   end
 
   desc 'Send warning of expiring due date'

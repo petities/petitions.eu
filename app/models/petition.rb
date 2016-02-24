@@ -367,7 +367,7 @@ class Petition < ActiveRecord::Base
 
       labels.push("#{d.year}-#{d.month}-#{d.day}")
 
-      if d > now
+      if d > Time.zone.now.beginning_of_day
         break
       end
       d = d + 1.day
@@ -430,11 +430,11 @@ class Petition < ActiveRecord::Base
      sql = "
      SELECT 
      COUNT(id), petition_id, 
-     DATE_FORMAT(created_at, '%Y/%m/%d') as theday 
+     DATE_FORMAT(confirmed_at, '%Y/%m/%d') as theday 
      FROM signatures 
      WHERE petition_id=#{id} 
      AND confirmed=true 
-     AND created_at IS NOT NULL
+     AND confirmed_at IS NOT NULL
      GROUP BY 
      YEAR(confirmed_at), MONTH(confirmed_at), DAY(confirmed_at)
      ORDER BY theday;" 
@@ -456,13 +456,12 @@ class Petition < ActiveRecord::Base
   end
 
   def create_hour_keys
-
+    hour24ago = Time.zone.now.beginning_of_day - 1.day
     # create year/day/hour scores!
     recent_signatures = self.signatures
                             .confirmed
                             .order("confirmed_at DESC")
-                            .where("confirmed_at >= ?", 
-                                   Time.zone.now.beginning_of_day)
+                            .where("confirmed_at >= ?", hour24ago)
 
     if recent_signatures.count == 0
       return
