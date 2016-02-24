@@ -406,7 +406,7 @@ class PetitionsController < ApplicationController
     Globalize.with_locale(locale) do
       respond_to do |format|
         if @petition.update(filtered_params)
-          format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
+          format.html { redirect_to edit_petition_path(@petition), flash: { success: t('petition.update.success') } }
           format.json { render :show, status: :ok, location: @petition }
         else
           @petition_flash = t('petition.errors.look_at_form')

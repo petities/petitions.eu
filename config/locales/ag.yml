@@ -308,6 +308,8 @@ ag:
     the_next_logical_action: The next logical action
     title: Title
     to_process: To process
+    update:
+      success: Petition was successfully updated.
     user_email: User email
     version: Version
     we_could_not_find_petition_try_search: The petition was not found. Please use the search engine to find it.

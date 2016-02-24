@@ -477,6 +477,8 @@ nl:
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
+    update:
+      success: Uw petitie is bijgewerkt.
     user_email: E-mail
     version: Versie
     we_could_not_find_petition_try_search: De petitie is niet gevonden. U kunt de zoekmachine gebruiken om te zoeken.
@@ -501,7 +503,7 @@ nl:
       description: Of wilt u op een andere manier helpen?
       placeholder: Iets anders...
     thank_you: Dank u!
-    failed: Oeps! er zit een fout in het formulier! 
+    failed: Oeps! er zit een fout in het formulier!
   privacy:
     text: |
       <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
