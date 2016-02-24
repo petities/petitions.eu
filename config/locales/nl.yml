@@ -479,6 +479,7 @@ nl:
     to_process: In behandeling
     user_email: E-mail
     version: Versie
+    we_could_not_find_petition_try_search: De petitie is niet gevonden. U kunt de zoekmachine gebruiken om te zoeken.
     withdrawn: Ingetrokken
   petitioner:
     awaiting_answer: Wacht op antwoord

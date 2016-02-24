@@ -310,6 +310,7 @@ fr:
     to_process: To process
     user_email: User email
     version: Version
+    we_could_not_find_petition_try_search: The petition was not found. Please use the search engine to find it.
     withdrawn: Withdrawn
   petitioner: Petitioner
   petitions: Petitions
