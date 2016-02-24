@@ -452,6 +452,9 @@ de:
         description: |
           Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
         label: Short description
+      status:
+        description: As moderator, change the status of the petition. For example, open a petition for signing.
+        label: Status
       submit: Process petition
       update: Update
       we:

@@ -691,6 +691,7 @@ en:
         placeholder: 300 characters for a short description
       status:
         description: As moderator, change the status of the petition. For example, open a petition for signing.
+        label: Status
       submit: Submit petition
       subdomain:
         description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
