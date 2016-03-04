@@ -551,7 +551,7 @@ en:
   pundit:
     petition_policy:
       edit?: You can now add a translation of the petition
-      create?: Well done!
+      create?: Translation added!
   request: Request
   search:
     found: "%{results_size} petitions found for '%{search_term}'"
@@ -579,14 +579,18 @@ en:
       title: Details
       website: 'Website:'
     petition:
+      answer: The answer
+      answer_title: Subject
       news: News
       observe: observe
       request: and request
       share_this: This is a good moment to share the link to the petitions from the bar below. After confirmation you can enter e-mail addresses to send invitations to others through us.
       status:
-        label: What next?
+        label: Current status
         will_be_signable: We have send you an e-mail from webmaster@petities.nl. To continue with your petition you must follow the link in it.
-        was_signable: Your petition is no longer open to collect signatures.
+        was_signable: This petition is no longer open to collect signatures.
+      target: From
+      text: The answer
       title: Petition
       we: We
     petitioner:
