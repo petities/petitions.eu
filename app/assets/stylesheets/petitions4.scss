@@ -520,8 +520,12 @@ input[type="text"].search-container-input {
     background-position: 0 -42px;
   }
 
-  &.nl:hover, &.en:hover {
-    background: #8cc362 asset-url('flags.gif') no-repeat;
+  &.nl:hover {
+    background: #8cc362 asset-url('flags.gif') 0 0 no-repeat;
+  }
+
+  &.en:hover {
+    background: #8cc362 asset-url('flags.gif') 0 -42px no-repeat;
   }
 }
 

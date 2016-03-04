@@ -29,7 +29,6 @@ gem 'devise-i18n'
 gem 'rolify'
 
 # date validation
-
 gem 'validates_timeliness'
 
 # roles management
@@ -108,7 +107,7 @@ gem 'countries'
 gem 'country_select'
 
 # Validate e-mail addresses
-gem 'email_validator', '~> 1.6'
+gem 'email_validator', '~> 1.6', require: 'email_validator/strict'
 
 gem 'has_secure_token', '~> 1.0'
 

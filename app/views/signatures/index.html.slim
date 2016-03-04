@@ -2,9 +2,9 @@
   = javascript_include_tag 'ZeroClipboard.min'
 
 div.page.top
-  section class=(@petition.images.first.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+  section class=(@petition.images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
     div.petition-intro-image-container
-      = image_tag( @petition.images.first.upload.url, class: 'petition-intro-image') unless @petition.images.first.nil? || @petition.images.first.upload_file_name.nil?
+      = image_tag(@petition.images.last.upload.url, class: 'petition-intro-image') unless @petition.images.last.nil? || @petition.images.last.upload_file_name.nil?
     div.petition-intro-info-container
       h1.petition-intro-info-title=@petition.name
       div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
@@ -23,7 +23,7 @@ div.page.signatures
         = hidden_field_tag 'page', @page
         = text_field_tag 'query', ''
         = submit_tag 'Search'
-    
+
     div.petition-signatures-container
       = render partial: 'list_index'
 

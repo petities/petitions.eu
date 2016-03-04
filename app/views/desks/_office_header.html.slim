@@ -9,8 +9,7 @@ div.page
     div.petition-intro-info-container
       h1.petition-intro-info-title
       div.petition-intro-info-counter
-        =<> @signatures_count
-        =<> t('office.signatures_count')
+        = t('show.signatures_count', count: @signatures_count)
       div.petition-intro-info-text
         div.update-intro
           = markdown raw intro_text(@office.text)

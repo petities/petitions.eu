@@ -16,20 +16,20 @@
 
     - if current_user.has_role? :admin
       div.petition-edit-label
-        | &nbsp 
+        | &nbsp;
 
       = f.check_box :show_on_home
       = t('update.label.show_on_homepage')
 
     - if current_user.has_role? :admin or current_user.has_role?(:admin, @office)
       div.petition-edit-label
-        | &nbsp 
+        | &nbsp;
 
       = f.check_box :show_on_petition
       = t('update.label.show_on_petition')
 
       div.petition-edit-label
-        | &nbsp 
+        | &nbsp;
 
       = f.check_box :show_on_petition
       = t('update.label.publish_to_signatures')

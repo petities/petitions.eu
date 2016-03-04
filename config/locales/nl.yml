@@ -352,8 +352,6 @@ nl:
   moderation:
     pending: Uw petitie gaat open na het bevestigen van deze e-mail
   name: Name
-  office:
-    signatures_count: 'ondertekeningen'
   password:
     change: Verander uw wachtwoord
     confirm: Bevestig uw nieuwe wachtwoord
@@ -612,7 +610,9 @@ nl:
       more: Laad meer ondertekeningen
       title: Ondertekeningen
       to_all: Naar alle ondertekeningen
-    signatures_count: "%{count} ondertekeningen"
+    signatures_count:
+      one: "%{count} ondertekening"
+      other: "%{count} ondertekeningen"
   sign:
     wrong_email: Wrong email
     wrong_name: Wrong name

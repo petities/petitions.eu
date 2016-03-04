@@ -3,6 +3,7 @@ require 'test_helper'
 class NewSignatureTest < ActiveSupport::TestCase
   setup do
     @signature = NewSignature.create(
+      petition: petitions(:one),
       person_name: 'Test Name',
       person_email: 'test@example.com'
     )
@@ -22,6 +23,7 @@ class NewSignatureTest < ActiveSupport::TestCase
 
   test 'should make signatures email case insensitive' do
     duplicate_signature = NewSignature.new(
+      petition: petitions(:one),
       person_name: 'Test Name',
       person_email: 'TEST@EXAMPLE.COM'
     )

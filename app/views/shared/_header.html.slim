@@ -21,12 +21,10 @@ header.header
       div.header-languages-container
         div class="header-languages-container-active #{I18n.locale}"
         div.header-languages-container-active-dropdown
-          = link_to :locale => 'nl'
+          = link_to locale: 'nl'
             div.header-languages-container-active-dropdown-item.nl
-          = link_to :locale => 'en'
+          = link_to locale: 'en'
             div.header-languages-container-active-dropdown-item.en
-          /= link_to :locale => 'de'
-          /  div.header-languages-container-active-dropdown-item.de
 
       div.search-container.vervolg.whitespace
         = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
