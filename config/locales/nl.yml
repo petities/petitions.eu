@@ -548,7 +548,8 @@ nl:
     your_street_and_number: Uw straat en huisnummer
   pundit:
     petition_policy:
-      edit: Helaas, eerst inloggen graag, eerder kan dit niet
+      edit? U kunt nu een vertaling van de petitie toevoegen
+      create? Vertaling toegevoegd!
   request: Verzoek
   search:
     found: "%{results_size} petities gevonden voor '%{search_term}'"
@@ -576,14 +577,18 @@ nl:
       title: Details
       website: 'Website:'
     petition:
+      answer: Het antwoord
+      answer_title: Onderwerp
       news: Nieuws
       observe: constateren
       request: en verzoeken
       share_this: Dit is een goed moment om de link naar de petitie te delen vanuit de balk hieronder. Na het bevestigen kunt u door e-mailadressen in te voeren uitnodigingen via ons versturen.
       status:
-        label: Hoe nu verder?
-        was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
+        label: Huidige status
+        was_signable: Deze petitie staat niet meer open om ondertekeningen te verzamelen.
         will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
+      target: From
+      text: Het antwoord
       title: Petitie
       we: Wij
     petitioner:
