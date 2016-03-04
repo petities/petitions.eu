@@ -55,9 +55,9 @@ $(document).ready(function(){
 
   $('body').woolParalax();
 
-  //console.log($('.validation'));
+  // console.log($('.validation'));
 
-  //define text validation function for editing/creating a petition
+  // define text validation function for editing/creating a petition
   var validate_text_length = function(field){
     var val = $(field).val(),
         allowedCharsCount = $(field).data('chars');
@@ -77,21 +77,21 @@ $(document).ready(function(){
     } else {
       if ($counter.hasClass('error-too-long')) {
         $counter.removeClass('error-too-long');
-      }  
+      }
     }
   };
 
-  //initialise text length
+  // initialize text length
   $('.validation').each(function(index, elm){
     validate_text_length(this);
   });
 
-  //on text length change validate text
+  // on text length change validate text
   $('.validation').keyup(function(e){
     validate_text_length(this);
   });
 
-  //improve error handling and showing here.
+  // improve error handling and showing here.
   $('.new_petition, .edit_petition').submit(function(){
 
     var success = true;
@@ -102,9 +102,7 @@ $(document).ready(function(){
     if(!success){ $('.errors-note').show();}
 
     return success;
-
   });
-
 
   $("#petition_organisation_kind").change(function () {
     $(this).select_org_menu();
@@ -121,7 +119,9 @@ $(document).ready(function(){
     $('.petition-form-float-wrapper').show();
   });
 
-
+  $('.special_check').click(function(){
+    $(this).parent('form:first').submit();
+  });
 
   $('#new_signature').submit(function(){
     var nameRegex = /(.*)\s(.*)/,
@@ -138,12 +138,12 @@ $(document).ready(function(){
       $nameField.addClass('error');
       var error_name = window.wrong_name_error || 'Name and Surname';
       $errorsBlock.append(error_name);
-      //$errorsBlock.append('Please enter correct Name and Surname.<br>');
+      // $errorsBlock.append('Please enter correct Name and Surname.<br>');
       result = false;
     }
 
     if(!$emailField.val().match(emailRegex)){
-      //console.log($emailField.val());
+      // console.log($emailField.val());
       $emailField.addClass('error');
       var error_email = window.wrong_email_error || 'Email is wrong';
       $errorsBlock.append(" " + error_email);
@@ -159,7 +159,7 @@ $(document).ready(function(){
       $('.petition-success-sign-note').show();
       console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
-      //just let the user think that something happened anyway
+      // just let the user think that something happened anyway
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
       console.log(xhr);
@@ -172,11 +172,11 @@ $(document).ready(function(){
     console.log(value);
   });
 
-  //set the state on state element when ready
+  // set the state on state element when ready
   if($('.petition-state-label').length > 0) {
     $('.petition-state-label').each(function(index, elem){
-      //console.log(elem.id);
-      //console.log(petition_state_summary);
+      // console.log(elem.id);
+      // console.log(petition_state_summary);
       if(elem.id === petition_state_summary){
         $(elem).addClass('active');
       }
@@ -192,39 +192,34 @@ $(document).ready(function(){
   });
 
   $('.navigation-loadmore').click(function(){
-    var type = $(this).data('type');
-        url = '';
+    var url = $(this).data('url');
 
     if(isNaN(window.page)){
         window.page = 1;
     }
 
-    if(type === 'petitions'){
-      window.page += 1;
-      url = window.location.pathname + '?page='+ window.page +'&sorting='+ window.sorting;
-    } else if(type === 'signatures'){
-      window.page += 1;
-      url = window.location.pathname + '/signatures?page='+ window.page;
-    } else if(type === 'updates'){
-      window.updates_page += 1;
-      url = '/updates?page='+ window.updates_page;
+    window.page += 1;
+
+    if(url.match('\\?')){
+      url = url + '&page='+ window.page;
+    } else{
+      url = url + '?page='+ window.page;
     }
 
+    //make buttons also work on edit pages
     url = url.replace('/edit/', '/');
 
     $.ajax({
-      url: url, 
+      url: url,
       dataType: 'jsonp'
     });
   });
 });
 
-
 function toggleSearchBox() {
   c=$('.search-container');
   if (c.is(':visible')) {
         c.hide();
-          
   } else {
         c.show();
   }
@@ -250,7 +245,7 @@ function toggleUpdateEdit(id) {
   }
 }
 
-  
+
 $(document).on('click', '.read-more-handler', function() {
   $(this).hide();
   $(this).next('.read-more-content').slideDown();

@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-Mailcheck.defaultDomains.push('uva.nl', 'petities.nl', 'xs4all.nl', 'gmail.com', 'hotmail.com', 'deds.nl', 'dds.nl', ) # // extend existing domains
+Mailcheck.defaultDomains.push('uva.nl', 'versatel.nl', 'xs4all.nl', 'tiscali.nl', 'hotmail.com', 'deds.nl', 'dds.nl', 'tele2.nl', 'wxs.nl', 'hccnet.nl', 'telenet.be' ) # // extend existing domains
 #Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
 Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
 
@@ -109,7 +109,6 @@ $ ->
     $('#confirm_errors').hide()
     $('.edit_signature').clear_form_errors()
   ).on('ajax:error', (e, data, status, xhr) ->
-    #console.log(data.responseJSON)
     $('#confirm_success').hide()
     $('.edit_signature').render_form_errors('signature', data.responseJSON)
     $('#confirm_errors').show()
@@ -118,6 +117,14 @@ $ ->
   # pledge succes note
   $('.edit_pledge, .new_pledge').on('ajax:success', (e, data, status, xhr) ->
     $('.pledge_thanks').show()
+    $('.edit_pledge, .new_pledge').clear_form_errors()
+    $('.pledge_error').hide()
+  )
+
+  $('.edit_pledge, .new_pledge').on('ajax:error', (e, data, status, xhr) ->
+    $('.pledge_thanks').hide()
+    $('.edit_pledge, .new_pledge').render_form_errors('pledge', data.responseJSON)
+    $('.pledge_error').show()
   )
 
   # sign email success..
@@ -126,7 +133,6 @@ $ ->
     $('#fail_share_email').hide()
     $('#input_share_email').val("")
     $('#input_share_email').attr("placeholder", "Thank you! Please invite more")
-    #console.log(status)
     #$('#feedback').html('Well done!')
   )
 
@@ -136,7 +142,6 @@ $ ->
     $('#fail_share_email').show()
     $('#input_share_email').val("")
     $('#input_share_email').attr("placeholder", "Failed! Try again")
-    #console.log(data.responseJSON)
     #$('#feedback').html('failed')
   )
 
@@ -156,7 +161,6 @@ $.fn.render_form_obligations = (model_name, fields) ->
     input = form.find('input, select, textarea').filter(->
       name = $(this).attr('name')
       if name
-        #console.log(model_name + '\\[' + field + '\\]')
         name.match(new RegExp(model_name + '\\[' + field + '\\]'))
     )
     input.addClass('is_obligated')

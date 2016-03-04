@@ -22,6 +22,11 @@ class PetitionPolicy < ApplicationPolicy
     # user.has_role? :admin or user.has_role? :admin, record
   end
 
+  def special_update?
+    return false unless user
+    can_edit user, record
+  end
+
   def finalize?
     return false unless user
     can_edit user, record

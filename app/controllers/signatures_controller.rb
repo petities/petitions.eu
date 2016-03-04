@@ -1,12 +1,14 @@
 class SignaturesController < ApplicationController
   include FindPetition
 
+  protect_from_forgery except: :index
+
   before_action :find_signature_by_unique_key, only: [
     :show, :confirm, :confirm_submit, :pledge_submit, :mail_submit,
     :user_update, :become_petition_owner]
 
   # allow petitioner to modify signatures
-  before_action :set_signature, only: [:update]
+  before_action :set_signature, only: [:special_update]
 
   # GET /signatures
   # GET /signatures.json
@@ -15,7 +17,7 @@ class SignaturesController < ApplicationController
 
     @all_signatures = @petition.signatures.confirmed.limit(900)
 
-    unless request.xhr?
+    unless request.xhr? || request.format.json? || request.format.js?
       # make redis!
       @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
 
@@ -51,22 +53,25 @@ class SignaturesController < ApplicationController
             end
 
     if request.xhr?
-      @signatures = @all_signatures.reverse_order.paginate(page: @page, per_page: @per_page)
+      @signatures = @all_signatures
+                      .order(special: :desc, confirmed_at: :desc)
+                      .paginate(page: @page, per_page: @per_page)
     else
-      @signatures = @all_signatures.paginate(page: @page, per_page: @per_page)
+      @signatures = @all_signatures
+                      .order(special: :desc, confirmed_at: :desc)
+                      .paginate(page: @page, per_page: @per_page)
     end
 
     respond_to do |format|
-      format.html
       format.js
+      format.html
+      format.json
       format.pdf
       format.csv
     end
   end
 
   def search
-    # @petition = Petition.friendly.find(params[:petition_id])
-    #@petition = PetitionsController.send(:set_petition)
     find_petition
 
     @query = params[:query]
@@ -85,7 +90,6 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-
     find_petition
 
     # try to find old signature first
@@ -278,26 +282,27 @@ class SignaturesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: @signature.errors, status: :unprocessable_entity }
+        format.json { render json: @pledge.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # ONLY ALLOWED FOR ADMINS
-  # NOW ANYONE CAN CHANGE SIGNATURES BY ID
+  # TO update special status of signature
   # PATCH/PUT /signatures/1
   # PATCH/PUT /signatures/1.json
-  def update
+  def special_update
     @petition = @signature.petition
-    # only allow updates from
-    # authorize @petition
+
+    # only allow updates from admins
+    authorize @petition
+
     respond_to do |format|
-      if @signature.update(signature_params)
+      if @signature.update(special_params)
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
-        format.json { render :show, status: :ok, location: @signature }
+        format.json { render :show, status: :ok }
       else
-        # format.html { redirect_to signature_confirm(@signature.unique_key)}
-        format.html { render :edit }
+        format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
         format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
     end
@@ -341,7 +346,7 @@ class SignaturesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_signature
-    @signature = Signature.find_by_unique_key(params[:id])
+    @signature = Signature.find(params[:id])
   end
 
   def find_signature_by_unique_key
@@ -363,6 +368,10 @@ class SignaturesController < ApplicationController
     )
   end
 
+  def special_params
+    params.require(:signature).permit(:special)
+  end
+
   def pledge_params
     params.require(:pledge).permit(
       :skill, :influence, :feedback, :money
@@ -379,7 +388,7 @@ class SignaturesController < ApplicationController
     old_signature = @signature
     # create a new signature in the signature table.
     @signature = Signature.new(
-      old_signature.attributes.select{ |key, _| Signature.attribute_names.include? key })
+      old_signature.attributes.select { |key, _| Signature.attribute_names.include? key })
 
     old_signature.delete
 
@@ -387,10 +396,6 @@ class SignaturesController < ApplicationController
     @signature.confirmed_at = Time.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-    # expire_fragment @petition
-    # puts 'Destroy %s' % old_signature.person_email
-    # puts old_signature.destroyed?
-    # old_signature.deleted?
     @signature.save
   end
 end

@@ -1,4 +1,3 @@
-
 class PetitionSubdomain
   def self.matches?(request)
     if request.subdomain.present?

@@ -65,14 +65,15 @@
 #  answer_due_date                  :date
 #  slug                             :string(255)
 #
-Globalize.fallbacks = {:en => [:en, :nl], :nl => [:nl, :en]}
+Globalize.fallbacks = { en: [:en, :nl], nl: [:nl, :en] }
 
 class Petition < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
 
-  translates :name, :description, :initiators, 
-    :statement, :request, :slug, :fallbacks_for_empty_translations => true,
-    versioning: :paper_trail
+  translates :name, :description, :initiators,
+             :statement, :request, :slug,
+             fallbacks_for_empty_translations: true,
+             versioning: :paper_trail
   has_paper_trail only: [:name, :description, :initiators, :statement, :request]
 
   extend FriendlyId # must come after translates
@@ -127,15 +128,15 @@ class Petition < ActiveRecord::Base
   ]
 
   scope :live,      -> { where(status: 'live') }
+  scope :live!,     -> { where('status != "live"') }
   scope :big,       -> { order(signatures_count: :desc) }
-  scope :active,     -> { order(active_rate_value: :desc) }
-  scope :newest,     -> { order(created_at: :desc) }
+  scope :active,    -> { order(active_rate_value: :desc) }
+  scope :newest,    -> { order(created_at: :desc) }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office
   belongs_to :petition_type
-
-  # belongs_to :organisation
+  belongs_to :organisation
 
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images
@@ -169,7 +170,12 @@ class Petition < ActiveRecord::Base
   before_validation :strip_whitespace
 
   def get_count
-    $redis.get('p%s-count' % id).to_i || signatures_count
+    count = $redis.get("p#{id}-count").to_i
+    if !count || count == 0
+      signatures_count
+    else
+      count
+    end
   end
 
   def strip_whitespace
@@ -196,20 +202,18 @@ class Petition < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
-
   def find_owners
-    unless self.roles.empty?
-      role_id = self.roles[0].id
+    unless roles.empty?
+      role_id = roles[0].id
       return User.joins(:roles).where(roles: { id: role_id })
     end
     []
   end
 
-
   def send_status_mail
-    if self.status_changed?
+    if status_changed?
 
-      self.find_owners.each do |user|
+      find_owners.each do |user|
         PetitionMailer.status_change_mail(self, target: user.email).deliver_later
       end
 
@@ -218,30 +222,35 @@ class Petition < ActiveRecord::Base
   end
 
   def last_sig_update
-    last = $redis.get('p-last-%s' % id)
+    last = $redis.get("p-last-#{id}")
     if last
       last = Time.at(last.to_i)
       return last
     end
-    1000.days.ago 
+    1000.days.ago
   end
 
   def elapsed_time
-        Time.now - (last_confirmed_at || Time.now)
+    Time.now - (last_confirmed_at || Time.now)
   end
 
   def active_rate
 
     short = 1.0
-    total = 100.0 
 
-    now = Time.now
+    total = 100.0
 
-    15.times do |i|
-      key = 'p-d-%s-%s-%s-%s' % [id, now.year, now.month, now.day]
-      v =  $redis.get(key) || 0       
-      v = v.to_f
-      short += v 
+    now = Time.now + 1.day
+
+    15.times do
+      key_d = "p-d-#{id}-#{now.year}-#{now.month}-#{now.day}"
+      key_h = "p-h-#{id}-#{now.year}-#{now.month}-#{now.day}-#{now.hour}"
+      vd = $redis.get(key_d) || 0
+      vd = vd.to_f
+      vh = $redis.get(key_h) || 0
+      vh = vh.to_f
+      short += vd
+      short += vh
       now = now - 1.day
     end
 
@@ -253,25 +262,24 @@ class Petition < ActiveRecord::Base
     $redis.zadd('active_rate', a_rate, id)
 
     a_rate
-
   end
 
   def update_active_rate!
-    self.active_rate
+    active_rate
   end
 
   def is_hot?
-    score = $redis.zscore('active_rate', id)  || 0
+    score = $redis.zscore('active_rate', id) || 0
     score > 0.4
   end
 
   ## petition status summary
   def state_summary
-    return 'draft' if self.is_draft?
-    return 'closed' if self.is_closed?
-    return 'signable' if self.is_live?
-    return 'in_treatment' if self.in_treatment?
-    return 'is_answered' if self.is_answered?
+    return 'draft' if is_draft?
+    return 'closed' if is_closed?
+    return 'signable' if is_live?
+    return 'in_treatment' if in_treatment?
+    return 'is_answered' if is_answered?
   end
 
   ## edit a given petition
@@ -321,7 +329,7 @@ class Petition < ActiveRecord::Base
   end
 
   def is_answered?
-    ['completed'].include? status
+    'completed' == status
   end
 
   def get_answer
@@ -335,8 +343,8 @@ class Petition < ActiveRecord::Base
       office.petition_type.allowed_cities.present?
     end
   end
-  
-  def redis_history_chart_json(hist=10)
+
+  def redis_history_chart_json(hist = 10)
 
     now = Time.now
 
@@ -351,16 +359,18 @@ class Petition < ActiveRecord::Base
 
     d = start
 
-    hist.times do |i|
-      key = 'p-d-%s-%s-%s-%s' % [id, d.year, d.month, d.day]
-      c =  $redis.get(key) || 0       
+    hist.times do
+      key = "p-d-#{id}-#{d.year}-#{d.month}-#{d.day}"
+      c = $redis.get(key) || 0
       c = c.to_i
       day_counts.push(c)
-      labels.push('%s-%s-%s' % [d.year, d.month, d.day])
-      d = d + 1.day
-      if d > now
+
+      labels.push("#{d.year}-#{d.month}-#{d.day}")
+
+      if d > Time.zone.now.beginning_of_day
         break
       end
+      d = d + 1.day
     end
 
     if labels.size > 20
@@ -368,11 +378,10 @@ class Petition < ActiveRecord::Base
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
 
-    return [day_counts, labels]
+    [day_counts, labels]
   end
 
   def history_chart_json
-    #return [[],[]]
     label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
                  .compact
                  .group_by { |signature| signature.strftime('%Y-%m-%d') }
@@ -404,4 +413,69 @@ class Petition < ActiveRecord::Base
       site: { link: site1, text: site1_text }
     }
   end
+
+  def delete_keys
+
+    r = $redis
+
+    keys_d = r.keys("p-d-#{id}-*")
+    keys_h = r.keys("p-h-#{id}-*")
+
+    r.del(*keys_d) if keys_d.size > 0
+    r.del(*keys_h) if keys_h.size > 0
+
+  end
+
+  def create_raw_sql_barchart_keys
+     sql = "
+     SELECT 
+     COUNT(id), petition_id, 
+     DATE_FORMAT(confirmed_at, '%Y/%m/%d') as theday 
+     FROM signatures 
+     WHERE petition_id=#{id} 
+     AND confirmed=true 
+     AND confirmed_at IS NOT NULL
+     GROUP BY 
+     YEAR(confirmed_at), MONTH(confirmed_at), DAY(confirmed_at)
+     ORDER BY theday;" 
+
+     day_counts_array = ActiveRecord::Base.connection.execute(sql)
+
+     puts
+     puts "ACTIVE DAYS: #{day_counts_array.count}"
+     puts
+
+     day_counts_array.each do |row|
+      count = row[0]
+      id = row[1]
+      year, month, day = row[2].split('/')
+      day_key = "p-d-#{id}-#{year}-#{month.to_i}-#{day.to_i}"
+      $redis.set(day_key, count)
+     end
+
+  end
+
+  def create_hour_keys
+    hour24ago = Time.zone.now.beginning_of_day - 1.day
+    # create year/day/hour scores!
+    recent_signatures = self.signatures
+                            .confirmed
+                            .order("confirmed_at DESC")
+                            .where("confirmed_at >= ?", hour24ago)
+
+    if recent_signatures.count == 0
+      return
+    end
+
+    puts
+    puts "SIGS TODAY: #{recent_signatures.count}"
+    puts
+
+    recent_signatures.each do |signature|
+      signature.set_redis_keys(true)
+    end
+    
+  end
+
+
 end

@@ -477,8 +477,11 @@ nl:
     the_next_logical_action: De volgende stap
     title: Titel
     to_process: In behandeling
+    update:
+      success: Uw petitie is bijgewerkt.
     user_email: E-mail
     version: Versie
+    we_could_not_find_petition_try_search: De petitie is niet gevonden. U kunt de zoekmachine gebruiken om te zoeken.
     withdrawn: Ingetrokken
   petitioner:
     awaiting_answer: Wacht op antwoord
@@ -500,6 +503,7 @@ nl:
       description: Of wilt u op een andere manier helpen?
       placeholder: Iets anders...
     thank_you: Dank u!
+    failed: Oeps! er zit een fout in het formulier!
   privacy:
     text: |
       <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
@@ -510,7 +514,7 @@ nl:
       <p>&nbsp;</p>
       <p>Als u mailt met de webmaster wordt uw e-mailadres alleen gebruikt voor correspondentie die te maken heeft met uw vraag, klacht of opmerking. U ontvangt geen onpersoonlijke informatie (zoals een nieuwsbrief), tenzij <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">u zelf een abonnement op de nieuwsbrief vraagt.</a></p>
       <p>&nbsp;</p>
-      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van info@petities.nl:</p>
+      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van webmaster@petities.nl:</p>
       <ol>
         <li>om te bevestigen, binnen enkele minuten tot een dag na uw ondertekening</li>
         <li>om aan te kondigen dat de petitie gaat sluiten en wordt overhandigd, weken of maanden na uw ondertekening</li>
@@ -581,7 +585,7 @@ nl:
       status:
         label: Hoe nu verder?
         was_signable: Uw petitie staat niet meer open om ondertekeningen te verzamelen.
-        will_be_signable: We hebben u een e-mail gestuurd vanaf info@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
+        will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
       title: Petitie
       we: Wij
     petitioner:
@@ -601,7 +605,7 @@ nl:
         sign_again: Nu iemand anders laten tekenen
         submit: Ja, ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
-        success2: ontvangt u een e-mail van info@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
+        success2: ontvangt u een e-mail van webmaster@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
       title: Onderteken deze petitie
     signatures:
@@ -628,6 +632,7 @@ nl:
     linkinstruction: Volg deze link
     success: 'Uw gegevens zijn bijgewerkt, dank u. Uitnodigingen versturen of op een andere manier helpen? Zie hieronder \/'
     success_send: Uitnodiging verstuurd! Nog één misschien?
+    promote: Zet bovenaan in de lijst?
     thanks: Dank u
   signatures:
     popular_cities: Populaire woonplaatsen
@@ -721,8 +726,10 @@ nl:
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
       select_office: Kies bij welk petitieloket
-      show_on_homepage: Toon op homepage
-      show_on_petition: Toon bij de petitie
+      show_on_homepage: Toon op nieuws van petities.nl
+      show_on_petition: Toon bij de petitie (boven handtekening formulier)
+      publish_to_signatures: Publiceer nieuws via email naar alle ondertekenaars
+      publish_review: Het nieuws-item word eerst gereviewed voordat deze verstuurd word
       show_on_office: Toon op het petitieloket
     news_updates: Nieuwtjes
     no_news_yet: Nog geen nieuws over deze petitie.

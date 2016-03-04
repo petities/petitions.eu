@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -13,7 +13,7 @@ gem 'friendly_id-globalize'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3', group: :development
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2', '~> 0.3.20'
 
 # legacy utf 8 issues..
 gem 'utf8-cleaner'
@@ -23,7 +23,7 @@ gem 'rack-utf8_sanitizer'
 gem 'jquery-turbolinks'
 
 # authentication
-gem 'devise'
+gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'rolify'
@@ -93,10 +93,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# general settings management
-gem 'config', github: 'railsconfig/config'
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
 
 # bootstrap
 # gem 'bootstrap-sass', '~> 3.2.0'
@@ -121,7 +119,9 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.5.0'
+gem 'rollbar', '~> 2.8'
+# track everything..
+# gem 'logstasher'
 
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil

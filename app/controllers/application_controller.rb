@@ -7,12 +7,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  if Rails.env.test?
-    protect_from_forgery with: :null_session
-  else
-    protect_from_forgery with: :exception
-  end
-
   # around_action :with_locale
   before_action :set_locale
   before_action :ensure_domain
@@ -24,7 +18,6 @@ class ApplicationController < ActionController::Base
 
   # redirect users..
   def after_sign_in_path_for(resource)
-
     stored_location_for(resource) ||
       if resource.is_a?(AdminUser)
         admin_dashboard_path
@@ -33,13 +26,12 @@ class ApplicationController < ActionController::Base
         petition_desk_path(office)
       else
         root_path
-        #manage_petitions_path
       end
   end
 
   def render_404
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/pages/error", :status => :not_found }
+      format.html { render file: "#{Rails.root}/app/views/pages/error", status: :not_found }
       format.xml  { head :not_found }
       format.any  { head :not_found }
     end
@@ -47,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def has_subdomain?
+  def subdomain?
     unless request.subdomain.empty?
       return true unless %w(dev www api).include? request.subdomain
     end
@@ -59,13 +51,9 @@ class ApplicationController < ActionController::Base
   # only for get requests
 
   def ensure_domain
-    if request.get?
-      if has_subdomain?
-        unless request.fullpath == '/'
-          
-          redirect_to request.url.sub(request.subdomain + '.', '')
-
-        end
+    if request.get? && subdomain?
+      unless request.fullpath == '/'
+        redirect_to request.url.sub(request.subdomain + '.', '')
       end
     end
   end
@@ -91,6 +79,19 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(_options = {})
-    { locale: I18n.locale }
+
+    protocol = 'https' 
+
+    if Rails.env.test?
+      protocol = 'http' 
+    end
+    
+    if Rails.env.development?
+      protocol = 'http' 
+    end
+
+    { locale: I18n.locale,
+      protocol: protocol 
+    }
   end
 end

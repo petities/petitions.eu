@@ -5,9 +5,7 @@ Rollbar.configure do |config|
   config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
 
   # Here we'll disable in 'test':
-  if Rails.env.test?
-    config.enabled = false
-  end
+  config.enabled = false if Rails.env.test?
 
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`,
@@ -28,9 +26,11 @@ Rollbar.configure do |config|
   # Valid levels: 'critical', 'error', 'warning', 'info', 'debug', 'ignore'
   # 'ignore' will cause the exception to not be reported at all.
   # config.exception_level_filters.merge!('MyCriticalException' => 'critical')
-  #
-  # You can also specify a callable, which will be called with the exception instance.
-  # config.exception_level_filters.merge!('MyCriticalException' => lambda { |e| 'critical' })
+  config.exception_level_filters.merge!(
+    'ActiveRecord::RecordNotFound' => 'ignore',
+    'AbstractController::ActionNotFound' => 'ignore',
+    'ActionController::RoutingError' => 'ignore'
+  )
 
   # Enable asynchronous reporting (uses girl_friday or Threading if girl_friday
   # is not installed)

@@ -25,6 +25,7 @@ ActiveAdmin.register Petition do
     id_column
     column :name
     column :subdomain
+    column :status
     column :initiators
     column :office
     column :organisation
@@ -37,6 +38,7 @@ ActiveAdmin.register Petition do
   end
 
   filter :name
+  filter :id
   filter :subdomain
   filter :organisation
   filter :office

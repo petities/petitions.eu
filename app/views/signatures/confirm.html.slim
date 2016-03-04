@@ -36,7 +36,8 @@ div.page
           h2.start-petition-form-cell-title
             = t('confirm.info.check_information')
         div.start-petition-form-cell.label
-          | &nbsp
+          = link_to @petition.name, petition_path(@petition)
+          | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -67,10 +68,13 @@ div.page
           - if not @signature.errors[:person_city].empty?
             - error = ' error'
           - if not @signature.petition.display_city_select_box?
-              = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
+            = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
           - else
+            - cities = ["something is wrong..webmaster@petities.nl"]
+            - if @signature.petition.petition_type
               - cities = @signature.petition.petition_type.cities.map(&:name)
-              = f.select(:person_city,
+
+            = f.select(:person_city,
                        options_for_select(cities),
                        class: "start-petition-form-cell-select.large")
 
@@ -171,6 +175,7 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          | &nbsp;
           = f.submit @action, class: 'start-petition-form-cell-button'
 
         div.start-petition-form-cell.label.empty
@@ -252,10 +257,15 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             | &nbsp;
+            div.start-petition-form-cell-charcount.charCount id="charCount_pledge_feedback"
+              | 0 / 253
 
           = pf.text_area(:feedback,
-                       class: "start-petition-form-cell-input",
+                       'data-chars': 253,
+                       class: "start-petition-form-cell-input validation",
                        placeholder: t('pledge.feedback.placeholder', default: '...'))
+
+          div.errors
 
         div.start-petition-form-cell.label.empty
           p= t('pledge.feedback.description')
@@ -294,6 +304,16 @@ div.page
           | &nbsp;
         div.start-petition-form-cell.label.empty
           | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          h1.pledge_error style="display: none;"
+            = t('pledge.failed')
+          | &nbsp;
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
+
 
 
 div.page

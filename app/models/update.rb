@@ -32,6 +32,9 @@ class Update < ActiveRecord::Base
   scope :website_news, -> { where(show_on_home: true, petition_id: nil, office_id: 5) }
   scope :show_on_home, -> { where(show_on_home: true) }
 
+  # review
+  # publish
+
   belongs_to :petition
   belongs_to :office
 

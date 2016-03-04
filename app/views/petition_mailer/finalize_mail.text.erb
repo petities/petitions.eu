@@ -1,7 +1,7 @@
-<%= t("mail.dear") %> <%= t("mail.status.dear") %> <%= @office.name %>, 
+<%= t("mail.dear") %> <%= t("mail.status.dear") %> <%= @petition.office.name %>,
 
 <%= t("mail.moderation.pending", {
-	petitioner: @petition.petitioner_name, 
+	petitioner: @petition.petitioner_name,
 	petitioner_email: @petition.petitioner_email,
 	petitioner_phone: @petition.petitioner_telephone,
 	petition: @petition.name,
@@ -17,4 +17,4 @@
 	request: @petition.request
 }) %>
 
-<%= t("mail.moderation.signoff_desks") %> 
+<%= t("mail.moderation.signoff_desks") %>

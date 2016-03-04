@@ -24,7 +24,7 @@ namespace :signature do
       ]
     end
   end
-  
+
   desc 'fix office admins..'
   task fix_office_admin: :environment do
 

@@ -41,4 +41,17 @@ ActiveAdmin.register Signature do
 
   filter :last_reminder_send_at
   filter :unconverted_person_born_at
+
+  index pagination_total: false do
+    selectable_column
+    id_column
+    column :petition
+    column :person_name
+    column :person_city
+    column :person_email
+    column :person_function
+    column :signed_at
+    column :confirmed_at
+    actions
+  end
 end

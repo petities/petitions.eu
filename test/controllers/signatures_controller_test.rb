@@ -32,7 +32,7 @@ class SignaturesControllerTest < ActionController::TestCase
         person_email: 'test2@gmail.com',
         person_city: 'test city',
         visible: true,
-        special: true,
+        special: false,
         subscribe: true,
         created_at: Time.now,
         updated_at: Time.now,
@@ -46,11 +46,10 @@ class SignaturesControllerTest < ActionController::TestCase
 
   # this petition / signature requires full address
   test 'should not update signature' do
-    # byebug
     post :confirm_submit, format: :json, petition_id: @petition2,
                           signature_id: @signature2.unique_key, signature: {
                             visible: true,
-                            special: true,
+                            special: false,
                             subscribe: true
                           }
     assert_response :unprocessable_entity
@@ -61,7 +60,7 @@ class SignaturesControllerTest < ActionController::TestCase
     post :confirm_submit, format: :json, petition_id: @petition,
                           signature_id: @signature.unique_key, signature: {
                             visible: true,
-                            special: true,
+                            special: false,
                             subscribe: true,
                             persone_function: true,
                             street_number: 'X'
@@ -74,7 +73,7 @@ class SignaturesControllerTest < ActionController::TestCase
     post :confirm_submit, format: :json, petition_id: @petition2,
                           signature_id: @signature2.unique_key, signature: {
                             visible: true,
-                            special: true,
+                            special: false,
                             subscribe: true,
                             persone_function: true,
                             # wrong values
@@ -110,7 +109,33 @@ class SignaturesControllerTest < ActionController::TestCase
     assert_response :success
 
   end
- 
+
+  test 'illigal special signature' do
+
+    assert_no_difference('Signature.special.count') do
+      post :special_update, format: :json, 
+           id: @signature.id, signature: {
+                          special: 1,
+                        }
+    end
+
+    assert_response :found
+  end
+
+  test 'set special signature' do
+
+    sign_in_admin_for @petition
+
+    assert_difference('Signature.special.count') do
+      post :special_update, format: :json, 
+        id: @signature.id, signature: {
+                          special: 1,
+          }
+    end
+
+    assert_response :success
+
+  end 
 
   test 'signature confirmation links' do
     assert_routing('/signatures/10/confirm', controller: 'signatures',
@@ -133,6 +158,13 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'check confirmation logic' do
+
+    # remove redis keys
+    # mabe we should have a test prefix..
+    if $redis.keys("p-d-2-*").size > 0
+      $redis.del($redis.keys("p-d-2-*"))
+    end
+
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
         assert_difference('$redis.get("p2-count").to_i') do
@@ -141,6 +173,11 @@ class SignaturesControllerTest < ActionController::TestCase
         end
       end
     end
+
+    old_value = @petition2.active_rate
+    assert_equal($redis.keys("p-d-2-*").size, 1)
+    assert_not_equal(@petition2.active_rate , 0.01)
+    assert_equal(@petition.active_rate , 0.01)
 
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
@@ -151,6 +188,9 @@ class SignaturesControllerTest < ActionController::TestCase
         end
       end
     end
+
+    assert_equal(@petition2.active_rate, old_value)
+
   end
 
   # test 'take_owner_ship' do
@@ -184,4 +224,14 @@ class SignaturesControllerTest < ActionController::TestCase
 
   #  assert_redirected_to signatures_path
   # end
+  
+  private
+
+  def sign_in_admin_for(subject)
+    @request.env['devise.mapping'] = Devise.mappings[:user]
+    user = users(:one)
+    user.add_role(:admin, subject)
+    sign_in user
+  end
+
 end
