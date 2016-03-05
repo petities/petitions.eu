@@ -82,9 +82,7 @@ class Petition < ActiveRecord::Base
 
   serialize :locale_list, Array
 
-  # add slug_column?
-  # write migration?
-  friendly_id :name, use: [:globalize, :finders] # , slug_column: :cached_slug
+  friendly_id :name, use: [:globalize, :finders]
 
   STATUS_LIST = [
     # we can view it but not sign?
@@ -354,7 +352,7 @@ class Petition < ActiveRecord::Base
       start = created_at
     end
 
-    day_counts = [] 
+    day_counts = []
     labels = []
 
     d = start
@@ -428,16 +426,16 @@ class Petition < ActiveRecord::Base
 
   def create_raw_sql_barchart_keys
      sql = "
-     SELECT 
-     COUNT(id), petition_id, 
-     DATE_FORMAT(confirmed_at, '%Y/%m/%d') as theday 
-     FROM signatures 
-     WHERE petition_id=#{id} 
-     AND confirmed=true 
+     SELECT
+     COUNT(id), petition_id,
+     DATE_FORMAT(confirmed_at, '%Y/%m/%d') as theday
+     FROM signatures
+     WHERE petition_id=#{id}
+     AND confirmed=true
      AND confirmed_at IS NOT NULL
-     GROUP BY 
+     GROUP BY
      YEAR(confirmed_at), MONTH(confirmed_at), DAY(confirmed_at)
-     ORDER BY theday;" 
+     ORDER BY theday;"
 
      day_counts_array = ActiveRecord::Base.connection.execute(sql)
 
@@ -474,7 +472,7 @@ class Petition < ActiveRecord::Base
     recent_signatures.each do |signature|
       signature.set_redis_keys(true)
     end
-    
+
   end
 
 

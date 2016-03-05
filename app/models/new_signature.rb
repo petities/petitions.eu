@@ -37,7 +37,7 @@
 #  person_country              :string(2)
 
 class NewSignature < Signature
-  self.table_name  = 'new_signatures'
+  self.table_name = 'new_signatures'
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at

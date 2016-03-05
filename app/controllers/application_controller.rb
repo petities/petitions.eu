@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    available_locales = [:ag, :de, :en, :es, :fr, :lim, :nl]
+    available_locales = I18n.available_locales
 
     if params[:locale]
       I18n.locale = if available_locales.include? params[:locale].downcase.to_sym
@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def default_url_options(_options = {})
+  def default_url_options(options = {})
 
     protocol = 'https' 
 
@@ -92,6 +92,6 @@ class ApplicationController < ActionController::Base
 
     { locale: I18n.locale,
       protocol: protocol 
-    }
+    }.merge(options)
   end
 end

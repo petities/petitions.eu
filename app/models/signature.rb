@@ -119,7 +119,7 @@ class Signature < ActiveRecord::Base
   after_save :update_petition
 
   def update_petition
- 
+
     # no more hit/edit/save on petition! YAY
     if self.confirmed_changed?
       self.set_redis_keys
@@ -147,7 +147,7 @@ class Signature < ActiveRecord::Base
 
   def set_hour_key(time)
     t = confirmed_at
- 
+
     # keep track of signature counts the last hours
     if t > (Time.now - 1.day)
       hour_key = "p-h-#{petition.id}-#{t.year}-#{t.month}-#{t.day}-#{t.hour}"
@@ -163,7 +163,7 @@ class Signature < ActiveRecord::Base
     set_last_key(confirmed_at)
 
     set_hour_key(confirmed_at)
-   
+
     if not task
       t = confirmed_at
       day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"

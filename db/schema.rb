@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125193952) do
+ActiveRecord::Schema.define(version: 20160224170943) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-
-  create_table "admin_comments", force: :cascade do |t|
-    t.integer  "commentable_id",   limit: 4
-    t.string   "commentable_type", limit: 255
-    t.integer  "author_id",        limit: 4
-    t.text     "body",             limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -73,19 +64,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
     t.datetime "updated_at"
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   limit: 4,     default: 0
-    t.integer  "attempts",   limit: 4,     default: 0
-    t.text     "handler",    limit: 65535
-    t.text     "last_error", limit: 65535
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by",  limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "faq_translations", force: :cascade do |t|
     t.integer  "faq_id",     limit: 4,     null: false
     t.string   "locale",     limit: 255,   null: false
@@ -109,22 +87,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
 
   add_index "faqs", ["cached_slug"], name: "index_faqs_on_cached_slug", using: :btree
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.string   "email",             limit: 255
-    t.string   "subject",           limit: 255
-    t.text     "message",           limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "feedbackable_id",   limit: 4
-    t.string   "feedbackable_type", limit: 255
-    t.string   "recipient_email",   limit: 255
-  end
-
-  add_index "feedbacks", ["created_at"], name: "index_feedbacks_on_created_at", using: :btree
-  add_index "feedbacks", ["email"], name: "index_feedbacks_on_email", using: :btree
-  add_index "feedbacks", ["name"], name: "index_feedbacks_on_name", using: :btree
-
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id",        limit: 4
     t.string   "imageable_type",      limit: 255
@@ -139,16 +101,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
   add_index "images", ["imageable_type"], name: "index_images_on_imageable_type", using: :btree
-
-  create_table "initiations", force: :cascade do |t|
-    t.string   "email",       limit: 255
-    t.string   "unique_key",  limit: 255
-    t.string   "name",        limit: 255
-    t.integer  "petition_id", limit: 4
-    t.integer  "office_id",   limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "new_signatures", force: :cascade do |t|
     t.integer  "petition_id",                 limit: 4,   default: 0,     null: false
@@ -281,16 +233,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
   add_index "organisations", ["name"], name: "name", using: :btree
   add_index "organisations", ["visible"], name: "index_organisations_on_visible", using: :btree
 
-  create_table "pages", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "content",     limit: 65535
-    t.string   "cached_slug", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "pages", ["cached_slug"], name: "index_pages_on_cached_slug", using: :btree
-
   create_table "petition_translations", force: :cascade do |t|
     t.integer  "petition_id", limit: 4,     null: false
     t.string   "locale",      limit: 255,   null: false
@@ -369,7 +311,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
     t.integer  "number_of_newsletters_sent",       limit: 4,     default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug",                      limit: 255
     t.datetime "last_confirmed_at"
     t.string   "status",                           limit: 255
     t.integer  "manager_id",                       limit: 4
@@ -397,7 +338,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
     t.date     "answer_due_date"
   end
 
-  add_index "petitions", ["cached_slug"], name: "index_petitions_on_cached_slug", using: :btree
   add_index "petitions", ["date_projected"], name: "date_projected", using: :btree
   add_index "petitions", ["last_confirmed_at"], name: "index_petitions_on_last_confirmed_at", using: :btree
   add_index "petitions", ["lat_lng"], name: "index_petitions_on_lat_lng", using: :btree
@@ -450,7 +390,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
   add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
   add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "roles_users", id: false, force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -537,17 +476,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
   add_index "slugs", ["name", "sluggable_type", "sequence"], name: "index_slugs_on_n_s_s_and_s", unique: true, using: :btree
   add_index "slugs", ["sluggable_id"], name: "index_slugs_on_sluggable_id", using: :btree
 
-  create_table "statistics", force: :cascade do |t|
-    t.integer  "statisticable_id",   limit: 4
-    t.string   "statisticable_type", limit: 255
-    t.string   "kind",               limit: 255
-    t.string   "reporting_period",   limit: 255
-    t.datetime "start_at"
-    t.integer  "value",              limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
     t.integer  "taggable_id",   limit: 4
@@ -574,32 +502,6 @@ ActiveRecord::Schema.define(version: 20160125193952) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "tolk_locales", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tolk_locales", ["name"], name: "index_tolk_locales_on_name", unique: true, using: :btree
-
-  create_table "tolk_phrases", force: :cascade do |t|
-    t.text     "key",        limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tolk_translations", force: :cascade do |t|
-    t.integer  "phrase_id",       limit: 4
-    t.integer  "locale_id",       limit: 4
-    t.text     "text",            limit: 65535
-    t.text     "previous_text",   limit: 65535
-    t.boolean  "primary_updated",               default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tolk_translations", ["phrase_id", "locale_id"], name: "index_tolk_translations_on_phrase_id_and_locale_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               limit: 255

@@ -355,8 +355,6 @@ en:
   moderation:
     pending: Your petition opens after you confirm this e-mail
   name: Name
-  office:
-    signatures_count: 'signatures'
   password:
     change: Change your password
     confirm: Confirm your new password
@@ -620,7 +618,9 @@ en:
       more: Load more signatures
       title: Signatures
       to_all: To all signatures
-    signatures_count: "%{count} signatures"
+    signatures_count:
+      one: "%{count} signature"
+      other: "%{count} signatures"
   sign:
     wrong_email: Wrong email
     wrong_name: Wrong name
