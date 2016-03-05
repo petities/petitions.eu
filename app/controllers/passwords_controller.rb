@@ -9,7 +9,7 @@ class PasswordsController < Devise::PasswordsController
 
     user.send_reset_password_instructions if user && user.email
 
-    flash[:notice] = "Reset password instructions were sent on the following email: #{params[:email]}"
+    flash[:notice] = t("login.flash.sent", email: params[:email])
 
     redirect_to new_user_session_path
   end
@@ -20,7 +20,7 @@ class PasswordsController < Devise::PasswordsController
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
 
-      flash[:notice] = 'You can now login with your new password!'
+      flash[:notice] = t('login.flash.success')
       respond_with resource, location: after_resetting_password_path_for(resource)
     else
       respond_with resource

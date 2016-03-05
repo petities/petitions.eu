@@ -330,7 +330,7 @@ en:
       descr: The e-mailaddress you used to start your petition is also your username.
       label: E-mail address
     flash:
-      sent: Password reset instructions were sent to the e-mail address
+      sent: Password reset instructions were sent to the e-mail address %{email}
       success: You can now login with your e-mail address and new password!
     login: Log in
     password:

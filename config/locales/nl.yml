@@ -330,7 +330,7 @@ nl:
       descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
     flash:
-      sent: Instructies om uw wachtwoord te herstellen zijn verstuurd naar het e-mailadres
+      sent: Instructies om uw wachtwoord te herstellen zijn verstuurd naar het e-mailadres %{email}
       success: U kunt nu inloggen met uw e-mailadres en nieuwe wachtwoord!
     login: Inloggen
     password:
