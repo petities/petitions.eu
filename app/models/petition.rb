@@ -122,7 +122,7 @@ class Petition < ActiveRecord::Base
 
   # petitionaris
   PETITIONARIS = [
-    [t('petition.stageing'), 'stageing'], # offer for review
+    [t('petition.staging'), 'staging'], # awaiting moderation
   ]
 
   scope :live,      -> { where(status: 'live') }
