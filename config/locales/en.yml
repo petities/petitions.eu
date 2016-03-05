@@ -415,6 +415,8 @@ en:
     editing: Editing
     editors: Editors
     finalize: Open de petition
+    flash:
+      not_found: We could not find the petition you requested. You might want to try using the search feature.
     ghost: Ghost
     help:
       description: Description

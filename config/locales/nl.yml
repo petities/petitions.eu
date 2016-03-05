@@ -415,6 +415,8 @@ nl:
     editing: Bewerken
     editors: Vertalers
     finalize: Open de petitie
+    flash:
+      not_found: We konden de petitie waar u naar vroeg niet vinden. Met de zoek-functie lukt het misschien wel.
     ghost: Ghost
     help:
       description: Beschrijving
