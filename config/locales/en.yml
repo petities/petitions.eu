@@ -172,17 +172,17 @@ en:
     form:
       name:
         label: Name
-        description: Your name address
+        description: Your name, preferably like you use it to sign a petition.
       mail:
         label: E-mail
-        description: Your e-mail address
+        description: We use your e-mail address only to reply. 
       text:
         label: Message
-        description: Your message
+        description: Your message to Stichting Petities.nl. Would you like to mention about which petition you write?
       submit: Send
     thanks:
-      title: Your message has been sent
-      description: Thank you for contacting us. We will reply in a few days.
+      title: Your message is sent to webmaster@petities.nl with a copy for you.
+      description: Thank you for your message. If you do not receive a copy you probably made a mistake in your address. Sometimes we can not reply if this is the case. Nearly daily we go into our mailbox for about an hour to answer as many e-mails as possible. If you are in a hurry, please leave a voicemail. This arrives in our regular mailbox and gets priority. We always answer by e-mail.
   contact_mailer:
     webmaster_message:
       subject: Message from petities.nl
@@ -329,6 +329,9 @@ en:
     email:
       descr: The e-mailaddress you used to start your petition is also your username.
       label: E-mail address
+    flash:
+      sent: Password reset instructions were sent to the e-mail address
+      success: You can now login with your e-mail address and new password!
     login: Log in
     password:
       descr: When you began your petition you chose a password. If you did not, we sent you a password by e-mail. Do you not have or know your password anymore, ask a link by e-mail to set a new one.

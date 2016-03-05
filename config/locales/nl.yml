@@ -172,17 +172,17 @@ nl:
     form:
       name:
         label: Uw naam
-        description: Uw naam
+        description: Uw naam, het liefst net zoals u het ook gebruikt voor het ondertekenen van een petitie.
       mail:
         label: Uw e-mailadres
-        description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht.
+        description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht. 
       text:
         label: Uw bericht
         description: Uw bericht aan Stichting Petities.nl. Wilt u bij uw berichten vermelden over welke petitie het gaat?
       submit: Verstuur
     thanks:
-      title: Uw bericht is verzonden
-      description: Dank voor uw bericht. We nemen met enkele dagen contact met u op.
+      title: Uw bericht is verzonden naar webmaster@petities.nl met een kopie voor u.
+      description: Dank u wel voor uw bericht. Als u geen kopie ontvangt, dan heeft u waarschijnlijk een foutje gemaakt in uw adres. Soms kunnen we u dan niet antwoorden. Bijna dagelijks gaan we een uurtje onze mailbox in om zoveel mogelijk e-mail te beantwoorden. Als u veel haast heeft, spreekt u dan ook een voicemail in. Die komt in onze gewone mailbox binnen en krijgt voorrang. Ons antwoord komt altijd per e-mail.
   contact_mailer:
     webmaster_message:
       subject: Bericht vanaf petities.nl
@@ -329,6 +329,9 @@ nl:
     email:
       descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
+    flash:
+      sent: Instructies om uw wachtwoord te herstellen zijn verstuurd naar het e-mailadres
+      success: U kunt nu inloggen met uw e-mailadres en nieuwe wachtwoord!
     login: Inloggen
     password:
       descr: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail. Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
