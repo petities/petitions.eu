@@ -142,7 +142,7 @@ class PetitionsController < ApplicationController
   # GET /petitions/1.json
   def show
     unless @petition
-      flash[:notice] = t('petition.we_could_not_find_petition_try_search')
+      flash[:notice] = t('petition.flash.not_found')
       redirect_to root_path
       return
     end
