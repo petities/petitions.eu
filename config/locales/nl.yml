@@ -182,7 +182,7 @@ nl:
       submit: Verstuur
     thanks:
       title: Uw bericht is verzonden naar webmaster@petities.nl met een kopie voor u.
-      description: Dank u wel voor uw bericht. Als u geen kopie ontvangt, dan heeft u waarschijnlijk een foutje gemaakt in uw adres. Soms kunnen we u dan niet antwoorden. Bijna dagelijks gaan we een uurtje onze mailbox in om zoveel mogelijk e-mail te beantwoorden. Als u veel haast heeft, spreekt u dan ook een voicemail in. Die komt in onze gewone mailbox binnen en krijgt voorrang. Ons antwoord komt altijd per e-mail.
+      description_html: "<p>Dank u wel voor uw bericht.</p>&nbsp;<p>Als u geen kopie ontvangt, dan heeft u waarschijnlijk een foutje gemaakt in uw adres. Soms kunnen we u dan niet antwoorden.</p>&nbsp;<p>Bijna dagelijks gaan we een uurtje onze mailbox in om zoveel mogelijk e-mail te beantwoorden.</p>&nbsp;<p> Als u veel haast heeft, spreekt u dan ook een voicemail in. Die komt in onze gewone mailbox binnen en krijgt voorrang. Ons antwoord komt altijd per e-mail.</p>"
   contact_mailer:
     webmaster_message:
       subject: Bericht vanaf petities.nl
