@@ -9,7 +9,7 @@
 	  date: @signature.signed_at.strftime('%d-%m-%Y'),
 	  petition: @petition.name,
 	  petition_handover: @petition.date_projected,
-	  petition_url: petition_url({id: @petition.slug}),
+	  petition_url: petition_url(@petition),
 	  unique_url: @unique_key,
 	  petition_descr: @petition.description,
 	  petitioner_email: @petition.petitioner_email,
@@ -26,7 +26,7 @@
 	  date: @signature.signed_at.strftime('%d-%m-%Y'),
 	  petition: @petition.name,
 	  petition_handover: @petition.date_projected,
-	  petition_url: petition_url({id: @petition.slug}),
+	  petition_url: petition_url(@petition),
 	  petition_descr: @petition.description,
 	  petition_office: @petition.organisation_name,
 	  petitioner_email: @petition.petitioner_email})

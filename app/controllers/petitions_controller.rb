@@ -231,7 +231,6 @@ class PetitionsController < ApplicationController
         owner = User.where(email: user_params[:email]).first
 
         unless owner
-
           password = user_params[:password]
           password = Devise.friendly_token.first(8) if password.blank?
 
@@ -268,8 +267,6 @@ class PetitionsController < ApplicationController
         # make user owner of the petition
         owner.add_role(:admin, @petition) if owner
         PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
-        PetitionMailer.welcome_petitioner_mail(
-          @petition, owner, password, target: 'webmaster@petities.nl').deliver_later
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }
@@ -323,7 +320,7 @@ class PetitionsController < ApplicationController
       [t('petition.organisations.plusregion'), 'plusregion'],
       [t('petition.organisations.water_county'), 'water_county'],
       [t('petition.organisations.district'), 'district'],
-      [t('petition.organisations.governement'), 'governement'],
+      [t('petition.organisations.government'), 'government'],
       [t('petition.organisations.parliament'), 'parliament'],
       [t('petition.organisations.european_union'), 'european_union'],
       [t('petition.organisations.collective'), 'collective']

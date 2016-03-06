@@ -38,7 +38,6 @@
 #  number_of_newsletters_sent       :integer          default(0), not null
 #  created_at                       :datetime
 #  updated_at                       :datetime
-#  cached_slug                      :string(255)
 #  last_confirmed_at                :datetime
 #  status                           :string(255)
 #  manager_id                       :integer
@@ -343,9 +342,6 @@ class Petition < ActiveRecord::Base
   end
 
   def redis_history_chart_json(hist = 10)
-
-    now = Time.now
-
     start = Time.now - hist.day
 
     if created_at and start < created_at

@@ -19,7 +19,6 @@ ActiveAdmin.register Petition do
                 :reference_field, :answer_due_date, :office_id,
                 locale_list: []
 
-
   index do
     selectable_column
     id_column
@@ -57,4 +56,13 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
   filter :locale_list
+
+  sidebar :images, only: :show do
+    images = resource.images.map do |image|
+      link_to(
+        image_tag(image.upload.url, class: 'upload-image'), [:admin, image]
+      )
+    end
+    raw(images.join)
+  end
 end

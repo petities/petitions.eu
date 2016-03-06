@@ -175,7 +175,7 @@ nl:
         description: Uw naam, het liefst net zoals u het ook gebruikt voor het ondertekenen van een petitie.
       mail:
         label: Uw e-mailadres
-        description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht. 
+        description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht.
       text:
         label: Uw bericht
         description: Uw bericht aan Stichting Petities.nl. Wilt u bij uw berichten vermelden over welke petitie het gaat?
@@ -592,7 +592,7 @@ nl:
         label: Huidige status
         was_signable: Deze petitie staat niet meer open om ondertekeningen te verzamelen.
         will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
-      target: From
+      target: Afkomstig van
       text: Het antwoord
       title: Petitie
       we: Wij
@@ -604,12 +604,18 @@ nl:
     sign:
       form:
         checkbox: mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
-        email: E-mailadres
+        email:
+          label: E-mailadres
+          placeholder: voornaam.achternaam@provider.nl
         errors:
           email: Voer alstublieft een juist e-mailadres in. Met deze is iets mis.
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
-        name: Voornaam Achternaam
-        residence: Woonplaats
+        name:
+          label: Naam
+          placeholder: Teken minstens met uw achternaam met een initiaal ervoor
+        residence:
+          label: Woonplaats
+          placeholder: Amsterdam
         sign_again: Nu iemand anders laten tekenen
         submit: Ja, ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
