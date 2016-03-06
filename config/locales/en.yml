@@ -606,16 +606,16 @@ en:
         checkbox: Publish my name visibly below the petition.
         email:
           label: Email address
-          placeholder: firstname.lastname@provider.com
+          placeholder: username@something.something
         errors:
           email: Please enter a correct e-mail address. Something is wrong with this one.
           name: Please enter your name and surname. Or an initial and your surname.
         name:
           label: Name
-          placeholder: Sign at least with your surname and an initial.
+          placeholder: Initial and surname at least
         residence:
           label: Place of residence
-          placeholder: Amsterdam
+          placeholder: Where you live now, at the time of signing
         sign_again: Let someone else sign now
         submit: Yes, I sign this petition
         success1: Thank you. It is now important to confirm your signature. On your address

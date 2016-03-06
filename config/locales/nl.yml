@@ -606,16 +606,16 @@ nl:
         checkbox: mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
         email:
           label: E-mailadres
-          placeholder: voornaam.achternaam@provider.nl
+          placeholder: gebruikersnaam@iets.iets
         errors:
           email: Voer alstublieft een juist e-mailadres in. Met deze is iets mis.
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
         name:
           label: Naam
-          placeholder: Teken minstens met uw achternaam met een initiaal ervoor
+          placeholder: Voorletter en achternaam minstens
         residence:
           label: Woonplaats
-          placeholder: Amsterdam
+          placeholder: Waar u nu woont, op het tijdstip van ondertekenen
         sign_again: Nu iemand anders laten tekenen
         submit: Ja, ik onderteken deze petitie
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
