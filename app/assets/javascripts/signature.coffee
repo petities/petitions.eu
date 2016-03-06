@@ -94,14 +94,14 @@ $ ->
     # default result
     result = true
     #//clear erors block
-    #//$errorsBlock.html('');
+    #//$errorsBlock.html('')
     #if !$nameField.val().match(nameRegex)
     #  $nameField.addClass('error')
-    #  error_name = window.wrong_name_error || 'Name and Surname';
-    #  #//$errorsBlock.append(error_name);
-    #  #//$errorsBlock.append('Please enter correct Name and Surname.<br>');
-    #  result = false;
-    return result;
+    #  error_name = window.wrong_name_error || 'Name and Surname'
+    #  #//$errorsBlock.append(error_name)
+    #  #//$errorsBlock.append('Please enter correct Name and Surname.<br>')
+    #  result = false
+    return result
 
   ).on('ajax:success', (e, data, status, xhr) ->
     $('#confirm_success').show()

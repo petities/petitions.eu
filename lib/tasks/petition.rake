@@ -27,7 +27,7 @@ namespace :petition do
 
     r = Redis.new
 
-    Petition.live.each_with_index do |petition, index|
+    Petition.live.each do |petition|
       r.del("p#{petition.id}_city")
       puts i
 
@@ -37,16 +37,13 @@ namespace :petition do
         r.zincrby("p#{petition.id}_city", count, city_name)
       end
     end
-
   end
 
   desc 'create redis summary graph'
   task create_redis_month_counts: :environment do
-
-    Petition.where(status: false).each_with_index do |petition, index|
-
-    end
-
+    # Petition.where(status: false).each_with_index do |petition, index|
+    #
+    # end
   end
 
 
@@ -70,7 +67,7 @@ namespace :petition do
 
     #delete_all
     #
-    Petition.live.order(id: :desc).each_with_index do |petition, index|
+    Petition.live.order(id: :desc).each do |petition|
 
       count = petition.signatures.confirmed.count
 
@@ -136,17 +133,17 @@ namespace :petition do
 
     overdue_petitions.find_each do |petition|
       if petition.signatures.confirmed.size < 10
-        Rails.logger.debug('withdrawn %s %s' % [petition.id, petition.name])
-        petition.status == 'withdrawn'
+        Rails.logger.debug("withdrawn #{petition.id} #{petition.name}")
+        petition.status = 'withdrawn'
       elsif petition.updates.size < 1
         # change status to orphan
-        petition.status == 'orphan'
-        Rails.logger.debug('orphaned %s %s' % [petition.id, petition.name])
+        petition.status = 'orphan'
+        Rails.logger.debug("orphaned #{petition.id} #{petition.name}")
       else
-        Rails.logger.debug('request answer due date %s %s' % [petition.id, petition.name])
+        Rails.logger.debug("request answer due date #{petition.id} #{petition.name}")
         # send request for answer due date to office
         # change status to to_process
-        petition.status == 'to_process'
+        petition.status = 'to_process'
         m = PetitionMailer.ask_office_answer_due_date_mail(petition)
         m.deliver_later(queue: :process)
       end

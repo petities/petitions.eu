@@ -145,7 +145,7 @@ class Signature < ActiveRecord::Base
 
   end
 
-  def set_hour_key(time)
+  def set_hour_key
     t = confirmed_at
 
     # keep track of signature counts the last hours
@@ -162,7 +162,7 @@ class Signature < ActiveRecord::Base
 
     set_last_key(confirmed_at)
 
-    set_hour_key(confirmed_at)
+    set_hour_key
 
     if not task
       t = confirmed_at

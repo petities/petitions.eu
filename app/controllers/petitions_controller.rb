@@ -320,7 +320,7 @@ class PetitionsController < ApplicationController
       [t('petition.organisations.plusregion'), 'plusregion'],
       [t('petition.organisations.water_county'), 'water_county'],
       [t('petition.organisations.district'), 'district'],
-      [t('petition.organisations.governement'), 'governement'],
+      [t('petition.organisations.government'), 'government'],
       [t('petition.organisations.parliament'), 'parliament'],
       [t('petition.organisations.european_union'), 'european_union'],
       [t('petition.organisations.collective'), 'collective']

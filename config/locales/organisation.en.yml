@@ -4,7 +4,6 @@ en:
     organisations:
       blank: "Choose a recipient:"
       government: "government"
-      governement: "government" #typo in db
       water_county: "water board"
       european_union: "European Union"
       district: "province"

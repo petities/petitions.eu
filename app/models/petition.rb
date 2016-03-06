@@ -342,9 +342,6 @@ class Petition < ActiveRecord::Base
   end
 
   def redis_history_chart_json(hist = 10)
-
-    now = Time.now
-
     start = Time.now - hist.day
 
     if created_at and start < created_at

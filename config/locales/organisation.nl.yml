@@ -4,7 +4,6 @@ nl:
     organisations:
       blank: "Kies een ontvanger:"
       government: "Rijksoverheid"
-      governement: "Rijksoverheid" #typo in db
       water_county: waterschap
       european_union: "Europese Unie"
       district: "provincie"
