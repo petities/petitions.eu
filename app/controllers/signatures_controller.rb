@@ -117,7 +117,6 @@ class SignaturesController < ApplicationController
     end
 
     # respond to json request
-
     respond_to do |format|
       if @signature.save
         format.js { render json: { status: 'ok' } }
@@ -160,10 +159,10 @@ class SignaturesController < ApplicationController
   # end
 
   # get signature confirm page
-  # view the details of your signarture
+  # view the details of your signature
   def confirm
     @petition = @signature.petition
-    # generate the update sig url
+    # generate the update signature url
     @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
     set_pledge

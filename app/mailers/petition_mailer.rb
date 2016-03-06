@@ -123,7 +123,7 @@ class PetitionMailer < ApplicationMailer
   end
 
   # ask petitioner to confirm, give user and password
-  def welcome_petitioner_mail(petition, user, password, target: nil)
+  def welcome_petitioner_mail(petition, user, password)
     @petition = petition
     @user = user
     @password = password
@@ -136,15 +136,11 @@ class PetitionMailer < ApplicationMailer
       @office_telephone = petition.office.telephone || 'office has not telephone set'
     end
 
-    # NOTE petitioner_email can be wrong?
-    # should we not send email to admin users?
-    target = @user.email if target.nil?
-
-    tld = get_tld(target)
+    tld = get_tld(@user.email)
 
     I18n.with_locale(tld) do
       subject = t('mail.petition.confirm.subject', petition_name: petition.name)
-      mail(to: target, subject: subject)
+      mail(to: @user.email, bcc: 'webmaster@petities.nl', subject: subject)
     end
   end
 

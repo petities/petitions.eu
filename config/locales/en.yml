@@ -175,7 +175,7 @@ en:
         description: Your name, preferably like you use it to sign a petition.
       mail:
         label: E-mail
-        description: We use your e-mail address only to reply. 
+        description: We use your e-mail address only to reply.
       text:
         label: Message
         description: Your message to Stichting Petities.nl. Would you like to mention about which petition you write?
@@ -604,12 +604,18 @@ en:
     sign:
       form:
         checkbox: Publish my name visibly below the petition.
-        email: E-mail address required
+        email:
+          label: Email address
+          placeholder: firstname.lastname@provider.com
         errors:
           email: Please enter a correct e-mail address. Something is wrong with this one.
           name: Please enter your name and surname. Or an initial and your surname.
-        name: First name Surname
-        residence: Place of residence
+        name:
+          label: Name
+          placeholder: Sign at least with your surname and an initial.
+        residence:
+          label: Place of residence
+          placeholder: Amsterdam
         sign_again: Let someone else sign now
         submit: Yes, I sign this petition
         success1: Thank you. It is now important to confirm your signature. On your address
