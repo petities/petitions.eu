@@ -17,6 +17,9 @@ README
    :target: https://semaphoreci.com/petities/petitions-eu
    :alt: Build Status
 
+.. image:: https://img.shields.io/gratipay/user/spreeker.svg
+  :target: https://gratipay.com/~spreeker
+  :alt: Feed developers
 
 * Ruby version 2.2.3
 
