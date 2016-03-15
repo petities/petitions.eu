@@ -2,9 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-Mailcheck.defaultDomains.push('uva.nl', 'versatel.nl', 'xs4all.nl', 'tiscali.nl', 'hotmail.com', 'deds.nl', 'dds.nl', 'tele2.nl', 'wxs.nl', 'hccnet.nl', 'telenet.be' ) # // extend existing domains
-#Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
+Mailcheck.defaultDomains.push(
+  'dds.nl', 'deds.nl', 'hccnet.nl', 'hotmail.com', 'kpnmail.nl', 'online.nl',
+  'planet.nl',  'tele2.nl', 'telenet.be', 'telfort.nl', 'tiscali.nl', 'uva.nl',
+  'versatel.nl', 'wanadoo.nl', 'wxs.nl', 'xs4all.nl') # extend existing domains
+# Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
 Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
 
 suggested = (element, sugestion) ->
@@ -25,8 +27,6 @@ empty = (elements, suggestion) ->
   $(sugestion_id).text ""
   tipElement = $(tip_id)
   tipElement.hide()
-
-
 
 delay = (
   timer = 0
