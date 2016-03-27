@@ -3,11 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 Mailcheck.defaultDomains.push(
-  'dds.nl', 'deds.nl', 'hccnet.nl', 'hotmail.com', 'kpnmail.nl', 'online.nl',
-  'planet.nl',  'tele2.nl', 'telenet.be', 'telfort.nl', 'tiscali.nl', 'uva.nl',
-  'versatel.nl', 'wanadoo.nl', 'wxs.nl', 'xs4all.nl') # extend existing domains
+  'dds.nl', 'deds.nl', 'hotmail.com', 'gmail.com', 'live.nl', 'home.nl', 'hetnet.nl', 
+  'planet.nl', 'ziggo.nl', 'xs4all.nl', 'chello.nl', 'upcmail.nl', 'casema.nl', 'kpnmail.nl', 
+  'yahoo.com', 'kpnplanet.nl', 'zonnet.nl', 'quicknet.nl', 'hotmail.nl', 'msn.com', 'online.nl', 
+  'zeelandnet.nl', 'telfort.nl', 'versatel.nl', 'tiscali.nl', 'tele2.nl', 'outlook.com', 'me.com', 
+  'wanadoo.nl', 'hccnet.nl', 'wxs.nl', 'telenet.be') # extend existing domains
 # Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
-Mailcheck.defaultTopLevelDomains.push('be', 'nl', 'de')
+Mailcheck.defaultTopLevelDomains.push('nl', 'be', 'eu', 'de')
 
 suggested = (element, sugestion) ->
   #console.log(sugestion)
