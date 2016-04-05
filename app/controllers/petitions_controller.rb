@@ -77,7 +77,7 @@ class PetitionsController < ApplicationController
                 .distinct
                 # with_locales(I18n.available_locales).
 
-    petitions = petitions.all.sort_by { |p| -$redis.zscore('active_rate', p.id) }
+    petitions = petitions.all.sort_by { |p| -($redis.zscore('active_rate', p.id) || 0) }
 
     @results_size = petitions.size
 

@@ -1,10 +1,9 @@
 require 'test_helper'
 
-
-class PagesTest < ActionDispatch::IntegrationTest
-  %w(drugs test xxx nothing).each do |q|
+class SearchTest < ActionDispatch::IntegrationTest
+  %w(onderwijs gezondheidszorg referendum verkeer).each do |q|
     test "loading of search page #{q}" do
-      get "/petitions/search?search=#{q}"
+      get search_petitions_url(search: q)
       assert_response :success
     end
   end
