@@ -11,7 +11,7 @@ niet? Dan kunt u dit negeren.
 Bevestig uw ondertekening door deze link te volgen:
 
 
-%{confirm_url}
+%{confirm_url}>
 
 
 Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
@@ -76,6 +76,9 @@ Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bo
 computer, telefoon of tablet. U kunt het ook proberen via een ander netwerk. Sommige werkgevers en bepaalde software blokkeren 
 toegang tot onze website wegens controversiële politieke inhoud. Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis 
 bent, probeer het buitenshuis op uw telefoon.
+
+Als links in onze mails niet klikbaar zijn kunt u ook naar http://petities.nl/ondertekening/ gaan waar u in de adresbalk %{signature_id} zelf achter aan toe voegt.
+
 '        
       signoff: '
 Met vriendelijke groet, 
@@ -86,5 +89,5 @@ Stichting Petities.nl
 STEUN PETITIES.NL
 
 
-Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
+Met uw gift (geld of tijd) wordt de website beter. Zie https://petities.nl/donate voor details.
 '
