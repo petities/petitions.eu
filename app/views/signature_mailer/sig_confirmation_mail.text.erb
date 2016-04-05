@@ -3,15 +3,15 @@
 <%= t("mail.confirm.signature.linkinstruction",{
 	petition: @signature.petition.name,
 	email: @signature.person_email,
-	date: @signature.signed_at.strftime('%d-%m-%Y'),
+	date: l(@signature.signed_at.to_date),
 	name: @signature.person_name,
 	confirm_url: @confirm_url
 }) %>
 
-<%= t("mail.confirm.signoff") %> 
+<%= t("mail.confirm.signoff") %>
 
 <%= t("mail.confirm.signature.petition", {
-	subdomain: @signature.petition.subdomain,
+	petition_url: "https://#{@signature.petition.subdomain}.petities.nl",
 	intro: @signature.petition.description,
 	we: @signature.petition.initiators,
 	observe: @signature.petition.statement,
@@ -20,4 +20,4 @@
 
 <%= t("mail.confirm.signature.ask_petitioner", {
 	petitionermail: @signature.petition.petitioner_email
-}) %>
+}) if @signature.petition.petitioner_email %>

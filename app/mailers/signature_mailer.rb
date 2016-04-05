@@ -73,7 +73,7 @@ class SignatureMailer < ApplicationMailer
 
     name = @signature.petition.name if @signature.petition.present?
 
-    subject = t('mail.confirm.signature.subject_again', petition_name: name)
+    subject = t('mail.confirm.signature.subject_reminder', petition_name: name)
 
     mail(to: @signature.person_email, subject: subject)
   end
