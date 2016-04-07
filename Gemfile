@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.6'
 gem 'rails-i18n'
 
+gem 'paper_trail'
 gem 'globalize', '~> 5.0.0'
 gem 'globalize-versioning'
 # friendly slugs..
@@ -18,9 +19,6 @@ gem 'mysql2', '~> 0.4.3'
 # legacy utf 8 issues..
 gem 'utf8-cleaner'
 gem 'rack-utf8_sanitizer'
-
-# make jquery work with turbolinks..
-gem 'jquery-turbolinks'
 
 # authentication
 gem 'devise', '~> 3.5', '>= 3.5.6'
@@ -86,8 +84,6 @@ gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
