@@ -41,20 +41,20 @@ module SortPetitions extend ActiveSupport::Concern
   end
 
   def petitions_by_status(petitions)
+    petitions = petitions.order(created_at: :desc).limit(20)
     # find petition in state of allow
-    @petitions_draft = petitions.where(status: %w(draft concept)).limit(20)
+    @petitions_draft = petitions.where(status: %w(draft concept))
     # find petitions in state of answer
-    @petitions_moderate = petitions.where(status: 'staging').limit(20)
+    @petitions_moderate = petitions.where(status: 'staging')
     # find petition in state of signable
-    @petitions_live = petitions.live.limit(20)
+    @petitions_live = petitions.live
     # find petition in state of answered
-    @petitions_inproces = petitions.where("status IN ('to_process', 'in_process')").limit(20)
+    @petitions_inproces = petitions.where("status IN ('to_process', 'in_process')")
     #
-    @petitions_completed = petitions.where(status: 'completed').limit(20)
+    @petitions_completed = petitions.where(status: 'completed')
     # find petition in state of done/ingetrokken
-    @petitions_rejected = petitions.where(status: 'rejected').limit(20)
+    @petitions_rejected = petitions.where(status: 'rejected')
     # withdrawn..
-    @petitions_withdrawn = petitions.where(status: 'withdrawn').limit(20)
-    # @petitions = @petitions.paginate(page: @page, per_page: 12)
+    @petitions_withdrawn = petitions.where(status: 'withdrawn')
   end
 end
