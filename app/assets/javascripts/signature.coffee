@@ -2,13 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# extend existing domains
 Mailcheck.defaultDomains.push(
-  'dds.nl', 'deds.nl', 'hotmail.com', 'gmail.com', 'live.nl', 'home.nl', 'hetnet.nl', 
-  'planet.nl', 'ziggo.nl', 'xs4all.nl', 'chello.nl', 'upcmail.nl', 'casema.nl', 'kpnmail.nl', 
-  'yahoo.com', 'kpnplanet.nl', 'zonnet.nl', 'quicknet.nl', 'hotmail.nl', 'msn.com', 'online.nl', 
-  'zeelandnet.nl', 'telfort.nl', 'versatel.nl', 'tiscali.nl', 'tele2.nl', 'outlook.com', 'me.com', 
-  'wanadoo.nl', 'hccnet.nl', 'wxs.nl', 'telenet.be') # extend existing domains
-# Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain') // extend existing SLDs
+  'dds.nl', 'deds.nl', 'hotmail.com', 'gmail.com', 'live.nl', 'home.nl',
+  'hetnet.nl', 'planet.nl', 'ziggo.nl', 'xs4all.nl', 'chello.nl', 'upcmail.nl',
+  'casema.nl', 'kpnmail.nl', 'yahoo.com', 'kpnplanet.nl', 'zonnet.nl',
+  'quicknet.nl', 'hotmail.nl', 'msn.com', 'online.nl', 'zeelandnet.nl',
+  'telfort.nl', 'versatel.nl', 'tiscali.nl', 'tele2.nl', 'outlook.com',
+  'me.com', 'wanadoo.nl', 'hccnet.nl', 'wxs.nl', 'telenet.be')
+# extend existing SLDs
+# Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain')
 Mailcheck.defaultTopLevelDomains.push('nl', 'be', 'eu', 'de')
 
 suggested = (element, sugestion) ->
@@ -48,7 +51,7 @@ $ ->
 
 
 # on focusing to the next form check the mail field
-# and do a sugestion
+# and do a suggestion
 $ ->
   $('[id$=_email]').bind 'blur', ->
     $(this).mailcheck suggested: suggested, empty: empty
@@ -116,7 +119,7 @@ $ ->
     $('#confirm_errors').show()
   )
 
-  # pledge succes note
+  # pledge success note
   $('.edit_pledge, .new_pledge').on('ajax:success', (e, data, status, xhr) ->
     $('.pledge_thanks').show()
     $('.edit_pledge, .new_pledge').clear_form_errors()
@@ -130,7 +133,7 @@ $ ->
   )
 
   # sign email success..
-  $('#share_email').on('ajax:success', (e, data, status, xhr) ->
+  $('form#new_invite_form').on('ajax:success', (e, data, status, xhr) ->
     $('#success_share_email').show()
     $('#fail_share_email').hide()
     $('#input_share_email').val("")
@@ -139,7 +142,7 @@ $ ->
   )
 
   # sign email fail
-  $('#share_email').on('ajax:error', (e, data, status, xhr) ->
+  $('form#new_invite_form').on('ajax:error', (e, data, status, xhr) ->
     $('#success_share_email').hide()
     $('#fail_share_email').show()
     $('#input_share_email').val("")
@@ -171,7 +174,7 @@ $.fn.render_form_obligations = (model_name, fields) ->
 $ ->
   $('.edit_signature').render_form_obligations('signature')
 
-# add errror class and text to each form field
+# add error class and text to each form field
 $.fn.render_form_errors = (model_name, errors) ->
   form = this
 

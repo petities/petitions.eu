@@ -4,8 +4,8 @@ class SignaturesController < ApplicationController
   protect_from_forgery except: :index
 
   before_action :find_signature_by_unique_key, only: [
-    :show, :confirm, :confirm_submit, :pledge_submit, :mail_submit,
-    :user_update, :become_petition_owner]
+    :show, :confirm, :confirm_submit, :pledge_submit, :user_update,
+    :become_petition_owner]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:special_update]
@@ -256,16 +256,10 @@ class SignaturesController < ApplicationController
   end
 
   def set_pledge
-    @pledge = Pledge.where(signature_id: @signature.id).first
-    unless @pledge
-      @pledge = Pledge.new
-      @pledge.signature_id = @signature.id
-      @pledge.petition_id = @petition.id
+    @pledge = Pledge.find_or_create_by(signature_id: @signature.id) do |pledge|
+      pledge.signature_id = @signature.id
+      pledge.petition_id = @petition.id
     end
-
-    @pledge_url = petition_signature_pledge_confirm_path(@petition, @signature.unique_key)
-
-    @share_email_url = petition_signature_mail_submit_path(@petition, @signature.unique_key)
   end
 
   def pledge_submit
@@ -304,26 +298,6 @@ class SignaturesController < ApplicationController
         format.html { redirect_to @petition, notice: 'Signature was successfully updated.' }
         format.json { render json: @signature.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def mail_submit
-    target = email_params[:share_email]
-
-    if target.empty?
-      respond_to do |format|
-        format.json { render :show, status: :unprocessable_entity }
-      end
-      return
-    end
-
-    # do mail via sidekiq
-    # SignatureMailer.share_mail(@signature, target).deliver_later
-    # to test.
-    SignatureMailer.share_mail(@signature, target).deliver_later
-
-    respond_to do |format|
-      format.json { render :show, status: :ok }
     end
   end
 
