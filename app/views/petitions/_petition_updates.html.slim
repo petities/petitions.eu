@@ -10,19 +10,19 @@ div.page.vervolg
       = render partial: 'updates/list'
 
     div.navigation-bar
-      = will_paginate @updates, renderer: PetitionsPaginateRenderer
+      = will_paginate @updates, params: { anchor: 'petitionnews' }, renderer: PetitionsPaginateRenderer
 
   aside.vervolg-side
     - if current_user && current_user.has_role?(:admin, @petition)
       div.side-article-container.whitespace
         h2= t('help.petition.update.markdown')
         p= raw t('help.petition.update.descr')
-      
+
       div.side-article-container.whitespace
         h2= t('help.petition.update.links')
         p= raw t('help.petition.update.descr2')
 
- 
+
       div.side-article-container.whitespace
         h2= t('help.petition.update.tips')
         p= raw t('help.petition.update.descr3')

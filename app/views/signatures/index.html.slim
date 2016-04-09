@@ -11,7 +11,8 @@ div.page.top
       div.petition-intro-info-text.whitespace
         p= @petition.description
 
-      = link_to t('signatures.sign'), petition_path(@petition), class: "button"
+      - if @petition.status == 'live'
+        = link_to t('signatures.sign'), petition_path(@petition), class: "button"
 
 div.page.signatures
 
