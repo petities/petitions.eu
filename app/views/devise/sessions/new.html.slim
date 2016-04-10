@@ -7,9 +7,9 @@ div.page
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('login.email.label')
-          = f.email_field :email, class: 'start-petition-form-cell-input'
+          = f.email_field :email, class: 'start-petition-form-cell-input', autofocus: true
         div.start-petition-form-cell.label.empty
-          = t('login.email.descr')
+          = t('login.email.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -17,14 +17,16 @@ div.page
             = t('login.password.label')
           = f.password_field :password, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          = t('login.password.descr')
+          = t('login.password.description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          div.start-petition-form-cell-title
-            = link_to t('login.reset'), new_user_password_path      
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
+      - if devise_mapping.rememberable?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            div.start-petition-form-cell-title.empty
+              = f.check_box :remember_me
+              = f.label :remember_me
+          div.start-petition-form-cell.label.empty
+            | &nbsp;
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -33,6 +35,12 @@ div.page
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = link_to t('login.reset_link.label'), new_user_password_path
+        div.start-petition-form-cell.label.empty
+          = t('login.reset_link.description')
 
 / <h2>Log in</h2>
 

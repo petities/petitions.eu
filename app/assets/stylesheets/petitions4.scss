@@ -96,7 +96,7 @@ input {
     width: auto;
     overflow: visible;
   }
-  &[type='text'] {
+  &[type='text'], &[type='email'], &[type='password'] {
     font: 400 14px/14px 'Open Sans', arial, sans-serif;
     color: #000;
     resize: vertical;

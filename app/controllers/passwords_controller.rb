@@ -2,12 +2,13 @@ class PasswordsController < Devise::PasswordsController
   prepend_before_action :require_no_authentication
   append_before_action :assert_reset_token_passed, only: :edit
 
-  def new; end
+  def new
+  end
 
   def create
-    user = User.where(email: params[:email]).first
+    user = User.find_by(email: params[:email])
 
-    user.send_reset_password_instructions if user && user.email
+    user.send_reset_password_instructions if user && user.email.present?
 
     flash[:notice] = t("login.flash.sent", email: params[:email])
 

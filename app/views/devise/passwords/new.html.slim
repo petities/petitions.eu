@@ -3,14 +3,14 @@ div.page
     h1.petition-section-title = t('password.forgot')
 
     = form_tag user_password_path do
-  
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
             = t('login.email.label')
           = email_field_tag :email, '', autofocus: true, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
-          = t('login.password.descr')
+          = t('login.password.description')
           =<> t('password.descr')
 
 
