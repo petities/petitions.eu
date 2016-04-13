@@ -256,10 +256,10 @@ class SignaturesController < ApplicationController
   end
 
   def set_pledge
-    @pledge = Pledge.find_or_create_by(signature_id: @signature.id) do |pledge|
-      pledge.signature_id = @signature.id
-      pledge.petition_id = @petition.id
-    end
+    @pledge = Pledge.find_or_initialize_by(
+      signature_id: @signature.id,
+      petition_id: @petition.id
+    )
   end
 
   def pledge_submit

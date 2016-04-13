@@ -131,7 +131,7 @@ class PetitionsController < ApplicationController
   end
 
   def set_petition_vars
-    @page = params[:page] || 1
+    @page = (params[:page] || 1).to_i
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 

@@ -116,7 +116,7 @@ class Signature < ActiveRecord::Base
   scope :visible, -> { where(visible: true, confirmed: true) }
 
   before_validation :lowercase_person_email
-  before_save :fill_confirmed_at
+  before_save :fill_confirmed_at, :truncate_remote_browser
   before_create :fill_signed_at
 
   after_save :update_petition
@@ -253,5 +253,12 @@ class Signature < ActiveRecord::Base
 
   def fill_signed_at
     self.signed_at = Time.now.utc if signed_at.nil?
+  end
+
+  def truncate_remote_browser
+    [:signature_remote_browser, :confirmation_remote_browser].each do |field|
+      value = read_attribute(field)
+      write_attribute(field, value.slice(0, 255)) if value.present?
+    end
   end
 end

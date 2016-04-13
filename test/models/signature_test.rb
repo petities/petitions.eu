@@ -13,4 +13,13 @@ class SignatureTest < ActiveSupport::TestCase
       assert_strip_whitespace @signature, field
     end
   end
+
+  test 'browser should be truncated' do
+    value = 'Mozilla/5.0 (Windows NT 6.0; rv:32.0) Gecko/20100101 Firefox/32.0 Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons'
+    @signature.signature_remote_browser = value
+    @signature.confirmation_remote_browser = value
+    @signature.save
+    assert_equal @signature.signature_remote_browser.length, 255
+    assert_equal @signature.confirmation_remote_browser.length, 255
+  end
 end
