@@ -164,8 +164,6 @@ class Petition < ActiveRecord::Base
   has_many :updates
   has_many :task_statuses
 
-  before_validation :strip_whitespace
-
   def get_count
     count = $redis.get("p#{id}-count").to_i
     if !count || count == 0
@@ -175,13 +173,8 @@ class Petition < ActiveRecord::Base
     end
   end
 
-  def strip_whitespace
-    self.name = name.strip unless name.nil?
-    self.description = description.strip unless description.nil?
-    self.initiators = initiators.strip unless initiators.nil?
-    self.statement = statement.strip unless statement.nil?
-    self.request = request.strip unless request.nil?
-  end
+  include StripWhitespace
+  strip_whitespace :name, :description, :initiators, :statement, :request
 
   validates_presence_of :name
   validates_presence_of :description

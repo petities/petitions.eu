@@ -38,6 +38,9 @@
 #
 
 class Signature < ActiveRecord::Base
+  include StripWhitespace
+  strip_whitespace :person_city, :person_email, :person_function, :person_name, :person_street_number
+
   belongs_to :petition
   has_one :petition_type, through: :petition
 
@@ -112,7 +115,7 @@ class Signature < ActiveRecord::Base
   scope :special, -> { where(special: true, confirmed: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
 
-  before_validation :strip_whitespace, :lowercase_person_email
+  before_validation :lowercase_person_email
   before_save :fill_confirmed_at
   before_create :fill_signed_at
 
@@ -201,12 +204,6 @@ class Signature < ActiveRecord::Base
   end
 
   private
-
-  def strip_whitespace
-    self.person_street_number = person_street_number.strip unless person_street_number.nil?
-    self.person_name = person_name.strip unless person_name.nil?
-    self.person_email = person_email.strip unless person_email.nil?
-  end
 
   def lowercase_person_email
     self.person_email = person_email.to_s.downcase
