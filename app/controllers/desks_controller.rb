@@ -14,11 +14,6 @@ class DesksController < ApplicationController
       @office = Office.find_by_subdomain(request.subdomain)
     end
 
-    @signatures_count = 0
-    Petition.where(office_id: @office.id).all.each do |p|
-      @signatures_count += p.get_count
-    end
-
     if user_signed_in? && current_user.has_role?(:admin, @office)
       show_office_page
       return
