@@ -41,7 +41,7 @@ class NewSignature < Signature
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at
-  after_save :send_confirmation_mail
+  after_create :send_confirmation_mail
 
   validates :person_email, uniqueness: { scope: :petition_id }
 end

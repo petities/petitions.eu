@@ -379,6 +379,8 @@ class PetitionsController < ApplicationController
   def update
     authorize @petition
 
+    @exclude_list = policy(@petition).invalid_attributes
+
     @owners = @petition.find_owners
 
     set_petition_vars

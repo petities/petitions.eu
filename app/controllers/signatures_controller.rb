@@ -351,12 +351,6 @@ class SignaturesController < ApplicationController
     )
   end
 
-  def email_params
-    params.permit(
-      :share_email
-    )
-  end
-
   def confirm_signature
     old_signature = @signature
     # create a new signature in the signature table.
