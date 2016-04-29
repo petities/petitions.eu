@@ -1,10 +1,7 @@
 require 'test_helper'
 
-ActiveJob::Base.queue_adapter = :test
-
 class PetitionsControllerTest < ActionController::TestCase
-
-  include ActiveJob::TestHelper
+  include UserLoginHelper
 
   setup do
     @petition = petitions(:one)
@@ -129,9 +126,9 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test "should update petition" do
     sign_in_admin_for @petition
-    patch :update, id: @petition.id, petition: { 
-      name: 'newtitle', 
-      description: @petition.description 
+    patch :update, id: @petition.id, petition: {
+      name: 'newtitle',
+      description: @petition.description
     }
     assert_redirected_to edit_petition_path(assigns(:petition))
    end
@@ -150,13 +147,13 @@ class PetitionsControllerTest < ActionController::TestCase
   test "should status change petition" do
     sign_in_admin_for @petition
     # two mails should be send on status change
-  
+
     assert_enqueued_jobs 0
 
     status = @petition.status
 
-    patch :update, id: @petition.id, petition: { 
-      status: 'draft', 
+    patch :update, id: @petition.id, petition: {
+      status: 'draft',
     }
 
     @petition.reload
@@ -175,8 +172,8 @@ class PetitionsControllerTest < ActionController::TestCase
 
     status = @petition.status
 
-    patch :update, id: @petition.id, petition: { 
-      status: 'draft', 
+    patch :update, id: @petition.id, petition: {
+      status: 'draft',
     }
 
     assert_equal(status, @petition.status)
@@ -196,12 +193,4 @@ class PetitionsControllerTest < ActionController::TestCase
   #  assert_redirected_to petitions_path
   # end
 
-  private
-
-  def sign_in_admin_for(subject)
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    user = users(:one)
-    user.add_role(:admin, subject)
-    sign_in user
-  end
 end

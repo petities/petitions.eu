@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class SignaturesControllerTest < ActionController::TestCase
+  include UserLoginHelper
   fixtures :all
 
   setup do
@@ -25,9 +26,11 @@ class SignaturesControllerTest < ActionController::TestCase
   # end
 
   test 'should create signature' do
+    @request.env['REMOTE_ADDR'] = '127.0.0.1'
+    @request.env['HTTP_USER_AGENT'] = 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405'
+
     assert_difference('NewSignature.count') do
       post :create, format: :js, petition_id: @petition, signature: {
-        #:petition_id => @petitions.id,
         person_name: 'test name',
         person_email: 'test2@gmail.com',
         person_city: 'test city',
@@ -42,6 +45,9 @@ class SignaturesControllerTest < ActionController::TestCase
       }
     end
     assert_response :success
+    signature = assigns(:signature)
+    assert_equal '127.0.0.1', signature.signature_remote_addr
+    assert_equal 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405', signature.signature_remote_browser
   end
 
   # this petition / signature requires full address
@@ -54,7 +60,7 @@ class SignaturesControllerTest < ActionController::TestCase
                           }
     assert_response :unprocessable_entity
   end
- 
+
   # this petition / signature requires NOTHING
   test 'should update signature' do
     post :confirm_submit, format: :json, petition_id: @petition,
@@ -90,7 +96,7 @@ class SignaturesControllerTest < ActionController::TestCase
       person_birth_city))
   end
 
-  # test person_function 
+  # test person_function
   test 'should update signature function' do
 
     post :confirm_submit, format: :json, petition_id: @petition,
@@ -110,10 +116,10 @@ class SignaturesControllerTest < ActionController::TestCase
 
   end
 
-  test 'illigal special signature' do
+  test 'illegal special signature' do
 
     assert_no_difference('Signature.special.count') do
-      post :special_update, format: :json, 
+      post :special_update, format: :json,
            id: @signature.id, signature: {
                           special: 1,
                         }
@@ -127,7 +133,7 @@ class SignaturesControllerTest < ActionController::TestCase
     sign_in_admin_for @petition
 
     assert_difference('Signature.special.count') do
-      post :special_update, format: :json, 
+      post :special_update, format: :json,
         id: @signature.id, signature: {
                           special: 1,
           }
@@ -135,7 +141,7 @@ class SignaturesControllerTest < ActionController::TestCase
 
     assert_response :success
 
-  end 
+  end
 
   test 'signature confirmation links' do
     assert_routing('/signatures/10/confirm', controller: 'signatures',
@@ -224,14 +230,5 @@ class SignaturesControllerTest < ActionController::TestCase
 
   #  assert_redirected_to signatures_path
   # end
-  
-  private
-
-  def sign_in_admin_for(subject)
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    user = users(:one)
-    user.add_role(:admin, subject)
-    sign_in user
-  end
 
 end

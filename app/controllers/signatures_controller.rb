@@ -114,6 +114,8 @@ class SignaturesController < ApplicationController
       # no old signature found send new one
       # lets create a proper new signature
       @signature = @petition.new_signatures.new(signature_params)
+      @signature.signature_remote_addr = request.remote_ip
+      @signature.signature_remote_browser = request.env['HTTP_USER_AGENT'] if request.env['HTTP_USER_AGENT'].present?
     end
 
     # respond to json request
@@ -166,12 +168,6 @@ class SignaturesController < ApplicationController
     @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
     set_pledge
-
-    @remote_ip = request.remote_ip
-    @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-
-    @signature.signature_remote_addr = @remote_ip
-    @signature.signature_remote_browser = @remote_browser
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
@@ -238,8 +234,6 @@ class SignaturesController < ApplicationController
     else
       # there are errors
       # render a normal edit view
-      @remote_ip = request.remote_ip
-      @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
       add_check_fields
       @error_fields = @signature.errors.keys
       @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)

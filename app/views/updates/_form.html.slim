@@ -28,16 +28,6 @@
       = f.check_box :show_on_petition
       = t('update.label.show_on_petition')
 
-      div.petition-edit-label
-        | &nbsp;
-
-      = f.check_box :show_on_petition
-      = t('update.label.publish_to_signatures')
-      p
-        |(The programmer is still working on this functionality..)
-      p= t('update.label.publish_review')
-
-
     - if @offices
       div.petition-edit-label
         = t('update.label.show_on_office')
