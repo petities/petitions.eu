@@ -5,7 +5,7 @@ class InviteFormTest < ActiveSupport::TestCase
     assert_enqueued_jobs 1 do
       invite_form = InviteForm.new(
         mail: 'invite@example.com',
-        signature: signatures(:one)
+        signature: signatures(:four)
       )
       assert invite_form.deliver
     end

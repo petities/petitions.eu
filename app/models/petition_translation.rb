@@ -16,6 +16,7 @@
 #
 
 class PetitionTranslation < ActiveRecord::Base
+  belongs_to :petition
   # has_many :petitions
   # has_many :offices
 

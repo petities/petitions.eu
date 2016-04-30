@@ -65,7 +65,6 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to petition_path(assigns(:petition))
   end
 
-
   test 'should show petition' do
     get :show, id: @petition.id
     assert_response :success
@@ -93,7 +92,6 @@ class PetitionsControllerTest < ActionController::TestCase
       assert_select 'h1' #petition-section-title'
     end
   end
-
 
   test 'should not get edit' do
     get :edit, id: @petition
@@ -131,7 +129,7 @@ class PetitionsControllerTest < ActionController::TestCase
       description: @petition.description
     }
     assert_redirected_to edit_petition_path(assigns(:petition))
-   end
+  end
 
   test "should finalize petition" do
     sign_in_admin_for @petition.office
@@ -141,49 +139,39 @@ class PetitionsControllerTest < ActionController::TestCase
     @petition.reload
 
     assert_equal('live', @petition.status)
-
   end
 
   test "should status change petition" do
     sign_in_admin_for @petition
     # two mails should be send on status change
 
-    assert_enqueued_jobs 0
+    assert_enqueued_jobs 4 do
 
-    status = @petition.status
+      status = @petition.status
 
-    patch :update, id: @petition.id, petition: {
-      status: 'draft',
-    }
+      patch :update, id: @petition.id, petition: { status: 'draft' }
 
-    @petition.reload
+      @petition.reload
 
-    assert_equal('draft', @petition.status)
+      assert_equal('draft', @petition.status)
 
-    assert_redirected_to edit_petition_path(assigns(:petition))
-
-    assert_enqueued_jobs 4
-
-   end
+      assert_redirected_to edit_petition_path(assigns(:petition))
+    end
+  end
 
   test "should not status change petition" do
-
     assert_enqueued_jobs 0
 
     status = @petition.status
 
-    patch :update, id: @petition.id, petition: {
-      status: 'draft',
-    }
+    patch :update, id: @petition.id, petition: { status: 'draft' }
 
     assert_equal(status, @petition.status)
 
     assert_redirected_to root_path
 
     assert_enqueued_jobs 0
-
-   end
-
+  end
 
   # test "should destroy petition" do
   #  assert_difference('Petition.count', -1) do
@@ -192,5 +180,4 @@ class PetitionsControllerTest < ActionController::TestCase
 
   #  assert_redirected_to petitions_path
   # end
-
 end

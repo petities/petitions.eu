@@ -1,4 +1,5 @@
 ActiveAdmin.register Update do
+  include AdminImageSidebar
   permit_params :title, :text, :petition_id, :office_id, :show_on_home,
                 :show_on_office, :show_on_petition
 

@@ -6,12 +6,10 @@ class SignaturesControllerTest < ActionController::TestCase
 
   setup do
     @petition = petitions(:one)
-    @signature = signatures(:one)
+    @signature = signatures(:four)
 
-    @petition2 = petitions(:two)
-    @signature2 = signatures(:two)
-
-    @newsignature = new_signatures(:two)
+    @petition_with_required_fields = petitions(:two)
+    @new_signature = new_signatures(:two)
   end
 
   # test "should get index" do
@@ -52,8 +50,8 @@ class SignaturesControllerTest < ActionController::TestCase
 
   # this petition / signature requires full address
   test 'should not update signature' do
-    post :confirm_submit, format: :json, petition_id: @petition2,
-                          signature_id: @signature2.unique_key, signature: {
+    post :confirm_submit, format: :json, petition_id: @petition_with_required_fields,
+                          signature_id: @new_signature.unique_key, signature: {
                             visible: true,
                             special: false,
                             subscribe: true
@@ -75,13 +73,12 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   # test the validation
-  test 'valdation signature' do
-    post :confirm_submit, format: :json, petition_id: @petition2,
-                          signature_id: @signature2.unique_key, signature: {
+  test 'validation signature' do
+    post :confirm_submit, format: :json, petition_id: @petition_with_required_fields,
+                          signature_id: @new_signature.unique_key, signature: {
                             visible: true,
                             special: false,
                             subscribe: true,
-                            persone_function: true,
                             # wrong values
                             street_number: 'X',
                             person_street: 'XX',
@@ -167,42 +164,41 @@ class SignaturesControllerTest < ActionController::TestCase
 
     # remove redis keys
     # mabe we should have a test prefix..
-    if $redis.keys("p-d-2-*").size > 0
-      $redis.del($redis.keys("p-d-2-*"))
+    if $redis.keys("p-d-#{@petition_with_required_fields.id}-*").size > 0
+      $redis.del($redis.keys("p-d-#{@petition_with_required_fields.id}-*"))
     end
 
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
-        assert_difference('$redis.get("p2-count").to_i') do
+        assert_difference('$redis.get("p#{@petition_with_required_fields.id}-count").to_i') do
         #assert_difference('Petition.find(2).signatures_count') do
-          get :confirm, signature_id: @newsignature.unique_key
+          get :confirm, signature_id: @new_signature.unique_key
         end
       end
     end
 
-    old_value = @petition2.active_rate
-    assert_equal($redis.keys("p-d-2-*").size, 1)
-    assert_not_equal(@petition2.active_rate , 0.01)
-    assert_equal(@petition.active_rate , 0.01)
+    old_value = @petition_with_required_fields.active_rate
+    assert_equal($redis.keys("p-d-#{@petition_with_required_fields.id}-*").size, 1)
+    assert_not_equal(@petition_with_required_fields.active_rate, 0.01)
+    assert_equal(@petition.active_rate, 0.01)
 
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
       assert_no_difference('Signature.count') do
         #assert_no_difference('Petition.find(2).signatures_count') do
         assert_no_difference('$redis.get("p2-count").to_i') do
-          get :confirm, signature_id: @newsignature.unique_key
+          get :confirm, signature_id: @new_signature.unique_key
         end
       end
     end
 
-    assert_equal(@petition2.active_rate, old_value)
-
+    assert_equal(@petition_with_required_fields.active_rate, old_value)
   end
 
   # test 'take_owner_ship' do
   #   assert_difference('User.count') do
   #     assert_difference('Role.count') do
-  #       get :become_petition_owner, signature_id: @newsignature.unique_key
+  #       get :become_petition_owner, signature_id: @new_signature.unique_key
   #     end
   #   end
   # end

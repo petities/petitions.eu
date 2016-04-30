@@ -78,6 +78,7 @@ class Petition < ActiveRecord::Base
   extend FriendlyId # must come after translates
 
   resourcify
+  has_many :users, through: :roles
 
   serialize :locale_list, Array
 
@@ -192,18 +193,10 @@ class Petition < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
-  def find_owners
-    unless roles.empty?
-      role_id = roles[0].id
-      return User.joins(:roles).where(roles: { id: role_id })
-    end
-    []
-  end
-
   def send_status_mail
     if status_changed?
 
-      find_owners.each do |user|
+      users.each do |user|
         PetitionMailer.status_change_mail(self, target: user.email).deliver_later
       end
 

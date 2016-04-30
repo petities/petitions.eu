@@ -31,21 +31,21 @@ class NewSignatureTest < ActiveSupport::TestCase
     assert duplicate_signature.errors.keys.include?(:person_email)
   end
 
-  test 'send_reminder_mail for unconfirmed signature' do
+  test 'should send_reminder_mail for unconfirmed signature' do
     assert_enqueued_jobs 1 do
       @signature.send_reminder_mail
     end
   end
 
-  test 'send_reminder_mail without petition' do
+  test 'should not send_reminder_mail without petition' do
     @signature.petition = nil
     assert_enqueued_jobs 0 do
       assert_not @signature.send_reminder_mail
     end
   end
 
-  test 'send_reminder_mail for confirmed signature' do
-    @signature.person_email = signatures(:one).person_email
+  test 'should not send_reminder_mail for confirmed signature' do
+    @signature.person_email = signatures(:four).person_email
     assert_enqueued_jobs 0 do
       assert_difference('NewSignature.count', -1) do
         assert_not @signature.send_reminder_mail
@@ -53,7 +53,7 @@ class NewSignatureTest < ActiveSupport::TestCase
     end
   end
 
-  test 'send_reminder_mail for invalid signature' do
+  test 'should not send_reminder_mail for invalid signature' do
     @new_signature = NewSignature.new(
       petition: @signature.petition,
       person_name: @signature.person_name,

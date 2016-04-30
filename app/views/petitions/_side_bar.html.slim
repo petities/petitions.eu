@@ -63,7 +63,7 @@
     ul class="nav nav-sidebar"
       = form_for(@petition, :url => petition_update_owners_path(@petition)) do |f|
 
-        - @owners.each do |owner|
+        - @petition.users.each do |owner|
           li
             =<> check_box_tag 'owner_ids[]', owner.id
             = owner.name
@@ -77,7 +77,7 @@
 
     ul class="nav nav-sidebar"
       - unless @petition.locale_list.empty?
-        li 
+        li
           =<> t "petition.Enable"
           =<> t "petition.Show"
           =<> t "petition.Edit"
@@ -98,7 +98,7 @@
       - else
          = t 'petition.notranslations'
 
-    h3 
+    h3
       = t 'petition.add_translations'
     p
       = t 'petition.add_translations_link_instruction'

@@ -1,5 +1,21 @@
-one:
+for_petition:
   imageable: one (Petition)
+  upload_file_name: bord.jpg
+  upload_content_type: image/jpeg
+  upload_file_size: 30144
+  upload_updated_at: 2016-03-01 18:44:52
+  alt_label:
+
+for_office:
+  imageable: one (Office)
+  upload_file_name: bord.jpg
+  upload_content_type: image/jpeg
+  upload_file_size: 30144
+  upload_updated_at: 2016-03-01 18:44:52
+  alt_label:
+
+for_update:
+  imageable: one (Update)
   upload_file_name: bord.jpg
   upload_content_type: image/jpeg
   upload_file_size: 30144

@@ -38,6 +38,8 @@ class Update < ActiveRecord::Base
   belongs_to :petition
   belongs_to :office
 
+  has_many :images, as: :imageable, dependent: :destroy
+
   # not empty update!
 
   def intro_text

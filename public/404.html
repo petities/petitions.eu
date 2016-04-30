@@ -51,6 +51,11 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  div.dialog p a {
+    color: #730E15;
+  }
+
   </style>
 </head>
 
@@ -58,10 +63,18 @@
   <!-- This file lives in public/404.html -->
   <div class="dialog">
     <div>
+      <h1>De door u gevraagde pagina bestaat niet.</h1>
+      <p>Mogelijk heeft u een spelfout in de link gemaakt, of is de pagina niet langer beschikbaar.</p>
+    </div>
+    <p>Via het <a href="/petitions/all?locale=nl">overzicht van petities</a> kunt u bladeren en zoeken door alle petities. Via het <a href="/contact?locale=nl">contactformulier</a> of <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a> helpen we u graag verder.</p>
+  </div>
+
+  <div class="dialog">
+    <div>
       <h1>The page you were looking for doesn't exist.</h1>
       <p>You may have mistyped the address or the page may have moved.</p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>You can browse petitions through the <a href="/petitions/all?locale=en">overview</a> or search through all petitions. You can contact us through the <a href="/contact?locale=en">contact form</a> or at <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a>.</p>
   </div>
 </body>
 </html>

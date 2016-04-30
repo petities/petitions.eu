@@ -10,6 +10,10 @@ module Admin
     test 'should get index' do
       get :index
       assert_response :success
+      Image.all.each do |image|
+        value = image.imageable.try(:name) || image.imageable.try(:title)
+        assert_select 'td.col-imageable a', value
+      end
     end
 
     test 'should get show' do
@@ -38,7 +42,7 @@ module Admin
     private
 
     def initialize_image
-      @image = images(:one)
+      @image = images(:for_petition)
     end
   end
 end

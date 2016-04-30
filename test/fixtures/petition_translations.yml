@@ -19,8 +19,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1,
-  petition_id: 1
+  petition: one
   locale: en
   name: test1,
   description: description:1,
@@ -33,8 +32,7 @@ one:
 
 
 two:
-  id: 2,
-  petition_id: 2
+  petition: two
   locale: en
   name: test1,
   description: description:1,

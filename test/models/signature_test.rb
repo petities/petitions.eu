@@ -5,7 +5,7 @@ class SignatureTest < ActiveSupport::TestCase
   include Concerns::StripWhitespace
 
   setup do
-    @signature = signatures(:one)
+    @signature = signatures(:four)
   end
 
   test 'strip leading and trailing whitespace' do

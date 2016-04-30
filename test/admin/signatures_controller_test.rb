@@ -38,7 +38,7 @@ module Admin
     private
 
     def initialize_signature
-      @signature = signatures(:one)
+      @signature = signatures(:four)
     end
   end
 end

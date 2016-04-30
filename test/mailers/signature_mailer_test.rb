@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SignatureMailerTest < ActionMailer::TestCase
   setup do
-    @signature = signatures(:one)
+    @signature = signatures(:four)
   end
 
   test 'sig_confirmation_mail' do

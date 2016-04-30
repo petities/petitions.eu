@@ -50,14 +50,14 @@ div#detailbox.petition-details
       | &nbsp;
 
   - if ((user_signed_in? && current_user.has_role?(:admin, @petition)) || (user_signed_in? && current_user.has_role?(:admin, @office)))
-    - if not @owners.empty?
+    - if @petition.users.present?
       /adds some whitespace..
       div.petition_field_label
         | &nbsp;
       div.petition_field_data
         | &nbsp;
       h2.petition-section-title= t('show.overview.all_owners')
-      - @owners.each do |owner|
+      - @petition.users.each do |owner|
 
         div.petition_field_label= t('show.petitioner.real_name')
         div.petition_field_data
