@@ -216,37 +216,6 @@ class Signature < ActiveRecord::Base
     true
   end
 
-  def send_reminder_mail
-    # update the time
-    self.last_reminder_sent_at = Time.now.utc
-
-    # update the reminder sent value
-
-    if reminders_sent.blank?
-      self.reminders_sent = 1
-    else
-      self.reminders_sent += 1
-    end
-
-    confirmed_sig = Signature.find_by_person_email_and_petition_id(
-      person_email, petition_id)
-
-    if confirmed_sig
-      destroy
-      Rails.logger.debug "DESTROYED existing to #{person_email}"
-      return
-    end
-
-    # save the resulting sig
-    if save
-      SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
-    else
-      Rails.logger.debug "ERROR reminder email to #{person_email}"
-      Rails.logger.debug "for petition #{petition.name}"
-      destroy
-    end
-  end
-
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if confirmed_at.nil? && confirmed?
   end

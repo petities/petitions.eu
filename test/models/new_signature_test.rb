@@ -30,4 +30,42 @@ class NewSignatureTest < ActiveSupport::TestCase
     assert_not duplicate_signature.valid?
     assert duplicate_signature.errors.keys.include?(:person_email)
   end
+
+  test 'send_reminder_mail for unconfirmed signature' do
+    assert_enqueued_jobs 1 do
+      @signature.send_reminder_mail
+    end
+  end
+
+  test 'send_reminder_mail without petition' do
+    @signature.petition = nil
+    assert_enqueued_jobs 0 do
+      assert_not @signature.send_reminder_mail
+    end
+  end
+
+  test 'send_reminder_mail for confirmed signature' do
+    @signature.person_email = signatures(:one).person_email
+    assert_enqueued_jobs 0 do
+      assert_difference('NewSignature.count', -1) do
+        assert_not @signature.send_reminder_mail
+      end
+    end
+  end
+
+  test 'send_reminder_mail for invalid signature' do
+    @new_signature = NewSignature.new(
+      petition: @signature.petition,
+      person_name: @signature.person_name,
+      person_email: @signature.person_email
+    )
+    @new_signature.save(validate: false)
+
+    assert_enqueued_jobs 0 do
+      assert_difference('NewSignature.count', -1) do
+        assert_not @new_signature.send_reminder_mail
+      end
+    end
+  end
+
 end
