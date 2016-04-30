@@ -1,4 +1,5 @@
 ActiveAdmin.register Petition do
+  include ImageSidebar
   permit_params :name, :subdomain, :description, :initiators, :statement,
                 :request, :date_projected, :organisation_id,
                 :organisation_name, :petitioner_organisation,
@@ -56,13 +57,4 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
   filter :locale_list
-
-  sidebar :images, only: :show do
-    images = resource.images.map do |image|
-      link_to(
-        image_tag(image.upload.url, class: 'upload-image'), [:admin, image]
-      )
-    end
-    raw(images.join)
-  end
 end
