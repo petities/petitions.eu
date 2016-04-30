@@ -1,5 +1,5 @@
 ActiveAdmin.register Petition do
-  include ImageSidebar
+  include AdminImageSidebar
   permit_params :name, :subdomain, :description, :initiators, :statement,
                 :request, :date_projected, :organisation_id,
                 :organisation_name, :petitioner_organisation,

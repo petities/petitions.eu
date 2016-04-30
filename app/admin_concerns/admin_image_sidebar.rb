@@ -1,4 +1,4 @@
-module ImageSidebar
+module AdminImageSidebar
   def self.included(dsl)
     dsl.sidebar :images, only: :show do
       images = resource.images.map do |image|

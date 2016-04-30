@@ -1,5 +1,5 @@
 ActiveAdmin.register Office do
-  include ImageSidebar
+  include AdminImageSidebar
   permit_params :name, :text, :url, :hidden, :postalcode, :email,
                 :organisation_id, :organisation_kind, :subdomain,
                 :url_text, :telephone, :petition_type_id
