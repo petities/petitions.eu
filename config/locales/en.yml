@@ -27,6 +27,12 @@ en:
       call_to_action: Call to action
       welcome: Welcome
   activerecord:
+    attributes:
+      signature:
+        person_name: Name
+        person_city: City
+        person_function: Function or situation
+        confirmed_at: Confirmed at
     errors:
       models:
         signature:

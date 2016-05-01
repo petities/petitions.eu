@@ -52,22 +52,13 @@ class SignaturesController < ApplicationController
               1
             end
 
-    if request.xhr?
-      @signatures = @all_signatures
-                      .order(special: :desc, confirmed_at: :desc)
+    @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
                       .paginate(page: @page, per_page: @per_page)
-    else
-      @signatures = @all_signatures
-                      .order(special: :desc, confirmed_at: :desc)
-                      .paginate(page: @page, per_page: @per_page)
-    end
 
     respond_to do |format|
       format.js
       format.html
       format.json
-      format.pdf
-      format.csv
     end
   end
 

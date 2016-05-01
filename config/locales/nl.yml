@@ -29,6 +29,12 @@ nl:
       call_to_action: Oproep
       welcome: U bent ingelogd
   activerecord:
+    attributes:
+      signature:
+        person_name: Naam
+        person_city: Woonplaats
+        person_function: Functie of situatie
+        confirmed_at: Bevestigd op
     errors:
       models:
         signature:

@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
     # resources :new_signatures
     resources :updates, only: [:index, :show]
+    resource :export, only: :show
 
     get :finalize
 
