@@ -6,7 +6,7 @@ div.social-bar
     - image = 'http://goo.gl/dS52U'
     - if @images.last
       - image = image_url(@images.last.upload.url)
-    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', 'sign petition', '#{image}' , 520, 350);"
+    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', '#{image}');"
 
     a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{@petition.name}');"
     a.social-bar-button.googleplus  href="javascript:gPlusShare('#{share_url}');"
