@@ -1,33 +1,25 @@
 // FACEBOOK
-function fbShare(url, title, descr, image, winWidth, winHeight) {
-  var winTop = (screen.height / 2) - (winHeight / 2);
-  var winLeft = (screen.width / 2) - (winWidth / 2);
-  window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+function fbShare(url, title, image) {
+  openShareWindow('https://www.facebook.com/sharer.php?s=100&p[title]=' + encodeURIComponent(title) + '&p[url]=' + encodeURIComponent(url) + '&p[images][0]=' + encodeURIComponent(image), 520, 350);
 }
 
 // Twitter
 function twitterShare(url, title){
-  // We trigger a new window with the Twitter dialog, in the middle of the page
-  window.open('http://twitter.com/share?url=' + url + '&text=' + title + '&', 'twitterwindow', 'height=450, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+  openShareWindow('http://twitter.com/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title) + '&', 450, 550);
 }
 
 // Google plus
 function gPlusShare(url) {
-  var winWidth = 500,
-      winHeight = 350;
-
-  var winTop = (screen.height / 2) - (winHeight / 2);
-  var winLeft = (screen.width / 2) - (winWidth / 2);
-
-  window.open('https://plus.google.com/share?url=' + url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+  openShareWindow('https://plus.google.com/share?url=' + encodeURIComponent(url), 500, 350);
 }
 
 function lnShare(url) {
-  var winWidth = 500,
-      winHeight = 350;
+  openShareWindow('https://www.linkedin.com/cws/share?url=' + encodeURIComponent(url), 500, 350);
+}
 
-  var winTop = (screen.height / 2) - (winHeight / 2);
-  var winLeft = (screen.width / 2) - (winWidth / 2);
+function openShareWindow(url, width, height) {
+  var winTop = (screen.height / 2) - (width / 2);
+  var winLeft = (screen.width / 2) - (height / 2);
 
-  window.open('https://www.linkedin.com/cws/share?url=' + url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+  window.open(url, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + width + ',height=' + height);
 }
