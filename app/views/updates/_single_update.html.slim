@@ -9,16 +9,17 @@ div.update-intro
   div.read-more-content.whitespace
     = markdown raw read_more_text(update.text)
     - if update.url
-      = link_to  update.url
+      = link_to update.url
         = update.url_text
 - else
   div.whitespace
 
 div.update-date
   - if update.created_at
-    = update.created_at.strftime('%d-%m-%Y')
+    = l(update.created_at.to_date)
 
   - if update.petition.present?
     = ' | '
-    | Petition:
-    = link_to update.petition.name, petition_path(update.petition)
+    = Petition.model_name.human
+    = ' '
+    = link_to(update.petition.name, petition_path(update.petition))

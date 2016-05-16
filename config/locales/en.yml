@@ -27,6 +27,8 @@ en:
       call_to_action: Call to action
       welcome: Welcome
   activerecord:
+    models:
+      petition: Petition
     attributes:
       signature:
         person_name: Name
@@ -508,7 +510,8 @@ en:
     title_green: Donations
     title_grey: Help from signatories
     title_grey_2: Be aware of the due date
-  petitions: Petitions
+  petitions:
+    title: Support a petition or start your own petition
   place: Place
   pledge:
     feedback:
@@ -762,4 +765,6 @@ en:
     read_more: 'Read more...'
     updated: News update updated
     title: A new petition update
+  updates:
+    title: Updates
   when: When

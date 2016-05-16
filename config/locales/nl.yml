@@ -29,6 +29,8 @@ nl:
       call_to_action: Oproep
       welcome: U bent ingelogd
   activerecord:
+    models:
+      petition: Petitie
     attributes:
       signature:
         person_name: Naam
@@ -511,7 +513,8 @@ nl:
     title_green: Donaties
     title_grey: Hulp van ondertekenaars
     title_grey_2: Hou de indiendatum in de gaten
-  petitions: Petities
+  petitions:
+    title: Ondersteun een petitie of start uw eigen petitie
   place: Woonplaats
   pledge:
     feedback:
@@ -765,4 +768,6 @@ nl:
     updated: Nieuwtje bijgewerkt
     read_more: 'Lees meer...'
     title: Een nieuw petitie nieuwtje
+  updates:
+    title: Updates
   when: Wanneer

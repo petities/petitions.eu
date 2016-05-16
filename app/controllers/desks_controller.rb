@@ -2,18 +2,13 @@ class DesksController < ApplicationController
   include SortPetitions
 
   skip_before_action :ensure_domain, only: :redirect
+  before_filter :find_office, only: :show
 
   def index
-    @offices = Office.all
+    @offices = Office.visible
   end
 
   def show
-    if params[:id]
-      @office = Office.friendly.find(params[:id])
-    elsif request.subdomain
-      @office = Office.find_by_subdomain(request.subdomain)
-    end
-
     if user_signed_in? && current_user.has_role?(:admin, @office)
       show_office_page
       return
@@ -51,5 +46,10 @@ class DesksController < ApplicationController
     @petitions = sort_petitions petitions
 
     render 'show_not_logged_in'
+  end
+
+  def find_office
+    @office = Office.friendly.find(params[:id])
+    redirect_to(petition_desk_url(@office), status: 301) unless @office.friendly_id == params[:id]
   end
 end

@@ -35,4 +35,6 @@ class Office < ActiveRecord::Base
 
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images
+
+  scope :visible, -> { where(hidden: false) }
 end
