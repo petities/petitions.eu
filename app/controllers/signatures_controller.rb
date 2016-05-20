@@ -340,7 +340,8 @@ class SignaturesController < ApplicationController
     old_signature = @signature
     # create a new signature in the signature table.
     @signature = Signature.new(
-      old_signature.attributes.select { |key, _| Signature.attribute_names.include? key })
+      old_signature.attributes.select { |key, _| Signature.attribute_names.include?(key) && key.to_s != 'id' }
+    )
 
     old_signature.delete
 
