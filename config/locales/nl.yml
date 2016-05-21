@@ -176,6 +176,11 @@ nl:
       label: 'Voorvertoning'
       title: Nodig anderen uit
       success: Dank u! Zou u meer willen uitnodigen?
+    not_found:
+      title: Ondertekening niet gevonden
+      explanation: Helaas, uw ondertekening kan niet worden bevestigd. Met deze link werd geen ondertekening gevonden.
+      action_requested: We willen u vragen de petitie opnieuw te ondertekenen. Wanneer u de petitie al eerder heeft ondertekend, ontvangt u een nieuwe e-mail waarmee u uw bestaande ondertekening kunt aanpassen.
+      contact_us_html: Wanneer u vragen heeft, helpen we u via <a href="%{contact_path}">webmaster@petities.nl</a> graag verder. Onze excuses voor het ongemak.
     title: Dank u wel voor het bevestigen van uw ondertekening!
   contact:
     title: Contact met Stichting Petities.nl

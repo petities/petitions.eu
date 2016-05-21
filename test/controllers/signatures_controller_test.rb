@@ -98,7 +98,7 @@ class SignaturesControllerTest < ActionController::TestCase
 
     post :confirm_submit, format: :json, petition_id: @petition,
                           signature_id: @signature.unique_key, signature: {
-                            person_function: '1' * 500,
+                            person_function: '1' * 500
                           }
 
     assert_response :unprocessable_entity
@@ -117,9 +117,7 @@ class SignaturesControllerTest < ActionController::TestCase
 
     assert_no_difference('Signature.special.count') do
       post :special_update, format: :json,
-           id: @signature.id, signature: {
-                          special: 1,
-                        }
+                            id: @signature.id, signature: { special: 1 }
     end
 
     assert_response :found
@@ -131,9 +129,7 @@ class SignaturesControllerTest < ActionController::TestCase
 
     assert_difference('Signature.special.count') do
       post :special_update, format: :json,
-        id: @signature.id, signature: {
-                          special: 1,
-          }
+                            id: @signature.id, signature: { special: 1 }
     end
 
     assert_response :success
@@ -193,6 +189,12 @@ class SignaturesControllerTest < ActionController::TestCase
     end
 
     assert_equal(@petition_with_required_fields.active_rate, old_value)
+  end
+
+  test 'confirmation not_found' do
+    get :confirm, signature_id: 'random-non-existing-code'
+    assert_response :not_found
+    assert_template 'not_found'
   end
 
   # test 'take_owner_ship' do

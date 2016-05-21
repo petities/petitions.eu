@@ -147,8 +147,6 @@ class PetitionsControllerTest < ActionController::TestCase
 
     assert_enqueued_jobs 4 do
 
-      status = @petition.status
-
       patch :update, id: @petition.id, petition: { status: 'draft' }
 
       @petition.reload

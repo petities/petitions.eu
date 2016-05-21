@@ -300,6 +300,10 @@ class SignaturesController < ApplicationController
     end
   end
 
+  def not_found
+    @vervolg = true
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -313,6 +317,8 @@ class SignaturesController < ApplicationController
     unless @signature
       @signature = NewSignature.find_by_unique_key(params[:signature_id])
     end
+
+    render :not_found, status: :not_found unless @signature
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -343,12 +349,10 @@ class SignaturesController < ApplicationController
       old_signature.attributes.select { |key, _| Signature.attribute_names.include?(key) && key.to_s != 'id' }
     )
 
-    old_signature.delete
-
     @signature.confirmed = true
     @signature.confirmed_at = Time.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-    @signature.save
+    old_signature.destroy if @signature.save
   end
 end
