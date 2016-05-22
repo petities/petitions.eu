@@ -1,4 +1,3 @@
-
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
 <%= t('mail.confirm.signature.reminder_mail', {
@@ -9,14 +8,16 @@
   petition: @signature.petition.name
 }) %>
 
-<%= t("mail.confirm.signoff") %> 
+<%= t("mail.confirm.signoff") %>
 
 <%= t("mail.confirm.signature.petition", {
-	subdomain: @signature.petition.subdomain,
+	petition_url: "https://#{@signature.petition.subdomain}.petities.nl",
 	intro: @signature.petition.description,
 	we: @signature.petition.initiators,
 	observe: @signature.petition.statement,
-	request: @signature.petition.request,
-	petitionermail: @signature.petition.petitioner_email
+	request: @signature.petition.request
 }) %>
 
+<%= t("mail.confirm.signature.ask_petitioner", {
+  petitionermail: @signature.petition.petitioner_email
+}) if @signature.petition.petitioner_email %>

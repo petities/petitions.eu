@@ -1,16 +1,15 @@
 require 'test_helper'
 
 class SignaturesControllerTest < ActionController::TestCase
+  include UserLoginHelper
   fixtures :all
 
   setup do
     @petition = petitions(:one)
-    @signature = signatures(:one)
+    @signature = signatures(:four)
 
-    @petition2 = petitions(:two)
-    @signature2 = signatures(:two)
-
-    @newsignature = new_signatures(:two)
+    @petition_with_required_fields = petitions(:two)
+    @new_signature = new_signatures(:two)
   end
 
   # test "should get index" do
@@ -25,9 +24,11 @@ class SignaturesControllerTest < ActionController::TestCase
   # end
 
   test 'should create signature' do
+    @request.env['REMOTE_ADDR'] = '127.0.0.1'
+    @request.env['HTTP_USER_AGENT'] = 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405'
+
     assert_difference('NewSignature.count') do
       post :create, format: :js, petition_id: @petition, signature: {
-        #:petition_id => @petitions.id,
         person_name: 'test name',
         person_email: 'test2@gmail.com',
         person_city: 'test city',
@@ -42,19 +43,22 @@ class SignaturesControllerTest < ActionController::TestCase
       }
     end
     assert_response :success
+    signature = assigns(:signature)
+    assert_equal '127.0.0.1', signature.signature_remote_addr
+    assert_equal 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405', signature.signature_remote_browser
   end
 
   # this petition / signature requires full address
   test 'should not update signature' do
-    post :confirm_submit, format: :json, petition_id: @petition2,
-                          signature_id: @signature2.unique_key, signature: {
+    post :confirm_submit, format: :json, petition_id: @petition_with_required_fields,
+                          signature_id: @new_signature.unique_key, signature: {
                             visible: true,
                             special: false,
                             subscribe: true
                           }
     assert_response :unprocessable_entity
   end
- 
+
   # this petition / signature requires NOTHING
   test 'should update signature' do
     post :confirm_submit, format: :json, petition_id: @petition,
@@ -69,13 +73,12 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   # test the validation
-  test 'valdation signature' do
-    post :confirm_submit, format: :json, petition_id: @petition2,
-                          signature_id: @signature2.unique_key, signature: {
+  test 'validation signature' do
+    post :confirm_submit, format: :json, petition_id: @petition_with_required_fields,
+                          signature_id: @new_signature.unique_key, signature: {
                             visible: true,
                             special: false,
                             subscribe: true,
-                            persone_function: true,
                             # wrong values
                             street_number: 'X',
                             person_street: 'XX',
@@ -90,12 +93,12 @@ class SignaturesControllerTest < ActionController::TestCase
       person_birth_city))
   end
 
-  # test person_function 
+  # test person_function
   test 'should update signature function' do
 
     post :confirm_submit, format: :json, petition_id: @petition,
                           signature_id: @signature.unique_key, signature: {
-                            person_function: '1' * 500,
+                            person_function: '1' * 500
                           }
 
     assert_response :unprocessable_entity
@@ -110,13 +113,11 @@ class SignaturesControllerTest < ActionController::TestCase
 
   end
 
-  test 'illigal special signature' do
+  test 'illegal special signature' do
 
     assert_no_difference('Signature.special.count') do
-      post :special_update, format: :json, 
-           id: @signature.id, signature: {
-                          special: 1,
-                        }
+      post :special_update, format: :json,
+                            id: @signature.id, signature: { special: 1 }
     end
 
     assert_response :found
@@ -127,15 +128,13 @@ class SignaturesControllerTest < ActionController::TestCase
     sign_in_admin_for @petition
 
     assert_difference('Signature.special.count') do
-      post :special_update, format: :json, 
-        id: @signature.id, signature: {
-                          special: 1,
-          }
+      post :special_update, format: :json,
+                            id: @signature.id, signature: { special: 1 }
     end
 
     assert_response :success
 
-  end 
+  end
 
   test 'signature confirmation links' do
     assert_routing('/signatures/10/confirm', controller: 'signatures',
@@ -161,42 +160,47 @@ class SignaturesControllerTest < ActionController::TestCase
 
     # remove redis keys
     # mabe we should have a test prefix..
-    if $redis.keys("p-d-2-*").size > 0
-      $redis.del($redis.keys("p-d-2-*"))
+    if $redis.keys("p-d-#{@petition_with_required_fields.id}-*").size > 0
+      $redis.del($redis.keys("p-d-#{@petition_with_required_fields.id}-*"))
     end
 
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
-        assert_difference('$redis.get("p2-count").to_i') do
+        assert_difference('$redis.get("p#{@petition_with_required_fields.id}-count").to_i') do
         #assert_difference('Petition.find(2).signatures_count') do
-          get :confirm, signature_id: @newsignature.unique_key
+          get :confirm, signature_id: @new_signature.unique_key
         end
       end
     end
 
-    old_value = @petition2.active_rate
-    assert_equal($redis.keys("p-d-2-*").size, 1)
-    assert_not_equal(@petition2.active_rate , 0.01)
-    assert_equal(@petition.active_rate , 0.01)
+    old_value = @petition_with_required_fields.active_rate
+    assert_equal($redis.keys("p-d-#{@petition_with_required_fields.id}-*").size, 1)
+    assert_not_equal(@petition_with_required_fields.active_rate, 0.01)
+    assert_equal(@petition.active_rate, 0.01)
 
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
       assert_no_difference('Signature.count') do
         #assert_no_difference('Petition.find(2).signatures_count') do
         assert_no_difference('$redis.get("p2-count").to_i') do
-          get :confirm, signature_id: @newsignature.unique_key
+          get :confirm, signature_id: @new_signature.unique_key
         end
       end
     end
 
-    assert_equal(@petition2.active_rate, old_value)
+    assert_equal(@petition_with_required_fields.active_rate, old_value)
+  end
 
+  test 'confirmation not_found' do
+    get :confirm, signature_id: 'random-non-existing-code'
+    assert_response :not_found
+    assert_template 'not_found'
   end
 
   # test 'take_owner_ship' do
   #   assert_difference('User.count') do
   #     assert_difference('Role.count') do
-  #       get :become_petition_owner, signature_id: @newsignature.unique_key
+  #       get :become_petition_owner, signature_id: @new_signature.unique_key
   #     end
   #   end
   # end
@@ -224,14 +228,5 @@ class SignaturesControllerTest < ActionController::TestCase
 
   #  assert_redirected_to signatures_path
   # end
-  
-  private
-
-  def sign_in_admin_for(subject)
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    user = users(:one)
-    user.add_role(:admin, subject)
-    sign_in user
-  end
 
 end

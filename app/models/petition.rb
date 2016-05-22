@@ -78,6 +78,7 @@ class Petition < ActiveRecord::Base
   extend FriendlyId # must come after translates
 
   resourcify
+  has_many :users, through: :roles
 
   serialize :locale_list, Array
 
@@ -164,8 +165,6 @@ class Petition < ActiveRecord::Base
   has_many :updates
   has_many :task_statuses
 
-  before_validation :strip_whitespace
-
   def get_count
     count = $redis.get("p#{id}-count").to_i
     if !count || count == 0
@@ -175,13 +174,8 @@ class Petition < ActiveRecord::Base
     end
   end
 
-  def strip_whitespace
-    self.name = name.strip unless name.nil?
-    self.description = description.strip unless description.nil?
-    self.initiators = initiators.strip unless initiators.nil?
-    self.statement = statement.strip unless statement.nil?
-    self.request = request.strip unless request.nil?
-  end
+  include StripWhitespace
+  strip_whitespace :name, :description, :initiators, :statement, :request
 
   validates_presence_of :name
   validates_presence_of :description
@@ -199,18 +193,10 @@ class Petition < ActiveRecord::Base
     slug.blank? || name_changed?
   end
 
-  def find_owners
-    unless roles.empty?
-      role_id = roles[0].id
-      return User.joins(:roles).where(roles: { id: role_id })
-    end
-    []
-  end
-
   def send_status_mail
     if status_changed?
 
-      find_owners.each do |user|
+      users.each do |user|
         PetitionMailer.status_change_mail(self, target: user.email).deliver_later
       end
 

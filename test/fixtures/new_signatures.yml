@@ -41,7 +41,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  petition_id: 1
+  petition: one
   person_name: new name2
   person_email: new3@gmail.com
   person_city: new city3
@@ -53,7 +53,7 @@ one:
 
 
 two:
-  petition_id: 2
+  petition: two
   person_name: new name3
   person_email: new3@gmail.com
   person_city: new city3
@@ -64,7 +64,7 @@ two:
   unique_key: 'test_two'
 
 three:
-  petition_id: 1
+  petition: one
   person_name: new name32
   person_email: new3@gmail.com
   person_city: new city33

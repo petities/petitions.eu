@@ -6,7 +6,8 @@ ActiveAdmin.register Image do
     selectable_column
     id_column
     column :imageable do |item|
-      link_to(item.imageable.try(:name, :title), [:admin, item.imageable])
+      title = item.imageable.try(:name) || item.imageable.try(:title)
+      link_to(title, [:admin, item.imageable])
     end
     column :upload do |item|
       image_tag(item.upload.url, class: 'upload-image')

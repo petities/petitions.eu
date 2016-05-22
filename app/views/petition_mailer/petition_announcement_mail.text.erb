@@ -2,7 +2,7 @@
 
 <%= t("mail.request.announcement",{
 	petition: @petition.name,
-	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	date: l(@petition.date_projected, format: :long),
 	petitioner: @petition.petitioner_name,
 	signatures_count: @petition.get_count,
 	subdomain: @petition.subdomain

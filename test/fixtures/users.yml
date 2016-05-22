@@ -51,25 +51,23 @@
 #
 
 one:
-  id: 1 
   name: admin
   email: admin@admin.com
   confirmed_at: 2014-08-14 20:53:32
+  roles: five
 
 # column: value
 #
 
 two:
-  id: 2
   name: guest
   email: guest@guest.com
   confirmed_at: 2014-08-14 20:53:32
+  roles: five
 
 three:
-  id: 3
   name: test
   email: test@test.com
   confirmed_at: 2014-08-14 20:53:32
+  roles: five
 
-
-#  column: value

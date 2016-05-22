@@ -1,3 +1,4 @@
+- title t('petitions.title')
 div.page
   javascript:
     window.page = #{@page};
@@ -36,14 +37,15 @@ div.page
 
 
   aside.news-intro-blocks-container
-    - @news[0,2].each do |news|
-      div.news-intro-block
-        h2.news-intro-block-title= news.title
-        div.news-intro-block-date= news.created_at.strftime("%d-%m-%Y")
-        div.news-intro-block-intro
-          = markdown intro_text(news.text)
-        = link_to update_path(news)
-          = t('index.read')
+    - if @news
+      - @news[0,2].each do |news|
+        div.news-intro-block
+          h2.news-intro-block-title= news.title
+          div.news-intro-block-date= news.created_at.strftime("%d-%m-%Y")
+          div.news-intro-block-intro
+            = markdown intro_text(news.text)
+          = link_to update_path(news)
+            = t('index.read')
 
 / p id="notice"
 /   = notice

@@ -20,27 +20,19 @@
 #
 
 one:
- name: admin 
+ name: admin
 
-#
 two:
  name: petitioner
 
-#
 three:
  name: petitioner
- resource_id: 1
- resource_type: Petition
+ resource: one (Petition)
 
-#
-four: 
+four:
  name: petitioner
- resource_id: 2
- resource_type: Petition
-
+ resource: two (Petition)
 
 five:
- id: 5
  name: admin
- resource_id: 1
- resource_type: Petition
+ resource: one (Petition)

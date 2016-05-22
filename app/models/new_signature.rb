@@ -41,7 +41,43 @@ class NewSignature < Signature
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at
-  after_save :send_confirmation_mail
+  after_create :send_confirmation_mail
 
   validates :person_email, uniqueness: { scope: :petition_id }
+
+  def send_reminder_mail
+    # Do not send reminders if the petition was deleted
+    return unless petition
+
+    return if destroy_if_already_confirmed || destroy_if_invalid
+    send_reminder_mail!
+  end
+
+  private
+
+  def destroy_if_already_confirmed
+    confirmed_signatures = Signature.where(
+      person_email: person_email, petition_id: petition_id
+    )
+    if confirmed_signatures.any?
+      Rails.logger.debug "DESTROYED NewSignature #{id} for #{person_email} " \
+                         "because confirmed_signatures exist"
+      destroy
+    end
+  end
+
+  def destroy_if_invalid
+    unless valid?
+      Rails.logger.debug "DESTROYED NewSignature #{id} for #{person_email} " \
+                         "because it fails validation"
+      destroy
+    end
+  end
+
+  # increment reminders_sent value, update the time and send the message
+  def send_reminder_mail!
+    self.reminders_sent = reminders_sent.to_i + 1
+    self.last_reminder_sent_at = Time.now.utc
+    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later if save
+  end
 end

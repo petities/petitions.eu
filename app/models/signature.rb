@@ -38,6 +38,9 @@
 #
 
 class Signature < ActiveRecord::Base
+  include StripWhitespace
+  strip_whitespace :person_city, :person_email, :person_function, :person_name, :person_street_number
+
   belongs_to :petition
   has_one :petition_type, through: :petition
 
@@ -112,8 +115,8 @@ class Signature < ActiveRecord::Base
   scope :special, -> { where(special: true, confirmed: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
 
-  before_validation :strip_whitespace, :lowercase_person_email
-  before_save :fill_confirmed_at
+  before_validation :lowercase_person_email
+  before_save :fill_confirmed_at, :truncate_remote_browser
   before_create :fill_signed_at
 
   after_save :update_petition
@@ -202,12 +205,6 @@ class Signature < ActiveRecord::Base
 
   private
 
-  def strip_whitespace
-    self.person_street_number = person_street_number.strip unless person_street_number.nil?
-    self.person_name = person_name.strip unless person_name.nil?
-    self.person_email = person_email.strip unless person_email.nil?
-  end
-
   def lowercase_person_email
     self.person_email = person_email.to_s.downcase
   end
@@ -219,42 +216,18 @@ class Signature < ActiveRecord::Base
     true
   end
 
-  def send_reminder_mail
-    # update the time
-    self.last_reminder_sent_at = Time.now.utc
-
-    # update the reminder sent value
-
-    if reminders_sent.blank?
-      self.reminders_sent = 1
-    else
-      self.reminders_sent += 1
-    end
-
-    confirmed_sig = Signature.find_by_person_email_and_petition_id(
-      person_email, petition_id)
-
-    if confirmed_sig
-      destroy
-      Rails.logger.debug "DESTROYED existing to #{person_email}"
-      return
-    end
-
-    # save the resulting sig
-    if save
-      SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
-    else
-      Rails.logger.debug "ERROR reminder email to #{person_email}"
-      Rails.logger.debug "for petition #{petition.name}"
-      destroy
-    end
-  end
-
   def fill_confirmed_at
     self.confirmed_at = Time.now.utc if confirmed_at.nil? && confirmed?
   end
 
   def fill_signed_at
     self.signed_at = Time.now.utc if signed_at.nil?
+  end
+
+  def truncate_remote_browser
+    [:signature_remote_browser, :confirmation_remote_browser].each do |field|
+      value = read_attribute(field)
+      write_attribute(field, value.slice(0, 255)) if value.present?
+    end
   end
 end

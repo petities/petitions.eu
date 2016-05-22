@@ -33,7 +33,7 @@ div.page
         div.petition-editbutton.pull-left
           =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})
 
-      - if @version_index.abs < @petition.versions.size
+      - if @petition.versions.any? && @version_index.abs < @petition.versions.size
         div.petition-editbutton.pull-right
           =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @down})
 

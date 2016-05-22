@@ -29,7 +29,6 @@
 #
 
 netherlands:
-  id: 1
   name: nederland
   description: allok
   created_at: 2014-08-14 20:53:32
@@ -46,7 +45,6 @@ netherlands:
 
 
 all_needed:
-  id: 2
   name: all_needed
   description: allneeded
   required_minimum_age: 10

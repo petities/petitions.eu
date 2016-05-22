@@ -71,7 +71,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   name: test1
   description: description
   office: amsterdam
@@ -82,18 +81,17 @@ one:
   initiators: :initiators
   slug: testslug
   date_projected: <%= 2.months.from_now.to_date %>
-  petition_type_id: 1
+  petition_type: netherlands
   subdomain: testsubdomain
   status: live
 
 two:
-  id: 2
   name: test2
   description: description
   request: request
-  office_id: 2
+  office: amsterdam
   petitioner_email: test@test.nl
-  petition_type_id: 2
+  petition_type: all_needed
   statement: statement
   initiators: :initiators
   slug: test_alkmaar

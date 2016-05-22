@@ -34,6 +34,7 @@ class Office < ActiveRecord::Base
   belongs_to :petition_type
 
   has_many :images, as: :imageable, dependent: :destroy
-
   accepts_nested_attributes_for :images
+
+  scope :visible, -> { where(hidden: false) }
 end

@@ -3,9 +3,9 @@ nl:
     confirm:
       signature:
         ask_petitioner: "Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: %{petitionermail}"
-        linkinstruction: '
-U heeft bijna de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}. Wilt u dat 
-niet? Dan kunt u dit negeren. 
+        ask_petitioner_html: 'Heeft u vragen over deze petitie? Neemt u dan contact op met de petitionaris via: <a href="mail_to:%{petitionermail}">%{petitionermail}</a>'
+        linkinstruction: 'U heeft bijna de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}. Wilt u dat
+niet? Dan kunt u dit negeren.
 
 
 Bevestig uw ondertekening door deze link te volgen:
@@ -14,35 +14,56 @@ Bevestig uw ondertekening door deze link te volgen:
 %{confirm_url}
 
 
-Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar! 
+Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar!
 
 
-Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen te ondertekenen. 
-Daarom is het goed deze boodschap te bewaren. Op die bevestigingspagina vindt u ook een link naar uw ondertekening in de lijst 
-ondertekenaars. Als u daarvoor kiest is uw naam publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of 
-juist niet meer zichtbaar te maken. 
+Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen te ondertekenen.
+Daarom is het goed deze boodschap te bewaren. Op die bevestigingspagina vindt u ook een link naar uw ondertekening in de lijst
+ondertekenaars. Als u daarvoor kiest is uw naam publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of
+juist niet meer zichtbaar te maken.
 
-Deze e-mail is vertrouwelijk omdat alleen %{name} met adres %{email} de ondertekening mag bevestigen. Stuurt u dit bericht niet door 
-en maak het niet openbaar met de unieke link die alleen voor u is. Als anderen uw bevestigingspagina kunnen bezoeken, dan gelden alleen 
-de laatst ingevulde gegevens. Op uw bevestigingspagina kunt u ook uitnodigingen versturen en de petitie delen. 
-'      
-        petition: '
-DE PETITIE
+Deze e-mail is vertrouwelijk omdat alleen %{name} met adres %{email} de ondertekening mag bevestigen. Stuurt u dit bericht niet door
+en maak het niet openbaar met de unieke link die alleen voor u is. Als anderen uw bevestigingspagina kunnen bezoeken, dan gelden alleen
+de laatst ingevulde gegevens. Op uw bevestigingspagina kunt u ook uitnodigingen versturen en de petitie delen.
+'
+        linkinstruction_html: '<p>U heeft bijna de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}. Wilt u dat
+niet? Dan kunt u dit negeren.</p>
 
 
-%{subdomain}.petities.nl
+<p>Bevestig uw ondertekening door deze link te volgen:</p>
+
+
+<p>%{confirm_url}</p>
+
+
+<p>Anders wissen wij uw ondertekening automatisch. U telt nog niet als ondertekenaar!</p>
+
+
+<p>Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen te ondertekenen.
+Daarom is het goed deze boodschap te bewaren. Op die bevestigingspagina vindt u ook een link naar uw ondertekening in de lijst
+ondertekenaars. Als u daarvoor kiest is uw naam publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of
+juist niet meer zichtbaar te maken.</p>
+
+<p>Deze e-mail is vertrouwelijk omdat alleen %{name} met adres %{email} de ondertekening mag bevestigen. Stuurt u dit bericht niet door
+en maak het niet openbaar met de unieke link die alleen voor u is. Als anderen uw bevestigingspagina kunnen bezoeken, dan gelden alleen
+de laatst ingevulde gegevens. Op uw bevestigingspagina kunt u ook uitnodigingen versturen en de petitie delen.</p>
+'
+        petition: 'DE PETITIE
+
+
+%{petition_url}
 
 
 %{intro}
 
 
-Wij, 
+Wij,
 
 
 %{we}
 
 
-constateren 
+constateren
 
 
 %{observe}
@@ -56,10 +77,31 @@ verzoeken
 
 EINDE
 '
+        petition_html: '<p>DE PETITIE</p>
+
+<p><a href="%{petition_url}">%{petition_url}</a></p>
+
+
+<p>%{intro}</p>
+
+<p>Wij,</p>
+
+<p>%{we}</p>
+
+<p>constateren</p>
+
+<p>%{observe}</p>
+
+<p>verzoeken</p>
+
+<p>%{request}</p>
+
+<p>EINDE</p>
+'
         subject: 'Bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
-        subject_again: 'Herinnering, bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
+        subject_reminder: 'Herinnering: bevestig alstublieft uw ondertekening voor de petitie "%{petition_name}" (vertrouwelijk, stuur niet door)'
         reminder_mail: '
-Vorige week heeft u de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}. 
+Vorige week heeft u de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}.
 U heeft er al een e-mail over ontvangen.
 
 
@@ -69,22 +111,33 @@ Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen
 %{confirm_url}
 
 
-Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch als de petitie sluit. 
+Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch als de petitie sluit.
 
 
-Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bovenstaande link eens te openen op een andere 
-computer, telefoon of tablet. U kunt het ook proberen via een ander netwerk. Sommige werkgevers en bepaalde software blokkeren 
-toegang tot onze website wegens controversiële politieke inhoud. Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis 
+Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bovenstaande link eens te openen op een andere
+computer, telefoon of tablet. U kunt het ook proberen via een ander netwerk. Sommige werkgevers en bepaalde software blokkeren
+toegang tot onze website wegens controversiële politieke inhoud. Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis
 bent, probeer het buitenshuis op uw telefoon.
-'        
-      signoff: '
-Met vriendelijke groet, 
 
-Stichting Petities.nl 
+'
+      signoff: 'Met vriendelijke groet,
+
+
+Stichting Petities.nl
 
 
 STEUN PETITIES.NL
 
 
-Met uw gift (geld of tijd) wordt de website beter. Zie http://petities.nl/donate voor details.
+Met uw gift (geld of tijd) wordt de website beter. Zie https://petities.nl/donate voor details.
+'
+      signoff_html: '<p>Met vriendelijke groet,<br><br>
+
+Stichting Petities.nl</p>
+
+
+<p>STEUN PETITIES.NL</p>
+
+
+<p>Met uw gift (geld of tijd) wordt de website beter. Zie <a href="https://petities.nl/donate">https://petities.nl/donate</a> voor details.</p>
 '

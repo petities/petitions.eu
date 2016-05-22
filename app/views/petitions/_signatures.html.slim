@@ -21,11 +21,9 @@ div.page
 
       = link_to t('show.signatures.to_all'), petition_signatures_path(@petition), class: 'navigation-toall'
 
-      - if current_user && (current_user.has_role? :admin, @petition)
-        - if @petition.get_count > 2
-          div.whitespace
-            = link_to t('petition.pdf'), petition_signatures_path(@petition, :pdf), targer: :blank, class: 'button'
+      - if policy(@petition).export? && @petition.get_count > 2
+        div.whitespace
+          = link_to t('petition.pdf'), petition_export_path(@petition, :pdf), target: :blank, class: 'button'
 
-          div.whitespace
-            = link_to t('petition.csv'), petition_signatures_path(@petition, :csv), targer: :blank, class: 'button'
-
+        div.whitespace
+          = link_to t('petition.csv'), petition_export_path(@petition, :csv), target: :blank, class: 'button'

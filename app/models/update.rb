@@ -38,20 +38,7 @@ class Update < ActiveRecord::Base
   belongs_to :petition
   belongs_to :office
 
+  has_many :images, as: :imageable, dependent: :destroy
+
   # not empty update!
-
-  def intro_text
-    # text.split('. ').slice(0, 2)
-    return unless text
-    text_array = text.split('. ').slice(0, 2)
-    text_array.push('')
-    return text_array.join('. ').html_safe if text_array
-  end
-
-  def read_more_text
-    return unless text
-    text_array = text.split('. ').slice(2, text.length)
-    text = text_array.join('. ').html_safe if text_array
-    text
-  end
 end

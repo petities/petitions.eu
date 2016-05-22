@@ -2,7 +2,7 @@
 
 <%= t("mail.request.answer",{
 	petition: @petition.name,
-	date: @petition.date_projected.strftime('%d-%m-%Y'),
+	date: l(@petition.date_projected, format: :long),
 	petitioner: @petition.petitioner_name,
 	reference: @petition.reference_field
 }) %>

@@ -4,8 +4,8 @@ class SignaturesController < ApplicationController
   protect_from_forgery except: :index
 
   before_action :find_signature_by_unique_key, only: [
-    :show, :confirm, :confirm_submit, :pledge_submit, :mail_submit,
-    :user_update, :become_petition_owner]
+    :show, :confirm, :confirm_submit, :pledge_submit, :user_update,
+    :become_petition_owner]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:special_update]
@@ -52,22 +52,13 @@ class SignaturesController < ApplicationController
               1
             end
 
-    if request.xhr?
-      @signatures = @all_signatures
-                      .order(special: :desc, confirmed_at: :desc)
+    @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
                       .paginate(page: @page, per_page: @per_page)
-    else
-      @signatures = @all_signatures
-                      .order(special: :desc, confirmed_at: :desc)
-                      .paginate(page: @page, per_page: @per_page)
-    end
 
     respond_to do |format|
       format.js
       format.html
       format.json
-      format.pdf
-      format.csv
     end
   end
 
@@ -114,6 +105,8 @@ class SignaturesController < ApplicationController
       # no old signature found send new one
       # lets create a proper new signature
       @signature = @petition.new_signatures.new(signature_params)
+      @signature.signature_remote_addr = request.remote_ip
+      @signature.signature_remote_browser = request.env['HTTP_USER_AGENT'] if request.env['HTTP_USER_AGENT'].present?
     end
 
     # respond to json request
@@ -166,12 +159,6 @@ class SignaturesController < ApplicationController
     @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
     set_pledge
-
-    @remote_ip = request.remote_ip
-    @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-
-    @signature.signature_remote_addr = @remote_ip
-    @signature.signature_remote_browser = @remote_browser
 
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
@@ -238,8 +225,6 @@ class SignaturesController < ApplicationController
     else
       # there are errors
       # render a normal edit view
-      @remote_ip = request.remote_ip
-      @remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
       add_check_fields
       @error_fields = @signature.errors.keys
       @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
@@ -256,16 +241,10 @@ class SignaturesController < ApplicationController
   end
 
   def set_pledge
-    @pledge = Pledge.where(signature_id: @signature.id).first
-    unless @pledge
-      @pledge = Pledge.new
-      @pledge.signature_id = @signature.id
-      @pledge.petition_id = @petition.id
-    end
-
-    @pledge_url = petition_signature_pledge_confirm_path(@petition, @signature.unique_key)
-
-    @share_email_url = petition_signature_mail_submit_path(@petition, @signature.unique_key)
+    @pledge = Pledge.find_or_initialize_by(
+      signature_id: @signature.id,
+      petition_id: @petition.id
+    )
   end
 
   def pledge_submit
@@ -307,26 +286,6 @@ class SignaturesController < ApplicationController
     end
   end
 
-  def mail_submit
-    target = email_params[:share_email]
-
-    if target.empty?
-      respond_to do |format|
-        format.json { render :show, status: :unprocessable_entity }
-      end
-      return
-    end
-
-    # do mail via sidekiq
-    # SignatureMailer.share_mail(@signature, target).deliver_later
-    # to test.
-    SignatureMailer.share_mail(@signature, target).deliver_later
-
-    respond_to do |format|
-      format.json { render :show, status: :ok }
-    end
-  end
-
   # DELETE /signatures/1
   # DELETE /signatures/1.json
   def destroy
@@ -339,6 +298,10 @@ class SignaturesController < ApplicationController
       format.html { redirect_to signatures_url, notice: 'Signature was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def not_found
+    @vervolg = true
   end
 
   private
@@ -354,6 +317,8 @@ class SignaturesController < ApplicationController
     unless @signature
       @signature = NewSignature.find_by_unique_key(params[:signature_id])
     end
+
+    render :not_found, status: :not_found unless @signature
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -377,24 +342,17 @@ class SignaturesController < ApplicationController
     )
   end
 
-  def email_params
-    params.permit(
-      :share_email
-    )
-  end
-
   def confirm_signature
     old_signature = @signature
     # create a new signature in the signature table.
     @signature = Signature.new(
-      old_signature.attributes.select { |key, _| Signature.attribute_names.include? key })
-
-    old_signature.delete
+      old_signature.attributes.select { |key, _| Signature.attribute_names.include?(key) && key.to_s != 'id' }
+    )
 
     @signature.confirmed = true
     @signature.confirmed_at = Time.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
-    @signature.save
+    old_signature.destroy if @signature.save
   end
 end

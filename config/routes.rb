@@ -50,7 +50,7 @@ Rails.application.routes.draw do
       post :pledge_submit, as: :pledge_confirm
       patch :pledge_submit
 
-      post :mail_submit
+      resources :invites, only: [:create]
 
       collection do
         post :search
@@ -61,6 +61,7 @@ Rails.application.routes.draw do
 
     # resources :new_signatures
     resources :updates, only: [:index, :show]
+    resource :export, only: :show
 
     get :finalize
 

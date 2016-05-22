@@ -28,7 +28,7 @@ class TaskStatus < ActiveRecord::Base
 
     # add the count
     self.count += 1
-    # save the last laction date
+    # save the last action date
     self.last_action = Time.now
     save
     true

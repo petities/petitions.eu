@@ -1,15 +1,12 @@
 div.social-bar
-  - if @petition.subdomain && request.domain
-    - share_url = '%s.%s' % [@petition.subdomain ,request.domain]
-  - else
-    - share_url = petition_url(@petition)
+  - share_url = petition_share_url(@petition)
 
   div.social-bar-content
     div.social-bar-label= t('show.share')
     - image = 'http://goo.gl/dS52U'
     - if @images.last
       - image = image_url(@images.last.upload.url)
-    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', 'sign petition', '#{image}' , 520, 350);"
+    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', '#{image}');"
 
     a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{@petition.name}');"
     a.social-bar-button.googleplus  href="javascript:gPlusShare('#{share_url}');"

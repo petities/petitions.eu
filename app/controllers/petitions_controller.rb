@@ -77,7 +77,7 @@ class PetitionsController < ApplicationController
                 .distinct
                 # with_locales(I18n.available_locales).
 
-    petitions = petitions.all.sort_by { |p| -$redis.zscore('active_rate', p.id) }
+    petitions = petitions.all.sort_by { |p| -($redis.zscore('active_rate', p.id) || 0) }
 
     @results_size = petitions.size
 
@@ -131,7 +131,7 @@ class PetitionsController < ApplicationController
   end
 
   def set_petition_vars
-    @page = params[:page] || 1
+    @page = (params[:page] || 1).to_i
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
@@ -146,8 +146,6 @@ class PetitionsController < ApplicationController
       redirect_to root_path
       return
     end
-
-    @owners = @petition.find_owners
 
     set_petition_vars
 
@@ -168,11 +166,6 @@ class PetitionsController < ApplicationController
               end
 
     @answer = @petition.updates.where(show_on_petition: true).first
-
-    # TODO.
-    # where prominent is TRUE and score is higher then 0
-    # ordered by score
-    @prominenten = @signatures
   end
 
   # GET /petitions/new
@@ -183,9 +176,10 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
+    # copy user info
     if user_signed_in?
       owner = current_user
-      # copy user info
+
       @petition.petitioner_name = owner.username
       @petition.petitioner_address = owner.address
       @petition.petitioner_postalcode = owner.postalcode
@@ -198,7 +192,6 @@ class PetitionsController < ApplicationController
   # POST /petitions
   # POST /petitions.json
   def create
-    # new_params = Hash(petition_params[:petition])
     @petition = Petition.new(petition_params)
 
     @petition.status = 'concept'
@@ -285,8 +278,6 @@ class PetitionsController < ApplicationController
 
     @page = params[:page]
 
-    @owners = @petition.find_owners
-
     set_petition_vars
 
     set_organisation_helper
@@ -331,15 +322,13 @@ class PetitionsController < ApplicationController
   def update_owners
     authorize @petition
 
-    @owners = @petition.find_owners
-
     owner_ids = [*params[:owner_ids]].map(&:to_i)
     owner_ids.uniq!
 
     # remove ownership for users not in owners_ids
 
     unless owner_ids.empty?
-      diff1 = @owners.ids - owner_ids
+      diff1 = @petition.users.ids - owner_ids
 
       diff1.each do |id|
         user = User.find(id)
@@ -379,7 +368,7 @@ class PetitionsController < ApplicationController
   def update
     authorize @petition
 
-    @owners = @petition.find_owners
+    @exclude_list = policy(@petition).invalid_attributes
 
     set_petition_vars
 
@@ -484,12 +473,6 @@ class PetitionsController < ApplicationController
     @petition.locale_list.uniq!
   end
 
-  # TODO: Refactor update form to use RJS and remove this
-  # WELL THIS CRASHES :)
-  #def initialize_update
-  #  @update = @petition.updates.new
-  #end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def petition_params
     params.require(:petition).permit(
@@ -509,7 +492,6 @@ class PetitionsController < ApplicationController
       :link3, :link3_text,
       :subdomain
     )
-    #:subscribe, :visible,
   end
 
   # add remove locales

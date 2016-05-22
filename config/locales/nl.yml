@@ -7,7 +7,9 @@ nl:
     text: |
       <p>Petities.nl is van de stichting Petities.nl, op het web <a href="http://web.archive.org/web/20051017052754/http://petities.nl/">sinds 1 mei 2005.</a> Het is ons doel om het Nederlanders makkelijk te maken een petitie te ondertekenen of te starten waar een antwoord op moet komen. Sinds 16 juni 2008 is het mogelijk voor de ontvangers van petities een loket te openen in de website om petities te begeleiden, ontvangen en te beantwoorden.</p>&#13;
       <p>&nbsp;</p>
-      <p>Deze dienst is tot nu toe mogelijk gemaakt dankzij het werk van professionele vrijwilligers, <a href="http://handboek.petities.nl/wiki/Subsidies">subsidies</a>, <a href="http://web.archive.org/web/20101209065053/http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">tijdelijke professionele ondersteuning</a> en giften. Petities.nl is als <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/wat_is_een_anbi">Algemeen Nut Beogende Instelling</a> door de Belastingdienst <a href="http://www.belastingdienst.nl/rekenhulpen/giften/anbi_zoeken/">erkend</a>.</p>&#13;
+      <p>Deze dienst is tot nu toe mogelijk gemaakt dankzij het werk van professionele vrijwilligers, <a href="http://handboek.petities.nl/wiki/Subsidies">subsidies</a>, <a href="http://web.archive.org/web/20101209065053/http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">tijdelijke professionele ondersteuning</a> en giften. Petities.nl is als <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/wat_is_een_anbi">Algemeen Nut Beogende Instelling</a> door de Belastingdienst <a href="http://www.belastingdienst.nl/rekenhulpen/giften/anbi_zoeken/">erkend</a>.
+      <p>&nbsp;</p>
+      <p>Ons Rechtspersonen Samenwerkingsverbanden Informatie Nummer, oftewel RSIN, is 814175983. Dit gebruikt u als u tussen de 1 en 10% van uw drempelinkomen aan giften kunt <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/themaoverstijgend/programmas_en_formulieren/overeenkomst_periodieke_giften">opvoeren als aftrekpost</a>. Haalt u dat niet, dan kunt u het formulier <a href="http://download.belastingdienst.nl/belastingdienst/docs/overeenkomst_%20period_gift_in_geld_ib0802z2fol.pdf">Periodieke Gift in Geld</a> gebruiken waarmee u vastlegt minstens 5 jaar te doneren. Maar op dat formulier moet wel onze handtekening! Mail ons op <a href="mailto:webmaster@petities.nl?Overeenkomst%20Periodieke%20gift">webmaster@petities.nl</a> en we sturen u die ingevuld toe.</p>&#13;
       <p>&nbsp;</p>
       <p>De stichting is in februari 2004 opgericht door ReindeR Rustema, Arjan Widlak en Michiel Leenaars en is in het register van de Kamer van Koophandel geregistreerd <a href="https://server.db.kvk.nl/TST-BIN/ZS/ZSWWW01@?TYPE=NDNR&NDNR=34206249&NSDN=&submit=">met nummer 34206249</a>. Het bestuur bestaat nu uit ReindeR Rustema, Johan Kok, Liesbeth Dillo en Michiel Leenaars.</p>&#13;
       <p>&nbsp;</p>
@@ -27,6 +29,14 @@ nl:
       call_to_action: Oproep
       welcome: U bent ingelogd
   activerecord:
+    models:
+      petition: Petitie
+    attributes:
+      signature:
+        person_name: Naam
+        person_city: Woonplaats
+        person_function: Functie of situatie
+        confirmed_at: Bevestigd op
     errors:
       models:
         signature:
@@ -149,7 +159,7 @@ nl:
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?
       how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
-      ip: 'Uw IP-address: %{ip}'
+      ip: 'Uw IP-adres: %{ip}'
       petition_signature_url: Deze link naar uw ondertekening kunt u kopieer-plakken. Bijvoorbeeld om te versturen of ergens te publiceren.
       share:
         on_facebook: Zet deze petitie op Facebook
@@ -166,6 +176,11 @@ nl:
       label: 'Voorvertoning'
       title: Nodig anderen uit
       success: Dank u! Zou u meer willen uitnodigen?
+    not_found:
+      title: Ondertekening niet gevonden
+      explanation: Helaas, uw ondertekening kan niet worden bevestigd. Met deze link werd geen ondertekening gevonden.
+      action_requested: We willen u vragen de petitie opnieuw te ondertekenen. Wanneer u de petitie al eerder heeft ondertekend, ontvangt u een nieuwe e-mail waarmee u uw bestaande ondertekening kunt aanpassen.
+      contact_us_html: Wanneer u vragen heeft, helpen we u via <a href="%{contact_path}">webmaster@petities.nl</a> graag verder. Onze excuses voor het ongemak.
     title: Dank u wel voor het bevestigen van uw ondertekening!
   contact:
     title: Contact met Stichting Petities.nl
@@ -207,7 +222,8 @@ nl:
     title_grey: 24/7 ondersteuning
     title_grey_2: Analyses
   donate:
-    text: "<p>Uw donatie aan <a href=\"../about\">ons</a> is van harte welkom. U kunt het:</p>\n <p>&nbsp;</p>\n <ul>\n  <li>overmaken op Rabobankrekening NL14RABO0324616899 van stichting Petities.nl in Amsterdam.</li>\n  <li>overmaken <a href=\"https://www.geef.nl/externalMod.php?gd=1574&taal=NL_NL\">met iDeal via Geef.nl</a></li>\n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"/assets/btn_donate_LG_nl.gif\" border=\"0\" name=\"submit\" alt=\"Doneren\"> via Paypal aan webmaster@petities.nl.</li>\n  </form>        \n</ul>\n<p>&nbsp;</p>\nDank u wel!\n<p>&nbsp;</p>"
+    text: "<p>Uw donatie aan <a href=\"../about\">ons</a> is van harte welkom. U kunt het:</p>\n <p>&nbsp;</p>\n <ul>\n  <li>overmaken op Rabobankrekening NL14RABO0324616899 van stichting Petities.nl in Amsterdam.</li>\n  <li>overmaken <a href=\"https://www.geef.nl/externalMod.php?gd=1574&taal=NL_NL\">met iDeal via Geef.nl</a></li>\n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"%{paypal_image}\" border=\"0\" name=\"submit\" alt=\"Doneren\"> via Paypal aan webmaster@petities.nl.</li>\n  </form>        \n</ul>\n<p>&nbsp;</p>\nDank u wel!\n<p>&nbsp;</p>
+    \nAls u tussen de 1 en 10% van uw drempelinkomen aan giften kunt <a href=\"http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/themaoverstijgend/programmas_en_formulieren/overeenkomst_periodieke_giften\">opvoeren als aftrekpost</a> heeft u ons Rechtspersonen Samenwerkingsverbanden Informatie Nummer, oftewel RSIN 814175983 nodig. Haalt u die 1 procent niet, dan kunt u het formulier <a href=\"http://download.belastingdienst.nl/belastingdienst/docs/overeenkomst_%20period_gift_in_geld_ib0802z2fol.pdf\">Periodieke Gift in Geld</a> gebruiken waarmee u vastlegt minstens 5 jaar te doneren. Maar op dat formulier moet wel onze handtekening! Mail ons op <a href=\"mailto:webmaster@petities.nl?Subject=Overeenkomst%20Periodieke%20Gift\">webmaster@petities.nl</a> en we sturen u die ingevuld toe.\n<p>&nbsp;</p>"
     more: "<p>U kunt ook tijd doneren. Bijvoorbeeld door onderzoek te doen naar de petities op onze site en nieuws over de petitie of waar de petitie over gaat te melden. Wij vragen de petitionaris dit dan bij de petitie te plaatsen. </p><p>&nbsp;</p><p>Ook als u spel- of (vert)taalfouten op onze site ziet helpt u ons enorm door die te mailen.<p>&nbsp;</p><a href=\"https://github.com/petities\">U kunt ook onze software verbeteren</a> door zelf fouten en verbeteringen op te sporen of door iets uit onze wensenlijst op te pakken.</p><p>&nbsp;</p></p>"
     title: Doneer
   edit:
@@ -248,6 +264,7 @@ nl:
       privacy: Uw privacy
       support: Steun ons
       updates: Updates
+      start_petition: Start een petitie
     updates: Updates
   header:
     new: Start een petitie
@@ -327,16 +344,18 @@ nl:
   listing: Lijst
   login:
     email:
-      descr: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
+      description: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
     flash:
       sent: Instructies om uw wachtwoord te herstellen zijn verstuurd naar het e-mailadres %{email}
       success: U kunt nu inloggen met uw e-mailadres en nieuwe wachtwoord!
     login: Inloggen
     password:
-      descr: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail. Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
+      description: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail.
       label: Wachtwoord
-    reset: Stuur link om nieuw wachtwoord te kiezen
+    reset_link:
+      description: Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
+      label: Stuur link om nieuw wachtwoord te kiezen
   logout: Log uit
   manage:
     title: Mijn petities
@@ -499,7 +518,8 @@ nl:
     title_green: Donaties
     title_grey: Hulp van ondertekenaars
     title_grey_2: Hou de indiendatum in de gaten
-  petitions: Petities
+  petitions:
+    title: Ondersteun een petitie of start uw eigen petitie
   place: Woonplaats
   pledge:
     feedback:
@@ -618,6 +638,7 @@ nl:
           placeholder: Waar u nu woont, op het tijdstip van ondertekenen
         sign_again: Nu iemand anders laten tekenen
         submit: Ja, ik onderteken deze petitie
+        submitting: Bezig met opslaan...
         success1: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op uw e-mailadres
         success2: ontvangt u een e-mail van webmaster@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
       note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
@@ -752,4 +773,6 @@ nl:
     updated: Nieuwtje bijgewerkt
     read_more: 'Lees meer...'
     title: Een nieuw petitie nieuwtje
+  updates:
+    title: Updates
   when: Wanneer

@@ -32,6 +32,10 @@ class PetitionPolicy < ApplicationPolicy
     can_edit user, record
   end
 
+  def export?
+    user && (user.has_role?(:admin, record) || user.has_role?(:admin))
+  end
+
   def invalid_attributes
     petition = record
 

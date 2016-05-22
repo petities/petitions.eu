@@ -3,43 +3,45 @@ footer.footer
 
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
-      - cache @news do
+      - cache [@news, homepage?] do
         - if @news
           ul.footer-news-list
-            - @news.offset(is_homepage? ? 2 : 0).each do |entry|
+            - @news.offset(homepage? ? 2 : 0).each do |entry|
               li.footer-news-list-item
                 = link_to update_path(entry)
                   - if entry.date.nil?
                     = entry.updated_at.strftime("%d-%m-%Y")
                   - else
                     = entry.date.strftime("%d-%m-%Y")
-                  | &nbsp; 
+                  | &nbsp;
                   = entry.title
-          
+
     div.footer-content-block
       div.footer-content-menu-wrapper
         nav.footer-content-menu-container
           ul.footer-content-menu
             div.footer-content-menu-part.left
               li.footer-content-menu-item
+                = link_to t('footer.menu.help'), help_path
+              li.footer-content-menu-item
+                = link_to t('footer.menu.start_petition'), new_petition_path
+              li.footer-content-menu-item
                 = link_to t('footer.menu.petitions'), petitions_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.desks'), petition_desks_path
               li.footer-content-menu-item
-                = link_to t('footer.menu.updates'), updates_path
-              li.footer-content-menu-item
-                = link_to t('footer.menu.support'), about_path
+                = link_to t('footer.menu.manage'), manage_petitions_path
 
             div.footer-content-menu-part.right
               li.footer-content-menu-item
-                = link_to t('footer.menu.help'), help_path
+                = link_to t('footer.menu.updates'), updates_path
               li.footer-content-menu-item
                 = link_to t('footer.menu.privacy'), privacy_path
               li.footer-content-menu-item
-                = link_to t('footer.menu.manage'), manage_petitions_path
-              li.footer-content-menu-item
                 = link_to t('footer.menu.about'), about_path
-            
+              li.footer-content-menu-item
+                = link_to t('footer.menu.support'), about_path
+
         = link_to t('footer.donate'), donate_path, class: 'donate-button'
 
       div.footer-content-contactblock
