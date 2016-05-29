@@ -48,8 +48,8 @@ class NewSignature < Signature
   def send_reminder_mail
     # Do not send reminders if the petition was deleted
     return unless petition
+    return if destroy_if_already_confirmed
 
-    return if destroy_if_already_confirmed || destroy_if_invalid
     send_reminder_mail!
   end
 
@@ -66,18 +66,12 @@ class NewSignature < Signature
     end
   end
 
-  def destroy_if_invalid
-    unless valid?
-      Rails.logger.debug "DESTROYED NewSignature #{id} for #{person_email} " \
-                         "because it fails validation"
-      destroy
-    end
-  end
-
-  # increment reminders_sent value, update the time and send the message
   def send_reminder_mail!
-    self.reminders_sent = reminders_sent.to_i + 1
-    self.last_reminder_sent_at = Time.now.utc
-    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later if save
+    # increment counter and set last_reminder_sent_at without validations
+    update_columns(
+      reminders_sent: reminders_sent.to_i + 1,
+      last_reminder_sent_at: Time.now.utc
+    )
+    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
   end
 end

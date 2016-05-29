@@ -37,6 +37,14 @@ class NewSignatureTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should increment counter and set timestamp when sending reminder' do
+    assert_nil @signature.last_reminder_sent_at
+    assert_difference(@signature.reminders_sent) do
+      @signature.send_reminder_mail
+    end
+    assert_not_nil @signature.last_reminder_sent_at
+  end
+
   test 'should not send_reminder_mail without petition' do
     @signature.petition = nil
     assert_enqueued_jobs 0 do
@@ -49,21 +57,6 @@ class NewSignatureTest < ActiveSupport::TestCase
     assert_enqueued_jobs 0 do
       assert_difference('NewSignature.count', -1) do
         assert_not @signature.send_reminder_mail
-      end
-    end
-  end
-
-  test 'should not send_reminder_mail for invalid signature' do
-    @new_signature = NewSignature.new(
-      petition: @signature.petition,
-      person_name: @signature.person_name,
-      person_email: @signature.person_email
-    )
-    @new_signature.save(validate: false)
-
-    assert_enqueued_jobs 0 do
-      assert_difference('NewSignature.count', -1) do
-        assert_not @new_signature.send_reminder_mail
       end
     end
   end
