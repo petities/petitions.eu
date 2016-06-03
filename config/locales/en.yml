@@ -61,7 +61,9 @@ en:
   admin:
     sorting: Sorting
   all:
-    count: "%{results_size} petitions"
+    count:
+      one: "1 petition"
+      other: "%{count} petitions"
     sort:
       all: All
       concluded: Concluded

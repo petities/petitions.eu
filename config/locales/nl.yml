@@ -63,7 +63,9 @@ nl:
   admin:
     sorting: Sorting
   all:
-    count: "%{results_size} petities"
+    count:
+      one: "1 petitie"
+      other: "%{count} petities"
     sort:
       all: Alle
       concluded: Afgehandeld
