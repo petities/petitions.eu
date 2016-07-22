@@ -94,6 +94,10 @@ nl:
       country:
         description: Nederlanders in het buitenland mogen wel tekenen.
         label: Het land waar u nu leeft.
+      date:
+        day: kies dag
+        month: kies maand
+        year: kies jaar
       email:
         description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie.
         label: E-mail

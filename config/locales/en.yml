@@ -92,6 +92,10 @@ en:
       country:
         description: Dutch citizens abroad can sign.
         label: Country were you currently live
+      date:
+        day: choose day
+        month: choose month
+        year: choose year
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
