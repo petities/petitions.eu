@@ -614,7 +614,7 @@ nl:
       share_this: Dit is een goed moment om de link naar de petitie te delen vanuit de balk hieronder. Na het bevestigen kunt u door e-mailadressen in te voeren uitnodigingen via ons versturen.
       status:
         label: Huidige status
-        was_signable: Deze petitie staat niet meer open om ondertekeningen te verzamelen.
+        was_signable: Deze petitie staat niet open om ondertekeningen te verzamelen.
         will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
       target: Afkomstig van
       text: Het antwoord

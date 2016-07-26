@@ -612,7 +612,7 @@ en:
       status:
         label: Current status
         will_be_signable: We have send you an e-mail from webmaster@petities.nl. To continue with your petition you must follow the link in it.
-        was_signable: This petition is no longer open to collect signatures.
+        was_signable: This petition is not open to collect signatures.
       target: From
       text: The answer
       title: Petition
