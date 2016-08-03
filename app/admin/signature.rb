@@ -20,7 +20,7 @@ ActiveAdmin.register Signature do
 
   filter :person_postal_code
   filter :person_function
-  filter :person_email
+  filter :person_email, filters: [:equals, :contains]
   filter :person_dutch_citizen
 
   filter :signed_at

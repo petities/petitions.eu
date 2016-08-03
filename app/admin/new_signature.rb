@@ -1,16 +1,15 @@
 ActiveAdmin.register NewSignature do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+  permit_params :petition_id, :person_name, :person_street,
+                :person_street_number_suffix, :person_street_number,
+                :person_postalcode, :person_function, :person_email,
+                :person_dutch_citizen, :signed_at, :confirmed_at,
+                :confirmed, :unique_key, :special, :person_city, :subscribe,
+                :person_birth_date, :person_birth_city, :sort_order,
+                :signature_remote_addr, :signature_remote_browser,
+                :confirmation_remote_addr, :confirmation_remote_browser,
+                :more_information, :visible, :person_born_at, :reminders_sent,
+                :last_reminder_sent_at, :unconverted_person_born_at,
+                :person_country
 
   filter :petition_id
   filter :person_name
@@ -20,7 +19,7 @@ ActiveAdmin.register NewSignature do
 
   filter :person_postal_code
   filter :person_function
-  filter :person_email
+  filter :person_email, filters: [:equals, :contains]
   filter :person_dutch_citizen
 
   filter :signed_at
@@ -41,4 +40,17 @@ ActiveAdmin.register NewSignature do
 
   filter :last_reminder_send_at
   filter :unconverted_person_born_at
+
+  index pagination_total: false do
+    selectable_column
+    id_column
+    column :petition
+    column :person_name
+    column :person_city
+    column :person_email
+    column :person_function
+    column :signed_at
+    column :confirmed_at
+    actions
+  end
 end
