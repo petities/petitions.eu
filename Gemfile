@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 gem 'rails-i18n'
 
 gem 'paper_trail'
@@ -14,14 +14,14 @@ gem 'friendly_id-globalize'
 # Use sqlite3 as the database for Active Record
 
 gem 'sqlite3', group: :development
-gem 'mysql2', '~> 0.4.3'
+gem 'mysql2', '~> 0.4.4'
 
 # legacy utf 8 issues..
 gem 'utf8-cleaner'
 gem 'rack-utf8_sanitizer'
 
 # authentication
-gem 'devise', '~> 3.5', '>= 3.5.6'
+gem 'devise', '~> 3.5', '>= 3.5.10'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'rolify'
@@ -114,7 +114,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.11', '>= 2.11.3'
+gem 'rollbar', '~> 2.12'
 # track everything..
 # gem 'logstasher'
 
