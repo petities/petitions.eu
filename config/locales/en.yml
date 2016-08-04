@@ -527,14 +527,32 @@ en:
       description: Or would you like to help in another way?
       placeholder: Something else...
     thank_you: Thank you!
-    failed: Oooppsie! something is wrong!
+    failed: Oops! Some input in the form is wrong!
   privacy:
     text: |
-      <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
+      <p><b>Cookies</b></p>
       <p>&nbsp;</p>
-      <p>As <a href="wetten.overheid.nl/BWBR0011468/">the law (in Dutch)</a> prescribes, all personal data are only purposefully used; for the purpose you have supplied them: the recipient of a petition gets a copy of the list of signatories to verify or to get an overview of their constituency. The recipient may also personally contact you, but in practise the recipient will only communicate with the lead petitioner as spokesperson for all signatories.</p>
+      <p>Petities.nl only uses <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a> during your visit. The website is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
       <p>&nbsp;</p>
-      <p>When you sign anonimously your peronsal data disappear (except the timestamp of your signature) from the database once the petition is answered. If you indicated your public support to a petition your name, place of residence and title/description remain in the database to be served on the web. Would you like to not be visible on the web anymore, you can change this by following the link in the e-mail you received to confirm your signature (see <a href="/help/algemeen">help</a> if you do not have the link anymore). To disappear from the search results in search engines it might take up to a week.</p>
+      <p><b>Your personal data</b></p>
+      <p>&nbsp;</p>
+      <p>As <a href="http://wetten.overheid.nl/BWBR0011468/">the law (in Dutch)</a> prescribes, all personal data are only purposefully used; for the purpose you have supplied them: the recipient of a petition gets a copy of the list of signatories to verify or to get an overview of their constituency. In case of a normal petition these are your name, function and place. When extra legal requirements apply, also your street, postal code, date of birth and citizenship. For example in case of citizen’s initiative or referendum request. Nobody gets to see your e-mail address.</p>
+      <p>&nbsp;</p>
+      <p>When you sign, technical details are stored about your internet address and your browser. We show these for you to verify.</p>
+      <p>&nbsp;</p>
+      <p><b>Your public profile</b></p>
+      <p>&nbsp;</p>
+      <p>On the website we show your name, function and place when you make this choice. By default you sign anonymously and your data do not show. In that case we delete your personal data from the database once the petition is answered. We keep some impersonal details: timestamp of your signature, which petition, your place and function. Make sure you do not include personal details in your place (like your address) or in your function (like the name of your company).</p>
+      <p>&nbsp;</p>
+      <p>If you indicated your public support to a petition your name, place of residence and title/description remain in the database to be served on the web. When you change your mind, you can always change this. Follow the link to your personal page you can find in our e-mails.</p>
+      <p>&nbsp;</p>
+      <p><b>Copied by others</b></p>
+      <p>&nbsp;</p>
+      <p>We ask the search engines to ignore the list of signatures for a petition, but on the page of the petition there are a dozen signatures you might be in. If you end up in the search results like this and you change your signature to invisible, it might take up to a week to disappear from the search results.</p>
+      <p>&nbsp;</p>
+      <p>Every quarter the Royal Library makes a copy of the entire site to keep for historians for example. In the Royal Library in The Hague you can consult these copies.</p>
+      <p>&nbsp;</p>
+      <p><b>E-mail from us</b></p>
       <p>&nbsp;</p>
       <p>When you e-mail the webmaster your e-mail address is only used for correspondence regarding that question, complaint or remark. You do not receive impersonal information (like a newsletter), unless you <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">subscribe yourself to the newsletter.</a></p>
       <p>&nbsp;</p>
@@ -545,7 +563,13 @@ en:
         <li>to let you know the result of the petition, within six weeks after the hand over of the petition.</li>
       </ol>
       <p>&nbsp;</p>
-      <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
+      <p>If you do not confirm you receive two reminders. One week after your sign and when the petition is about to close.</p>
+      <p>&nbsp;</p>      
+      <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the e-mail, with which you confirmed your signature. You can find the link to your personal page also in every e-mail from us.</p>
+      <p>&nbsp;</p>
+      <p>When you pledge help to a petition the petitioner might send you e-mail about this.</p>
+      <p>&nbsp;</p>
+      <p>You can also indicate to receive e-mail from your municipality. In these e-mails the municipality invites you to contribute your ideas. Also these e-mails you can always stop.</p>
     title: Your privacy
   profile:
     address: Address

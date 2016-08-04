@@ -533,22 +533,46 @@ nl:
     failed: Oeps! er zit een fout in het formulier!
   privacy:
     text: |
-      <p>Petities.nl maakt alleen gebruik van cookies gedurende uw bezoek aan de site, is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
+      <p><b>Cookies</b></p>
       <p>&nbsp;</p>
-      <p>Zoals <a href="wetten.overheid.nl/BWBR0011468/">de wet</a> voorschrijft worden uw persoonsgegevens alleen gebruikt voor het doel waarvoor u ze heeft verstrekt: de ontvanger van een petitie krijgt inzage in de lijst ondertekenaars om de petitie te controleren of om een beeld te krijgen van de achterban. De ontvanger mag ook persoonlijk contact met u opnemen, maar in de praktijk communiceert de ontvanger alleen met de petitionaris als woordvoerder van alle ondertekenaars.</p>
+      <p>Petities.nl maakt alleen gebruik van <a href="https://nl.wikipedia.org/wiki/Cookie_(internet)">cookies</a> gedurende uw bezoek. De website is voor iedereen toegankelijk en kan anoniem worden bezocht. We houden bij vanaf welke internetadressen de website wordt opgevraagd. Deze informatie gebruiken we alleen om de website te verbeteren.</p>
       <p>&nbsp;</p>
-      <p>Als u anoniem ondertekent dan verdwijnen uw gegevens (behalve het tijdstip van ondertekenen) uit de database na het afhandelen van de petitie. Als u heeft aangegeven een petitie publiekelijk te ondersteunen blijft uw naam, woonplaats en titel/beschrijving in de database achter zodat deze op het web getoond kunnen worden. Bedenkt u achteraf dat u niet meer wilt dat uw ondertekening op het web zichtbaar is dan kunt u dat veranderen door middel van de link in de e-mail die u ontving om uw ondertekening te bevestigen (zie <a href="/help/algemeen">help</a> als u die link niet meer heeft). Daarna duurt het nog minstens een week voor de zoekmachines uw ondertekening weglaten uit de zoekresultaten.</p>
+      <p><b>Uw persoonsgegevens</b></p>
       <p>&nbsp;</p>
+      <p>Zoals <a href="http://wetten.overheid.nl/BWBR0011468/">de wet</a> voorschrijft worden uw persoonsgegevens alleen gebruikt waarvoor u ze heeft uitgeleend: de ontvanger van een petitie krijgt inzage in de lijst ondertekenaars om de petitie te controleren of om een beeld te krijgen van de achterban. Bij een gewone petitie gaat het om uw naam, woonplaats en functie. Als er extra wettelijke eisen gelden dan ook uw straat, postcode, geboortedatum en staatsburgerschap. Dit is het geval bij bijvoorbeeld een burgerinitiatief of referendumverzoek. Niemand krijgt uw e-mailadres te zien.</p>
+      <p>&nbsp;</p>
+      <p>Bij het ondertekenen worden technische details opgeslagen over uw internetadres en uw browser. Deze tonen we u ter controle.</p> 
+      <p>&nbsp;</p>
+      <p><b>Uw openbare gegevens</b></p>
+      <p>&nbsp;</p>
+      <p>Op de website tonen we uw naam, functie en woonplaats als u daarvoor kiest. Standaard tekent u anoniem en komen uw gegevens niet op de site. In dat geval wissen we uw persoonlijke gegevens nadat de petitie een antwoord heeft gekregen. Onpersoonlijke gegevens blijven wel achter: tijdstip van ondertekening, welke petitie, uw woonplaats en uw functie. Let er dus op dat u geen persoonlijke informatie in uw woonplaats (zoals uw adres) of in uw functie (zoals de naam van uw bedrijf) vermeldt.</p>
+      <p>&nbsp;</p>
+      <p>Als u heeft aangegeven een petitie publiekelijk te ondersteunen bewaren we uw naam, woonplaats en functie zodat deze op het web getoond kunnen worden. Bedenkt u zich later dan kunt u dat altijd veranderen. Dit doet u op uw persoonlijke pagina waarvan u de link in onze e-mails vindt. Daarna duurt het nog minstens een week voor de zoekmachines uw ondertekening weglaten uit de zoekresultaten als u daarin terecht was gekomen.</p>
+      <p>&nbsp;</p>
+      <p><b>Gekopieerd door anderen</b></p>
+      <p>&nbsp;</p>
+      <p>We vragen de zoekmachines de lijst ondertekeningen bij een petitie te negeren, maar omdat er onder elke petitie ook een dozijn ondertekeningen staan kunt u in de zoekresultaten terecht komen. Als dit gebeurt en u uw ondertekening op onzichtbaar zet duurt het minimaal een week voor uw ondertekening niet meer in de zoekresultaten verschijnt.</p>
+      <p>&nbsp;</p>
+      <p>De Koninklijke Bibliotheek maakt elk kwartaal een kopie van de hele website om te bewaren voor bijvoorbeeld geschiedschrijvers. In de Koninklijke Bibliotheek in Den Haag kunt u die kopieën opvragen.</p>
+      <p>&nbsp;</p>
+      <p><b>E-mail van ons</b></p>
+      <p>&nbsp;</p>      
       <p>Als u mailt met de webmaster wordt uw e-mailadres alleen gebruikt voor correspondentie die te maken heeft met uw vraag, klacht of opmerking. U ontvangt geen onpersoonlijke informatie (zoals een nieuwsbrief), tenzij <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">u zelf een abonnement op de nieuwsbrief vraagt.</a></p>
       <p>&nbsp;</p>
-      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres altijd drie e-mails van webmaster@petities.nl:</p>
+      <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres drie e-mails van webmaster@petities.nl:</p>
       <ol>
-        <li>om te bevestigen, binnen enkele minuten tot een dag na uw ondertekening</li>
+        <li>om te bevestigen, binnen enkele minuten na uw ondertekening</li>
         <li>om aan te kondigen dat de petitie gaat sluiten en wordt overhandigd, weken of maanden na uw ondertekening</li>
-        <li>om te laten weten wat het resultaat van de petitie is, binnen zes weken na het overhandigen van de petitie.</li>
+        <li>om te laten weten wat het antwoord op de petitie is.</li>
       </ol>
       <p>&nbsp;</p>
-      <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt aangeven dit niet te willen ontvangen door de link te volgen vanuit de eerste e-mail, waarmee u uw ondertekening bevestigde. Heeft u die e-mail niet meer, dan kunt u die opvragen via <a href="/help/algemeen">help</a></p>
+      <p>Als u niet bevestigt krijgt u ook nog twee herinneringen. Een week na uw ondertekening en als de petitie gaat sluiten.</p>
+      <p>&nbsp;</p>
+      <p>Daarnaast kan de petitionaris ook drie keer via petities.nl een bericht sturen over de voortgang van de petitie aan degenen die aangegeven hebben hier geen bezwaar tegen te hebben. U kunt altijd aangeven dit niet (meer) te willen ontvangen door de link te volgen vanuit de e-mail, waarmee u uw ondertekening bevestigde. De link naar uw persoonlijke pagina staat ook in elke e-mail die u van ons krijgt.</a></p>
+      <p>&nbsp;</p>
+      <p>Als u hulp toezegt bij een petitie dan kan de petitionaris u een e-mail daarover sturen.</p>
+      <p>&nbsp;</p>
+      <p>U kunt ook aangeven e-mail te willen ontvangen van de gemeente waar u woont. In deze e-mails wordt u door de gemeente uitgenodigd om mee te denken of praten. Ook deze e-mails kunt u altijd stoppen.</p>
     title: Uw privacy
   profile:
     address: Adres
