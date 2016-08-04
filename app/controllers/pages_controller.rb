@@ -1,6 +1,5 @@
 # Serves simple pages
 class PagesController < ApplicationController
-
   before_filter :initialize_help_topics, only: :help
 
   STATIC_PAGES = %w(about donate help privacy error).freeze
@@ -17,5 +16,4 @@ class PagesController < ApplicationController
     @aftersigning = I18n.t('help.aftersigning')
     @writingpetition = I18n.t('help.writingpetition')
   end
-
 end

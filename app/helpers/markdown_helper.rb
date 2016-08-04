@@ -14,7 +14,7 @@ module MarkdownHelper
 
     renderer = Redcarpet::Render::StripDown.new
     markdown = Redcarpet::Markdown.new(renderer)
-    markdown.render(text)
+    markdown.render(text.to_s)
   end
 end
 

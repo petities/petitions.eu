@@ -117,14 +117,11 @@ class PetitionsController < ApplicationController
 
   def manage
     if current_user
-      # @petitions = current_user.petitions
-      # TODO we should convert managers to admin..
       @petitions = Petition.with_role(:admin, current_user)
 
       @results_size = @petitions.size
 
       petitions_by_status @petitions
-
     else
       redirect_to new_user_session_path
     end
