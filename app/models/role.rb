@@ -4,8 +4,6 @@
 #
 #  id                :integer          not null, primary key
 #  name              :string(255)
-#  authorizable_type :string(255)
-#  authorizable_id   :integer
 #  created_at        :datetime
 #  updated_at        :datetime
 #  resource_type     :string(255)

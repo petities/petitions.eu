@@ -17,10 +17,6 @@ README
    :target: https://semaphoreci.com/petities/petitions-eu
    :alt: Build Status
 
-.. image:: https://img.shields.io/gratipay/user/spreeker.svg
-  :target: https://gratipay.com/~spreeker
-  :alt: Feed developers
-
 * Ruby version 2.2.3
 
 * System dependencies
@@ -33,7 +29,6 @@ README
 * Database creation
 
   Create a database.yml in you config folder
-  there is an example sqlite database available on request
 
 * Database initialization
 
@@ -46,8 +41,6 @@ README
     rake test
 
 * Services (job queues, cache servers, search engines, etc.)
-
-    memcached
 
     sidekiq -q mailers
 
