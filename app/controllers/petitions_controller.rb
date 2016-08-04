@@ -153,8 +153,6 @@ class PetitionsController < ApplicationController
 
     @signature = @petition.signatures.new
 
-    @images = @petition.images
-
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
                            .paginate(page: 1, per_page: 12)
@@ -289,8 +287,6 @@ class PetitionsController < ApplicationController
     @petition.status = 'draft' if @petition.status.nil?
 
     @petition_flash = t("petition.status.flash.#{@petition.status}", default: @petition.status)
-
-    @images = @petition.images
   end
 
   def set_organisation_helper
