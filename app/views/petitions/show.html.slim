@@ -48,7 +48,7 @@ div.page
 
   - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
 
-    section class=(@petition.image ? 'petition-intro-container-noimage' : 'petition-intro-container')
+    section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
       div.petition-intro-image-container
         = image_tag( @petition.image.upload.url, class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container

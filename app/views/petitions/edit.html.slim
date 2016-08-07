@@ -15,7 +15,7 @@ div.page
 
 div.page
 
-  section class=(@petition.image ? 'petition-intro-container-noimage' : 'petition-intro-container') id="introContainer"
+  section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage') id="introContainer"
     div.petition-intro-image-container
       = image_tag( @petition.image.upload.url, class: 'petition-intro-image') if @petition.image
     div.petition-intro-info-container
