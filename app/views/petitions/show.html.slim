@@ -1,6 +1,13 @@
 - title @petition.name
-/- content_for :head do
-  /= javascript_include_tag 'ZeroClipboard.min'
+
+- content_for :head do
+  meta property="og:url" content=petition_url(@petition)
+  meta property="og:title" content=@petition.name
+  - if @petition.image
+    meta property="og:image" content=asset_url(@petition.image.upload.url)
+  meta property="og:description" content=strip_markdown(@petition.description)
+  meta property="twitter:card" content="summary"
+  meta property="twitter:site" content="@petities"
 
 javascript:
   $(window).on('scroll', function(){
@@ -41,9 +48,9 @@ div.page
 
   - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
 
-    section class=(@images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+    section class=(@petition.image ? 'petition-intro-container-noimage' : 'petition-intro-container')
       div.petition-intro-image-container
-        = image_tag( @images.last.upload.url, class: 'petition-intro-image') unless @images.last.nil? || @images.last.upload_file_name.nil?
+        = image_tag( @petition.image.upload.url, class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)

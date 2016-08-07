@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430110930) do
+ActiveRecord::Schema.define(version: 20160803125814) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -378,25 +378,14 @@ ActiveRecord::Schema.define(version: 20160430110930) do
   add_index "progressions", ["updated_at"], name: "index_progressions_on_updated_at", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.string   "authorizable_type", limit: 255
-    t.integer  "authorizable_id",   limit: 4
+    t.string   "name",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "resource_type",     limit: 255
-    t.integer  "resource_id",       limit: 4
+    t.string   "resource_type", limit: 255
+    t.integer  "resource_id",   limit: 4
   end
 
-  add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
-  add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-
-  create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "role_id",    limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "signatures", force: :cascade do |t|
     t.integer  "petition_id",                 limit: 4,   default: 0,     null: false

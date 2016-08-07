@@ -77,8 +77,10 @@ Rails.application.routes.draw do
   root 'petitions#index'
 
   # STATIC PAGES
-  PagesController::STATIC_PAGES.each do |name|
-    get "/#{name}", to: "pages##{name}"
+  constraints format: :html do
+    PagesController::STATIC_PAGES.each do |name|
+      get "/#{name}", to: "pages##{name}"
+    end
   end
 
   patch '/special_signature/:id', to: 'signatures#special_update', as: :special_signature

@@ -457,5 +457,7 @@ class Petition < ActiveRecord::Base
 
   end
 
-
+  def image
+    images.last if images.any?
+  end
 end

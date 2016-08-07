@@ -4,8 +4,8 @@ div.social-bar
   div.social-bar-content
     div.social-bar-label= t('show.share')
     - image = 'http://goo.gl/dS52U'
-    - if @images.last
-      - image = image_url(@images.last.upload.url)
+    - if @petition.image
+      - image = image_url(@petition.image.upload.url)
     a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}', '#{image}');"
 
     a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{@petition.name}');"

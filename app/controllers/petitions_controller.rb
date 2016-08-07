@@ -117,14 +117,11 @@ class PetitionsController < ApplicationController
 
   def manage
     if current_user
-      # @petitions = current_user.petitions
-      # TODO we should convert managers to admin..
       @petitions = Petition.with_role(:admin, current_user)
 
       @results_size = @petitions.size
 
       petitions_by_status @petitions
-
     else
       redirect_to new_user_session_path
     end
@@ -152,8 +149,6 @@ class PetitionsController < ApplicationController
     set_organisation_helper
 
     @signature = @petition.signatures.new
-
-    @images = @petition.images
 
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
@@ -289,8 +284,6 @@ class PetitionsController < ApplicationController
     @petition.status = 'draft' if @petition.status.nil?
 
     @petition_flash = t("petition.status.flash.#{@petition.status}", default: @petition.status)
-
-    @images = @petition.images
   end
 
   def set_organisation_helper
