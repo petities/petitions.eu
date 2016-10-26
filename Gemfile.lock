@@ -326,7 +326,7 @@ GEM
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rolify (5.0.0)
-    rollbar (2.12.0)
+    rollbar (2.13.3)
       multi_json
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -463,7 +463,7 @@ DEPENDENCIES
   redis-rails
   redis_analytics
   rolify
-  rollbar (~> 2.12)
+  rollbar (~> 2.13, >= 2.13.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq

@@ -114,7 +114,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.12'
+gem 'rollbar', '~> 2.13', '>= 2.13.3'
 # track everything..
 # gem 'logstasher'
 
