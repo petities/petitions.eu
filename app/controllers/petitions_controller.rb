@@ -48,21 +48,13 @@ class PetitionsController < ApplicationController
       @petitions.clear
     end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def all
-    @petitions = sort_petitions Petition
+    @petitions = sort_petitions(Petition)
 
-    @results_size = @petitions.count
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def search
@@ -109,10 +101,7 @@ class PetitionsController < ApplicationController
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def manage
@@ -161,6 +150,8 @@ class PetitionsController < ApplicationController
               end
 
     @answer = @petition.updates.where(show_on_petition: true).first
+
+    respond_to :html, :json
   end
 
   # GET /petitions/new
