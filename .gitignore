@@ -16,7 +16,6 @@
 !/log/.keep
 /tmp
 
-#Gemfile.lock
 doc/api
 doc/app
 *.swp
@@ -34,10 +33,5 @@ public/assets
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
-config/secrets.yml
 
 *.tmbundle
-
-Gemfile.lock
-
-Gemfile.lock

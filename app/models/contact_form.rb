@@ -4,7 +4,7 @@ class ContactForm
 
   attr_accessor :name, :mail, :message
 
-  validates :name, length: { in: 1..255 }
+  validates :name, length: { in: 5..255 }
   validates :mail, email: true
   validates :message, presence: true
 
