@@ -107,9 +107,4 @@ Rails.application.routes.draw do
 
   get '/petitie/:id',         to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
-
-  if not Rails.env.development?
-    match "*path", to: "application#render_404", via: :all
-  end
-
 end

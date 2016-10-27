@@ -1,25 +1,25 @@
-require 'active_support/concern'
+module FindPetition
+  extend ActiveSupport::Concern
 
-module FindPetition extend ActiveSupport::Concern
-  # Use callbacks to share common setup or constraints between actions.
-  #
   def find_petition
     Globalize.locale = params[:locale] || I18n.locale
 
-    # find petition by slug name subdomain, id, friendly_name
-    if subdomain?
-      @petition = Petition.find_by_subdomain(request.subdomain)
-    elsif params[:petition_id]
-      @petition = Petition.find(params[:petition_id])
-    else
-      begin
-        # find by friendly
-        @petition = Petition.friendly.find(params[:id])
-      rescue
-        # find in all locales petition that matches..
-        #@petition = Petition.joins(:translations)
-        #            .where('petition_translations.slug like ?', "%#{params[:id]}%").first
-      end
-    end
+    @petition = if subdomain?
+                  find_by_subdomain
+                elsif params[:petition_id]
+                  find_by_id(params[:petition_id])
+                else
+                  find_by_id(params[:id])
+                end
+  end
+
+  private
+
+  def find_by_subdomain
+    Petition.find_by_subdomain(request.subdomain)
+  end
+
+  def find_by_id(id)
+    Petition.friendly.find(id)
   end
 end
