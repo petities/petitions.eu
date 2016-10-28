@@ -243,9 +243,11 @@ class PetitionsController < ApplicationController
       # petition is save. status change causes email(s)
       # to be send
       if @petition.save
-        # make user owner of the petition
-        owner.add_role(:admin, @petition) if owner
-        PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
+        if owner && owner.persisted?
+          # make user owner of the petition
+          owner.add_role(:admin, @petition)
+          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
+        end
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }

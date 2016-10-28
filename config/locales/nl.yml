@@ -543,7 +543,7 @@ nl:
       <p>&nbsp;</p>
       <p>Zoals <a href="http://wetten.overheid.nl/BWBR0011468/">de wet</a> voorschrijft worden uw persoonsgegevens alleen gebruikt waarvoor u ze heeft uitgeleend: de ontvanger van een petitie krijgt inzage in de lijst ondertekenaars om de petitie te controleren of om een beeld te krijgen van de achterban. Bij een gewone petitie gaat het om uw naam, woonplaats en functie. Als er extra wettelijke eisen gelden dan ook uw straat, postcode, geboortedatum en staatsburgerschap. Dit is het geval bij bijvoorbeeld een burgerinitiatief of referendumverzoek. Niemand krijgt uw e-mailadres te zien.</p>
       <p>&nbsp;</p>
-      <p>Bij het ondertekenen worden technische details opgeslagen over uw internetadres en uw browser. Deze tonen we u ter controle.</p> 
+      <p>Bij het ondertekenen worden technische details opgeslagen over uw internetadres en uw browser. Deze tonen we u ter controle.</p>
       <p>&nbsp;</p>
       <p><b>Uw openbare gegevens</b></p>
       <p>&nbsp;</p>
@@ -558,7 +558,7 @@ nl:
       <p>De Koninklijke Bibliotheek maakt elk kwartaal een kopie van de hele website om te bewaren voor bijvoorbeeld geschiedschrijvers. In de Koninklijke Bibliotheek in Den Haag kunt u die kopieën opvragen.</p>
       <p>&nbsp;</p>
       <p><b>E-mail van ons</b></p>
-      <p>&nbsp;</p>      
+      <p>&nbsp;</p>
       <p>Als u mailt met de webmaster wordt uw e-mailadres alleen gebruikt voor correspondentie die te maken heeft met uw vraag, klacht of opmerking. U ontvangt geen onpersoonlijke informatie (zoals een nieuwsbrief), tenzij <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">u zelf een abonnement op de nieuwsbrief vraagt.</a></p>
       <p>&nbsp;</p>
       <p>Als u een petitie ondertekent dan ontvangt u op uw e-mailadres drie e-mails van webmaster@petities.nl:</p>
@@ -709,6 +709,7 @@ nl:
     sign: Teken deze petitie
     title: Ondertekeningen
   signnow: Teken nu
+  site_title: Petities.nl
   start:
     form:
       addressed:

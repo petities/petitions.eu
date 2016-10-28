@@ -566,7 +566,7 @@ en:
       </ol>
       <p>&nbsp;</p>
       <p>If you do not confirm you receive two reminders. One week after your sign and when the petition is about to close.</p>
-      <p>&nbsp;</p>      
+      <p>&nbsp;</p>
       <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the e-mail, with which you confirmed your signature. You can find the link to your personal page also in every e-mail from us.</p>
       <p>&nbsp;</p>
       <p>When you pledge help to a petition the petitioner might send you e-mail about this.</p>
@@ -706,6 +706,7 @@ en:
     sign: Sign this petition
     title: Signatures
   signnow: Sign now
+  site_title: Petities.nl
   start:
     form:
       addressed:
