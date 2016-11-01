@@ -31,9 +31,9 @@ header.header
           = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
           = hidden_field_tag :locale, I18n.locale
           input.search-container-button type="submit" value=""
-      div.header-search-toggle onclick="toggleSearchBox()"
+      div.header-search-toggle
 
-      div.header-user-wrapper onclick="toggleEditMenu()"
+      div.header-user-wrapper
         = render partial: 'shared/userbox'
 
 div.page

@@ -44,7 +44,7 @@ class SignaturesController < ApplicationController
       @per_page = 12
     end
 
-    @page = if params[:page]
+    @page = if params[:page].to_i > 0
               params[:page].to_i
             elsif params[:signature_id]
               (@all_signatures.pluck(:id).index(params[:signature_id].to_i).to_f / @per_page).floor + 1
