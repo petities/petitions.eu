@@ -68,14 +68,12 @@ class SignaturesController < ApplicationController
     @query = params[:query]
 
     @signatures = if @query.blank?
-                    @petition.signatures.special.paginate(page: params[:page], per_page: 100)
+                    @petition.signatures.ordered.paginate(page: params[:page], per_page: 100)
                   else
                     @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
                   end
 
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   # POST /signatures

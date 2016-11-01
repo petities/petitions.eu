@@ -139,31 +139,11 @@ class Petition < ActiveRecord::Base
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images
 
-  # default_scope :order => 'petitions.name ASC'
+  has_many :new_signatures, dependent: :destroy
+  has_many :signatures, dependent: :destroy
 
-  has_many :new_signatures
-
-  has_many :signatures do
-    def confirmed
-      where(confirmed: true)
-    end
-
-    def special
-      # where(confirmed: true, special: true).order('sort_order ASC, signed_at ASC')
-      where(confirmed: true).order('sort_order DESC, signed_at ASC')
-    end
-
-    def recent
-      where(confirmed: true).order('signed_at DESC')
-    end
-
-    def last_signed
-      where(confirmed: true).order('signed_at DESC').limit(1).first
-    end
-  end
-
-  has_many :updates
-  has_many :task_statuses
+  has_many :updates, dependent: :destroy
+  has_many :task_statuses, dependent: :destroy
 
   def get_count
     count = $redis.get("p#{id}-count").to_i

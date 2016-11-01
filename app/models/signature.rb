@@ -112,8 +112,9 @@ class Signature < ActiveRecord::Base
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
   scope :subscribe, -> { where(confirmed: true, subscribe: true) }
-  scope :special, -> { where(special: true, confirmed: true) }
+  scope :special, -> { where(confirmed: true, special: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
+  scope :ordered, -> { order('sort_order DESC, signed_at ASC') }
 
   before_validation :lowercase_person_email
   before_save :fill_confirmed_at, :truncate_remote_browser
