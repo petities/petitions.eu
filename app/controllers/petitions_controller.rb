@@ -430,17 +430,10 @@ class PetitionsController < ApplicationController
     @update = Update.new(petition_id: @petition.id)
 
     # find specific papertrail version
-    @version_index = 0
-
-    @version_index = @petition.index if @petition.has_attribute? :index
-
-    if params[:version].to_i < 0
-      @version_index = params[:version].to_i
-      @petition = @petition.versions[@version_index].reify
+    if params[:version].to_i > 0
+      versioned_petition = @petition.versions[params[:version].to_i]
+      @petition = versioned_petition.reify if versioned_petition
     end
-
-    @up = @version_index < 0 ? @version_index + 1 : 0
-    @down = @version_index.abs < @petition.versions.size ? @version_index - 1 : @version_index
 
     # If an old id or a numeric id was used to find the record, then
     # the request path will not match the post_path, and we should do

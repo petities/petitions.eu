@@ -55,11 +55,7 @@ class SignaturesController < ApplicationController
     @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
                       .paginate(page: @page, per_page: @per_page)
 
-    respond_to do |format|
-      format.js
-      format.html
-      format.json
-    end
+    respond_to :js, :html, :json
   end
 
   def search
@@ -83,16 +79,15 @@ class SignaturesController < ApplicationController
 
     # try to find old signature first
     email = signature_params[:person_email]
-    @signature = Signature.where(person_email: email, petition_id: @petition.id).first
+    @signature = Signature.find_by(person_email: email, petition: @petition)
 
     unless @signature
-      @signature = NewSignature.where(person_email: email, petition_id: @petition.id).first
+      @signature = NewSignature.find_by(person_email: email, petition: @petition)
     end
 
     if @signature
       # we found an old signature
       # send confirmation mail again
-      # to this moron :)
       @signature.send(:send_confirmation_mail)
       respond_to do |format|
         format.js { render json: { is_resend: 'true', status: 'ok' } }

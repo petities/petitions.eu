@@ -29,13 +29,13 @@ div.page
     div class="petition-editbutton-container"
 
       h2
-      - if @version_index < 0
+      - if @petition.next_version
         div.petition-editbutton.pull-left
-          =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})
+          =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
 
-      - if @petition.versions.any? && @version_index.abs < @petition.versions.size
+      - if @petition.previous_version
         div.petition-editbutton.pull-right
-          =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @down})
+          =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.previous_version.version.index})
 
     /<!-- versioning -->
 
