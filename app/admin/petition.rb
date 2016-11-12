@@ -65,5 +65,9 @@ ActiveAdmin.register Petition do
       end
       column :locale
     end
+    link_to(
+      I18n.t('active_admin.new_model', model: PetitionTranslation.model_name.human),
+      new_admin_petition_translation_path(petition_translation: { petition_id: resource.id })
+    )
   end
 end
