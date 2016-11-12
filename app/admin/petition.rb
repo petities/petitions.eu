@@ -57,4 +57,13 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
   filter :locale_list
+
+  sidebar :translations, only: :show do
+    table_for resource.translations do
+      column :id do |item|
+        link_to(item.id, [:admin, item])
+      end
+      column :locale
+    end
+  end
 end

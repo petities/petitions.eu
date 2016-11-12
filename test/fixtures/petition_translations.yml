@@ -27,8 +27,6 @@ one:
   statement: statement,
   initiators: :initiators
   slug: testsubdomain
-  created_at: 2014-07-14 20:53:32
-  updated_at: 2014-07-14 20:53:32
 
 
 two:
@@ -40,6 +38,4 @@ two:
   statement: statement,
   initiators: :initiators
   slug: test_alkmaar
-  created_at: 2014-07-14 20:53:32
-  updated_at: 2014-07-14 20:53:32
 
