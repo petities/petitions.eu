@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803125814) do
+ActiveRecord::Schema.define(version: 20161116195254) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -63,29 +63,6 @@ ActiveRecord::Schema.define(version: 20160803125814) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "faq_translations", force: :cascade do |t|
-    t.integer  "faq_id",     limit: 4,     null: false
-    t.string   "locale",     limit: 255,   null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "question",   limit: 255
-    t.text     "answer",     limit: 65535
-  end
-
-  add_index "faq_translations", ["faq_id"], name: "index_faq_translations_on_faq_id", using: :btree
-  add_index "faq_translations", ["locale"], name: "index_faq_translations_on_locale", using: :btree
-
-  create_table "faqs", force: :cascade do |t|
-    t.string   "question",    limit: 255
-    t.text     "answer",      limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "cached_slug", limit: 255
-    t.string   "group",       limit: 255
-  end
-
-  add_index "faqs", ["cached_slug"], name: "index_faqs_on_cached_slug", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id",        limit: 4
@@ -433,25 +410,6 @@ ActiveRecord::Schema.define(version: 20160803125814) do
   add_index "signatures", ["special"], name: "index_signatures_on_special", using: :btree
   add_index "signatures", ["subscribe"], name: "subscribe", using: :btree
   add_index "signatures", ["unique_key"], name: "unique_key", using: :btree
-
-  create_table "signatures_reconfirmations", force: :cascade do |t|
-    t.integer  "signature_id",               limit: 4
-    t.string   "phase",                      limit: 255
-    t.string   "status",                     limit: 255
-    t.string   "unique_key",                 limit: 255, null: false
-    t.datetime "message_sent_at"
-    t.boolean  "reconfirmed"
-    t.datetime "reconfirmed_at"
-    t.string   "reconfirmed_remote_addr",    limit: 255
-    t.string   "reconfirmed_remote_browser", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "signatures_reconfirmations", ["reconfirmed"], name: "index_signatures_reconfirmations_on_reconfirmed", using: :btree
-  add_index "signatures_reconfirmations", ["signature_id"], name: "index_signatures_reconfirmations_on_signature_id", using: :btree
-  add_index "signatures_reconfirmations", ["status"], name: "index_signatures_reconfirmations_on_status", using: :btree
-  add_index "signatures_reconfirmations", ["unique_key"], name: "index_signatures_reconfirmations_on_unique_key", unique: true, using: :btree
 
   create_table "slugs", force: :cascade do |t|
     t.string   "name",           limit: 255

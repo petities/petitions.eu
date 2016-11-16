@@ -47,7 +47,6 @@ class Signature < ActiveRecord::Base
   has_secure_token :unique_key
 
   # has_many :reminders, :class_name => 'SignaturesReminder'
-  # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
   validates :person_name, length: { in: 3..255 }
   validates :person_name, format: { with: /\A.+( |\.).+\z/ }
