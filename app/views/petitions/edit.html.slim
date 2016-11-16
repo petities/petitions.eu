@@ -84,8 +84,8 @@ div.page
             = t "petition.closed"
           div id="in_treatment" class="petition-state-label"
             = t "petition.in_treatment"
-          div id="is_answered" class="petition-state-label"
-            = t "petition.is_answered"
+          div id="completed" class="petition-state-label"
+            = t "petition.completed"
 
         - status = @petition.status || 'status unknown'
         - status_descr_key = 'petition.status.descr.' + status

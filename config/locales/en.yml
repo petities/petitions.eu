@@ -457,7 +457,7 @@ en:
       title: Title
     in_process: In process
     in_treatment: In treatment
-    is_answered: Is answered
+    completed: Is answered
     language: Language
     live: Live
     live_version: Live version
@@ -623,9 +623,10 @@ en:
         closed: Closed
         draft: Draft
         in_treatment: In treatment
-        is_answered: Answered
+        completed: Answered
         indication: 'Status:'
         signable: Signable
+        withdrawn: Withdrawn
       title: Details
       website: 'Website:'
     petition:

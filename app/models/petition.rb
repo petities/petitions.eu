@@ -242,7 +242,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    return 'is_answered' if is_answered?
+    status if %w('completed' 'withdrawn').include?(status)
   end
 
   ## edit a given petition
@@ -263,14 +263,11 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept
-       staging
-       draft).include? status
+    %w(concept staging draft).include? status
   end
 
   def is_staging?
-    %w(concept
-       staging).include? status
+    %w(concept staging).include? status
   end
 
   def is_live?
@@ -279,20 +276,11 @@ class Petition < ActiveRecord::Base
   end
 
   def is_closed?
-    %w(withdrawn
-       rejected
-       to_process
-       not_processed).include? status
+    %w(rejected to_process not_processed).include?(status)
   end
 
   def in_treatment?
-    %w(in_process
-       to_process
-       not_processed).include? status
-  end
-
-  def is_answered?
-    'completed' == status
+    %w(in_process to_process not_processed).include? status
   end
 
   def get_answer

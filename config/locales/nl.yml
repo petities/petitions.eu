@@ -460,7 +460,7 @@ nl:
       title: Titel
     in_process: Te behandelen
     in_treatment: In behandeling
-    is_answered: Is beantwoord
+    completed: Is beantwoord
     language: Taal
     live: Ondertekenbaar
     live_version: Versie
@@ -626,9 +626,10 @@ nl:
         closed: Gesloten
         draft: Nog niet af
         in_treatment: In behandeling
-        is_answered: Beantwoord
+        completed: Beantwoord
         indication: 'Status:'
         signable: Ondertekenbaar
+        withdrawn: Ingetrokken
       title: Details
       website: 'Website:'
     petition:
