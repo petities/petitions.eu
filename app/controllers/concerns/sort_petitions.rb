@@ -1,14 +1,12 @@
 require 'active_support/concern'
 
-module SortPetitions extend ActiveSupport::Concern
+module SortPetitions
+  extend ActiveSupport::Concern
 
   def sort_petitions(petitions)
     @page    = (params[:page] || 1).to_i
     @sorting = params[:sorting] || 'all'
     @order   = params[:order].to_i
-
-    # petitions = Petition.joins(:translations).live
-    direction = [:desc, :asc][@order]
 
     # describe petitions
     case @sorting
@@ -23,6 +21,7 @@ module SortPetitions extend ActiveSupport::Concern
     when 'sign_elsewhere'
       petitions = petitions.where(status: 'not_signable_here').limit(100)
     else
+      direction = [:desc, :asc][@order]
       petitions = petitions.live.order(created_at: direction).limit(100)
     end
 

@@ -116,6 +116,12 @@ nl:
       location:
         description: Waar u op het moment van ondertekenen woont. Alleen zichtbaar voor de wereld als u daarvoor kiest.
         label: Woonplaats
+      money:
+        "1": € 1
+        "5": € 5
+        "10": € 10
+        "25": € 25
+        "50": € 50
       name:
         description: Teken minstens met uw achternaam met een initiaal ervoor.
         label: Voornaam en achternaam

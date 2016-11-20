@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     get '', to: 'petitions#show'
   end
 
-  constraints OfficeSubdomain do
-    get '', to: 'desks#redirect'
+  constraints SubdomainConstraint do
+    get '', to: 'subdomains#show'
   end
 
   resources :petitions do

@@ -6,10 +6,8 @@ module FindPetition
 
     @petition = if subdomain?
                   find_by_subdomain
-                elsif params[:petition_id]
-                  find_by_id(params[:petition_id])
                 else
-                  find_by_id(params[:id])
+                  find_by_id
                 end
   end
 
@@ -19,7 +17,8 @@ module FindPetition
     Petition.find_by_subdomain(request.subdomain)
   end
 
-  def find_by_id(id)
-    Petition.friendly.find(id)
+  def find_by_id
+    petition_id = [params[:petition_id], params[:id]].detect(&:present?)
+    Petition.friendly.find(petition_id)
   end
 end

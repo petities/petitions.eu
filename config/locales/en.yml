@@ -114,6 +114,12 @@ en:
       location:
         description: "Where you currently live, visible to the world if you choose."
         label: Place
+      money:
+        1: € 1
+        5: € 5
+        10: € 10
+        25: € 25
+        50: € 50
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname

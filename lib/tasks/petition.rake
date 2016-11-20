@@ -2,7 +2,7 @@ namespace :petition do
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
 
-    Petition.live.each do |petition|
+    Petition.live.find_each do |petition|
       count = petition.signatures.confirmed.count
       old_count = petition.signatures_count
 
@@ -27,7 +27,7 @@ namespace :petition do
 
     r = Redis.new
 
-    Petition.live.each do |petition|
+    Petition.live.find_each do |petition|
       r.del("p#{petition.id}_city")
       puts i
 

@@ -242,18 +242,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    status if %w('completed' 'withdrawn').include?(status)
-  end
-
-  ## edit a given petition
-  def can_edit_petition?(user)
-    return true if user.has_role? :admin
-
-    office = Office.find(office_id)
-
-    return true if office && user.has_role?(office, :admin)
-
-    false
+    status if %w(completed withdrawn).include?(status)
   end
 
   # All users who signed this petition should get an
@@ -263,16 +252,15 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept staging draft).include? status
+    %w(concept staging draft).include?(status)
   end
 
   def is_staging?
-    %w(concept staging).include? status
+    %w(concept staging).include?(status)
   end
 
   def is_live?
-    %w(live
-       not_signable_here).include? status
+    %w(live not_signable_here).include?(status)
   end
 
   def is_closed?
@@ -280,7 +268,7 @@ class Petition < ActiveRecord::Base
   end
 
   def in_treatment?
-    %w(in_process to_process not_processed).include? status
+    %w(in_process to_process not_processed).include?(status)
   end
 
   def get_answer
