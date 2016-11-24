@@ -18,8 +18,8 @@ namespace :petition do
 
   desc 'create redis signature CITY counts'
   task set_redis_city_counts: :environment do
-    def city_counts
-      @signatures_count_by_city = @all_signatures.group_by(&:person_city)
+    def city_counts(petition)
+      @signatures_count_by_city = petition.signatures.group_by(&:person_city)
                                   .map { |group| [group[0], group[1].size] }
                                   .select { |group| group[1] >= 20 }
                                   .sort_by { |group| group[1] }
@@ -29,7 +29,6 @@ namespace :petition do
 
     Petition.live.find_each do |petition|
       r.del("p#{petition.id}_city")
-      puts i
 
       city_counts(petition).each do |group|
         city_name = group[0].downcase
@@ -67,7 +66,7 @@ namespace :petition do
 
     #delete_all
     #
-    Petition.live.order(id: :desc).each do |petition|
+    Petition.live.find_each do |petition|
 
       count = petition.signatures.confirmed.count
 

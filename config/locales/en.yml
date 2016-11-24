@@ -211,6 +211,7 @@ en:
   contact_mailer:
     webmaster_message:
       subject: Message from petities.nl
+      intro: This message was sent using the contact form on petities.nl
   description: Description
   desk:
     general_desk_admins: Petition desk accounts
@@ -311,7 +312,7 @@ en:
         descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
         descr3: |
             <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
-        descr4: "Make sure the title summarises the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
+        descr4: "Make sure the title summarizes the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
         links: Include links
         markdown: Use styling
         tips: See the handbook

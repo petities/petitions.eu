@@ -213,6 +213,7 @@ nl:
   contact_mailer:
     webmaster_message:
       subject: Bericht vanaf petities.nl
+      intro: Dit bericht is verzonden via het contactformulier op petities.nl
   description: Beschrijving
   desk:
     general_desk_admins: Petitieloket logins
@@ -310,7 +311,7 @@ nl:
     petition:
       update:
         help: Vat samen
-        descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet**gedrukt."
+        descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet** gedrukt."
         descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
         descr3: |
               <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
@@ -372,7 +373,7 @@ nl:
   manage:
     title: Mijn petities
   my:
-    activeadmin: beheerscherm
+    activeadmin: Beheerscherm
     create_newsupdate: Schrijf nieuwtje
     desk: Petitieloket
     mailpreviews: Previews standaardmails
