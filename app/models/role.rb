@@ -15,4 +15,6 @@ class Role < ActiveRecord::Base
   belongs_to :resource, polymorphic: true
 
   scopify
+
+  scope :without_resource, -> { where(resource_type: nil, resource_id: nil) }
 end

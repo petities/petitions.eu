@@ -50,7 +50,7 @@ div.page
 
     section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
       div.petition-intro-image-container
-        = image_tag( @petition.image.upload.url, class: 'petition-intro-image') if @petition.image
+        = image_tag(@petition.image.upload.url, class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)

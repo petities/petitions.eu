@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, 
-                :password, :password_confirmation, 
+  permit_params :email, :first_name, :last_name,
+                :password, :password_confirmation,
                 :telephone, :petition_id, role_ids: []
 
   index do
@@ -33,13 +33,15 @@ ActiveAdmin.register User do
         column :name
         column :resource_type
         column :resource_id
+        column :name do |item|
+          link_to(item.resource.name, [:admin, item.resource]) if item.resource
+        end
       end
     end
   end
 
   form do |f|
     f.inputs 'User Details' do
-
       f.input :email
       f.input :telephone
       f.input :password
@@ -50,8 +52,7 @@ ActiveAdmin.register User do
       end
 
       panel 'website roles' do
-        f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
-        #f.input :roles, as: :check_boxes, collection: user.roles #Role.where(resource_id: nil, resource_type: nil)
+        f.input :roles, as: :check_boxes, collection: Role.without_resource
       end
 
       panel 'petition roles' do
@@ -71,7 +72,6 @@ ActiveAdmin.register User do
     end
 
     f.actions
-
   end
 
   controller do
@@ -81,7 +81,7 @@ ActiveAdmin.register User do
         #user = User.find(params[:id])
 
         role = Role.where(
-          resource_id: params[:petition_id], 
+          resource_id: params[:petition_id],
           resource_type: 'Petition').first
 
         if role
