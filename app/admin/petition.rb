@@ -70,4 +70,13 @@ ActiveAdmin.register Petition do
       new_admin_petition_translation_path(petition_translation: { petition_id: resource.id })
     )
   end
+
+  sidebar :users, only: :show do
+    table_for resource.users do
+      column :id do |item|
+        link_to(item.id, [:admin, item])
+      end
+      column :name
+    end
+  end
 end

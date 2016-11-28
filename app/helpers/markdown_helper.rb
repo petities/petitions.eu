@@ -1,12 +1,11 @@
 module MarkdownHelper
   def markdown(text)
     rc = Redcarpet::Markdown.new(
-      Redcarpet::Render::HTML,
+      Redcarpet::Render::HTML.new(filter_html: true),
       fenced_code_blocks: false,
       disable_indented_code_blocks: true,
       strikethrough: true)
-    # rc = Redcarpet::Markdown.new(Redcarpet::Render::HTML, )
-    rc.render(text).html_safe if text
+    rc.render(text.to_s).html_safe if text
   end
 
   def strip_markdown(text)
@@ -14,7 +13,7 @@ module MarkdownHelper
 
     renderer = Redcarpet::Render::StripDown.new
     markdown = Redcarpet::Markdown.new(renderer)
-    markdown.render(text.to_s)
+    markdown.render(strip_tags(text.to_s))
   end
 end
 

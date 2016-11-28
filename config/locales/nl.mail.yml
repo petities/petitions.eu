@@ -128,7 +128,7 @@ te verzamelen.
 Als een petitie dicht gaat omdat de indiendatum bereikt is dan ontvangt u volautomatisch allemaal e-mails van ons over het beantwoorden van de
 petitie. Omdat u een loket heeft kunt u dit allemaal zelf af.
 '
-      changed_subject: 'De petitie "%{petition}" is van status veranderd naar: '
+      changed_subject: 'De petitie "%{petition}" is van status veranderd naar: %{status}'
       dear: bemensing van petitieloket
     signoff: '
 U kunt inloggen op uw petitie via https://petities.nl/login met %{petitioner_email} en uw wachtwoord.

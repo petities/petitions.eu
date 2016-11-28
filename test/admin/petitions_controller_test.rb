@@ -28,6 +28,17 @@ module Admin
       end
     end
 
+    test 'should get show contains users' do
+      get :show, id: @petition
+      assert_equal @petition.users.size, 3
+
+      assert_select 'div#users_sidebar_section table' do |elements|
+        elements.each do |element|
+          assert_select element, 'tbody tr', @petition.users.size
+        end
+      end
+    end
+
     test 'should get edit' do
       get :edit, id: @petition
       assert_response :success
