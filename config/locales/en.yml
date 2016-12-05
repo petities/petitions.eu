@@ -585,9 +585,9 @@ en:
     birth_date: Date of birth
     city: Woonplaats
     edit_your_information: Edit your information
+    email: E-mail
     details:
       fakename: Your name should be known to us, but you can choose yourself how the outside world sees you.
-      please_change:
       privacy: Data about your last session to check if it was really you.
       title: Explanation
       your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'
@@ -601,6 +601,7 @@ en:
     submit: Update profile
     title: Your personal information
     your_city: Your place of residence
+    your_email: Your email
     your_name: Your real name please
     your_postalcode: Your postal code
     your_telephone: Your telephone number
@@ -720,6 +721,8 @@ en:
       addressed:
         description: A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
         label: Addressed to
+      cannot_edit_live_petition: You cannot edit a live petition
+      cannot_start_without_email: You cannot start a petition without providing your email
       finalize: Open the petition
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
@@ -740,7 +743,7 @@ en:
         finalize:
           finalize_description: 'Ready, open this petition for signing!'
         name:
-          description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
+          description: A petition should have a (legal) person responsible for the petition and the spokesperson. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname
         organisation:
           description: Optional. An organisation reassures signatories that you are not the only one to take responsibility.

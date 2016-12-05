@@ -8,32 +8,32 @@ div#edit_details.petition-details style='display: none; position:relative'
     div.petition-edit-label
       = t('profile.real_name')
     = f.text_field :name, class: 'petition-edit-input',
-                   placeholder: t('profile.your_name', default: 'your real name please')
+                   placeholder: t('profile.your_name')
 
     div.petition-edit-label
       = t('profile.email')
     = f.text_field :email, class: 'petition-edit-input',
-                   placeholder: t('profile.your_new_email', default: 'your new email (confirmation needed)')
+                   placeholder: t('profile.your_email')
 
     div.petition-edit-label
       = t('profile.phone')
     = f.text_field :telephone, class: 'petition-edit-input',
-                   placeholder: t('profile.your_telephone', default: 'your telephone number')
+                   placeholder: t('profile.your_telephone')
 
     div.petition-edit-label
       = t('profile.city')
     = f.text_field :city, class: 'petition-edit-input',
-                   placeholder: t('profile.your_city', default: 'your city')
+                   placeholder: t('profile.your_city')
 
     div.petition-edit-label
       = t('profile.address')
     = f.text_field :address, class: 'petition-edit-input',
-                   placeholder: t('profile.your_street_and_number', default: 'your street and number')
+                   placeholder: t('profile.your_street_and_number')
 
     div.petition-edit-label
       = t('profile.postalcode')
     = f.text_field :postalcode, class: 'petition-edit-input',
-                   placeholder: t('profile.your_postalcode', default: 'your postalcode')
+                   placeholder: t('profile.your_postalcode')
 
     div.petition-edit-label
       = t('profile.birth_date')

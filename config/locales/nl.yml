@@ -588,9 +588,9 @@ nl:
     birth_date: Geboortedatum
     city: Woonplaats
     edit_your_information: Bewerk uw gegevens
+    email: E-mailadres
     details:
       fakename: Uw naam moet bij ons wel bekend zijn, maar u kunt zelf bepalen hoe u zichtbaar bent voor de buitenwereld.
-      please_change:
       privacy: Met gegevens over uw laatste sessie kunt u zien of u dat wel was
       title: Toelichting
       your_profile: Deze gegevens zijn alleen bij ons bekend. Gebruik het e-mailadres en telefoonnummer waar we u over de petitie goed kunnen (blijven) bereiken. Dus geen gelegenheidsadres die u voor een petitie aanmaakt.
@@ -604,6 +604,7 @@ nl:
     submit: Werk profiel bij
     title: Uw persoonlijke gegevens
     your_city: Uw woonplaats
+    your_email: Uw e-mailadres
     your_name: Uw echte naam alstublieft
     your_postalcode: Uw postcode
     your_telephone: Uw telefoonnummer
@@ -723,6 +724,8 @@ nl:
       addressed:
         description: Een petitie is altijd gericht aan een beslisser. Aan individuele organisaties (zoals televisie-omroepen) kunt u geen petitie richten, tenzij er geen alternatieven voor zijn. Ontbreekt een organisatie, vraag het webmaster@petities.nl
         label: Gericht aan
+      cannot_edit_live_petition: Een ondertekenbare petitie kan niet aangepast worden
+      cannot_start_without_email: Zonder e-mailadres kunt u geen petitie starten
       finalize: Open de petitie
       image:
         description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.

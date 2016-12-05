@@ -26,6 +26,8 @@ class PetitionsController < ApplicationController
                   petitions.order(created_at: direction)
                 when 'signquick'
                   petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
+                else
+                  petitions
                 end
 
     @sorting_options = [
