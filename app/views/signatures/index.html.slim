@@ -9,7 +9,7 @@ div.page.top
       h1.petition-intro-info-title=@petition.name
       div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
       div.petition-intro-info-text.whitespace
-        p= @petition.description
+        p= markdown @petition.description
 
       - if @petition.status == 'live'
         = link_to t('signatures.sign'), petition_path(@petition), class: "button"

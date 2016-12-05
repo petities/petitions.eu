@@ -14,19 +14,19 @@ class PetitionsController < ApplicationController
     @sorting = params[:sorting] || 'active'
     @order = params[:order].to_i
 
-    # petitions = Petition.joins(:translations).live
     petitions = Petition.live
-    direction = [:desc, :asc][@order]
 
-    if @sorting == 'active'
-      petitions = $redis.zrevrange('active_rate', 0, 160)
-    elsif @sorting == 'biggest'
-      petitions = $redis.zrevrange('petition_size', 0, 160)
-    elsif @sorting == 'newest'
-      petitions = petitions.order(created_at: direction)
-    elsif @sorting == 'signquick'
-      petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
-    end
+    petitions = case @sorting
+                when 'active'
+                  petitions.where(id: $redis.zrevrange('active_rate', 0, 160))
+                when 'biggest'
+                  petitions.where(id: $redis.zrevrange('petition_size', 0, 160))
+                when 'newest'
+                  direction = [:desc, :asc][@order]
+                  petitions.order(created_at: direction)
+                when 'signquick'
+                  petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
+                end
 
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
@@ -36,17 +36,6 @@ class PetitionsController < ApplicationController
     ]
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
-
-    @ranked_petitions = []
-
-    if @petitions.is_a?(Array)
-      @petitions.each do |id|
-        petition = Petition.live.find_by_id(id)
-        @ranked_petitions.push(petition) if petition
-        petition = nil
-      end
-      @petitions.clear
-    end
 
     respond_to :html, :js
   end
