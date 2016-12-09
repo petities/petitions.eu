@@ -18,9 +18,11 @@ class PetitionsController < ApplicationController
 
     petitions = case @sorting
                 when 'active'
-                  petitions.where(id: $redis.zrevrange('active_rate', 0, 160))
+                  petition_ids = $redis.zrevrange('active_rate', 0, 160)
+                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
                 when 'biggest'
-                  petitions.where(id: $redis.zrevrange('petition_size', 0, 160))
+                  petition_ids = $redis.zrevrange('petition_size', 0, 160)
+                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
                 when 'newest'
                   direction = [:desc, :asc][@order]
                   petitions.order(created_at: direction)

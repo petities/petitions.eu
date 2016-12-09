@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :ensure_domain
 
   before_action do
-    # @news = Update.website_news.limit(12) if request.get?
-    @news = Update.show_on_home.limit(12) if request.get?
+    @news = Update.show_on_home.limit(8) if request.get?
   end
 
   # redirect users..

@@ -1,4 +1,6 @@
 class SignatureMailer < ApplicationMailer
+  helper :petitions
+
   # all signatories get a mail that the hand over took place
   def handed_over_signatories_mail(signature)
     @signature = signature
