@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name,
-                :password, :password_confirmation,
-                :telephone, :petition_id, role_ids: []
+  permit_params :email, :name, :telephone, :address, :postalcode, :city,
+                :birth_date, :birth_city, :password, :password_confirmation,
+                :petition_id, role_ids: []
 
   index do
     selectable_column
@@ -23,9 +23,13 @@ ActiveAdmin.register User do
   show do
     attributes_table do
       row :email
-      row :first_name
-      row :last_name
+      row :name
       row :telephone
+      row :address
+      row :postalcode
+      row :city
+      row :birth_date
+      row :birth_city
     end
 
     panel 'user roles' do
@@ -43,7 +47,13 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs 'User Details' do
       f.input :email
+      f.input :name
       f.input :telephone
+      f.input :address
+      f.input :postalcode
+      f.input :city
+      f.input :birth_date
+      f.input :birth_city
       f.input :password
       f.input :password_confirmation
 

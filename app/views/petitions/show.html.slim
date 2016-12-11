@@ -38,7 +38,7 @@ div.page
         = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'petition-editbutton button whitespace'
 
   div
-    - if not @updates.empty?
+    - if @updates.any?
       - if @updates.first.created_at > 10.days.ago
         = link_to t('petition.news'), '#petitionnews', class: 'button'
         p &nbsp;
