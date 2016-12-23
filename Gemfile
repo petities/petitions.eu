@@ -12,9 +12,8 @@ gem 'friendly_id'
 gem 'friendly_id-globalize'
 
 # Use sqlite3 as the database for Active Record
-
 gem 'sqlite3', group: :development
-gem 'mysql2', '~> 0.4.4'
+gem 'mysql2', '~> 0.4.5'
 
 # legacy utf 8 issues..
 gem 'utf8-cleaner'

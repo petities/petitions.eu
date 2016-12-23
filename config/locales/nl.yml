@@ -689,9 +689,6 @@ nl:
     signatures_count:
       one: "%{count} ondertekening"
       other: "%{count} ondertekeningen"
-  sign:
-    wrong_email: Wrong email
-    wrong_name: Wrong name
   signature:
     confirm: Bevestig
     confirm_errors: 'Er ontbreekt wat verplichte informatie, uw ondertekening is nog niet bewaard'

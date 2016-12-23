@@ -136,7 +136,7 @@ $(document).ready(function(){
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');
-      var error_name = window.wrong_name_error || 'Name and Surname';
+      var error_name = window.wrong_name_error;
       $errorsBlock.append(error_name);
       // $errorsBlock.append('Please enter correct Name and Surname.<br>');
       result = false;
@@ -145,7 +145,7 @@ $(document).ready(function(){
     if(!$emailField.val().match(emailRegex)){
       // console.log($emailField.val());
       $emailField.addClass('error');
-      var error_email = window.wrong_email_error || 'Email is wrong';
+      var error_email = window.wrong_email_error;
       $errorsBlock.append(" " + error_email);
       result = false;
     }

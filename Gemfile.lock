@@ -219,7 +219,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
-    mysql2 (0.4.4)
+    mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
@@ -448,7 +448,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mailcatcher
-  mysql2 (~> 0.4.4)
+  mysql2 (~> 0.4.5)
   paper_trail
   paperclip
   prawn

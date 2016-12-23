@@ -686,9 +686,6 @@ en:
     signatures_count:
       one: "%{count} signature"
       other: "%{count} signatures"
-  sign:
-    wrong_email: Wrong email
-    wrong_name: Wrong name
   signature:
     confirm: Confirm
     confirm_errors: 'Some required information is missing, your signature is not saved yet...'

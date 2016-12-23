@@ -9,9 +9,8 @@ div.page
       window.check_fields = #{raw @check_fields.to_json};
       window.error_fields = #{raw @error_fields.to_json};
 
-      window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
-      window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
-
+      window.wrong_name_error = "#{t('show.sign.form.errors.name')}";
+      window.wrong_email_error = "#{t('show.sign.form.errors.email')}";
 
     = form_for @signature, url: @url, remote: true, data: { type: :json } do |f|
 
@@ -401,4 +400,3 @@ div.page
 
       div.start-petition-form-cell.label.empty
         | &nbsp;
-

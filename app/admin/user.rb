@@ -86,23 +86,10 @@ ActiveAdmin.register User do
 
   controller do
     def update
-      if not params[:petition_id].blank?
-        #petition = Petition.find(params[:petition_id])
-        #user = User.find(params[:id])
-
-        role = Role.where(
-          resource_id: params[:petition_id],
-          resource_type: 'Petition').first
-
-        if role
-          params[:user][:role_ids].push(role.id)
-        end
-
-        #if petition
-        #  user.add_role(:admin, petition)
-        #  user.save
-        #end
-
+      if params[:petition_id].present?
+        petition = Petition.find(params[:petition_id])
+        role = petition.roles.find_or_create_by(name: :admin)
+        params[:user][:role_ids].push(role.id)
       end
 
       if params[:user][:password].blank?

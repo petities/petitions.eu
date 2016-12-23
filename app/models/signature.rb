@@ -46,8 +46,6 @@ class Signature < ActiveRecord::Base
 
   has_secure_token :unique_key
 
-  # has_many :reminders, :class_name => 'SignaturesReminder'
-
   validates :person_name, length: { in: 3..255 }
   validates :person_name, format: { with: /\A.+( |\.).+\z/ }
   validates :person_email, email: true
@@ -122,13 +120,8 @@ class Signature < ActiveRecord::Base
   after_save :update_petition
 
   def update_petition
-
     # no more hit/edit/save on petition! YAY
-    if self.confirmed_changed?
-      self.set_redis_keys
-      # no more hit/edit/save on petition! YAY
-    end
-
+    set_redis_keys if confirmed_changed?
   end
 
   def set_last_key(last)
@@ -176,7 +169,7 @@ class Signature < ActiveRecord::Base
       # city count
       $redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
-      $redis.incr("p#{petition.id}-count")
+      $redis.incr("p#{petition.id}-count") if petition.is_live?
       # activity rating
       petition.update_active_rate!
     end

@@ -1,7 +1,6 @@
 namespace :petition do
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
-
     Petition.live.find_each do |petition|
       count = petition.signatures.confirmed.count
       old_count = petition.signatures_count
@@ -76,7 +75,7 @@ namespace :petition do
         petition.id, count, petition.name]
 
       # general count
-      $redis.set('p%s-count' % petition.id, count)
+      $redis.set("p#{petition.id}-count", count)
       # Main rankings
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)
