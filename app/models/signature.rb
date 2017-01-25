@@ -114,7 +114,7 @@ class Signature < ActiveRecord::Base
   scope :ordered, -> { order('sort_order DESC, signed_at ASC') }
 
   before_validation :lowercase_person_email
-  before_save :fill_confirmed_at, :truncate_remote_browser
+  before_save :fill_confirmed_at, :truncate_remote_browser, :set_sort_order
   before_create :fill_signed_at
 
   after_save :update_petition
@@ -222,5 +222,9 @@ class Signature < ActiveRecord::Base
       value = read_attribute(field)
       write_attribute(field, value.slice(0, 255)) if value.present?
     end
+  end
+
+  def set_sort_order
+    self.sort_order = 0 if sort_order.blank?
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116195254) do
+ActiveRecord::Schema.define(version: 20170121141607) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -378,7 +378,7 @@ ActiveRecord::Schema.define(version: 20161116195254) do
     t.datetime "confirmed_at"
     t.boolean  "confirmed",                               default: false, null: false
     t.string   "unique_key",                  limit: 255
-    t.boolean  "special"
+    t.boolean  "special",                                 default: false, null: false
     t.string   "person_city",                 limit: 255
     t.boolean  "subscribe",                               default: false
     t.string   "person_birth_date",           limit: 255

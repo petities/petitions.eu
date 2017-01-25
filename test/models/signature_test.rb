@@ -22,4 +22,10 @@ class SignatureTest < ActiveSupport::TestCase
     assert_equal @signature.signature_remote_browser.length, 255
     assert_equal @signature.confirmation_remote_browser.length, 255
   end
+
+  test 'sort_order should be integer' do
+    @signature.sort_order = nil
+    @signature.save
+    assert_equal @signature.sort_order, 0
+  end
 end
