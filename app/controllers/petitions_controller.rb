@@ -10,7 +10,7 @@ class PetitionsController < ApplicationController
   def index
     @vervolg = true
 
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'active'
     @order = params[:order].to_i
 
@@ -53,7 +53,7 @@ class PetitionsController < ApplicationController
   def search
     # enable search on petition title. TODO ransack?
     # @search = 0
-    @page = params[:page] || 1
+    @page = cleanup_page(params[:page])
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
@@ -70,7 +70,7 @@ class PetitionsController < ApplicationController
   end
 
   def admin
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'live'
     @order   = params[:order].to_i
 
@@ -110,7 +110,7 @@ class PetitionsController < ApplicationController
   end
 
   def set_petition_vars
-    @page = (params[:page] || 1).to_i
+    @page = cleanup_page(params[:page])
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
@@ -257,7 +257,7 @@ class PetitionsController < ApplicationController
 
     @exclude_list = policy(@petition).invalid_attributes
 
-    @page = params[:page]
+    @page = cleanup_page(params[:page])
 
     set_petition_vars
 
@@ -265,7 +265,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .paginate(page: params[:page], per_page: 12)
+                           .paginate(page: @page, per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
 

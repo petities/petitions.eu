@@ -93,4 +93,10 @@ class ApplicationController < ActionController::Base
       protocol: protocol 
     }.merge(options)
   end
+
+  # Page should be a integer, value 1 or larger
+  def cleanup_page(input)
+    page = input.to_i
+    page > 0 ? page : 1
+  end
 end

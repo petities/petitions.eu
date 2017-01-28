@@ -4,7 +4,7 @@ module SortPetitions
   extend ActiveSupport::Concern
 
   def sort_petitions(petitions)
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'all'
     @order   = params[:order].to_i
 

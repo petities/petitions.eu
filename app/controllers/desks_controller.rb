@@ -19,7 +19,7 @@ class DesksController < ApplicationController
   private
 
   def show_office_page
-    @page = params[:page] || 1
+    @page = cleanup_page(params[:page])
 
     @petitions = Petition.where(office_id: @office.id)
 

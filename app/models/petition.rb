@@ -157,6 +157,9 @@ class Petition < ActiveRecord::Base
   include StripWhitespace
   strip_whitespace :name, :description, :initiators, :statement, :request
 
+  include TruncateString
+  truncate_string :link1_text, :link2_text, :link3_text
+
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :initiators
@@ -333,7 +336,6 @@ class Petition < ActiveRecord::Base
   end
 
   def delete_keys
-
     r = $redis
 
     keys_d = r.keys("p-d-#{id}-*")
@@ -341,7 +343,6 @@ class Petition < ActiveRecord::Base
 
     r.del(*keys_d) if keys_d.size > 0
     r.del(*keys_h) if keys_h.size > 0
-
   end
 
   def create_raw_sql_barchart_keys
@@ -392,7 +393,6 @@ class Petition < ActiveRecord::Base
     recent_signatures.each do |signature|
       signature.set_redis_keys(true)
     end
-
   end
 
   def image

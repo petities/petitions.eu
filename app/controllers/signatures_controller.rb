@@ -63,8 +63,9 @@ class SignaturesController < ApplicationController
 
     @query = params[:query]
 
+    page = cleanup_page(params[:page])
     @signatures = if @query.blank?
-                    @petition.signatures.ordered.paginate(page: params[:page], per_page: 100)
+                    @petition.signatures.ordered.paginate(page: page, per_page: 100)
                   else
                     @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
                   end

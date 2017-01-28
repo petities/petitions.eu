@@ -41,6 +41,9 @@ class Signature < ActiveRecord::Base
   include StripWhitespace
   strip_whitespace :person_city, :person_email, :person_function, :person_name, :person_street_number
 
+  include TruncateString
+  truncate_string :signature_remote_browser, :confirmation_remote_browser
+
   belongs_to :petition
   has_one :petition_type, through: :petition
 
@@ -114,7 +117,7 @@ class Signature < ActiveRecord::Base
   scope :ordered, -> { order('sort_order DESC, signed_at ASC') }
 
   before_validation :lowercase_person_email
-  before_save :fill_confirmed_at, :truncate_remote_browser, :set_sort_order
+  before_save :fill_confirmed_at, :set_sort_order
   before_create :fill_signed_at
 
   after_save :update_petition
@@ -215,13 +218,6 @@ class Signature < ActiveRecord::Base
 
   def fill_signed_at
     self.signed_at = Time.now.utc if signed_at.nil?
-  end
-
-  def truncate_remote_browser
-    [:signature_remote_browser, :confirmation_remote_browser].each do |field|
-      value = read_attribute(field)
-      write_attribute(field, value.slice(0, 255)) if value.present?
-    end
   end
 
   def set_sort_order
