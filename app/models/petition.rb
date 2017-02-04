@@ -392,6 +392,6 @@ class Petition < ActiveRecord::Base
   end
 
   def active_petition_type
-    petition_type || office.petition_type
+    petition_type || (office && office.petition_type)
   end
 end
