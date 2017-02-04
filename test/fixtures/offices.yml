@@ -34,3 +34,8 @@ three:
   name: gemeente alkmaar
   subdomain: alkmaar
   slug: alkmaar
+
+zwolle:
+  name: Gemeente zwolle
+  subdomain: zwolle
+  petition_type: all_needed

@@ -98,3 +98,14 @@ two:
   subdomain: weghiermee
   status: live
 
+three:
+  name: test3
+  description: test for petition_type restrictions at office
+  request: request
+  office: zwolle
+  petitioner_email: test@test.nl
+  statement: statement
+  initiators: the people
+  slug: test3
+  subdomain: test3
+  status: live

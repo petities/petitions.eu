@@ -19,4 +19,13 @@ class PetitionTest < ActiveSupport::TestCase
       assert_truncate_string(@petition, field)
     end
   end
+
+  test 'active_petition_type should choose petition_type' do
+    # When set at petition
+    assert_equal(@petition.active_petition_type.name, @petition.petition_type.name)
+
+    # When set at office
+    petition = petitions(:three)
+    assert_equal(petition.active_petition_type.name, petition.office.petition_type.name)
+  end
 end

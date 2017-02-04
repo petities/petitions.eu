@@ -45,7 +45,6 @@ class Signature < ActiveRecord::Base
   truncate_string :signature_remote_browser, :confirmation_remote_browser
 
   belongs_to :petition
-  has_one :petition_type, through: :petition
 
   has_secure_token :unique_key
 
@@ -180,23 +179,23 @@ class Signature < ActiveRecord::Base
   end
 
   def require_full_address?
-    petition_type.present? && petition_type.require_signature_full_address?
+    active_petition_type && active_petition_type.require_signature_full_address?
   end
 
   def require_born_at?
-    petition_type.present? && petition_type.require_person_born_at?
+    active_petition_type && active_petition_type.require_person_born_at?
   end
 
   def require_minimum_age?
-    petition_type.present? && petition_type.required_minimum_age.present?
+    active_petition_type && active_petition_type.required_minimum_age.present?
   end
 
   def require_person_city?
-    petition_type.present? && petition_type.require_person_birth_city?
+    active_petition_type && active_petition_type.require_person_birth_city?
   end
 
   def require_person_country?
-    petition_type.present? && petition_type.country_code.present?
+    active_petition_type && active_petition_type.country_code.present?
   end
 
   private
@@ -222,5 +221,9 @@ class Signature < ActiveRecord::Base
 
   def set_sort_order
     self.sort_order = 0 if sort_order.blank?
+  end
+
+  def active_petition_type
+    petition.active_petition_type
   end
 end

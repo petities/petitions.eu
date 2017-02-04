@@ -278,14 +278,6 @@ class Petition < ActiveRecord::Base
     updates.find_by(show_on_petition: true)
   end
 
-  def display_city_select_box?
-    if petition_type.present?
-      petition_type.allowed_cities.present?
-    elsif office.present? && office.petition_type.present?
-      office.petition_type.allowed_cities.present?
-    end
-  end
-
   def redis_history_chart_json(hist = 10)
     start = Time.now - hist.day
 
@@ -397,5 +389,9 @@ class Petition < ActiveRecord::Base
 
   def image
     images.last if images.any?
+  end
+
+  def active_petition_type
+    petition_type || office.petition_type
   end
 end
