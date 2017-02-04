@@ -183,12 +183,6 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-    if params[:images].present?
-      params[:images].each do |image|
-        @petition.images << Image.new(upload: image)
-      end
-    end
-
     @exclude_list = []
 
     @password = 'you already have'
@@ -357,12 +351,6 @@ class PetitionsController < ApplicationController
 
     update_locale_list
 
-    if params[:images].present?
-      params[:images].each do |image|
-        @petition.images << Image.new(upload: image)
-      end
-    end
-
     # update params_with permissions
     # only update what is allowed
     exclude_list = policy(@petition).invalid_attributes
@@ -462,7 +450,8 @@ class PetitionsController < ApplicationController
       :link1, :link1_text,
       :link2, :link2_text,
       :link3, :link3_text,
-      :subdomain
+      :subdomain,
+      images_attributes: [:id, :upload, :_destroy]
     )
   end
 

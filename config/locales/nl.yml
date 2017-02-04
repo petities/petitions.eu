@@ -37,6 +37,9 @@ nl:
         person_city: Woonplaats
         person_function: Functie of situatie
         confirmed_at: Bevestigd op
+      image:
+        _destroy: Verwijder deze afbeelding
+
     errors:
       models:
         signature:
@@ -526,7 +529,7 @@ nl:
     text_blue: U kunt e-mail sturen naar de ondertekenaars. Stuur de tekst naar webmaster@petities.nl en wij verzorgen de verzending.
     text_green: Ondertekenaars kunnen een donatie toezeggen voor de petitie. Daarmee kunt u bijvoorbeeld een lobbyist, jurist of andere specialist inhuren. Vraag ons per e-mail hoeveel er al toegezegd is.
     text_grey: Ondertekenaars willen u misschien helpen. Na het bevestigen van hun ondertekening kunnen ze aangeven waar ze goed in zijn. Zoekt u een bepaalde persoon of wilt u weten wat men zoal heeft toegezegd? Vraag het ons per e-mail.
-    text_grey_2: Uw petitie moet door u worden ingediend als de indiendatum is bereikt. U kunt de datum eventueel zelf aanpassen. Vraag ons eventueel om hulp.
+    text_grey_2: Uw petitie moet door u worden ingediend als de indiendatum is bereikt. U kunt de datum zelf aanpassen. Vraag ons eventueel om hulp.
     title_blue: Voortgangsberichten
     title_green: Donaties
     title_grey: Hulp van ondertekenaars
@@ -727,7 +730,6 @@ nl:
       image:
         description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.
         label: Petitie-plaatje
-        now: Nu
       name:
         description: De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
         label: Naam van de petitie

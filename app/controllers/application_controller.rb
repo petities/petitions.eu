@@ -78,19 +78,11 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-
-    protocol = 'https' 
-
-    if Rails.env.test?
-      protocol = 'http' 
-    end
-    
-    if Rails.env.development?
-      protocol = 'http' 
-    end
+    protocol = 'https'
+    protocol = 'http' if Rails.env.development? || Rails.env.test?
 
     { locale: I18n.locale,
-      protocol: protocol 
+      protocol: protocol
     }.merge(options)
   end
 

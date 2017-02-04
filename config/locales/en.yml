@@ -35,6 +35,8 @@ en:
         person_city: City
         person_function: Function or situation
         confirmed_at: Confirmed at
+      image:
+        _destroy: Remove this image
     errors:
       models:
         signature:
@@ -724,7 +726,6 @@ en:
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image
-        now: Now
       name:
         description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
         label: Title of the petition

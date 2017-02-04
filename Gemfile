@@ -47,9 +47,7 @@ gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'
-# gem 'will_paginate-bootstrap'
 gem 'will-paginate-i18n'
-#
 
 # gem 'i18n_generators'
 gem 'i18n-tasks'
@@ -65,7 +63,8 @@ gem 'sprockets'
 gem 'sprockets-rails'
 
 # image file upload made easypeasy
-gem 'paperclip'
+gem 'paperclip', '~> 5.1'
+gem 'delayed_paperclip', '~> 3.0', '>= 3.0.1'
 
 # execute jobs on the side..
 gem 'sidekiq'

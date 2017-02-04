@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170126063346) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alt_label",           limit: 255
+    t.boolean  "upload_processing"
   end
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree

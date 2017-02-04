@@ -101,19 +101,18 @@
     div.start-petition-form-cell.label
       p= t('start.form.request.description')
 
-  div.start-petition-form-row
-    div.start-petition-form-cell.input
-      div.start-petition-form-cell-title= t('start.form.image.label')
-      = file_field_tag 'images[]', class: 'start-petition-form-cell-input'
-    div.start-petition-form-cell.label
-      p= t('start.form.image.description')
-
-      - if @images && @images.size > 0
-        div.start-petition-form-row
-          div.start-petition-form-cell.input
-            div.start-petition-form-cell-title= t('start.form.image.now')
-            - @images.each do |image|
-              = image_tag image.upload.url, width: '100'
+  - f.object.images.build if f.object.images.none?
+  = f.fields_for :images do |fi|
+    div.start-petition-form-row
+      div.start-petition-form-cell.input
+        div.start-petition-form-cell-title= t('start.form.image.label')
+        = fi.file_field :upload, class: 'start-petition-form-cell-input'
+        - unless fi.object.new_record?
+          = image_tag fi.object.upload.url(:listing), class: 'start-petition-form-cell-upload-image'
+          = fi.check_box :_destroy
+          = fi.label :_destroy
+      div.start-petition-form-cell.label
+        p= t('start.form.image.description')
 
   - if(user_signed_in? && current_user.has_role?(:admin, @petition.office))
 

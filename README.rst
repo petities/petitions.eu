@@ -42,7 +42,7 @@ README
 
 * Services (job queues, cache servers, search engines, etc.)
 
-    sidekiq -q mailers
+    sidekiq
 
     redis
 

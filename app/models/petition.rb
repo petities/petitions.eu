@@ -137,7 +137,7 @@ class Petition < ActiveRecord::Base
   belongs_to :organisation
 
   has_many :images, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   has_many :new_signatures, dependent: :destroy
   has_many :signatures, dependent: :destroy

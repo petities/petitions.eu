@@ -4,7 +4,7 @@
   meta property="og:url" content=petition_url(@petition)
   meta property="og:title" content=@petition.name
   - if @petition.image
-    meta property="og:image" content=asset_url(@petition.image.upload.url)
+    meta property="og:image" content=asset_url(@petition.image.upload.url(:listing))
   meta property="og:description" content=strip_markdown(@petition.description)
   meta property="twitter:card" content="summary"
   meta property="twitter:site" content="@petities"
@@ -50,7 +50,7 @@ div.page
 
     section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
       div.petition-intro-image-container
-        = image_tag(@petition.image.upload.url, class: 'petition-intro-image') if @petition.image
+        = image_tag(@petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
