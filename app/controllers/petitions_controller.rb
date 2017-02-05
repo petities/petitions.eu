@@ -51,8 +51,6 @@ class PetitionsController < ApplicationController
   end
 
   def search
-    # enable search on petition title. TODO ransack?
-    # @search = 0
     @page = cleanup_page(params[:page])
 
     @search = params[:search]

@@ -16,7 +16,7 @@
 #  confirmed_at                :datetime
 #  confirmed                   :boolean          default(FALSE), not null
 #  unique_key                  :string(255)
-#  special                     :boolean
+#  special                     :boolean          default(FALSE), not null
 #  person_city                 :string(255)
 #  subscribe                   :boolean          default(FALSE)
 #  person_birth_date           :string(255)
@@ -35,6 +35,7 @@
 #  last_reminder_sent_at       :datetime
 #  unconverted_person_born_at  :date
 #  person_country              :string(2)
+#
 
 class NewSignature < Signature
   self.table_name = 'new_signatures'

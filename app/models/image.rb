@@ -12,6 +12,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  alt_label           :string(255)
+#  upload_processing   :boolean
 #
 
 class Image < ActiveRecord::Base

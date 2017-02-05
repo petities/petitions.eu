@@ -85,12 +85,12 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.invite_info.description')
 
-      - if @signature.require_full_address? || @signature.require_person_country?
+      - if @signature.require_person_country?
         div.start-petition-form-row
           div.start-petition-form-cell.input
             div.start-petition-form-cell-title= t('confirm.form.country.label')
             /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-            = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
+            = f.country_select :person_country, priority_countries: ["NL", "BE", "DE", "GB", "FR"]
           div.start-petition-form-cell.label
             p= t('confirm.form.country.description')
 

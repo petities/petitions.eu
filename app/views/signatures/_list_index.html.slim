@@ -14,7 +14,11 @@
       - if signature.visible?
         = signature.person_name
       - else
-        = t "anonymous"
+        =<> t "anonymous"
+        - if user_signed_in? && current_user.has_role?(:admin, @petition)
+          br
+          =<> signature.person_name
+
 
     - if signature.visible?
       div.petition-signature-location= signature.person_city

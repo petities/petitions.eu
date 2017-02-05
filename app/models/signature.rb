@@ -16,7 +16,7 @@
 #  confirmed_at                :datetime
 #  confirmed                   :boolean          default(FALSE), not null
 #  unique_key                  :string(255)
-#  special                     :boolean
+#  special                     :boolean          default(FALSE), not null
 #  person_city                 :string(255)
 #  subscribe                   :boolean          default(FALSE)
 #  person_birth_date           :string(255)
