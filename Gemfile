@@ -83,7 +83,7 @@ gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.6', '>= 2.6.1'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -112,7 +112,8 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.13', '>= 2.13.3'
+gem 'rollbar', '~> 2.14'
+gem 'newrelic_rpm', '~> 3.18', '>= 3.18.0.329'
 # track everything..
 # gem 'logstasher'
 
