@@ -77,16 +77,8 @@ div.page
 
         - if @answer
           h2.petition-section-title= t('show.petition.answer')
-          div.petition-text
-            h3= t('show.petition.target')
-            = markdown @office.name
-            p &nbsp;
-
-            h3= t('show.petition.answer_title')
-            = markdown @answer.title
-            p &nbsp;
-
-            h3= t('show.petition.text')
+          div.petition-text.petition-answer
+            h3= markdown @answer.title
             = markdown @answer.text
             p &nbsp;
 
