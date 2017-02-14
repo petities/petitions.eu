@@ -26,7 +26,8 @@ div.page.signatures
     /     = submit_tag 'Search'
 
     div.petition-signatures-container
-      = render partial: 'list_index'
+      - cache [@petition, @petition.get_count, 'signatures', @page, params[:signature_id].to_i, I18n.locale, (user_signed_in? && current_user.has_role?(:admin, @petition))] do
+        = render partial: 'list_index'
 
       div.clearfix
 

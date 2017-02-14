@@ -389,7 +389,7 @@ class Petition < ActiveRecord::Base
   end
 
   def image
-    images.last if images.any?
+    @image ||= images.last if images.any?
   end
 
   def active_petition_type

@@ -132,7 +132,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .paginate(page: 1, per_page: 12)
+                           .limit(12)
 
     @office = if @petition.office_id
                 Office.find(@petition.office_id)
