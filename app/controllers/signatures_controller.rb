@@ -15,7 +15,7 @@ class SignaturesController < ApplicationController
   def index
     find_petition
 
-    @all_signatures = @petition.signatures.confirmed.limit(900)
+    @all_signatures = @petition.signatures.limit(900)
 
     unless request.xhr? || request.format.json? || request.format.js?
       # make redis!
@@ -64,11 +64,12 @@ class SignaturesController < ApplicationController
     @query = params[:query]
 
     page = cleanup_page(params[:page])
-    @signatures = if @query.blank?
-                    @petition.signatures.ordered.paginate(page: page, per_page: 100)
-                  else
-                    @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
-                  end
+    # @signatures = if @query.blank?
+    #                 @petition.signatures.ordered.paginate(page: page, per_page: 100)
+    #               else
+    #                 @petition.signatures.visible.where('person_name like ?', "%#{@query}%")
+    #               end
+    @signatures = @petition.signatures.ordered.paginate(page: page, per_page: 100)
 
     respond_to :js
   end

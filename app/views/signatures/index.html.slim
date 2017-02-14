@@ -19,11 +19,11 @@ div.page.signatures
   section.petition-signatures-wrapper
     h2.petition-section-title.left= t('signatures.title')
 
-    div.whitespace
-      = form_tag  search_petition_signatures_path(@petition), remote: true do
-        = hidden_field_tag 'page', @page
-        = text_field_tag 'query', ''
-        = submit_tag 'Search'
+    / div.whitespace
+    /   = form_tag  search_petition_signatures_path(@petition), remote: true do
+    /     = hidden_field_tag 'page', @page
+    /     = text_field_tag 'query', ''
+    /     = submit_tag 'Search'
 
     div.petition-signatures-container
       = render partial: 'list_index'
