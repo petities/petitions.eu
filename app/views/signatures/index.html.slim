@@ -36,12 +36,12 @@ div.page.signatures
   aside.petition-signatures-side
     div.petition-signatures-side-float
 
-      - unless @signatures_count_by_city.blank?
-        div.side-article-container.whitespace
-          h2.side-article-title = t('signatures.popular_cities')
-          ul
-            - @sorted_city_count.each do |group|
-              li= "#{group[0]}: #{group[1]}"
+      / - unless @signatures_count_by_city.blank?
+      /   div.side-article-container.whitespace
+      /     h2.side-article-title = t('signatures.popular_cities')
+      /     ul
+      /       - @sorted_city_count.each do |group|
+      /         li= "#{group[0]}: #{group[1]}"
 
       javascript:
         $(document).ready(function(){
