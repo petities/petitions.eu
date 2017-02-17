@@ -195,17 +195,20 @@ en:
       contact_us_html: We apologise for the inconvenience. If you have any questions, please feel free to <a href="%{contact_path}">contact us</a>.
     title: Thank you for the confirmation of your signature!
   contact:
-    title: Contact form
+    title: Contact Stichting petities.nl
     form:
       name:
-        label: Name
+        label: Your name
         description: Your name, preferably like you use it to sign a petition.
       mail:
-        label: E-mail
-        description: We use your e-mail address only to reply.
+        label: Your email address
+        description: We use your email address only to reply.
       text:
-        label: Message
-        description: Your message to Stichting Petities.nl. Would you like to mention about which petition you write?
+        label: Your message
+        description: Your message to Stichting Petities.nl. We will send you a copy of your message.
+      subject:
+        label: The subject
+        description: The subject of your message. For example, the name of the petition you are writing about.
       submit: Send
     thanks:
       title: Your message is sent to webmaster@petities.nl with a copy for you.

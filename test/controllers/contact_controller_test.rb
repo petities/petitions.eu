@@ -11,6 +11,7 @@ class ContactControllerTest < ActionController::TestCase
       post :create, contact_form: {
         name: 'Example Name',
         mail: 'name@example.com',
+        subject: 'Message to test',
         message: 'I would like to send you a message'
       }
     end

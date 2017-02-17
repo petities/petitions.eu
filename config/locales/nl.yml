@@ -208,7 +208,10 @@ nl:
         description: Het e-mailadres gebruiken we enkel om te kunnen reageren op uw bericht.
       text:
         label: Uw bericht
-        description: Uw bericht aan Stichting Petities.nl. Wilt u bij uw berichten vermelden over welke petitie het gaat?
+        description: Uw bericht aan Stichting Petities.nl. Na verzenden ontvangt u een kopie van het bericht.
+      subject:
+        label: Het onderwerp
+        description: Het onderwerp van uw bericht. Bijvoorbeeld de naam van de petitie waar u over schrijft.
       submit: Verstuur
     thanks:
       title: Uw bericht is verzonden naar webmaster@petities.nl met een kopie voor u.

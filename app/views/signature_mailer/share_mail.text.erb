@@ -3,9 +3,8 @@
   sig_email: @signature.person_email,
   petition_name: @petition.name,
   sig_function: @person_function,
-  petition_url: petition_url(@petition),
+  subdomain: @petition.subdomain,
   intro: @petition.description,
-  petition_email: @petition.petitioner_email,
-  subdomain: @petition.subdomain}) %>
+  petition_email: @petition.petitioner_email}) %>
 
 <%= t("mail.confirm.signoff") %>

@@ -6,6 +6,7 @@ class ContactFormTest < ActiveSupport::TestCase
       contact_form = ContactForm.new(
         name: 'Example Name',
         mail: 'name@example.com',
+        subject: 'Message to test',
         message: 'I would like to send you a message'
       )
       assert contact_form.deliver
