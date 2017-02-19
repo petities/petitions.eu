@@ -37,7 +37,7 @@ class DesksController < ApplicationController
   def show_not_logged_in
     petitions = Petition.where(office_id: @office.id)
 
-    @petitions = sort_petitions petitions
+    @petitions = sort_petitions(petitions)
 
     render 'show_not_logged_in'
   end

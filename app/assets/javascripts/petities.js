@@ -157,19 +157,19 @@ $(document).ready(function(){
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
-      console.log(xhr);
+      // console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
       // just let the user think that something happened anyway
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
-      console.log(xhr);
+      // console.log(xhr);
     });
 
 
   // change the state of a petition in the edit view
   $('select').change(function(){
     var value = $("#petitionstate option:selected").text();
-    console.log(value);
+    // console.log(value);
   });
 
   // set the state on state element when ready

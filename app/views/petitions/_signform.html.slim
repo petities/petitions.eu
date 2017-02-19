@@ -20,8 +20,9 @@ div.petition-form-float-wrapper
     div#didyoumean_signature_person_email  style="display: none;"
       div.email-suggest-button
         span
-          = t 'signature.did_you_mean'
-        div#suggest_signature_person_email
+          =<> t 'signature.did_you_mean'
+        span#suggest_signature_person_email
+        | ?
     | &nbsp;
 
     = f.submit t('show.sign.form.submit'), data: { disable_with: t('show.sign.form.submitting') }, class: 'petition-form-button'
