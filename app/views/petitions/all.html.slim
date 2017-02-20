@@ -1,3 +1,4 @@
+- title t('all.title')
 div.page
   javascript:
     window.page = #{@page};
@@ -5,8 +6,8 @@ div.page
 
   section.petitions-overview-wrapper
     h1.petition-section-title= t('all.title')
-    
-    div.petition-overview-title= t('all.count', results_size: @results_size)
+
+    div.petition-overview-title= t('all.count', count: @petitions.count)
 
     div.petitions-overview-sort-options-container
       = t('all.sort.title')
@@ -17,7 +18,7 @@ div.page
           = link_to option[:label], url_for(params.merge(sorting: option[:type])), class: 'petitions-overview-sort-option'
         - unless index == @sorting_options.size-1
           = ' | '
-    
+
     div.petitions-overview-container
       = render partial: 'list'
 

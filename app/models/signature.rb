@@ -16,7 +16,7 @@
 #  confirmed_at                :datetime
 #  confirmed                   :boolean          default(FALSE), not null
 #  unique_key                  :string(255)
-#  special                     :boolean
+#  special                     :boolean          default(FALSE), not null
 #  person_city                 :string(255)
 #  subscribe                   :boolean          default(FALSE)
 #  person_birth_date           :string(255)
@@ -41,13 +41,12 @@ class Signature < ActiveRecord::Base
   include StripWhitespace
   strip_whitespace :person_city, :person_email, :person_function, :person_name, :person_street_number
 
+  include TruncateString
+  truncate_string :signature_remote_browser, :confirmation_remote_browser
+
   belongs_to :petition
-  has_one :petition_type, through: :petition
 
   has_secure_token :unique_key
-
-  # has_many :reminders, :class_name => 'SignaturesReminder'
-  # has_many :reconfirmations, :class_name => 'SignaturesReconfirmation'
 
   validates :person_name, length: { in: 3..255 }
   validates :person_name, format: { with: /\A.+( |\.).+\z/ }
@@ -112,23 +111,19 @@ class Signature < ActiveRecord::Base
   scope :confirmed, -> { where(confirmed: true) }
   scope :hidden, -> { where(visible: false) }
   scope :subscribe, -> { where(confirmed: true, subscribe: true) }
-  scope :special, -> { where(special: true, confirmed: true) }
+  scope :special, -> { where(confirmed: true, special: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
+  scope :ordered, -> { order('sort_order DESC, signed_at ASC') }
 
   before_validation :lowercase_person_email
-  before_save :fill_confirmed_at, :truncate_remote_browser
+  before_save :fill_confirmed_at, :set_sort_order
   before_create :fill_signed_at
 
   after_save :update_petition
 
   def update_petition
-
     # no more hit/edit/save on petition! YAY
-    if self.confirmed_changed?
-      self.set_redis_keys
-      # no more hit/edit/save on petition! YAY
-    end
-
+    set_redis_keys if confirmed_changed?
   end
 
   def set_last_key(last)
@@ -176,7 +171,7 @@ class Signature < ActiveRecord::Base
       # city count
       $redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
-      $redis.incr("p#{petition.id}-count")
+      $redis.incr("p#{petition.id}-count") if petition.is_live?
       # activity rating
       petition.update_active_rate!
     end
@@ -184,23 +179,23 @@ class Signature < ActiveRecord::Base
   end
 
   def require_full_address?
-    petition_type.present? && petition_type.require_signature_full_address?
+    active_petition_type && active_petition_type.require_signature_full_address?
   end
 
   def require_born_at?
-    petition_type.present? && petition_type.require_person_born_at?
+    active_petition_type && active_petition_type.require_person_born_at?
   end
 
   def require_minimum_age?
-    petition_type.present? && petition_type.required_minimum_age.present?
+    active_petition_type && active_petition_type.required_minimum_age.present?
   end
 
   def require_person_city?
-    petition_type.present? && petition_type.require_person_birth_city?
+    active_petition_type && active_petition_type.require_person_birth_city?
   end
 
   def require_person_country?
-    petition_type.present? && petition_type.country_code.present?
+    active_petition_type && active_petition_type.country_code.present?
   end
 
   private
@@ -224,10 +219,11 @@ class Signature < ActiveRecord::Base
     self.signed_at = Time.now.utc if signed_at.nil?
   end
 
-  def truncate_remote_browser
-    [:signature_remote_browser, :confirmation_remote_browser].each do |field|
-      value = read_attribute(field)
-      write_attribute(field, value.slice(0, 255)) if value.present?
-    end
+  def set_sort_order
+    self.sort_order = 0 if sort_order.blank?
+  end
+
+  def active_petition_type
+    petition.active_petition_type
   end
 end

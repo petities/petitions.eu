@@ -9,9 +9,8 @@ div.page
       window.check_fields = #{raw @check_fields.to_json};
       window.error_fields = #{raw @error_fields.to_json};
 
-      window.wrong_name_error = "#{t('sign.wrong_name', default: 'Name and surname please')}";
-      window.wrong_email_error = "#{t('sign.wrong_email', default: 'email is incorrect')}";
-
+      window.wrong_name_error = "#{t('show.sign.form.errors.name')}";
+      window.wrong_email_error = "#{t('show.sign.form.errors.email')}";
 
     = form_for @signature, url: @url, remote: true, data: { type: :json } do |f|
 
@@ -29,7 +28,7 @@ div.page
       //       p.error
       //         = @error_fields.to_json
       //       p
-      //         = @petition.petition_type.name
+      //         = @petition.active_petition_type.name
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -67,16 +66,14 @@ div.page
           - error = ''
           - if not @signature.errors[:person_city].empty?
             - error = ' error'
-          - if not @signature.petition.display_city_select_box?
-            = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
-          - else
-            - cities = ["something is wrong..webmaster@petities.nl"]
-            - if @signature.petition.petition_type
-              - cities = @signature.petition.petition_type.cities.map(&:name)
+          - if @signature.petition.active_petition_type && @signature.petition.active_petition_type.allowed_cities.any?
+            - cities = @signature.petition.active_petition_type.cities.map(&:name)
 
             = f.select(:person_city,
                        options_for_select(cities),
                        class: "start-petition-form-cell-select.large")
+          - else
+            = f.text_field :person_city, class: 'start-petition-form-cell-input' + error
 
         div.start-petition-form-cell.label
           p= t('confirm.form.location.description')
@@ -88,14 +85,12 @@ div.page
         div.start-petition-form-cell.label
           p= t('confirm.form.invite_info.description')
 
-
-
-      - if @signature.require_full_address? || @signature.require_person_country?
+      - if @signature.require_person_country?
         div.start-petition-form-row
           div.start-petition-form-cell.input
             div.start-petition-form-cell-title= t('confirm.form.country.label')
             /= f.text_field :person_birth_country, class: 'start-petition-form-cell-input'
-            = f.country_select :person_country, priority_countries: ["NL", "DE", "GB", "FR"]
+            = f.country_select :person_country, priority_countries: ["NL", "BE", "DE", "GB", "FR"]
           div.start-petition-form-cell.label
             p= t('confirm.form.country.description')
 
@@ -156,9 +151,9 @@ div.page
         div.start-petition-form-row
           div.start-petition-form-cell.input
             div.start-petition-form-cell-title= t('confirm.form.born_at.label')
-            - minium_age = @signature.petition.petition_type.required_minimum_age || 9
+            - minium_age = @signature.petition.active_petition_type.required_minimum_age || 9
             - newest_date = Date.today.year - minium_age
-            = f.date_select :person_born_at, order: [:day, :month, :year], end_year: newest_date, start_year: 1920, selected: Date.today.year - 25
+            = f.date_select :person_born_at, order: [:day, :month, :year], end_year: newest_date, start_year: 1920, prompt: { day: t('confirm.form.date.day'), month: t('confirm.form.date.month'), year: t('confirm.form.date.year') }
           div.start-petition-form-cell.label
             p
               =<> t('confirm.form.born_at.description')
@@ -368,37 +363,30 @@ div.page
             subdomain: @petition.subdomain)
 
 
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
-        input.start-petition-form-cell-button.facebook  type="submit" value=t('confirm.info.share.on_facebook')
+    /div.start-petition-form-row
+    /  div.start-petition-form-cell.input
+    /    input.start-petition-form-cell-button.facebook  type="submit" value=t('confirm.info.share.on_facebook')
+    /  div.start-petition-form-cell.label.empty
+    /    | &nbsp;
 
-      div.start-petition-form-cell.label.empty
-        | &nbsp;
+    /div.start-petition-form-row
+    /  div.start-petition-form-cell.input
+    /    input.start-petition-form-cell-button.twitter  type="submit" value=t('confirm.info.share.on_twitter')
+    /  div.start-petition-form-cell.label.empty
+    /    | &nbsp;
 
     div.start-petition-form-row
-      div.start-petition-form-cell.input
-        input.start-petition-form-cell-button.twitter  type="submit" value=t('confirm.info.share.on_twitter')
-      div.start-petition-form-cell.label.empty
-        | &nbsp;
+       div.start-petition-form-cell.input
+         = link_to(t('confirm.info.your_signature'),
+             anchor_petition_signatures_path(@petition, @signature),
+             class: 'start-petition-form-cell-button buttonfix')
 
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
-        div.start-petition-form-cell-title
-          = t('confirm.info.petition_signature_url')
-      div.start-petition-form-cell.label.empty
-        | &nbsp;
+       div.start-petition-form-cell.label
+         p= t('confirm.info.petition_signature_url')
+         | &nbsp;
 
     div.start-petition-form-row
       input type="text_area" class="start-petition-form-cell-input-readonly" value=anchor_petition_signatures_url(@petition, @signature) readonly=""
-
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
-        = link_to(t('confirm.info.your_signature'),
-          anchor_petition_signatures_path(@petition, @signature),
-          class: 'start-petition-form-cell-button buttonfix')
-
-      div.start-petition-form-cell.label.empty
-        | &nbsp;
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
@@ -408,4 +396,3 @@ div.page
 
       div.start-petition-form-cell.label.empty
         | &nbsp;
-

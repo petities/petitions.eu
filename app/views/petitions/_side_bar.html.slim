@@ -42,16 +42,16 @@
             = t "petition.live_version"
 
         li
-          - if @index < 0
-            =<> link_to edit_petition_path(@petition, {version: @up})
+          - if @petition.next_version
+            =<> link_to edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
               span class="glyphicon glyphicon-arrow-up" aria-hidden="true"
               = t "petition.newer_version"
           - else
             =<> t "petition.newest"
 
         li
-          - if @index.abs < @petition.versions.size
-            =<> link_to edit_petition_path(@petition, {version: @down})
+          - if @petition.previous_version
+            =<> link_to edit_petition_path(@petition, { version: @petition.previous_version.version.index })
               span class="glyphicon glyphicon-arrow-down" aria-hidden="true"
               = t "petition.older_version"
           - else

@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   before_action :ensure_domain
 
   before_action do
-    # @news = Update.website_news.limit(12) if request.get?
-    @news = Update.show_on_home.limit(12) if request.get?
+    @news = Update.show_on_home.limit(7) if request.get?
   end
 
   # redirect users..
@@ -49,10 +48,9 @@ class ApplicationController < ActionController::Base
   # redirect subdomains which are not direct 'hits'
   # to a url without subdomain
   # only for get requests
-
   def ensure_domain
     if request.get? && subdomain?
-      unless request.fullpath == '/'
+      unless request.path == '/'
         redirect_to request.url.sub(request.subdomain + '.', '')
       end
     end
@@ -79,19 +77,17 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options(options = {})
-
-    protocol = 'https' 
-
-    if Rails.env.test?
-      protocol = 'http' 
-    end
-    
-    if Rails.env.development?
-      protocol = 'http' 
-    end
+    protocol = 'https'
+    protocol = 'http' if Rails.env.development? || Rails.env.test?
 
     { locale: I18n.locale,
-      protocol: protocol 
+      protocol: protocol
     }.merge(options)
+  end
+
+  # Page should be a integer, value 1 or larger
+  def cleanup_page(input)
+    page = input.to_i
+    page > 0 ? page : 1
   end
 end

@@ -57,4 +57,26 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
   filter :locale_list
+
+  sidebar :translations, only: :show do
+    table_for resource.translations do
+      column :id do |item|
+        link_to(item.id, [:admin, item])
+      end
+      column :locale
+    end
+    link_to(
+      I18n.t('active_admin.new_model', model: PetitionTranslation.model_name.human),
+      new_admin_petition_translation_path(petition_translation: { petition_id: resource.id })
+    )
+  end
+
+  sidebar :users, only: :show do
+    table_for resource.users do
+      column :id do |item|
+        link_to(item.id, [:admin, item])
+      end
+      column :name
+    end
+  end
 end

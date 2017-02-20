@@ -1,6 +1,13 @@
 - title @petition.name
-/- content_for :head do
-  /= javascript_include_tag 'ZeroClipboard.min'
+
+- content_for :head do
+  meta property="og:url" content=petition_url(@petition)
+  meta property="og:title" content=@petition.name
+  - if @petition.image
+    meta property="og:image" content=asset_url(@petition.image.upload.url(:listing))
+  meta property="og:description" content=strip_markdown(@petition.description)
+  meta property="twitter:card" content="summary"
+  meta property="twitter:site" content="@petities"
 
 javascript:
   $(window).on('scroll', function(){
@@ -31,7 +38,7 @@ div.page
         = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'petition-editbutton button whitespace'
 
   div
-    - if not @updates.empty?
+    - if @updates.any?
       - if @updates.first.created_at > 10.days.ago
         = link_to t('petition.news'), '#petitionnews', class: 'button'
         p &nbsp;
@@ -41,9 +48,9 @@ div.page
 
   - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
 
-    section class=(@images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+    section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
       div.petition-intro-image-container
-        = image_tag( @images.last.upload.url, class: 'petition-intro-image') unless @images.last.nil? || @images.last.upload_file_name.nil?
+        = image_tag(@petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
@@ -70,16 +77,8 @@ div.page
 
         - if @answer
           h2.petition-section-title= t('show.petition.answer')
-          div.petition-text
-            h3= t('show.petition.target')
-            = markdown @office.name
-            p &nbsp;
-
-            h3= t('show.petition.answer_title')
-            = markdown @answer.title
-            p &nbsp;
-
-            h3= t('show.petition.text')
+          div.petition-text.petition-answer
+            h3= markdown @answer.title
             = markdown @answer.text
             p &nbsp;
 

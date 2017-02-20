@@ -17,6 +17,28 @@ module Admin
       assert_response :success
     end
 
+    test 'should get show contains translations' do
+      get :show, id: @petition
+      assert_equal @petition.translations.size, 1
+
+      assert_select 'div#translations_sidebar_section table' do |elements|
+        elements.each do |element|
+          assert_select element, 'tbody tr', @petition.translations.size
+        end
+      end
+    end
+
+    test 'should get show contains users' do
+      get :show, id: @petition
+      assert_equal @petition.users.size, 3
+
+      assert_select 'div#users_sidebar_section table' do |elements|
+        elements.each do |element|
+          assert_select element, 'tbody tr', @petition.users.size
+        end
+      end
+    end
+
     test 'should get edit' do
       get :edit, id: @petition
       assert_response :success

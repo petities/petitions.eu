@@ -18,6 +18,11 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'new should render nested images form' do
+    get :new
+    assert_select 'input#petition_images_attributes_0_upload'
+  end
+
   test 'should_create_petition' do
     assert_no_difference('Update.count') do
       assert_no_difference('User.count') do
@@ -65,12 +70,12 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to petition_path(assigns(:petition))
   end
 
-  test 'should show petition' do
+  test 'should show petition when using id' do
     get :show, id: @petition.id
     assert_response :success
   end
 
-  test 'should show petition slug' do
+  test 'should show petition when using slug' do
     get :show, id: @petition.friendly_id
     assert_response :success
   end
@@ -102,11 +107,15 @@ class PetitionsControllerTest < ActionController::TestCase
     sign_in_admin_for @petition
     get :edit, id: @petition.friendly_id
     assert_response :success
+
+    # Should have image upload and destroy inputs.
+    assert_select 'input#petition_images_attributes_0_upload'
+    assert_select 'input#petition_images_attributes_0__destroy'
   end
 
   test 'should_get_limited_edit' do
     sign_in_admin_for @petition
-    $redis.set('p%s-count' % @petition.id, 200)
+    $redis.set("p#{@petition.id}-count", 200)
     get :edit, id: @petition.friendly_id
     assert_response :success
     assert_not_nil assigns(:exclude_list)
@@ -122,16 +131,19 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update petition" do
+  test 'should update petition' do
     sign_in_admin_for @petition
     patch :update, id: @petition.id, petition: {
       name: 'newtitle',
-      description: @petition.description
+      description: @petition.description,
+      images_attributes: { "0": { _destroy: 1, id: @petition.image.id}}
     }
-    assert_redirected_to edit_petition_path(assigns(:petition))
+    updated_petition = assigns(:petition)
+    assert_redirected_to edit_petition_path(updated_petition)
+    assert updated_petition.images.none?
   end
 
-  test "should finalize petition" do
+  test 'should finalize petition' do
     sign_in_admin_for @petition.office
 
     get :finalize, petition_id: @petition.id
@@ -141,7 +153,7 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_equal('live', @petition.status)
   end
 
-  test "should status change petition" do
+  test 'should status change petition' do
     sign_in_admin_for @petition
     # two mails should be send on status change
 
@@ -157,7 +169,7 @@ class PetitionsControllerTest < ActionController::TestCase
     end
   end
 
-  test "should not status change petition" do
+  test 'should not status change petition' do
     assert_enqueued_jobs 0
 
     status = @petition.status

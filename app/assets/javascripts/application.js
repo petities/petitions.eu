@@ -15,7 +15,7 @@
 
 // require bootstrap-sprockets
 //
-//= require mailcheck
+//= require mailcheck.min
 //= require Chart.min
 //= require paralax
 //= require petities

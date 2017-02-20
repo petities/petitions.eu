@@ -15,9 +15,9 @@ div.page
 
 div.page
 
-  section class=(@petition.images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container') id="introContainer"
+  section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage') id="introContainer"
     div.petition-intro-image-container
-      = image_tag( @petition.images.last.upload.url, class: 'petition-intro-image') unless @petition.images.last.nil? || @petition.images.last.upload_file_name.nil?
+      = image_tag( @petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
     div.petition-intro-info-container
       h1.petition-intro-info-title= @petition.name
       div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
@@ -28,14 +28,15 @@ div.page
 
     div class="petition-editbutton-container"
 
-      h2
-      - if @version_index < 0
-        div.petition-editbutton.pull-left
-          =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, {version: @up})
+      - if @petition.versions.size > 1
+        h2
+        - if @petition.next_version
+          div.petition-editbutton.pull-left
+            =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
 
-      - if @petition.versions.any? && @version_index.abs < @petition.versions.size
-        div.petition-editbutton.pull-right
-          =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @down})
+        - if @petition.previous_version
+          div.petition-editbutton.pull-right
+            =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.previous_version.version.index})
 
     /<!-- versioning -->
 
@@ -83,8 +84,8 @@ div.page
             = t "petition.closed"
           div id="in_treatment" class="petition-state-label"
             = t "petition.in_treatment"
-          div id="is_answered" class="petition-state-label"
-            = t "petition.is_answered"
+          div id="completed" class="petition-state-label"
+            = t "petition.completed"
 
         - status = @petition.status || 'status unknown'
         - status_descr_key = 'petition.status.descr.' + status

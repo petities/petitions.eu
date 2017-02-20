@@ -2,40 +2,47 @@
 en:
   petition:
     organisations:
+      adviesorgaan: "advisory body"
+      ambassadeur: ambassador
+      auteursrechthouder: copyright holder
       blank: "Choose a recipient:"
-      government: "government"
-      water_county: "water board"
-      european_union: "European Union"
-      district: "province"
-      parliament: "parliament"
+      brancheorganisatie: sector organisation
       counsil: "municipality"
       collective: "other organisation"
-      plusregion: "alliance of municipalities"
-      "Europees Parlement": European Parliament
+      district: "province"
+      "Eerste Kamer": "First Chamber"
+      european_union: "European Union"
       "Europese Commissie": European Commission
       "Europese Ombudsman": European Ombudsman
-      "Kabinet": cabinet
-      "Koning": king
-      "Openbaar Ministerie (artikel 12Sv-procedure)": "Public Prosecution Service (article 12Sv-procedure)"
-      ambassadeur: ambassador
-      minister: minister
-      staatssecretaris: "junior minister"
-      "(in)formateur": "(in)formateur"
-      "Eerste Kamer": "Eerste Kamer"
-      "Tweede Kamer": "Tweede Kamer"
-      auteursrechthouder: copyright holder
-      brancheorganisatie: sector organisation
+      "Europees Parlement": European Parliament
+      erfgoedorganisatie: "heritage organisation"
       fonds: fund
+      government: "government"
       hulpverleningsorganisatie: certified first responder
-      infrastructuurexploitant: infrastructuurexploitant
+      "infrastructuurexploitant": "infrastructure operator" 
+      "(in)formateur": "(in)formateur"
       inspectie: inspection
+      "Kabinet": cabinet
       kerkbestuur: church board
+      "Koning": king
+      "lokaal fonds": "local fund"
+      "meldpunt voor bepaalde kwesties": "hotline for certain issues"
+      minister: minister
+      natuurbeheer: "nature reserve management"
+      staatssecretaris: "junior minister"
+      "Openbaar Ministerie (artikel 12Sv-procedure)": "Public Prosecution Service (article 12Sv-procedure)"
       "openbaar vervoerbedrijf": "public transport authority"
+      parliament: "parliament"
       pensioenfonds: pension fund
+      plusregion: "alliance of municipalities"
       schoolbestuur: school board
       sportfederatie: sports federation
+      "Tweede Kamer": "Second Chamber"
       universiteitsbestuur: university board
       vakbond: union
+      "Verenigde Naties": "United Nations"
+      vereniging: association
+      water_county: "water board"
       welzijnsorganisatie: social services organisation
       werkgever: employer
       woningcorporatie: housing cooperative

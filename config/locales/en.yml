@@ -35,6 +35,8 @@ en:
         person_city: City
         person_function: Function or situation
         confirmed_at: Confirmed at
+      image:
+        _destroy: Remove this image
     errors:
       models:
         signature:
@@ -61,7 +63,9 @@ en:
   admin:
     sorting: Sorting
   all:
-    count: "%{results_size} petitions"
+    count:
+      one: "1 petition"
+      other: "%{count} petitions"
     sort:
       all: All
       concluded: Concluded
@@ -92,6 +96,10 @@ en:
       country:
         description: Dutch citizens abroad can sign.
         label: Country were you currently live
+      date:
+        day: choose day
+        month: choose month
+        year: choose year
       email:
         description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
         label: Email
@@ -108,13 +116,19 @@ en:
       location:
         description: "Where you currently live, visible to the world if you choose."
         label: Place
+      money:
+        1: € 1
+        5: € 5
+        10: € 10
+        25: € 25
+        50: € 50
       name:
         description: Sign at least with your surname and an initial.
         label: Name and surname
       pledge:
         asseenontv: known person who gets recognised
         carpooler: give a ride to a meeting
-        copywriter: write press releases or newsletters
+        copywriter: write press releases, newsletters or op-eds
         communicator: answer e-mails and phone calls
         employer: employer with many employees
         experienced: tell experiences to a journalist
@@ -181,17 +195,20 @@ en:
       contact_us_html: We apologise for the inconvenience. If you have any questions, please feel free to <a href="%{contact_path}">contact us</a>.
     title: Thank you for the confirmation of your signature!
   contact:
-    title: Contact form
+    title: Contact Stichting petities.nl
     form:
       name:
-        label: Name
+        label: Your name
         description: Your name, preferably like you use it to sign a petition.
       mail:
-        label: E-mail
-        description: We use your e-mail address only to reply.
+        label: Your email address
+        description: We use your email address only to reply.
       text:
-        label: Message
-        description: Your message to Stichting Petities.nl. Would you like to mention about which petition you write?
+        label: Your message
+        description: Your message to Stichting Petities.nl. We will send you a copy of your message.
+      subject:
+        label: The subject
+        description: The subject of your message. For example, the name of the petition you are writing about.
       submit: Send
     thanks:
       title: Your message is sent to webmaster@petities.nl with a copy for you.
@@ -199,6 +216,7 @@ en:
   contact_mailer:
     webmaster_message:
       subject: Message from petities.nl
+      intro: This message was sent using the contact form on petities.nl
   description: Description
   desk:
     general_desk_admins: Petition desk accounts
@@ -221,7 +239,7 @@ en:
     title_grey_2: Analyses
   donate:
     text: "<p>Your donation is most appreciated by <a href=\"../about\">us</a>. You can:</p>\n<p>&nbsp;</p>\n<ul>\n  <li>transfer it to Rabobank account NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands (bank identification code RABONL2U)</li>\n  <li><a href=\"https://www.geef.nl/donatiemodule/taal:en/doel:petities-nl/land:NL/mobile:false/forceer:true\">by creditcard through Geef.nl</a></li> \n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"%{paypal_image}\" border=\"0\" name=\"submit\" alt=\"Donate\"> to webmaster@petities.nl through Paypal.</li>\n  </form>       \n</ul>\n <p>&nbsp;</p>\n<p>Thank you!</p>\n<p>&nbsp;</p>"
-    more: "<p>You can also donate time. For example by searching for news about petitions on our site. E-mail your findings to us and we will ask the lead petitioner to update the petition. </p><p>&nbsp;</p><p>Also when you find spelling, language or translation mistakes on our site you appreciate it tremendously if you e-mail it to us.<p>&nbsp;</p><a href=\"https://github.com/petities\">You can also improve our software</a> by finding mistakes or improvements by yourself or choose something from our wishlist.</p><p>&nbsp;</p></p>"
+    more: "<p>You can also donate time. For example by searching for news about petitions on our site. E-mail your findings to us and we will ask the lead petitioner to update the petition. </p><p>&nbsp;</p><p>Also when you find spelling, language or translation mistakes on our site we would appreciate it tremendously if you e-mail it to us.<p>&nbsp;</p><a href=\"https://github.com/petities\">You can also improve our software</a> by finding mistakes or improvements by yourself or choose something from our wishlist.</p><p>&nbsp;</p></p>"
     title: Donate
   edit:
     petition:
@@ -299,7 +317,7 @@ en:
         descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
         descr3: |
             <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
-        descr4: "Make sure the title summarises the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
+        descr4: "Make sure the title summarizes the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
         links: Include links
         markdown: Use styling
         tips: See the handbook
@@ -451,7 +469,7 @@ en:
       title: Title
     in_process: In process
     in_treatment: In treatment
-    is_answered: Is answered
+    completed: Is answered
     language: Language
     live: Live
     live_version: Live version
@@ -510,7 +528,7 @@ en:
     text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
     text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
     text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
-    text_grey_2: Your petition will automatically be handed over on the due date. You can change the date, but do this on beforehand. A week before the due date you will also receive an e-mail about this.
+    text_grey_2: Your petition needs to be handed over by you on the due date. You can change the date if needed. You can always ask our assistance.
     title_blue: Progress e-mails
     title_green: Donations
     title_grey: Help from signatories
@@ -523,14 +541,32 @@ en:
       description: Or would you like to help in another way?
       placeholder: Something else...
     thank_you: Thank you!
-    failed: Oooppsie! something is wrong!
+    failed: Oops! Some input in the form is wrong!
   privacy:
     text: |
-      <p>Petities.nl only uses cookies during your visit to the site, is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
+      <p><b>Cookies</b></p>
       <p>&nbsp;</p>
-      <p>As <a href="wetten.overheid.nl/BWBR0011468/">the law (in Dutch)</a> prescribes, all personal data are only purposefully used; for the purpose you have supplied them: the recipient of a petition gets a copy of the list of signatories to verify or to get an overview of their constituency. The recipient may also personally contact you, but in practise the recipient will only communicate with the lead petitioner as spokesperson for all signatories.</p>
+      <p>Petities.nl only uses <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a> during your visit. The website is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
       <p>&nbsp;</p>
-      <p>When you sign anonimously your peronsal data disappear (except the timestamp of your signature) from the database once the petition is answered. If you indicated your public support to a petition your name, place of residence and title/description remain in the database to be served on the web. Would you like to not be visible on the web anymore, you can change this by following the link in the e-mail you received to confirm your signature (see <a href="/help/algemeen">help</a> if you do not have the link anymore). To disappear from the search results in search engines it might take up to a week.</p>
+      <p><b>Your personal data</b></p>
+      <p>&nbsp;</p>
+      <p>As <a href="http://wetten.overheid.nl/BWBR0011468/">the law (in Dutch)</a> prescribes, all personal data are only purposefully used; for the purpose you have supplied them: the recipient of a petition gets a copy of the list of signatories to verify or to get an overview of their constituency. In case of a normal petition these are your name, function and place. When extra legal requirements apply, also your street, postal code, date of birth and citizenship. For example in case of citizen’s initiative or referendum request. Nobody gets to see your e-mail address.</p>
+      <p>&nbsp;</p>
+      <p>When you sign, technical details are stored about your internet address and your browser. We show these for you to verify.</p>
+      <p>&nbsp;</p>
+      <p><b>Your public profile</b></p>
+      <p>&nbsp;</p>
+      <p>On the website we show your name, function and place when you make this choice. By default you sign anonymously and your data do not show. In that case we delete your personal data from the database once the petition is answered. We keep some impersonal details: timestamp of your signature, which petition, your place and function. Make sure you do not include personal details in your place (like your address) or in your function (like the name of your company).</p>
+      <p>&nbsp;</p>
+      <p>If you indicated your public support to a petition your name, place of residence and title/description remain in the database to be served on the web. When you change your mind, you can always change this. Follow the link to your personal page you can find in our e-mails.</p>
+      <p>&nbsp;</p>
+      <p><b>Copied by others</b></p>
+      <p>&nbsp;</p>
+      <p>We ask the search engines to ignore the list of signatures for a petition, but on the page of the petition there are a dozen signatures you might be in. If you end up in the search results like this and you change your signature to invisible, it might take up to a week to disappear from the search results.</p>
+      <p>&nbsp;</p>
+      <p>Every quarter the Royal Library makes a copy of the entire site to keep for historians for example. In the Royal Library in The Hague you can consult these copies.</p>
+      <p>&nbsp;</p>
+      <p><b>E-mail from us</b></p>
       <p>&nbsp;</p>
       <p>When you e-mail the webmaster your e-mail address is only used for correspondence regarding that question, complaint or remark. You do not receive impersonal information (like a newsletter), unless you <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">subscribe yourself to the newsletter.</a></p>
       <p>&nbsp;</p>
@@ -541,16 +577,22 @@ en:
         <li>to let you know the result of the petition, within six weeks after the hand over of the petition.</li>
       </ol>
       <p>&nbsp;</p>
-      <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the first e-mail, with which you confirmed your signature. You can request this e-mail from <a href="/help/algemeen">help</a>.</p>
+      <p>If you do not confirm you receive two reminders. One week after your sign and when the petition is about to close.</p>
+      <p>&nbsp;</p>
+      <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the e-mail, with which you confirmed your signature. You can find the link to your personal page also in every e-mail from us.</p>
+      <p>&nbsp;</p>
+      <p>When you pledge help to a petition the petitioner might send you e-mail about this.</p>
+      <p>&nbsp;</p>
+      <p>You can also indicate to receive e-mail from your municipality. In these e-mails the municipality invites you to contribute your ideas. Also these e-mails you can always stop.</p>
     title: Your privacy
   profile:
     address: Address
     birth_date: Date of birth
     city: Woonplaats
     edit_your_information: Edit your information
+    email: E-mail
     details:
       fakename: Your name should be known to us, but you can choose yourself how the outside world sees you.
-      please_change:
       privacy: Data about your last session to check if it was really you.
       title: Explanation
       your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'
@@ -564,6 +606,7 @@ en:
     submit: Update profile
     title: Your personal information
     your_city: Your place of residence
+    your_email: Your email
     your_name: Your real name please
     your_postalcode: Your postal code
     your_telephone: Your telephone number
@@ -593,9 +636,10 @@ en:
         closed: Closed
         draft: Draft
         in_treatment: In treatment
-        is_answered: Answered
+        completed: Answered
         indication: 'Status:'
         signable: Signable
+        withdrawn: Withdrawn
       title: Details
       website: 'Website:'
     petition:
@@ -608,7 +652,7 @@ en:
       status:
         label: Current status
         will_be_signable: We have send you an e-mail from webmaster@petities.nl. To continue with your petition you must follow the link in it.
-        was_signable: This petition is no longer open to collect signatures.
+        was_signable: This petition is not open to collect signatures.
       target: From
       text: The answer
       title: Petition
@@ -647,9 +691,6 @@ en:
     signatures_count:
       one: "%{count} signature"
       other: "%{count} signatures"
-  sign:
-    wrong_email: Wrong email
-    wrong_name: Wrong name
   signature:
     confirm: Confirm
     confirm_errors: 'Some required information is missing, your signature is not saved yet...'
@@ -676,16 +717,18 @@ en:
     sign: Sign this petition
     title: Signatures
   signnow: Sign now
+  site_title: Petities.nl
   start:
     form:
       addressed:
         description: A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
         label: Addressed to
+      cannot_edit_live_petition: You cannot edit a live petition
+      cannot_start_without_email: You cannot start a petition without providing your email
       finalize: Open the petition
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image
-        now: Now
       name:
         description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
         label: Title of the petition
@@ -701,7 +744,7 @@ en:
         finalize:
           finalize_description: 'Ready, open this petition for signing!'
         name:
-          description: A petition should have a (legal) person responsible for the petition and the spokes person. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
+          description: A petition should have a (legal) person responsible for the petition and the spokesperson. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
           label: Your name and surname
         organisation:
           description: Optional. An organisation reassures signatories that you are not the only one to take responsibility.

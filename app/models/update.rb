@@ -17,7 +17,7 @@
 #  show_on_home     :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
-#  cached_slug      :string(255)
+#  slug             :string(255)
 #  show_on_petition :boolean
 #
 

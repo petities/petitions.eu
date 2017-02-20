@@ -12,6 +12,7 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  alt_label           :string(255)
+#  upload_processing   :boolean
 #
 
 class Image < ActiveRecord::Base
@@ -19,7 +20,16 @@ class Image < ActiveRecord::Base
 
   validates :alt_label, length: { maximum: 255 }, allow_blank: true
 
-  has_attached_file :upload
+  has_attached_file :upload,
+                    styles: {
+                      listing: {
+                        geometry: 'x400>',
+                        convert_options: '-strip -quality 85'
+                      }
+                    },
+                    default_url: '/assets/:style/missing.png'
+
+  process_in_background :upload
 
   validates_with AttachmentContentTypeValidator,
                  attributes: :upload,

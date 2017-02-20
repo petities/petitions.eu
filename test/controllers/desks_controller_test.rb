@@ -16,11 +16,4 @@ class DesksControllerTest < ActionController::TestCase
     get :show, id: @office
     assert_response :success
   end
-
-  test 'should redirect' do
-    @request.host = "#{@office.subdomain}.test.host"
-    get :redirect
-    assert_response :redirect
-    assert_redirected_to "http://test.host/petitions/desks/#{@office.friendly_id}"
-  end
 end

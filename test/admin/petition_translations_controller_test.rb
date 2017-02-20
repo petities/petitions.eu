@@ -12,6 +12,18 @@ module Admin
       assert_response :success
     end
 
+    test 'should get new without petition_id' do
+      get :new
+      assert_response :success
+      assert_select 'select#petition_translation_petition_id'
+    end
+
+    test 'should get new with petition_id' do
+      get :new, petition_translation: { petition_id: petitions(:one).id }
+      assert_response :success
+      assert_select 'input[type=hidden]#petition_translation_petition_id'
+    end
+
     test 'should get show' do
       get :show, id: @petition_translation.id
       assert_response :success

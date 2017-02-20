@@ -6,19 +6,14 @@ class UpdatePolicy < ApplicationPolicy
   end
 
   def edit?
-    # allow edit view on petition.
-    return false unless user
-    return true if petition_update?
-    user.has_role?(:admin) || user.has_role?(:admin, record)
+    create?
   end
 
   def update?
-    return false unless user
-    return true if petition_update?
-    user.has_role?(:admin) || user.has_role?(:admin, record)
-    # allow updates on petition..?
-    # user.has_role? :admin or user.has_role? :admin, record
+    create?
   end
+
+  private
 
   def petition_update?
     return false unless record.petition_id

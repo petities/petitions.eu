@@ -1,7 +1,6 @@
-
 javascript:
-  window.wrong_name_error = "#{t('sign.wrong_name_and_surname', default: 'Name and surname please')}";
-  window.wrong_email_error = "#{t('sign.wrong_email', default: 'Email is incorrect')}";
+  window.wrong_name_error = "#{t('show.sign.form.errors.name')}";
+  window.wrong_email_error = "#{t('show.sign.form.errors.email')}";
 
 div.petition-form-float-wrapper
   = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
@@ -21,8 +20,9 @@ div.petition-form-float-wrapper
     div#didyoumean_signature_person_email  style="display: none;"
       div.email-suggest-button
         span
-          = t 'signature.did_you_mean'
-        div#suggest_signature_person_email
+          =<> t 'signature.did_you_mean'
+        span#suggest_signature_person_email
+        | ?
     | &nbsp;
 
     = f.submit t('show.sign.form.submit'), data: { disable_with: t('show.sign.form.submitting') }, class: 'petition-form-button'
@@ -45,4 +45,3 @@ div.petition-success-sign-note style='display: none;'
       p &nbsp;
       - if transp.slug
         p= petition_url(transp.slug, :locale => nil)
-

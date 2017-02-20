@@ -684,6 +684,12 @@ input[type="text"].search-container-input {
   }
 }
 
+.petition-answer {
+  p {
+    margin-bottom: 15px;
+  }
+}
+
 .petition-form-wrapper {
   position: relative;
   display: inline-block;
@@ -1287,6 +1293,13 @@ span.signature-time {
     max-width: 90%;
     vertical-align: top;
   }
+}
+
+.start-petition-form-cell-upload-image {
+  display: block;
+  width: 100px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .start-petition-form-cell-title {

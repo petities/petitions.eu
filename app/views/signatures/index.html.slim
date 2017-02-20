@@ -2,14 +2,14 @@
   = javascript_include_tag 'ZeroClipboard.min'
 
 div.page.top
-  section class=(@petition.images.last.nil? ? 'petition-intro-container-noimage' : 'petition-intro-container')
+  section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
     div.petition-intro-image-container
-      = image_tag(@petition.images.last.upload.url, class: 'petition-intro-image') unless @petition.images.last.nil? || @petition.images.last.upload_file_name.nil?
+      = image_tag(@petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
     div.petition-intro-info-container
       h1.petition-intro-info-title=@petition.name
       div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
       div.petition-intro-info-text.whitespace
-        p= @petition.description
+        p= markdown @petition.description
 
       - if @petition.status == 'live'
         = link_to t('signatures.sign'), petition_path(@petition), class: "button"
@@ -19,14 +19,15 @@ div.page.signatures
   section.petition-signatures-wrapper
     h2.petition-section-title.left= t('signatures.title')
 
-    div.whitespace
-      = form_tag  search_petition_signatures_path(@petition), remote: true do
-        = hidden_field_tag 'page', @page
-        = text_field_tag 'query', ''
-        = submit_tag 'Search'
+    / div.whitespace
+    /   = form_tag  search_petition_signatures_path(@petition), remote: true do
+    /     = hidden_field_tag 'page', @page
+    /     = text_field_tag 'query', ''
+    /     = submit_tag 'Search'
 
     div.petition-signatures-container
-      = render partial: 'list_index'
+      - cache [@petition, @petition.get_count, 'signatures', @page, params[:signature_id].to_i, I18n.locale, (user_signed_in? && current_user.has_role?(:admin, @petition))] do
+        = render partial: 'list_index'
 
       div.clearfix
 
@@ -36,12 +37,12 @@ div.page.signatures
   aside.petition-signatures-side
     div.petition-signatures-side-float
 
-      - unless @signatures_count_by_city.blank?
-        div.side-article-container.whitespace
-          h2.side-article-title = t('signatures.popular_cities')
-          ul
-            - @sorted_city_count.each do |group|
-              li= "#{group[0]}: #{group[1]}"
+      / - unless @signatures_count_by_city.blank?
+      /   div.side-article-container.whitespace
+      /     h2.side-article-title = t('signatures.popular_cities')
+      /     ul
+      /       - @sorted_city_count.each do |group|
+      /         li= "#{group[0]}: #{group[1]}"
 
       javascript:
         $(document).ready(function(){
@@ -77,7 +78,7 @@ div.page.signatures
         div.social-bar-side-label= t('show.share')
 
         div.social-bar-side-content.whitespace
-          a.social-bar-side-button.facebook    href="javascript:fbShare('#{petition_share_url(@petition)}', '#{@petition.name}', 'http://goo.gl/dS52U');"
+          a.social-bar-side-button.facebook    href="javascript:fbShare('#{petition_share_url(@petition)}', '#{@petition.name}');"
           a.social-bar-side-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_share_url(@petition)}&text="
           a.social-bar-side-button.googleplus  href="javascript:gPlusShare('#{petition_share_url(@petition)}');"
           a.social-bar-side-button.linkedin    href="javascript:lnShare('#{petition_share_url(@petition)}');"

@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, 
-                :password, :password_confirmation, 
-                :telephone, :petition_id, role_ids: []
+  permit_params :email, :name, :telephone, :address, :postalcode, :city,
+                :birth_date, :birth_city, :password, :password_confirmation,
+                :petition_id, role_ids: []
 
   index do
     selectable_column
@@ -14,7 +14,7 @@ ActiveAdmin.register User do
     actions
   end
 
-  filter :email
+  filter :email, filters: [:equals, :contains]
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
@@ -23,9 +23,13 @@ ActiveAdmin.register User do
   show do
     attributes_table do
       row :email
-      row :first_name
-      row :last_name
+      row :name
       row :telephone
+      row :address
+      row :postalcode
+      row :city
+      row :birth_date
+      row :birth_city
     end
 
     panel 'user roles' do
@@ -33,15 +37,23 @@ ActiveAdmin.register User do
         column :name
         column :resource_type
         column :resource_id
+        column :name do |item|
+          link_to(item.resource.name, [:admin, item.resource]) if item.resource
+        end
       end
     end
   end
 
   form do |f|
     f.inputs 'User Details' do
-
       f.input :email
+      f.input :name
       f.input :telephone
+      f.input :address
+      f.input :postalcode
+      f.input :city
+      f.input :birth_date
+      f.input :birth_city
       f.input :password
       f.input :password_confirmation
 
@@ -50,8 +62,7 @@ ActiveAdmin.register User do
       end
 
       panel 'website roles' do
-        f.input :roles, as: :check_boxes, collection: Role.where(resource_id: nil, resource_type: nil)
-        #f.input :roles, as: :check_boxes, collection: user.roles #Role.where(resource_id: nil, resource_type: nil)
+        f.input :roles, as: :check_boxes, collection: Role.without_resource
       end
 
       panel 'petition roles' do
@@ -71,28 +82,14 @@ ActiveAdmin.register User do
     end
 
     f.actions
-
   end
 
   controller do
     def update
-      if not params[:petition_id].blank?
-        #petition = Petition.find(params[:petition_id])
-        #user = User.find(params[:id])
-
-        role = Role.where(
-          resource_id: params[:petition_id], 
-          resource_type: 'Petition').first
-
-        if role
-          params[:user][:role_ids].push(role.id)
-        end
-
-        #if petition
-        #  user.add_role(:admin, petition)
-        #  user.save
-        #end
-
+      if params[:petition_id].present?
+        petition = Petition.find(params[:petition_id])
+        role = petition.roles.find_or_create_by(name: :admin)
+        params[:user][:role_ids].push(role.id)
       end
 
       if params[:user][:password].blank?

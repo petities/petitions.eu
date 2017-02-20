@@ -17,7 +17,8 @@ div.header-user-dropdown
     = link_to t('my.news_updates'), updates_path, class: "header-user-dropdown-item"
     - if current_user.has_role? :admin
       = link_to t('my.create_newsupdate'), new_update_path, class: "header-user-dropdown-item"
-      = link_to t('my.mailpreviews'), '/rails/mailers', class: "header-user-dropdown-item"
+      - if Rails.env.development?
+        = link_to t('my.mailpreviews'), '/rails/mailers', class: "header-user-dropdown-item"
       = link_to t('my.visits'), '/visits', class: "header-user-dropdown-item"
       = link_to t('my.sidekiq'), '/sidekiq', class: "header-user-dropdown-item"
       = link_to t('my.activeadmin'), admin_dashboard_path, class: "header-user-dropdown-item"

@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'test_helper'
 
 class NewSignatureTest < ActiveSupport::TestCase
@@ -59,6 +60,12 @@ class NewSignatureTest < ActiveSupport::TestCase
         assert_not @signature.send_reminder_mail
       end
     end
+  end
+
+  test 'should transliterate person_email' do
+    signature = NewSignature.new(person_email: 'test@example.cóm')
+    signature.valid?
+    assert_equal signature.person_email, 'test@example.com'
   end
 
 end

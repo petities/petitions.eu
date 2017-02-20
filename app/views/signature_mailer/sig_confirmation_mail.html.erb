@@ -11,7 +11,7 @@
 <%= t("mail.confirm.signoff_html") %>
 
 <%= t("mail.confirm.signature.petition_html", {
-  petition_url: "https://#{@signature.petition.subdomain}.petities.nl",
+  petition_url: petition_share_url(@signature.petition),
   intro: @signature.petition.description,
   we: @signature.petition.initiators,
   observe: @signature.petition.statement,

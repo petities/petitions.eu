@@ -35,7 +35,6 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  config.action_controller.asset_host = '//'
 
   # Asset digests allow you to set far-future HTTP expiration dates on all
   # assets, yet still be able to expire them through the digest params.
@@ -49,18 +48,10 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    user_name: '4155773f2e7c84081',
-    password: '71cf1b4f69f629',
-    address: 'mailtrap.io',
-    domain: 'mailtrap.io',
-    port: '2525',
-    authentication: :cram_md5
-  }
+  config.action_mailer.smtp_settings = { host: '127.0.0.1', port: 1025 }
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
 
   ## Enable the logstasher logs for the current environment
   #config.logstasher.enabled = true
@@ -72,7 +63,7 @@ Rails.application.configure do
   #config.logstasher.source = 'developerbox'
   ##
   ## # This line is optional if you do not want to log the backtrace of exceptions
-  #config.logstasher.backtrace = true 
+  #config.logstasher.backtrace = true
   ##
   ## # This line is optional, defaults to log/logstasher_<environment>.log
   ## config.logstasher.logger_path = 'log/logstasher.log'

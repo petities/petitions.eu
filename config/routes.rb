@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     get '', to: 'petitions#show'
   end
 
-  constraints OfficeSubdomain do
-    get '', to: 'desks#redirect'
+  constraints SubdomainConstraint do
+    get '', to: 'subdomains#show'
   end
 
   resources :petitions do
@@ -77,8 +77,10 @@ Rails.application.routes.draw do
   root 'petitions#index'
 
   # STATIC PAGES
-  PagesController::STATIC_PAGES.each do |name|
-    get "/#{name}", to: "pages##{name}"
+  constraints format: :html do
+    PagesController::STATIC_PAGES.each do |name|
+      get "/#{name}", to: "pages##{name}"
+    end
   end
 
   patch '/special_signature/:id', to: 'signatures#special_update', as: :special_signature
@@ -105,9 +107,4 @@ Rails.application.routes.draw do
 
   get '/petitie/:id',         to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
-
-  if not Rails.env.development?
-    match "*path", to: "application#render_404", via: :all
-  end
-
 end

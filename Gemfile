@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
 gem 'rails-i18n'
 
 gem 'paper_trail'
@@ -12,16 +12,15 @@ gem 'friendly_id'
 gem 'friendly_id-globalize'
 
 # Use sqlite3 as the database for Active Record
-
 gem 'sqlite3', group: :development
-gem 'mysql2', '~> 0.4.3'
+gem 'mysql2', '~> 0.4.5'
 
 # legacy utf 8 issues..
 gem 'utf8-cleaner'
 gem 'rack-utf8_sanitizer'
 
 # authentication
-gem 'devise', '~> 3.5', '>= 3.5.6'
+gem 'devise', '~> 3.5', '>= 3.5.10'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'rolify'
@@ -48,9 +47,7 @@ gem 'prawnto'
 
 # will_paginate
 gem 'will_paginate'
-# gem 'will_paginate-bootstrap'
 gem 'will-paginate-i18n'
-#
 
 # gem 'i18n_generators'
 gem 'i18n-tasks'
@@ -66,7 +63,8 @@ gem 'sprockets'
 gem 'sprockets-rails'
 
 # image file upload made easypeasy
-gem 'paperclip'
+gem 'paperclip', '~> 5.1'
+gem 'delayed_paperclip', '~> 3.0', '>= 3.0.1'
 
 # execute jobs on the side..
 gem 'sidekiq'
@@ -85,7 +83,7 @@ gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.6', '>= 2.6.1'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -114,7 +112,8 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.11', '>= 2.11.3'
+gem 'rollbar', '~> 2.14'
+gem 'newrelic_rpm', '~> 3.18', '>= 3.18.0.329'
 # track everything..
 # gem 'logstasher'
 

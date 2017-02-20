@@ -1,9 +1,10 @@
+- title @office.name
 
 = render partial: 'office_header'
 
 div.page
   section.petitions-overview-wrapper
-    div.petition-overview-title= t('all.count', results_size: @results_size)
+    div.petition-overview-title= t('all.count', count: @results_size)
 
     = render partial: 'petitions/sort_options'
 

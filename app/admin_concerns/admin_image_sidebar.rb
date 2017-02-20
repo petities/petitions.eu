@@ -3,7 +3,7 @@ module AdminImageSidebar
     dsl.sidebar :images, only: :show do
       images = resource.images.map do |image|
         link_to(
-          image_tag(image.upload.url, class: 'upload-image'), [:admin, image]
+          image_tag(image.upload.url(:listing), class: 'upload-image'), [:admin, image]
         )
       end
       raw(images.join)

@@ -2,14 +2,21 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# extend existing domains
+# extend most used domains
 Mailcheck.defaultDomains.push(
-  'dds.nl', 'deds.nl', 'hotmail.com', 'gmail.com', 'live.nl', 'home.nl',
-  'hetnet.nl', 'planet.nl', 'ziggo.nl', 'xs4all.nl', 'chello.nl', 'upcmail.nl',
-  'casema.nl', 'kpnmail.nl', 'yahoo.com', 'kpnplanet.nl', 'zonnet.nl',
-  'quicknet.nl', 'hotmail.nl', 'msn.com', 'online.nl', 'zeelandnet.nl',
-  'telfort.nl', 'versatel.nl', 'tiscali.nl', 'tele2.nl', 'outlook.com',
-  'me.com', 'wanadoo.nl', 'hccnet.nl', 'wxs.nl', 'telenet.be')
+  '12move.nl', 'aol.nl', 'caiway.net', 'caiway.nl', 'casema.nl', 'chello.nl',
+  'concepts.nl', 'cs.com', 'dds.nl', 'deds.nl', 'freeler.nl', 'gmail.com',
+  'gmx.com', 'gmx.net', 'googlemail.com', 'hccnet.nl', 'hetnet.nl', 'home.nl',
+  'hotmail.com', 'hotmail.nl', 'icloud.com', 'inter.nl.net',
+  'kabel.netvisit.nl', 'kabelfoon.nl', 'knid.nl', 'kpnmail.nl', 'kpnplanet.nl',
+  'lijbrandt.nl', 'live.com', 'live.nl', 'mac.com', 'mail.com', 'me.com',
+  'msn.com', 'netvisit.nl', 'online.nl', 'onsbrabantnet.nl', 'orange.fr',
+  'outlook.com', 'planet.nl', 'protonmail.com', 'quicknet.nl', 'scarlet.nl',
+  'tele2.nl', 'telenet.be', 'telfort.nl', 'telfortglasvezel.nl', 'tiscali.nl',
+  'tomaatnet.nl', 'upcmail.nl', 'versatel.nl', 'vodafonethuis.nl', 'web.de',
+  'wxs.nl', 'xmsnet.nl', 'xs4all.nl', 'yahoo.co.uk', 'yahoo.com', 'yahoo.de',
+  'yahoo.nl', 'zeelandnet.nl', 'zonnet.nl')
+
 # extend existing SLDs
 # Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain')
 Mailcheck.defaultTopLevelDomains.push('nl', 'be', 'eu', 'de')
@@ -29,25 +36,25 @@ empty = (elements, suggestion) ->
   tip_id = '#didyoumean_' + elements[0].id
   sugestion_id = '#suggest_' + elements[0].id
   sugElement = $(sugestion_id)
-  $(sugestion_id).text ""
+  $(sugestion_id).text ''
   tipElement = $(tip_id)
   tipElement.hide()
 
-delay = (
-  timer = 0
-  (callback, ms) ->
-    clearTimeout(timer)
-    setTimeout(callback, ms)
-  )
+# delay = (
+#   timer = 0
+#   (callback, ms) ->
+#     clearTimeout(timer)
+#     setTimeout(callback, ms)
+#   )
 
 
 # while typing email form check the email field with a little delay
-$ ->
-  $('[id$=_email]').keyup(->
-    input = this
-    delay(->
-      $(input).mailcheck suggested: suggested, empty: empty
-    , 400))
+# $ ->
+#   $('[id$=_email]').keyup(->
+#     input = this
+#     delay(->
+#       $(input).mailcheck suggested: suggested, empty: empty
+#     , 400))
 
 
 # on focusing to the next form check the mail field
@@ -58,9 +65,9 @@ $ ->
 
 
 # replace content of email form when clicked.
-# and remove the sugestion
+# and remove the suggestion
 $ ->
-  $('[id^=didyoumean_]').on "click", ->
+  $('[id^=didyoumean_]').on 'click', ->
     #console.log('yes')
     # find email element
     id = $(this)[0].id
@@ -70,7 +77,7 @@ $ ->
     element.val $(sugestion_id).html()
     #console.log(element)
     # empty suggestion box
-    $(sugestion_id).html ""
+    $(sugestion_id).html ''
     # hide the tip box
     tip_id = '#didyoumean_' + input_id
     #console.log(tip_id)
@@ -136,8 +143,8 @@ $ ->
   $('form#new_invite_form').on('ajax:success', (e, data, status, xhr) ->
     $('#success_share_email').show()
     $('#fail_share_email').hide()
-    $('#input_share_email').val("")
-    $('#input_share_email').attr("placeholder", "Thank you! Please invite more")
+    $('#input_share_email').val('')
+    $('#input_share_email').attr('placeholder', 'Thank you! Please invite more')
     #$('#feedback').html('Well done!')
   )
 
@@ -145,8 +152,8 @@ $ ->
   $('form#new_invite_form').on('ajax:error', (e, data, status, xhr) ->
     $('#success_share_email').hide()
     $('#fail_share_email').show()
-    $('#input_share_email').val("")
-    $('#input_share_email').attr("placeholder", "Failed! Try again")
+    $('#input_share_email').val('')
+    $('#input_share_email').attr('placeholder', 'Failed! Try again')
     #$('#feedback').html('failed')
   )
 

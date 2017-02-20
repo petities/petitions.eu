@@ -60,10 +60,11 @@
 #  active_rate_value                :float(24)        default(0.0)
 #  owner_id                         :integer
 #  owner_type                       :string(255)
+#  slug                             :string(255)
 #  reference_field                  :string(255)
 #  answer_due_date                  :date
-#  slug                             :string(255)
 #
+
 Globalize.fallbacks = { en: [:en, :nl], nl: [:nl, :en] }
 
 class Petition < ActiveRecord::Base
@@ -137,33 +138,13 @@ class Petition < ActiveRecord::Base
   belongs_to :organisation
 
   has_many :images, as: :imageable, dependent: :destroy
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, allow_destroy: true
 
-  # default_scope :order => 'petitions.name ASC'
+  has_many :new_signatures, dependent: :destroy
+  has_many :signatures, dependent: :destroy
 
-  has_many :new_signatures
-
-  has_many :signatures do
-    def confirmed
-      where(confirmed: true)
-    end
-
-    def special
-      # where(confirmed: true, special: true).order('sort_order ASC, signed_at ASC')
-      where(confirmed: true).order('sort_order DESC, signed_at ASC')
-    end
-
-    def recent
-      where(confirmed: true).order('signed_at DESC')
-    end
-
-    def last_signed
-      where(confirmed: true).order('signed_at DESC').limit(1).first
-    end
-  end
-
-  has_many :updates
-  has_many :task_statuses
+  has_many :updates, dependent: :destroy
+  has_many :task_statuses, dependent: :destroy
 
   def get_count
     count = $redis.get("p#{id}-count").to_i
@@ -176,6 +157,9 @@ class Petition < ActiveRecord::Base
 
   include StripWhitespace
   strip_whitespace :name, :description, :initiators, :statement, :request
+
+  include TruncateString
+  truncate_string :link1_text, :link2_text, :link3_text
 
   validates_presence_of :name
   validates_presence_of :description
@@ -262,18 +246,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    return 'is_answered' if is_answered?
-  end
-
-  ## edit a given petition
-  def can_edit_petition?(user)
-    return true if user.has_role? :admin
-
-    office = Office.find(office_id)
-
-    return true if office && user.has_role?(office, :admin)
-
-    false
+    status if %w(completed withdrawn).include?(status)
   end
 
   # All users who signed this petition should get an
@@ -283,48 +256,27 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept
-       staging
-       draft).include? status
+    %w(concept staging draft).include?(status)
   end
 
   def is_staging?
-    %w(concept
-       staging).include? status
+    %w(concept staging).include?(status)
   end
 
   def is_live?
-    %w(live
-       not_signable_here).include? status
+    %w(live not_signable_here).include?(status)
   end
 
   def is_closed?
-    %w(withdrawn
-       rejected
-       to_process
-       not_processed).include? status
+    %w(rejected to_process not_processed).include?(status)
   end
 
   def in_treatment?
-    %w(in_process
-       to_process
-       not_processed).include? status
-  end
-
-  def is_answered?
-    'completed' == status
+    %w(in_process to_process not_processed).include?(status)
   end
 
   def get_answer
     updates.find_by(show_on_petition: true)
-  end
-
-  def display_city_select_box?
-    if petition_type.present?
-      petition_type.allowed_cities.present?
-    elsif office.present? && office.petition_type.present?
-      office.petition_type.allowed_cities.present?
-    end
   end
 
   def redis_history_chart_json(hist = 10)
@@ -361,24 +313,6 @@ class Petition < ActiveRecord::Base
     [day_counts, labels]
   end
 
-  def history_chart_json
-    label_size = signatures.confirmed.limit(50).map(&:confirmed_at)
-                 .compact
-                 .group_by { |signature| signature.strftime('%Y-%m-%d') }
-                 .map { |group| [group[0], group[1].size] } # .to_json.html_safe
-
-    labels = label_size.map.with_index { |d_s, _i| d_s[0] }
-
-    if labels.size > 20
-      factor = (labels.size / 20.0).ceil
-      labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
-    end
-
-    data = label_size.map { |d_s| d_s[1] }
-
-    [data, labels]
-  end
-
   def inc_signatures_count!
     self.signatures_count += 1
   end
@@ -395,7 +329,6 @@ class Petition < ActiveRecord::Base
   end
 
   def delete_keys
-
     r = $redis
 
     keys_d = r.keys("p-d-#{id}-*")
@@ -403,7 +336,6 @@ class Petition < ActiveRecord::Base
 
     r.del(*keys_d) if keys_d.size > 0
     r.del(*keys_h) if keys_h.size > 0
-
   end
 
   def create_raw_sql_barchart_keys
@@ -454,8 +386,13 @@ class Petition < ActiveRecord::Base
     recent_signatures.each do |signature|
       signature.set_redis_keys(true)
     end
-
   end
 
+  def image
+    @image ||= images.last if images.any?
+  end
 
+  def active_petition_type
+    petition_type || (office && office.petition_type)
+  end
 end

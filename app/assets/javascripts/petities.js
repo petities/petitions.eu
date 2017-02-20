@@ -136,7 +136,7 @@ $(document).ready(function(){
 
     if(!$nameField.val().match(nameRegex)){
       $nameField.addClass('error');
-      var error_name = window.wrong_name_error || 'Name and Surname';
+      var error_name = window.wrong_name_error;
       $errorsBlock.append(error_name);
       // $errorsBlock.append('Please enter correct Name and Surname.<br>');
       result = false;
@@ -145,7 +145,7 @@ $(document).ready(function(){
     if(!$emailField.val().match(emailRegex)){
       // console.log($emailField.val());
       $emailField.addClass('error');
-      var error_email = window.wrong_email_error || 'Email is wrong';
+      var error_email = window.wrong_email_error;
       $errorsBlock.append(" " + error_email);
       result = false;
     }
@@ -157,19 +157,19 @@ $(document).ready(function(){
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
-      console.log(xhr);
+      // console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
       // just let the user think that something happened anyway
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
-      console.log(xhr);
+      // console.log(xhr);
     });
 
 
   // change the state of a petition in the edit view
   $('select').change(function(){
     var value = $("#petitionstate option:selected").text();
-    console.log(value);
+    // console.log(value);
   });
 
   // set the state on state element when ready
@@ -214,25 +214,15 @@ $(document).ready(function(){
       dataType: 'jsonp'
     });
   });
+
+  $('div.header-search-toggle').click(function() {
+    $(this).prev().toggle();
+  });
+
+  $('div.header-user-wrapper').click(function() {
+    $('div.header-user-dropdown').toggle();
+  });
 });
-
-function toggleSearchBox() {
-  c=$('.search-container');
-  if (c.is(':visible')) {
-        c.hide();
-  } else {
-        c.show();
-  }
-}
-
-function toggleEditMenu() {
-  m=$('.header-user-dropdown');
-  if (m.is(':visible')) {
-    m.hide();
-  } else {
-    m.show();
-  }
-}
 
 function toggleUpdateEdit(id) {
   ud=$('#update'+id);

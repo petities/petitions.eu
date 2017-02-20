@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'models/concerns/strip_whitespace'
 
 class SignatureTest < ActiveSupport::TestCase
   include Concerns::StripWhitespace
+  include Concerns::TruncateString
 
   setup do
     @signature = signatures(:four)
@@ -15,11 +15,14 @@ class SignatureTest < ActiveSupport::TestCase
   end
 
   test 'browser should be truncated' do
-    value = 'Mozilla/5.0 (Windows NT 6.0; rv:32.0) Gecko/20100101 Firefox/32.0 Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons Facicons'
-    @signature.signature_remote_browser = value
-    @signature.confirmation_remote_browser = value
+    [:signature_remote_browser, :confirmation_remote_browser].each do |field|
+      assert_truncate_string @signature, field
+    end
+  end
+
+  test 'sort_order should be integer' do
+    @signature.sort_order = nil
     @signature.save
-    assert_equal @signature.signature_remote_browser.length, 255
-    assert_equal @signature.confirmation_remote_browser.length, 255
+    assert_equal @signature.sort_order, 0
   end
 end

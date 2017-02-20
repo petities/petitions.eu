@@ -1,4 +1,4 @@
-- t('contact.title')
+- title title t('contact.title')
 div.page
   section.start-petition-form-container
     h1.petition-section-title= t('contact.title')
@@ -19,6 +19,14 @@ div.page
           = f.email_field :mail, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label
           = t('contact.form.mail.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.start-petition-form-cell-title
+            = t('contact.form.subject.label')
+          = f.text_field :subject, class: 'start-petition-form-cell-input'
+        div.start-petition-form-cell.label
+          = t('contact.form.subject.description')
 
       div.start-petition-form-row
         div.start-petition-form-cell.input

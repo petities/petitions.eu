@@ -1,28 +1,27 @@
 require 'active_support/concern'
 
-module SortPetitions extend ActiveSupport::Concern
+module SortPetitions
+  extend ActiveSupport::Concern
 
   def sort_petitions(petitions)
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'all'
     @order   = params[:order].to_i
-
-    # petitions = Petition.joins(:translations).live
-    direction = [:desc, :asc][@order]
 
     # describe petitions
     case @sorting
     when 'all'
-      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')").limit(100)
+      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')").order(created_at: :desc).limit(100)
     when 'open'
-      petitions = petitions.live.limit(100)
+      petitions = petitions.live.order(created_at: :desc).limit(100)
     when 'concluded'
-      petitions = petitions.where(status: 'completed').limit(100)
+      petitions = petitions.where(status: 'completed').order(created_at: :desc).limit(100)
     when 'rejected'
-      petitions = petitions.where(status: 'rejected').limit(100)
+      petitions = petitions.where(status: 'rejected').order(created_at: :desc).limit(100)
     when 'sign_elsewhere'
-      petitions = petitions.where(status: 'not_signable_here').limit(100)
+      petitions = petitions.where(status: 'not_signable_here').order(created_at: :desc).limit(100)
     else
+      direction = [:desc, :asc][@order]
       petitions = petitions.live.order(created_at: direction).limit(100)
     end
 

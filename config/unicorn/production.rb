@@ -5,7 +5,7 @@ shared_dir = "#{base_dir}/shared"
 working_directory app_dir
 
 # Set unicorn options
-worker_processes 2
+worker_processes 4
 preload_app true
 timeout 30
 
@@ -18,3 +18,9 @@ stdout_path "#{shared_dir}/log/unicorn.stdout.log"
 
 # Set master PID location
 pid "#{shared_dir}/tmp/pids/unicorn.pid"
+
+# Fix for Bundler::GemfileNotFound at some deploys
+# See http://stackoverflow.com/a/8436516/5691309
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{app_dir}/Gemfile"
+end

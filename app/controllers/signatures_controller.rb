@@ -15,36 +15,36 @@ class SignaturesController < ApplicationController
   def index
     find_petition
 
-    @all_signatures = @petition.signatures.confirmed.limit(900)
+    @all_signatures = @petition.signatures.limit(900)
 
     unless request.xhr? || request.format.json? || request.format.js?
       # make redis!
       @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
 
       # redis ranking!
-      @signatures_count_by_city = @all_signatures.group_by(&:person_city)
-                                  .map { |group| [group[0], group[1].size] }
-                                  .select { |group| group[1] >= 50 }
-                                  .sort_by { |group| group[1] }[0..9]
+      # @signatures_count_by_city = @all_signatures.group_by(&:person_city)
+      #                             .map { |group| [group[0], group[1].size] }
+      #                             .select { |group| group[1] >= 50 }
+      #                             .sort_by { |group| group[1] }[0..9]
 
-      @filtered_s_c_c = {}
+      # @filtered_s_c_c = {}
 
-      @signatures_count_by_city.each do |group|
-        city_name = group[0].downcase
-        if @filtered_s_c_c[city_name]
-          @filtered_s_c_c[city_name] += group[1].to_i
-        else
-          @filtered_s_c_c[city_name] = group[1].to_i
-        end
-      end
-      @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
+      # @signatures_count_by_city.each do |group|
+      #   city_name = group[0].downcase
+      #   if @filtered_s_c_c[city_name]
+      #     @filtered_s_c_c[city_name] += group[1].to_i
+      #   else
+      #     @filtered_s_c_c[city_name] = group[1].to_i
+      #   end
+      # end
+      # @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
 
       @per_page = 100
     else
       @per_page = 12
     end
 
-    @page = if params[:page]
+    @page = if params[:page].to_i > 0
               params[:page].to_i
             elsif params[:signature_id]
               (@all_signatures.pluck(:id).index(params[:signature_id].to_i).to_f / @per_page).floor + 1
@@ -55,11 +55,7 @@ class SignaturesController < ApplicationController
     @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
                       .paginate(page: @page, per_page: @per_page)
 
-    respond_to do |format|
-      format.js
-      format.html
-      format.json
-    end
+    respond_to :js, :html, :json
   end
 
   def search
@@ -67,15 +63,15 @@ class SignaturesController < ApplicationController
 
     @query = params[:query]
 
-    @signatures = if @query.blank?
-                    @petition.signatures.special.paginate(page: params[:page], per_page: 100)
-                  else
-                    @petition.signatures.confirmed.visible.where('person_name like ?', "%#{@query}%")
-                  end
+    page = cleanup_page(params[:page])
+    # @signatures = if @query.blank?
+    #                 @petition.signatures.ordered.paginate(page: page, per_page: 100)
+    #               else
+    #                 @petition.signatures.visible.where('person_name like ?', "%#{@query}%")
+    #               end
+    @signatures = @petition.signatures.ordered.paginate(page: page, per_page: 100)
 
-    respond_to do |format|
-      format.js
-    end
+    respond_to :js
   end
 
   # POST /signatures
@@ -85,16 +81,15 @@ class SignaturesController < ApplicationController
 
     # try to find old signature first
     email = signature_params[:person_email]
-    @signature = Signature.where(person_email: email, petition_id: @petition.id).first
+    @signature = Signature.find_by(person_email: email, petition: @petition)
 
     unless @signature
-      @signature = NewSignature.where(person_email: email, petition_id: @petition.id).first
+      @signature = NewSignature.find_by(person_email: email, petition: @petition)
     end
 
     if @signature
       # we found an old signature
       # send confirmation mail again
-      # to this moron :)
       @signature.send(:send_confirmation_mail)
       respond_to do |format|
         format.js { render json: { is_resend: 'true', status: 'ok' } }

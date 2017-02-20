@@ -10,23 +10,27 @@ class PetitionsController < ApplicationController
   def index
     @vervolg = true
 
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'active'
     @order = params[:order].to_i
 
-    # petitions = Petition.joins(:translations).live
     petitions = Petition.live
-    direction = [:desc, :asc][@order]
 
-    if @sorting == 'active'
-      petitions = $redis.zrevrange('active_rate', 0, 160)
-    elsif @sorting == 'biggest'
-      petitions = $redis.zrevrange('petition_size', 0, 160)
-    elsif @sorting == 'newest'
-      petitions = petitions.order(created_at: direction)
-    elsif @sorting == 'signquick'
-      petitions = petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
-    end
+    petitions = case @sorting
+                when 'active'
+                  petition_ids = $redis.zrevrange('active_rate', 0, 160)
+                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
+                when 'biggest'
+                  petition_ids = $redis.zrevrange('petition_size', 0, 160)
+                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
+                when 'newest'
+                  direction = [:desc, :asc][@order]
+                  petitions.order(created_at: direction)
+                when 'signquick'
+                  petitions.where('date_projected > ?', Time.now).order(date_projected: :asc)
+                else
+                  petitions
+                end
 
     @sorting_options = [
       { type: 'active', label: t('index.sort.active') },
@@ -37,38 +41,17 @@ class PetitionsController < ApplicationController
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
-    @ranked_petitions = []
-
-    if @petitions.is_a?(Array)
-      @petitions.each do |id|
-        petition = Petition.live.find_by_id(id)
-        @ranked_petitions.push(petition) if petition
-        petition = nil
-      end
-      @petitions.clear
-    end
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def all
-    @petitions = sort_petitions Petition
+    @petitions = sort_petitions(Petition)
 
-    @results_size = @petitions.count
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def search
-    # enable search on petition title. TODO ransack?
-    # @search = 0
-    @page = params[:page] || 1
+    @page = cleanup_page(params[:page])
 
     @search = params[:search]
     # translation = Petition.findbyname(params[:search])
@@ -85,7 +68,7 @@ class PetitionsController < ApplicationController
   end
 
   def admin
-    @page    = (params[:page] || 1).to_i
+    @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'live'
     @order   = params[:order].to_i
 
@@ -109,29 +92,23 @@ class PetitionsController < ApplicationController
 
     @petitions = petitions.paginate(page: @page, per_page: 12)
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def manage
     if current_user
-      # @petitions = current_user.petitions
-      # TODO we should convert managers to admin..
       @petitions = Petition.with_role(:admin, current_user)
 
       @results_size = @petitions.size
 
       petitions_by_status @petitions
-
     else
       redirect_to new_user_session_path
     end
   end
 
   def set_petition_vars
-    @page = (params[:page] || 1).to_i
+    @page = cleanup_page(params[:page])
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
@@ -153,11 +130,9 @@ class PetitionsController < ApplicationController
 
     @signature = @petition.signatures.new
 
-    @images = @petition.images
-
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .paginate(page: 1, per_page: 12)
+                           .limit(12)
 
     @office = if @petition.office_id
                 Office.find(@petition.office_id)
@@ -166,6 +141,8 @@ class PetitionsController < ApplicationController
               end
 
     @answer = @petition.updates.where(show_on_petition: true).first
+
+    respond_to :html, :json
   end
 
   # GET /petitions/new
@@ -203,12 +180,6 @@ class PetitionsController < ApplicationController
     set_office
 
     set_organisation_helper
-
-    if params[:images].present?
-      params[:images].each do |image|
-        @petition.images << Image.new(upload: image)
-      end
-    end
 
     @exclude_list = []
 
@@ -257,9 +228,11 @@ class PetitionsController < ApplicationController
       # petition is save. status change causes email(s)
       # to be send
       if @petition.save
-        # make user owner of the petition
-        owner.add_role(:admin, @petition) if owner
-        PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
+        if owner && owner.persisted?
+          # make user owner of the petition
+          owner.add_role(:admin, @petition)
+          PetitionMailer.welcome_petitioner_mail(@petition, owner, password).deliver_later
+        end
 
         format.html { redirect_to @petition, flash: { success: t('petition.created') } }
         format.json { render :show, status: :created, location: @petition }
@@ -276,7 +249,7 @@ class PetitionsController < ApplicationController
 
     @exclude_list = policy(@petition).invalid_attributes
 
-    @page = params[:page]
+    @page = cleanup_page(params[:page])
 
     set_petition_vars
 
@@ -284,13 +257,11 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .paginate(page: params[:page], per_page: 12)
+                           .paginate(page: @page, per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
 
     @petition_flash = t("petition.status.flash.#{@petition.status}", default: @petition.status)
-
-    @images = @petition.images
   end
 
   def set_organisation_helper
@@ -378,12 +349,6 @@ class PetitionsController < ApplicationController
 
     update_locale_list
 
-    if params[:images].present?
-      params[:images].each do |image|
-        @petition.images << Image.new(upload: image)
-      end
-    end
-
     # update params_with permissions
     # only update what is allowed
     exclude_list = policy(@petition).invalid_attributes
@@ -444,17 +409,10 @@ class PetitionsController < ApplicationController
     @update = Update.new(petition_id: @petition.id)
 
     # find specific papertrail version
-    @version_index = 0
-
-    @version_index = @petition.index if @petition.has_attribute? :index
-
-    if params[:version].to_i < 0
-      @version_index = params[:version].to_i
-      @petition = @petition.versions[@version_index].reify
+    if params[:version].to_i > 0
+      versioned_petition = @petition.versions[params[:version].to_i]
+      @petition = versioned_petition.reify if versioned_petition
     end
-
-    @up = @version_index < 0 ? @version_index + 1 : 0
-    @down = @version_index.abs < @petition.versions.size ? @version_index - 1 : @version_index
 
     # If an old id or a numeric id was used to find the record, then
     # the request path will not match the post_path, and we should do
@@ -490,7 +448,8 @@ class PetitionsController < ApplicationController
       :link1, :link1_text,
       :link2, :link2_text,
       :link3, :link3_text,
-      :subdomain
+      :subdomain,
+      images_attributes: [:id, :upload, :_destroy]
     )
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430110930) do
+ActiveRecord::Schema.define(version: 20170220064528) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -64,29 +64,6 @@ ActiveRecord::Schema.define(version: 20160430110930) do
     t.datetime "updated_at"
   end
 
-  create_table "faq_translations", force: :cascade do |t|
-    t.integer  "faq_id",     limit: 4,     null: false
-    t.string   "locale",     limit: 255,   null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "question",   limit: 255
-    t.text     "answer",     limit: 65535
-  end
-
-  add_index "faq_translations", ["faq_id"], name: "index_faq_translations_on_faq_id", using: :btree
-  add_index "faq_translations", ["locale"], name: "index_faq_translations_on_locale", using: :btree
-
-  create_table "faqs", force: :cascade do |t|
-    t.string   "question",    limit: 255
-    t.text     "answer",      limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "cached_slug", limit: 255
-    t.string   "group",       limit: 255
-  end
-
-  add_index "faqs", ["cached_slug"], name: "index_faqs_on_cached_slug", using: :btree
-
   create_table "images", force: :cascade do |t|
     t.integer  "imageable_id",        limit: 4
     t.string   "imageable_type",      limit: 255
@@ -97,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160430110930) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alt_label",           limit: 255
+    t.boolean  "upload_processing"
   end
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
@@ -116,7 +94,7 @@ ActiveRecord::Schema.define(version: 20160430110930) do
     t.datetime "confirmed_at"
     t.boolean  "confirmed",                               default: false, null: false
     t.string   "unique_key",                  limit: 255
-    t.boolean  "special"
+    t.boolean  "special",                                 default: false, null: false
     t.string   "person_city",                 limit: 255
     t.boolean  "subscribe",                               default: false
     t.string   "person_birth_date",           limit: 255
@@ -247,6 +225,7 @@ ActiveRecord::Schema.define(version: 20160430110930) do
   end
 
   add_index "petition_translations", ["locale"], name: "index_petition_translations_on_locale", using: :btree
+  add_index "petition_translations", ["petition_id", "slug", "locale"], name: "index_petition_translations_on_petition_id_and_slug_and_locale", using: :btree
   add_index "petition_translations", ["petition_id"], name: "index_petition_translations_on_petition_id", using: :btree
 
   create_table "petition_types", force: :cascade do |t|
@@ -378,25 +357,14 @@ ActiveRecord::Schema.define(version: 20160430110930) do
   add_index "progressions", ["updated_at"], name: "index_progressions_on_updated_at", using: :btree
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.string   "authorizable_type", limit: 255
-    t.integer  "authorizable_id",   limit: 4
+    t.string   "name",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "resource_type",     limit: 255
-    t.integer  "resource_id",       limit: 4
+    t.string   "resource_type", limit: 255
+    t.integer  "resource_id",   limit: 4
   end
 
-  add_index "roles", ["authorizable_id"], name: "index_roles_on_authorizable_id", using: :btree
-  add_index "roles", ["authorizable_type"], name: "index_roles_on_authorizable_type", using: :btree
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-
-  create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "role_id",    limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "signatures", force: :cascade do |t|
     t.integer  "petition_id",                 limit: 4,   default: 0,     null: false
@@ -412,7 +380,7 @@ ActiveRecord::Schema.define(version: 20160430110930) do
     t.datetime "confirmed_at"
     t.boolean  "confirmed",                               default: false, null: false
     t.string   "unique_key",                  limit: 255
-    t.boolean  "special"
+    t.boolean  "special",                                 default: false, null: false
     t.string   "person_city",                 limit: 255
     t.boolean  "subscribe",                               default: false
     t.string   "person_birth_date",           limit: 255
@@ -444,25 +412,6 @@ ActiveRecord::Schema.define(version: 20160430110930) do
   add_index "signatures", ["special"], name: "index_signatures_on_special", using: :btree
   add_index "signatures", ["subscribe"], name: "subscribe", using: :btree
   add_index "signatures", ["unique_key"], name: "unique_key", using: :btree
-
-  create_table "signatures_reconfirmations", force: :cascade do |t|
-    t.integer  "signature_id",               limit: 4
-    t.string   "phase",                      limit: 255
-    t.string   "status",                     limit: 255
-    t.string   "unique_key",                 limit: 255, null: false
-    t.datetime "message_sent_at"
-    t.boolean  "reconfirmed"
-    t.datetime "reconfirmed_at"
-    t.string   "reconfirmed_remote_addr",    limit: 255
-    t.string   "reconfirmed_remote_browser", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "signatures_reconfirmations", ["reconfirmed"], name: "index_signatures_reconfirmations_on_reconfirmed", using: :btree
-  add_index "signatures_reconfirmations", ["signature_id"], name: "index_signatures_reconfirmations_on_signature_id", using: :btree
-  add_index "signatures_reconfirmations", ["status"], name: "index_signatures_reconfirmations_on_status", using: :btree
-  add_index "signatures_reconfirmations", ["unique_key"], name: "index_signatures_reconfirmations_on_unique_key", unique: true, using: :btree
 
   create_table "slugs", force: :cascade do |t|
     t.string   "name",           limit: 255

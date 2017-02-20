@@ -6,7 +6,7 @@ ActiveAdmin.register Office do
 
   filter :name
   filter :subdomain
-  filter :email
+  filter :email, filters: [:equals, :contains]
   filter :postalcode
   filter :text
   filter :url

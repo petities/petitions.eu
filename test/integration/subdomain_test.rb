@@ -3,14 +3,14 @@ class SubDomainTest < ActionDispatch::IntegrationTest
 
   test 'bad subdomain' do
     host! 'idonotexist.test.host'
-    assert_recognizes({ controller: 'petitions', action: 'index' }, 'http://idontexist.test.host')
+    assert_recognizes({ controller: 'subdomains', action: 'show' }, 'http://idontexist.test.host')
     get '/'
-    assert_response :success
+    assert_response :not_found
   end
 
   test 'amsterdam subdomain' do
     host! 'amsterdam.test.host'
-    assert_recognizes({ controller: 'desks', action: 'redirect' }, 'http://amsterdam.test.host')
+    assert_recognizes({ controller: 'subdomains', action: 'show' }, 'http://amsterdam.test.host')
     get '/'
     assert_response :redirect
     assert_redirected_to 'http://test.host/petitions/desks/amsterdam'

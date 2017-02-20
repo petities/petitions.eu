@@ -1,4 +1,6 @@
 class SignatureMailer < ApplicationMailer
+  helper :petitions
+
   # all signatories get a mail that the hand over took place
   def handed_over_signatories_mail(signature)
     @signature = signature
@@ -84,13 +86,14 @@ class SignatureMailer < ApplicationMailer
     @signature = signature
     @petition = @signature.petition
     @person_function = ''
-    unless @signature.person_function.nil?
+    unless @signature.person_function.blank?
       @person_function = t('mail.mailafriend.note') + " \"#{@signature.person_function}\""
     end
-    # build a catch subject line
-    subject = t('mail.mailafriend.subject', title: @petition.name)
 
-    mail(to: target_email, subject: subject)
+    mail(
+      to: target_email,
+      subject: t('mail.mailafriend.subject', title: @petition.name)
+    )
   end
 
   def inform_user_of_news_mail(signature, petition, news_update)

@@ -1,7 +1,6 @@
 class DesksController < ApplicationController
   include SortPetitions
 
-  skip_before_action :ensure_domain, only: :redirect
   before_filter :find_office, only: :show
 
   def index
@@ -17,15 +16,10 @@ class DesksController < ApplicationController
     end
   end
 
-  def redirect
-    @office = Office.find_by_subdomain(request.subdomain)
-    redirect_to petition_desk_url(@office, subdomain: nil, locale: nil)
-  end
-
   private
 
   def show_office_page
-    @page = params[:page] || 1
+    @page = cleanup_page(params[:page])
 
     @petitions = Petition.where(office_id: @office.id)
 
@@ -43,7 +37,7 @@ class DesksController < ApplicationController
   def show_not_logged_in
     petitions = Petition.where(office_id: @office.id)
 
-    @petitions = sort_petitions petitions
+    @petitions = sort_petitions(petitions)
 
     render 'show_not_logged_in'
   end
