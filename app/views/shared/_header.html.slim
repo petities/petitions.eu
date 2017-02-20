@@ -16,7 +16,7 @@ header.header
   - else
     div.header-content
       div.header-button-container
-        = link_to '', root_path, class: 'header-logo'
+        = link_to '', root_url(subdomain: false), class: 'header-logo'
 
       div.header-languages-container
         div class="header-languages-container-active #{I18n.locale}"

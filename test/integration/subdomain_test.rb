@@ -21,5 +21,8 @@ class SubDomainTest < ActionDispatch::IntegrationTest
     assert_recognizes({ controller: 'petitions', action: 'show' }, 'http://testsubdomain.test.host')
     get '/'
     assert_response :success
+    # Allow translations for subdomain
+    get '/?locale=en'
+    assert_response :success
   end
 end
