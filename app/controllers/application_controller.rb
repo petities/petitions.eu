@@ -48,10 +48,9 @@ class ApplicationController < ActionController::Base
   # redirect subdomains which are not direct 'hits'
   # to a url without subdomain
   # only for get requests
-
   def ensure_domain
     if request.get? && subdomain?
-      unless request.fullpath == '/'
+      unless request.path == '/'
         redirect_to request.url.sub(request.subdomain + '.', '')
       end
     end
