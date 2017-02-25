@@ -639,6 +639,7 @@ en:
         completed: Answered
         indication: 'Status:'
         signable: Signable
+        staging: Waiting for moderator
         withdrawn: Withdrawn
       title: Details
       website: 'Website:'

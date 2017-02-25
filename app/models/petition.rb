@@ -190,11 +190,7 @@ class Petition < ActiveRecord::Base
 
   def last_sig_update
     last = $redis.get("p-last-#{id}")
-    if last
-      last = Time.at(last.to_i)
-      return last
-    end
-    1000.days.ago
+    Time.at(last.to_i) if last
   end
 
   def elapsed_time
@@ -246,7 +242,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    status if %w(completed withdrawn).include?(status)
+    status if %w(completed staging withdrawn).include?(status)
   end
 
   # All users who signed this petition should get an
@@ -256,7 +252,7 @@ class Petition < ActiveRecord::Base
   end
 
   def is_draft?
-    %w(concept staging draft).include?(status)
+    %w(concept draft).include?(status)
   end
 
   def is_staging?

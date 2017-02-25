@@ -37,11 +37,3 @@ div.petition-success-sign-note style='display: none;'
     = t('show.sign.form.sign_again')
 
   div.petition-form-note= t('show.sign.note')
-
-  div.petition-text
-    p &nbsp;
-    h3= t('show.petition.share_this')
-    - @petition.translations_by_locale.each do |ignorelocale, transp|
-      p &nbsp;
-      - if transp.slug
-        p= petition_url(transp.slug, :locale => nil)

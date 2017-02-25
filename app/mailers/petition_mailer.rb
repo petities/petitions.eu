@@ -56,9 +56,11 @@ class PetitionMailer < ApplicationMailer
   # a virtual hand over of the signatories list
   def hand_over_to_office_mail(petition)
     @petition = petition
-    target = @petition.office.email
-    subject = t('mail.request.procedural_subject', petition: petition.name)
-    mail(reply_to: subdomain_address(@petition), to: target, subject: subject)
+    mail(
+      reply_to: subdomain_address(@petition),
+      to: @petition.office.email,
+      subject: t('mail.request.handover_subject', petition: petition.name)
+    )
   end
 
   # petitioner with failed petition asked to fix it
@@ -85,9 +87,11 @@ class PetitionMailer < ApplicationMailer
   # explain office what we expect
   def process_explanation_mail(petition)
     @petition = petition
-    target = @petition.office.email
-    subject = t('mail.request.procedural_subject', petition: petition.name)
-    mail(reply_to: subdomain_address(@petition), to: target, subject: subject)
+    mail(
+      reply_to: subdomain_address(@petition),
+      to: @petition.office.email,
+      subject: t('mail.request.procedural_subject', petition: petition.name)
+    )
   end
 
   # ask office for reference number

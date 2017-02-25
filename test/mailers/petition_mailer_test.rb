@@ -20,7 +20,7 @@ class PetitionMailerTest < ActionMailer::TestCase
   test 'hand_over_to_office_mail' do
     mail = PetitionMailer.hand_over_to_office_mail(@petition)
     assert_default_office_mail_attributes(mail)
-    assert_equal "Komt de petitie \"#{@petition.name}\" op de agenda of is het ter kennisgeving?", mail.subject
+    assert_equal "Bij deze de ondertekenaars van de petitie", mail.subject
     assert_match '1 januari 2016', mail.body.encoded
   end
 

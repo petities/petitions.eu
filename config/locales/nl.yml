@@ -512,6 +512,7 @@ nl:
         in_process: Te behandelen
         closed: Beantwoord
         published: Ondertekenbaar
+        staging: Wacht op petitieloket
         success: Petitie is bijgewerkt
         your_petition_awaiting_moderation: 'Uw petitie wordt doorgelaten. Dit duurt even, soms ruim een dag. Als u haast heeft, laat een voicemail achter op 020 7854412.'
         your_petition_is_live: De petitie staat nu open om ondertekeningen te verzamelen. De petitionaris ontvangt hier een e-mail over.
@@ -643,6 +644,7 @@ nl:
         completed: Beantwoord
         indication: 'Status:'
         signable: Ondertekenbaar
+        staging: Wacht op petitieloket
         withdrawn: Ingetrokken
       title: Details
       website: 'Website:'

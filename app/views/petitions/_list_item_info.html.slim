@@ -5,4 +5,5 @@ div.petition-overview-info-container
   div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
     = petition.get_count
 
-  div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)
+  - if petition.last_sig_update
+    div.petition-overview-info-time= distance_of_time_in_words(petition.last_sig_update, Time.now)

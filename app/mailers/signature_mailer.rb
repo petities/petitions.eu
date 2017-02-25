@@ -82,9 +82,9 @@ class SignatureMailer < ApplicationMailer
 
   # send a default email informing recipient of petition
   def share_mail(signature, target_email)
-    # build the required globals for the template
     @signature = signature
     @petition = @signature.petition
+
     @person_function = ''
     unless @signature.person_function.blank?
       @person_function = t('mail.mailafriend.note') + " \"#{@signature.person_function}\""

@@ -260,8 +260,6 @@ class PetitionsController < ApplicationController
                            .paginate(page: @page, per_page: 12)
 
     @petition.status = 'draft' if @petition.status.nil?
-
-    @petition_flash = t("petition.status.flash.#{@petition.status}", default: @petition.status)
   end
 
   def set_organisation_helper
