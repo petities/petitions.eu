@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 gem 'rails-i18n'
 
 gem 'paper_trail'
@@ -41,7 +41,7 @@ gem 'slim'
 gem 'redcarpet'
 
 # pdf format templates
-gem 'prawn'
+gem 'prawn', '~> 2.1'
 gem 'prawn-table'
 gem 'prawnto'
 
@@ -83,7 +83,7 @@ gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.6', '>= 2.6.1'
+gem 'jbuilder', '~> 2.6', '>= 2.6.3'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -113,7 +113,7 @@ end
 
 # Track errors in production
 gem 'rollbar', '~> 2.14'
-gem 'newrelic_rpm', '~> 3.18', '>= 3.18.0.329'
+gem 'newrelic_rpm', '~> 3.18', '>= 3.18.1.330'
 # track everything..
 # gem 'logstasher'
 
@@ -144,4 +144,13 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'rack-mini-profiler'
+  # For memory profiling (requires Ruby MRI 2.1+)
+  gem 'memory_profiler'
+
+  # For call-stack profiling flamegraphs (requires Ruby MRI 2.0.0+)
+  gem 'flamegraph'
+  gem 'stackprof'     # For Ruby MRI 2.1+
+  gem 'fast_stack'    # For Ruby MRI 2.0
 end

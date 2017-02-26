@@ -1,6 +1,3 @@
-- content_for :head do
-  = javascript_include_tag 'ZeroClipboard.min'
-
 div.page.top
   section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
     div.petition-intro-image-container
@@ -90,11 +87,3 @@ div.page.signatures
           span#social_url= petition_share_url(@petition)
           a.social-bar-side-button-url href="javascript:void(0);" data-clipboard-target="social_url"
 
-          javascript:
-            $(document).ready(function(){
-              var client = new ZeroClipboard( $(".social-bar-side-button-url") );
-            });
-
-            document.addEventListener("page:before-change", function(){
-              ZeroClipboard.destroy();
-            });

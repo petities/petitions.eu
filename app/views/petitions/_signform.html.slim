@@ -28,11 +28,9 @@ div.petition-form-float-wrapper
     = f.submit t('show.sign.form.submit'), data: { disable_with: t('show.sign.form.submitting') }, class: 'petition-form-button'
 
 div.petition-success-sign-note style='display: none;'
-  p
-    =<> t('show.sign.form.success1')
-    span.confirm_email
-    =<> t('show.sign.form.success2')
   div.signature_succes_logo
+  p
+    =<> t('show.sign.form.success_html')
   div.petition-form-button id='sign_again'
     = t('show.sign.form.sign_again')
 

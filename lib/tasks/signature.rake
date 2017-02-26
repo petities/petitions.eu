@@ -1,12 +1,14 @@
 namespace :signature do
-  desc 'Delete unconfirmed signatures older then a week'
+  desc 'Delete unconfirmed signatures older then 30 days'
   task delete_old_signatures: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/deleted_sigs.log')
 
-    invalid = NewSignature.where('created_at < ?', 30.days.ago)
-    size = invalid.size
-    invalid.delete_all
-    Rails.logger.debug('deleted %s signatures' % size)
+    old_signatures = NewSignature.where('created_at < ?', 30.days.ago)
+                                 .where.not(last_reminder_sent_at: nil)
+                                 .limit(1000)
+    size = old_signatures.size
+    old_signatures.delete_all
+    Rails.logger.debug("deleted #{size} signatures")
   end
 
   desc 'fix migration signatures..'
@@ -69,9 +71,9 @@ namespace :signature do
     #               .where('last_reminder_sent_at < ?', 2.days.ago)
     #               .where('reminders_sent < ?', 3).limit(100)
 
-    new_reminder = NewSignature
-                   .where('created_at < ?', 7.days.ago)
-                   .where(last_reminder_sent_at: nil).limit(100)
+    new_reminders = NewSignature
+                    .where('created_at < ?', 7.days.ago)
+                    .where(last_reminder_sent_at: nil).limit(100)
 
     #Rails.logger.debug('old_reminders %s' % old_reminder.size)
     ## send new reminder
@@ -79,9 +81,9 @@ namespace :signature do
     #  new_signature.send(:send_reminder_mail)
     #end
 
-    Rails.logger.debug("new_reminders #{new_reminder.size}")
+    Rails.logger.debug("new_reminders #{new_reminders.size}")
     # send the first reminder
-    new_reminder.find_each do |new_signature|
+    new_reminders.find_each do |new_signature|
       Rails.logger.debug new_signature.person_email
       new_signature.send_reminder_mail
     end

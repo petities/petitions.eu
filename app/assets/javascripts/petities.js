@@ -1,19 +1,3 @@
-//function charCounter(fld, maxlength) {
-//  var $counter=$('#charCount_'+$(fld).attr('id'));
-//  console.log($counter);
-//
-//  $counter.text(fld.value.length + ' / ' + maxlength);
-//
-//  if (fld.value.length > maxlength) {
-//    if (!$counter.hasClass('error-too-long')) {
-//      $counter.addClass('error-too-long');
-//    }
-//  } else {
-//    if ($counter.hasClass('error-too-long')) {
-//      $counter.removeClass('error-too-long');
-//    }
-//  }
-//}
 
 var chartOptions = {
   showTooltips: false,
@@ -124,7 +108,7 @@ $(document).ready(function(){
   });
 
   $('#new_signature').submit(function(){
-    var nameRegex = /(.*)\s(.*)/,
+    var nameRegex = /.+[.\s].+/,
         emailRegex = /\S+@\S+\.\S+/,
         $nameField = $('#signature_person_name'),
         $emailField = $('#signature_person_email'),
@@ -138,7 +122,6 @@ $(document).ready(function(){
       $nameField.addClass('error');
       var error_name = window.wrong_name_error;
       $errorsBlock.append(error_name);
-      // $errorsBlock.append('Please enter correct Name and Surname.<br>');
       result = false;
     }
 

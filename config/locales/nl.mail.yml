@@ -41,7 +41,7 @@ https://%{subdomain}.petities.nl
 
 Heeft u vragen over deze petitie, neemt u dan contact op met de petitionaris: %{petition_email}
 '
-      note:  met de aantekening
+      note: ' met de aantekening'
       subject: 'Uitnodiging om de petitie "%{title}" te ondertekenen'
     moderation:
       pending: '

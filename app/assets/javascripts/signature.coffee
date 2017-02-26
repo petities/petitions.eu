@@ -40,23 +40,6 @@ empty = (elements, suggestion) ->
   tipElement = $(tip_id)
   tipElement.hide()
 
-# delay = (
-#   timer = 0
-#   (callback, ms) ->
-#     clearTimeout(timer)
-#     setTimeout(callback, ms)
-#   )
-
-
-# while typing email form check the email field with a little delay
-# $ ->
-#   $('[id$=_email]').keyup(->
-#     input = this
-#     delay(->
-#       $(input).mailcheck suggested: suggested, empty: empty
-#     , 400))
-
-
 # on focusing to the next form check the mail field
 # and do a suggestion
 $ ->
@@ -201,6 +184,3 @@ $.fn.render_form_errors = (model_name, errors) ->
 $.fn.clear_form_errors = () ->
   this.find('.has_error').removeClass('has_error')
   this.find('div.has_error_help').remove()
-
-
-

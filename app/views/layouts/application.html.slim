@@ -2,12 +2,15 @@ doctype html
 html class='no-js'
   head
     title
-        = yield(:title)
-        |
-        = t('site_title')
+      = yield(:title)
+      |
+      = t('site_title')
     meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge"
     meta name="viewport" content="width=device-width"
+
+    - if subdomain?
+      base href=root_url(subdomain: nil, locale: nil)
 
     = csrf_meta_tag
 

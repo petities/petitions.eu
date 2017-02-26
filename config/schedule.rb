@@ -29,10 +29,10 @@
 
 # Signature maintenance
 
-#kevery 10.minutes do
-#  # remove unconfirmed garbadge
-#  rake 'signature:delete_old_signatures'
-#end
+every 2.hours do
+  # remove unconfirmed signatures
+  rake 'signature:delete_old_signatures'
+end
 
 every 10.minutes do
   # send a reminder to confirm petition

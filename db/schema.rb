@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220064528) do
+ActiveRecord::Schema.define(version: 20170226100717) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170220064528) do
 
   add_index "new_signatures", ["confirmed"], name: "confirmed", using: :btree
   add_index "new_signatures", ["confirmed_at"], name: "date_confirmed", using: :btree
+  add_index "new_signatures", ["created_at", "last_reminder_sent_at"], name: "index_new_signatures_on_created_at_and_last_reminder_sent_at", using: :btree
   add_index "new_signatures", ["person_email"], name: "person_email", using: :btree
   add_index "new_signatures", ["person_function"], name: "person_function", using: :btree
   add_index "new_signatures", ["petition_id", "special"], name: "index_signatures_on_petiton_id_and_special", using: :btree
