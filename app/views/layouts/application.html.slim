@@ -9,9 +9,6 @@ html class='no-js'
     meta http-equiv="X-UA-Compatible" content="IE=Edge"
     meta name="viewport" content="width=device-width"
 
-    - if subdomain?
-      base href=root_url(subdomain: nil, locale: nil)
-
     = csrf_meta_tag
 
     = stylesheet_link_tag 'petitions4'

@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class SubDomainTest < ActionDispatch::IntegrationTest
   fixtures :all
 
@@ -21,6 +23,7 @@ class SubDomainTest < ActionDispatch::IntegrationTest
     assert_recognizes({ controller: 'petitions', action: 'show' }, 'http://testsubdomain.test.host')
     get '/'
     assert_response :success
+    assert_select 'a.header-logo[href=?]', 'http://test.host/?locale=nl'
     # Allow translations for subdomain
     get '/?locale=en'
     assert_response :success

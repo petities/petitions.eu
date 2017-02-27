@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :ensure_domain
 
-  helper_method :subdomain?
-
   before_action do
     @news = Update.show_on_home.limit(7) if request.get?
   end

@@ -5,7 +5,7 @@ namespace :signature do
 
     old_signatures = NewSignature.where('created_at < ?', 30.days.ago)
                                  .where.not(last_reminder_sent_at: nil)
-                                 .limit(1000)
+
     size = old_signatures.size
     old_signatures.delete_all
     Rails.logger.debug("deleted #{size} signatures")

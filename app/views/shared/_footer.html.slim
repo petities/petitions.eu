@@ -8,7 +8,7 @@ footer.footer
           ul.footer-news-list
             - @news.offset(homepage? ? 2 : 0).each do |entry|
               li.footer-news-list-item
-                = link_to update_path(entry)
+                = link_to update_url(entry, subdomain: false)
                   - if entry.date.nil?
                     = entry.updated_at.strftime("%d-%m-%Y")
                   - else
@@ -22,27 +22,27 @@ footer.footer
           ul.footer-content-menu
             div.footer-content-menu-part.left
               li.footer-content-menu-item
-                = link_to t('footer.menu.help'), help_path
+                = link_to t('footer.menu.help'), help_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.start_petition'), new_petition_path
+                = link_to t('footer.menu.start_petition'), new_petition_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.petitions'), petitions_path
+                = link_to t('footer.menu.petitions'), petitions_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.desks'), petition_desks_path
+                = link_to t('footer.menu.desks'), petition_desks_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.manage'), manage_petitions_path
+                = link_to t('footer.menu.manage'), manage_petitions_url(subdomain: false)
 
             div.footer-content-menu-part.right
               li.footer-content-menu-item
-                = link_to t('footer.menu.updates'), updates_path
+                = link_to t('footer.menu.updates'), updates_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.privacy'), privacy_path
+                = link_to t('footer.menu.privacy'), privacy_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.about'), about_path
+                = link_to t('footer.menu.about'), about_url(subdomain: false)
               li.footer-content-menu-item
-                = link_to t('footer.menu.support'), about_path
+                = link_to t('footer.menu.support'), donate_url(subdomain: false)
 
-        = link_to t('footer.donate'), donate_path, class: 'donate-button'
+        = link_to t('footer.donate'), donate_url(subdomain: false), class: 'donate-button'
 
       div.footer-content-contactblock
         div.footer-content-contactblock-section.top
@@ -57,13 +57,13 @@ footer.footer
             li.footer-content-menu-item
               = t('footer.contact')
             li.footer-content-menu-item
-              = link_to t('footer.menu.form'), contact_path
+              = link_to t('footer.menu.form'), contact_url(subdomain: false)
             li.footer-content-menu-item
               | <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a><br>
-              | <a href="http://twitter.com/petities">@petities op Twitter</a><br>
+              | <a href="https://twitter.com/petities">@petities op Twitter</a><br>
 
   div.footer-sponsor-bar
     = t('footer.hosting')
     br
-    a href="http://www.xs4all.nl/"
+    a href="https://www.xs4all.nl/"
       = image_tag "xs4all.png"
