@@ -7,6 +7,7 @@ require 'rails/test_help'
 require 'user_login_helper'
 require 'models/concerns/strip_whitespace'
 require 'models/concerns/truncate_string'
+require 'models/concerns/transliterate'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

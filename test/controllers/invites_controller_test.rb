@@ -15,10 +15,12 @@ class InvitesControllerTest < ActionController::TestCase
     assert_match 'application/json', @response.header['Content-Type']
   end
 
-  test 'should render unprocessable_entity on error' do
+  test 'should render error message on error' do
     post :create, petition_id: @petition.id,
                   signature_id: @signature.unique_key,
                   invite_form: { mail: '' }
-    assert_response :unprocessable_entity
+    assert_response :bad_request
+    error_message = JSON.parse(response.body)
+    assert_equal error_message['mail'], ['is ongeldig']
   end
 end

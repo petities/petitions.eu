@@ -5,7 +5,7 @@ module Concerns
     def assert_strip_whitespace(matcher, field)
       matcher.send("#{field}=", ' some value ')
       matcher.valid?
-      assert 'some value', matcher.send(field)
+      assert_equal('some value', matcher.send(field))
     end
   end
 end

@@ -17,8 +17,8 @@ module StripWhitespace
 
   def strip_whitespace
     stripped_attributes.each do |field|
-      value = read_attribute(field)
-      write_attribute(field, value.strip) if value
+      value = send(field)
+      send("#{field}=", value.strip) if value
     end
   end
 end

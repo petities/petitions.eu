@@ -38,13 +38,14 @@
 #
 
 class NewSignature < Signature
+  include Transliterate
   self.table_name = 'new_signatures'
 
   before_save :fill_confirmed_at
   before_create :fill_signed_at
   after_commit :send_confirmation_mail, on: :create
 
-  before_validation :transliterate_person_email
+  transliterate :person_email
   validates :person_email, uniqueness: { scope: :petition_id }
 
   def send_reminder_mail
@@ -75,9 +76,5 @@ class NewSignature < Signature
       last_reminder_sent_at: Time.now.utc
     )
     SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
-  end
-
-  def transliterate_person_email
-    self.person_email = ActiveSupport::Inflector.transliterate(person_email)
   end
 end

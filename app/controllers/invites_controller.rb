@@ -7,7 +7,7 @@ class InvitesController < ApplicationController
     if invite.deliver
       render json: :ok, status: :ok
     else
-      head status: :unprocessable_entity
+      render json: invite.errors, status: :bad_request
     end
   end
 

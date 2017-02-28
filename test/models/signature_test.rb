@@ -14,7 +14,7 @@ class SignatureTest < ActiveSupport::TestCase
     end
   end
 
-  test 'browser should be truncated' do
+  test 'browser fields should be truncated at column limit' do
     [:signature_remote_browser, :confirmation_remote_browser].each do |field|
       assert_truncate_string @signature, field
     end

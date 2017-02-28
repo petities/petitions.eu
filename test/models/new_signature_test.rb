@@ -1,7 +1,10 @@
 # coding: utf-8
+
 require 'test_helper'
 
 class NewSignatureTest < ActiveSupport::TestCase
+  include Concerns::Transliterate
+
   setup do
     @signature = NewSignature.create(
       petition: petitions(:one),
@@ -63,9 +66,6 @@ class NewSignatureTest < ActiveSupport::TestCase
   end
 
   test 'should transliterate person_email' do
-    signature = NewSignature.new(person_email: 'test@example.cóm')
-    signature.valid?
-    assert_equal signature.person_email, 'test@example.com'
+    assert_transliterate(@signature, :person_email)
   end
-
 end

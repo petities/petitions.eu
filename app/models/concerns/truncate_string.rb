@@ -18,7 +18,7 @@ module TruncateString
   def truncate_string
     truncate_strings.each do |field|
       value = read_attribute(field)
-      write_attribute(field, value.slice(0, 255)) if value
+      write_attribute(field, value.truncate(255)) if value
     end
   end
 end

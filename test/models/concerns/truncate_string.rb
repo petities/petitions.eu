@@ -5,7 +5,7 @@ module Concerns
     def assert_truncate_string(matcher, field)
       matcher.send("#{field}=", 'A' * 300)
       matcher.valid?
-      assert 255, matcher.send(field).length
+      assert_equal(255, matcher.send(field).length)
     end
   end
 end
