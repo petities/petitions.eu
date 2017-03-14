@@ -19,28 +19,27 @@ footer.footer
     div.footer-content-block
       div.footer-content-menu-wrapper
         nav.footer-content-menu-container
-          ul.footer-content-menu
-            div.footer-content-menu-part.left
-              li.footer-content-menu-item
-                = link_to t('footer.menu.help'), help_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.start_petition'), new_petition_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.petitions'), petitions_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.desks'), petition_desks_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.manage'), manage_petitions_url(subdomain: false)
+          ul.footer-content-menu-part.left
+            li.footer-content-menu-item
+              = link_to t('footer.menu.help'), help_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.start_petition'), new_petition_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.petitions'), petitions_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.desks'), petition_desks_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.manage'), manage_petitions_url(subdomain: false)
 
-            div.footer-content-menu-part.right
-              li.footer-content-menu-item
-                = link_to t('footer.menu.updates'), updates_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.privacy'), privacy_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.about'), about_url(subdomain: false)
-              li.footer-content-menu-item
-                = link_to t('footer.menu.support'), donate_url(subdomain: false)
+          ul.footer-content-menu-part.right
+            li.footer-content-menu-item
+              = link_to t('footer.menu.updates'), updates_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.privacy'), privacy_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.about'), about_url(subdomain: false)
+            li.footer-content-menu-item
+              = link_to t('footer.menu.support'), donate_url(subdomain: false)
 
         = link_to t('footer.donate'), donate_url(subdomain: false), class: 'donate-button'
 

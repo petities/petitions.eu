@@ -3,7 +3,7 @@
 <%= t('mail.confirm.signature.reminder_mail', {
   name: @signature.person_name,
   email: @signature.person_email,
-  date: @signature.signed_at.to_formatted_s(:short),
+  date: l(@signature.signed_at.to_date),
   confirm_url: @confirm_url,
   petition: @signature.petition.name
 }) %>

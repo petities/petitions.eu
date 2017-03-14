@@ -80,6 +80,11 @@ class Signature < ActiveRecord::Base
             on: :update,
             if: :require_full_address?
 
+  validates :person_city,
+            length: { maximum: 255 },
+            allow_blank: true,
+            unless: :require_full_address?
+
   validates :person_function, length: { maximum: 255 }, allow_blank: true
 
   validates :person_street,

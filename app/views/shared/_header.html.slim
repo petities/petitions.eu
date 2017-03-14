@@ -27,7 +27,7 @@ header.header
             div.header-languages-container-active-dropdown-item.en
 
       div.search-container.vervolg.whitespace
-        = form_tag(search_petitions_path, method: :get, role: "search", locale: I18n.locale) do
+        = form_tag(search_petitions_path(locale: I18n.locale), method: :get, role: "search") do
           = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
           = hidden_field_tag :locale, I18n.locale
           input.search-container-button type="submit" value=""
