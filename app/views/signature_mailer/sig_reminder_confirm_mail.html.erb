@@ -1,0 +1,25 @@
+<p><%= t("mail.dear") %> <%= @signature.person_name %>,</p>
+
+<%= t('mail.confirm.signature.reminder_mail_html', {
+  name: @signature.person_name,
+  email: @signature.person_email,
+  date: l(@signature.signed_at.to_date),
+  confirm_url: link_to(@confirm_url, @confirm_url),
+  petition: @signature.petition.name
+}) %>
+
+<%= t("mail.confirm.signoff_html") %>
+
+<%= t("mail.confirm.signature.petition_html", {
+  petition_url: petition_share_url(@signature.petition),
+  intro: @signature.petition.description,
+  we: @signature.petition.initiators,
+  observe: @signature.petition.statement,
+  request: @signature.petition.request
+}) %>
+
+<% if @signature.petition.petitioner_email -%>
+<p><%= t("mail.confirm.signature.ask_petitioner_html", {
+  petitionermail: @signature.petition.petitioner_email
+}) %></p>
+<% end -%>

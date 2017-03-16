@@ -120,6 +120,22 @@ toegang tot onze website wegens controversiële politieke inhoud. Als u bijvoorb
 bent, probeer het buitenshuis op uw telefoon.
 
 '
+        reminder_mail_html: '
+<p>Vorige week heeft u de petitie "%{petition}" ondertekend met het e-mailadres %{email} en de naam %{name} op %{date}.
+U heeft er al een e-mail over ontvangen.</p>
+
+<p>Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen:</p>
+
+<p>%{confirm_url}</p>
+
+<p>Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch als de petitie sluit.</p>
+
+<p>Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bovenstaande link eens te openen op een andere
+computer, telefoon of tablet. U kunt het ook proberen via een ander netwerk. Sommige werkgevers en bepaalde software blokkeren
+toegang tot onze website wegens controversiële politieke inhoud. Als u bijvoorbeeld op het werk bent, probeer het thuis. Als u thuis
+bent, probeer het buitenshuis op uw telefoon.</p>
+
+'
       signoff: 'Met vriendelijke groet,
 
 

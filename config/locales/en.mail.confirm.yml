@@ -119,6 +119,21 @@ tablet. You can also try it through another network. Some employers and certain 
 of controversial political content. If you are at work for example, try it at home. If you are at home, try it outdoors on your
 phone.
 '
+        reminder_mail_html: '
+<p>Last week you signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}.
+You received an e-mail about this already.</p>
+
+<p>Is this your e-mail address and name? Then please confirm your signature by following this link:</p>
+
+<p>%{confirm_url}</p>
+
+<p>Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes.</p>
+
+<p>If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or
+tablet. You can also try it through another network. Some employers and certain software block access to our website because
+of controversial political content. If you are at work for example, try it at home. If you are at home, try it outdoors on your
+phone.</p>
+'
       signoff: 'Best regards,
 
 

@@ -18,6 +18,8 @@
 	request: @signature.petition.request
 }) %>
 
+<% if @signature.petition.petitioner_email -%>
 <%= t("mail.confirm.signature.ask_petitioner", {
   petitionermail: @signature.petition.petitioner_email
-}) if @signature.petition.petitioner_email %>
+}) %>
+<% end -%>
