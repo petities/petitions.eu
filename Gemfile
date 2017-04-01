@@ -11,8 +11,6 @@ gem 'globalize-versioning'
 gem 'friendly_id'
 gem 'friendly_id-globalize'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
 gem 'mysql2', '~> 0.4.5'
 
 # legacy utf 8 issues..
@@ -85,7 +83,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.6', '>= 2.6.3'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 0.4.2'
 
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
 
@@ -112,8 +110,8 @@ group :production do
 end
 
 # Track errors in production
-gem 'rollbar', '~> 2.14'
-gem 'newrelic_rpm', '~> 3.18', '>= 3.18.1.330'
+gem 'rollbar', '~> 2.14', '>= 2.14.1'
+gem 'newrelic_rpm', '~> 4.0', '>= 4.0.0.332'
 # track everything..
 # gem 'logstasher'
 
