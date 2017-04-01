@@ -271,7 +271,7 @@ class Petition < ActiveRecord::Base
     %w(in_process to_process not_processed).include?(status)
   end
 
-  def get_answer
+  def answer
     updates.find_by(show_on_petition: true)
   end
 

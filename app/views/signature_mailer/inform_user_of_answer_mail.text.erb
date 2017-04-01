@@ -1,7 +1,7 @@
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
 
-<% if not @petition.get_answer.nil? %>
+<% if not @petition.answer.nil? %>
 	<%= t('mail.petition.has_answer', {
 	  name: @signature.person_name,
 	  email: @signature.person_email,
@@ -15,7 +15,7 @@
 	  petition_office: @petition.organisation_name})
 	  %>
 
-<% @petition.get_answer %>
+<% @petition.answer %>
 
 <% else %>
 
@@ -38,4 +38,3 @@
 <%= @unique_key %>
 
 <%= t("mail.confirm.signoff") %>
-

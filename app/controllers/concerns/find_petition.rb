@@ -14,7 +14,7 @@ module FindPetition
   private
 
   def find_by_subdomain
-    Petition.find_by_subdomain(request.subdomain)
+    Petition.find_by(subdomain: request.subdomain)
   end
 
   def find_by_id

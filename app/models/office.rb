@@ -37,4 +37,8 @@ class Office < ActiveRecord::Base
   accepts_nested_attributes_for :images
 
   scope :visible, -> { where(hidden: false) }
+
+  def self.default_office
+    find_by(email: 'nederland@petities.nl')
+  end
 end

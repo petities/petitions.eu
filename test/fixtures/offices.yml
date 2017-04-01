@@ -17,3 +17,8 @@ zwolle:
   name: Gemeente zwolle
   subdomain: zwolle
   petition_type: all_needed
+
+nederland:
+  name: Petitieloket nederland
+  subdomain: nederland
+  email: nederland@petities.nl

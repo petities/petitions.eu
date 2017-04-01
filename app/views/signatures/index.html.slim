@@ -4,7 +4,7 @@ div.page.top
       = image_tag(@petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
     div.petition-intro-info-container
       h1.petition-intro-info-title=@petition.name
-      div.petition-intro-info-counter= t('show.signatures_count', count: @petition.get_count)
+      div.petition-intro-info-counter= t('show.signatures_count', count: number_with_delimiter(@petition.get_count))
       div.petition-intro-info-text.whitespace
         p= markdown @petition.description
 
@@ -86,4 +86,3 @@ div.page.signatures
         div.social-side-bar-url
           span#social_url= petition_share_url(@petition)
           a.social-bar-side-button-url href="javascript:void(0);" data-clipboard-target="social_url"
-

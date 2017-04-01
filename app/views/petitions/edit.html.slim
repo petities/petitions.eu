@@ -22,7 +22,7 @@ div.page
       h1.petition-intro-info-title= @petition.name
       div.petition-intro-info-counter
         - if @petition.get_count > 0 || @petition.is_live?
-          = t('show.signatures_count', count: @petition.get_count)
+          = t('show.signatures_count', count: number_with_delimiter(@petition.get_count))
         - else
           = t("show.overview.status.#{@petition.state_summary}")
       div.petition-intro-info-text

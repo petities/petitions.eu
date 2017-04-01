@@ -118,15 +118,7 @@ class PetitionsController < ApplicationController
   # GET /petitions/1
   # GET /petitions/1.json
   def show
-    unless @petition
-      flash[:notice] = t('petition.flash.not_found')
-      redirect_to root_path
-      return
-    end
-
     set_petition_vars
-
-    set_organisation_helper
 
     @signature = @petition.signatures.new
 
@@ -134,13 +126,10 @@ class PetitionsController < ApplicationController
                            .order(special: :desc, confirmed_at: :desc)
                            .limit(12)
 
-    @office = if @petition.office_id
-                Office.find(@petition.office_id)
-              else
-                Office.find_by_email('nederland@petities.nl')
-              end
+    @office = @petition.office
+    @office = Office.default_office if @office.blank?
 
-    @answer = @petition.updates.where(show_on_petition: true).first
+    @answer = @petition.answer
 
     respond_to :html, :json
   end
@@ -265,10 +254,10 @@ class PetitionsController < ApplicationController
   def set_organisation_helper
     @petition_types = PetitionType.all
 
-    @organisation_types = Organisation.visible.order(:name).group_by(&:kind)
+    organisation_types = Organisation.visible.order(:name).group_by(&:kind)
 
     @organisation_type_prepared = {}
-    @organisation_types.each  do |type, collection|
+    organisation_types.each do |type, collection|
       i18n_col = collection.map do |org|
         [t("petition.organisations.#{org.name}", default: org.name), org.id]
       end
@@ -327,7 +316,7 @@ class PetitionsController < ApplicationController
       @petition.office = if office && !office.hidden?
                            office
                          else
-                           Office.find_by_email('nederland@petities.nl')
+                           Office.default_office
                          end
     end
   end

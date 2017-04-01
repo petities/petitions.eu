@@ -53,7 +53,7 @@ class SignaturesController < ApplicationController
             end
 
     @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
-                      .paginate(page: @page, per_page: @per_page)
+                                 .paginate(page: @page, per_page: @per_page)
 
     respond_to :js, :html, :json
   end
@@ -92,7 +92,7 @@ class SignaturesController < ApplicationController
       # send confirmation mail again
       @signature.send(:send_confirmation_mail)
       respond_to do |format|
-        format.js { render json: { is_resend: 'true', status: 'ok' } }
+        format.js { render json: { status: 'ok' } }
       end
       # DONE!
       return
