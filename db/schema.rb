@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226100717) do
+ActiveRecord::Schema.define(version: 20170401205307) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20170226100717) do
   add_index "newsitems", ["date_until"], name: "index_newsitems_on_date_until", using: :btree
   add_index "newsitems", ["office_id"], name: "index_newsitems_on_office_id", using: :btree
   add_index "newsitems", ["petition_id"], name: "index_newsitems_on_petition_id", using: :btree
+  add_index "newsitems", ["show_on_home", "created_at"], name: "index_newsitems_on_show_on_home_and_created_at", using: :btree
   add_index "newsitems", ["slug"], name: "index_newsitems_on_slug", unique: true, using: :btree
 
   create_table "newsletters", force: :cascade do |t|

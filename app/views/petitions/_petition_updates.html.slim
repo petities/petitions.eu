@@ -8,7 +8,7 @@ div.page.vervolg
       = render partial: 'updates/list'
 
     div.navigation-bar
-      = will_paginate @updates, params: { anchor: 'petitionnews' }, renderer: PetitionsPaginateRenderer
+      = paginate @updates, params: { anchor: 'petitionnews' }
 
   aside.vervolg-side
     - if current_user && current_user.has_role?(:admin, @petition)

@@ -53,7 +53,7 @@ class SignaturesController < ApplicationController
             end
 
     @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
-                                 .paginate(page: @page, per_page: @per_page)
+                                 .page(@page).per(@per_page)
 
     respond_to :js, :html, :json
   end
@@ -65,11 +65,11 @@ class SignaturesController < ApplicationController
 
     page = cleanup_page(params[:page])
     # @signatures = if @query.blank?
-    #                 @petition.signatures.ordered.paginate(page: page, per_page: 100)
+    #                 @petition.signatures.ordered.page(page).per(100)
     #               else
     #                 @petition.signatures.visible.where('person_name like ?', "%#{@query}%")
     #               end
-    @signatures = @petition.signatures.ordered.paginate(page: page, per_page: 100)
+    @signatures = @petition.signatures.ordered.page(page).per(100)
 
     respond_to :js
   end

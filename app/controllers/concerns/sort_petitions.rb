@@ -35,7 +35,7 @@ module SortPetitions
 
     @results_size = petitions.size
 
-    @petitions = petitions.paginate(page: @page, per_page: 12)
+    @petitions = petitions.page(@page).per(12)
     @petitions
   end
 

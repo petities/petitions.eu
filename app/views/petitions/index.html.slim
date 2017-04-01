@@ -29,7 +29,7 @@ div.page
       a.navigation-loadmore.button data={url: petitions_url(subdomain:false, sorting:@sorting)} href='javascript:void(0);' = t('index.more')
 
       div.pagination
-        = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+        = paginate @petitions
 
       div.clearfix
 

@@ -28,4 +28,4 @@ div.page
     div.navigation-bar
       a.navigation-loadmore.button data={url: petition_admin_petitions_url(subdomain: false)} href='javascript:void(0);' = t('index.more')
 
-    = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+    = paginate @petitions

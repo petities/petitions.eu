@@ -391,4 +391,17 @@ class Petition < ActiveRecord::Base
   def active_petition_type
     petition_type || (office && office.petition_type)
   end
+
+  def self.active_from_redis
+    from_redis('active_rate')
+  end
+
+  def self.biggest_from_redis
+    from_redis('petition_size')
+  end
+
+  def self.from_redis(key)
+    petition_ids = $redis.zrevrange(key, 0, 160)
+    Kaminari.paginate_array(live.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) })
+  end
 end

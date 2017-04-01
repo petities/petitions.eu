@@ -67,7 +67,7 @@ class UpdatesController < ApplicationController
     @page = cleanup_page(params[:page])
     per_page = request.xhr? ? 3 : 8
 
-    @updates = Update.all.paginate(page: @page, per_page: per_page)
+    @updates = Update.all.page(@page).per(per_page)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

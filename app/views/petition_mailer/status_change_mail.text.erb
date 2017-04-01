@@ -1,8 +1,6 @@
-<%= t("mail.dear") %> <%= @petition.petitioner_name %>, 
+<%= t("mail.dear") %> <%= @petition.petitioner_name %>,
 
-<%= t("mail.status.changed", {
-	petition: @petition.name
-}) %>
+<%= t("mail.status.changed", petition: @petition.name) %>
 
 <%= t("show.overview.status.#{@petition.state_summary}") %>
 
@@ -10,4 +8,4 @@
 	email: @petition.petitioner_email
 }) %>
 
-<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
+<%= t("mail.signoff", petitioner_email: @petition.petitioner_email) %>

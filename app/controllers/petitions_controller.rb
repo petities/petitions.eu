@@ -18,11 +18,9 @@ class PetitionsController < ApplicationController
 
     petitions = case @sorting
                 when 'active'
-                  petition_ids = $redis.zrevrange('active_rate', 0, 160)
-                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
+                  Petition.active_from_redis
                 when 'biggest'
-                  petition_ids = $redis.zrevrange('petition_size', 0, 160)
-                  petitions.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) }
+                  Petition.biggest_from_redis
                 when 'newest'
                   direction = [:desc, :asc][@order]
                   petitions.order(created_at: direction)
@@ -39,7 +37,7 @@ class PetitionsController < ApplicationController
       { type: 'signquick', label: t('index.sort.sign_quick') }
     ]
 
-    @petitions = petitions.paginate(page: @page, per_page: 12)
+    @petitions = petitions.page(@page).per(12)
 
     respond_to :html, :js
   end
@@ -51,20 +49,15 @@ class PetitionsController < ApplicationController
   end
 
   def search
-    @page = cleanup_page(params[:page])
+    page = cleanup_page(params[:page])
 
     @search = params[:search]
-    # translation = Petition.findbyname(params[:search])
     petitions = Petition.live.joins(:translations)
-                .where('petition_translations.name like ?', "%#{@search}%")
-                .distinct
-                # with_locales(I18n.available_locales).
+                        .where('petition_translations.name like ?', "%#{@search}%")
+                        .distinct
+                        .sort_by { |p| -($redis.zscore('active_rate', p.id) || 0) }
 
-    petitions = petitions.all.sort_by { |p| -($redis.zscore('active_rate', p.id) || 0) }
-
-    @results_size = petitions.size
-
-    @petitions = petitions.paginate(page: params[:page], per_page: 12)
+    @petitions = Kaminari.paginate_array(petitions).page(page).per(12)
   end
 
   def admin
@@ -90,7 +83,7 @@ class PetitionsController < ApplicationController
 
     @sorting_options = sort_list
 
-    @petitions = petitions.paginate(page: @page, per_page: 12)
+    @petitions = petitions.page(@page).per(12)
 
     respond_to :html, :js
   end
@@ -112,7 +105,7 @@ class PetitionsController < ApplicationController
 
     @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
 
-    @updates = @petition.updates.paginate(page: @page, per_page: 3)
+    @updates = @petition.updates.page(@page).per(3)
   end
 
   # GET /petitions/1
@@ -246,7 +239,7 @@ class PetitionsController < ApplicationController
 
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .paginate(page: @page, per_page: 12)
+                           .page(@page).per(12)
 
     @petition.status = 'draft' if @petition.status.nil?
   end

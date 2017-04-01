@@ -43,9 +43,8 @@ gem 'prawn', '~> 2.1'
 gem 'prawn-table'
 gem 'prawnto'
 
-# will_paginate
-gem 'will_paginate'
-gem 'will-paginate-i18n'
+gem 'kaminari'
+gem 'kaminari-i18n'
 
 # gem 'i18n_generators'
 gem 'i18n-tasks'

@@ -2,11 +2,11 @@ div.page
   section.petitions-overview-wrapper
     h1.petition-section-title= t('search.title')
     
-    div.petition-overview-title= t('search.found', results_size: @results_size, search_term: @search)
+    div.petition-overview-title= t('search.found', results_size: @petitions.total_count, search_term: @search)
     
     div.petitions-overview-container
       = render partial: 'list'
             
       div.clearfix
 
-    = will_paginate @petitions, renderer: PetitionsPaginateRenderer
+    = paginate @petitions

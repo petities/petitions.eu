@@ -6,7 +6,7 @@ div.page.vervolg
       = render partial: 'list'
 
     div.navigation-bar
-      = will_paginate @updates, renderer: PetitionsPaginateRenderer
+      = paginate @updates
 
   aside.vervolg-side
     div.side-article-container.whitespace
