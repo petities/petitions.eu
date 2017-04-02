@@ -49,9 +49,8 @@
     div.update-content.whitespace
       = render partial: 'updates/single_update', locals: { update: update }
 
-  - if can_edit_update? #user_signed_in? && current_user.has_role?(:admin)
+  - if can_edit_update?
     div.update-edit id=update_edit_id
       div.update-icon onclick=command
       div.update-content.whitespace
         = render partial: 'updates/form', locals: { update: update }
-

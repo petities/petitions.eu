@@ -12,8 +12,9 @@ div.page
         div.update-intro
           = markdown raw intro_text(@office.text)
 
-          div.read-more-handler.whitespace
-            | +
-            = t('update.read_more')
-          div.read-more-content.whitespace
-            = markdown raw read_more_text(@office.text)
+          - if read_more_text(@office.text).present?
+            div.read-more-handler.whitespace
+              | +
+              = t('update.read_more')
+            div.read-more-content.whitespace
+              = markdown raw read_more_text(@office.text)

@@ -22,4 +22,12 @@ class MarkdownHelperTest < ActionView::TestCase
     input = 'This is a <blink>test</blink> string.'
     assert_equal strip_markdown(input).strip, 'This is a test string.'
   end
+
+  test 'markdown should render tables' do
+    text = 'Provincie | Inwoners
+------------ | -------------
+Groningen | 583.635
+Drenthe | 488.505'
+    assert_match '<table>', markdown(text).strip
+  end
 end

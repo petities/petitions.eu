@@ -18,7 +18,7 @@ div.update-date
   - if update.created_at
     = l(update.created_at.to_date)
 
-  - if update.petition.present?
+  - if @petition.nil? && update.petition.present?
     = ' | '
     = Petition.model_name.human
     = ' '

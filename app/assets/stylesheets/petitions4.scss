@@ -1,3 +1,5 @@
+$light-grey: #e9e9e9;
+
 /**
  *	RESET & SPECS
  */
@@ -69,8 +71,28 @@ abbr[title], dfn[title] {
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
+
+  th {
+    padding: 10px;
+    vertical-align: top;
+    text-align: left;
+    border-top: 1px solid $light-grey;
+  }
+
+  td {
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid $light-grey;
+  }
+
 }
 
 hr {
@@ -228,7 +250,7 @@ a {
   padding: 0 20px;
   &.top {
     margin: 40px auto;
-    border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid $light-grey;
   }
   &.vervolg {
     display: flex;
@@ -778,7 +800,7 @@ input[type="button"].petition-form-button {
   width: 44%;
   margin: 0 1% 0 0;
   padding: 25px 3%;
-  background: #e9e9e9;
+  background: $light-grey;
 
   h2 {
     color: #6f6f6f;
@@ -1099,14 +1121,14 @@ span.signature-time {
   margin: 0 2% 2% 0;
   padding: 20px 2%;
   height: 100px;
-  background: #e9e9e9;
+  background: $light-grey;
 }
 
 .petition-signature-list {
   position: relative;
   margin: 0 0 10px;
   padding: 0 0 10px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid $light-grey;
 }
 
 .petition-signature:nth-child(4n) {
@@ -1188,7 +1210,7 @@ span.signature-time {
   float: left;
   width: 23.5%;
   margin: 0 2% 2% 0;
-  background: #e9e9e9;
+  background: $light-grey;
 
   &:nth-child(4n) {
     margin: 0 0 2%;
@@ -1450,13 +1472,13 @@ h2.start-petition-form-cell-title {
   color: #4fa6d0;
   cursor: pointer;
   padding: 5px 0px;
-  border-top: 1px solid #e9e9e9;
+  border-top: 1px solid $light-grey;
 }
 
 .read-more-help-content {
   display: none;
   padding: 15px 0px 5px;
-  border-top: 1px solid #e9e9e9;
+  border-top: 1px solid $light-grey;
 }
 
 .main-container-grey {
@@ -1490,13 +1512,13 @@ h2.start-petition-form-cell-title {
  */
 
 .update-container {
-  border-top: 1px solid #e9e9e9;
+  border-top: 1px solid $light-grey;
   margin-bottom: 20px;
 }
 
 .update {
   padding: 25px 0 5px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid $light-grey;
 
   p {
     margin-bottom: 15px;

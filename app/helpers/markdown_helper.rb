@@ -1,11 +1,13 @@
 module MarkdownHelper
   def markdown(text)
-    rc = Redcarpet::Markdown.new(
+    renderer = Redcarpet::Markdown.new(
       Redcarpet::Render::HTML.new(filter_html: true),
       fenced_code_blocks: false,
       disable_indented_code_blocks: true,
-      strikethrough: true)
-    rc.render(text.to_s).html_safe if text
+      strikethrough: true,
+      tables: true
+    )
+    renderer.render(text.to_s).html_safe if text
   end
 
   def strip_markdown(text)
@@ -20,4 +22,5 @@ end
 Slim::Embedded.options[:markdown] = {
   fenced_code_blocks: false,
   disable_indented_code_blocks: true,
-  strikethrough: true }
+  strikethrough: true
+}

@@ -2,13 +2,14 @@ h2= update.title
 div.update-intro
   = markdown raw update.text
   - if update.url
-    = link_to  update.url
+    = link_to update.url
       = update.url_text
 div.update-date
   - if update.created_at
-    = update.created_at.strftime('%d-%m-%Y')
+    = l(update.created_at.to_date)
 
-  - if update.petition.present?
+  - if @petition.nil? && update.petition.present?
     = ' | ' 
-    | Petition: 
+    = Petition.model_name.human 
+    = ' '
     = link_to update.petition.name, petition_path(update.petition)

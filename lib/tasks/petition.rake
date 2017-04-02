@@ -130,7 +130,7 @@ namespace :petition do
                                 .where(status: :live).limit(100)
 
     overdue_petitions.find_each do |petition|
-      if petition.signatures.confirmed.size < 10
+      if petition.signatures.size < 10
         Rails.logger.debug("withdrawn #{petition.id} #{petition.name}")
         petition.status = 'withdrawn'
       elsif petition.updates.size < 1
