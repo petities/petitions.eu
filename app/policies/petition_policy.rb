@@ -56,8 +56,8 @@ class PetitionPolicy < ApplicationPolicy
       ]
     end
 
-    # if signature count < 100 petition can still be edited
-    return remove if petition.get_count.to_i < 100
+    # if signature count is below a dozen, then the petition can still be edited
+    return remove if petition.get_count.to_i < 12
 
     unless user.has_role?(:admin, petition.office)
       unless petition.is_draft? or petition.is_staging?
