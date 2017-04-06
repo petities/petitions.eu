@@ -37,10 +37,6 @@ Rails.application.routes.draw do
       get :search
       get :manage
 
-      constraints admin_constraint do
-        get :admin, as: :petition_admin
-      end
-
       resources :desks, as: :petition_desks
     end
 

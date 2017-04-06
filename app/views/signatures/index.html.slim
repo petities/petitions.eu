@@ -1,3 +1,5 @@
+- title @petition.name
+
 div.page.top
   section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
     div.petition-intro-image-container
@@ -10,6 +12,9 @@ div.page.top
 
       - if @petition.status == 'live'
         = link_to t('signatures.sign'), petition_path(@petition), class: "button"
+        
+      - if user_signed_in? && current_user.has_role?(:admin, @petition)
+        = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'button button-aside'
 
 div.page.signatures
 
@@ -69,7 +74,7 @@ div.page.signatures
 
       div.side-article-container.whitespace
         h2.side-article-title= @petition.name
-        div.side-article-text= @petition.description
+        div.side-article-text= markdown @petition.description
 
       div.social-bar-side
         div.social-bar-side-label= t('show.share')

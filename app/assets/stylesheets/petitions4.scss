@@ -336,6 +336,11 @@ input[type="text"].search-container-input {
   }
 }
 
+.button-aside {
+  background-clip: padding-box;
+  margin-left: 20px;
+}
+
 /**
  *	HEADER
  */
@@ -1147,12 +1152,8 @@ span.signature-time {
   color: #6f6f6f;
 }
 
-.navigation-bar {
+.navigation-bar, .pagination {
   text-align: center;
-}
-
-.petition-signatures-wrapper .navigation-bar {
-  text-align: left;
 }
 
 .navigation-bar-item {

@@ -60,34 +60,6 @@ class PetitionsController < ApplicationController
     @petitions = Kaminari.paginate_array(petitions).page(page).per(12)
   end
 
-  def admin
-    @page    = cleanup_page(params[:page])
-    @sorting = params[:sorting] || 'live'
-    @order   = params[:order].to_i
-
-    # petitions = Petition.joins(:translations).live
-    direction = [:desc, :asc][@order]
-
-    petitions = Petition.all.order(created_at: direction)
-
-    # do sorting
-    petitions = petitions.where(status: @sorting) if @sorting
-
-    sort_list = []
-    # convert all status
-    Petition::STATUS_LIST.each do |label, status|
-      sort_list.push(type: status, label: label)
-    end
-
-    @results_size = petitions.count
-
-    @sorting_options = sort_list
-
-    @petitions = petitions.page(@page).per(12)
-
-    respond_to :html, :js
-  end
-
   def manage
     if current_user
       @petitions = Petition.with_role(:admin, current_user)

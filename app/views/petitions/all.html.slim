@@ -7,7 +7,7 @@ div.page
   section.petitions-overview-wrapper
     h1.petition-section-title= t('all.title')
 
-    div.petition-overview-title= t('all.count', count: @petitions.count)
+    div.petition-overview-title= t('all.count', count: number_with_delimiter(@petitions.total_count))
 
     div.petitions-overview-sort-options-container
       = t('all.sort.title')

@@ -1,5 +1,0 @@
-$loadedData = $("<%= escape_javascript(render partial: 'list', layout: false); %>");
-
-$('.petitions-overview-container .clearfix').before($loadedData);
-
-$loadedData.find('.chart-canvas').each(function(index, elem){ initChart(elem); });

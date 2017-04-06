@@ -16,4 +16,12 @@ class DesksControllerTest < ActionController::TestCase
     get :show, id: @office
     assert_response :success
   end
+
+  test 'should filter petitions on show' do
+    get :show, id: @office, page: 2, sorting: :concluded
+    assert_response :success
+    assert_select 'div.petitions-overview-sort-options-container span.active', 'Afgehandeld'
+    # Search options should be without :page
+    assert_select 'div.petitions-overview-sort-options-container a[href=?]', petition_desk_path(@office, sorting: :all)
+  end
 end

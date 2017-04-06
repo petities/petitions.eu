@@ -1,3 +1,5 @@
+- title @petition.name
+
 div.page
 
   div class="petition-editbutton-container whitespace"
@@ -167,7 +169,7 @@ div.page
     div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
       = t 'edit.petition.edit_details_text'
 
-- if not @petition.is_draft?
+- unless @petition.is_draft?
 
   = render partial: 'social'
 

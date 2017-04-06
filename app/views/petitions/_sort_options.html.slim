@@ -4,6 +4,6 @@ div.petitions-overview-sort-options-container
     - if @sorting == option[:type]
       span.petitions-overview-sort-option.active= option[:label]
     - else
-      = link_to option[:label], url_for(params.merge(sorting: option[:type])), class: 'petitions-overview-sort-option'
+      = link_to option[:label], url_for(params.merge(page: nil, sorting: option[:type])), class: 'petitions-overview-sort-option'
     - unless index == @sorting_options.size-1
       = ' | '

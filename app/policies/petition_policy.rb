@@ -38,47 +38,33 @@ class PetitionPolicy < ApplicationPolicy
 
   def invalid_attributes
     petition = record
-
-    if user.has_role?(:admin)
-      return []
-    end
-
     remove = []
-    
+
+    return remove if user.has_role?(:admin)
+
     if user.has_role?(:admin, petition.office)
       remove += [
         :petitioner_organisation,
-        :petitioner_birth_date,           
-        :petitioner_birth_city,          
-        :petitioner_name,           
-        :petitioner_address,             
-        :petitioner_postalcode,           
-        :petitioner_city,                 
-        :petitioner_email,               
-        :petitioner_telephone,           
+        :petitioner_birth_date,
+        :petitioner_birth_city,
+        :petitioner_name,
+        :petitioner_address,
+        :petitioner_postalcode,
+        :petitioner_city,
+        :petitioner_email,
+        :petitioner_telephone,
       ]
     end
 
-    # if signature count < 100
-    # petition can still be edited
+    # if signature count < 100 petition can still be edited
+    return remove if petition.get_count.to_i < 100
 
-    if petition.get_count.to_i < 100
-      return remove
-    end
-    
     unless user.has_role?(:admin, petition.office)
       unless petition.is_draft? or petition.is_staging?
-         remove += [
-          :name, 
-          :subdomain,
-          :initiators, 
-          :statement,
-          :request,                      
-         ]
+        remove += [:name, :subdomain, :initiators, :statement, :request]
       end
     end
 
     remove.uniq
-
   end
 end
