@@ -17,8 +17,7 @@ ActiveAdmin.register Petition do
                 :display_signature_full_address, :archived, :petition_type_id,
                 :display_person_born_at, :display_person_birth_city,
                 :active_rate_value, :owner_id, :owner_type, :slug,
-                :reference_field, :answer_due_date, :office_id,
-                locale_list: []
+                :reference_field, :answer_due_date, :office_id
 
   index do
     selectable_column
@@ -56,7 +55,6 @@ ActiveAdmin.register Petition do
   filter :petitioner_city
   filter :status
   filter :archived
-  filter :locale_list
 
   sidebar :translations, only: :show do
     table_for resource.translations do

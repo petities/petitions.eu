@@ -3,41 +3,26 @@ class PetitionPolicy < ApplicationPolicy
     true
   end
 
-  def can_edit(user, petition)
+  def update?
+    return false unless user
     user.has_role?(:admin) ||
       user.has_role?(:admin, petition) ||
       user.has_role?(:admin, petition.office)
   end
 
-  def edit?
-    # allow edit view on petition.
-    return false unless user
-    can_edit user, record
-  end
-
-  def update?
-    return false unless user
-    can_edit user, record
-    # allow updates on petition..?
-    # user.has_role? :admin or user.has_role? :admin, record
-  end
-
   def special_update?
-    return false unless user
-    can_edit user, record
+    update?
   end
 
   def finalize?
-    return false unless user
-    can_edit user, record
+    update?
   end
 
   def export?
-    user && (user.has_role?(:admin, record) || user.has_role?(:admin))
+    user && (user.has_role?(:admin, petition) || user.has_role?(:admin))
   end
 
   def invalid_attributes
-    petition = record
     remove = []
 
     return remove if user.has_role?(:admin)
@@ -52,7 +37,7 @@ class PetitionPolicy < ApplicationPolicy
         :petitioner_postalcode,
         :petitioner_city,
         :petitioner_email,
-        :petitioner_telephone,
+        :petitioner_telephone
       ]
     end
 
@@ -65,6 +50,12 @@ class PetitionPolicy < ApplicationPolicy
       end
     end
 
-    remove.uniq
+    remove
+  end
+
+  private
+
+  def petition
+    record
   end
 end

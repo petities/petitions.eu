@@ -62,7 +62,6 @@
 #    initiators: Faker::Company.name,
 #    statement: Faker::Lorem.paragraph(5),
 #    request: Faker::Lorem.sentence,
-#    locale_list: [:en],
 #    status: 'live',
 #    created_at: Faker::Time.between(20.days.ago, Time.now, :morning),
 #    updated_at: Faker::Time.between(10.days.ago, Time.now, :afternoon),
@@ -112,5 +111,5 @@ petitions.each do |petition|
     )
 
   end
-  puts petition.active_rate 
+  puts petition.active_rate
 end

@@ -81,8 +81,6 @@ class Petition < ActiveRecord::Base
   resourcify
   has_many :users, through: :roles
 
-  serialize :locale_list, Array
-
   friendly_id :name, use: [:globalize, :finders]
 
   STATUS_LIST = [
@@ -161,15 +159,15 @@ class Petition < ActiveRecord::Base
   include TruncateString
   truncate_string :link1_text, :link2_text, :link3_text
 
-  validates_presence_of :name
-  validates_presence_of :description
-  validates_presence_of :initiators
-  validates_presence_of :statement
-  validates_presence_of :request
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :initiators, presence: true
+  validates :statement, presence: true
+  validates :request, presence: true
 
-  validates_format_of :subdomain, with: /\A[A-Za-z0-9-]+\z/, allow_blank: true
-  validates_uniqueness_of :subdomain, case_sensitive: false, allow_blank: true
-  validates_exclusion_of :subdomain, in: %w( www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2 )
+  validates :subdomain, format: { with: /\A[A-Za-z0-9-]+\z/, allow_blank: true }
+  validates :subdomain, uniqueness: { case_sensitive: false, allow_blank: true }
+  validates :subdomain, exclusion: { in: %w(www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2) }
 
   after_update :send_status_mail
 

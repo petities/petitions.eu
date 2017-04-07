@@ -127,8 +127,6 @@ class PetitionsController < ApplicationController
 
     @petition.status = 'concept'
 
-    @petition.locale_list << I18n.locale
-
     set_petition_vars
 
     set_office
@@ -299,12 +297,8 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-    update_locale_list
-
-    # update params_with permissions
-    # only update what is allowed
-    exclude_list = policy(@petition).invalid_attributes
-    filtered_params = petition_params.except(*exclude_list)
+    # update params_with permissions only update what is allowed
+    filtered_params = petition_params.except(@exclude_list)
 
     Globalize.with_locale(locale) do
       respond_to do |format|
@@ -374,13 +368,6 @@ class PetitionsController < ApplicationController
         return redirect_to @petition, status: :moved_permanently
       end
     end
-  end
-
-  def update_locale_list
-    locale = params[:locale] || I18n.locale
-    # update the locale menu here
-    @petition.locale_list << locale.to_sym
-    @petition.locale_list.uniq!
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
