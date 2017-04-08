@@ -20,6 +20,8 @@ module SortPetitions
       petitions = petitions.where(status: 'rejected').order(created_at: :desc).limit(100)
     when 'sign_elsewhere'
       petitions = petitions.where(status: 'not_signable_here').order(created_at: :desc).limit(100)
+    when 'answered'
+      petitions = petitions.answered
     else
       direction = [:desc, :asc][@order]
       petitions = petitions.live.order(created_at: direction).limit(100)
@@ -29,14 +31,12 @@ module SortPetitions
       { type: 'all', label: t('all.sort.all') },
       { type: 'open',           label: t('all.sort.open') },
       { type: 'concluded',      label: t('all.sort.concluded') },
+      { type: 'answered',       label: t('all.sort.answered') },
       { type: 'rejected',       label: t('all.sort.rejected') },
       { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
     ]
 
-    @results_size = petitions.size
-
-    @petitions = petitions.page(@page).per(12)
-    @petitions
+    petitions.page(@page).per(12)
   end
 
   def petitions_by_status(petitions)

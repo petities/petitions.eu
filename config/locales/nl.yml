@@ -75,6 +75,7 @@ nl:
       open: Ondertekenbaar
       rejected: Afgewezen
       sign_elsewhere: Elders te tekenen
+      answered: Beantwoord
       title: 'Sorteren op: '
     title: Alle petities
   anonymous: Anoniem
@@ -223,7 +224,7 @@ nl:
   description: Beschrijving
   desk:
     general_desk_admins: Petitieloket logins
-    intro: Een petitieloket is waar je op deze website je petitie rechtstreeks bij de overheid kan indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
+    intro: Een petitieloket is waar u op deze website uw petitie rechtstreeks bij de overheid kunt indienen. U kunt de ambtenaar die uw petitie doorlaat altijd om hulp vragen. Als er geen loket is dan laat Petities.nl uw petitie door en we kunnen u helpen bij het overhandigen.
     petition:
       allow_through: Nog doorlaten
       answer: Nog beantwoorden

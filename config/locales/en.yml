@@ -68,6 +68,7 @@ en:
       other: "%{count} petitions"
     sort:
       all: All
+      answered: Answered
       concluded: Concluded
       open: Open for signing
       rejected: Rejected

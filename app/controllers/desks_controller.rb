@@ -23,8 +23,6 @@ class DesksController < ApplicationController
 
     @petitions = Petition.where(office_id: @office.id)
 
-    @results_size = @petitions.size
-
     petitions_by_status @petitions
 
     @users = User.order(:email)

@@ -64,8 +64,6 @@ class PetitionsController < ApplicationController
     if current_user
       @petitions = Petition.with_role(:admin, current_user)
 
-      @results_size = @petitions.size
-
       petitions_by_status @petitions
     else
       redirect_to new_user_session_path

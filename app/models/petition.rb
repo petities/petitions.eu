@@ -125,10 +125,13 @@ class Petition < ActiveRecord::Base
   ]
 
   scope :live,      -> { where(status: 'live') }
-  scope :live!,     -> { where('status != "live"') }
   scope :big,       -> { order(signatures_count: :desc) }
   scope :active,    -> { order(active_rate_value: :desc) }
   scope :newest,    -> { order(created_at: :desc) }
+  scope :answered,  -> {
+    joins(:updates).where(newsitems: { show_on_petition: true })
+                   .order('newsitems.created_at DESC')
+  }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office
