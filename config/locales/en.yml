@@ -289,7 +289,7 @@ en:
     aftersigning:
       - answer: Sign by entering your name and e-mail address and confirm your signature from the e-mail you receive. On the page where you confirm, you can invite others to sign. You can send invitations by e-mail or use social media. On the same page you can also indicate you would like to help or donate.
         title: How can I support a petition more?
-      - answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="http://handboek.petities.nl">handbook</a>.
+      - answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="https://handboek.petities.nl">handbook</a>.
         title: We share an e-mail address or my friends do not have e-mail. Can we sign only once?
       - answer: Fill in your e-mail address here and we send you an e-mail with a link to each petition you signed. You can follow this link to a page where you can hide or modify your name or description.
         title: Which petitions did I already sign?
@@ -306,7 +306,7 @@ en:
         title: Who gets to see my data?
     general_items: General questions
     handbook:
-      descr: The <a href="http://handboek.petities.nl/wiki/Hoofdpagina/en">Handbook Petitions</a> has extra tricks and tips based on our experiences since 2005. Mostly in Dutch.
+      descr: The <a href="https://handboek.petities.nl/wiki/Hoofdpagina/en">Handbook Petitions</a> has extra tricks and tips based on our experiences since 2005. Mostly in Dutch.
       title: Petition Handbook
     opinionpiece:
       descr: A petition gets most signatures from allies who are already convinced by the need for change. But most are not! If they know about the petition at all. With opinion piece in the newspaper or online you can both inform and convince people. This text is usually more pleasant to read than a petition.</p><p>&nbsp;</p><p>To write such a piece is not difficult&#58; it is all about the opinion supported by arguments. Send your piece to a newspaper or a website accepting contributions from others. You can also write an opinion piece to draw attention to someone else's petition. Do not forget the call to sign the petition!
@@ -315,9 +315,9 @@ en:
       update:
         help: Summarise
         descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**."
-        descr2: "You can even make [a link.](http://handboek.petities.nl/wiki/markdown/)"
+        descr2: "You can even make [a link.](https://handboek.petities.nl/wiki/markdown/)"
         descr3: |
-            <p>In the <a href="http://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
+            <p>In the <a href="https://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
         descr4: "Make sure the title summarizes the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
         links: Include links
         markdown: Use styling

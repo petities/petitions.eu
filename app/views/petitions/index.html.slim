@@ -26,10 +26,7 @@ div.page
       div.clearfix
 
     div.navigation-bar
-      a.navigation-loadmore.button data={url: petitions_url(subdomain:false, sorting:@sorting)} href='javascript:void(0);' = t('index.more')
-
-      div.pagination
-        = paginate @petitions
+      = link_to_next_page @petitions, t('index.more'), params: { sorting: @sorting }, class: 'navigation-loadmore button', remote: true
 
       div.clearfix
 

@@ -1,0 +1,20 @@
+- cache [@petition, @petition.get_count, @page, @sorting, @order, @search, I18n.locale, (user_signed_in? && current_user.has_role?(:admin, @petition))] do
+  - @signatures.each do |signature|
+    div.petition-signature
+      div.petition-signature-name
+
+        - if signature.visible?
+          = signature.person_name
+        - else
+          =<> t "anonymous"
+          - if user_signed_in? && current_user.has_role?(:admin, @petition)
+            br
+            =<> signature.person_name
+
+      - if signature.visible?
+        div.petition-signature-location= signature.person_city
+        div.petition-signature-occupation
+          = signature.person_function
+      div.petition-signature-time
+        - if signature.confirmed_at
+          = distance_of_time_in_words_to_now(signature.confirmed_at)

@@ -4,17 +4,15 @@ div.page
     - if user_signed_in? && current_user.has_role?(:admin, @petition)
       h3.whitespace= t('signatures.petitioner_instructions')
 
-    div.petition-signatures-container
-      - cache [@petition, @petition.get_count, @page, @sorting, @order, @search, I18n.locale, (user_signed_in? && current_user.has_role?(:admin, @petition))] do
-        = render partial: 'signatures/list'
-
+    div.petition-signatures-container data={page: 1, behavior: 'load-signatures', url: latest_petition_signatures_url(@petition, subdomain: false)}
       div.clearfix
 
     div.navigation-bar
       - if @petition.get_count == 0
         div.whitespace = t('edit.petition.no_signatures_yet')
       - elsif @petition.get_count > 12
-        a.navigation-loadmore.button data={url: petition_signatures_url(@petition, subdomain: false, format: :js) } href='javascript:void(0);' = t('show.signatures.more')
+        a.navigation-loadmore.button href='javascript:void(0);' data={behavior: 'load-more-signatures'} 
+          = t('show.signatures.more')
 
       div.clearfix
 
@@ -24,5 +22,4 @@ div.page
         div.whitespace
           = link_to t('petition.pdf'), petition_export_path(@petition, :pdf), target: :blank, class: 'button'
 
-        div.whitespace
-          = link_to t('petition.csv'), petition_export_path(@petition, :csv), target: :blank, class: 'button'
+          = link_to t('petition.csv'), petition_export_path(@petition, :csv), target: :blank, class: 'button button-aside'

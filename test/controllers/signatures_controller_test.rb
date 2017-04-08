@@ -12,11 +12,19 @@ class SignaturesControllerTest < ActionController::TestCase
     @new_signature = new_signatures(:two)
   end
 
-  # test "should get index" do
-  #  get :index
-  #  assert_response :success
-  #  assert_not_nil assigns(:signatures)
-  # end
+  test 'should get index' do
+   get :index, petition_id: @petition.id
+   assert_response :success
+   assert_not_nil assigns(:petition)
+   assert_not_nil assigns(:signatures)
+  end
+
+  test 'should get latest' do
+   get :latest, petition_id: @petition.id
+   assert_response :success
+   assert_not_nil assigns(:petition)
+   assert_not_nil assigns(:signatures)
+  end
 
   # test "should get new" do
   #  get :new, :petition_id => 1

@@ -2,17 +2,17 @@ nl:
   mail:
     petition:
       adoption_request: '
-U heeft de petitie "%{petition}" op %{date} ondertekend. 
+U heeft de petitie "%{petition}" op %{date} ondertekend.
 
-De indiendatum is verstreken en de petitionaris reageert niet (op tijd) op e-mails van ons. De petitie is nu 
+De indiendatum is verstreken en de petitionaris reageert niet (op tijd) op e-mails van ons. De petitie is nu
 
-verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen namens de %{signaturescount} ondertekenaars. 
+verweesd. U kunt de petitie adopteren en op een later tijdstip overhandigen namens de %{signaturescount} ondertekenaars.
 
-We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op 
+We vragen u omdat u ooit heeft aangegeven zich in te willen zetten. U deed een toezegging op
 
-verzoek iets te willen doen of te willen doneren. 
+verzoek iets te willen doen of te willen doneren.
 '
-      adoption_instructions: 'Om de petitie te adopteren, ga naar %{becomeownerurl} 
+      adoption_instructions: 'Om de petitie te adopteren, ga naar %{becomeownerurl}
 
 en vraag een wachtwoord aan die u per e-mail ontvangt.
 
@@ -21,7 +21,7 @@ Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wac
 '
       adoption_request_subject: 'Zou u de petitie "%{petition}" willen overnemen?'
       adoption_survey: '
-Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit, 
+Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit,
 
 dan verschijnt dit als antwoord op de petitie.
 '
@@ -33,17 +33,17 @@ Dank u wel voor het gebruiken van Petities.nl! U kunt nu inloggen, uw petitie af
 %{confirmation_url}
 
 
-als bevestiging. We weten dan dat wij u kunnen bereiken op %{email} met belangrijke informatie over uw petitie. Met %{email} en %{password} 
+als bevestiging. We weten dan dat wij u kunnen bereiken op %{email} met belangrijke informatie over uw petitie. Met %{email} en %{password}
 kunt u inloggen op https://petities.nl/login
 
 
-Als u %{email} niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres 
-invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt 
-alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen. Heeft u hulp nodig bij de petitie, kijkt u 
-dan vooral ook even in het handboek op http://handboek.petities.nl
+Als u %{email} niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres
+invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt
+alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen. Heeft u hulp nodig bij de petitie, kijkt u
+dan vooral ook even in het handboek op https://handboek.petities.nl
 
 
-Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen. 
+Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen.
 
 
 Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op %{office_email} of telefoonnummer %{office_phone}.
@@ -55,25 +55,25 @@ Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. 
       due_next_week_subject: 'Volgende week sluit uw petitie "%{petition}", kom in actie!'
       due_next_week_write: '
 Na %{date} is de overhandiging. Daar kunt u een update over schrijven onder de petitie zodat de ondertekenaars
-kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen 
-naar de ondertekenaars als u dat ons vraagt op webmaster@petities.nl. Ondertussen is het zaak om de exacte datum af te spreken voor de 
-overhandiging. Als u bij uw profiel uw telefoonnummer heeft ingevuld wordt u er misschien ook zelf over gebeld omdat we uw petitie 
-volautomatisch versturen. Zodra u zekerheid heeft over de exacte datum van overhandiging, past u het dan gelijk aan? Ons systeem 
+kunnen lezen wat er gaat gebeuren. U kunt ze bijvoorbeeld oproepen om ook naar de overhandiging te komen. Dit kunt u ook mailen
+naar de ondertekenaars als u dat ons vraagt op webmaster@petities.nl. Ondertussen is het zaak om de exacte datum af te spreken voor de
+overhandiging. Als u bij uw profiel uw telefoonnummer heeft ingevuld wordt u er misschien ook zelf over gebeld omdat we uw petitie
+volautomatisch versturen. Zodra u zekerheid heeft over de exacte datum van overhandiging, past u het dan gelijk aan? Ons systeem
 zal daarna een antwoord op de petitie (blijven) vragen namens u, daar heeft u geen omkijken naar.
 
 
-Als u nu geen update bij de petitie zet dan veronderstellen we dat u geen interesse of tijd meer heeft of onbereikbaar bent geworden. 
-De petitie is dan verweesd en iemand anders kan de petitie adopteren. De ondertekenaars die hebben aangegeven zich 
-in te willen zetten voor de petitie krijgen na elkaar een e-mail met de vraag de petitie te adopteren. Leest u dit na %{date} en uw 
-petitie is nog niet geadopteerd, log dan snel in, verander de indiendatum, schrijf een update en ons een e-mail om het beheer over 
+Als u nu geen update bij de petitie zet dan veronderstellen we dat u geen interesse of tijd meer heeft of onbereikbaar bent geworden.
+De petitie is dan verweesd en iemand anders kan de petitie adopteren. De ondertekenaars die hebben aangegeven zich
+in te willen zetten voor de petitie krijgen na elkaar een e-mail met de vraag de petitie te adopteren. Leest u dit na %{date} en uw
+petitie is nog niet geadopteerd, log dan snel in, verander de indiendatum, schrijf een update en ons een e-mail om het beheer over
 uw petitie niet kwijt te raken.
 
 
 Wilt u de petitie intrekken? Dat kan door de datum te veranderen naar iets in het verleden. Zou u dan ook een update willen schrijven
-waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Bijvoorbeeld 
+waarom u de petitie intrekt? U kunt ook kiezen uit een aantal opties eventueel aangevuld met wat uitleg. Bijvoorbeeld
 '
       has_answer: '
-Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. De petitie is nu beantwoord door 
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. De petitie is nu beantwoord door
 de ontvanger van de petitie. U kunt het antwoord ook naast de petitie vinden, daar staat
 
 
@@ -84,44 +84,44 @@ We horen graag of dit is wat u van de petitie verwachtte, zodat wij kunnen ons w
 '
       has_answer_subject: Het eindresultaat voor de petitie "%{petition}"
       has_no_answer: '
-Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. Helaas lijkt de petitie genegeerd 
-door de ontvanger. Op %{petition_handover} is de petitie verstuurd naar de %{petition_office}. We vroegen per e-mail vier keer om een ontvangstbevestiging, 
+Op %{date} heeft u de petitie "%{petition}" getekend met e-mailadres %{email}. Helaas lijkt de petitie genegeerd
+door de ontvanger. Op %{petition_handover} is de petitie verstuurd naar de %{petition_office}. We vroegen per e-mail vier keer om een ontvangstbevestiging,
 maar we kregen geen antwoord. Als u misschien weet wat de situatie rond de petitie is, zou u het ons willen laten weten? Dan kunnen we dat melden bij de petitie.
 '
       improve_and_reopen: '
-Uw petitie heeft nog weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken. 
-Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie beter kan of dat te weinig mensen weten dat de petitie bestaat. 
-U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op http://handboek.petities.nl staan tips over hoe u aandacht 
+Uw petitie heeft nog weinig ondertekeningen verzameld, maar de indiendatum is verstreken. Daarom is de petitie nu volautomatisch ingetrokken.
+Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie beter kan of dat te weinig mensen weten dat de petitie bestaat.
+U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op https://handboek.petities.nl staan tips over hoe u aandacht
 voor uw petitie kunt krijgen. Ook kunt u ons natuurlijk mailen op webmaster@petities.nl. Succes!
 '
       improve_and_reopen_subject: '
 Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer openen.'
       now_hide_signature: '
-Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt 
-zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt. 
-Misschien wilt u dat niet, misschien ook juist wel. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd 
-op 
+Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt
+zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt.
+Misschien wilt u dat niet, misschien ook juist wel. Om dit uit of aan te zetten, ga naar de pagina waar u uw ondertekening heeft bevestigd
+op
 '
       progress: '
-Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. U heeft aangegeven op de hoogte te willen 
-blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u één van de drie 
+Op %{date} heeft u de petitie "%{petition}" ondertekend als %{name} uit %{place}. U heeft aangegeven op de hoogte te willen
+blijven van de voortgang van het initiatief met maximaal drie mails. Namens de petitionaris stuurt Petities.nl u één van de drie
 voortgangsberichten. Stuur uw reactie op het onderstaande niet naar petities.nl, maar naar de petitionaris op %{petitioner_email}.
 '
       progress_subject: 'Petitie "%{petition}", voortgangsbericht'
       progress_unsubscribe: '
 STOPZETTEN E-MAILS
 
-U heeft bij het ondertekenen aangegeven maximaal drie e-mails te willen ontvangen. Als u van gedachten bent veranderd en de 
-resterende e-mails niet wilt ontvangen dan kunt u dat aangeven op: 
+U heeft bij het ondertekenen aangegeven maximaal drie e-mails te willen ontvangen. Als u van gedachten bent veranderd en de
+resterende e-mails niet wilt ontvangen dan kunt u dat aangeven op:
 %{unique_link}
 
-We verzekeren u dat uw persoonlijke gegevens goed beschermd zijn door de Wet Bescherming Persoonsgegevens. Dat wil zeggen dat 
+We verzekeren u dat uw persoonlijke gegevens goed beschermd zijn door de Wet Bescherming Persoonsgegevens. Dat wil zeggen dat
 uw gegevens nergens voor gebruikt worden behalve voor het doel waarvoor u ze heeft opgegeven.
 '
-      write_about_hand_over: 'Als het goed is gaat u op %{date} de petitie overhandigen. De ondertekenaars willen waarschijnlijk wel weten 
-hoe het gegaan is met de petitie die ze hebben ondertekend. Zou u een update willen schrijven over hoe het ging? Wie, wat, waar, wanneer en hoe? Heeft u het 
-fysiek gedaan of was de petitie een ingekomen stuk? Was er een bijeenkomst waar men het besprak? Of werd het ook in ontvangst genomen waarbij 
-u het woord mocht nemen? Wie hebben er allemaal kennis van genomen? Heeft u namen van de aanwezigen? De ondertekenaars kunnen nu namelijk 
-iedereen die de petitie heeft ontvangen daarop aanspreken. U kunt het tekstje onder de petitie zetten, maar het is ook mogelijk het te 
+      write_about_hand_over: 'Als het goed is gaat u op %{date} de petitie overhandigen. De ondertekenaars willen waarschijnlijk wel weten
+hoe het gegaan is met de petitie die ze hebben ondertekend. Zou u een update willen schrijven over hoe het ging? Wie, wat, waar, wanneer en hoe? Heeft u het
+fysiek gedaan of was de petitie een ingekomen stuk? Was er een bijeenkomst waar men het besprak? Of werd het ook in ontvangst genomen waarbij
+u het woord mocht nemen? Wie hebben er allemaal kennis van genomen? Heeft u namen van de aanwezigen? De ondertekenaars kunnen nu namelijk
+iedereen die de petitie heeft ontvangen daarop aanspreken. U kunt het tekstje onder de petitie zetten, maar het is ook mogelijk het te
 versturen naar de ondertekenaars. Tot drie keer toe kunt u een e-mail versturen. Als u een nieuwtje onder de petitie zet kunt u dat aangeven.'
       write_about_hand_over_subject: 'De overhandiging van uw petitie "%{petition_name}", hoe ging het?'

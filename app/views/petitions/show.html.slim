@@ -42,9 +42,6 @@ div.page
       = link_to t('petition.news'), '#petitionnews', class: 'button'
       p &nbsp;
 
-  javascript:
-    window.page = 1;
-
   - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
 
     section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')

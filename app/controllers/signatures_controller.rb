@@ -10,6 +10,8 @@ class SignaturesController < ApplicationController
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:special_update]
 
+  before_action :find_petition, only: [:latest]
+
   # GET /signatures
   # GET /signatures.json
   def index
@@ -17,45 +19,49 @@ class SignaturesController < ApplicationController
 
     @all_signatures = @petition.signatures.limit(900)
 
-    unless request.xhr? || request.format.json? || request.format.js?
-      # make redis!
-      @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
+    # make redis!
+    @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
 
-      # redis ranking!
-      # @signatures_count_by_city = @all_signatures.group_by(&:person_city)
-      #                             .map { |group| [group[0], group[1].size] }
-      #                             .select { |group| group[1] >= 50 }
-      #                             .sort_by { |group| group[1] }[0..9]
+    # redis ranking!
+    # @signatures_count_by_city = @all_signatures.group_by(&:person_city)
+    #                             .map { |group| [group[0], group[1].size] }
+    #                             .select { |group| group[1] >= 50 }
+    #                             .sort_by { |group| group[1] }[0..9]
 
-      # @filtered_s_c_c = {}
+    # @filtered_s_c_c = {}
 
-      # @signatures_count_by_city.each do |group|
-      #   city_name = group[0].downcase
-      #   if @filtered_s_c_c[city_name]
-      #     @filtered_s_c_c[city_name] += group[1].to_i
-      #   else
-      #     @filtered_s_c_c[city_name] = group[1].to_i
-      #   end
-      # end
-      # @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
+    # @signatures_count_by_city.each do |group|
+    #   city_name = group[0].downcase
+    #   if @filtered_s_c_c[city_name]
+    #     @filtered_s_c_c[city_name] += group[1].to_i
+    #   else
+    #     @filtered_s_c_c[city_name] = group[1].to_i
+    #   end
+    # end
+    # @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
 
-      @per_page = 100
-    else
-      @per_page = 12
-    end
+    per_page = 100
 
     @page = if params[:page].to_i > 0
               params[:page].to_i
             elsif params[:signature_id]
-              (@all_signatures.pluck(:id).index(params[:signature_id].to_i).to_f / @per_page).floor + 1
+              (@all_signatures.pluck(:id).index(params[:signature_id].to_i).to_f / per_page).floor + 1
             else
               1
             end
 
     @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
-                                 .page(@page).per(@per_page)
+                                 .page(@page).per(per_page)
 
     respond_to :js, :html, :json
+  end
+
+  def latest
+    @signatures = @petition.signatures
+                           .order(special: :desc, confirmed_at: :desc)
+                           .page(cleanup_page(params[:page])).per(12)
+
+    render layout: false
   end
 
   def search

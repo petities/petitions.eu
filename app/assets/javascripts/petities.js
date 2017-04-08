@@ -3,14 +3,14 @@ var chartOptions = {
   showTooltips: false,
   animation: true,
   showScale: false,
-  scaleShowGridLines : false,
-  barShowStroke : false,
+  scaleShowGridLines: false,
+  barShowStroke: false,
   barValueSpacing: 1,
   tooltipFillColor: "#fff",
   tooltipFontColor: "#000"
 };
 
-function initChart(elem){
+function initChart(elem) {
   window['myBarChart' + $(elem).data('chartid')] = new Chart($(elem)[0].getContext("2d")).Bar(
     {
       labels: window[$(elem).data('chartlabels')],
@@ -23,7 +23,7 @@ function initChart(elem){
   );
 }
 
-$.fn.select_org_menu = function(){
+$.fn.select_org_menu = function() {
   $('.organisation_select').hide();
   $('.organisation_select').attr('disabled', true);
 
@@ -170,31 +170,32 @@ $(document).ready(function(){
   // CODE FOR HISTORY CHARTS FOR PETITIONS W/O IMAGE
   ///////
 
-  $('.petition-overview .chart-canvas').each(function(index, elem){
+  $('.petition-overview .chart-canvas').each(function(index, elem) {
     initChart(elem);
   });
 
-  $('.navigation-loadmore').click(function(){
-    var url = $(this).data('url');
+  $('[data-behavior~=load-signatures]').each(function() {
+    $(this).load($(this).data('url'));
+  })
 
-    if(isNaN(window.page)){
-        window.page = 1;
+  $('[data-behavior~=load-more-signatures]').click(function() {
+    var url = $('.petition-signatures-container').data('url');
+    var page = $('.petition-signatures-container').data('page');
+
+    page += 1;
+    $('.petition-signatures-container').data('page', page);
+
+    if (url.match('\\?')) {
+      url += '&page=' + page;
+    } else {
+      url += '?page=' + page;
     }
 
-    window.page += 1;
-
-    if(url.match('\\?')){
-      url = url + '&page='+ window.page;
-    } else{
-      url = url + '?page='+ window.page;
-    }
-
-    //make buttons also work on edit pages
+    // make buttons also work on edit pages
     url = url.replace('/edit/', '/');
 
-    $.ajax({
-      url: url,
-      dataType: 'jsonp'
+    $.get(url).success(function(data) {
+      $('.petition-signatures-container').append(data);
     });
   });
 

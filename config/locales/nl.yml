@@ -7,7 +7,7 @@ nl:
     text: |
       <p>Petities.nl is van de stichting Petities.nl, op het web <a href="http://web.archive.org/web/20051017052754/http://petities.nl/">sinds 1 mei 2005.</a> Het is ons doel om het Nederlanders makkelijk te maken een petitie te ondertekenen of te starten waar een antwoord op moet komen. Sinds 16 juni 2008 is het mogelijk voor de ontvangers van petities een loket te openen in de website om petities te begeleiden, ontvangen en te beantwoorden.</p>&#13;
       <p>&nbsp;</p>
-      <p>Deze dienst is tot nu toe mogelijk gemaakt dankzij het werk van professionele vrijwilligers, <a href="http://handboek.petities.nl/wiki/Subsidies">subsidies</a>, <a href="http://web.archive.org/web/20101209065053/http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">tijdelijke professionele ondersteuning</a> en giften. Petities.nl is als <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/wat_is_een_anbi">Algemeen Nut Beogende Instelling</a> door de Belastingdienst <a href="http://www.belastingdienst.nl/rekenhulpen/giften/anbi_zoeken/">erkend</a>.
+      <p>Deze dienst is tot nu toe mogelijk gemaakt dankzij het werk van professionele vrijwilligers, <a href="https://handboek.petities.nl/wiki/Subsidies">subsidies</a>, <a href="http://web.archive.org/web/20101209065053/http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">tijdelijke professionele ondersteuning</a> en giften. Petities.nl is als <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/bijzondere_regelingen/goede_doelen/algemeen_nut_beogende_instellingen/wat_is_een_anbi">Algemeen Nut Beogende Instelling</a> door de Belastingdienst <a href="http://www.belastingdienst.nl/rekenhulpen/giften/anbi_zoeken/">erkend</a>.
       <p>&nbsp;</p>
       <p>Ons Rechtspersonen Samenwerkingsverbanden Informatie Nummer, oftewel RSIN, is 814175983. Dit gebruikt u als u tussen de 1 en 10% van uw drempelinkomen aan giften kunt <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/themaoverstijgend/programmas_en_formulieren/overeenkomst_periodieke_giften">opvoeren als aftrekpost</a>. Haalt u dat niet, dan kunt u het formulier <a href="http://download.belastingdienst.nl/belastingdienst/docs/overeenkomst_%20period_gift_in_geld_ib0802z2fol.pdf">Periodieke Gift in Geld</a> gebruiken waarmee u vastlegt minstens 5 jaar te doneren. Maar op dat formulier moet wel onze handtekening! Mail ons op <a href="mailto:webmaster@petities.nl?Overeenkomst%20Periodieke%20gift">webmaster@petities.nl</a> en we sturen u die ingevuld toe.</p>&#13;
       <p>&nbsp;</p>
@@ -293,7 +293,7 @@ nl:
     aftersigning:
       - answer: Onderteken door uw naam en e-mailadres in te voeren en bevestig uw ondertekening vanuit de e-mail die u dan ontvangt. U kunt uitnodigingen per e-mail versturen of de petitie via sociale media delen. Op dezelfde pagina kunt u aangeven dat u wilt helpen of wat wil doneren.
         title: Hoe kan ik een petitie verder helpen?
-      - answer: Helaas, zo is Petities.nl opgezet voor de gebruikersvriendelijkheid van de meerderheid. Geen wachtwoord nodig en elke ondertekening is gekoppeld aan een persoon die e-mail kan lezen. De oplossing is om op papier te tekenen en die te sturen/mailen naar de petitionaris of om (extra) e-mailadres te nemen. U kunt een extra gratis e-mailadres te nemen bij de vereniging Open Domein die ook Petities.nl mogelijk maakt. Meer details en oplossingen in ons <a href="http://handboek.petities.nl">handboek.</a>
+      - answer: Helaas, zo is Petities.nl opgezet voor de gebruikersvriendelijkheid van de meerderheid. Geen wachtwoord nodig en elke ondertekening is gekoppeld aan een persoon die e-mail kan lezen. De oplossing is om op papier te tekenen en die te sturen/mailen naar de petitionaris of om (extra) e-mailadres te nemen. U kunt een extra gratis e-mailadres te nemen bij de vereniging Open Domein die ook Petities.nl mogelijk maakt. Meer details en oplossingen in ons <a href="https://handboek.petities.nl">handboek.</a>
         title: Wij delen een e-mailadres of mijn vrienden hebben geen e-mail. Kunnen we maar 1 keer ondertekenen?
       - answer: Als u hier rechtsonder uw e-mailadres invult dan sturen we u een e-mail met een link voor elke petitie die u ondertekend heeft. Volgt u de link in de e-mail dan kunt u uw naam of beschrijving aanpassen of verbergen voor de buitenwereld.
         title: Welke petities heb ik al ondertekend?
@@ -310,7 +310,7 @@ nl:
         title: Wie krijgen mijn gegevens te zien?
     general_items: Algemene vragen
     handbook:
-      descr: <p>In het <a href="http://handboek.petities.nl">Handboek Petities</a> kunt u heel veel extra truuks en tips lezen gebaseerd op onze ervaringen sinds 2005.</p>
+      descr: <p>In het <a href="https://handboek.petities.nl">Handboek Petities</a> kunt u heel veel extra truuks en tips lezen gebaseerd op onze ervaringen sinds 2005.</p>
       title: Handboek Petities
     opinionpiece:
       descr: <p>Een petitie wordt vooral getekend door medestanders die er al van overtuigd zijn dat er iets moet veranderen. Maar de meeste mensen zijn nog niet overtuigd. Als ze al van de petitie weten. Met een opiniestuk in de krant of online kun je mensen zowel informeren als overtuigen. Zo'n tekst leest bovendien veel prettiger dan een petitietekst.</p><p>&nbsp;</p><p>Een opiniestuk schrijven is niet zo moeilijk. De opinie staat centraal, ondersteund door argumenten. </p><p>&nbsp;</p><p>Op de website Opiniestukken.nl staan tips voor een goed opiniestuk. U kunt het daarna insturen naar een redactie, zodat u een groot publiek bereikt dat u zo kunt overtuigen van uw punt. U kunt het opiniestuk ook online publiceren op <a href="http://www.opiniestukken.nl">Opiniestukken.nl</a> zelf. En u mag natuurlijk altijd met een opiniestuk aandacht vestigen op de petitie van iemand anders. Vergeet de oproep om de petitie niet.</p>
@@ -319,9 +319,9 @@ nl:
       update:
         help: Vat samen
         descr: "U kunt makkelijk uw tekst opmaak geven door woorden tussen sterretjes te zetten. Bij voorbeeld een *schuingedrukt* woord of **vet** gedrukt."
-        descr2: "Het is zelfs mogelijk [een link](http://handboek.petities.nl/wiki/markdown/) te maken."
+        descr2: "Het is zelfs mogelijk [een link](https://handboek.petities.nl/wiki/markdown/) te maken."
         descr3: |
-              <p>In het <a href="http://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
+              <p>In het <a href="https://handboek.petities.nl/wiki/markdown/">handboek</a> kunt u een overzicht van opmaakmogelijkheden vinden.</p>
         descr4: "Let erop dat de titel het nieuwtje goed samenvat. De eerste twee zinnen is wat iedereen ziet, voor de rest moet men klikken."
         links: Gebruik links
         markdown: Gebruik opmaak
@@ -348,13 +348,13 @@ nl:
         title: Waarom mogen petities over een product of bedrijf niet?
       - answer: U richt een petitie aan iemand die door zijn of haar handelen de door u beoogde situatie kan (helpen) realiseren. Zoals volksvertegenwoordigers, bestuurders van organisaties en dergelijken. U kunt kiezen uit een aantal standaard ontvangers, maar u kunt ook geadresseerden aan deze voorselectie laten toevoegen door de webmaster. Het is verstandig om voor het starten van de petitie te controleren of de geadresseerde bereid is om de petitie in ontvangst te nemen in een later stadium. Gemeenten die hebben aangegeven altijd bereid zijn een petitie te willen ontvangen hebben een petitieloket geopend op deze website. U en de ondertekenaars van uw petitie krijgen dan gegarandeerd antwoord op uw petitie.
         title: Aan wie adresseer ik een petitie?
-      - answer: U kunt een stukje code op uw pagina plakken. Zie ons <a href="http://handboek.petities.nl">handboek</a> voor details hierover.
+      - answer: U kunt een stukje code op uw pagina plakken. Zie ons <a href="https://handboek.petities.nl">handboek</a> voor details hierover.
         title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
     writingpetition_item: Bij het schrijven van een petitie
   index:
-    all: Alle petities
+    all: Blader door alle petities
     more: Meer petities tonen
-    read: Lees verder...
+    read: Lees verder…
     sort:
       active: Actieve petities
       biggest: Grootste petities

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
       collection do
         post :search
+        get :latest
 
         get ':signature_id' => 'signatures#index', as: :anchor
       end

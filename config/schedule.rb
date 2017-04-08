@@ -1,7 +1,7 @@
 # Periodic tasks
 ################################################
 #
-# http://handboek.petities.nl/wiki/Periodic_tasks
+# https://handboek.petities.nl/wiki/Periodic_tasks
 
 #  orphan task
 # 82 office response about answer for petition.
@@ -12,52 +12,49 @@
 
 # Signature maintenance
 
+# remove unconfirmed signatures
 every :day, at: '1am' do
-  # remove unconfirmed signatures
   rake 'signature:delete_old_signatures'
 end
 
+# send a reminder to confirm petition
 every 10.minutes do
-  # send a reminder to confirm petition
   rake 'signature:send_reminder'
 end
 
-
-#every 30.minutes do
-#  # send a reminder to confirm petition
+# send a reminder to confirm petition
+# every 30.minutes do
 #  rake 'petition:publish_news_to_subscribers'
-#end
+# end
 
-#every :day, at: '1am' do
-#  # send a reminder to confirm petition
+# send a reminder to confirm petition
+# every :day, at: '1am' do
 #  rake 'petition:publish_answer_to_subscribers'
-#end
+# end
 
 # Petition maintenance
 
-#every 8.hours do
+# every 8.hours do
 #  rake 'petition:handle_overdue_petitions'
-#end
+# end
 
 every :day, at: '4am' do
   rake 'petition:fix_signature_counts'
 end
 
-#every :day, at:  '3am' do
+# every :day, at:  '3am' do
 #  rake 'petition:get_reference'
-#end
+# end
 
-#every :day, at: '2am' do
+# every :day, at: '2am' do
 #  # rake petition:send_answers
 #  rake 'petition:get_reference'
-#end
+# end
 
-#every 12.hours do
+# every 12.hours do
 #  rake 'petition:get_answer_from_office'
-#end
+# end
 
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-
-# Learn more: http://github.com/javan/whenever
