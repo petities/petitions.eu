@@ -167,7 +167,7 @@ en:
         privacylabel: Yes, show my name and place publicy visible under the petition
     info:
       browser: 'Your browser: %{browser}'
-      check_information: Please check your information
+      check_information: 'Correct your information, if necessary'
       donate_petition: Donate
       confirmed_at: 'Confirmed at: %{ip}'
       help_petition: Help the petition

@@ -170,7 +170,7 @@ nl:
         privacylabel: Ja, toon mijn naam en woonplaats publiek zichtbaar onder de petitie
     info:
       browser: 'Uw browser: %{browser}'
-      check_information: Controleer uw gegevens
+      check_information: Corrigeer eventueel uw gegevens
       confirmed_at: 'Bevestigd op: %{ip}'
       donate_petition: Doneer
       help_petition: Help de petitie
