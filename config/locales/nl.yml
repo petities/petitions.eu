@@ -167,10 +167,11 @@ nl:
       update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.
-        privacylabel: Mijn naam en woonplaats zullen publiek zichtbaar zijn onder de petitie.
+        privacylabel: Ja, toon mijn naam en woonplaats publiek zichtbaar onder de petitie
     info:
       browser: 'Uw browser: %{browser}'
       check_information: Controleer uw gegevens
+      confirmed_at: 'Bevestigd op: %{ip}'
       donate_petition: Doneer
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?

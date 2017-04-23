@@ -164,11 +164,12 @@ en:
       update_information: Update your information
       visible:
         description: A public signature can be found with search engines, for example when someone looks up your name.
-        privacylabel: My name and place will be public, visible under the petition.
+        privacylabel: Yes, show my name and place publicy visible under the petition
     info:
       browser: 'Your browser: %{browser}'
       check_information: Please check your information
       donate_petition: Donate
+      confirmed_at: 'Confirmed at: %{ip}'
       help_petition: Help the petition
       how_much: How much would you like to contribute?
       how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
