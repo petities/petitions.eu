@@ -4,49 +4,104 @@ en:
       signature:
         ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"
         ask_petitioner_html: 'Do you have questions about this petition? Please contact the lead petitioner through: <a href="mail_to:%{petitionermail}">%{petitionermail}</a>'
-        linkinstruction: 'You nearly signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. Is this not
-what you want? You can then ignore this.
+        linkinstruction: 'You nearly signed the petition "%{petition}"!
 
 
-Please confirm your signature by following this link:
+%{date}
 
+
+%{name}
+
+
+%{email}
+
+
+Would you rather not sign or this is not you? Just ignore this attempt and we will delete it automatically.
+
+
+Otherwise, please confirm your signature now by following this link:
+    
 
 %{confirm_url}
 
 
-Otherwise we will delete your signature automatically. You do not count as signatory yet!
+When a page appears with your name and place you have confirmed. 
 
 
-After your confirmation you can always return to update your information or invite others to sign. It is therefore good to
-keep this message. On that confirmation page you also find a link to your signature in the list with signatories. Your name will be
-public when you opt in for this. You can also choose to show, or no longer show, your name later on.
+Until that moment, you do not yet count as signatory.
+
+
+On that page you can correct your name if needed or collaborate.
+
+
+Thank you. 
+
+
+
+
+EXPLANATION 
+
+
+After your confirmation you can always return to update your information or invite others to sign. Your name will be public when you opt in 
+for this. There you can also choose to show, or no longer show, your name later on. It is therefore good to keep this message. 
 
 
 This e-mail is confidential because only %{name} with address %{email} may confirm the signature. Do not send this message to others
-and do not publish it with the unique link which is only for you. If others can visit the confirmation page only the name that is
-last added is valid. On the confirmation page you can send invitations and share the petition.
+and do not publish it with the unique link which is only for you. If others can visit the confirmation page they can overwrite your name. 
+Therfore use the confirmation page to send invitations.
+
+
+For help to use this website see https://petities.nl/help
 '
-        linkinstruction_html: '<p>You nearly signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}. Is this not
-what you want? You can then ignore this.</p>
+        linkinstruction_html: '<p>You nearly signed the petition "%{petition}"!</p>
 
 
-<p>Please confirm your signature by following this link:</p>
+<p>%{date}</p>
+
+
+<p>%{name}</p>
+
+
+<p>%{email}</p>
+
+
+<p>Would you rather not sign or this is not you? Just ignore this attempt and we will delete it automatically.</p>
+
+
+<p>Otherwise, please confirm your signature now by following this link:</p>
 
 
 <p>%{confirm_url}</p>
 
 
-<p>Otherwise we will delete your signature automatically. You do not count as signatory yet!</p>
+<p>When a page appears with your name and place you have confirmed.</p>
 
 
-<p>After your confirmation you can always return to update your information or invite others to sign. It is therefore good to
-keep this message. On that confirmation page you also find a link to your signature in the list with signatories. Your name will be
-public when you opt in for this. You can also choose to show, or no longer show, your name later on.</p>
+<p>Until that moment, you do not yet count as signatory.</p>
+
+
+<p>On that page you can correct your name if needed or collaborate.</p>
+
+
+<p>Thank you.</p>
+
+
+
+
+<b>EXPLANATION</b>
+
+
+<p>After your confirmation you can always return to update your information or invite others to sign. Your name will be public when you opt in 
+for this. There you can also choose to show, or no longer show, your name later on. It is therefore good to keep this message. 
+</p>
 
 
 <p>This e-mail is confidential because only %{name} with address %{email} may confirm the signature. Do not send this message to others
-and do not publish it with the unique link which is only for you. If others can visit the confirmation page only the name that is
-last added is valid. On the confirmation page you can send invitations and share the petition.</p>
+and do not publish it with the unique link which is only for you. If others can visit the confirmation page they can overwrite your name. 
+Therfore use the confirmation page to send invitations.</p>
+
+
+For help to use this website see <a href="https://petities.nl/help">https://petities.nl/help</a>
 '
         petition: 'THE PETITION
 
@@ -77,7 +132,7 @@ request
 
 END
 '
-        petition_html: '<p>THE PETITION</p>
+        petition_html: '<p><b>THE PETITION</b></p>
 
 <p><a href="%{petition_url}">%{petition_url}</a></p>
 
@@ -96,7 +151,7 @@ END
 
 <p>%{request}</p>
 
-<p>END</p>
+<p><b>END</b></p>
 '
         subject: 'Please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
         subject_reminder: 'Reminder: please confirm your signature for the petition "%{petition_name}" (confidential, do not forward)'
@@ -150,7 +205,7 @@ With your donation (money or time) our website improves. See https://petities.nl
 Petities.nl Foundation</p>
 
 
-<p>SUPPORT PETITIES.NL</p>
+<p><b>SUPPORT PETITIES.NL</b></p>
 
 
 <p>With your donation (money or time) our website improves. See <a href="https://petities.nl/donate">https://petities.nl/donate</a> voor details.</p>

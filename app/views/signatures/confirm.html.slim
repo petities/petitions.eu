@@ -161,6 +161,8 @@ div.page
 
       div.start-petition-form-row
           div.start-petition-form-cell.input
+            / = t('confirm.info.confirmed_at', confirmed_at: @signature.signature_confirmed_at)
+            / br
             = t('confirm.info.ip', ip: @signature.signature_remote_addr)
             br
             = t('confirm.info.browser', browser: @signature.signature_remote_browser)
