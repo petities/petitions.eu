@@ -613,6 +613,7 @@ en:
     your_telephone: Your telephone number
     your_street_and_number: Your street and house number
   pundit:
+    default: 'You cannot perform this action.'
     petition_policy:
       edit?: You can now add a translation of the petition
       create?: Translation added!

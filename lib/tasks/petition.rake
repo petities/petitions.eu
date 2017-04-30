@@ -12,6 +12,14 @@ namespace :petition do
       petition.signatures_count = count
 
       puts "Error saving #{petition.name}" unless petition.save
+
+      redis = Redis.current
+      redis_key = "p#{petition.id}-count"
+      next unless redis.exists(redis_key)
+
+      redis_count = redis.get(redis_key).to_i
+      count = redis_count - 5 if redis_count - count > 5
+      redis.set(redis_key, count)
     end
   end
 

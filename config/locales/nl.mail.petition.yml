@@ -17,7 +17,7 @@ verzoek iets te willen doen of te willen doneren.
 en vraag een wachtwoord aan die u per e-mail ontvangt.
 
 
-Daarna kunt u op http://petities.nl/login inloggen met uw e-mailadres en het wachtwoord om de petitie te beheren.
+Daarna kunt u op https://petities.nl/login inloggen met uw e-mailadres en het wachtwoord om de petitie te beheren.
 '
       adoption_request_subject: 'Zou u de petitie "%{petition}" willen overnemen?'
       adoption_survey: '
@@ -38,7 +38,7 @@ kunt u inloggen op https://petities.nl/login
 
 
 Als u %{email} niet wilt delen met ondertekenaars dan kunt u nu of later een extra adres
-invullen bij de petitie zelf. Op http://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt
+invullen bij de petitie zelf. Op https://deds.nl kunt u bijvoorbeeld gratis een e-mailadres nemen. Het adres dat bij de petitie staat verschijnt
 alleen in e-mails naar de ondertekenaars, niet op het web. Dit is om ongewenste e-mail te voorkomen. Heeft u hulp nodig bij de petitie, kijkt u
 dan vooral ook even in het handboek op https://handboek.petities.nl
 

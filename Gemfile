@@ -118,20 +118,21 @@ gem 'newrelic_rpm', '~> 4.0', '>= 4.0.0.332'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
+  gem 'capistrano-bundler', '~> 1.2.0'
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', '~> 2.0.3'
-  gem 'capistrano-bundler', '~> 1.1.4'
-  gem 'capistrano3-unicorn', '~> 0.2.1'
   gem 'capistrano-sidekiq', '~> 0.5.4'
+  gem 'capistrano3-unicorn', '~> 0.2.1'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
-  gem 'byebug'
-  gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug'
+  gem 'quiet_assets'
+
   # create fake data
   gem 'faker'
   gem 'mailcatcher'

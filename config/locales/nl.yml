@@ -618,6 +618,7 @@ nl:
     your_telephone: Uw telefoonnummer
     your_street_and_number: Uw straat en huisnummer
   pundit:
+    default: 'U heeft onvoldoende rechten om deze actie uit te voeren.'
     petition_policy:
       edit? U kunt nu een vertaling van de petitie toevoegen
       create? Vertaling toegevoegd!

@@ -17,10 +17,12 @@
 class Pledge < ActiveRecord::Base
   extend ActionView::Helpers::TranslationHelper
 
-  has_one :petition
-  has_one :signature
+  belongs_to :petition
+  belongs_to :signature
 
   validates :feedback, length: { maximum: 255 }, allow_blank: true
+
+  before_create :set_petiton_id
 
   INFLUENCE_OPTIONS = [
     [t('confirm.form.pledge.expert'), 'expert'],
@@ -52,4 +54,10 @@ class Pledge < ActiveRecord::Base
     [t('confirm.form.money.25'), '25'],
     [t('confirm.form.money.50'), '50']
   ]
+
+  private
+
+  def set_petiton_id
+    self.petition = signature.petition if petition.blank?
+  end
 end

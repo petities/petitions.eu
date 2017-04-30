@@ -10,7 +10,7 @@ class SubDomainTest < ActionDispatch::IntegrationTest
     assert_response :not_found
   end
 
-  test 'amsterdam subdomain' do
+  test 'office amsterdam subdomain' do
     host! 'amsterdam.test.host'
     assert_recognizes({ controller: 'subdomains', action: 'show' }, 'http://amsterdam.test.host')
     get '/'
@@ -28,4 +28,12 @@ class SubDomainTest < ActionDispatch::IntegrationTest
     get '/?locale=en'
     assert_response :success
   end
+
+  test 'petition recent signatures via subdomain' do
+    petition = petitions(:one)
+    host! petition.subdomain + '.test.host'
+    get latest_petition_signatures_url(petition)
+    assert_response :success
+  end
+
 end

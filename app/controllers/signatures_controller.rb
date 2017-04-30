@@ -10,13 +10,15 @@ class SignaturesController < ApplicationController
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:special_update]
 
-  before_action :find_petition, only: [:latest]
+  before_action :set_pledge, only: [:confirm, :confirm_submit, :pledge_submit]
+
+  before_action :find_petition, only: [:index, :latest, :search, :create]
+
+  skip_before_action :ensure_domain, only: [:latest]
 
   # GET /signatures
   # GET /signatures.json
   def index
-    find_petition
-
     @all_signatures = @petition.signatures.limit(900)
 
     # make redis!
@@ -57,16 +59,15 @@ class SignaturesController < ApplicationController
   end
 
   def latest
+    @page = cleanup_page(params[:page])
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
-                           .page(cleanup_page(params[:page])).per(12)
+                           .page(@page).per(12)
 
     render layout: false
   end
 
   def search
-    find_petition
-
     @query = params[:query]
 
     page = cleanup_page(params[:page])
@@ -83,8 +84,6 @@ class SignaturesController < ApplicationController
   # POST /signatures
   # POST /signatures.json
   def create
-    find_petition
-
     # try to find old signature first
     email = signature_params[:person_email]
     @signature = Signature.find_by(person_email: email, petition: @petition)
@@ -159,8 +158,6 @@ class SignaturesController < ApplicationController
     # generate the update signature url
     @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
-    set_pledge
-
     # check if we are in the unconfirmed table
     if @signature.class == NewSignature
 
@@ -230,8 +227,6 @@ class SignaturesController < ApplicationController
       @error_fields = @signature.errors.keys
       @url = petition_signature_confirm_submit_path(@petition, @signature.unique_key)
 
-      set_pledge
-
       respond_to do |format|
         format.json { render json: @signature.errors, status: :unprocessable_entity }
         format.html do
@@ -241,20 +236,8 @@ class SignaturesController < ApplicationController
     end
   end
 
-  def set_pledge
-    @pledge = Pledge.find_or_initialize_by(
-      signature_id: @signature.id,
-      petition_id: @petition.id
-    )
-  end
-
+  # update pledge
   def pledge_submit
-    # set petition
-    @petition = @signature.petition
-    # find pledge by petition_id and signature_id
-    set_pledge
-
-    # update pledge
     if @pledge.update(pledge_params)
       respond_to do |format|
         format.json { render :show, status: :ok }
@@ -313,13 +296,16 @@ class SignaturesController < ApplicationController
   end
 
   def find_signature_by_unique_key
-    @signature = Signature.find_by_unique_key(params[:signature_id])
-
-    unless @signature
-      @signature = NewSignature.find_by_unique_key(params[:signature_id])
-    end
+    unique_key = params[:signature_id]
+    @signature = NewSignature.find_by(unique_key: unique_key)
+    @signature = Signature.find_by(unique_key: unique_key) unless @signature
 
     render :not_found, status: :not_found unless @signature
+  end
+
+  def set_pledge
+    @signature.build_pledge unless @signature.pledge.present?
+    @pledge = @signature.pledge
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

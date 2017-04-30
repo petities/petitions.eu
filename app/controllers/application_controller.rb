@@ -57,9 +57,10 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized(exception)
+    referer = request.referer unless request.referer == request.url
     policy_name = exception.policy.class.to_s.underscore
-    flash[:error] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
-    redirect_to(request.referer || root_path)
+    flash[:error] = t("#{policy_name}.#{exception.query}", scope: 'pundit', default: :default)
+    redirect_to(referer || root_path)
   end
 
   def set_locale
