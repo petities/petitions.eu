@@ -1,23 +1,22 @@
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
-<%= t("mail.confirm.signature.linkinstruction",{
-	petition: @signature.petition.name,
-	email: @signature.person_email,
-	date: l(@signature.signed_at.to_date),
-	name: @signature.person_name,
-	confirm_url: @confirm_url
-}) %>
+<%= t("mail.confirm.signature.linkinstruction",
+  petition: @petition.name,
+  email: @signature.person_email,
+  date: l(@signature.signed_at.to_date),
+  name: @signature.person_name,
+  confirm_url: @confirm_url
+) %>
 
 <%= t("mail.confirm.signoff") %>
 
-<%= t("mail.confirm.signature.petition", {
-	petition_url: petition_share_url(@signature.petition),
-	intro: @signature.petition.description,
-	we: @signature.petition.initiators,
-	observe: @signature.petition.statement,
-	request: @signature.petition.request
-}) %>
+<%= t("mail.confirm.signature.petition",
+  petition_url: petition_share_url(@signature.petition),
+  intro: @petition.description,
+  we: @petition.initiators,
+  observe: @petition.statement,
+  request: @petition.request
+) %>
 
-<%= t("mail.confirm.signature.ask_petitioner", {
-	petitionermail: @signature.petition.petitioner_email
-}) if @signature.petition.petitioner_email %>
+<%= t("mail.confirm.signature.ask_petitioner",
+  petitionermail: @petition.petitioner_email) if @petition.petitioner_email %>

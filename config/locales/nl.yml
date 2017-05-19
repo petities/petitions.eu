@@ -171,7 +171,7 @@ nl:
     info:
       browser: 'Uw browser: %{browser}'
       check_information: Corrigeer eventueel uw gegevens
-      confirmed_at: 'Bevestigd op: %{ip}'
+      confirmed_at: 'Bevestigd op: %{confirmed_at}'
       donate_petition: Doneer
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?

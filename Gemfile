@@ -14,8 +14,8 @@ gem 'friendly_id-globalize'
 gem 'mysql2', '~> 0.4.5'
 
 # legacy utf 8 issues..
-gem 'utf8-cleaner'
 gem 'rack-utf8_sanitizer'
+gem 'utf8-cleaner'
 
 # authentication
 gem 'devise', '~> 3.5', '>= 3.5.10'
@@ -55,6 +55,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'font-awesome-rails'
 
 gem 'sprockets'
 gem 'sprockets-rails'
@@ -109,8 +110,8 @@ group :production do
 end
 
 # Track errors in production
+gem 'newrelic_rpm', '~> 4.1', '>= 4.1.0.333'
 gem 'rollbar', '~> 2.14', '>= 2.14.1'
-gem 'newrelic_rpm', '~> 4.0', '>= 4.0.0.332'
 # track everything..
 # gem 'logstasher'
 

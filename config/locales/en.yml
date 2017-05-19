@@ -169,7 +169,7 @@ en:
       browser: 'Your browser: %{browser}'
       check_information: 'Correct your information, if necessary'
       donate_petition: Donate
-      confirmed_at: 'Confirmed at: %{ip}'
+      confirmed_at: 'Confirmed at: %{confirmed_at}'
       help_petition: Help the petition
       how_much: How much would you like to contribute?
       how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.

@@ -50,16 +50,13 @@ class SignatureMailer < ApplicationMailer
   # by following the confirm_url link in this email
   def sig_confirmation_mail(signature)
     @signature = signature
+    @petition = @signature.petition
 
     @confirm_url = url_for(controller: 'signatures',
                            action: 'confirm',
                            signature_id: @signature.unique_key)
 
-    # find the petition name
-    name = 'noname'
-    name = @signature.petition.name if @signature.petition.present?
-
-    subject = t('mail.confirm.signature.subject', petition_name: name)
+    subject = t('mail.confirm.signature.subject', petition_name: @petition.name)
 
     mail(to: @signature.person_email, subject: subject)
   end

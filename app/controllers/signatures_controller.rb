@@ -105,7 +105,6 @@ class SignaturesController < ApplicationController
       # no old signature found send new one
       # lets create a proper new signature
       @signature = @petition.new_signatures.new(signature_params)
-      # @signature.signature_confirmed_at = request.confirmed_at
       @signature.signature_remote_addr = request.remote_ip
       @signature.signature_remote_browser = request.env['HTTP_USER_AGENT'] if request.env['HTTP_USER_AGENT'].present?
     end
@@ -332,13 +331,13 @@ class SignaturesController < ApplicationController
 
   def confirm_signature
     old_signature = @signature
-    # create a new signature in the signature table.
+    # create a new signature in the signatures table.
     @signature = Signature.new(
       old_signature.attributes.select { |key, _| Signature.attribute_names.include?(key) && key.to_s != 'id' }
     )
 
     @signature.confirmed = true
-    @signature.confirmed_at = Time.now
+    @signature.confirmed_at = Time.zone.now
     @signature.confirmation_remote_addr = request.remote_ip
     @signature.confirmation_remote_browser = request.env['HTTP_USER_AGENT'] unless request.env['HTTP_USER_AGENT'].blank?
     old_signature.destroy if @signature.save
