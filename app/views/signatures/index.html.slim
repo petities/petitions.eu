@@ -80,7 +80,7 @@ div.page.signatures
         div.social-bar-side-label= t('show.share')
 
         div.social-bar-side-content.whitespace
-          a.social-bar-side-button.facebook    href="javascript:fbShare('#{petition_share_url(@petition)}', '#{@petition.name}');"
+          a.social-bar-side-button.facebook    href="javascript:fbShare('#{petition_share_url(@petition)}', '#{escape_javascript(@petition.name)}');"
           a.social-bar-side-button.twitter     href="https://twitter.com/intent/tweet?url=#{petition_share_url(@petition)}&text="
           a.social-bar-side-button.googleplus  href="javascript:gPlusShare('#{petition_share_url(@petition)}');"
           a.social-bar-side-button.linkedin    href="javascript:lnShare('#{petition_share_url(@petition)}');"

@@ -52,11 +52,6 @@ div.page
   section class="petition-intro-container edit"
     div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
 
-    /h1.petition-section-title
-    /  = t 'petition.editing'
-    /  =<> t 'petition.language'
-    /  =<> I18n.locale
-
     = render 'form'
 
   section.petition-container id="petitionState"

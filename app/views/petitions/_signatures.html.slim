@@ -4,7 +4,7 @@ div.page
     - if user_signed_in? && current_user.has_role?(:admin, @petition)
       h3.whitespace= t('signatures.petitioner_instructions')
 
-    div.petition-signatures-container data={page: 1, behavior: 'load-signatures', url: latest_petition_signatures_url(@petition, subdomain: false)}
+    div.petition-signatures-container data={page: 1, behavior: 'load-signatures', url: latest_petition_signatures_url(@petition)}
       div.clearfix
 
     div.navigation-bar

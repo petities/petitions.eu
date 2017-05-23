@@ -1,11 +1,12 @@
 div.social-bar
   - share_url = petition_share_url(@petition)
+  - share_title = escape_javascript(@petition.name)
 
   div.social-bar-content
     div.social-bar-label= t('show.share')
-    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{@petition.name}');"
+    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{share_title}');"
 
-    a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{@petition.name}');"
+    a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{share_title}');"
     a.social-bar-button.googleplus  href="javascript:gPlusShare('#{share_url}');"
     a.social-bar-button.linkedin    href="javascript:lnShare('#{share_url}');"
     = mail_to nil, nil,
