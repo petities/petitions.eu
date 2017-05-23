@@ -672,6 +672,7 @@ en:
         email:
           label: Email address
           placeholder: username@something.something
+        error: We're sorry, something went wrong while saving signature. Would you like to retry?
         errors:
           email: Please enter a correct e-mail address. Something is wrong with this one.
           name: Please enter your name and surname. Or an initial and your surname.
@@ -794,7 +795,6 @@ en:
     other_answers: 'something else, being:'
   update:
     created: News update created
-    earlier_updates: Earlier updates
     form:
       create: Create
       update: Update

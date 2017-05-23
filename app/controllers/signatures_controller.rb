@@ -5,7 +5,8 @@ class SignaturesController < ApplicationController
 
   before_action :find_signature_by_unique_key, only: [
     :show, :confirm, :confirm_submit, :pledge_submit, :user_update,
-    :become_petition_owner]
+    :become_petition_owner
+  ]
 
   # allow petitioner to modify signatures
   before_action :set_signature, only: [:special_update]
@@ -229,9 +230,7 @@ class SignaturesController < ApplicationController
 
       respond_to do |format|
         format.json { render json: @signature.errors, status: :unprocessable_entity }
-        format.html do
-          render 'confirm'
-        end
+        format.html { render 'confirm' }
       end
     end
   end

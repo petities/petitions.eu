@@ -677,6 +677,7 @@ nl:
         email:
           label: E-mailadres
           placeholder: gebruikersnaam@iets.iets
+        error: Tijdens het opslaan is een fout onstaan. Mogelijk is het op dit moment erg druk. Wilt u opnieuw proberen te ondertekenen? Onze excuses voor het ongemak.
         errors:
           email: Voer alstublieft een juist e-mailadres in. Met deze is iets mis.
           name: Voer alstublieft uw voor- en achternaam in. Of een voorletter en achternaam.
@@ -799,7 +800,6 @@ nl:
     other_answers: 'iets anders, namelijk:'
   update:
     created: Nieuws toegevoegd
-    earlier_updates: Eerder toegevoegd
     form:
       create: Maak
       update: Werk bij

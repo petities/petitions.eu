@@ -1,12 +1,9 @@
 class UpdatesController < ApplicationController
-  before_action :set_newsitem, only: [:show, :edit, :update]
+  before_action :load_update, only: [:show, :edit, :update]
   before_action :load_updates, only: [:index, :show]
 
   def index
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    respond_to :html, :js
   end
 
   def new
@@ -58,8 +55,7 @@ class UpdatesController < ApplicationController
 
   private
 
-  # find by friendly url
-  def set_newsitem
+  def load_update
     @update = Update.friendly.find(params[:id])
   end
 
@@ -74,7 +70,6 @@ class UpdatesController < ApplicationController
   def update_params
     # :add_locale, :version, :owner_ids, :add_owner,
     # petition: [
-    # locale_list: []
     params.require(:update).permit(
       :title, :text, :show_on_home, :show_on_office, :show_on_petition,
       :petition_id, :office_id

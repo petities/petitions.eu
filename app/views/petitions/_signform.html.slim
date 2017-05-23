@@ -3,8 +3,11 @@ javascript:
   window.wrong_email_error = "#{t('show.sign.form.errors.email')}";
 
 div.petition-form-float-wrapper
+  h2.petition-section-title= t('show.sign.title')
+  div.petition-error-sign-note.hidden
+      i.pull-left.fa.fa-exclamation-triangle.fa-5x aria-hidden="true"
+      =<> t('show.sign.form.error')
   = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
-    h2.petition-section-title= t('show.sign.title')
     = f.label :person_name, t('show.sign.form.name.label')
     = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name.placeholder')
     = f.label :person_email, t('show.sign.form.email.label')
@@ -17,18 +20,19 @@ div.petition-form-float-wrapper
 
     div.signature-form-errors.signaturesuggestbutton.error
 
-    div#didyoumean_signature_person_email  style="display: none;"
+    div#didyoumean_signature_person_email.hidden
       div.email-suggest-button
         span
-          =<> t 'signature.did_you_mean'
+          =<> t('signature.did_you_mean')
         span#suggest_signature_person_email
         | ?
     | &nbsp;
 
     = f.submit t('show.sign.form.submit'), data: { disable_with: t('show.sign.form.submitting') }, class: 'petition-form-button'
 
-div.petition-success-sign-note style='display: none;'
-  div.signature_succes_logo
+div.petition-success-sign-note.hidden
+  div.center.light-green
+    i.fa.fa-check-circle.fa-5x aria-hidden="true"
   p
     =<> t('show.sign.form.success_html')
   div.petition-form-button id='sign_again'

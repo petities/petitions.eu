@@ -1,4 +1,3 @@
-
 .petition-form-button,
 input[type="button"].petition-form-button {
   width: 100%;
@@ -46,7 +45,7 @@ input[type="button"].petition-form-button {
 }
 
 .start-petition-form-cell-input.has_error {
-  border: 2px solid #DC1818;
+  border: 2px solid $red;
   color: #E01111;
 }
 
@@ -67,7 +66,7 @@ select.is_obligated {
 .start-petition-form-cell-input.error,
 div.field_with_errors .start-petition-form-cell-input,
 .petition-form-textfield.error {
-  border: 2px solid #DC1818;
+  border: 2px solid $red;
 }
 
 h2.start-petition-form-cell.input.error {
@@ -84,10 +83,8 @@ h2.start-petition-form-cell.input.error {
   color: #fff;
   border: 0;
   background: #7ec060;
-  text-align: center;
   cursor: pointer;
 }
-
 
 .email-suggest-button {
   width: 100%;
@@ -104,15 +101,18 @@ h2.start-petition-form-cell.input.error {
   }
 }
 
-.signature_succes_logo {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80px;
-  height: 80px;
-  background: asset-url('success.png') 0 0 no-repeat;
+.light-green {
+  color: $light-green;
 }
 
+.petition-error-sign-note {
+  color: $red;
+  margin-bottom: 20px;
+}
 
+.signature-error {
+  margin-right: 20px;
+}
 
 .petition-overview-image {
   width: 100%;
@@ -147,6 +147,9 @@ h2.start-petition-form-cell.input.error {
   float: left;
 }
 
+.hidden {
+  display: none;
+}
 
 .petition-edit-label{
   margin:0 0 5px;
@@ -185,14 +188,14 @@ textarea.petition-edit-input {
 /* petition update fields.. */
 
 .update-content {
-    flex: 0 1 90%;
+  flex: 0 1 90%;
 }
 
 .update-edit {
-    display: flex;
-    padding: 25px 0 5px;
-    border-bottom: 1px solid #e9e9e9;
-    display: none;
+  display: flex;
+  padding: 25px 0 5px;
+  border-bottom: 1px solid #e9e9e9;
+  display: none;
 }
 
 .petition-edit-save {

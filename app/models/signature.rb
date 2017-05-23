@@ -45,7 +45,7 @@ class Signature < ActiveRecord::Base
   truncate_string :signature_remote_browser, :confirmation_remote_browser
 
   belongs_to :petition
-  has_one :pledge, dependent: :destroy
+  has_one :pledge, autosave: false, dependent: :destroy
 
   has_secure_token :unique_key
 

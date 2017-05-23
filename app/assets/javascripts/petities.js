@@ -6,11 +6,11 @@ var chartOptions = {
   scaleShowGridLines: false,
   barShowStroke: false,
   barValueSpacing: 1,
-  tooltipFillColor: "#fff",
-  tooltipFontColor: "#000"
+  tooltipFillColor: '#fff',
+  tooltipFontColor: '#000'
 };
 
-function initChart(elem) {
+function initChart (elem) {
   window['myBarChart' + $(elem).data('chartid')] = new Chart($(elem)[0].getContext("2d")).Bar(
     {
       labels: window[$(elem).data('chartlabels')],
@@ -20,7 +20,7 @@ function initChart(elem) {
       }]
     },
     chartOptions
-  );
+  )
 }
 
 $.fn.select_org_menu = function() {
@@ -140,11 +140,10 @@ $(document).ready(function(){
   }).on('ajax:success',function(e, data, status, xhr){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
+      $('.petition-details-container').hide();
       // console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
-      // just let the user think that something happened anyway
-      $('.petition-form-float-wrapper').hide();
-      $('.petition-success-sign-note').show();
+      $('.petition-error-sign-note').show();
       // console.log(xhr);
     });
 
