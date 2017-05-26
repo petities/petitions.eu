@@ -45,13 +45,10 @@
 
 class User < ActiveRecord::Base
   rolify
-  # alias :devise_valid_password? :valid_password?
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  # has_many :petitions, as: :owner
 
   def valid_password?(password)
     super(password)
