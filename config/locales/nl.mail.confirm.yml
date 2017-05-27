@@ -120,7 +120,7 @@ constateren
 %{observe}
 
 
-verzoeken
+en verzoeken
 
 
 %{request}
@@ -143,7 +143,7 @@ EINDE
 
 <p>%{observe}</p>
 
-<p>verzoeken</p>
+<p>en verzoeken</p>
 
 <p>%{request}</p>
 

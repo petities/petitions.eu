@@ -763,7 +763,7 @@ en:
         label: Petition type
       request:
         description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
-        label: Request
+        label: And request
         placeholder: 450 characters for what the petition asks
       short_description:
         description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
