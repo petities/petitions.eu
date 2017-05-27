@@ -296,8 +296,8 @@ nl:
         title: Hoe kan ik een petitie verder helpen?
       - answer: Helaas, zo is Petities.nl opgezet voor de gebruikersvriendelijkheid van de meerderheid. Geen wachtwoord nodig en elke ondertekening is gekoppeld aan een persoon die e-mail kan lezen. De oplossing is om op papier te tekenen en die te sturen/mailen naar de petitionaris of om (extra) e-mailadres te nemen. U kunt een extra gratis e-mailadres te nemen bij de vereniging Open Domein die ook Petities.nl mogelijk maakt. Meer details en oplossingen in ons <a href="https://handboek.petities.nl">handboek.</a>
         title: Wij delen een e-mailadres of mijn vrienden hebben geen e-mail. Kunnen we maar 1 keer ondertekenen?
-      - answer: Als u hier rechtsonder uw e-mailadres invult dan sturen we u een e-mail met een link voor elke petitie die u ondertekend heeft. Volgt u de link in de e-mail dan kunt u uw naam of beschrijving aanpassen of verbergen voor de buitenwereld.
-        title: Welke petities heb ik al ondertekend?
+      - answer: Als u een petitie opnieuw ondertekent met hetzelfde e-mailadres als eerder dan sturen we u opnieuw de bevestigingsmail met de link naar de persoonlijke pagina waar u uw gegevens kunt aanpassen. Volgt u de link in de e-mail dan kunt u uw naam of beschrijving aanpassen of verbergen voor de buitenwereld. Ook uw andere gegevens en instellingen kunt u altijd aanpassen.
+        title: Heb ik een petities al ondertekend?
     aftersigning_item: Na het ondertekenen
     changesig:
       descr: "<p>Uw ondertekening van een petitie kunt u altijd aanpassen of verbergen. Dat kan heel makkelijk door opnieuw te klikken op de link die we u toestuurden in de e-mail ter bevestiging. Op de pagina die dan verschijnt vindt u hier de mogelijkheden toe.</p><p>&nbsp;</p><p>Heeft u die e-mail niet meer? Teken dan opnieuw en u krijgt die e-mail weer.</p>"

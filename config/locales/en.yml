@@ -292,8 +292,8 @@ en:
         title: How can I support a petition more?
       - answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="https://handboek.petities.nl">handbook</a>.
         title: We share an e-mail address or my friends do not have e-mail. Can we sign only once?
-      - answer: Fill in your e-mail address here and we send you an e-mail with a link to each petition you signed. You can follow this link to a page where you can hide or modify your name or description.
-        title: Which petitions did I already sign?
+      - answer: Sign a petition again with the same e-mail address as you have used before and and we send you the confirm e-mail with the link to the personal page. Follow this link and you change your name or description. You can also always hide or modify your name or description and you can change your other settings.
+        title: Did I already sign a certain petition?
     aftersigning_item: After signing
     changesig:
       descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
