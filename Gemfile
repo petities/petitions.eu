@@ -38,7 +38,7 @@ gem 'slim'
 gem 'redcarpet'
 
 # pdf format templates
-gem 'prawn', '~> 2.1'
+gem 'prawn', '~> 2.2', '>= 2.2.2'
 gem 'prawn-table'
 gem 'prawnto'
 
@@ -80,7 +80,7 @@ gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.6', '>= 2.6.3'
+gem 'jbuilder', '~> 2.7'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.2'
 
@@ -102,8 +102,6 @@ gem 'email_validator', '~> 1.6', require: 'email_validator/strict'
 
 gem 'has_secure_token', '~> 1.0'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 group :production do
   gem 'unicorn'
 end
@@ -119,9 +117,9 @@ gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
   gem 'capistrano-bundler', '~> 1.2.0'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rbenv', '~> 2.0.3'
-  gem 'capistrano-sidekiq', '~> 0.5.4'
+  gem 'capistrano-rails', '~> 1.2', '>= 1.2.3'
+  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
+  gem 'capistrano-sidekiq', '~> 0.10.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
 end
 
@@ -148,7 +146,7 @@ group :development, :test do
   gem 'memory_profiler'
 
   # For call-stack profiling flamegraphs (requires Ruby MRI 2.0.0+)
+  gem 'fast_stack'    # For Ruby MRI 2.0
   gem 'flamegraph'
   gem 'stackprof'     # For Ruby MRI 2.1+
-  gem 'fast_stack'    # For Ruby MRI 2.0
 end
