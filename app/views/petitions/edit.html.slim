@@ -123,7 +123,7 @@ div
 
 
 div
-  - if (@petition.is_draft? || @petition.is_staging?) && user_signed_in? && (current_user.has_role?(:admin, @petition) || current_user.has_role?(:admin, @petition.office))
+  - if (@petition.concept? || @petition.is_staging?) && user_signed_in? && (current_user.has_role?(:admin, @petition) || current_user.has_role?(:admin, @petition.office))
       div.petition-editbutton-container #style="margin:-20px 0 0; padding:0 0 30px;"
         div.petition-editbutton
           = link_to t('start.form.finalize'), petition_finalize_path(@petition), class: 'start-petition-form-cell-button'
@@ -164,7 +164,7 @@ div.page
     div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
       = t 'edit.petition.edit_details_text'
 
-- unless @petition.is_draft?
+- unless @petition.concept?
 
   = render partial: 'social'
 

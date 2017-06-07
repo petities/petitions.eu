@@ -38,13 +38,8 @@ div.page
       - @news[0,2].each do |news|
         div.news-intro-block
           h2.news-intro-block-title= news.title
-          div.news-intro-block-date= news.created_at.strftime("%d-%m-%Y")
+          div.news-intro-block-date= l(news.created_at.to_date)
           div.news-intro-block-intro
             = markdown intro_text(news.text)
           = link_to update_path(news)
             = t('index.read')
-
-/ p id="notice"
-/   = notice
-
-/ - cache [cache_key_for_petitions, @page, @sorting, @order, @search, I18n.locale] do

@@ -56,7 +56,6 @@
 #  petition_type_id                 :integer
 #  display_person_born_at           :boolean
 #  display_person_birth_city        :boolean
-#  locale_list                      :text(65535)
 #  active_rate_value                :float(24)        default(0.0)
 #  owner_id                         :integer
 #  owner_type                       :string(255)
@@ -88,8 +87,6 @@ class Petition < ActiveRecord::Base
     [t('petition.published'),         'published'],
     # we take the petition offline.
     [t('petition.withdrawn'),         'withdrawn'],
-    # no confirmed author
-    [t('petition.draft'),             'draft'],
     # still building author is confirmed
     [t('petition.concept'),           'concept'],
     # admin has to review the petition
@@ -239,7 +236,7 @@ class Petition < ActiveRecord::Base
 
   ## petition status summary
   def state_summary
-    return 'draft' if is_draft?
+    return 'draft' if concept?
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
@@ -252,8 +249,8 @@ class Petition < ActiveRecord::Base
     ## fixme
   end
 
-  def is_draft?
-    %w(concept draft).include?(status)
+  def concept?
+    status == 'concept'
   end
 
   def is_staging?

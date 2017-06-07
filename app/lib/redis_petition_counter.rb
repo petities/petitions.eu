@@ -10,6 +10,10 @@ class RedisPetitionCounter
     redis.get(key).to_i
   end
 
+  def delete
+    redis.del(key)
+  end
+
   def exists?
     redis.exists(key)
   end

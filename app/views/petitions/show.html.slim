@@ -83,7 +83,7 @@ div.page
         - else
             div.petition-text
               h3= t('show.petition.status.label')
-              - if @petition.is_draft?
+              - if @petition.concept?
                 = t('show.petition.status.will_be_signable')
               - else
                 = t('show.petition.status.was_signable')
@@ -94,7 +94,7 @@ div.page
 
     = render partial: 'history_chart'
 
-- unless @petition.is_draft?
+- unless @petition.concept?
   = render partial: 'social'
 
 = render partial: 'signatures'

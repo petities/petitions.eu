@@ -199,7 +199,7 @@
       div.start-petition-form-cell.label.empty
         p= t('start.form.petitioner.update.update_description')
 
-  - if @petition.is_draft?
+  - if @petition.concept?
     - if user_signed_in? && current_user.has_role?(:admin, @petition)
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -212,4 +212,3 @@
   div.start-petition-form-row.whitespace
     div.start-petition-form-cell.input
       div.errors-note.whitespace p=t('errors.messages.incorrect')
-

@@ -1,5 +1,5 @@
 - if can_edit_update?
-  - if (@petition && %w(concept draft).include?(@petition.status))
+  - if (@petition && @petition.status == 'concept')
     - return
 
   = form_for update, html: { multipart: true } do |f|

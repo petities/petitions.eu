@@ -104,18 +104,6 @@ class PetitionsController < ApplicationController
     @exclude_list = []
 
     set_organisation_helper
-
-    # copy user info
-    if user_signed_in?
-      owner = current_user
-
-      @petition.petitioner_name = owner.username
-      @petition.petitioner_address = owner.address
-      @petition.petitioner_postalcode = owner.postalcode
-      @petition.petitioner_telephone = owner.telephone
-      @petition.petitioner_email = owner.email
-      @petition.petitioner_city = owner.city
-    end
   end
 
   # POST /petitions
@@ -208,8 +196,6 @@ class PetitionsController < ApplicationController
     @signatures = @petition.signatures
                            .order(special: :desc, confirmed_at: :desc)
                            .page(@page).per(12)
-
-    @petition.status = 'draft' if @petition.status.nil?
   end
 
   def set_organisation_helper
@@ -395,14 +381,6 @@ class PetitionsController < ApplicationController
     params.require(:petition).permit(
       :add_locale,
       :remove_locale
-    )
-  end
-
-  # add remove owners
-  def owner_params
-    params.require(:petition).permit(
-      :user_email,
-      :user_id
     )
   end
 end

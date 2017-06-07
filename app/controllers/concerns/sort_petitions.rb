@@ -11,7 +11,7 @@ module SortPetitions
     # describe petitions
     case @sorting
     when 'all'
-      petitions = petitions.where("status NOT IN ('draft', 'concept', 'staging')").order(created_at: :desc).limit(100)
+      petitions = petitions.where("status NOT IN ('concept', 'staging')").order(created_at: :desc).limit(100)
     when 'open'
       petitions = petitions.live.order(created_at: :desc).limit(100)
     when 'concluded'
@@ -42,7 +42,7 @@ module SortPetitions
   def petitions_by_status(petitions)
     petitions = petitions.order(created_at: :desc).limit(20)
     # find petition in state of allow
-    @petitions_draft = petitions.where(status: %w(draft concept))
+    @petitions_draft = petitions.where(status: 'concept')
     # find petitions in state of answer
     @petitions_moderate = petitions.where(status: 'staging')
     # find petition in state of signable

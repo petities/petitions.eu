@@ -12,11 +12,7 @@
 #  updated_at  :datetime
 #
 
-# Keep track of petition tasks
-# and emails send etc etc.
-#
-#
-
+# Keep track of petition tasks  and emails send etc etc.
 class TaskStatus < ActiveRecord::Base
   # is it time to execute task?
   def should_execute?(time_ago, max_count)
@@ -29,8 +25,7 @@ class TaskStatus < ActiveRecord::Base
     # add the count
     self.count += 1
     # save the last action date
-    self.last_action = Time.now
+    self.last_action = Time.zone.now
     save
-    true
   end
 end

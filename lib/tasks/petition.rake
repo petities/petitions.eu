@@ -125,8 +125,7 @@ namespace :petition do
 
     almost_petitions.find_each do |petition|
       if almost_petitions.signatures.confirmed.size < 10
-        m = PetitionMailer.due_next_week_warning_mail(petition)
-        m.deliver_later(queue: :petitioners)
+        PetitionMailer.due_next_week_warning_mail(petition).deliver_later
       end
     end
   end
@@ -150,8 +149,7 @@ namespace :petition do
         # send request for answer due date to office
         # change status to to_process
         petition.status = 'to_process'
-        m = PetitionMailer.ask_office_answer_due_date_mail(petition)
-        m.deliver_later(queue: :process)
+        PetitionMailer.ask_office_answer_due_date_mail(petition).deliver_later
       end
       petition.save
     end
@@ -216,8 +214,7 @@ namespace :petition do
         petition_id: petition.id)
 
       next unless task_status.should_execute?(7.days.ago, 3)
-      m = PetitionMailer.reference_number_mail(petition)
-      m.deliver_later(queue: :office)
+      PetitionMailer.reference_number_mail(petition).deliver_later
       Rails.logger.debug('sending reference mail.')
       task_status.count += 1
       task_status.save
@@ -226,7 +223,7 @@ namespace :petition do
   end
 
   desc 'Get answer for petition from office'
-  task 'get_answer_from_office' => :environment do
+  task get_answer_from_office: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/get_answer.log')
 
     # find all petitions that not have an answer yet
@@ -246,8 +243,7 @@ namespace :petition do
       next unless task_status.should_execute(7.days.ago, 3)
       task_status.count += 1
       task_status.last_action = Time.now
-      mail = PetitionMailer.ask_office_for_answer_mail(petition)
-      mail.deliver_later(queue: :office_mail)
+      PetitionMailer.ask_office_for_answer_mail(petition).deliver_later
       Rails.logger.debug(
         'asked %s x %s for answer on %s' % [
           petition.office.name,
@@ -259,7 +255,7 @@ namespace :petition do
   end
 
   desc 'publish news to subscribers'
-  task 'publish_news_to_subscribers' => :environment do
+  task publish_news_to_subscribers: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/publish_news.log')
 
     has_news = Petition.where(status: 'live')
@@ -294,11 +290,9 @@ namespace :petition do
 
       # inform each pledged user of answer
       inform_me.find_each do |signature|
-        m = SignatureMailer.inform_user_of_news_update_mail(
+        SignatureMailer.inform_user_of_news_update_mail(
           signature, petition, news_update
-        )
-        # deliver the news
-        m.deliver_later(queue: :newsupdates)
+        ).deliver_later
       end
       # store progress
       publish_task.save
@@ -306,7 +300,7 @@ namespace :petition do
   end
 
   desc 'publish answer to interested people'
-  task 'publish_answer_to_subscribers' => :environment do
+  task publish_answer_to_subscribers: :environment do
     Rails.logger = ActiveSupport::Logger.new('log/publish_answer.log')
 
     # find all petitions with an answer and are not completed
@@ -342,11 +336,9 @@ namespace :petition do
 
       # inform each pledged user of answer
       inform_me.each do |pledge|
-        m = SignatureMailer.inform_user_of_answer_mail(
+        SignatureMailer.inform_user_of_answer_mail(
           pledge.signature, pledge.petition, answer
-        )
-        # deliver the answer
-        m.deliver_later(queue: :answers)
+        ).deliver_later
       end
 
       # set petition status on completed
@@ -358,7 +350,7 @@ namespace :petition do
   end
 
   desc 'update slugs from petition name'
-  task 'update_slugs' => :environment do
+  task update_slugs: :environment do
     Petition.find_each do |p|
       # NOTE maybe put true
       # Petition.should_generate_new_friendly_id?

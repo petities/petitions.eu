@@ -45,13 +45,6 @@ footer.footer
 
       div.footer-content-contactblock
         div.footer-content-contactblock-section.top
-          h2.footer-content-title= t('footer.address')
-          | Stichting Petities.nl<br>
-          | Ceintuurbaan 247<br>
-          | 1074CX Amsterdam<br>
-          | 020 7854412
-
-        div.footer-content-contactblock-section
           ul.footer-content-menu
             li.footer-content-menu-item
               = t('footer.contact')
@@ -60,6 +53,16 @@ footer.footer
             li.footer-content-menu-item
               | <a href="mailto:webmaster@petities.nl">webmaster@petities.nl</a><br>
               | <a href="https://twitter.com/petities">@petities op Twitter</a><br>
+
+        - if homepage?
+          div.footer-content-contactblock-section
+            h2.footer-content-title= t('footer.address')
+            | Stichting Petities.nl<br>
+            | Ceintuurbaan 247<br>
+            | 1074CX Amsterdam<br>
+            | 020 7854412
+
+
 
   div.footer-sponsor-bar
     = t('footer.hosting')

@@ -1,7 +1,7 @@
 require 'active_admin_helper'
 
 module Admin
-  # Make sure we can perform basic cities administration
+  # Make sure we can perform basic update administration
   class UpdatesControllerTest < ActionController::TestCase
     include ActiveAdminHelper
 

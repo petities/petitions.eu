@@ -45,7 +45,7 @@ class PetitionPolicy < ApplicationPolicy
     return remove if petition.get_count.to_i < 12
 
     unless user.has_role?(:admin, petition.office)
-      unless petition.is_draft? or petition.is_staging?
+      unless petition.concept? || petition.is_staging?
         remove += [:name, :subdomain, :initiators, :statement, :request]
       end
     end
