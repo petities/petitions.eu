@@ -1,13 +1,13 @@
 <%= t("mail.dear") %> <%= @petition.petitioner_name %>,
 
-<%= t("mail.petition.confirm.instructions",{
-	petition: @petition.name,
-	petitioner: @petition.petitioner_name,
-	email: @petition.petitioner_email,
-	password: @password,
-	confirmation_url: confirmation_url(@user, confirmation_token: @user.confirmation_token),
-	office_email: @office_email,
-	office_phone: @office_telephone
-}) %>
+<%= t("mail.petition.confirm.instructions",
+  petition: @petition.name,
+  petitioner: @petition.petitioner_name,
+  email: @petition.petitioner_email,
+  password: @password,
+  confirmation_url: confirmation_url(@user, confirmation_token: @user.confirmation_token),
+  office_email: @office_email,
+  office_phone: @office_telephone
+) %>
 
-<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
+<%= t("mail.signoff", petitioner_email: @petition.petitioner_email) %>

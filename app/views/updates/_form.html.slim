@@ -1,5 +1,5 @@
 - if can_edit_update?
-  - if (@petition && @petition.status == 'concept')
+  - if @petition && @petition.status == 'concept'
     - return
 
   = form_for update, html: { multipart: true } do |f|
@@ -42,9 +42,5 @@
       = f.hidden_field :petition_id, value: @petition.id
 
     div.petition-edit-label
-    - if update.title.nil?
       p &nbsp;
-      = f.submit t('update.form.create', default: 'create news'), class: 'petition-edit-save'
-    - else
-      p &nbsp;
-      = f.submit t('update.form.update', default: 'update news'), class: 'petition-edit-save'
+      = f.submit class: 'petition-edit-save'

@@ -12,10 +12,11 @@ four:
   unique_key: testkey
 
 five:
-  petition: two,
+  petition: two
   person_name: test name3
   person_email: test32@gmail.com
   person_city: test city3
+  person_function: test function
   visible: 1
   special: 0
   subscribe: 1

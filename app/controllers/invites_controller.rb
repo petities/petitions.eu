@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-  before_filter :find_signature
+  before_action :find_signature
 
   def create
     invite = InviteForm.new(invite_params.merge(signature: @signature))

@@ -234,6 +234,10 @@ textarea.petition-edit-input {
     overflow: hidden;
 }
 
+.no-cookies .require-cookies {
+  display: none;
+}
+
 @media only screen and (max-width: 510px) {
   .vervolg .header-logo {
     height: 41px;

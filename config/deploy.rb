@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.8.1'
 
 set :application, 'petitions.eu'
 set :repo_url, 'git@github.com:petities/petitions.eu.git'
@@ -24,6 +24,8 @@ set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
 set :assets_roles, [:web, :app]
 
 set :keep_assets, 2
+
+set :ssh_options, forward_agent: true
 
 # Default value for :format is :pretty
 # set :format, :pretty

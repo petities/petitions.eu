@@ -35,4 +35,14 @@ class SignatureMailerTest < ActionMailer::TestCase
     assert mail.to, recipient
     assert_match @signature.person_name, mail.body.encoded
   end
+
+  test 'share_mail with person_function' do
+    signature = signatures(:five)
+    recipient = 'invite@example.com'
+    mail = SignatureMailer.share_mail(signature, recipient)
+
+    assert mail.to, recipient
+    assert_match signature.person_name, mail.body.encoded
+    assert_match signature.person_function, mail.body.encoded
+  end
 end

@@ -1,7 +1,7 @@
 class DesksController < ApplicationController
   include SortPetitions
 
-  before_filter :find_office, only: :show
+  before_action :find_office, only: :show
 
   def index
     @offices = Office.visible
@@ -10,7 +10,6 @@ class DesksController < ApplicationController
   def show
     if user_signed_in? && current_user.has_role?(:admin, @office)
       show_office_page
-      return
     else
       show_not_logged_in
     end
@@ -21,13 +20,13 @@ class DesksController < ApplicationController
   def show_office_page
     @page = cleanup_page(params[:page])
 
-    @petitions = Petition.where(office_id: @office.id)
+    @petitions = @office.petitions
 
     petitions_by_status @petitions
 
-    @users = User.order(:email)
-
-    @office_admins = User.with_role(:admin, @office)
+    # @users = User.order(:email)
+    #
+    # @office_admins = User.with_role(:admin, @office)
 
     @admins = Office.with_role(:admin, @office)
   end

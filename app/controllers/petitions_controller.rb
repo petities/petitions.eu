@@ -138,7 +138,6 @@ class PetitionsController < ApplicationController
 
           owner = User.new(
             email: user_params[:email],
-            username: user_params[:email],
             name: user_params[:name],
             password: password
           )

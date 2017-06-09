@@ -92,8 +92,4 @@ class SignatureMailer < ApplicationMailer
       subject: t('mail.mailafriend.subject', title: @petition.name)
     )
   end
-
-  def inform_user_of_news_mail(signature, petition, news_update)
-    # TODO: for reinder
-  end
 end

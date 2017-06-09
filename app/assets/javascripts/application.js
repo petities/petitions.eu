@@ -18,6 +18,7 @@
 //= require mailcheck.min
 //= require Chart.min
 //= require paralax
+//= require modernizr-cookies.js
 //= require petities
 //= require social_share
 //= require signature

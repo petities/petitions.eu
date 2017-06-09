@@ -191,10 +191,6 @@ class Petition < ActiveRecord::Base
     Time.at(last.to_i) if last
   end
 
-  def elapsed_time
-    Time.now - (last_confirmed_at || Time.now)
-  end
-
   def active_rate
 
     short = 1.0
@@ -305,10 +301,6 @@ class Petition < ActiveRecord::Base
     end
 
     [day_counts, labels]
-  end
-
-  def inc_signatures_count!
-    self.signatures_count += 1
   end
 
   def links

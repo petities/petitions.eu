@@ -34,7 +34,7 @@ div.page
 
   - if user_signed_in? && current_user.has_role?(:admin, @petition)
     section.petition-intro-container-noimage
-      div class="petition-editbutton-container"
+      div.petition-editbutton-container
         = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'petition-editbutton button whitespace'
 
   div

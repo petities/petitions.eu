@@ -795,13 +795,6 @@ en:
     other_answers: 'something else, being:'
   update:
     created: News update created
-    form:
-      create: Create
-      update: Update
-    from:
-      date: Date
-      image: Image
-      title: Title
     label:
       text: Your news update about the petition
       title: Title of this update

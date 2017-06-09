@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408081826) do
+ActiveRecord::Schema.define(version: 20170607183755) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -456,22 +456,10 @@ ActiveRecord::Schema.define(version: 20170408081826) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               limit: 255
     t.string   "name",                   limit: 255
     t.string   "email",                  limit: 255
-    t.boolean  "confirmed",                          default: false, null: false
     t.string   "crypted_password",       limit: 255
     t.string   "password_salt",          limit: 255
-    t.string   "persistence_token",      limit: 255
-    t.string   "single_access_token",    limit: 255
-    t.string   "perishable_token",       limit: 255
-    t.integer  "login_count",            limit: 4,   default: 0,     null: false
-    t.integer  "failed_login_count",     limit: 4,   default: 0,     null: false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip",       limit: 255
-    t.string   "last_login_ip",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address",                limit: 255
@@ -497,7 +485,6 @@ ActiveRecord::Schema.define(version: 20170408081826) do
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["confirmed"], name: "index_users_on_confirmed", using: :btree
   add_index "users", ["created_at"], name: "index_users_on_created_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

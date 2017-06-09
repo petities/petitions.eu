@@ -800,13 +800,6 @@ nl:
     other_answers: 'iets anders, namelijk:'
   update:
     created: Nieuws toegevoegd
-    form:
-      create: Maak
-      update: Werk bij
-    from:
-      date: Datum
-      image: Plaatje
-      title: Titel
     label:
       text: Uw nieuwtje over de petitie
       title: Titel van dit nieuws
