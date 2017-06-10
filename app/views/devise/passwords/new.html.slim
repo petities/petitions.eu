@@ -3,13 +3,13 @@ div.page
   section.start-petition-form-container
     h1.petition-section-title = t('password.forgot')
 
-    = form_tag user_password_path do
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            = t('login.email.label')
-          = email_field_tag :email, '', autofocus: true, class: 'start-petition-form-cell-input'
+            = f.label :email, t('login.email.label')
+          = f.email_field :email, autofocus: true, class: 'start-petition-form-cell-input'
         div.start-petition-form-cell.label.empty
           = t('login.password.description')
           =<> t('password.descr')
@@ -17,6 +17,6 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = submit_tag t('password.send'), class: 'start-petition-form-cell-button'
+          = f.submit t('password.send'), class: 'start-petition-form-cell-button'
         div.start-petition-form-cell.label.empty
           | &nbsp;

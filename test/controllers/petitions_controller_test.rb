@@ -13,6 +13,11 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:petitions)
   end
 
+  test 'should get all' do
+    get :all
+    assert_response :success
+  end
+
   test 'should get new' do
     get :new
     assert_response :success

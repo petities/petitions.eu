@@ -368,7 +368,6 @@ nl:
       description: Het e-mailadres waarmee u uw petitie begon is uw gebruikersnaam.
       label: E-mailadres
     flash:
-      sent: Instructies om uw wachtwoord te herstellen zijn verstuurd naar het e-mailadres %{email}
       success: U kunt nu inloggen met uw e-mailadres en nieuwe wachtwoord!
     login: Inloggen
     password:
@@ -398,13 +397,13 @@ nl:
   password:
     change: Verander uw wachtwoord
     confirm: Bevestig uw nieuwe wachtwoord
-    forgot: Uw wachtwoord vergeten?
+    forgot: Wachtwoord opnieuw instellen
     descr: Weet u niet meer met welk e-mailadres u de petitie bent begonnen of kunt u er niet meer bij? Neem contact met ons op.
     new: Uw nieuwe wachtwoord
     save: Bewaar nieuw wachtwoord
     send: Stuur mij die wachtwoordlink
     wisdom:
-      'Wij adviseren <a href="https://en.wikipedia.org/wiki/List_of_password_managers">speciale software</a> te gebruiken om een wachtwoord mee te maken en om wachtwoorden in te bewaren. Bijvoorbeeld 1Password of LastPass.'
+      'Wij adviseren een <a href="https://en.wikipedia.org/wiki/List_of_password_managers">wachtwoordmanager</a> te gebruiken om een wachtwoord mee te maken en om wachtwoorden in te bewaren. Bijvoorbeeld 1Password of LastPass.'
   petition:
     Edit: Bewerk
     Enable: Pas toe
@@ -525,7 +524,6 @@ nl:
       success: Uw petitie is bijgewerkt.
     user_email: E-mail
     version: Versie
-    we_could_not_find_petition_try_search: De petitie is niet gevonden. U kunt de zoekmachine gebruiken om te zoeken.
     withdrawn: Ingetrokken
   petitioner:
     awaiting_answer: Wacht op antwoord

@@ -173,8 +173,12 @@ $(document).ready(function(){
     initChart(elem);
   });
 
-  $('[data-behavior~=load-signatures]').each(function() {
+  $('[data-behavior~=load-remote]').each(function() {
     $(this).load($(this).data('url'));
+  })
+
+  $('[data-behavior~=load-footer-news]').each(function() {
+    $(this).load('/updates/footer');
   })
 
   $('[data-behavior~=load-more-signatures]').click(function() {

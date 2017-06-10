@@ -27,19 +27,7 @@ class PetitionPolicy < ApplicationPolicy
 
     return remove if user.has_role?(:admin)
 
-    if user.has_role?(:admin, petition.office)
-      remove += [
-        :petitioner_organisation,
-        :petitioner_birth_date,
-        :petitioner_birth_city,
-        :petitioner_name,
-        :petitioner_address,
-        :petitioner_postalcode,
-        :petitioner_city,
-        :petitioner_email,
-        :petitioner_telephone
-      ]
-    end
+    remove += petitioner_fields if user.has_role?(:admin, petition.office)
 
     # if signature count is below a dozen, then the petition can still be edited
     return remove if petition.get_count.to_i < 12
@@ -57,5 +45,14 @@ class PetitionPolicy < ApplicationPolicy
 
   def petition
     record
+  end
+
+  def petitioner_fields
+    [
+      :petitioner_organisation, :petitioner_birth_date,
+      :petitioner_birth_city, :petitioner_name,
+      :petitioner_address, :petitioner_postalcode, :petitioner_city,
+      :petitioner_email, :petitioner_telephone
+    ]
   end
 end

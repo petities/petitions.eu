@@ -364,7 +364,6 @@ en:
       description: The e-mailaddress you used to start your petition is also your username.
       label: E-mail address
     flash:
-      sent: Password reset instructions were sent to the e-mail address %{email}
       success: You can now login with your e-mail address and new password!
     login: Log in
     password:
@@ -394,13 +393,13 @@ en:
   password:
     change: Change your password
     confirm: Confirm your new password
-    forgot: Forgot your password?
+    forgot: Reset your password
     descr: Do you not know which e-mail address you used or do you not have access to it? Contact us.
     new: Your new password
     save: Save new password
     send: Send me the password link
     wisdom:
-      'We recommend using <a href="https://en.wikipedia.org/wiki/List_of_password_managers">special software</a> to generate and store passwords. For example 1Password or LastPass.'
+      'We recommend using a <a href="https://en.wikipedia.org/wiki/List_of_password_managers">password manager</a> to generate and store passwords. For example 1Password or LastPass.'
   petition:
     Edit: Edit
     Enable: Enable
@@ -520,7 +519,6 @@ en:
       success: Petition was successfully updated.
     user_email: User email
     version: Version
-    we_could_not_find_petition_try_search: The petition was not found. Please use the search engine to find it.
     withdrawn: Withdrawn
   petitioner:
     awaiting_answer: Awaiting answer

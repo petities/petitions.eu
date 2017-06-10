@@ -83,7 +83,7 @@ $ ->
   )
 
   $('.edit_signature').submit( ->
-    nameRegex = /^\w+\s+\w+[\w+\s+]{0,}$/
+    nameRegex = /^.+( |\.).+$/
     $nameField = $('#signature_person_name')
     $errorsBlock = $('#confirm_form_errors')
     # default result

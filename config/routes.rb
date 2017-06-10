@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'profile/edit'
   patch 'profile/patch'
 
-  devise_for :users, controllers: { passwords: 'passwords' }, skip: :sessions
+  devise_for :users, skip: :sessions
 
   as :user do
     get 'login' => 'devise/sessions#new', as: :new_user_session

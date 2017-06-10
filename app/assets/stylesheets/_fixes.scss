@@ -234,7 +234,7 @@ textarea.petition-edit-input {
     overflow: hidden;
 }
 
-.no-cookies .require-cookies {
+.no-cookies .require-cookies, .no-js .require-cookies {
   display: none;
 }
 
