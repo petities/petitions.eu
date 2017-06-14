@@ -712,7 +712,7 @@ nl:
       subscribe: Abonneer
       visible: Zichtbaar
     linkinstruction: Volg deze link
-    success: 'Uw gegevens zijn bijgewerkt, dank u. Uitnodigingen versturen of op een andere manier helpen? Zie hieronder \/'
+    success: 'Uw gegevens zijn bewaard.'
     success_send: Uitnodiging verstuurd! Nog één misschien?
     promote: Zet bovenaan in de lijst?
     thanks: Dank u

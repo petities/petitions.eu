@@ -707,7 +707,7 @@ en:
       subscribe: Subscribe
       visible: Visible
     linkinstruction: Follow below link to confirm
-    success: 'Your information is saved, thank you. Send invites or help in other ways? See below \/'
+    success: 'Your information is saved, thank you.'
     success_send: Invitation sent! One more perhaps?
     promote: Show on top of the list?
     thanks: Thanks

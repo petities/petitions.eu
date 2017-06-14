@@ -383,7 +383,7 @@ ActiveRecord::Schema.define(version: 20170607183755) do
     t.datetime "confirmed_at"
     t.boolean  "confirmed",                               default: false, null: false
     t.string   "unique_key",                  limit: 255
-    t.boolean  "special",                                 default: false, null: false
+    t.boolean  "special",                                 default: false
     t.string   "person_city",                 limit: 255
     t.boolean  "subscribe",                               default: false
     t.string   "person_birth_date",           limit: 255
@@ -408,6 +408,7 @@ ActiveRecord::Schema.define(version: 20170607183755) do
   add_index "signatures", ["confirmed_at"], name: "date_confirmed", using: :btree
   add_index "signatures", ["person_email"], name: "person_email", using: :btree
   add_index "signatures", ["person_function"], name: "person_function", using: :btree
+  add_index "signatures", ["petition_id", "special", "confirmed_at"], name: "index_signatures_on_petition_id_and_special_and_confirmed_at", using: :btree
   add_index "signatures", ["petition_id", "special"], name: "index_signatures_on_petiton_id_and_special", using: :btree
   add_index "signatures", ["petition_id"], name: "petition_id", using: :btree
   add_index "signatures", ["signed_at"], name: "index_signatures_on_signed_at", using: :btree
