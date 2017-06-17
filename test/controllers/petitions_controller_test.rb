@@ -28,27 +28,33 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_select 'input#petition_images_attributes_0_upload'
   end
 
-  test 'should_create_petition' do
+  test 'should_create_petition_and_reuse_existing_user' do
     assert_no_difference('Update.count') do
       assert_no_difference('User.count') do
         assert_difference('Petition.count') do
           post :create, petition: {
-            name: @petition.name + 'x',
-            description: @petition.description + 'x',
-            initiators: @petition.initiators + 'y',
-            statement: @petition.statement + 'test',
-            request: @petition.request + 'teest',
+            name: @petition.name,
+            description: @petition.description,
+            initiators: @petition.initiators,
+            statement: @petition.statement,
+            request: @petition.request,
             office_id: 1
           },
-                        user: {
-                          email: 'test@test.com', # user already exists
-                          name: 'test'
-                        }
+          user: {
+            email: 'test@test.com', # user already exists
+            name: 'test'
+          }
         end
       end
     end
 
-    assert_redirected_to petition_path(assigns(:petition))
+    created_petitition = assigns(:petition)
+    assert_redirected_to petition_path(created_petitition)
+    [:name, :description, :initiators, :statement, :request].each do |attribute|
+      assert_equal @petition.send(attribute), created_petitition.send(attribute)
+    end
+    assert_equal 'test@test.com', created_petitition.petitioner_email
+    assert_equal 'test', created_petitition.petitioner_name
   end
 
   test 'should_create_petition_and_user' do
@@ -56,23 +62,29 @@ class PetitionsControllerTest < ActionController::TestCase
       assert_difference('User.count') do
         assert_difference('Petition.count') do
           post :create, petition: {
-            name: @petition.name + 'x',
-            description: @petition.description + 'x',
-            initiators: @petition.initiators + 'y',
-            statement: @petition.statement + 'test',
-            request: @petition.request + 'teest',
+            name: @petition.name,
+            description: @petition.description,
+            initiators: @petition.initiators,
+            statement: @petition.statement,
+            request: @petition.request,
             office_id: 1
           },
-                        user: {
-                          email: 'idonotexist@test.com',
-                          name: 'nexttest',
-                          password: 'idonotexist@test.com'
-                        }
+          user: {
+            email: 'idonotexist@test.com',
+            name: 'nexttest',
+            password: 'idonotexist@test.com'
+          }
         end
       end
     end
 
-    assert_redirected_to petition_path(assigns(:petition))
+    created_petitition = assigns(:petition)
+    assert_redirected_to petition_path(created_petitition)
+    [:name, :description, :initiators, :statement, :request].each do |attribute|
+      assert_equal @petition.send(attribute), created_petitition.send(attribute)
+    end
+    assert_equal 'idonotexist@test.com', created_petitition.petitioner_email
+    assert_equal 'nexttest', created_petitition.petitioner_name
   end
 
   test 'should show petition when using id' do

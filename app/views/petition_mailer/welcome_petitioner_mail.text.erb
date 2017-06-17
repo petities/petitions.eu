@@ -5,9 +5,12 @@
   petitioner: @petition.petitioner_name,
   email: @petition.petitioner_email,
   password: @password,
-  confirmation_url: confirmation_url(@user, confirmation_token: @user.confirmation_token),
-  office_email: @office_email,
-  office_phone: @office_telephone
+  confirmation_url: confirmation_url(@user, confirmation_token: @user.confirmation_token)
 ) %>
+
+<% if @petition.office -%>
+<%= t("mail.petition.confirm.contact_office", email: @petition.office.email) -%>
+<%= t("mail.petition.confirm.contact_office_phone", phone: @petition.office.telephone) if @petition.office.telephone -%>.
+<% end %>
 
 <%= t("mail.signoff", petitioner_email: @petition.petitioner_email) %>

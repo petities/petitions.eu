@@ -1,4 +1,3 @@
-
 require 'redis_analytics'
 
 # configure your redis_connection (mandatory) and redis_namespace (optional)

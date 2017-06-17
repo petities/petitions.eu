@@ -131,14 +131,6 @@ class PetitionMailer < ApplicationMailer
     @user = user
     @password = password
 
-    if petition.office.nil?
-      @office_email = 'petition has no office'
-      @office_telephone = 'petition has no office'
-    else
-      @office_email = petition.office.email || 'office has no email set'
-      @office_telephone = petition.office.telephone || 'office has not telephone set'
-    end
-
     tld = get_tld(@user.email)
 
     I18n.with_locale(tld) do

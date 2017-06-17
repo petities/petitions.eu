@@ -15,8 +15,6 @@ div.page
               h2.petition-overview-info-title
                 = link_to office.name, petition_desk_path(office)
               div.petitions-counter style="font-weight: normal"
-                / i.fa.fa-book aria-hidden="true"
-                / = number_with_delimiter(office.petitions.size)
                 = t('all.count', count: office.petitions.size)
 
 

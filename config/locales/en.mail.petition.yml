@@ -38,16 +38,15 @@ you can log in at https://petities.nl/login
 
 
 If you prefer not to share %{email} with signatories you can fill in, now or later, an extra address next to the petition itself. At
-http://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories.
+https://deds.nl you can for example get a free e-mail address. The address next to the petition only shows up in e-mails to signatories.
 The address next to the petition only shows up in e-mails to signatories, not on the web. This is to prevent unwanted e-mail. If you need help
 with your petition, please consult our handbook at https://handboek.petities.nl
 
 
 As petitioner you can reach us by e-mail at webmaster@petities.nl for technical questions.
-
-
-For other questions you can contact the petition desk at %{office_email} or call %{office_phone}.
 '
+        contact_office: For other questions you can contact the petition desk at %{email}
+        contact_office_phone: ' or call %{phone}'
         subject: Continue with your petition "%{petition_name}" with this login
       due_next_week: '
 Your petition closes next week. If the is too early you can change the datum. Once you log in you change the date under petition details. As many times as necessary.

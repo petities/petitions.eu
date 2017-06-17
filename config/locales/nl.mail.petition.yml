@@ -44,10 +44,9 @@ dan vooral ook even in het handboek op https://handboek.petities.nl
 
 
 Als petitionaris kunt u ons bereiken per e-mail op webmaster@petities.nl voor technische vragen.
-
-
-Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op %{office_email} of telefoonnummer %{office_phone}.
 '
+        contact_office: Voor inhoudelijke vragen kunt u contact opnemen met het petitieloket op %{email}
+        contact_office_phone: ' of telefoonnummer %{phone}'
         subject: 'Verder met uw petitie "%{petition_name}" met deze inloggegevens'
       due_next_week: '
 Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen. Als u inlogt kunt u onder petitiedetails de datum aanpassen, zo vaak als nodig is.

@@ -44,6 +44,22 @@ class PetitionMailerTest < ActionMailer::TestCase
     assert_match '1 januari 2016', mail.body.encoded
   end
 
+  test 'welcome_petitioner_mail' do
+    password = 'example-password'
+    user = users(:two)
+    mail = PetitionMailer.welcome_petitioner_mail(@petition, user, password)
+
+    assert_equal ['webmaster@petities.nl'], mail.from
+    assert_equal [user.email], mail.to
+    assert_equal ['webmaster@petities.nl'], mail.bcc
+    assert_equal "Verder met uw petitie \"#{@petition.name}\" met deze inloggegevens", mail.subject
+
+    assert_match password, mail.body.encoded
+    assert_match @petition.petitioner_name, mail.body.encoded
+    assert_match @petition.office.email, mail.body.encoded
+    # assert_match @petition.office.telephone, mail.body.encoded
+  end
+
   private
 
   # Messages to petition office share recipient, reply-to and from.

@@ -121,7 +121,6 @@ class PetitionsController < ApplicationController
 
     @exclude_list = []
 
-    @password = 'you already have'
 
     if user_signed_in?
       owner = current_user
@@ -146,9 +145,11 @@ class PetitionsController < ApplicationController
           owner.skip_confirmation_notification!
           owner.confirmed_at = nil
           owner.save
-          @password = password
           # send welcome / password if needed
         end
+
+        @petition.petitioner_name = owner.name
+        @petition.petitioner_email = owner.email
       else
         @missing_email = t('petition.missing_email')
 
@@ -162,8 +163,7 @@ class PetitionsController < ApplicationController
     end
 
     respond_to do |format|
-      # petition is save. status change causes email(s)
-      # to be send
+      # petition is save. status change causes email(s) to be send
       if @petition.save
         if owner && owner.persisted?
           # make user owner of the petition

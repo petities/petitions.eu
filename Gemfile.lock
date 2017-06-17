@@ -60,7 +60,7 @@ GEM
       activesupport (>= 3.0.0)
     arel (6.0.4)
     ast (2.3.0)
-    autoprefixer-rails (7.1.1)
+    autoprefixer-rails (7.1.1.2)
       execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
@@ -343,7 +343,7 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     rolify (5.1.0)
-    rollbar (2.14.1)
+    rollbar (2.15.0)
       multi_json
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -355,7 +355,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    sidekiq (5.0.2)
+    sidekiq (5.0.3)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -486,7 +486,7 @@ DEPENDENCIES
   redis-rails
   redis_analytics
   rolify
-  rollbar (~> 2.14, >= 2.14.1)
+  rollbar (~> 2.15)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.2)
   sidekiq

@@ -108,7 +108,7 @@ end
 
 # Track errors in production
 gem 'newrelic_rpm', '~> 4.2', '>= 4.2.0.334'
-gem 'rollbar', '~> 2.14', '>= 2.14.1'
+gem 'rollbar', '~> 2.15'
 # track everything..
 # gem 'logstasher'
 

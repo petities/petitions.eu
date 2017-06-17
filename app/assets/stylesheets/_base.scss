@@ -608,7 +608,6 @@ input[type="text"].search-container-input {
 .petitions-counter {
   padding: 0 15px 0 0;
   display: inline-block;
-  width: 15%;
   font: 600 12px/22px 'Open Sans', arial, sans-serif;
   color: #000;
 
@@ -1840,10 +1839,6 @@ a.tag {
   .page-left, .page-right {
     float: none;
     width: 100%;
-  }
-
-  .petitions-counter {
-    width: 5%;
   }
 
   .petition-container {
