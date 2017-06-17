@@ -1,9 +1,9 @@
-<%= t("mail.dear") %> <%= @petition.petitioner_name %>, 
+<%= t("mail.dear") %> <%= @petition.petitioner_name %>,
 
-<%= t("mail.petition.write_about_hand_over",{
-	petition: @petition.name,
-	date: @petition.date_projected.strftime('%d-%m-%Y'),
-	petitioner: @petition.petitioner_name
-}) %>
+<%= t("mail.petition.write_about_hand_over",
+  petition: @petition.name,
+  date: l(@petition.date_projected, format: :long),
+  petitioner: @petition.petitioner_name
+) %>
 
-<%= t("mail.signoff",{petitioner_email: @petition.petitioner_email}) %>
+<%= t("mail.signoff", petitioner_email: @petition.petitioner_email) %>

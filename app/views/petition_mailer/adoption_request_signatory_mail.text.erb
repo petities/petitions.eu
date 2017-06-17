@@ -1,15 +1,13 @@
 <%= t("mail.dear") %> <%= @signature.person_name %>,
 
-<%= t("mail.petition.adoption_request" ,{
-	petition: @petition.name,
-	petitioner: @petition.petitioner_name,
+<%= t("mail.petition.adoption_request" ,
+  petition: @petition.name,
+  petitioner: @petition.petitioner_name,
     date: @signature.signed_at.to_formatted_s(:short),
-    signaturescount: @petition.get_count || @petition.signatures_count
-}) %>
+    signaturescount: @petition.get_count
+) %>
 
-<%= t("mail.petition.adoption_instructions" ,{
-    becomeownerurl: @become_owner_url
-}) %>
+<%= t("mail.petition.adoption_instructions", becomeownerurl: '' ) %>
 
 <%= t("mail.petition.adoption_survey") %>:
 <%= t("survey.request_is_met") %>

@@ -1,8 +1,6 @@
 class PetitionSubdomain
   def self.matches?(request)
-    if request.subdomain.present?
-      @petition = Petition.find_by_subdomain(request.subdomain)
-      return true if @petition
-    end
+    subdomain = request.subdomain
+    Petition.where(subdomain: subdomain).any? if subdomain.present?
   end
 end

@@ -4,10 +4,7 @@ class PetitionMailer < ApplicationMailer
   def adoption_request_signatory_mail(petition, signature)
     @signature = signature
     @petition = petition
-    @become_owner_url = url_for(
-      controller: 'signatures',
-      action: 'become_petition_owner',
-      signature_id: @signature.unique_key)
+
     subject = t('mail.petition.adoption_request_subject', petition: petition.name)
     mail(to: @signature.person_email, subject: subject)
   end

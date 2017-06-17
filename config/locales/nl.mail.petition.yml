@@ -19,7 +19,7 @@ en vraag een wachtwoord aan die u per e-mail ontvangt.
 
 Daarna kunt u op https://petities.nl/login inloggen met uw e-mailadres en het wachtwoord om de petitie te beheren.
 '
-      adoption_request_subject: 'Zou u de petitie "%{petition}" willen overnemen?'
+      adoption_request_subject: 'Wilt u de petitie "%{petition}" overnemen?'
       adoption_survey: '
 Als u daarvan af ziet dan horen we graag waarom. Kiest u één van de mogelijkheden en als de petitie verweesd sluit,
 
@@ -93,8 +93,7 @@ Als er weinig ondertekenaars zijn dan betekent dat doorgaans dat de petitie bete
 U kunt de petitie aanpassen en opnieuw open laten zetten. In ons handboek op https://handboek.petities.nl staan tips over hoe u aandacht
 voor uw petitie kunt krijgen. Ook kunt u ons natuurlijk mailen op webmaster@petities.nl. Succes!
 '
-      improve_and_reopen_subject: '
-Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer openen.'
+      improve_and_reopen_subject: 'Uw petitie "%{petition}" is gesloten. U kunt de petitie na aanpassing weer openen.'
       now_hide_signature: '
 Nu de petitie gesloten is wilt u misschien uw naam eronder verbergen. Toen u de petitie ondertekende vroegen we of u zichtbaar wilt
 zijn op het web als ondertekenaar. Uw ondertekening komt bij een zichtbare ondertekening misschien naar boven als iemand op uw naam zoekt.
