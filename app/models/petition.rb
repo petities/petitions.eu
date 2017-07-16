@@ -176,14 +176,8 @@ class Petition < ActiveRecord::Base
   end
 
   def send_status_mail
-    if status_changed?
-
-      users.each do |user|
-        PetitionMailer.status_change_mail(self, target: user.email).deliver_later
-      end
-
-      PetitionMailer.status_change_mail(self, target: 'nederland@petities.nl').deliver_later
-    end
+    return unless status_changed?
+    PetitionStatusMail.new(self).call
   end
 
   def last_sig_update

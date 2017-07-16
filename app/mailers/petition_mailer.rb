@@ -100,18 +100,14 @@ class PetitionMailer < ApplicationMailer
   end
 
   # each petition status change by e-mail to admin
-  def status_change_mail(petition, target: nil)
+  def status_change_mail(petition, recipient)
     @petition = petition
 
     subject = t('mail.status.changed_subject',
                 petition: petition.name,
                 status: t("show.overview.status.#{@petition.state_summary}"))
 
-    # NOTE petitioner_email can be wrong?
-    # should we not send email to admin users?
-    target = @petition.petitioner_email if target.nil?
-
-    mail(to: target, subject: subject) if target
+    mail(to: recipient, subject: subject)
   end
 
   # petitioner is asked to write an update about the hand over

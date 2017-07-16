@@ -172,9 +172,9 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test 'should status change petition' do
     sign_in_admin_for @petition
-    # two mails should be send on status change
+    # mails should be send on status change
 
-    assert_enqueued_jobs 4 do
+    assert_enqueued_jobs 6 do
 
       patch :update, id: @petition.id, petition: { status: 'draft' }
 

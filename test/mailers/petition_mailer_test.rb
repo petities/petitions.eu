@@ -69,6 +69,15 @@ class PetitionMailerTest < ActionMailer::TestCase
     assert_match '1 januari 2016', mail.body.encoded
   end
 
+  test 'status_change_mail' do
+    recipient = 'test@example.com'
+    mail = PetitionMailer.status_change_mail(@petition, recipient)
+    assert_equal ['webmaster@petities.nl'], mail.from
+    assert_equal [recipient], mail.to
+    assert_equal "De petitie \"#{@petition.name}\" is van status veranderd naar: Ondertekenbaar", mail.subject
+    assert_match 'is van status veranderd', mail.body.encoded
+  end
+
   test 'write_about_hand_over_mail' do
     mail = PetitionMailer.write_about_hand_over_mail(@petition)
     assert_default_petitioner_mail_attributes(mail)
