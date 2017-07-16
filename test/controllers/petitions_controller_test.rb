@@ -160,14 +160,31 @@ class PetitionsControllerTest < ActionController::TestCase
     assert updated_petition.images.none?
   end
 
-  test 'should finalize petition' do
+  test 'should finalize petition for Office admin' do
+    @petition.update_attribute(:status, 'staging')
+
     sign_in_admin_for @petition.office
 
     get :finalize, petition_id: @petition.id
 
-    @petition.reload
+    updated_petition = assigns(:petition)
+    assert_equal('live', updated_petition.status)
+    assert_redirected_to edit_petition_path(updated_petition)
+  end
 
-    assert_equal('live', @petition.status)
+  test 'should finalize petition for Petition admin' do
+    @petition.update_attribute(:status, 'concept')
+
+    sign_in_admin_for @petition
+
+    # 6 status_change messages and 1 finalize_mail
+    assert_enqueued_jobs 7 do
+      get :finalize, petition_id: @petition.id
+    end
+
+    updated_petition = assigns(:petition)
+    assert_equal('staging', updated_petition.status)
+    assert_redirected_to edit_petition_path(updated_petition)
   end
 
   test 'should status change petition' do

@@ -37,16 +37,16 @@ class PetitionMailer < ApplicationMailer
   end
 
   # finalize petition, ready for moderation
-  def finalize_mail(petition, target: nil)
+  def finalize_mail(petition)
     @petition = petition
-    target = @petition.office.email if target.nil?
+    recipients = [@petition.office.email, Office.default_office.email].compact
 
-    tld = get_tld(target)
+    tld = get_tld(recipients.first)
 
     I18n.with_locale(tld) do
       subject = t('mail.moderation.pending_subject', petition: petition.name)
 
-      mail(to: target, subject: subject)
+      mail(to: recipients, subject: subject)
     end
   end
 

@@ -301,20 +301,17 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
-    @petition.update(status: 'staging')
-
-    flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
-
-    if @petition.office.present?
-      if user_signed_in?
-        if current_user.has_role?(:admin, @petition.office)
-          @petition.update(status: 'live')
-          flash[:notice] = t('petition.status.flash.your_petition_is_live')
-        end
-      end
+    if current_user.has_role?(:admin, @petition)
+      @petition.update(status: 'staging')
+      flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
       PetitionMailer.finalize_mail(@petition).deliver_later
-      PetitionMailer.finalize_mail(@petition, target: 'nederland@petities.nl').deliver_later
     end
+
+    if @petition.office.present? && current_user.has_role?(:admin, @petition.office)
+      @petition.update(status: 'live')
+      flash[:notice] = t('petition.status.flash.petition_is_live')
+    end
+
     redirect_to edit_petition_path(@petition)
   end
 

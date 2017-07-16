@@ -35,6 +35,14 @@ class PetitionMailerTest < ActionMailer::TestCase
     assert_match 'Uw petitie sluit volgende week. Als dit te vroeg is kunt u de datum veranderen', mail.body.encoded
   end
 
+  test 'finalize_mail' do
+    mail = PetitionMailer.finalize_mail(@petition)
+    assert_equal ['webmaster@petities.nl'], mail.from
+    assert_equal [@petition.office.email, Office.default_office.email], mail.to
+    assert_equal "Nieuwe petitie om door te laten: \"#{@petition.name}\" in uw petitieloket", mail.subject
+    assert_match 'De petitionaris is te bereiken op test@test.nl', mail.body.encoded
+  end
+
   test 'hand_over_to_office_mail' do
     mail = PetitionMailer.hand_over_to_office_mail(@petition)
     assert_default_office_mail_attributes(mail)
