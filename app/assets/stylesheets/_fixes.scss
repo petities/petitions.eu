@@ -189,6 +189,10 @@ textarea.petition-edit-input {
 
 .update-content {
   flex: 0 1 90%;
+
+  .update-intro a {
+    text-decoration: underline;
+  }
 }
 
 .update-edit {
