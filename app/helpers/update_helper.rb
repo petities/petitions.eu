@@ -1,12 +1,4 @@
 module UpdateHelper
-  def can_edit_update?
-    user_signed_in? && (
-      current_user.has_role?(:admin) ||
-      (@petition && current_user.has_role?(:admin, @petition)) ||
-      (@office && current_user.has_role?(:admin, @office))
-    )
-  end
-
   def intro_text(text)
     return unless text
 

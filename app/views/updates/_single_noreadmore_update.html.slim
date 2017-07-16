@@ -5,8 +5,8 @@ div.update-intro
     = link_to update.url
       = update.url_text
 div.update-date
-  - if update.created_at
-    = l(update.created_at.to_date)
+  - if update.date
+    = l(update.date)
 
   - if @petition.nil? && update.petition.present?
     = ' | ' 

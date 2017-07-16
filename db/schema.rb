@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607183755) do
+ActiveRecord::Schema.define(version: 20170715152155) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -135,10 +135,7 @@ ActiveRecord::Schema.define(version: 20170607183755) do
     t.integer  "office_id",        limit: 4
     t.string   "url",              limit: 255
     t.string   "url_text",         limit: 255
-    t.string   "private_key",      limit: 255
     t.date     "date"
-    t.date     "date_from"
-    t.date     "date_until"
     t.boolean  "show_on_office"
     t.boolean  "show_on_home"
     t.datetime "created_at"
@@ -147,8 +144,6 @@ ActiveRecord::Schema.define(version: 20170607183755) do
     t.boolean  "show_on_petition"
   end
 
-  add_index "newsitems", ["date_from"], name: "index_newsitems_on_date_from", using: :btree
-  add_index "newsitems", ["date_until"], name: "index_newsitems_on_date_until", using: :btree
   add_index "newsitems", ["office_id"], name: "index_newsitems_on_office_id", using: :btree
   add_index "newsitems", ["petition_id", "show_on_petition", "created_at"], name: "index_newsitems_on_p_id_and_show_on_p_and_created_at", using: :btree
   add_index "newsitems", ["petition_id"], name: "index_newsitems_on_petition_id", using: :btree

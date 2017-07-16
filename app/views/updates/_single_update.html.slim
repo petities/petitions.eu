@@ -15,8 +15,8 @@ div.update-intro
   div.whitespace
 
 div.update-date
-  - if update.created_at
-    = l(update.created_at.to_date)
+  - if update.date
+    = l(update.date.to_date)
 
   - if @petition.nil? && update.petition.present?
     = ' | '

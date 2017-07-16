@@ -7,7 +7,6 @@ class UpdatesController < ApplicationController
   end
 
   def new
-    # @offices = Office.where(hidden: false)
     @offices = Office.all
     @petitions = Petition.live
     @update = Update.new
@@ -68,8 +67,6 @@ class UpdatesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def update_params
-    # :add_locale, :version, :owner_ids, :add_owner,
-    # petition: [
     params.require(:update).permit(
       :title, :text, :show_on_home, :show_on_office, :show_on_petition,
       :petition_id, :office_id

@@ -40,5 +40,13 @@ class Update < ActiveRecord::Base
 
   has_many :images, as: :imageable, dependent: :destroy
 
+  before_save :fill_date
+
   # not empty update!
+
+  private
+
+  def fill_date
+    self.date = Time.zone.today if date.blank?
+  end
 end

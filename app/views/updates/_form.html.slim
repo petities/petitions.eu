@@ -1,4 +1,4 @@
-- if can_edit_update?
+- if policy(update).update?
   - if @petition && @petition.status == 'concept'
     - return
 
@@ -17,21 +17,24 @@
       div.petition-edit-label
         | &nbsp;
 
-      = f.check_box :show_on_home
-      = t('update.label.show_on_homepage')
+      = f.label :show_on_home do
+        = f.check_box :show_on_home
+        = t('update.label.show_on_homepage')
 
     - if current_user.has_role? :admin or current_user.has_role?(:admin, @office)
       div.petition-edit-label
         | &nbsp;
 
-      = f.check_box :show_on_petition
-      = t('update.label.show_on_petition')
+      = f.label :show_on_petition do
+        = f.check_box :show_on_petition
+        = t('update.label.show_on_petition')
 
     - if @offices
       div.petition-edit-label
+        
+      = f.label :show_on_office do
+        = f.check_box :show_on_office, { checked: false }
         = t('update.label.show_on_office')
-
-      = f.check_box :show_on_office, { checked: false }
 
       div.petition-edit-label
         = t('update.label.select_office')
