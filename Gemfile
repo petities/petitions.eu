@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.9'
 gem 'rails-i18n'
 
 gem 'paper_trail'
@@ -11,7 +11,7 @@ gem 'globalize-versioning'
 gem 'friendly_id'
 gem 'friendly_id-globalize'
 
-gem 'mysql2', '~> 0.4.6'
+gem 'mysql2', '~> 0.4.8'
 
 # legacy utf 8 issues..
 gem 'rack-utf8_sanitizer'
@@ -92,7 +92,6 @@ gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'http_accept_language'
 gem 'i18n-country-translations'
 gem 'countries'
 gem 'country_select'
@@ -107,7 +106,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 4.2', '>= 4.2.0.334'
+gem 'newrelic_rpm', '~> 4.2', '>= 4.2.0.335'
 gem 'rollbar', '~> 2.15'
 # track everything..
 # gem 'logstasher'

@@ -39,7 +39,7 @@ class PetitionMailer < ApplicationMailer
   # finalize petition, ready for moderation
   def finalize_mail(petition)
     @petition = petition
-    recipients = [@petition.office.email, Office.default_office.email].compact
+    recipients = [@petition.office&.email, Office.default_office.email].compact.uniq
 
     tld = get_tld(recipients.first)
 
