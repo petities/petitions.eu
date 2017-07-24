@@ -2,7 +2,7 @@ class ContactForm
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  attr_accessor :name, :mail, :message, :subject
+  attr_accessor :name, :mail, :message, :subject, :remote_ip, :browser
 
   validates :name, length: { in: 5..255 }
   validates :mail, email: true

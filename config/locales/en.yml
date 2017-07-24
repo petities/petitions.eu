@@ -197,6 +197,9 @@ en:
       contact_us_html: We apologise for the inconvenience. If you have any questions, please feel free to <a href="%{contact_path}">contact us</a>.
     title: Thank you for the confirmation of your signature!
   contact:
+    mail:
+      remote_ip: IP
+      browser: Browser
     title: Contact Stichting petities.nl
     form:
       name:

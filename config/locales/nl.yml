@@ -200,6 +200,9 @@ nl:
       contact_us_html: Wanneer u vragen heeft, helpen we u via <a href="%{contact_path}">webmaster@petities.nl</a> graag verder. Onze excuses voor het ongemak.
     title: Dank u wel voor het bevestigen van uw ondertekening!
   contact:
+    mail:
+      remote_ip: IP
+      browser: Browser
     title: Contact met Stichting Petities.nl
     form:
       name:

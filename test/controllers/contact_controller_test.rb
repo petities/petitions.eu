@@ -7,6 +7,9 @@ class ContactControllerTest < ActionController::TestCase
   end
 
   test 'should post create and get redirected' do
+    @request.env['REMOTE_ADDR'] = '127.0.0.1'
+    @request.env['HTTP_USER_AGENT'] = 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405'
+
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
       post :create, contact_form: {
         name: 'Example Name',
@@ -15,6 +18,11 @@ class ContactControllerTest < ActionController::TestCase
         message: 'I would like to send you a message'
       }
     end
+
+    contact_form = assigns(:contact_form)
+    assert_equal '127.0.0.1', contact_form.remote_ip
+    assert_equal 'Mozilla/5.0 (iPad; U; CPU OS 3_2_1 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Mobile/7B405', contact_form.browser
+
     assert_redirected_to contact_thanks_url
   end
 
