@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   def subdomain?
     unless request.subdomain.empty?
-      return true unless %w(dev www api).include? request.subdomain
+      return true unless %w[dev www api].include?(request.subdomain)
     end
     false
   end

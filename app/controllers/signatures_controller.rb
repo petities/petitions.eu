@@ -194,11 +194,11 @@ class SignaturesController < ApplicationController
   def add_check_fields
     @check_fields = []
     if @signature.require_full_address?
-      new_fields = %w(
+      new_fields = %w[
         person_street
         person_city
         person_street_number
-        person_postalcode)
+        person_postalcode]
       @check_fields.push(*new_fields)
     end
     @check_fields.push('person_country') if @signature.require_person_country?

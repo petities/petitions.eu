@@ -1,8 +1,8 @@
 # Serves simple pages
 class PagesController < ApplicationController
-  before_filter :initialize_help_topics, only: :help
+  before_action :initialize_help_topics, only: :help
 
-  STATIC_PAGES = %w(about donate help privacy error).freeze
+  STATIC_PAGES = %w[about donate help privacy error].freeze
 
   STATIC_PAGES.each do |name|
     define_method(name) {}

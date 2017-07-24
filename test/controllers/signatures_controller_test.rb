@@ -96,9 +96,9 @@ class SignaturesControllerTest < ActionController::TestCase
     assert_response :unprocessable_entity
 
     error_keys = JSON.load(response.body).keys
-    assert_empty(error_keys - %w(
+    assert_empty(error_keys - %w[
       person_street person_street_number person_born_at
-      person_birth_city))
+      person_birth_city])
   end
 
   # test person_function

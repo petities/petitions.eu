@@ -1,7 +1,7 @@
 div.page
   section
     h2.petition-section-title= t('show.signatures.title')
-    - if user_signed_in? && current_user.has_role?(:admin, @petition)
+    - if user_signed_in? && current_user.has_role?(:admin, @petition) && @petition.get_count > 0
       h3.whitespace= t('signatures.petitioner_instructions')
 
     div.petition-signatures-container data={page: 1, behavior: 'load-remote', url: latest_petition_signatures_url(@petition)}

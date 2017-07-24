@@ -274,7 +274,7 @@ input[type="text"].search-container-input {
   height: 42px;
   width: 42px;
   border: 0;
-  background: #4fa6d0 asset-url('search.png') 9px 8px no-repeat;
+  background: $blue asset-url('search.png') 9px 8px no-repeat;
   cursor: pointer;
   &:hover {
     background-position: 9px -42px;
@@ -324,10 +324,11 @@ input[type="text"].search-container-input {
   display: inline-block;
   padding: 10px 3%;
   border: 0;
-  background: #4fa6d0;
+  background: $blue;
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
+
   &:hover {
     background: #7ec060;
   }
@@ -413,9 +414,10 @@ input[type="text"].search-container-input {
   font: 400 30px/30px 'Open Sans', arial, sans-serif;
   color: #fff;
   text-align: center;
-  background: #4fa6d0;
+  background: $blue;
   border-radius: 4px;
   cursor: pointer;
+
   &:hover {
     background: #7ec060;
   }
@@ -448,7 +450,7 @@ input[type="text"].search-container-input {
   height: 43px;
   width: 43px;
   margin: 10px 0 0;
-  background: #4fa6d0 asset-url("search.png") no-repeat scroll 9px 8px;
+  background: $blue asset-url("search.png") no-repeat scroll 9px 8px;
   cursor: pointer;
   display: none;
 }
@@ -459,7 +461,7 @@ input[type="text"].search-container-input {
   height: 43px;
   margin: 10px 17px 0 0;
   font: 400 15px/23px 'Open Sans',arial,sans-serif;
-  background: #4fa6d0 asset-url('beheer-icon.png') right center no-repeat;
+  background: $blue asset-url('beheer-icon.png') right center no-repeat;
   color: #fff;
   cursor: pointer;
   z-index: 99;
@@ -484,7 +486,7 @@ input[type="text"].search-container-input {
 .header-user-dropdown-item {
   display: block;
   padding: 5px 10px;
-  background: #4fa6d0;
+  background: $blue;
   color: #fff;
 
   &:hover {
@@ -509,7 +511,7 @@ input[type="text"].search-container-input {
 .header-languages-container-active {
   height: 42px;
   width: 48px;
-  background: #4fa6d0 asset-url('flags.gif') 0 0 no-repeat;
+  background: $blue asset-url('flags.gif') 0 0 no-repeat;
 
   &:hover {
     background: #8cc362 asset-url('flags.gif') 0 0 no-repeat;
@@ -532,7 +534,7 @@ input[type="text"].search-container-input {
 .header-languages-container-active-dropdown-item {
   height: 42px;
   width: 48px;
-  background: #4fa6d0 asset-url('flags.gif') 0 0 no-repeat;
+  background: $blue asset-url('flags.gif') 0 0 no-repeat;
 }
 
 .header-languages-container-active.nl, .header-languages-container-active-dropdown-item.nl {
@@ -775,7 +777,7 @@ input[type="button"].petition-form-button {
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
   color: #fff;
   border: 0;
-  background: #4fa6d0;
+  background: $blue;
   text-align: center;
   cursor: pointer;
 
@@ -1159,7 +1161,7 @@ span.signature-time {
 .navigation-bar-item {
   padding: 10px 10px;
   font: 400 18px/21px 'Open Sans', arial, sans-serif;
-  color: #4fa6d0;
+  color: $blue;
 
   &:hover, &.active {
     color: #000;
@@ -1179,7 +1181,7 @@ span.signature-time {
   padding: 1%;
   border: 0;
   margin-bottom: 25px;
-  background: #4fa6d0;
+  background: $blue;
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
@@ -1188,7 +1190,7 @@ span.signature-time {
 .navigation-bar-next {
   padding: 10px 10px 10px 40px;
   font: 400 18px/21px 'Open Sans', arial, sans-serif;
-  color: #4fa6d0;
+  color: $blue;
 }
 
 .petitions-overview-wrapper .petition-section-title {
@@ -1278,7 +1280,7 @@ span.signature-time {
 }
 
 .petitions-overview-sort-option {
-  color: #4fa6d0;
+  color: $blue;
 
   &.active {
     color: #000;
@@ -1361,7 +1363,7 @@ h2.start-petition-form-cell-title {
   width: 100%;
   padding: 2%;
   border: 0;
-  background: #4fa6d0;
+  background: $blue;
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
@@ -1369,13 +1371,13 @@ h2.start-petition-form-cell-title {
   &.facebook {
     padding: 2% 2% 2% 12%;
     text-align: left;
-    background: #4fa6d0 asset-url('social-media-icons.png') 9px 9px no-repeat;
+    background: $blue asset-url('social-media-icons.png') 9px 9px no-repeat;
   }
 
   &.twitter {
     padding: 2% 2% 2% 12%;
     text-align: left;
-    background: #4fa6d0 asset-url('social-media-icons.png') 10px -56px no-repeat;
+    background: $blue asset-url('social-media-icons.png') 10px -56px no-repeat;
   }
 }
 
@@ -1461,7 +1463,7 @@ h2.start-petition-form-cell-title {
 }
 
 .read-more-handler {
-  color: #4fa6d0;
+  color: $blue;
   cursor: pointer;
 }
 
@@ -1470,7 +1472,7 @@ h2.start-petition-form-cell-title {
 }
 
 .read-more-help-handler {
-  color: #4fa6d0;
+  color: $blue;
   cursor: pointer;
   padding: 5px 0px;
   border-top: 1px solid $light-grey;
@@ -1554,7 +1556,7 @@ a.tag {
   padding: 2px 10px;
   margin: 0px 7px 7px 0px;
   color: #FFF;
-  background-color: #4fa6d0;
+  background-color: $blue;
 
   &:hover {
     background-color: #7ec060;
@@ -1642,7 +1644,7 @@ a.tag {
   width: 100%;
   padding: 3% 8%;
   border: 0;
-  background: #4fa6d0;
+  background: $blue;
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
@@ -1677,15 +1679,15 @@ a.tag {
 .petition-editbutton {
   width: 200px;
   margin: 0 auto;
-  padding: 5px 1%;
-  background: #4fa6d0;
+  padding: 5px 3%;
+  background: $blue;
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   text-align: center;
   cursor: pointer;
 
   &:hover {
-    background: #6db6d7;
+    background: $light-blue;
   }
 }
 
@@ -1695,11 +1697,11 @@ a.tag {
   right: 10px;
   height: 30px;
   width: 30px;
-  background: #4fa6d0 asset-url('x.png') 0 0 no-repeat;
+  background: $blue asset-url('x.png') 0 0 no-repeat;
   cursor: pointer;
 
   &:hover {
-    background-color: #6db6d7;
+    background-color: $light-blue;
   }
 }
 

@@ -167,7 +167,7 @@ class Petition < ActiveRecord::Base
 
   validates :subdomain, format: { with: /\A[A-Za-z0-9-]+\z/, allow_blank: true }
   validates :subdomain, uniqueness: { case_sensitive: false, allow_blank: true }
-  validates :subdomain, exclusion: { in: %w(www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2) }
+  validates :subdomain, exclusion: { in: %w[www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2] }
 
   after_update :send_status_mail
 
@@ -230,7 +230,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    status if %w(completed staging withdrawn).include?(status)
+    status if %w[completed staging withdrawn].include?(status)
   end
 
   # All users who signed this petition should get an
@@ -244,19 +244,19 @@ class Petition < ActiveRecord::Base
   end
 
   def is_staging?
-    %w(concept staging).include?(status)
+    %w[concept staging].include?(status)
   end
 
   def is_live?
-    %w(live not_signable_here).include?(status)
+    %w[live not_signable_here].include?(status)
   end
 
   def is_closed?
-    %w(rejected to_process not_processed).include?(status)
+    %w[rejected to_process not_processed].include?(status)
   end
 
   def in_treatment?
-    %w(in_process to_process not_processed).include?(status)
+    %w[in_process to_process not_processed].include?(status)
   end
 
   def answer
