@@ -161,13 +161,6 @@
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        div.start-petition-form-cell-title= t('start.form.petitioner.password.label')
-        = text_field_tag 'user[password]', '', class: 'start-petition-form-cell-input', type: 'password'
-      div.start-petition-form-cell.label.empty
-        p= t('start.form.petitioner.password.description')
-
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.name.label')
         = text_field_tag 'user[name]', '', class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty

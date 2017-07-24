@@ -749,7 +749,7 @@ nl:
         placeholder: '450 tekens voor de reden(s) van de petitie'
       petitioner:
         email:
-          description: Zonder e-mailadres kunnen we u geen toegang tot uw petitie sturen.
+          description: Het e-mailadres waarmee u de petitie wilt beheren.
           label: Uw e-mailadres
         finalize:
           finalize_description: 'Klaar, zet deze petitie open voor ondertekenen!'

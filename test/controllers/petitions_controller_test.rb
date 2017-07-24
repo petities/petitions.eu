@@ -71,8 +71,7 @@ class PetitionsControllerTest < ActionController::TestCase
           },
           user: {
             email: 'idonotexist@test.com',
-            name: 'nexttest',
-            password: 'idonotexist@test.com'
+            name: 'nexttest'
           }
         end
       end

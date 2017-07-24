@@ -132,8 +132,7 @@ class PetitionsController < ApplicationController
         owner = User.where(email: user_params[:email]).first
 
         unless owner
-          password = user_params[:password]
-          password = Devise.friendly_token.first(8) if password.blank?
+          password = Devise.friendly_token.first(8)
 
           owner = User.new(
             email: user_params[:email],

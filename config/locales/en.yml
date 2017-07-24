@@ -744,7 +744,7 @@ en:
         placeholder: '450 characters with the reason(s) for the petition'
       petitioner:
         email:
-          description: Without an e-mail address we can not send you access to your petition.
+          description: The e-mail address you would like to use to manage your petition.
           label: Your e-mail address
         finalize:
           finalize_description: 'Ready, open this petition for signing!'
