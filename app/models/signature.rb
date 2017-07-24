@@ -218,11 +218,11 @@ class Signature < ActiveRecord::Base
   end
 
   def fill_confirmed_at
-    self.confirmed_at = Time.now.utc if confirmed_at.nil? && confirmed?
+    self.confirmed_at = Time.zone.now if confirmed_at.nil? && confirmed?
   end
 
   def fill_signed_at
-    self.signed_at = Time.now.utc if signed_at.nil?
+    self.signed_at = Time.zone.now if signed_at.nil?
   end
 
   def set_sort_order

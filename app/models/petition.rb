@@ -181,8 +181,8 @@ class Petition < ActiveRecord::Base
   end
 
   def last_sig_update
-    last = $redis.get("p-last-#{id}")
-    Time.at(last.to_i) if last
+    key = Redis.current.get("p-last-#{id}")
+    Time.zone.at(key.to_i) if key
   end
 
   def active_rate

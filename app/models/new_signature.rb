@@ -73,7 +73,7 @@ class NewSignature < Signature
     # increment counter and set last_reminder_sent_at without validations
     update_columns(
       reminders_sent: reminders_sent.to_i + 1,
-      last_reminder_sent_at: Time.now.utc
+      last_reminder_sent_at: Time.zone.now
     )
     SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
   end
