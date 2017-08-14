@@ -16,7 +16,7 @@ class PetitionStatusMail
       users,
       office,
       Office.default_office.email
-    ].flatten.uniq.compact
+    ].flatten.uniq.reject(&:blank?)
   end
 
   private
