@@ -5,6 +5,35 @@ class SignatureMailerTest < ActionMailer::TestCase
     @signature = signatures(:four)
   end
 
+  test 'handed_over_signatories_mail' do
+    mail = SignatureMailer.handed_over_signatories_mail(@signature)
+
+    assert_equal 'De petitie "test1," is overhandigd!', mail.subject
+    assert_equal ['test31@gmail.com'], mail.to
+    assert_equal ['webmaster@petities.nl'], mail.from
+
+  end
+
+  test 'inform_user_of_answer_mail' do
+    answer = updates(:one)
+    mail = SignatureMailer.inform_user_of_answer_mail(@signature, answer)
+
+    assert_equal 'Het eindresultaat voor de petitie "test1,"', mail.subject
+    assert_equal ['test31@gmail.com'], mail.to
+    assert_equal ['webmaster@petities.nl'], mail.from
+
+  end
+
+  test 'inform_user_of_news_update_mail' do
+    update = updates(:one)
+    mail = SignatureMailer.inform_user_of_news_update_mail(@signature, update)
+
+    assert_equal 'Petitie "test1,", voortgangsbericht', mail.subject
+    assert_equal ['test31@gmail.com'], mail.to
+    assert_equal ['webmaster@petities.nl'], mail.from
+
+  end
+
   test 'sig_confirmation_mail' do
     mail = SignatureMailer.sig_confirmation_mail(@signature)
 

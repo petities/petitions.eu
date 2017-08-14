@@ -14,14 +14,14 @@ class SignatureMailerPreview < ActionMailer::Preview
   def inform_user_of_answer_mail_answered
     petition = Petition.where(status: 'live').first
     answer = petition.updates.where(show_on_petition: true).first
-    SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
+    SignatureMailer.inform_user_of_answer_mail(Signature.last, answer)
   end
 
   # signatory gets the answer to the (unanswered) petition
   def inform_user_of_answer_mail_ignored
     petition = Petition.where(status: 'live').first
     answer = petition.updates.where(show_on_petition: false).first
-    SignatureMailer.inform_user_of_answer_mail(Signature.last, petition, answer)
+    SignatureMailer.inform_user_of_answer_mail(Signature.last, answer)
   end
 
   # subscribed signatory gets a copy of news update with mail flag
@@ -30,7 +30,7 @@ class SignatureMailerPreview < ActionMailer::Preview
     petition = update.petition
     signature = petition.signatures.last
     signature.send(:generate_unique_key)
-    SignatureMailer.inform_user_of_news_update_mail(signature, petition, update)
+    SignatureMailer.inform_user_of_news_update_mail(signature, update)
   end
 
   def reminder_mail

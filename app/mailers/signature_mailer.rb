@@ -16,9 +16,9 @@ class SignatureMailer < ApplicationMailer
 
   # signatory gets the answer to the petition
   # rake petition:publish_answer_to_subscribers
-  def inform_user_of_answer_mail(signature, petition, answer)
+  def inform_user_of_answer_mail(signature, answer)
     @signature = signature
-    @petition = petition
+    @petition = @signature.petition
     @answer = answer
     @unique_key = url_for(
       controller: 'signatures',
@@ -32,10 +32,10 @@ class SignatureMailer < ApplicationMailer
 
   # subscribed signatory gets a copy of news update with mail flag
   # rake petition:publish_news_to_subscribers
-  def inform_user_of_news_update_mail(signature, petition, update)
+  def inform_user_of_news_update_mail(signature, update)
     @signature = signature
     @update = update
-    @petition = petition
+    @petition = @signature.petition
     @unique_key = url_for(
       controller: 'signatures',
       action: 'confirm',

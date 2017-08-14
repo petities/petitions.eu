@@ -291,7 +291,7 @@ namespace :petition do
       # inform each pledged user of answer
       inform_me.find_each do |signature|
         SignatureMailer.inform_user_of_news_update_mail(
-          signature, petition, news_update
+          signature, news_update
         ).deliver_later
       end
       # store progress
@@ -337,7 +337,7 @@ namespace :petition do
       # inform each pledged user of answer
       inform_me.each do |pledge|
         SignatureMailer.inform_user_of_answer_mail(
-          pledge.signature, pledge.petition, answer
+          pledge.signature, answer
         ).deliver_later
       end
 
