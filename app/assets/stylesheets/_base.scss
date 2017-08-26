@@ -851,7 +851,6 @@ input[type="button"].petition-form-button {
 .social-bar-content {
   width: 1160px;
   margin: 0 auto;
-  padding: 0 12% 0 0;
   font: 400 18px/21px 'Open Sans', arial, sans-serif;
   color: #e5e5e5;
   text-align: center;
@@ -863,129 +862,18 @@ input[type="button"].petition-form-button {
   padding: 17px 20px 0 0;
 }
 
-.social-bar-button {
-  display: inline-block;
-  vertical-align: top;
-  height: 62px;
-  width: 62px;
-  margin: 0 4px 0 0;
-  background: asset-url('social-icons.gif') 0 0 no-repeat;
-
-  &.facebook {
-    background-position: -2px -2px;
-  }
-
-  &.twitter {
-    background-position: -70px -2px;
-  }
-
-  &.googleplus {
-    background-position: -140px -2px;
-  }
-
-  &.linkedin {
-    background-position: -211px -2px;
-  }
-
-  &.email {
-    background-position: -282px -2px;
-  }
-}
-
-.social-bar-url {
-  display: inline-block;
-  position: relative;
-  height: 42px;
-  width: 20%;
-  padding: 18px 3% 2px;
-  color: #000;
-  background: asset-url('bg_urlbox.png') 0 0 no-repeat;
-
-  span {
-    display: block;
-    overflow: hidden;
-  }
-}
-
-.social-bar-button-url {
-  display: block;
-  height: 62px;
-  width: 62px;
-  position: absolute;
-  right: -31px;
-  top: 0px;
-  z-index: 4;
-  background: asset-url('share_url.png') 0 0 no-repeat;
-}
-
 .social-bar-side {
-  padding: 0 0 12px;
+  padding: 20px;
   background: #898989;
-}
-
-.social-bar-side-label {
-  padding: 15px 5% 10px;
-  color: #fff;
-  font: 400 14px/21px 'Open Sans', arial, sans-serif;
 }
 
 .social-bar-side-content {
   text-align: center;
-}
+  font: 400 14px/21px 'Open Sans', arial, sans-serif;
 
-.social-bar-side-button {
-  display: inline-block;
-  vertical-align: top;
-  height: 51px;
-  width: 51px;
-  margin: 0 4px 0 0;
-  background: asset-url('social-icons-small.gif') 0 0 no-repeat;
-
-  &.facebook {
-    background-position: -2px -2px;
+  .share-button-url {
+    width: 90%;
   }
-
-  &.twitter {
-    background-position: -58px -2px;
-  }
-
-  &.googleplus {
-    background-position: -117px -2px;
-  }
-
-  &.linkedin {
-    background-position: -176px -2px;
-  }
-
-  &.email {
-    background-position: -235px -2px;
-  }
-}
-
-.social-side-bar-url {
-  position: relative;
-  height: 42px;
-  width: 77%;
-  margin: 0 15px;
-  padding: 18px 3% 2px;
-  color: #000;
-  background: asset-url('bg_urlbox-small.png') 0 0 no-repeat;
-
-  span {
-    display: block;
-    overflow: hidden;
-  }
-}
-
-.social-bar-side-button-url {
-  display: block;
-  height: 62px;
-  width: 62px;
-  position: absolute;
-  right: -31px;
-  top: 0;
-  background: asset-url('share_url-small.png') 0 0 no-repeat;
-  z-index: 4;
 }
 
 .petition-updates {
@@ -1970,8 +1858,8 @@ a.tag {
     width: 57%;
   }
 
-  .social-bar {
-    display: none;
+  .social-bar-content {
+    font-size: 80%;
   }
 
   .petitions-list-item-image-container {

@@ -671,7 +671,6 @@ nl:
       real_name: Naam
       real_telephone: Telefoonnummer
       real_email: E-mail
-    share: Deel deze petitie
     sign:
       form:
         checkbox: mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.

@@ -666,7 +666,6 @@ en:
       real_name: Name
       real_telephone: Telephone
       real_email: E-mail
-    share: Share this petition
     sign:
       form:
         checkbox: Publish my name visibly below the petition.

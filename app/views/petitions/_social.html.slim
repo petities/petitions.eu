@@ -3,17 +3,22 @@ div.social-bar
   - share_title = escape_javascript(@petition.name)
 
   div.social-bar-content
-    div.social-bar-label= t('show.share')
-    a.social-bar-button.facebook    href="javascript:fbShare('#{share_url}', '#{share_title}');"
+    a.share-button.facebook href="javascript:fbShare('#{share_url}', '#{share_title}');"
+      = fa_stacked_icon "facebook inverse", base: "circle", class: "fa-2x"
 
-    a.social-bar-button.twitter     href="javascript:twitterShare('#{share_url}', '#{share_title}');"
-    a.social-bar-button.googleplus  href="javascript:gPlusShare('#{share_url}');"
-    a.social-bar-button.linkedin    href="javascript:lnShare('#{share_url}');"
-    = mail_to nil, nil,
-          class: "social-bar-button email",
-          subject: "Share a petition: #{@petition.name}",
+    a.share-button.twitter href="javascript:twitterShare('#{share_url}', '#{share_title}');"
+      = fa_stacked_icon "twitter inverse", base: "circle", class: "fa-2x"
+
+    a.share-button.googleplus href="javascript:gPlusShare('#{share_url}');"
+      = fa_stacked_icon "google-plus inverse", base: "circle", class: "fa-2x"
+
+    a.share-button.linkedin href="javascript:lnShare('#{share_url}');"
+      = fa_stacked_icon "linkedin inverse", base: "circle", class: "fa-2x"
+
+    = mail_to nil, fa_stacked_icon("envelope inverse", base: "circle", class: "fa-2x"),
+          class: "share-button email",
+          subject: "Petities.nl: #{@petition.name}",
           body: share_url
-    div.social-bar-url
-      span#social_url
-        = share_url
-      a.social-bar-button-url href="javascript:void(0);" data-clipboard-target="social_url"
+          
+    a.share-button.link href="#{share_url}"
+      = fa_stacked_icon "link inverse", base: "circle", class: "fa-2x"

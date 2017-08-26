@@ -242,6 +242,49 @@ textarea.petition-edit-input {
   display: none;
 }
 
+a.facebook {
+  color: #3b5998;
+  &:hover {
+    color: darken(#3b5998, 10%);
+  }
+}
+a.twitter {
+  color: #4099ff;
+  &:hover {
+    color: darken(#4099ff, 10%);
+  }
+}
+a.googleplus {
+  color: #d34836;
+  &:hover {
+    color: darken(#d34836, 10%);
+  }
+}
+a.linkedin {
+  color: #22b2c9;
+  &:hover {
+    color: darken(#22b2c9, 10%);
+  }
+}
+a.email {
+  color: #6fc922;
+  &:hover {
+    color: darken(#6fc922, 10%);
+  }
+}
+a.link {
+  color: #3dada4;
+  &:hover {
+    color: darken(#3dada4, 10%);
+  }
+}
+
+.share-button-url {
+  width: 30%;
+  padding: 10px;
+  margin: 10px;
+}
+
 @media only screen and (max-width: 510px) {
   .vervolg .header-logo {
     height: 41px;
