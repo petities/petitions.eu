@@ -27,7 +27,7 @@ $(function() {
       $('.share-button-url').parent().remove();
     } else {
       $this.addClass('share-button-url-visible');
-      $this.after('<div class="center"><input type="text" class="share-button-url" value="' + this.href + '"></div>')
+      $this.after('<div class="center"><input type="text" class="share-button-url" readonly="" value="' + this.href + '"></div>')
       $('.share-button-url').select();
     };
   });

@@ -385,7 +385,7 @@ class Petition < ActiveRecord::Base
   end
 
   def self.from_redis(key)
-    petition_ids = $redis.zrevrange(key, 0, 160)
+    petition_ids = Redis.current.zrevrange(key, 0, 160)
     Kaminari.paginate_array(live.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) })
   end
 end

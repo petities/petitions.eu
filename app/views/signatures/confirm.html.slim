@@ -1,9 +1,6 @@
 div.page
   section.start-petition-form-container
     h1.petition-section-title= t('confirm.title', name: @petition.name)
-    / div.petition-overview-title= t('start.overview')
-    h2
-    /  = @message
 
     javascript:
       window.check_fields = #{raw @check_fields.to_json};

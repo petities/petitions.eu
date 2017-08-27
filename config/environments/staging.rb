@@ -80,4 +80,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: 'petities.nl' }
+
+  # Use Mailcatcher for local mail delivery
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { host: '127.0.0.1', port: 1025 }
 end

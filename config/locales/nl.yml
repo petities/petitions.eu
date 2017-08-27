@@ -30,7 +30,51 @@ nl:
       welcome: U bent ingelogd
   activerecord:
     models:
-      petition: Petitie
+      admin_user:
+        one: Beheerder
+        other: Beheerders
+      allowed_city:
+        one: Toegestane woonplaats
+        other: Toegestane woonplaatsen
+      city:
+        one: Woonplaats
+        other: Woonplaatsen
+      comment:
+        one: Opmerking
+        other: Opmerkingen
+      image:
+        one: Afbeelding
+        other: Afbeeldingen
+      new_signature:
+        one: Nieuwe Ondertekening
+        other: Nieuwe Ondertekening
+      office:
+        one: Petitieloket
+        other: Petitieloketten
+      organisation:
+        one: Organisatie
+        other: Organisaties
+      petition:
+        one: Petitie
+        other: Petities
+      petition_translation:
+        one: Petitievertaling
+        other: Petitievertalingen
+      petition_types:
+        one: Petitietype
+        other: Petitietypes
+      signature:
+        one: Ondertekening
+        other: Ondertekeningen
+      task_status:
+        one: Taakstatus
+        other: Taakstatussen
+      update:
+        one: Nieuwsbericht
+        other: Nieuwsberichten
+      user:
+        one: Gebruiker
+        other: Gebruikers
     attributes:
       signature:
         person_name: Naam
@@ -421,7 +465,7 @@ nl:
     closed: Gesloten
     completed: Afgerond
     concept: Concept
-    created: Uw nieuwe petitie is nu aangemaakt
+    created: Uw nieuwe petitie is aangemaakt
     csv: Bewaar als CSV sheet
     current_news_is: Het nieuws
     current_state_is: De petitie is

@@ -1,5 +1,4 @@
 - @petitions.each do |petition|
   div.petition-overview
-    - cache [petition, petition.get_count, I18n.locale || :nl] do
-      = render partial: 'petitions/list_item_top', locals: {petition: petition}
-      = render partial: 'petitions/list_item_info', locals: {petition: petition}
+    - cache [petition, petition.get_count, I18n.locale] do
+      = render partial: 'petitions/list_item', locals: {petition: petition}

@@ -61,10 +61,6 @@ Rails.application.routes.draw do
     resource :export, only: :show
 
     get :finalize
-
-    # is this used?
-    # get 'add_translation'
-    # patch 'update_owners'
   end
 
   resources :updates
