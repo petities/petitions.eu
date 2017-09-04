@@ -22,10 +22,15 @@ en:
     title: About the 'stichting Petities.nl'
   active: Active
   active_admin:
+    batch_actions:
+      labels:
+        invisible: Invisble
     dashboard: Dashboard
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+    signatures:
+      batch_invisible: The selected signatures are now invisible.
   activerecord:
     models:
       petition: Petition

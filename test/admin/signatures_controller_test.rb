@@ -35,6 +35,14 @@ module Admin
       assert_redirected_to admin_signatures_path
     end
 
+    test 'should set batch to invisible' do
+      post :batch_action, batch_action: 'invisible', collection_selection: [@signature.id]
+      @signature.reload
+      assert_not @signature.visible?
+      assert_equal I18n.t('active_admin.signatures.batch_invisible'), flash[:notice]
+      assert_redirected_to admin_signatures_path
+    end
+
     private
 
     def initialize_signature

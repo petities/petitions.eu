@@ -3,7 +3,7 @@
 
 = link_to petition_path(petition), class: 'petition-overview-image-container' do
   - if petition.image
-    = image_tag petition.image.upload.url(:thumb), class: 'petition-overview-image'
+    = image_tag petition.image.upload.url(:listing), class: 'petition-overview-image'
   - else
     canvas id="chartContainer#{id}" data={chartid: id, chartdata: "chartData#{id}", chartlabels: "chartLabels#{id}"} class='petition-overview-image chart-canvas' style="background-color: #bcf9c7; height: 200px;"
     - data, labels = petition.redis_history_chart_json 35
