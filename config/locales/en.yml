@@ -254,7 +254,7 @@ en:
   edit:
     petition:
       add_news: Add news
-      edit_details_text: Edit the details
+      edit_details_button: Edit the details
       edit_petition: Edit the petition
       edit_text: Edit the text
       newer_version: Newer version
@@ -444,7 +444,6 @@ en:
         submit: Update these details
         telephone: The number where anyone can call you
         title: Edit your personal information
-      title: Explanation
       public_email: 'You can change your e-mail address into one for this petition. This address appears in e-mails to (potential) signatories.'
       public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
       telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number.

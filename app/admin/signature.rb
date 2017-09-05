@@ -17,7 +17,7 @@ ActiveAdmin.register Signature do
     column :person_name
     column :person_city
     column :person_email
-    column :person_function
+    column :visible
     column :signed_at
     column :confirmed_at
     actions

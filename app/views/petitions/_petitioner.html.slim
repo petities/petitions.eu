@@ -1,0 +1,33 @@
+div.petition-details.petitioner-details
+  h2.petition-section-title= t('show.overview.all_owners')
+
+  - if ((user_signed_in? && current_user.has_role?(:admin, @petition)) || (user_signed_in? && current_user.has_role?(:admin, @office)))
+    - if @petition.users.present?
+      /adds some whitespace..
+      div.petition_field_label
+        | &nbsp;
+      div.petition_field_data
+        | &nbsp;
+      - @petition.users.each do |owner|
+
+        div.petition_field_label= t('show.petitioner.real_name')
+        div.petition_field_data
+          = owner.name
+          | &nbsp;
+
+        div.petition_field_label= t('show.petitioner.real_telephone')
+        div.petition_field_data
+          = owner.telephone
+          | &nbsp;
+
+        div.petition_field_label= t('show.petitioner.real_email')
+        div.petition_field_data
+          = owner.email
+          | &nbsp;
+
+        div.petition_field_label
+          | &nbsp;
+        div.petition_field_data
+          | &nbsp;
+
+  div.clearfix

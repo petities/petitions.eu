@@ -33,6 +33,9 @@ nl:
       welcome: U bent ingelogd
     signatures:
       batch_invisible: De ondertekeningen zijn nu onzichtbaar.
+    status_tag:
+      "yes": Ja
+      "no": Nee
   activerecord:
     models:
       admin_user:
@@ -302,7 +305,7 @@ nl:
   edit:
     petition:
       add_news: Voeg nieuws toe
-      edit_details_text: Bewerk de details
+      edit_details_button: Bewerk de details
       edit_petition: Bewerk de petitie
       edit_text: Bewerk de tekst
       newer_version: Nieuwere versie
@@ -492,7 +495,6 @@ nl:
         submit: Werk deze details bij
         telephone: Het nummer waarop men u kan bellen
         title: Verander uw gegevens
-      title: Uitleg
       public_email: 'Hier kunt u uw e-mailadres wijzigen in een adres speciaal voor deze petitie. Dit adres verschijnt onder andere in e-mails aan (toekomstige) ondertekenaars.'
       public_name: Uw naam verschijnt onder de petitie en in e-mails naar ondertekenaars. Als u een pseudoniem gebruikt zullen minder mensen de petitie vertrouwen.
       telephone: Journalisten, ondertekenaars die willen helpen en de ontvanger van de petitie willen u misschien bellen. Als ze ons erom vragen geven we dit nummer.

@@ -136,7 +136,7 @@ div.page
     div#petition_details.petition_details
     = render partial: 'detailbox'
 
-    = render partial: 'history_chart'
+    = render partial: 'petitioner'
 
     = render partial: 'edit_details'
 
@@ -146,7 +146,7 @@ div.page
   javascript:
     var showEdit = function(){
       $('#detailbox').hide();
-      $('#history_chart').hide();
+      $('.petitioner-details').hide();
       $('#edit_details').show();
       $('#edit_details_docs').show();
       $('#edit_detail_button').hide();
@@ -156,18 +156,14 @@ div.page
       $('#edit_details').hide();
       $('#edit_details_docs').hide();
       $('#detailbox').show();
-      $('#history_chart').show();
+      $('.petitioner-details').show();
       $('#edit_detail_button').show();
     };
 
   div class="petition-editbutton-container"
     div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
-      = t 'edit.petition.edit_details_text'
+      = t 'edit.petition.edit_details_button'
 
 - unless @petition.concept?
-
-  = render partial: 'social'
-
-  = render partial: 'signatures'
 
   = render partial: 'petition_updates'

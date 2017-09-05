@@ -10,6 +10,7 @@ module Admin
     test 'should get index' do
       get :index
       assert_response :success
+      assert_select('span.status_tag.no', 'Nee')
     end
 
     test 'should get show' do

@@ -101,11 +101,7 @@ namespace :petition do
         petition.create_raw_sql_barchart_keys
       }
       # call this only once!
-      puts
       puts "Active rate: #{petition.update_active_rate!}"
-      puts
-      puts
-
     end
     # clear the cache
     Rails.cache.clear

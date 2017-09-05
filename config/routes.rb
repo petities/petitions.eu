@@ -92,7 +92,6 @@ Rails.application.routes.draw do
   # make old links work
   #
 
-  # get '/signatures/:signature_id/becomeowner', to: 'signatures#become_petition_owner', as: :signature_become_owner
   get '/signatures/:signature_id/confirm', to: 'signatures#confirm', as: :signature_confirm
 
   get '/ondertekening/:signature_id', to: 'signatures#confirm'

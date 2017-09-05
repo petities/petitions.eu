@@ -205,14 +205,6 @@ class SignaturesControllerTest < ActionController::TestCase
     assert_template 'not_found'
   end
 
-  # test 'take_owner_ship' do
-  #   assert_difference('User.count') do
-  #     assert_difference('Role.count') do
-  #       get :become_petition_owner, signature_id: @new_signature.unique_key
-  #     end
-  #   end
-  # end
-
   # test "should show signature" do
   #  get :show, id: @signature
   #  assert_response :success

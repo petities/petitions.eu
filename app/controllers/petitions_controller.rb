@@ -2,8 +2,7 @@ class PetitionsController < ApplicationController
   include FindPetition
   include SortPetitions
 
-  before_action :set_petition,
-                only: [:show, :edit, :update, :finalize, :update_owners]
+  before_action :set_petition, only: [:show, :edit, :update, :finalize]
 
   # GET /petitions
   # GET /petitions.json
@@ -221,36 +220,6 @@ class PetitionsController < ApplicationController
     ]
   end
 
-  #
-  def update_owners
-    authorize @petition
-
-    owner_ids = [*params[:owner_ids]].map(&:to_i)
-    owner_ids.uniq!
-
-    # remove ownership for users not in owners_ids
-
-    unless owner_ids.empty?
-      diff1 = @petition.users.ids - owner_ids
-
-      diff1.each do |id|
-        user = User.find(id)
-        user.remove_role(:admin, @petition)
-      end
-    end
-
-    # add a user to role
-    if params[:add_owner]
-      user = User.find_by_email(params['add_owner'])
-      user.add_role :admin, @petition if user
-    end
-
-    respond_to do |format|
-      format.html { render :edit }
-      format.json { render :show, status: :ok, location: @petition }
-    end
-  end
-
   def set_office
     if petition_params[:organisation_id].present?
       organisation = Organisation.find(petition_params[:organisation_id])
@@ -368,14 +337,6 @@ class PetitionsController < ApplicationController
       :link3, :link3_text,
       :subdomain,
       images_attributes: [:id, :upload, :_destroy]
-    )
-  end
-
-  # add remove locales
-  def locale_params
-    params.require(:petition).permit(
-      :add_locale,
-      :remove_locale
     )
   end
 end

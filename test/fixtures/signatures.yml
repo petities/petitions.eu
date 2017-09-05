@@ -30,7 +30,7 @@ six:
   person_name: test name32,
   person_email: test33@gmail.com
   person_city: test city33
-  visible: 1
+  visible: 0
   special: 0
   subscribe: 1
   confirmed: 1

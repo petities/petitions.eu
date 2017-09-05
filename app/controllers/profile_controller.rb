@@ -14,7 +14,6 @@ class ProfileController < ApplicationController
     authorize :profile, :edit?
 
     @profile.update_attributes(profile_params)
-    #  format.html { redirect_to edit_petition_path(@petition), flash: { success: 'Petition was successfully updated.' } }
     redirect_to '/profile/edit'
   end
 

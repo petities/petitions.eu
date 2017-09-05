@@ -6,7 +6,7 @@ class SubdomainsController < ApplicationController
   end
 
   def redirect_office
-    @office = Office.find_by_subdomain(request.subdomain)
+    @office = Office.find_by(subdomain: request.subdomain)
     redirect_to petition_desk_url(@office, subdomain: nil, locale: nil) if @office
   end
 

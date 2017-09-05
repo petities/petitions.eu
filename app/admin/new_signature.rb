@@ -9,6 +9,7 @@ ActiveAdmin.register NewSignature do
     column :person_name
     column :person_city
     column :person_email
+    column :visible
     column :signed_at
     actions
   end
