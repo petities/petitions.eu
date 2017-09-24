@@ -176,7 +176,7 @@ class Petition < ActiveRecord::Base
   end
 
   def send_status_mail
-    return unless status_changed?
+    return unless status_changed? && persisted?
     PetitionStatusMail.new(self).call
   end
 

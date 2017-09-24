@@ -28,4 +28,15 @@ class PetitionTest < ActiveSupport::TestCase
     petition = petitions(:three)
     assert_equal(petition.active_petition_type.name, petition.office.petition_type.name)
   end
+
+  test 'should enqueue status_update only when status was changed' do
+    assert_enqueued_jobs 6 do
+      @petition.status = 'staging'
+      @petition.save
+    end
+
+    assert_no_enqueued_jobs do
+      @petition.destroy
+    end
+  end
 end
