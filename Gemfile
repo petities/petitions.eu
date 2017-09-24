@@ -115,10 +115,10 @@ gem 'rollbar', '~> 2.15'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
-  gem 'capistrano-bundler', '~> 1.2.0'
-  gem 'capistrano-rails', '~> 1.2', '>= 1.2.3'
+  gem 'capistrano-bundler', '~> 1.3.0'
+  gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
-  gem 'capistrano-sidekiq', '~> 0.10.0'
+  gem 'capistrano-sidekiq', '~> 0.20.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
 end
 

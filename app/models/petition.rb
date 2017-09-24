@@ -80,7 +80,7 @@ class Petition < ActiveRecord::Base
   resourcify
   has_many :users, through: :roles
 
-  friendly_id :name, use: [:globalize, :finders]
+  friendly_id :name, use: :globalize
 
   STATUS_LIST = [
     # we can view it but not sign?

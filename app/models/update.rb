@@ -25,7 +25,7 @@ class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
 
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :finders]
+  friendly_id :title, use: :slugged
 
   default_scope { order('created_at DESC') }
 

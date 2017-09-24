@@ -16,6 +16,6 @@ class ExportsController < ApplicationController
   private
 
   def find_petition
-    @petition = Petition.find(params[:petition_id])
+    @petition = Petition.friendly.find(params[:petition_id])
   end
 end

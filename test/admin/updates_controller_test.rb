@@ -13,23 +13,23 @@ module Admin
     end
 
     test 'should get show' do
-      get :show, id: @update.id
+      get :show, id: @update
       assert_response :success
     end
 
     test 'should get edit' do
-      get :edit, id: @update.id
+      get :edit, id: @update
       assert_response :success
     end
 
     test 'should update' do
-      patch :update, id: @update.id, update: @update.attributes
+      patch :update, id: @update, update: @update.attributes
       assert_redirected_to admin_update_path(assigns(:update))
     end
 
     test 'should destroy' do
       assert_difference('Update.count', -1) do
-        delete :destroy, id: @update.id
+        delete :destroy, id: @update
       end
 
       assert_redirected_to admin_updates_path
