@@ -89,7 +89,6 @@ class PetitionsController < ApplicationController
                            .limit(12)
 
     @office = @petition.office
-    @office = Office.default_office if @office.blank?
 
     @answer = @petition.answer
 
@@ -226,12 +225,8 @@ class PetitionsController < ApplicationController
       @petition.organisation_kind = organisation.kind
       @petition.organisation_name = organisation.name
 
-      office = Office.find_by_organisation_id(organisation.id)
-      @petition.office = if office && !office.hidden?
-                           office
-                         else
-                           Office.default_office
-                         end
+      office = Office.visible.find_by(organisation_id: organisation.id)
+      @petition.office = office if office
     end
   end
 

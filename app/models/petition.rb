@@ -170,15 +170,11 @@ class Petition < ActiveRecord::Base
   validates :subdomain, uniqueness: { case_sensitive: false, allow_blank: true }
   validates :subdomain, exclusion: { in: %w[www help api handboek petitie petities loket webmaster helpdesk info assets assets0 assets1 assets2] }
 
+  before_save :ensure_office_is_filled
   after_update :send_status_mail
 
   def should_generate_new_friendly_id?
     slug.blank? || name_changed?
-  end
-
-  def send_status_mail
-    return unless status_changed? && persisted?
-    PetitionStatusMail.new(self).call
   end
 
   def last_sig_update
@@ -374,7 +370,7 @@ class Petition < ActiveRecord::Base
   end
 
   def active_petition_type
-    petition_type || (office && office.petition_type)
+    petition_type || office&.petition_type
   end
 
   def self.active_from_redis
@@ -388,5 +384,16 @@ class Petition < ActiveRecord::Base
   def self.from_redis(key)
     petition_ids = Redis.current.zrevrange(key, 0, 160)
     Kaminari.paginate_array(live.where(id: petition_ids).sort_by { |f| petition_ids.index(f.id.to_s) })
+  end
+
+  private
+
+  def ensure_office_is_filled
+    self.office = Office.default_office if office.blank?
+  end
+
+  def send_status_mail
+    return unless status_changed? && persisted?
+    PetitionStatusMail.new(self).call
   end
 end

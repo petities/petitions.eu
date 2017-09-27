@@ -39,4 +39,10 @@ class PetitionTest < ActiveSupport::TestCase
       @petition.destroy
     end
   end
+
+  test 'should always have office' do
+    @petition.office = nil
+    assert @petition.save
+    assert_equal @petition.office_id, Office.default_office.id
+  end
 end
