@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715152155) do
+ActiveRecord::Schema.define(version: 20170926191240) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -151,25 +151,21 @@ ActiveRecord::Schema.define(version: 20170715152155) do
   add_index "newsitems", ["slug"], name: "index_newsitems_on_slug", unique: true, using: :btree
 
   create_table "newsletters", force: :cascade do |t|
-    t.integer  "petition_id",                limit: 4
-    t.integer  "number",                     limit: 4
-    t.string   "status",                     limit: 255
-    t.boolean  "published",                                default: false, null: false
-    t.datetime "publish_from"
-    t.boolean  "creating_messages",                        default: false, null: false
-    t.boolean  "messages_created",                         default: false, null: false
+    t.integer  "petition_id",         limit: 4
+    t.integer  "number",              limit: 4
+    t.string   "status",              limit: 255
+    t.boolean  "published",                         default: false, null: false
     t.datetime "messages_created_at"
-    t.integer  "number_of_messages_created", limit: 4
-    t.text     "text",                       limit: 65535
+    t.integer  "messages_count",      limit: 4
+    t.text     "text",                limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "created_by",                 limit: 4
-    t.integer  "approved_by",                limit: 4
+    t.integer  "created_by",          limit: 4
+    t.integer  "approved_by",         limit: 4
     t.date     "date"
   end
 
   add_index "newsletters", ["petition_id"], name: "index_newsletters_on_petition_id", using: :btree
-  add_index "newsletters", ["publish_from"], name: "index_newsletters_on_publish_from", using: :btree
   add_index "newsletters", ["published"], name: "index_newsletters_on_published", using: :btree
   add_index "newsletters", ["status"], name: "index_newsletters_on_status", using: :btree
 

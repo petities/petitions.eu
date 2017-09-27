@@ -1,0 +1,12 @@
+one:
+  petition: one
+  number: 1
+  published: true
+  date: <%= Date.today %>
+  text: Example text for newsletter.
+
+two:
+  petition: two
+  number: 1
+  published: true
+  date: <%= Date.today %>

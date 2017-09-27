@@ -39,6 +39,17 @@ module Admin
       end
     end
 
+    test 'should get show contains newsletters' do
+      get :show, id: @petition
+      assert_equal @petition.newsletters.size, 1
+
+      assert_select 'div#newsletters_sidebar_section table' do |elements|
+        elements.each do |element|
+          assert_select element, 'tbody tr', @petition.newsletters.size
+        end
+      end
+    end
+
     test 'should get edit' do
       get :edit, id: @petition
       assert_response :success

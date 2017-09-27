@@ -56,6 +56,9 @@ nl:
       new_signature:
         one: Nieuwe Ondertekening
         other: Nieuwe Ondertekening
+      newsletter:
+        one: Voortgangsbericht
+        other: Voortgangsberichten
       office:
         one: Petitieloket
         other: Petitieloketten

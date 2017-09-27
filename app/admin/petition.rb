@@ -78,4 +78,13 @@ ActiveAdmin.register Petition do
       column :name
     end
   end
+
+  sidebar :newsletters, only: :show do
+    table_for resource.newsletters do
+      column :number do |item|
+        link_to(item.number, [:admin, item])
+      end
+      column :date
+    end
+  end
 end

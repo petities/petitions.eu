@@ -142,6 +142,7 @@ class Petition < ActiveRecord::Base
   has_many :signatures, dependent: :destroy
 
   has_many :updates, dependent: :destroy
+  has_many :newsletters, dependent: :destroy
   has_many :task_statuses, dependent: :destroy
 
   def get_count
