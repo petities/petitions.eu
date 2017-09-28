@@ -54,6 +54,13 @@ Rails.application.configure do
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  # Use assets from petities.nl
+  config.asset_host = Proc.new { |source|
+     if source.starts_with?('/system')
+       "https://petities.nl"
+     end
+   }
 
   ## Enable the logstasher logs for the current environment
   #config.logstasher.enabled = true
