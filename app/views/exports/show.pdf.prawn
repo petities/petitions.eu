@@ -54,10 +54,10 @@ pdf.bounding_box [pdf.bounds.left, pdf.bounds.top-30], width: pdf.bounds.width, 
   pdf.text @petition.request
   pdf.move_down 30
 
-  pdf.text "#{@signatures.size} ondertekeningen."
+  pdf.text "De petitie heeft #{@signatures.size} ondertekeningen."
   pdf.move_down 10
 
-  items = [[:person_name, :person_city, :person_function, :confirmed_at].collect{ |field| Signature.human_attribute_name(field) }]
+  items = [[:person_name, :person_city, :person_function, :confirmed].collect{ |field| Signature.human_attribute_name(field) }]
   # items += @signatures.pluck(:person_name, :person_city, :person_function, :person_street)
   items += @signatures.map do |signature|
             [
@@ -71,6 +71,7 @@ pdf.bounding_box [pdf.bounds.left, pdf.bounds.top-30], width: pdf.bounds.width, 
   pdf.table(items,
             row_colors: ["FFFFFF", "EEEEEE"],
             cell_style: { size: 10, borders: [] },
+            column_widths: { 3 => 80 },
             header: true) do |table|
             table.row(0).font = "DejaVuSans"
             table.row(0).font_style = :bold

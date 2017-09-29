@@ -39,6 +39,7 @@ en:
         person_name: Name
         person_city: City
         person_function: Function or situation
+        confirmed: Confirmed
         confirmed_at: Confirmed at
       image:
         _destroy: Remove this image

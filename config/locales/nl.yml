@@ -91,6 +91,7 @@ nl:
         person_name: Naam
         person_city: Woonplaats
         person_function: Functie of situatie
+        confirmed: Bevestigd
         confirmed_at: Bevestigd op
       image:
         _destroy: Verwijder deze afbeelding
