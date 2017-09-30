@@ -51,17 +51,14 @@ class SignaturesController < ApplicationController
               1
             end
 
-    @signatures = @all_signatures.order(special: :desc, confirmed_at: :desc)
-                                 .page(@page).per(per_page)
+    @signatures = @all_signatures.ordered.page(@page).per(per_page)
 
     respond_to :js, :html, :json
   end
 
   def latest
     @page = cleanup_page(params[:page])
-    @signatures = @petition.signatures
-                           .order(special: :desc, confirmed_at: :desc)
-                           .page(@page).per(12)
+    @signatures = @petition.signatures.ordered.page(@page).per(12)
 
     render layout: false
   end

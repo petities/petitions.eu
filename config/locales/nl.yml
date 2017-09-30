@@ -74,6 +74,9 @@ nl:
       petition_types:
         one: Petitietype
         other: Petitietypes
+      pledge:
+        one: Toezegging
+        other: Toezeggingen
       signature:
         one: Ondertekening
         other: Ondertekeningen

@@ -84,9 +84,7 @@ class PetitionsController < ApplicationController
 
     @signature = @petition.signatures.new
 
-    @signatures = @petition.signatures
-                           .order(special: :desc, confirmed_at: :desc)
-                           .limit(12)
+    @signatures = @petition.signatures.ordered.limit(12)
 
     @office = @petition.office
 
@@ -189,9 +187,7 @@ class PetitionsController < ApplicationController
 
     set_organisation_helper
 
-    @signatures = @petition.signatures
-                           .order(special: :desc, confirmed_at: :desc)
-                           .page(@page).per(12)
+    @signatures = @petition.signatures.ordered.page(@page).per(12)
   end
 
   def set_organisation_helper

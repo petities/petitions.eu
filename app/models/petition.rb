@@ -146,11 +146,11 @@ class Petition < ActiveRecord::Base
   has_many :task_statuses, dependent: :destroy
 
   def get_count
-    count = $redis.get("p#{id}-count").to_i
-    if !count || count == 0
+    from_redis = RedisPetitionCounter.new(self).count
+    if from_redis.zero?
       signatures_count
     else
-      count
+      from_redis
     end
   end
 

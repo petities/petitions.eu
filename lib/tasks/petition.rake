@@ -13,13 +13,7 @@ namespace :petition do
 
       puts "Error saving #{petition.name}" unless petition.save
 
-      redis = Redis.current
-      redis_key = "p#{petition.id}-count"
-      next unless redis.exists(redis_key)
-
-      redis_count = redis.get(redis_key).to_i
-      count = redis_count - 5 if redis_count - count > 5
-      redis.set(redis_key, count)
+      RedisPetitionCounter.new(petition).update_with_limit(count)
     end
   end
 
@@ -83,7 +77,7 @@ namespace :petition do
         petition.id, count, petition.name]
 
       # general count
-      $redis.set("p#{petition.id}-count", count)
+      RedisPetitionCounter.new(petition).update(count)
       # Main rankings
       $redis.zrem('petition_size', petition.id)
       $redis.zadd('petition_size', count, petition.id)

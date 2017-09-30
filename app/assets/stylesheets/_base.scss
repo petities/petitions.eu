@@ -1255,18 +1255,6 @@ h2.start-petition-form-cell-title {
   color: #fff;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
-
-  &.facebook {
-    padding: 2% 2% 2% 12%;
-    text-align: left;
-    background: $blue asset-url('social-media-icons.png') 9px 9px no-repeat;
-  }
-
-  &.twitter {
-    padding: 2% 2% 2% 12%;
-    text-align: left;
-    background: $blue asset-url('social-media-icons.png') 10px -56px no-repeat;
-  }
 }
 
 .start-petition-form-cell {

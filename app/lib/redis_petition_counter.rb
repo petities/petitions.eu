@@ -18,6 +18,10 @@ class RedisPetitionCounter
     redis.exists(key)
   end
 
+  def increment
+    redis.incr(key)
+  end
+
   def update(value)
     redis.set(key, value)
   end

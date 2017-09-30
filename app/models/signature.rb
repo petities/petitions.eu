@@ -119,7 +119,7 @@ class Signature < ActiveRecord::Base
   scope :subscribe, -> { where(confirmed: true, subscribe: true) }
   scope :special, -> { where(confirmed: true, special: true) }
   scope :visible, -> { where(visible: true, confirmed: true) }
-  scope :ordered, -> { order('sort_order DESC, signed_at ASC') }
+  scope :ordered, -> { order(special: :desc, confirmed_at: :desc) }
 
   before_validation :lowercase_person_email
   before_save :fill_confirmed_at, :set_sort_order
@@ -177,7 +177,7 @@ class Signature < ActiveRecord::Base
       # city count
       $redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
-      $redis.incr("p#{petition.id}-count") if petition.is_live?
+      RedisPetitionCounter.new(petition).increment if petition.is_live?
       # activity rating
       petition.update_active_rate!
     end
@@ -202,6 +202,11 @@ class Signature < ActiveRecord::Base
 
   def require_person_country?
     active_petition_type && active_petition_type.country_code.present?
+  end
+
+  # ActiveAdmin tries .name for display in lists.
+  def name
+    person_name
   end
 
   private

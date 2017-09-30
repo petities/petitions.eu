@@ -37,11 +37,11 @@ module Admin
 
     test 'should create' do
       assert_difference('Newsletter.count', 1) do
-        post :create, update: { petition_id: petitions(:one).id,
-                                text: 'One could write a text here.',
-                                date: Date.today,
-                                published: true
-                            }
+        post :create, newsletter: { petition_id: petitions(:one).id,
+                                    text: 'One could write a text here.',
+                                    date: Date.today,
+                                    published: true
+                                  }
       end
 
       assert_redirected_to admin_newsletter_path(assigns(:newsletter))

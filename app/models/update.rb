@@ -40,9 +40,10 @@ class Update < ActiveRecord::Base
 
   has_many :images, as: :imageable, dependent: :destroy
 
-  before_save :fill_date
+  validates :title, presence: true
+  validates :text, presence: true
 
-  # not empty update!
+  before_save :fill_date
 
   private
 
