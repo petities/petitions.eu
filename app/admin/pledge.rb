@@ -2,7 +2,9 @@ ActiveAdmin.register Pledge do
   permit_params :influence, :skill, :money, :feedback, :inform_me, :petition_id,
                 :signature_id
 
-  filter :petition_id
+  filter :petition_subdomain_equals
+  filter :signature_person_name_contains
+  filter :signature_person_email_equals
   filter :influence
   filter :skill
   filter :money
@@ -21,4 +23,9 @@ ActiveAdmin.register Pledge do
     actions
   end
 
+  controller do
+    def scoped_collection
+      end_of_association_chain.includes(:petition).includes(:signature)
+    end
+  end
 end
