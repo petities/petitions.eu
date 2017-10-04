@@ -8,11 +8,6 @@ function twitterShare (url, title){
   openShareWindow('http://twitter.com/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title) + '&', 450, 550);
 }
 
-// Google plus
-function gPlusShare (url) {
-  openShareWindow('https://plus.google.com/share?url=' + encodeURIComponent(url), 500, 350);
-}
-
 function lnShare (url) {
   openShareWindow('https://www.linkedin.com/cws/share?url=' + encodeURIComponent(url), 500, 350);
 }

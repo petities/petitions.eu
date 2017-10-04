@@ -9,8 +9,8 @@ div.social-bar
     a.share-button.twitter href="javascript:twitterShare('#{share_url}', '#{share_title}');"
       = fa_stacked_icon "twitter inverse", base: "circle", class: "fa-2x"
 
-    a.share-button.googleplus href="javascript:gPlusShare('#{share_url}');"
-      = fa_stacked_icon "google-plus inverse", base: "circle", class: "fa-2x"
+    a.share-button.whatsapp.small-only href="whatsapp://send?text=#{share_title} #{share_url}"
+      = fa_stacked_icon "whatsapp inverse", base: "circle", class: "fa-2x"
 
     a.share-button.linkedin href="javascript:lnShare('#{share_url}');"
       = fa_stacked_icon "linkedin inverse", base: "circle", class: "fa-2x"
@@ -19,6 +19,6 @@ div.social-bar
           class: "share-button email",
           subject: "Petities.nl: #{@petition.name}",
           body: share_url
-          
+
     a.share-button.link href="#{share_url}"
       = fa_stacked_icon "link inverse", base: "circle", class: "fa-2x"

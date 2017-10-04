@@ -254,10 +254,10 @@ a.twitter {
     color: darken(#4099ff, 10%);
   }
 }
-a.googleplus {
-  color: #d34836;
+a.whatsapp {
+  color: #3bac32;
   &:hover {
-    color: darken(#d34836, 10%);
+    color: darken(#3bac32, 10%);
   }
 }
 a.linkedin {
@@ -283,6 +283,12 @@ a.link {
   width: 30%;
   padding: 10px;
   margin: 10px;
+}
+
+.small-only {
+  @media only screen and (min-width: 768px) {
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 510px) {
