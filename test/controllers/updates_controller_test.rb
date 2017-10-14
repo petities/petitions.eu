@@ -12,6 +12,11 @@ class UpdatesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should get index.rss' do
+    get :index, format: :rss
+    assert_response :success
+  end
+
   test 'should get index as petitioner' do
     @petition = petitions(:one)
     sign_in_admin_for @petition

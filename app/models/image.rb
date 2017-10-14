@@ -25,6 +25,9 @@ class Image < ActiveRecord::Base
                       listing: {
                         geometry: 'x400>',
                         convert_options: '-strip -quality 85'
+                      },
+                      thumb: {
+                        convert_options: '-strip -quality 85 -resize "272.59375x200^" -gravity center -extent "272.59375x200"'
                       }
                     },
                     default_url: '/assets/:style/missing.png'

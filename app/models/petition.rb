@@ -94,7 +94,7 @@ class Petition < ActiveRecord::Base
     # admin reviewed the state
     [t('petition.live'),              'live'],
     # petitions we do not sign here
-    [t('petition.not_signable_here'), 'not_signable_here'],
+    [t('petition.sign_elsewhere'), 'sign_elsewhere'],
     # admin does not like this petition
     [t('petition.rejected'),          'rejected'],
     # petition should go to goverment
@@ -227,7 +227,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    status if %w[completed staging withdrawn].include?(status)
+    status if %w[completed sign_elsewhere staging withdrawn].include?(status)
   end
 
   # All users who signed this petition should get an
@@ -245,7 +245,7 @@ class Petition < ActiveRecord::Base
   end
 
   def is_live?
-    %w[live not_signable_here].include?(status)
+    status == 'live'
   end
 
   def is_closed?

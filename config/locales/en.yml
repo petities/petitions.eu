@@ -72,15 +72,20 @@ en:
     count:
       one: "1 petition"
       other: "%{count} petitions"
-    sort:
-      all: All
-      answered: Answered
-      concluded: Concluded
-      open: Open for signing
-      rejected: Rejected
-      sign_elsewhere: Sign elsewhere
-      title: 'Sort on: '
     title: All petitions
+  sort_options:
+    active: Active petitions
+    all: All
+    answered: Answered
+    biggest: Biggest petitions
+    concluded: Concluded
+    newest: New petitions
+    open: Open for signing
+    rejected: Rejected
+    sign_elsewhere: Sign elsewhere
+    signquick: Sign last minute
+    title: 'Sort on: '
+    withdrawn: Withdrawn
   anonymous: Anonymous
   confirm:
     form:
@@ -361,12 +366,6 @@ en:
     all: All petitions
     more: Show more petitions
     read: Read more...
-    sort:
-      active: Active petitions
-      biggest: Biggest petitions
-      new: New petitions
-      sign_quick: Sign last minute
-      title: 'Sort on: '
   listing: Listing
   login:
     email:
@@ -389,7 +388,6 @@ en:
     create_newsupdate: Write update
     desk: Petition desk
     mailpreviews: Preview default mails
-    news_updates: News
     petitioner: 'You, the petitioner'
     petitions: My petitions
     profile: My profile
@@ -488,7 +486,7 @@ en:
     newer_version: Newer version
     newest: Newest
     not_processed: Not processed
-    not_signable_here: Not signable here
+    sign_elsewhere: Not signable here
     notranslations: Notranslations
     older_version: Older version
     oldest: Oldest
@@ -647,6 +645,7 @@ en:
         in_treatment: In treatment
         completed: Answered
         indication: 'Status:'
+        sign_elsewhere: Sign elsewhere
         signable: Signable
         staging: Waiting for moderator
         withdrawn: Withdrawn
@@ -816,4 +815,7 @@ en:
     title: A new petition update
   updates:
     title: Updates
+    rss:
+      title: Petities.nl newsitems
+      description: Newsitems published on petities.nl
   when: When

@@ -1,4 +1,8 @@
 - title t('updates.title')
+
+- content_for :head do
+  - auto_discovery_link_tag(:rss, updates_url(format: :rss))
+
 div.page.vervolg
   section.vervolg-main
     h1.petition-section-title.left= t('updates.title')

@@ -1,9 +1,10 @@
 div.petitions-overview-sort-options-container
-  = t('index.sort.title')
+  = t('sort_options.title')
   - @sorting_options.each_with_index do |option, index|
-    - if @sorting == option[:type]
-      span.petitions-overview-sort-option.active= option[:label]
+    - label = t("sort_options.#{option}")
+    - if @sorting == option
+      span.petitions-overview-sort-option.active= label
     - else
-      = link_to option[:label], url_for(params.merge(page: nil, sorting: option[:type])), class: 'petitions-overview-sort-option'
+      = link_to label, url_for(params.merge(page: nil, sorting: option)), class: 'petitions-overview-sort-option'
     - unless index == @sorting_options.size-1
       = ' | '

@@ -13,7 +13,7 @@ div#detailbox.petition-details
       = link_to @office.name, petition_desk_path(@office)
       | &nbsp;
 
-  - if @office and @petition.reference_field
+  - if @office && @petition.reference_field.present?
     div.petition_field_label= t('show.overview.reference')
     div.petition_field_data
       = @petition.reference_field

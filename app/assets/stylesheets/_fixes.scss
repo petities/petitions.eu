@@ -6,11 +6,12 @@ input[type="button"].petition-form-button {
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
   color: #fff;
   border: 0;
-  background: #4fa6d0;
+  background: $button-color;
   text-align: center;
   cursor: pointer;
+
   &:hover {
-    background: #7ec060;
+    background: $button-hover-color;
   }
 }
 
@@ -45,12 +46,12 @@ input[type="button"].petition-form-button {
 }
 
 .start-petition-form-cell-input.has_error {
-  border: 2px solid $red;
-  color: #E01111;
+  border: $form-error-border;
+  color: $form-error-color;
 }
 
 .has_error_help {
-  color: #E01111;
+  color: $form-error-color;
 }
 
 .start-petition-form-cell-input.is_obligated {
@@ -66,13 +67,12 @@ select.is_obligated {
 .start-petition-form-cell-input.error,
 div.field_with_errors .start-petition-form-cell-input,
 .petition-form-textfield.error {
-  border: 2px solid $red;
+  border: $form-error-border;
 }
 
 h2.start-petition-form-cell.input.error {
-  color: #E01111;
+  color: $form-error-color;
 }
-
 
 .email-success-note {
   text-align: center;
@@ -82,7 +82,7 @@ h2.start-petition-form-cell.input.error {
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
   color: #fff;
   border: 0;
-  background: #7ec060;
+  background: $button-hover-color;
   cursor: pointer;
 }
 
@@ -96,8 +96,9 @@ h2.start-petition-form-cell.input.error {
   background: #D04F4F;
   text-align: center;
   cursor: pointer;
+
   &:hover {
-    background: #7ec060;
+    background: $button-hover-color;
   }
 }
 
@@ -106,7 +107,7 @@ h2.start-petition-form-cell.input.error {
 }
 
 .petition-error-sign-note {
-  color: $red;
+  color: $form-error-color;
   margin-bottom: 20px;
 }
 
@@ -205,7 +206,7 @@ textarea.petition-edit-input {
 .petition-edit-save {
     -webkit-appearance: none;
     padding: 5px 2%;
-    background: #4fa6d0;
+    background: $button-color;
     font: 400 18px/28px 'Open Sans', arial, sans-serif;
     color: #fff;
     border: 0;

@@ -128,15 +128,20 @@ nl:
     count:
       one: "1 petitie"
       other: "%{count} petities"
-    sort:
+    title: Alle petities
+  sort_options:
+      active: Actieve petities
       all: Alle
+      answered: Beantwoord
+      biggest: Grootste petities
       concluded: Afgehandeld
+      newest: Nieuwe petities
       open: Ondertekenbaar
       rejected: Afgewezen
       sign_elsewhere: Elders te tekenen
-      answered: Beantwoord
+      signquick: Nog snel ondertekenen
       title: 'Sorteren op: '
-    title: Alle petities
+      withdrawn: Ingetrokken
   anonymous: Anoniem
   confirm:
     form:
@@ -418,12 +423,6 @@ nl:
     all: Blader door alle petities
     more: Meer petities tonen
     read: Lees verder…
-    sort:
-      active: Actieve petities
-      biggest: Grootste petities
-      new: Nieuwe petities
-      sign_quick: Nog snel ondertekenen
-      title: 'Sorteren op: '
   listing: Lijst
   login:
     email:
@@ -446,7 +445,6 @@ nl:
     create_newsupdate: Schrijf nieuwtje
     desk: Petitieloket
     mailpreviews: Previews standaardmails
-    news_updates: Nieuwtjes
     petitioner: 'U, de petitionaris'
     petitions: Mijn petities
     profile: Mijn profiel
@@ -544,8 +542,8 @@ nl:
     news: 'Er is nieuws!'
     newer_version: Nieuwere versie
     newest: Nieuwste
-    not_processed: Not processed
-    not_signable_here: Not signable here
+    not_processed: Niet behandeld
+    sign_elsewhere: Elders te tekenen
     notranslations: Geen vertalingen
     older_version: Oudere versie
     oldest: Oudste
@@ -705,6 +703,7 @@ nl:
         in_treatment: In behandeling
         completed: Beantwoord
         indication: 'Status:'
+        sign_elsewhere: Elders te tekenen
         signable: Ondertekenbaar
         staging: Wacht op petitieloket
         withdrawn: Ingetrokken
@@ -874,4 +873,7 @@ nl:
     title: Een nieuw petitie nieuwtje
   updates:
     title: Updates
+    rss:
+      title: Petities.nl nieuwsberichten
+      description: Nieuwsberichten gepubliceerd op petities.nl
   when: Wanneer

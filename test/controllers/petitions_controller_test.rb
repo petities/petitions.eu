@@ -16,6 +16,18 @@ class PetitionsControllerTest < ActionController::TestCase
   test 'should get all' do
     get :all
     assert_response :success
+    assert_not_nil assigns(:petitions)
+  end
+
+  test 'should get all withdrawn' do
+    petition = petitions(:three)
+    petition.update_attribute(:status, 'withdrawn')
+
+    get :all, sorting: 'withdrawn'
+    assert_response :success
+    assert_not_nil assigns(:petitions)
+
+    assert_equal assigns(:petitions).first.status, 'withdrawn'
   end
 
   test 'should get new' do

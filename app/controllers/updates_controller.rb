@@ -3,7 +3,7 @@ class UpdatesController < ApplicationController
   before_action :load_updates, only: [:index, :show]
 
   def index
-    respond_to :html, :js
+    respond_to :html, :js, :rss
   end
 
   def new

@@ -16,25 +16,17 @@ module SortPetitions
       petitions = petitions.live.order(created_at: :desc).limit(100)
     when 'concluded'
       petitions = petitions.where(status: 'completed').order(created_at: :desc).limit(100)
-    when 'rejected'
-      petitions = petitions.where(status: 'rejected').order(created_at: :desc).limit(100)
-    when 'sign_elsewhere'
-      petitions = petitions.where(status: 'not_signable_here').order(created_at: :desc).limit(100)
     when 'answered'
       petitions = petitions.answered
+    when 'sign_elsewhere', 'rejected', 'withdrawn'
+      petitions = petitions.where(status: @sorting).order(created_at: :desc).limit(100)
     else
       direction = [:desc, :asc][@order]
       petitions = petitions.live.order(created_at: direction).limit(100)
     end
 
-    @sorting_options = [
-      { type: 'all', label: t('all.sort.all') },
-      { type: 'open',           label: t('all.sort.open') },
-      { type: 'concluded',      label: t('all.sort.concluded') },
-      { type: 'answered',       label: t('all.sort.answered') },
-      { type: 'rejected',       label: t('all.sort.rejected') },
-      { type: 'sign_elsewhere', label: t('all.sort.sign_elsewhere') }
-    ]
+    @sorting_options = ['all', 'open', 'concluded', 'answered', 'withdrawn',
+                        'rejected', 'sign_elsewhere']
 
     petitions.page(@page).per(12)
   end

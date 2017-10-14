@@ -7,8 +7,6 @@ class PetitionsController < ApplicationController
   # GET /petitions
   # GET /petitions.json
   def index
-    @vervolg = true
-
     @page    = cleanup_page(params[:page])
     @sorting = params[:sorting] || 'active'
     @order = params[:order].to_i
@@ -29,12 +27,7 @@ class PetitionsController < ApplicationController
                   petitions
                 end
 
-    @sorting_options = [
-      { type: 'active', label: t('index.sort.active') },
-      { type: 'newest', label: t('index.sort.new') },
-      { type: 'biggest', label: t('index.sort.biggest') },
-      { type: 'signquick', label: t('index.sort.sign_quick') }
-    ]
+    @sorting_options = ['active', 'newest', 'biggest', 'signquick']
 
     @petitions = petitions.page(@page).per(12)
 

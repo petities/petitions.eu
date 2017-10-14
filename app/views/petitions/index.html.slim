@@ -1,4 +1,8 @@
 - title t('petitions.title')
+
+- content_for :head do
+  - auto_discovery_link_tag(:rss, updates_url(format: :rss))
+
 div.page
   javascript:
     window.page = #{@page};

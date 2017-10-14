@@ -246,10 +246,6 @@ class SignaturesController < ApplicationController
     end
   end
 
-  def not_found
-    @vervolg = true
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
