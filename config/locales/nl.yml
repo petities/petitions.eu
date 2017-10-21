@@ -101,6 +101,10 @@ nl:
 
     errors:
       models:
+        petition:
+          attributes:
+            base:
+              will_not_destroy_that_much_signatures: 'Petitie kan niet verwijderd worden omdat er meer dan 100 ondertekeningen zijn'
         signature:
           attributes:
             person_name:

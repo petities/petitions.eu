@@ -138,6 +138,7 @@ class Petition < ActiveRecord::Base
   has_many :images, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  before_destroy :restrict_destroy_with_signatures
   has_many :new_signatures, dependent: :destroy
   has_many :signatures, dependent: :destroy
 
@@ -390,6 +391,12 @@ class Petition < ActiveRecord::Base
 
   def ensure_office_is_filled
     self.office = Office.default_office if office.blank?
+  end
+
+  def restrict_destroy_with_signatures
+    return if signatures.count < 100 && new_signatures.count < 100
+    errors.add(:base, :will_not_destroy_that_much_signatures)
+    false # or throw(:abort) in Rails 5.
   end
 
   def send_status_mail

@@ -45,4 +45,19 @@ class PetitionTest < ActiveSupport::TestCase
     assert @petition.save
     assert_equal @petition.office_id, Office.default_office.id
   end
+
+  test 'should not destroy > 100 signatures' do
+    100.times do
+      @petition.signatures.create(
+        person_name: Faker::Name.name,
+        person_email: Faker::Internet.email
+      )
+    end
+
+    assert_no_difference('Petition.count') do
+      @petition.destroy
+      assert_not_nil @petition.errors[:base]
+      assert_equal @petition.errors[:base], ['Petitie kan niet verwijderd worden omdat er meer dan 100 ondertekeningen zijn']
+    end
+  end
 end

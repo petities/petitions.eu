@@ -45,6 +45,10 @@ en:
         _destroy: Remove this image
     errors:
       models:
+        petition:
+          attributes:
+            base:
+              will_not_destroy_that_much_signatures: 'Will not destroy petitions with > 100 signatures'
         signature:
           attributes:
             person_name:
