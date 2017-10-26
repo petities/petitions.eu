@@ -488,6 +488,14 @@ nl:
     current_state_is: De petitie is
     current_translations: Vertalingen
     details:
+      edit:
+        your_name: Uw publiek zichtbare naam
+        your_email: Uw publiek zichtbare e-mailadres
+        your_number: Uw telefoonnummer
+        your_organisation: Naam van uw organisatie
+        link_url: http://
+        link_text: Link tekst
+        reference_field: Het referentienummer voor deze petitie
       form:
         answer_date_label: Wanneer de petitie een antwoord krijgt
         due_date_label: Wanneer de petitie wordt ingediend

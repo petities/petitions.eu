@@ -114,13 +114,13 @@ div.page
           = t 'petition.current_state_is'
         div.whitespace
 
-div
-  div.petition-editbutton-container
-    div.petition-editbutton
-      = link_to '#petitionnews'
-        = t 'edit.petition.write_news'
-    div.whitespace
-
+- unless @petition.concept?
+  div
+    div.petition-editbutton-container
+      div.petition-editbutton
+        = link_to '#petitionnews'
+          = t 'edit.petition.write_news'
+      div.whitespace
 
 div
   - if (@petition.concept? || @petition.is_staging?) && user_signed_in? && (current_user.has_role?(:admin, @petition) || current_user.has_role?(:admin, @petition.office))

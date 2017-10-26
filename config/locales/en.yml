@@ -431,6 +431,14 @@ en:
     current_state_is: The petition is
     current_translations: Current translations
     details:
+      edit:
+        your_name: Your public name
+        your_email: Your public email
+        your_number: Your public number
+        your_organisation: Your organisation
+        link_url: http://
+        link_text: Link text
+        reference_field: The reference number for the petition
       form:
         answer_date_label: When the petition will be answered
         due_date_label: When the petition is due

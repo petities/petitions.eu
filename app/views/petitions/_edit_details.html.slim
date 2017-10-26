@@ -4,22 +4,22 @@ div.petition-details id="edit_details" style='display: none;'
     div.petition-edit-label
       = t('petition.details.form.public_name')
     = f.text_field :petitioner_name, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_name', default: 'your public name')
+                   placeholder: t('petition.details.edit.your_name')
 
     div.petition-edit-label
       = t('petition.details.form.public_email')
     = f.text_field :petitioner_email, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_email', default: 'your public email')
+                   placeholder: t('petition.details.edit.your_email')
 
     div.petition-edit-label
       = t('petition.details.form.telephone')
     = f.text_field :petitioner_telephone, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_number', default: 'your public number')
+                   placeholder: t('petition.details.edit.your_number')
 
     div.petition-edit-label
       = t('petition.details.form.public_organisation')
     = f.text_field :petitioner_organisation, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.your_organisation', default: 'your organisation')
+                   placeholder: t('petition.details.edit.your_organisation')
 
     div.petition-edit-label
       = t('petition.details.form.due_date_label')
@@ -39,40 +39,40 @@ div.petition-details id="edit_details" style='display: none;'
       div.petition-edit-label.whitespace
         = t('petition.details.form.reference_field')
       = f.text_field :reference_field, class: 'petition-edit-input',
-                     placeholder: t('petition.details.from_now.reference_field')
+                     placeholder: t('petition.details.edit.reference_field')
 
     div.whitespace
     div.whitespace
     div.petition-edit-label
       = t('petition.details.form.link1')
     = f.text_field :link1, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_url', default: 'http://')
+                   placeholder: t('petition.details.edit.link_url')
 
     div.petition-edit-label
       = t('petition.details.form.link1_text')
     = f.text_field :link1_text, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_text', default: 'link text')
+                   placeholder: t('petition.details.edit.link_text')
 
 
     div.petition-edit-label
       = t('petition.details.form.link1')
     = f.text_field :link2, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_url', default: 'http://')
+                   placeholder: t('petition.details.edit.link_url')
 
     div.petition-edit-label
       = t('petition.details.form.link1_text')
     = f.text_field :link2_text, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_text', default: 'link text')
+                   placeholder: t('petition.details.edit.link_text')
 
 
     div.petition-edit-label
       = t('petition.details.form.link1')
     = f.text_field :link3, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_url', default: 'http://')
+                   placeholder: t('petition.details.edit.link_url')
 
     div.petition-edit-label
       = t('petition.details.form.link1_text')
     = f.text_field :link3_text, class: 'petition-edit-input',
-                   placeholder: t('petition.details.from.link_text', default: 'link text')
+                   placeholder: t('petition.details.edit.link_text')
 
     = f.submit t('petition.details.form.submit'), class: "start-petition-form-cell-button"
