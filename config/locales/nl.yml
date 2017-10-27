@@ -498,7 +498,7 @@ nl:
         reference_field: Het referentienummer voor deze petitie
       form:
         answer_date_label: Wanneer de petitie een antwoord krijgt
-        due_date_label: Wanneer de petitie wordt ingediend
+        due_date_label: Wanneer wordt de petitie ingediend?
         link1: Link naar een campagnepagina voor deze petitie
         link1_text: Beschrijving van die pagina
         link2: Nog een site over deze petitie

@@ -28,12 +28,13 @@ div.petition-details id="edit_details" style='display: none;'
 
     div.whitespace
 
-    div.petition-edit-label
-      = t('petition.details.form.answer_date_label')
-    = f.date_select :answer_due_date, class: 'petition-edit-input whitespace',
-                     default: 100.days.from_now
+    - if f.object.in_treatment?
+      div.petition-edit-label
+        = t('petition.details.form.answer_date_label')
+      = f.date_select :answer_due_date, class: 'petition-edit-input whitespace',
+                       default: 100.days.from_now
 
-    div.whitespace
+      div.whitespace
 
     - if f.object.reference_field.present? || f.object.in_treatment?
       div.petition-edit-label.whitespace
