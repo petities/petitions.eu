@@ -57,6 +57,8 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized(exception)
+    authenticate_user!
+
     referer = request.referer unless request.referer == request.url
     policy_name = exception.policy.class.to_s.underscore
     flash[:error] = t("#{policy_name}.#{exception.query}", scope: 'pundit', default: :default)

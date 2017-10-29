@@ -11,8 +11,8 @@ class ExportsControllerTest < ActionController::TestCase
     get :show, petition_id: @petition
     assert_response :redirect
     assert_equal @petition, assigns(:petition)
-    assert_redirected_to root_path
-    assert_not_nil flash[:error]
+    assert_redirected_to new_user_session_path(locale: nil)
+    assert_not_nil flash[:alert]
   end
 
   test 'should get show as petition admin for html' do

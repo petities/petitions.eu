@@ -50,6 +50,7 @@ class SignaturesControllerTest < ActionController::TestCase
         confirmed: false
       }
     end
+
     assert_response :success
     signature = assigns(:signature)
     assert_equal '127.0.0.1', signature.signature_remote_addr
@@ -101,38 +102,34 @@ class SignaturesControllerTest < ActionController::TestCase
       person_birth_city])
   end
 
-  # test person_function
-  test 'should update signature function' do
-
+  test 'should not update signature function when length is invalid' do
     post :confirm_submit, format: :json, petition_id: @petition,
                           signature_id: @signature.unique_key, signature: {
                             person_function: '1' * 500
                           }
 
     assert_response :unprocessable_entity
+  end
 
-
+  test 'should update signature function' do
     post :confirm_submit, format: :json, petition_id: @petition,
                           signature_id: @signature.unique_key, signature: {
                             person_function: '1' * 253
                           }
 
     assert_response :success
-
   end
 
-  test 'illegal special signature' do
-
+  test 'should refuse special signature for anonymous user' do
     assert_no_difference('Signature.special.count') do
       post :special_update, format: :json,
                             id: @signature.id, signature: { special: 1 }
     end
 
-    assert_response :found
+    assert_response :unauthorized
   end
 
-  test 'set special signature' do
-
+  test 'should update special signature for petition admin' do
     sign_in_admin_for @petition
 
     assert_difference('Signature.special.count') do
@@ -141,7 +138,6 @@ class SignaturesControllerTest < ActionController::TestCase
     end
 
     assert_response :success
-
   end
 
   test 'signature confirmation links' do
@@ -165,7 +161,6 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'check confirmation logic' do
-
     # remove redis keys
     # mabe we should have a test prefix..
     if $redis.keys("p-d-#{@petition_with_required_fields.id}-*").size > 0
@@ -228,5 +223,4 @@ class SignaturesControllerTest < ActionController::TestCase
 
   #  assert_redirected_to signatures_path
   # end
-
 end

@@ -128,7 +128,7 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test 'should not get edit' do
     get :edit, id: @petition
-    assert_redirected_to root_path
+    assert_authenticate_user
   end
 
   test 'should_get_edit' do
@@ -200,8 +200,8 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test 'should status change petition' do
     sign_in_admin_for @petition
-    # mails should be send on status change
 
+    # mails should be send on status change
     assert_enqueued_jobs 6 do
 
       patch :update, id: @petition.id, petition: { status: 'draft' }
@@ -221,9 +221,11 @@ class PetitionsControllerTest < ActionController::TestCase
 
     patch :update, id: @petition.id, petition: { status: 'draft' }
 
+    @petition.reload
+
     assert_equal(status, @petition.status)
 
-    assert_redirected_to root_path
+    assert_authenticate_user
 
     assert_enqueued_jobs 0
   end
@@ -235,4 +237,8 @@ class PetitionsControllerTest < ActionController::TestCase
 
   #  assert_redirected_to petitions_path
   # end
+
+  def assert_authenticate_user
+    assert_redirected_to new_user_session_path(locale: nil)
+  end
 end
