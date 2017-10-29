@@ -71,7 +71,7 @@ pdf.bounding_box [pdf.bounds.left, pdf.bounds.top-30], width: pdf.bounds.width, 
   pdf.table(items,
             row_colors: ["FFFFFF", "EEEEEE"],
             cell_style: { size: 10, borders: [] },
-            column_widths: { 3 => 80 },
+            column_widths: { 1 => 100, 3 => 80 },
             header: true) do |table|
             table.row(0).font = "DejaVuSans"
             table.row(0).font_style = :bold
