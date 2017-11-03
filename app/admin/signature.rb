@@ -22,4 +22,38 @@ ActiveAdmin.register Signature do
     column :confirmed_at
     actions
   end
+
+  sidebar :unique_key, only: [:show, :edit] do
+    para do
+      form do
+        input type: :text,
+              value: signature_confirm_url(resource.unique_key),
+              readonly: true,
+              'data-behavior': :selectable
+      end
+    end
+  end
+
+  form do |f|
+    f.inputs 'Signature Details' do
+      f.input :person_name
+      f.input :visible
+      f.input :subscribe
+      f.input :more_information
+      f.input :person_function
+      f.input :person_street
+      f.input :person_street_number
+      f.input :person_street_number_suffix
+      f.input :person_postalcode
+      f.input :person_city
+      f.input :person_email
+      f.input :special
+      f.input :person_born_at
+      f.input :person_dutch_citizen
+      f.input :person_birth_city
+      f.input :person_country, include_blank: true
+      f.input :sort_order
+    end
+    f.actions
+  end
 end
