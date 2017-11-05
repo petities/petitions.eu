@@ -947,8 +947,10 @@ input[type="button"].petition-form-button {
   padding: 30px 0 0;
 }
 
-.petition-signature-location, .petition-signature-occupation {
+.petition-signature-byline {
   font-size: 14px;
+  max-height: 60px;
+  overflow: hidden;
 }
 
 .petition-signature-actions {
