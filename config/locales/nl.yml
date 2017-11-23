@@ -441,7 +441,7 @@ nl:
     reset_link:
       description: Weet u of heeft u uw wachtwoord niet meer, dan vraagt u per e-mail een link aan om opnieuw een wachtwoord in te stellen.
       label: Stuur link om nieuw wachtwoord te kiezen
-  logout: Log uit
+  logout: Uitloggen
   manage:
     title: Mijn petities
   my:
@@ -742,10 +742,10 @@ nl:
       real_email: E-mail
     sign:
       form:
-        checkbox: mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
+        checkbox: Ja, mijn naam en woonplaats mogen publiek zichtbaar zijn onder de petitie.
         email:
           label: E-mailadres
-          placeholder: gebruikersnaam@iets.iets
+          placeholder: gebruikersnaam@provider.nl
         error: Tijdens het opslaan is een fout onstaan. Mogelijk is het op dit moment erg druk. Wilt u opnieuw proberen te ondertekenen? Onze excuses voor het ongemak.
         errors:
           email: Voer alstublieft een juist e-mailadres in. Met deze is iets mis.
@@ -756,12 +756,11 @@ nl:
         residence:
           label: Woonplaats
           placeholder: Waar u nu woont, op het tijdstip van ondertekenen
-        sign_again: Nu iemand anders laten tekenen
-        submit: Ja, ik onderteken deze petitie
+        submit: Ik onderteken deze petitie
         submitting: Bezig met opslaan...
         success_html: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op e-mailadres <span class="confirm_email"></span> ontvangt u een e-mail van webmaster@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
-      note: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze privacyverklaring.
-      title: Onderteken deze petitie
+      note_html: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze <a href="/privacy">privacyverklaring</a>.
+      title: Ondertekenen
     signatures:
       more: Laad meer ondertekeningen
       title: Ondertekeningen

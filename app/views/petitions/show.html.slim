@@ -99,4 +99,5 @@ div.page
 
 = render partial: 'signatures'
 
-= render partial: 'petition_updates'
+- if @updates.any?
+  = render partial: 'petition_updates' 

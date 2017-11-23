@@ -684,7 +684,7 @@ en:
       real_email: E-mail
     sign:
       form:
-        checkbox: Publish my name visibly below the petition.
+        checkbox: Yes, publish my name and place of residence visibly below the petition.
         email:
           label: Email address
           placeholder: username@something.something
@@ -698,11 +698,10 @@ en:
         residence:
           label: Place of residence
           placeholder: Where you live now, at the time of signing
-        sign_again: Let someone else sign now
-        submit: Yes, I sign this petition
+        submit: I sign this petition
         submitting: Saving your signature...
         success_html: Thank you. It is now important to confirm your signature. On address <span class="confirm_email"></span> you will receive an e-mail from webmaster@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
-      note: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our privacy statement.
+      note_html: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our <a href="/privacy">privacy statement</a>.
       title: Sign this petition
     signatures:
       more: Load more signatures

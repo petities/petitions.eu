@@ -20,15 +20,8 @@ class PetitionMailerPreview < ActionMailer::Preview
     PetitionMailer.ask_office_for_answer_mail(Petition.live.first)
   end
 
-  # call petitioner into action about closing petition <10 signatures
-  def due_next_week_warning_mail_small
-    petition = Petition.find(169)
-    PetitionMailer.due_next_week_warning_mail(Petition.live.first)
-  end
-
-  # call petitioner into action about closing petition >10 signatures
-  def due_next_week_warning_mail_big
-    petition = Petition.find(6317)
+  # call petitioner into action about closing petition
+  def due_next_week_warning_mail
     PetitionMailer.due_next_week_warning_mail(Petition.live.first)
   end
 

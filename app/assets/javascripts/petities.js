@@ -98,11 +98,6 @@ $(document).ready(function(){
     $(this).removeClass('error');
   });
 
-  $('#sign_again').bind('click', function(){
-    $('.petition-success-sign-note').hide();
-    $('.petition-form-float-wrapper').show();
-  });
-
   $('.special_check').click(function(){
     $(this).parent('form:first').submit();
   });
