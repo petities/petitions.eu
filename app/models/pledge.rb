@@ -7,7 +7,6 @@
 #  skill        :string(255)
 #  money        :integer          default(0)
 #  feedback     :string(255)
-#  inform_me    :boolean
 #  petition_id  :integer
 #  signature_id :integer
 #  created_at   :datetime         not null

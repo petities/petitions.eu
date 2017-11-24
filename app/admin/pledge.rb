@@ -1,5 +1,5 @@
 ActiveAdmin.register Pledge do
-  permit_params :influence, :skill, :money, :feedback, :inform_me, :petition_id,
+  permit_params :influence, :skill, :money, :feedback, :petition_id,
                 :signature_id
 
   filter :petition_subdomain_equals

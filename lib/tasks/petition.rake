@@ -313,9 +313,9 @@ namespace :petition do
       end
 
       # find all people that want to be informed
-      inform_me = Pledge
-                  .where(petition_id: petition.id)
-                  .where(inform_me: true)
+      # inform_me = Pledge
+      #             .where(petition_id: petition.id)
+      #             .where(inform_me: true)
 
       message = "#{inform_me.size} people want answer on #{petition.name}"
       Rails.logger.debug(message)
