@@ -9,7 +9,7 @@ div.petition-form-float-wrapper
       =<> t('show.sign.form.error')
   = form_for @signature, url: petition_signatures_path(@petition), remote: true, data: { type: :json } do |f|
     = f.label :person_name, t('show.sign.form.name.label')
-    = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name.placeholder')
+    = f.text_field :person_name, class: 'petition-form-textfield', placeholder: t('show.sign.form.name.placeholder'), autofocus: true
     = f.label :person_email, t('show.sign.form.email.label')
     = f.email_field :person_email, class: 'petition-form-textfield', placeholder: t('show.sign.form.email.placeholder')
     = f.label :person_city, t('show.sign.form.residence.label')

@@ -52,16 +52,6 @@ class PetitionsController < ApplicationController
     @petitions = Kaminari.paginate_array(petitions).page(page).per(12)
   end
 
-  def manage
-    if current_user
-      @petitions = Petition.with_role(:admin, current_user)
-
-      petitions_by_status @petitions
-    else
-      redirect_to new_user_session_path
-    end
-  end
-
   def set_petition_vars
     @page = cleanup_page(params[:page])
 

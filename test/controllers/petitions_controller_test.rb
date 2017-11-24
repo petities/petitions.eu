@@ -117,15 +117,6 @@ class PetitionsControllerTest < ActionController::TestCase
     end
   end
 
-  test 'should show my petitions' do
-    sign_in_admin_for @petition
-    [:manage].each do |action|
-      get action, id: @petition
-      assert assigns(:petitions)
-      assert_select 'h1' #petition-section-title'
-    end
-  end
-
   test 'should not get edit' do
     get :edit, id: @petition
     assert_authenticate_user

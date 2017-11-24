@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   resources :updates
 
-  # resource :signatures
+  get '/dashboard', to: 'dashboard#show'
 
   root 'petitions#index'
 
