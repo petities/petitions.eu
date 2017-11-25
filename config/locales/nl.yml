@@ -701,7 +701,9 @@ nl:
     overview:
       addressed: 'Geadresseerd:'
       addressee: 'Ontvanger:'
-      all_owners: Petitionaris
+      all_owners:
+        one: Petitionaris
+        other: Petitionarissen
       answer_end_date: 'Antwoord verwacht:'
       desk: 'Petitieloket:'
       end_date: 'Einddatum:'

@@ -39,6 +39,7 @@ module Admin
       assert_difference('Newsletter.count', 1) do
         post :create, newsletter: { petition_id: petitions(:one).id,
                                     text: 'One could write a text here.',
+                                    number: '2',
                                     date: Date.today,
                                     published: true
                                   }

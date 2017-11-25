@@ -643,7 +643,9 @@ en:
     overview:
       addressed: Addressed
       addressee: 'Addressed to:'
-      all_owners: Lead petitioner
+      all_owners:
+        one: Petitioner
+        other: Petitioners
       answer_end_date: 'Answer expected:'
       desk: 'Petition desk:'
       end_date: 'Closing date:'

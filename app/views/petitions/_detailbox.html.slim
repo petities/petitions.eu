@@ -31,7 +31,7 @@ div#detailbox.petition-details
       = l(@petition.answer_due_date)
       | &nbsp;
 
-  - if @petition.status.present?
+  - if @petition.status.present? && !@petition.is_live?
     div.petition_field_label= t('show.overview.status.indication')
     div.petition_field_data
       = t("show.overview.status.#{@petition.state_summary}")
