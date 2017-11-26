@@ -84,9 +84,9 @@ class ApplicationController < ActionController::Base
     }.merge(options)
   end
 
-  # Page should be a integer, value 1 or larger
+  # Page should be a integer, value between 1 and 42.000
   def cleanup_page(input)
     page = input.to_i
-    page > 0 ? page : 1
+    page.between?(1, 42_000) ? page : 1
   end
 end

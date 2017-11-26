@@ -19,6 +19,13 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:petitions)
   end
 
+  test 'should get all with invalid pages' do
+    [0, 'invalid-text', 43_000].each do |value|
+      get :all, page: value
+      assert_response :success
+    end
+  end
+
   test 'should get all withdrawn' do
     petition = petitions(:three)
     petition.update_attribute(:status, 'withdrawn')
