@@ -170,14 +170,6 @@ li {
   border-top: 1px solid #ddd;
 }
 
-@font-face {
-  font-family: 'VAGRoundedLtNormal';
-  src: asset-url('vagrounded_lt_normal-webfont.eot');
-  src: asset-url('vagrounded_lt_normal-webfont.eot?#iefix') format("embedded-opentype"), asset-url('vagrounded_lt_normal-webfont.woff') format("woff"), asset-url('vagrounded_lt_normal-webfont.ttf') format("truetype"), asset-url('vagrounded_lt_normal-webfont.svg#VAGRoundedLtNormal') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 /**
  *	STYLES AND GLOBAL SETTINGS
  */
@@ -207,20 +199,20 @@ h1 {
 
 h2 {
   margin: 0 0 8px;
-  font: 400 22px/24px 'VAGRoundedLtNormal', arial, sans-serif;
+  font: 400 22px/24px 'Open Sans', arial, sans-serif;
   letter-spacing: 1.1px;
   color: $light-green;
 }
 
 h3 {
   margin: 0 0 8px;
-  font: 400 20px/24px 'VAGRoundedLtNormal', arial, sans-serif;
+  font: 400 20px/24px 'Open Sans', arial, sans-serif;
   color: #111;
 }
 
 h4 {
   margin: 0 0 8px;
-  font: 600 18px/24px 'VAGRoundedLtNormal', arial, sans-serif;
+  font: 600 18px/24px 'Open Sans', arial, sans-serif;
   color: #111;
 }
 
@@ -242,7 +234,7 @@ a {
  */
 
 .page {
-  width: 1160px;
+  width: $page-width;
   margin: 50px auto 50px;
   padding: 0 20px;
   &.top {
@@ -428,7 +420,7 @@ input[type="text"].search-container-input {
     height: 63px;
   }
   .header-content {
-    width: 1160px;
+    width: $page-width;
     height: 63px;
   }
   .header-button-container {
@@ -848,7 +840,7 @@ input[type="button"].petition-form-button {
 }
 
 .social-bar-content {
-  width: 1160px;
+  width: $page-width;
   margin: 0 auto;
   font: 400 18px/21px 'Open Sans', arial, sans-serif;
   color: #e5e5e5;
@@ -1451,7 +1443,7 @@ a.tag {
 
 .footer-content {
   display: flex;
-  width: 1160px;
+  width: $page-width;
   margin: 0 auto;
   padding: 20px;
 

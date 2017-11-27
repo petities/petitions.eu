@@ -14,6 +14,4 @@ Rails.application.config.assets.compress = true
 Rails.application.config.assets.precompile += %w[
   petitions4.css fonts.css fixes.css petitions.js
   social_share paralax.js
-  vagrounded_lt_normal-webfont.woff
-  vagrounded_lt_normal-webfont.ttf
 ]
