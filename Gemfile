@@ -11,7 +11,7 @@ gem 'globalize-versioning'
 gem 'friendly_id'
 gem 'friendly_id-globalize'
 
-gem 'mysql2', '~> 0.4.9'
+gem 'mysql2', '~> 0.4.10'
 
 # legacy utf 8 issues..
 gem 'rack-utf8_sanitizer'
@@ -44,6 +44,9 @@ gem 'prawnto'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
+
+gem 'bourbon'
+gem 'simple_form'
 
 # gem 'i18n_generators'
 gem 'i18n-tasks'
@@ -106,8 +109,8 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 4.4', '>= 4.4.0.336'
-gem 'rollbar', '~> 2.15'
+gem 'newrelic_rpm', '~> 4.6', '>= 4.6.0.338'
+gem 'rollbar', '~> 2.15', '>= 2.15.5'
 # track everything..
 # gem 'logstasher'
 

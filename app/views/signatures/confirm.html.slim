@@ -274,11 +274,11 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
-            = t('confirm.info.how_much')
-          - Pledge::MONEY_OPTIONS.each do |label, value|
+            = pf.label :money, t('confirm.info.how_much')
+          - Pledge::MONEY_OPTIONS.each do |value|
             label.start-petition-form-cell-label
               = pf.radio_button :money, value
-              = label
+              = t("confirm.form.money.#{value}")
 
         div.start-petition-form-cell.label
           p= t('confirm.info.how_much_description')

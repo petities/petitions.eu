@@ -39,8 +39,6 @@ $(document).ready(function(){
 
   $('body').woolParalax();
 
-  // console.log($('.validation'));
-
   // define text validation function for editing/creating a petition
   var validate_text_length = function(field){
     var val = $(field).val(),

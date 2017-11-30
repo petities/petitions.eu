@@ -46,13 +46,7 @@ class Pledge < ActiveRecord::Base
     [t('confirm.form.pledge.other'), 'other']
   ]
 
-  MONEY_OPTIONS = [
-    [t('confirm.form.money.1'), '1'],
-    [t('confirm.form.money.5'), '5'],
-    [t('confirm.form.money.10'), '10'],
-    [t('confirm.form.money.25'), '25'],
-    [t('confirm.form.money.50'), '50']
-  ]
+  MONEY_OPTIONS = ['5', '10', '25', '50'].freeze
 
   private
 

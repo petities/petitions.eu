@@ -12,7 +12,7 @@ div.header-user-dropdown
     - Office.with_role(:admin, current_user).each do |office|
       = link_to t('my.desk') + ' : ' + office.name, petition_desk_path(office), class: "header-user-dropdown-item"
 
-    = link_to t('my.petitions'), manage_petitions_path, class: "header-user-dropdown-item"
+    = link_to t('my.petitions'), dashboard_path, class: "header-user-dropdown-item"
     = link_to t('my.profile'), profile_edit_path, class: "header-user-dropdown-item"
     - if current_user.has_role? :admin
       = link_to t('my.create_newsupdate'), new_update_path, class: "header-user-dropdown-item"
