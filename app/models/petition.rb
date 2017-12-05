@@ -121,6 +121,7 @@ class Petition < ActiveRecord::Base
     [t('petition.staging'), 'staging'], # awaiting moderation
   ]
 
+  scope :not_concept_or_staging, -> { where.not(status: ['concept', 'staging']) }
   scope :live,      -> { where(status: 'live') }
   scope :big,       -> { order(signatures_count: :desc) }
   scope :active,    -> { order(active_rate_value: :desc) }
