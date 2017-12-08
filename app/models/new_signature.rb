@@ -19,7 +19,6 @@
 #  special                     :boolean          default(FALSE), not null
 #  person_city                 :string(255)
 #  subscribe                   :boolean          default(FALSE)
-#  person_birth_date           :string(255)
 #  person_birth_city           :string(255)
 #  sort_order                  :integer          default(0), not null
 #  signature_remote_addr       :string(255)
@@ -33,7 +32,6 @@
 #  person_born_at              :date
 #  reminders_sent              :integer
 #  last_reminder_sent_at       :datetime
-#  unconverted_person_born_at  :date
 #  person_country              :string(2)
 #
 
@@ -54,6 +52,16 @@ class NewSignature < Signature
     return if destroy_if_already_confirmed
 
     send_reminder_mail!
+  end
+
+  def confirm!
+    petition.signatures.find_or_create_by!(person_email: person_email) do |signature|
+      signature.copy_signatory_from(self)
+      signature.confirmed_by(request.remote_ip, request.env['HTTP_USER_AGENT'])
+    end
+    # old_signature.destroy if @signature.save
+  rescue ActiveRecord::RecordNotUnique
+    retry
   end
 
   private

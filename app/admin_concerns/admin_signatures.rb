@@ -3,11 +3,11 @@ module AdminSignatures
     :petition_id, :person_name, :person_street, :person_street_number_suffix,
     :person_street_number, :person_postalcode, :person_function, :person_email,
     :person_dutch_citizen, :signed_at, :confirmed_at, :confirmed, :unique_key,
-    :special, :person_city, :subscribe, :person_birth_date, :person_birth_city,
-    :sort_order, :signature_remote_addr, :signature_remote_browser,
+    :special, :person_city, :subscribe, :person_birth_city, :sort_order,
+    :signature_remote_addr, :signature_remote_browser,
     :confirmation_remote_addr, :confirmation_remote_browser, :more_information,
     :visible, :person_born_at, :reminders_sent, :last_reminder_sent_at,
-    :unconverted_person_born_at, :person_country
+    :person_country
   ].freeze
 
   def self.included(dsl)
@@ -40,6 +40,5 @@ module AdminSignatures
     dsl.filter :visible
 
     dsl.filter :last_reminder_send_at
-    dsl.filter :unconverted_person_born_at
   end
 end

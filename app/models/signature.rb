@@ -19,7 +19,6 @@
 #  special                     :boolean          default(FALSE), not null
 #  person_city                 :string(255)
 #  subscribe                   :boolean          default(FALSE)
-#  person_birth_date           :string(255)
 #  person_birth_city           :string(255)
 #  sort_order                  :integer          default(0), not null
 #  signature_remote_addr       :string(255)
@@ -33,7 +32,6 @@
 #  person_born_at              :date
 #  reminders_sent              :integer
 #  last_reminder_sent_at       :datetime
-#  unconverted_person_born_at  :date
 #  person_country              :string(2)
 #
 
@@ -77,37 +75,24 @@ class Signature < ActiveRecord::Base
   #          if: :require_full_address?
 
   validates :person_city,
-            length: { in: 3..255 },
-            on: :update,
-            if: :require_full_address?
-
-  validates :person_city,
             length: { maximum: 255 },
             allow_blank: true,
             unless: :require_full_address?
 
   validates :person_function, length: { maximum: 255 }, allow_blank: true
 
-  validates :person_street,
-            length: { in: 3..255 },
-            on: :update,
-            if: :require_full_address?
+  # with_options if: :require_full_address?, on: :update do |full_address|
+  #   full_address.validates :person_city, length: { in: 3..255 }
+  #   full_address.validates :person_street, length: { in: 3..255 }
+  #   full_address.validates :person_street_number, numericality: { only_integer: true }
+  #   full_address.validates :person_street_number_suffix,
+  #                          length: { in: 1..255 }, allow_blank: true
+  # end
 
-  validates :person_street_number,
-            numericality: { only_integer: true },
-            on: :update,
-            if: :require_full_address?
-
-  validates :person_street_number_suffix,
-            length: { in: 1..255 },
-            allow_blank: true,
-            on: :update,
-            if: :require_full_address?
-
-  validates_date :person_born_at,
-                 on_or_before: :required_minimum_age,
-                 on: :update,
-                 if: :require_minimum_age?
+  # validates_date :person_born_at,
+  #                on_or_before: :required_minimum_age,
+  #                on: :update,
+  #                if: :require_minimum_age?
 
   validates :person_birth_city,
             length: { in: 3..255 },
@@ -132,81 +117,86 @@ class Signature < ActiveRecord::Base
     set_redis_keys if confirmed_changed?
   end
 
-  def set_last_key(last)
-
-    if not confirmed_at
-      puts 'no time..'
-      return
-    end
+  def set_redis_keys(task = false)
+    redis = Redis.current
 
     # last updates
-    last = $redis.get("p-last-#{petition.id}").to_i || 3600
-    last = Time.at(last)
-
-    if confirmed_at > last
-      $redis.set("p-last-#{petition.id}", confirmed_at.to_i)
+    unless confirmed_at
+      key = "p-last-#{petition.id}"
+      last = Time.zone.at(redis.get(key).to_i)
+      redis.set(key, confirmed_at.to_i) if confirmed_at > last
     end
-
-  end
-
-  def set_hour_key
-    t = confirmed_at
 
     # keep track of signature counts the last hours
-    if t > (Time.now - 1.day)
-      hour_key = "p-h-#{petition.id}-#{t.year}-#{t.month}-#{t.day}-#{t.hour}"
-      $redis.incr(hour_key)
+    if confirmed_at > 1.day.ago
+      hour_key = "p-h-#{petition.id}-#{confirmed_at.year}-#{confirmed_at.month}-#{confirmed_at.day}-#{confirmed_at.hour}"
+      redis.incr(hour_key)
       # forget hour keys after 24 hours
-      $redis.expire hour_key, 3600 * 24
+      redis.expire(hour_key, 1.day)
     end
 
-  end
-
-  def set_redis_keys(task = false)
-
-    set_last_key(confirmed_at)
-
-    set_hour_key
-
-    if not task
-      t = confirmed_at
-      day_key = "p-d-#{petition.id}-#{t.year}-#{t.month}-#{t.day}"
-      $redis.incr(day_key)
+    unless task
+      redis.incr("p-d-#{petition.id}-#{confirmed_at.year}-#{confirmed_at.month}-#{confirmed_at.day}")
       # size rating
-      $redis.zincrby('petition_size', 1, petition.id)
+      redis.zincrby('petition_size', 1, petition.id)
       # city count
-      $redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
+      redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
       RedisPetitionCounter.new(petition).increment if petition.is_live?
       # activity rating
       petition.update_active_rate!
     end
-
   end
 
   def require_full_address?
-    active_petition_type && active_petition_type.require_signature_full_address?
+    active_petition_type&.require_signature_full_address?
   end
 
   def require_born_at?
-    active_petition_type && active_petition_type.require_person_born_at?
+    active_petition_type&.require_person_born_at?
   end
 
   def require_minimum_age?
-    active_petition_type && active_petition_type.required_minimum_age.present?
+    active_petition_type&.required_minimum_age.present?
   end
 
   def require_person_city?
-    active_petition_type && active_petition_type.require_person_birth_city?
+    active_petition_type&.require_person_birth_city?
   end
 
   def require_person_country?
-    active_petition_type && active_petition_type.country_code.present?
+    active_petition_type&.country_code.present?
+  end
+
+  # See NewSignature. Just here to provide a interface.
+  def confirm!
+    true
+  end
+
+  def copy_signatory_from(new_signature)
+    self.person_name = new_signature.person_name
+    self.person_city = new_signature.person_city
+    self.visible = new_signature.visible
+  end
+
+  def confirmed_by(remote_ip, browser)
+    self.confirmed = true
+    self.confirmed_at = Time.zone.now
+    self.confirmation_remote_addr = remote_ip
+    self.confirmation_remote_browser = browser if browser.present?
   end
 
   # ActiveAdmin tries .name for display in lists.
   def name
     person_name
+  end
+
+  def similars
+    @similars ||= self.class.where.not(id: id).where(person_email: person_email)
+  end
+
+  def new_signatures
+    @new_signatures ||= NewSignature.where(person_email: person_email)
   end
 
   private

@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.9.1'
+lock '3.10.0'
 
 set :application, 'petitions.eu'
 set :repo_url, 'git@github.com:petities/petitions.eu.git'
@@ -16,9 +16,6 @@ set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
-
-# Default value for :scm is :git
-# set :scm, :git
 
 # Defaults to [:web]
 set :assets_roles, [:web, :app]

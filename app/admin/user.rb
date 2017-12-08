@@ -5,7 +5,9 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
-    id_column
+    column :name do |item|
+      link_to(item.name, [:admin, item])
+    end
     column :email
     column :current_sign_in_at
     column :sign_in_count
@@ -14,11 +16,13 @@ ActiveAdmin.register User do
     actions
   end
 
+  filter :name
   filter :email, filters: [:equals, :contains]
   filter :current_sign_in_at
   filter :sign_in_count
+  filter :reset_password_sent_at
   filter :created_at
-  filter :roles
+  # filter :roles
 
   show do
     attributes_table do
@@ -74,7 +78,7 @@ ActiveAdmin.register User do
 
 
       panel 'office roles' do
-        f.input :roles, as: :check_boxes, 
+        f.input :roles, as: :check_boxes,
           collection: Role.where(resource_type: 'Office'),
           member_label: Proc.new { |r| "%10s %20s" % [r.name, Office.find(r.resource_id).name] }
       end

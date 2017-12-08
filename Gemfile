@@ -48,6 +48,10 @@ gem 'kaminari-i18n'
 gem 'bourbon'
 gem 'simple_form'
 
+# Search.
+# gem 'elasticsearch-model', '~> 5.0', '>= 5.0.1'
+# gem 'elasticsearch-rails', '~> 5.0', '>= 5.0.1'
+
 # gem 'i18n_generators'
 gem 'i18n-tasks'
 
@@ -123,6 +127,10 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
   gem 'capistrano-sidekiq', '~> 0.20.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
+
+  # Required for ssh-ed25519 keys
+  gem 'rbnacl', '>= 3.2', '< 5.0'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development, :test do
