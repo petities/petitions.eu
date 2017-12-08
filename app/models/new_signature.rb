@@ -54,16 +54,6 @@ class NewSignature < Signature
     send_reminder_mail!
   end
 
-  def confirm!
-    petition.signatures.find_or_create_by!(person_email: person_email) do |signature|
-      signature.copy_signatory_from(self)
-      signature.confirmed_by(request.remote_ip, request.env['HTTP_USER_AGENT'])
-    end
-    # old_signature.destroy if @signature.save
-  rescue ActiveRecord::RecordNotUnique
-    retry
-  end
-
   private
 
   def destroy_if_already_confirmed

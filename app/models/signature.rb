@@ -81,18 +81,18 @@ class Signature < ActiveRecord::Base
 
   validates :person_function, length: { maximum: 255 }, allow_blank: true
 
-  # with_options if: :require_full_address?, on: :update do |full_address|
-  #   full_address.validates :person_city, length: { in: 3..255 }
-  #   full_address.validates :person_street, length: { in: 3..255 }
-  #   full_address.validates :person_street_number, numericality: { only_integer: true }
-  #   full_address.validates :person_street_number_suffix,
-  #                          length: { in: 1..255 }, allow_blank: true
-  # end
+  with_options if: :require_full_address?, on: :update do |full_address|
+    full_address.validates :person_city, length: { in: 3..255 }
+    full_address.validates :person_street, length: { in: 3..255 }
+    full_address.validates :person_street_number, numericality: { only_integer: true }
+    full_address.validates :person_street_number_suffix,
+                           length: { in: 1..255 }, allow_blank: true
+  end
 
-  # validates_date :person_born_at,
-  #                on_or_before: :required_minimum_age,
-  #                on: :update,
-  #                if: :require_minimum_age?
+  validates_date :person_born_at,
+                 on_or_before: :required_minimum_age,
+                 on: :update,
+                 if: :require_minimum_age?
 
   validates :person_birth_city,
             length: { in: 3..255 },
@@ -166,24 +166,6 @@ class Signature < ActiveRecord::Base
 
   def require_person_country?
     active_petition_type&.country_code.present?
-  end
-
-  # See NewSignature. Just here to provide a interface.
-  def confirm!
-    true
-  end
-
-  def copy_signatory_from(new_signature)
-    self.person_name = new_signature.person_name
-    self.person_city = new_signature.person_city
-    self.visible = new_signature.visible
-  end
-
-  def confirmed_by(remote_ip, browser)
-    self.confirmed = true
-    self.confirmed_at = Time.zone.now
-    self.confirmation_remote_addr = remote_ip
-    self.confirmation_remote_browser = browser if browser.present?
   end
 
   # ActiveAdmin tries .name for display in lists.
