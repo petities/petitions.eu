@@ -323,6 +323,8 @@ GEM
       ffi (>= 0.5.0, < 2)
     rbnacl (4.0.2)
       ffi
+    rbnacl-libsodium (1.0.15.1)
+      rbnacl (>= 3.0.1)
     rdoc (4.3.0)
     redcarpet (3.4.0)
     redis (4.0.1)
@@ -501,6 +503,7 @@ DEPENDENCIES
   rails (= 4.2.10)
   rails-i18n
   rbnacl (>= 3.2, < 5.0)
+  rbnacl-libsodium
   redcarpet
   redis-rails
   redis_analytics

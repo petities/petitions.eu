@@ -130,6 +130,7 @@ group :development do
 
   # Required for ssh-ed25519 keys
   gem 'rbnacl', '>= 3.2', '< 5.0'
+  gem 'rbnacl-libsodium'
   gem 'bcrypt_pbkdf'
 end
 
