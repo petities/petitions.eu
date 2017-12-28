@@ -83,8 +83,6 @@ class Petition < ActiveRecord::Base
   friendly_id :name, use: :globalize
 
   STATUS_LIST = [
-    # we can view it but not sign?
-    [t('petition.published'),         'published'],
     # we take the petition offline.
     [t('petition.withdrawn'),         'withdrawn'],
     # still building author is confirmed

@@ -505,7 +505,6 @@ en:
     optional: Optional
     other_language_options: 'Translating possible into:'
     pdf: Save in PDF
-    published: Published
     rejected: Rejected
     signable: Signable
     staging: Staging
@@ -526,7 +525,6 @@ en:
         in_treatment: In treatment
         in_process: In process
         closed: Answered
-        published: Published
         success: Petition was successfully updated
         your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
         petition_is_live: The petition is now open to collect signatures. The petitioner receives an e-mail about this.
