@@ -128,7 +128,7 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.status.label')
-        = f.select :status, options_for_select(Petition::STATUS_LIST, selected: @petition.status)
+        = f.select :status, options_for_select(petition_status_options, selected: @petition.status)
       div.start-petition-form-cell.label
         p= t('start.form.status.description')
 

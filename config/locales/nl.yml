@@ -481,7 +481,6 @@ nl:
     available_languages: "Beschikbaar in:"
     closed: Gesloten
     completed: Afgerond
-    concept: Concept
     created: Uw nieuwe petitie is aangemaakt
     csv: Bewaar als CSV sheet
     current_news_is: Het nieuws
@@ -542,28 +541,21 @@ nl:
       statement: Introductie
       subdomain: Subdomein
       title: Titel
-    in_process: Te behandelen
     in_treatment: In behandeling
-    completed: Is beantwoord
     language: Taal
-    live: Ondertekenbaar
     live_version: Versie
     minimum_age: Minimumleeftijd
     new: Nieuw
     news: 'Er is nieuws!'
     newer_version: Nieuwere versie
     newest: Nieuwste
-    not_processed: Niet behandeld
-    sign_elsewhere: Elders te tekenen
     notranslations: Geen vertalingen
     older_version: Oudere versie
     oldest: Oudste
     optional: Optioneel
     other_language_options: 'Vertalen mogelijk naar:'
     pdf: Bewaar als PDF
-    rejected: Afgewezen
     signable: Ondertekenbaar
-    staging: Staging
     state:
       not_yet_finished: Nog niet af
     step:
@@ -588,12 +580,21 @@ nl:
         petition_is_live: De petitie staat nu open om ondertekeningen te verzamelen. De petitionaris ontvangt hier een e-mail over.
     the_next_logical_action: De volgende stap
     title: Titel
-    to_process: In behandeling
     update:
       success: Uw petitie is bijgewerkt.
     user_email: E-mail
     version: Versie
-    withdrawn: Ingetrokken
+    states:
+      completed: Is beantwoord
+      concept: Concept
+      in_process: Te behandelen
+      live: Ondertekenbaar
+      not_processed: Niet behandeld
+      rejected: Afgewezen
+      sign_elsewhere: Elders te tekenen
+      staging: Staging
+      to_process: In behandeling
+      withdrawn: Ingetrokken
   petitioner:
     awaiting_answer: Wacht op antwoord
     awaiting_moderation: Nog doorlaten

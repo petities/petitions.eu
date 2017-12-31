@@ -67,8 +67,6 @@
 Globalize.fallbacks = { en: [:en, :nl], nl: [:nl, :en] }
 
 class Petition < ActiveRecord::Base
-  extend ActionView::Helpers::TranslationHelper
-
   translates :name, :description, :initiators,
              :statement, :request, :slug,
              fallbacks_for_empty_translations: true,
@@ -82,40 +80,18 @@ class Petition < ActiveRecord::Base
 
   friendly_id :name, use: :globalize
 
-  STATUS_LIST = [
-    # we take the petition offline.
-    [t('petition.withdrawn'),         'withdrawn'],
-    # still building author is confirmed
-    [t('petition.concept'),           'concept'],
-    # admin has to review the petition
-    [t('petition.staging'),           'staging'],
-    # admin reviewed the state
-    [t('petition.live'),              'live'],
-    # petitions we do not sign here
-    [t('petition.sign_elsewhere'), 'sign_elsewhere'],
-    # admin does not like this petition
-    [t('petition.rejected'),          'rejected'],
-    # petition should go to goverment
-    [t('petition.to_process'),        'to_process'],
-    # petition is at goverment
-    [t('petition.in_process'),        'in_process'],
-    # petition is not at goverment
-    [t('petition.not_processed'),     'not_processed'],
-    # there is a goverment response
-    # we are done!
-    [t('petition.completed'),         'completed']
-  ]
-
-  # loketten
-  LOKET_ADMIN = [
-    [t('petition.withdrawn'),         'withdrawn'],
-    [t('petition.to_process'),        'to_process']
-  ]
-
-  # petitionaris
-  PETITIONARIS = [
-    [t('petition.staging'), 'staging'], # awaiting moderation
-  ]
+  POSSIBLE_STATES = [
+    'withdrawn', # we take the petition offline.
+    'concept', # still building author is confirmed
+    'staging', # admin has to review the petition
+    'live', # admin reviewed the state
+    'sign_elsewhere', # petitions we do not sign here
+    'rejected', # admin does not like this petition
+    'to_process', # petition should go to goverment
+    'in_process', # petition is at goverment
+    'not_processed', # petition is not at goverment
+    'completed' # there is a goverment response, we are done!
+  ].freeze
 
   scope :not_concept_or_staging, -> { where.not(status: ['concept', 'staging']) }
   scope :live,      -> { where(status: 'live') }
@@ -181,7 +157,6 @@ class Petition < ActiveRecord::Base
   end
 
   def active_rate
-
     short = 1.0
 
     total = 100.0
