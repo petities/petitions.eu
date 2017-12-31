@@ -53,7 +53,7 @@ GEM
       activesupport (>= 3.0.0)
     arel (6.0.4)
     ast (2.3.0)
-    autoprefixer-rails (7.2.2)
+    autoprefixer-rails (7.2.3)
       execjs
     bcrypt (3.1.11)
     bcrypt_pbkdf (1.0.0)
@@ -119,14 +119,14 @@ GEM
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
       paperclip (>= 3.3)
-    devise (4.3.0)
+    devise (4.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.4.0)
-      devise (>= 3.1)
+    devise-i18n (1.5.0)
+      devise (>= 3.4)
     docile (1.1.5)
     easy_translate (0.5.0)
       json
@@ -241,7 +241,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    newrelic_rpm (4.6.0.338)
+    newrelic_rpm (4.7.1.340)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
@@ -294,8 +294,8 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.8)
-      activesupport (>= 4.2.0.beta, < 5.0)
+    rails-dom-testing (1.0.9)
+      activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
@@ -490,7 +490,7 @@ DEPENDENCIES
   mailcatcher
   memory_profiler
   mysql2 (~> 0.4.10)
-  newrelic_rpm (~> 4.6, >= 4.6.0.338)
+  newrelic_rpm (~> 4.7, >= 4.7.1.340)
   paper_trail
   paperclip (~> 5.1)
   prawn (~> 2.2, >= 2.2.2)

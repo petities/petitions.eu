@@ -113,7 +113,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 4.6', '>= 4.6.0.338'
+gem 'newrelic_rpm', '~> 4.7', '>= 4.7.1.340'
 gem 'rollbar', '~> 2.15', '>= 2.15.5'
 # track everything..
 # gem 'logstasher'

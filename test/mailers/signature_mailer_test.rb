@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class SignatureMailerTest < ActionMailer::TestCase
+  include TestInDutchHelper
+
   setup do
     @signature = signatures(:four)
   end
@@ -31,7 +33,6 @@ class SignatureMailerTest < ActionMailer::TestCase
     assert_equal 'Petitie "test1,", voortgangsbericht', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
-
   end
 
   test 'sig_confirmation_mail' do

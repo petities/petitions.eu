@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PetitionMailerTest < ActionMailer::TestCase
+  include TestInDutchHelper
+  
   setup :initialize_petition
 
   test 'adoption_request_signatory_mail' do

@@ -161,31 +161,36 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'check confirmation logic' do
+    redis = Redis.current
+
     # remove redis keys
     # mabe we should have a test prefix..
-    if $redis.keys("p-d-#{@petition_with_required_fields.id}-*").size > 0
-      $redis.del($redis.keys("p-d-#{@petition_with_required_fields.id}-*"))
-    end
+    keys = redis.keys("p-d-#{@petition_with_required_fields.id}-*")
+    redis.del(keys) unless keys.empty?
 
+    petition = @new_signature.petition
     assert_difference('NewSignature.count', -1) do
       assert_difference('Signature.count') do
-        assert_difference('$redis.get("p#{@petition_with_required_fields.id}-count").to_i') do
-        #assert_difference('Petition.find(2).signatures_count') do
-          get :confirm, signature_id: @new_signature.unique_key
+        assert_difference('redis.get("p#{@petition_with_required_fields.id}-count").to_i') do
+          assert_difference('petition.get_count') do
+            get :confirm, signature_id: @new_signature.unique_key
+            signature = Signature.find_by(unique_key: @new_signature.unique_key)
+            assert_not_nil(signature.confirmed_at)
+            assert_equal(petition.last_sig_update, signature.confirmed_at)
+          end
         end
       end
     end
 
     old_value = @petition_with_required_fields.active_rate
-    assert_equal($redis.keys("p-d-#{@petition_with_required_fields.id}-*").size, 1)
+    assert_equal(redis.keys("p-d-#{@petition_with_required_fields.id}-*").size, 1)
     assert_not_equal(@petition_with_required_fields.active_rate, 0.01)
     assert_equal(@petition.active_rate, 0.01)
 
     # when we do it again nothing should happen.
     assert_no_difference('NewSignature.count') do
       assert_no_difference('Signature.count') do
-        #assert_no_difference('Petition.find(2).signatures_count') do
-        assert_no_difference('$redis.get("p2-count").to_i') do
+        assert_no_difference('@new_signature.petition.get_count') do
           get :confirm, signature_id: @new_signature.unique_key
         end
       end
