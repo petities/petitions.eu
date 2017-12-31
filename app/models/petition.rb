@@ -97,8 +97,6 @@ class Petition < ActiveRecord::Base
     [t('petition.rejected'),          'rejected'],
     # petition should go to goverment
     [t('petition.to_process'),        'to_process'],
-    # no owner?
-    [t('petition.ghost'),             'ghost'],
     # petition is at goverment
     [t('petition.in_process'),        'in_process'],
     # petition is not at goverment
