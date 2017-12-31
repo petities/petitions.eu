@@ -15,4 +15,10 @@ class PetitionsHelperTest < ActionView::TestCase
     @petition.subdomain = nil
     assert_equal petition_share_url(@petition), 'http://test.host/petitions/testsubdomain'
   end
+
+  test 'petition_status_options' do
+    assert_equal petition_status_options.size, Petition::POSSIBLE_STATES.size
+    withdrawn = petition_status_options.first
+    assert_equal withdrawn, [t('petition.states.withdrawn'), 'withdrawn']
+  end
 end

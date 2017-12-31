@@ -424,7 +424,6 @@ en:
     available_languages: "Available in:"
     closed: Closed
     completed: Completed
-    concept: Concept
     created: Your new petition is now created
     csv: Save in CSV
     current_news_is: The news
@@ -470,7 +469,6 @@ en:
     finalize: Open de petition
     flash:
       not_found: We could not find the petition you requested. You might want to try using the search feature.
-    ghost: Ghost
     help:
       description: Description
       finish: Finish
@@ -486,29 +484,21 @@ en:
       statement: Statement
       subdomain: Subdomain
       title: Title
-    in_process: In process
     in_treatment: In treatment
-    completed: Is answered
     language: Language
-    live: Live
     live_version: Live version
     minimum_age: Minimum age
     new: New
     news: 'There is news!'
     newer_version: Newer version
     newest: Newest
-    not_processed: Not processed
-    sign_elsewhere: Not signable here
     notranslations: Notranslations
     older_version: Older version
     oldest: Oldest
     optional: Optional
     other_language_options: 'Translating possible into:'
-    pdf: Save in PDF
-    published: Published
-    rejected: Rejected
+    pdf: Save as PDF
     signable: Signable
-    staging: Staging
     state:
       not_yet_finished: Not yet finished
     step:
@@ -526,18 +516,26 @@ en:
         in_treatment: In treatment
         in_process: In process
         closed: Answered
-        published: Published
         success: Petition was successfully updated
         your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
         petition_is_live: The petition is now open to collect signatures. The petitioner receives an e-mail about this.
     the_next_logical_action: The next logical action
     title: Title
-    to_process: To process
     update:
       success: Petition was successfully updated.
     user_email: User email
     version: Version
-    withdrawn: Withdrawn
+    states:
+      completed: Is answered
+      concept: Concept
+      in_process: In process
+      live: Live
+      not_processed: Not processed
+      rejected: Rejected
+      sign_elsewhere: Not signable here
+      staging: Staging
+      to_process: To process
+      withdrawn: Withdrawn
   petitioner:
     awaiting_answer: Awaiting answer
     awaiting_moderation: Awaiting moderation
