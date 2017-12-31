@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ContactMailerTest < ActionMailer::TestCase
+  include TestInDutchHelper
+
   setup do
     @contact_form = ContactForm.new(
       name: 'Example Name',

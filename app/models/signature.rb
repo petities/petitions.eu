@@ -121,7 +121,7 @@ class Signature < ActiveRecord::Base
     redis = Redis.current
 
     # last updates
-    unless confirmed_at
+    if confirmed_at
       key = "p-last-#{petition.id}"
       last = Time.zone.at(redis.get(key).to_i)
       redis.set(key, confirmed_at.to_i) if confirmed_at > last
