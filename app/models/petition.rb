@@ -81,16 +81,17 @@ class Petition < ActiveRecord::Base
   friendly_id :name, use: :globalize
 
   POSSIBLE_STATES = [
-    'withdrawn', # we take the petition offline.
-    'concept', # still building author is confirmed
-    'staging', # admin has to review the petition
-    'live', # admin reviewed the state
-    'sign_elsewhere', # petitions we do not sign here
-    'rejected', # admin does not like this petition
-    'to_process', # petition should go to goverment
-    'in_process', # petition is at goverment
-    'not_processed', # petition is not at goverment
-    'completed' # there is a goverment response, we are done!
+    'withdrawn', # user or admin closed the petition for further signing
+    'concept', # user is writing the petition
+    'staging', # admin is moderating the petition before opening it for signing
+    'live', # admin moderated the petition and opened it for signing
+    'sign_elsewhere', # admin moderated a mirror of a petition elsewhere which can not be signed here
+    'rejected', # admin found criteria the petition does not meet and motivated a rejection
+    'to_process', # user prepares petition for hand over and collects last signatures
+    'in_process', #  petition is handed over and awaits answer
+    'not_processed', # is expired, user asked for hand over, awaiting hand over
+    'orphaned', # is expired, closed, and user does not respond 
+    'completed' # petition is expired and answered
   ].freeze
 
   scope :not_concept_or_staging, -> { where.not(status: ['concept', 'staging']) }
