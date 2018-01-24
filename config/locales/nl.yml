@@ -590,6 +590,7 @@ nl:
       in_process: Te behandelen
       live: Ondertekenbaar
       not_processed: Niet behandeld
+      orphaned: Verweesd
       rejected: Afgewezen
       sign_elsewhere: Elders te tekenen
       staging: Staging

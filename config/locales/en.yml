@@ -531,6 +531,7 @@ en:
       in_process: In process
       live: Live
       not_processed: Not processed
+      orphaned: Orphaned
       rejected: Rejected
       sign_elsewhere: Not signable here
       staging: Staging
