@@ -169,7 +169,7 @@ GEM
     has_secure_token (1.0.0)
       activerecord (>= 3.0)
     highline (1.7.10)
-    i18n (0.9.1)
+    i18n (0.9.3)
       concurrent-ruby (~> 1.0)
     i18n-country-translations (1.2.4)
       i18n (~> 0.5)
@@ -233,7 +233,7 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_portile2 (2.3.0)
-    minitest (5.10.3)
+    minitest (5.11.1)
     money (6.10.0)
       i18n (>= 0.6.4, < 1.0)
     multi_json (1.12.2)
@@ -249,7 +249,7 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
-    paperclip (5.1.0)
+    paperclip (5.2.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -492,7 +492,7 @@ DEPENDENCIES
   mysql2 (~> 0.4.10)
   newrelic_rpm (~> 4.7, >= 4.7.1.340)
   paper_trail
-  paperclip (~> 5.1)
+  paperclip (~> 5.2)
   prawn (~> 2.2, >= 2.2.2)
   prawn-table
   prawnto
@@ -527,4 +527,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
