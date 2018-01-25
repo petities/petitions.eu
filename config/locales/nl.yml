@@ -717,6 +717,7 @@ nl:
         in_treatment: In behandeling
         completed: Beantwoord
         indication: 'Status:'
+        orphaned: Verweesd
         sign_elsewhere: Elders te tekenen
         signable: Ondertekenbaar
         staging: Wacht op petitieloket

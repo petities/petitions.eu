@@ -658,6 +658,7 @@ en:
         in_treatment: In treatment
         completed: Answered
         indication: 'Status:'
+        orphaned: Orphaned
         sign_elsewhere: Sign elsewhere
         signable: Signable
         staging: Waiting for moderator

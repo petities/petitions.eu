@@ -201,6 +201,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
+    return 'orphaned' if orphaned?
     status if %w[completed sign_elsewhere staging withdrawn].include?(status)
   end
 
@@ -230,6 +231,10 @@ class Petition < ActiveRecord::Base
     %w[in_process to_process not_processed].include?(status)
   end
 
+  def orphaned?
+   status == 'orphaned'
+  end
+  
   def answer
     updates.find_by(show_on_petition: true)
   end
