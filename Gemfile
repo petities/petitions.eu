@@ -118,6 +118,8 @@ gem 'rollbar', '~> 2.15', '>= 2.15.5'
 # track everything..
 # gem 'logstasher'
 
+gem 'rack-attack', '~> 5.0', '>= 5.0.1'
+
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil
 

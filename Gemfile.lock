@@ -273,6 +273,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.8)
+    rack-attack (5.0.1)
+      rack
     rack-mini-profiler (0.10.7)
       rack (>= 1.2.0)
     rack-protection (1.5.3)
@@ -498,6 +500,7 @@ DEPENDENCIES
   prawnto
   pundit
   quiet_assets
+  rack-attack (~> 5.0, >= 5.0.1)
   rack-mini-profiler
   rack-utf8_sanitizer
   rails (= 4.2.10)

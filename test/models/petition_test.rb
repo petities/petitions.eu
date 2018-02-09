@@ -3,6 +3,7 @@ require 'test_helper'
 class PetitionTest < ActiveSupport::TestCase
   include Concerns::StripWhitespace
   include Concerns::TruncateString
+  include TestInDutchHelper
 
   setup do
     @petition = petitions(:one)
