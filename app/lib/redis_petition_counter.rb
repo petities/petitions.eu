@@ -2,6 +2,10 @@
 class RedisPetitionCounter
   attr_reader :petition_id
 
+  def self.count(petition)
+    new(petition).count
+  end
+
   def initialize(petition)
     @petition_id = petition.id
   end

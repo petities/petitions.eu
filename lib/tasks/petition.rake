@@ -2,18 +2,7 @@ namespace :petition do
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
     Petition.live.find_each do |petition|
-      count = petition.signatures.count
-      old_count = petition.signatures_count
-
-      next if count == old_count
-
-      puts [count, old_count, petition.name].join(' - ')
-
-      petition.signatures_count = count
-
-      puts "Error saving #{petition.name}" unless petition.save
-
-      RedisPetitionCounter.new(petition).update_with_limit(count)
+      UpdateSignaturesCountJob.perform_later(petition)
     end
   end
 

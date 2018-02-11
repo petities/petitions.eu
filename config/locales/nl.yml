@@ -31,6 +31,9 @@ nl:
     dashboard_welcome:
       call_to_action: Oproep
       welcome: U bent ingelogd
+    petitions:
+      update_signature_count: "Cache ondertekeningen bijwerken"
+      update_signature_count_requested: "Cache met aantal ondertekeningen wordt bijgewerkt."
     signatures:
       batch_invisible: De ondertekeningen zijn nu onzichtbaar.
     status_tag:

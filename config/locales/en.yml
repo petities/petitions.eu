@@ -29,6 +29,9 @@ en:
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
+    petitions:
+      update_signature_count: "Update cached signature count"
+      update_signature_count_requested: "Signature count cache will be updated in a few moments."
     signatures:
       batch_invisible: The selected signatures are now invisible.
   activerecord:

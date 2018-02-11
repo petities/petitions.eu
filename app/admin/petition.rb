@@ -57,6 +57,15 @@ ActiveAdmin.register Petition do
   filter :status
   filter :archived
 
+  action_item :view, only: :show do
+    link_to(t('active_admin.petitions.update_signature_count'), update_signature_count_admin_petition_path(resource), method: :put)
+  end
+
+  member_action :update_signature_count, method: :put do
+    UpdateSignaturesCountJob.perform_later(resource)
+    redirect_to([:admin, resource], notice: t('active_admin.petitions.update_signature_count_requested'))
+  end
+
   sidebar :translations, only: :show do
     table_for resource.translations do
       column :id do |item|
@@ -68,6 +77,13 @@ ActiveAdmin.register Petition do
       I18n.t('active_admin.new_model', model: PetitionTranslation.model_name.human),
       new_admin_petition_translation_path(petition_translation: { petition_id: resource.id })
     )
+  end
+
+  sidebar :redis, only: :show do
+    from_redis = { signature_count: RedisPetitionCounter.count(resource) }
+    attributes_table_for from_redis do
+      row :signature_count
+    end
   end
 
   sidebar :users, only: :show do

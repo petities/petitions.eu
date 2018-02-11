@@ -88,9 +88,9 @@ class Petition < ActiveRecord::Base
     'sign_elsewhere', # admin moderated a mirror of a petition elsewhere which can not be signed here
     'rejected', # admin found criteria the petition does not meet and motivated a rejection
     'to_process', # user prepares petition for hand over and collects last signatures
-    'in_process', #  petition is handed over and awaits answer
+    'in_process', # petition is handed over and awaits answer
     'not_processed', # is expired, user asked for hand over, awaiting hand over
-    'orphaned', # is expired, closed, and user does not respond 
+    'orphaned', # is expired, closed, and user does not respond
     'completed' # petition is expired and answered
   ].freeze
 
@@ -121,12 +121,9 @@ class Petition < ActiveRecord::Base
   has_many :task_statuses, dependent: :destroy
 
   def get_count
-    from_redis = RedisPetitionCounter.new(self).count
-    if from_redis.zero?
-      signatures_count
-    else
-      from_redis
-    end
+    from_redis = RedisPetitionCounter.count(self)
+    return from_redis unless from_redis.zero?
+    signatures_count
   end
 
   include StripWhitespace
@@ -201,8 +198,7 @@ class Petition < ActiveRecord::Base
     return 'closed' if is_closed?
     return 'signable' if is_live?
     return 'in_treatment' if in_treatment?
-    return 'orphaned' if orphaned?
-    status if %w[completed sign_elsewhere staging withdrawn].include?(status)
+    status if %w[completed sign_elsewhere staging withdrawn orphaned].include?(status)
   end
 
   # All users who signed this petition should get an
@@ -231,10 +227,6 @@ class Petition < ActiveRecord::Base
     %w[in_process to_process not_processed].include?(status)
   end
 
-  def orphaned?
-   status == 'orphaned'
-  end
-  
   def answer
     updates.find_by(show_on_petition: true)
   end

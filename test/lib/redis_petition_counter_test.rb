@@ -17,4 +17,9 @@ class RedisPetitionCounterTest < ActiveSupport::TestCase
     @counter.delete
     assert_not @counter.exists?
   end
+
+  test 'should return count with class method' do
+    @counter.update(42)
+    assert_equal RedisPetitionCounter.count(@petition), 42
+  end
 end

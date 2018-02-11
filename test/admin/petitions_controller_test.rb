@@ -50,6 +50,12 @@ module Admin
       end
     end
 
+    test 'should put update_signature_count' do
+      put :update_signature_count, id: @petition
+      assert_enqueued_jobs 1
+      assert_redirected_to admin_petition_path(@petition)
+    end
+
     test 'should get edit' do
       get :edit, id: @petition
       assert_response :success
