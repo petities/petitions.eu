@@ -178,7 +178,17 @@ class PetitionsControllerTest < ActionController::TestCase
 
     updated_petition = assigns(:petition)
     assert_equal('live', updated_petition.status)
+    assert_not_equal(90.days.from_now.to_date, updated_petition.date_projected)
     assert_redirected_to edit_petition_path(updated_petition)
+
+    [nil, 2.days.ago].each do |date_projected|
+      @petition.update_attribute(:date_projected, date_projected)
+      get :finalize, petition_id: @petition.id
+
+      updated_petition = assigns(:petition)
+      assert_equal('live', updated_petition.status)
+      assert_equal(90.days.from_now.to_date, updated_petition.date_projected)
+    end
   end
 
   test 'should finalize petition for Petition admin' do

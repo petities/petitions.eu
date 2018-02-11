@@ -250,6 +250,9 @@ class PetitionsController < ApplicationController
     end
 
     if @petition.office.present? && current_user.has_role?(:admin, @petition.office)
+      if @petition.date_projected.blank? || @petition.date_projected&.past?
+        @petition.date_projected = 90.days.from_now
+      end
       @petition.update(status: 'live')
       flash[:notice] = t('petition.status.flash.petition_is_live')
     end
