@@ -68,8 +68,9 @@ namespace :petition do
       # general count
       RedisPetitionCounter.new(petition).update(count)
       # Main rankings
-      $redis.zrem('petition_size', petition.id)
-      $redis.zadd('petition_size', count, petition.id)
+      redis = Redis.current
+      redis.zrem('petition_size', petition.id)
+      redis.zadd('petition_size', count, petition.id)
 
       # last hours activity rate
       puts

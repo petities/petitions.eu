@@ -150,7 +150,7 @@ class Petition < ActiveRecord::Base
   end
 
   def last_sig_update
-    key = Redis.current.get("p-last-#{id}")
+    key = redis.get("p-last-#{id}")
     Time.zone.at(key.to_i) if key
   end
 
@@ -164,9 +164,9 @@ class Petition < ActiveRecord::Base
     15.times do
       key_d = "p-d-#{id}-#{now.year}-#{now.month}-#{now.day}"
       key_h = "p-h-#{id}-#{now.year}-#{now.month}-#{now.day}-#{now.hour}"
-      vd = $redis.get(key_d) || 0
+      vd = redis.get(key_d) || 0
       vd = vd.to_f
-      vh = $redis.get(key_h) || 0
+      vh = redis.get(key_h) || 0
       vh = vh.to_f
       short += vd
       short += vh
@@ -176,9 +176,9 @@ class Petition < ActiveRecord::Base
     a_rate = short / total
 
     # remove old active rate
-    $redis.zrem('active_rate', id)
+    redis.zrem('active_rate', id)
     # add new active rate
-    $redis.zadd('active_rate', a_rate, id)
+    redis.zadd('active_rate', a_rate, id)
 
     a_rate
   end
@@ -188,8 +188,11 @@ class Petition < ActiveRecord::Base
   end
 
   def is_hot?
-    score = $redis.zscore('active_rate', id) || 0
-    score > 0.4
+    redis_active_rate > 0.4
+  end
+
+  def redis_active_rate
+    redis.zscore('active_rate', id) || 0
   end
 
   ## petition status summary
@@ -245,7 +248,7 @@ class Petition < ActiveRecord::Base
 
     hist.times do
       key = "p-d-#{id}-#{d.year}-#{d.month}-#{d.day}"
-      c = $redis.get(key) || 0
+      c = redis.get(key) || 0
       c = c.to_i
       day_counts.push(c)
 
@@ -277,13 +280,11 @@ class Petition < ActiveRecord::Base
   end
 
   def delete_keys
-    r = $redis
+    keys_d = redis.keys("p-d-#{id}-*")
+    keys_h = redis.keys("p-h-#{id}-*")
 
-    keys_d = r.keys("p-d-#{id}-*")
-    keys_h = r.keys("p-h-#{id}-*")
-
-    r.del(*keys_d) if keys_d.size > 0
-    r.del(*keys_h) if keys_h.size > 0
+    redis.del(*keys_d) if keys_d.size > 0
+    redis.del(*keys_h) if keys_h.size > 0
   end
 
   def create_raw_sql_barchart_keys
@@ -310,7 +311,7 @@ class Petition < ActiveRecord::Base
       id = row[1]
       year, month, day = row[2].split('/')
       day_key = "p-d-#{id}-#{year}-#{month.to_i}-#{day.to_i}"
-      $redis.set(day_key, count)
+      redis.set(day_key, count)
      end
 
   end
@@ -372,5 +373,9 @@ class Petition < ActiveRecord::Base
   def send_status_mail
     return unless status_changed? && persisted?
     PetitionStatusMail.new(self).call
+  end
+
+  def redis
+    Redis.current
   end
 end

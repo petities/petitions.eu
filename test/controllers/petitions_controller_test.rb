@@ -141,7 +141,7 @@ class PetitionsControllerTest < ActionController::TestCase
 
   test 'should_get_limited_edit' do
     sign_in_admin_for @petition
-    $redis.set("p#{@petition.id}-count", 200)
+    Redis.current.set("p#{@petition.id}-count", 200)
     get :edit, id: @petition.friendly_id
     assert_response :success
     assert_not_nil assigns(:exclude_list)
