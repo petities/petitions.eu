@@ -7,6 +7,9 @@ class UpdateSignaturesCountJob < ActiveJob::Base
 
     old_count = petition.signatures_count
     petition.update_column(:signatures_count, count) if old_count != count
-    RedisPetitionCounter.new(petition).update_with_limit(count)
+
+    cached_counter = RedisPetitionCounter.new(petition)
+    cached_counter.delete unless petition.is_live?
+    cached_counter.update_with_limit(count)
   end
 end

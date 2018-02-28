@@ -1,7 +1,7 @@
 namespace :petition do
   desc 'fix signature counts'
   task fix_signature_counts: :environment do
-    Petition.live.find_each do |petition|
+    Petition.find_each do |petition|
       UpdateSignaturesCountJob.perform_later(petition)
     end
   end
