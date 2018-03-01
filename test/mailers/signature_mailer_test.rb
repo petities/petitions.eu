@@ -73,6 +73,7 @@ class SignatureMailerTest < ActionMailer::TestCase
 
     assert mail.to, recipient
     assert_match signature.person_name, mail.body.encoded
+    assert_match 'met de aantekening', mail.body.encoded
     assert_match signature.person_function, mail.body.encoded
   end
 end
