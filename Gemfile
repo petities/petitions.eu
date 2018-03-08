@@ -129,11 +129,6 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
   gem 'capistrano-sidekiq', '~> 0.20.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
-
-  # Required for ssh-ed25519 keys
-  gem 'rbnacl', '>= 3.2', '< 5.0'
-  gem 'rbnacl-libsodium'
-  gem 'bcrypt_pbkdf'
 end
 
 group :development, :test do
