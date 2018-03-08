@@ -74,12 +74,15 @@ nl:
       petition_translation:
         one: Petitievertaling
         other: Petitievertalingen
-      petition_types:
+      petition_type:
         one: Petitietype
         other: Petitietypes
       pledge:
         one: Toezegging
         other: Toezeggingen
+      role:
+        one: Rol
+        other: Rollen
       signature:
         one: Ondertekening
         other: Ondertekeningen
