@@ -13,17 +13,17 @@ class SignaturesControllerTest < ActionController::TestCase
   end
 
   test 'should get index' do
-   get :index, petition_id: @petition.id
-   assert_response :success
-   assert_not_nil assigns(:petition)
-   assert_not_nil assigns(:signatures)
+    get :index, petition_id: @petition.id
+    assert_response :success
+    assert_not_nil assigns(:petition)
+    assert_not_nil assigns(:signatures)
   end
 
   test 'should get latest' do
-   get :latest, petition_id: @petition.id
-   assert_response :success
-   assert_not_nil assigns(:petition)
-   assert_not_nil assigns(:signatures)
+    get :latest, petition_id: @petition.id
+    assert_response :success
+    assert_not_nil assigns(:petition)
+    assert_not_nil assigns(:signatures)
   end
 
   # test "should get new" do
@@ -197,6 +197,13 @@ class SignaturesControllerTest < ActionController::TestCase
     end
 
     assert_equal(@petition_with_required_fields.active_rate, old_value)
+  end
+
+  test 'confirmation page' do
+    signature = signatures(:five)
+    get :confirm, signature_id: signature.unique_key
+    assert_response :ok
+    assert_match 'met de aantekening', response.body
   end
 
   test 'confirmation not_found' do

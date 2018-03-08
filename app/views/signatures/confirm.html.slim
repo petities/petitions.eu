@@ -348,12 +348,14 @@ div.page
       div.start-petition-form-cell.label
         p= t('confirm.mailafriend.label')
         div.email
+          - person_function = ''
+          - if @signature.person_function.present?
+            - person_function = t('mail.mailafriend.note') + " \"#{@signature.person_function}\""
           = markdown t('mail.mailafriend.mail',
             name: @signature.person_name,
             sig_email: @signature.person_email,
             petition_name: @petition.name,
-            sig_function: @signature.person_function,
-            petition_url: petition_url({id: @petition.slug || @petition.id}),
+            sig_function: person_function,
             intro: @petition.description,
             petition_email: @petition.petitioner_email,
             subdomain: @petition.subdomain)

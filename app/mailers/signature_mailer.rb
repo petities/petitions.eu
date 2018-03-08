@@ -83,7 +83,7 @@ class SignatureMailer < ApplicationMailer
     @petition = @signature.petition
 
     @person_function = ''
-    unless @signature.person_function.blank?
+    if @signature.person_function.present?
       @person_function = t('mail.mailafriend.note') + " \"#{@signature.person_function}\""
     end
 
