@@ -1,13 +1,13 @@
 header.header
   - if homepage?
     div.header-content.home
-      div#wool-paralax
-        div.wool-layer data={shift: "0.01"} = image_tag "header_back2.png"
-        div.wool-layer data={shift: "0.02"} = image_tag "header_front3.png"
-        div.wool-layer data={shift: "0.03"} = image_tag "header_front4.png"
-        div.wool-layer data={shift: "0.04"} = image_tag "header_trees2.png"
-        div.wool-layer data={shift: "0.05"} = image_tag "header_front2.png"
-        div.wool-layer data={shift: "0.07"} = image_tag "header_front1.png"
+      div
+        div = image_tag "header_back2.png"
+        div = image_tag "header_front3.png"
+        div = image_tag "header_front4.png"
+        div = image_tag "header_trees2.png"
+        div = image_tag "header_front2.png"
+        div = image_tag "header_front1.png"
 
         div.header-button-container
           = link_to '', root_path, class: 'header-logo'

@@ -37,8 +37,6 @@ $.fn.select_org_menu = function() {
 
 $(document).ready(function(){
 
-  $('body').woolParalax();
-
   // define text validation function for editing/creating a petition
   var validate_text_length = function(field){
     var val = $(field).val(),
