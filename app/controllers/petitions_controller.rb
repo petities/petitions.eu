@@ -243,7 +243,7 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
-    if current_user.has_role?(:admin, @petition)
+    if current_user.has_role?(:admin, @petition) && @petition.concept?
       @petition.update(status: 'staging')
       flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
       PetitionMailer.finalize_mail(@petition).deliver_later

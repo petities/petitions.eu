@@ -206,7 +206,23 @@ class PetitionsControllerTest < ActionController::TestCase
     assert_redirected_to edit_petition_path(updated_petition)
   end
 
+  test 'should finalize petition for Petition admin only once' do
+    @petition.update_attribute(:status, 'staging')
+
+    sign_in_admin_for @petition
+
+    # No mails should be sent the second time.
+    assert_enqueued_jobs 0 do
+      get :finalize, petition_id: @petition.id
+    end
+
+    updated_petition = assigns(:petition)
+    assert_equal('staging', updated_petition.status)
+    assert_redirected_to edit_petition_path(updated_petition)
+  end
+
   test 'should status change petition' do
+    @petition.update_attribute(:status, 'concept')
     sign_in_admin_for @petition
 
     # mails should be send on status change

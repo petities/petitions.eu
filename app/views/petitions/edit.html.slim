@@ -90,7 +90,7 @@ div.page
 
         h2 class="petition-section-title"
         p
-          = t ('edit.petition.status.explanation')
+          = t('edit.petition.status.explanation')
 
   section.petition-container id="petitionStateEdit" style="display: none"
     div.petition-text-wrapper
@@ -123,10 +123,11 @@ div.page
       div.whitespace
 
 div
-  - if (@petition.concept? || @petition.is_staging?) && user_signed_in? && (current_user.has_role?(:admin, @petition) || current_user.has_role?(:admin, @petition.office))
+  - if policy(@petition).finalize?
       div.petition-editbutton-container
         div.petition-editbutton
           = link_to t('start.form.finalize'), petition_finalize_path(@petition)
+
       div.whitespace
 
   /<!-- /editbutton -->

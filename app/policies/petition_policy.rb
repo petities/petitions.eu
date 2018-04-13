@@ -6,8 +6,7 @@ class PetitionPolicy < ApplicationPolicy
   def update?
     return false unless user
     user.has_role?(:admin) ||
-      user.has_role?(:admin, petition) ||
-      user.has_role?(:admin, petition.office)
+      user.has_role?(:admin, petition) || user.has_role?(:admin, office)
   end
 
   def special_update?
@@ -15,7 +14,11 @@ class PetitionPolicy < ApplicationPolicy
   end
 
   def finalize?
-    update?
+    if petition.concept?
+      user.has_role?(:admin, petition) || user.has_role?(:admin, office)
+    elsif petition.is_staging?
+      user.has_role?(:admin, office)
+    end
   end
 
   def export?
@@ -27,12 +30,12 @@ class PetitionPolicy < ApplicationPolicy
 
     return remove if user.has_role?(:admin)
 
-    remove += petitioner_fields if user.has_role?(:admin, petition.office)
+    remove += petitioner_fields if user.has_role?(:admin, office)
 
     # if signature count is below a dozen, then the petition can still be edited
     return remove if petition.get_count.to_i < 12
 
-    unless user.has_role?(:admin, petition.office)
+    unless user.has_role?(:admin, office)
       unless petition.concept? || petition.is_staging?
         remove += [:name, :subdomain, :initiators, :statement, :request]
       end
@@ -45,6 +48,10 @@ class PetitionPolicy < ApplicationPolicy
 
   def petition
     record
+  end
+
+  def office
+    petition.office
   end
 
   def petitioner_fields
