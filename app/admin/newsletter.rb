@@ -20,6 +20,7 @@ ActiveAdmin.register Newsletter do
 
   form do |f|
     f.inputs 'Newsletter fields' do
+      f.input :petition_id, as: :hidden
       f.input :number
       f.input :date
       f.input :text

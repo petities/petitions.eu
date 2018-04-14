@@ -17,7 +17,7 @@ en:
       <p>&nbsp;</p>
       <p><a href="http://www.netdem.nl">Netwerk Democratie</a>, the platform voor democratic innovation, supports Petities.nl with office space amongst others.</p>&#13;
       <p>&nbsp;</p>
-      <p>Our annual report is available <a href="http://jaarverslag.petities.nl">in Dutch</a>.</p>&#13;
+      <p>Our annual report is available <a href="https://jaarverslag.petities.nl">in Dutch</a>.</p>&#13;
       <p>&nbsp;</p>
     title: About the 'stichting Petities.nl'
   active: Active
@@ -469,7 +469,6 @@ en:
     edit_state: Edit state
     editing: Editing
     editors: Editors
-    finalize: Open de petition
     flash:
       not_found: We could not find the petition you requested. You might want to try using the search feature.
     help:
@@ -609,6 +608,7 @@ en:
     address: Address
     birth_date: Date of birth
     city: Woonplaats
+    edit_details_button: Edit my information
     edit_your_information: Edit your information
     email: E-mail
     details:
@@ -749,7 +749,8 @@ en:
         label: Addressed to
       cannot_edit_live_petition: You cannot edit a live petition
       cannot_start_without_email: You cannot start a petition without providing your email
-      finalize: Open the petition
+      finalize: Pass to moderator
+      release: Open the petition
       image:
         description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
         label: Petition image

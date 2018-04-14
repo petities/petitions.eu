@@ -13,6 +13,10 @@ class UpdatePolicy < ApplicationPolicy
     create?
   end
 
+  def destroy?
+    update?
+  end
+
   private
 
   def petition_update?

@@ -60,7 +60,8 @@ Rails.application.routes.draw do
     resources :updates, only: [:index, :show]
     resource :export, only: :show
 
-    get :finalize
+    post :finalize
+    post :release
   end
 
   resources :updates

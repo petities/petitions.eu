@@ -113,7 +113,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 4.7', '>= 4.7.1.340'
+gem 'newrelic_rpm', '~> 4.8', '>= 4.8.0.341'
 gem 'rollbar', '~> 2.15', '>= 2.15.5'
 # track everything..
 # gem 'logstasher'
@@ -125,9 +125,10 @@ gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
   gem 'capistrano-bundler', '~> 1.3.0'
+  gem 'capistrano-maintenance', '~> 1.2', require: false
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
-  gem 'capistrano-sidekiq', '~> 0.20.0'
+  gem 'capistrano-sidekiq', '~> 1.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
 end
 
@@ -141,7 +142,6 @@ group :development, :test do
 
   # create fake data
   gem 'faker'
-  gem 'mailcatcher'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

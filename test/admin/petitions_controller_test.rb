@@ -80,7 +80,9 @@ module Admin
                                   description: 'The petition that is used for testing',
                                   initiators: 'We, the developers',
                                   statement: 'Testing the software',
-                                  request: 'This test to pass'
+                                  request: 'This test to pass',
+                                  petitioner_name: 'T. Tester',
+                                  petitioner_email: 'test@example.com'
                                 }
       end
 

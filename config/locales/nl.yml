@@ -19,7 +19,7 @@ nl:
       <p>&nbsp;</p>
       <p><a href="http://www.netdem.nl">Netwerk Democratie</a>, het platform voor democratische innovatie, steunt Petities.nl onder andere met huisvesting.</p>&#13;
       <p>&nbsp;</p>
-      <p>Meer over de stichting kunt u teruglezen in ons <a href="http://jaarverslag.petities.nl">jaarverslag</a>.</p>&#13;
+      <p>Meer over de stichting kunt u teruglezen in ons <a href="https://jaarverslag.petities.nl">jaarverslag</a>.</p>&#13;
       <p>&nbsp;</p>
     title: Over de stichting Petities.nl
   active: Actief
@@ -529,7 +529,6 @@ nl:
     edit_state: Bewerk status
     editing: Bewerken
     editors: Vertalers
-    finalize: Open de petitie
     flash:
       not_found: We konden de petitie waar u naar vroeg niet vinden. Met de zoek-functie lukt het misschien wel.
     help:
@@ -671,6 +670,7 @@ nl:
     address: Adres
     birth_date: Geboortedatum
     city: Woonplaats
+    edit_details_button: Bewerk mijn gegevens
     edit_your_information: Bewerk uw gegevens
     email: E-mailadres
     details:
@@ -683,7 +683,7 @@ nl:
     postalcode: Postcode
     real_email: Eigen e-mail
     real_name: Uw naam
-    roles: 'Verantwoordelijk voor de petities:'
+    roles: 'Verantwoordelijk voor de petities'
     phone: 'Telefoonnummer(s)'
     submit: Werk profiel bij
     title: Uw persoonlijke gegevens
@@ -740,7 +740,7 @@ nl:
       status:
         label: Huidige status
         was_signable: Deze petitie staat niet open om ondertekeningen te verzamelen.
-        will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te kunnen met uw petitie moet u de link in die e-mail volgen.
+        will_be_signable: We hebben u een e-mail gestuurd vanaf webmaster@petities.nl. Om verder te gaan met uw petitie volgt u de link in de e-mail.
       target: Afkomstig van
       text: Het antwoord
       title: Petitie
@@ -811,7 +811,8 @@ nl:
         label: Gericht aan
       cannot_edit_live_petition: Een ondertekenbare petitie kan niet aangepast worden
       cannot_start_without_email: Zonder e-mailadres kunt u geen petitie starten
-      finalize: Open de petitie
+      finalize: Geef aan moderator
+      release: Open de petitie
       image:
         description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.
         label: Petitie-plaatje

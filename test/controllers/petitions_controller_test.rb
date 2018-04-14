@@ -169,26 +169,42 @@ class PetitionsControllerTest < ActionController::TestCase
     assert updated_petition.images.none?
   end
 
-  test 'should finalize petition for Office admin' do
+  test 'should release petition for Office admin' do
     @petition.update_attribute(:status, 'staging')
 
     sign_in_admin_for @petition.office
 
-    get :finalize, petition_id: @petition.id
+    # 6 status_change messages
+    assert_enqueued_jobs 6 do
+      get :release, petition_id: @petition.id
+    end
 
     updated_petition = assigns(:petition)
     assert_equal('live', updated_petition.status)
     assert_not_equal(90.days.from_now.to_date, updated_petition.date_projected)
     assert_redirected_to edit_petition_path(updated_petition)
+  end
 
-    [nil, 2.days.ago].each do |date_projected|
-      @petition.update_attribute(:date_projected, date_projected)
-      get :finalize, petition_id: @petition.id
+  test 'should set date_projected 90 days from_now when date is in past' do
+    sign_in_admin_for @petition.office
 
-      updated_petition = assigns(:petition)
-      assert_equal('live', updated_petition.status)
-      assert_equal(90.days.from_now.to_date, updated_petition.date_projected)
-    end
+    @petition.update_columns(status: 'staging', date_projected: 2.days.ago.to_date)
+    get :release, petition_id: @petition.id
+
+    updated_petition = assigns(:petition)
+    assert_equal('live', updated_petition.status)
+    assert_equal(90.days.from_now.to_date, updated_petition.date_projected)
+  end
+
+  test 'should set date_projected 90 days from_now at finalize when empty' do
+    sign_in_admin_for @petition.office
+
+    @petition.update_columns(status: 'staging', date_projected: nil)
+    get :release, petition_id: @petition.id
+
+    updated_petition = assigns(:petition)
+    assert_equal('live', updated_petition.status)
+    assert_equal(90.days.from_now.to_date, updated_petition.date_projected)
   end
 
   test 'should finalize petition for Petition admin' do
@@ -218,7 +234,6 @@ class PetitionsControllerTest < ActionController::TestCase
 
     updated_petition = assigns(:petition)
     assert_equal('staging', updated_petition.status)
-    assert_redirected_to edit_petition_path(updated_petition)
   end
 
   test 'should status change petition' do

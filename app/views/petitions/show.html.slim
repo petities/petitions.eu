@@ -32,10 +32,11 @@ javascript:
 
 div.page
 
-  - if user_signed_in? && current_user.has_role?(:admin, @petition)
-    section.petition-intro-container-noimage
-      div.petition-editbutton-container
-        = link_to t('edit.petition.edit_petition'), edit_petition_path(@petition), class: 'petition-editbutton button whitespace'
+  - if policy(@petition).edit?
+      div.center
+        div.petition-edit-button
+          = link_to(t('edit.petition.edit_petition'), edit_petition_path(@petition))
+      div.whitespace
 
   div
     - if @updates.any? && @updates.first.created_at > 10.days.ago
@@ -100,4 +101,4 @@ div.page
 = render partial: 'signatures'
 
 - if @updates.any?
-  = render partial: 'petition_updates' 
+  = render partial: 'petition_updates'

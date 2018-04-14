@@ -2,7 +2,7 @@ class PetitionsController < ApplicationController
   include FindPetition
   include SortPetitions
 
-  before_action :set_petition, only: [:show, :edit, :update, :finalize]
+  before_action :set_petition, only: [:show, :edit, :update, :finalize, :release]
 
   # GET /petitions
   # GET /petitions.json
@@ -243,19 +243,21 @@ class PetitionsController < ApplicationController
   def finalize
     authorize @petition
 
-    if current_user.has_role?(:admin, @petition) && @petition.concept?
-      @petition.update(status: 'staging')
-      flash[:notice] = t('petition.status.flash.your_petition_awaiting_moderation')
-      PetitionMailer.finalize_mail(@petition).deliver_later
-    end
+    @petition.update(status: 'staging')
+    PetitionMailer.finalize_mail(@petition).deliver_later
 
-    if @petition.office.present? && current_user.has_role?(:admin, @petition.office)
-      if @petition.date_projected.blank? || @petition.date_projected&.past?
-        @petition.date_projected = 90.days.from_now
-      end
-      @petition.update(status: 'live')
-      flash[:notice] = t('petition.status.flash.petition_is_live')
+    redirect_to edit_petition_path(@petition)
+  end
+
+  def release
+    authorize @petition
+
+    if @petition.date_projected.blank? || @petition.date_projected&.past?
+      @petition.date_projected = 90.days.from_now
     end
+    @petition.update(status: 'live')
+
+    flash[:notice] = t('petition.status.flash.petition_is_live')
 
     redirect_to edit_petition_path(@petition)
   end

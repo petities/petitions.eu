@@ -2,18 +2,18 @@
 
 div.page
 
-  div class="petition-editbutton-container whitespace"
-    div class="petition-editbutton"
-      = link_to t('edit.petition.sign_page'), petition_path(@petition)
+  div.center
+    div.petition-edit-button
+      = link_to(t('edit.petition.sign_page'), petition_path(@petition))
+    div.whitespace
+    div.petition-edit-button onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
+     = t('edit.petition.edit_text')
 
-  div class="petition-editbutton-container whitespace"
-     div class="petition-editbutton" onclick=="$('.petition-intro-container.edit').show(); $('#introContainer').hide();"
-       = t 'edit.petition.edit_text'
-
-  section.petition-intro-container
-    div
-      h2.petition-section-title
-        = @petition_flash
+  - if @petition_flash.present?
+    section.petition-intro-container
+      div
+        h2.petition-section-title
+          = @petition_flash
 
 div.page
 
@@ -30,24 +30,18 @@ div.page
       div.petition-intro-info-text
         p= markdown @petition.description
 
+    - if @petition.versions.size > 1
 
+      div class="petition-editbutton-container"
 
-    div class="petition-editbutton-container"
+          h2
+          - if @petition.next_version
+            div.petition-editbutton.pull-left
+              =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
 
-      - if @petition.versions.size > 1
-        h2
-        - if @petition.next_version
-          div.petition-editbutton.pull-left
-            =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
-
-        - if @petition.previous_version
-          div.petition-editbutton.pull-right
-            =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.previous_version.version.index})
-
-    /<!-- versioning -->
-
-
-    /<! --locales -->
+          - if @petition.previous_version
+            div.petition-editbutton.pull-right
+              =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.previous_version.version.index})
 
   section class="petition-intro-container edit"
     div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
@@ -115,20 +109,22 @@ div.page
         div.whitespace
 
 - unless @petition.concept?
-  div
-    div.petition-editbutton-container
-      div.petition-editbutton
-        = link_to '#petitionnews'
-          = t 'edit.petition.write_news'
-      div.whitespace
+  div.center
+    div.petition-edit-button
+      = link_to(t('edit.petition.write_news'), '#petitionnews')
+  div.whitespace
 
-div
-  - if policy(@petition).finalize?
-      div.petition-editbutton-container
-        div.petition-editbutton
-          = link_to t('start.form.finalize'), petition_finalize_path(@petition)
+- if policy(@petition).finalize?
+  div.center
+    = button_to(t('start.form.finalize'), petition_finalize_path(@petition), class: 'petition-edit-button')
 
-      div.whitespace
+  div.whitespace
+
+- if policy(@petition).release?
+  div.center
+    = button_to(t('start.form.release'), petition_finalize_path(@petition), class: 'petition-edit-button')
+
+  div.whitespace
 
   /<!-- /editbutton -->
 div.page
@@ -161,8 +157,10 @@ div.page
       $('#edit_detail_button').show();
     };
 
-  div class="petition-editbutton-container"
-    div#edit_detail_button class="petition-editbutton" onclick=="showEdit()"
+  div.whitespace
+
+  div.center
+    div.petition-edit-button#edit_detail_button onclick=="showEdit()"
       = t 'edit.petition.edit_details_button'
 
 - unless @petition.concept?

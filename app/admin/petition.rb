@@ -102,5 +102,9 @@ ActiveAdmin.register Petition do
       end
       column :date
     end
+    link_to(
+      I18n.t('active_admin.new_model', model: Newsletter.model_name.human),
+      new_admin_newsletter_path(newsletter: { petition_id: resource.id })
+    )
   end
 end

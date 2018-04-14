@@ -50,11 +50,11 @@ Rails.application.configure do
 
   # Use Mailcatcher for local development
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { host: '127.0.0.1', port: 1025 }
+  config.action_mailer.smtp_settings = { address: 'mailcatcher' }
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  
+
   # Use assets from petities.nl
   config.asset_host = Proc.new { |source|
      if source.starts_with?('/system')

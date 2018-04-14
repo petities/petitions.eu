@@ -14,11 +14,11 @@ class PetitionPolicy < ApplicationPolicy
   end
 
   def finalize?
-    if petition.concept?
-      user.has_role?(:admin, petition) || user.has_role?(:admin, office)
-    elsif petition.is_staging?
-      user.has_role?(:admin, office)
-    end
+    user.has_role?(:admin, petition) || user.has_role?(:admin, office) if petition.concept?
+  end
+
+  def release?
+    user.has_role?(:admin, office) if petition.is_staging?
   end
 
   def export?

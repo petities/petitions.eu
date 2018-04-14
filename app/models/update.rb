@@ -9,10 +9,7 @@
 #  office_id        :integer
 #  url              :string(255)
 #  url_text         :string(255)
-#  private_key      :string(255)
 #  date             :date
-#  date_from        :date
-#  date_until       :date
 #  show_on_office   :boolean
 #  show_on_home     :boolean
 #  created_at       :datetime
@@ -29,7 +26,6 @@ class Update < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  scope :website_news, -> { where(show_on_home: true, petition_id: nil, office_id: 5) }
   scope :show_on_home, -> { where(show_on_home: true) }
 
   # review

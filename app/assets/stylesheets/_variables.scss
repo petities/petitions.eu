@@ -2,13 +2,17 @@ $light-grey: #e9e9e9;
 $green: #1a9931;
 $light-green: #63ab42;
 $red: #DC1818;
-$blue: #4fa6d0;
 $light-blue: #6db6d7;
+$blue: #4fa6d0;
+$dark-blue: #005a85;
 
 $base-background-color: #fff;
 
 $button-color: $blue;
-$button-hover-color: #7ec060;
+$button-hover-color: darken($button-color, 10%);
+
+$input-border-color: #929292;
+$input-border: 1px solid $input-border-color;
 
 $form-error-color: $red;
 $form-error-border: 2px solid $form-error-color;

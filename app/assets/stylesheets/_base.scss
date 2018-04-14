@@ -219,7 +219,7 @@ h5, h6 {
 
 a {
   text-decoration: none;
-  color: #005a85;
+  color: $dark-blue;
 }
 
 .center {
@@ -314,12 +314,13 @@ input[type="text"].search-container-input {
   padding: 10px 3%;
   border: 0;
   background: $button-color;
-  color: #fff;
+  color: $base-background-color;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
 
   &:hover {
     background: $button-hover-color;
+    color: $base-background-color;
   }
 }
 
@@ -401,13 +402,14 @@ input[type="text"].search-container-input {
   display: block;
   padding: 12px 40px 15px;
   font: 400 30px/30px 'Open Sans', arial, sans-serif;
-  color: #fff;
+  color: $base-background-color;
   text-align: center;
   background: $button-color;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
+    color: $base-background-color;
     background: $button-hover-color;
   }
 }
@@ -741,7 +743,7 @@ input[type="text"].search-container-input {
   margin: 0 0 10px;
   padding: 8px 2%;
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
-  border: 1px solid #929292;
+  border: $input-border;
 }
 
 .petition-form-checkbox {
@@ -1223,14 +1225,14 @@ h2.start-petition-form-cell-title {
 .start-petition-form-cell-input {
   width: 94%;
   padding: 3%;
-  border: 1px solid #929292;
+  border: $input-border;
 }
 
 .start-petition-form-cell-input-readonly {
   width: 94%;
   padding: 3%;
   background-color: #f5f5f5;
-  border: 1px solid #929292;
+  border: $input-border;
 }
 
 .start-petition-form-cell-input.small {
@@ -1538,22 +1540,24 @@ a.tag {
   display: none;
 }
 
-.petition-editbutton-container {
-  padding: 15px 0 0;
-}
-
-.petition-editbutton {
-  width: 200px;
+.petition-edit-button {
+  width: 245px;
   margin: 0 auto;
-  padding: 5px 3%;
+  padding: 8px;
+  box-sizing: border-box;
+  font: 400 17px/28px 'Open Sans', arial, sans-serif;
+  color: $base-background-color;
+  border: 0;
   background: $button-color;
-  color: #fff;
-  font: 400 18px/28px 'Open Sans', arial, sans-serif;
   text-align: center;
   cursor: pointer;
 
   &:hover {
-    background: $light-blue;
+    background: $button-hover-color;
+  }
+
+  a {
+    color: $base-background-color;
   }
 }
 
