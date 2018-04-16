@@ -178,9 +178,6 @@ nl:
         day: kies dag
         month: kies maand
         year: kies jaar
-      email:
-        description: U ontvangt een antwoord op de petitie. U kunt ook kiezen voor de drie e-mails over de voortgang van de petitie.
-        label: E-mail
       function:
         description: "U kunt uw functie, beroep of relatie tot de petitie invullen om te tonen, maar dat hoeft niet."
         label: Functie of situatie
@@ -236,8 +233,8 @@ nl:
       street_number_suffix:
         suffixlabel: Huisnummertoevoeging
       subscribe:
-        description: U ontvangt maximaal drie e-mails met nieuws. Het antwoord op de petitie gaat naar iedereen.
-        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie met maximaal drie e-mails."
+        description: U ontvangt e-mails van de petitionaris over de petitie. U kunt zich altijd afmelden. Het antwoord op de petitie ontvangt u altijd.
+        label: "Ja, houd mij op de hoogte over de voortgang van deze petitie."
       update_information: Update your information
       visible:
         description: Een publiek zichtbare ondertekening is vindbaar via zoekmachines, bijvoorbeeld wanneer men op uw naam zoekt.

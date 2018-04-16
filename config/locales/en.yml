@@ -119,9 +119,6 @@ en:
         day: choose day
         month: choose month
         year: choose year
-      email:
-        description: You will receive an e-mail with the answer to the petition. You can also sign up for three updates about the progress of the petition.
-        label: Email
       function:
         description: "You may write your function, profession or relation to the petition, but it is not required."
         label: Function or situation
@@ -177,8 +174,8 @@ en:
       street_number_suffix:
         suffixlabel: Suffix
       subscribe:
-        description: You will receive up to three e-mails with news about the petition. The answer to the petition goes to everyone.
-        label: "Yes, send me up to three e-mails with updates about this petition"
+        description: You will receive e-mails with news about the petition. You can always unsubscribe. The answer to the petition goes to everyone.
+        label: "Yes, send me e-mails with updates about this petition"
       update_information: Update your information
       visible:
         description: A public signature can be found with search engines, for example when someone looks up your name.
