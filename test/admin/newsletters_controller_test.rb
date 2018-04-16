@@ -41,6 +41,7 @@ module Admin
                                     text: 'One could write a text here.',
                                     number: '2',
                                     date: Date.today,
+                                    messages_count: 42,
                                     published: true
                                   }
       end

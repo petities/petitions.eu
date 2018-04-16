@@ -13,6 +13,7 @@ ActiveAdmin.register Newsletter do
     column :date
     column :number
     column :status
+    column :messages_count
     column :published
     column :created_at
     actions
@@ -23,6 +24,7 @@ ActiveAdmin.register Newsletter do
       f.input :petition_id, as: :hidden
       f.input :number
       f.input :date
+      f.input :messages_count
       f.input :text
     end
     actions
