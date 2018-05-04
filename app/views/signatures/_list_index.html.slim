@@ -19,8 +19,7 @@
           br
           =<> signature.person_name
 
-
-    - if signature.visible?
+    - if signature.visible? || policy(@petition).edit?
       div.petition-signature-location= signature.person_city
       div.petition-signature-occupation
         = signature.person_function
