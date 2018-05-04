@@ -169,7 +169,7 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           | &nbsp;
-          = f.submit @action, class: 'start-petition-form-cell-button'
+          = f.submit @action, class: 'petition-form-button'
 
         div.start-petition-form-cell.label.empty
           | &nbsp;
@@ -286,7 +286,7 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = pf.submit t('confirm.form.action.pledge'), class: 'start-petition-form-cell-button'
+          = pf.submit t('confirm.form.action.pledge'), class: 'petition-form-button'
         div.start-petition-form-cell.label.empty
           | &nbsp;
 
@@ -327,19 +327,19 @@ div.page
                  placeholder: t('confirm.mailafriend.input', default: 'confirm.mailafriend.input')})
 
           | &nbsp;
-          div.start-petition-form-cell-button.email-suggest-button id='didyoumean_input_share_email' style="display: none;"
+          div.petition-form-button.email-suggest-button id='didyoumean_input_share_email' style="display: none;"
             = t 'signature.did_you_mean'
             div id='suggest_input_share_email'
               | &nbsp;
           | &nbsp;
-          = f.submit t('confirm.form.action.send_email'), class: "start-petition-form-cell-button"
+          = f.submit t('confirm.form.action.send_email'), class: "petition-form-button"
           | &nbsp;
 
-          div.start-petition-form-cell-button.email-success-note id='success_share_email' style="display: none;"
+          div.petition-form-button.email-success-note id='success_share_email' style="display: none;"
             = t('signature.success_send', default: 'success')
 
           | &nbsp;
-          div.start-petition-form-cell-button.email-suggest-button id='fail_share_email' style="display: none;"
+          div.petition-form-button.email-suggest-button id='fail_share_email' style="display: none;"
             = t('signature.failed_send', default: 'failed')
 
           div#feedback
@@ -364,7 +364,7 @@ div.page
        div.start-petition-form-cell.input
          = link_to(t('confirm.info.your_signature'),
              anchor_petition_signatures_path(@petition, @signature),
-             class: 'start-petition-form-cell-button buttonfix')
+             class: 'petition-form-button buttonfix')
 
        div.start-petition-form-cell.label
          p= t('confirm.info.petition_signature_url')

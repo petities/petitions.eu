@@ -179,7 +179,7 @@
   - if ['new', 'create'].include?(action_name)
     div.start-petition-form-row
       div.start-petition-form-cell.input
-        = f.submit t('start.form.submit'), class: 'start-petition-form-cell-button'
+        = f.submit t('start.form.submit'), class: 'petition-form-button'
       div.start-petition-form-cell.label.empty
         | &nbsp;
 
@@ -187,7 +187,7 @@
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title
-        = f.submit t('start.form.update'), class: 'start-petition-form-cell-button whitespace'
+        = f.submit t('start.form.update'), class: 'petition-form-button whitespace'
 
       div.start-petition-form-cell.label.empty
         p= t('start.form.petitioner.update.update_description')

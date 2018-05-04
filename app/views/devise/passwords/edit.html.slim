@@ -3,7 +3,7 @@ div.page
     h1.petition-section-title = t('password.change')
 
     = form_for resource, as: resource_name, url: password_path(resource_name), method: :put do |f|
-      
+
       = f.hidden_field :reset_password_token
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -24,9 +24,9 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           = devise_error_messages!
-      
+
       div.start-petition-form-row
         div.start-petition-form-cell.input
-          = f.submit t('password.save'), class: 'start-petition-form-cell-button'
+          = f.submit t('password.save'), class: 'petition-form-button'
         div.start-petition-form-cell.label.empty
           | &nbsp;

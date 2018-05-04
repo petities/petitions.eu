@@ -1239,16 +1239,6 @@ h2.start-petition-form-cell-title {
   width: 36%;
 }
 
-.start-petition-form-cell-button {
-  width: 100%;
-  padding: 2%;
-  border: 0;
-  background: $button-color;
-  color: #fff;
-  font: 400 18px/28px 'Open Sans', arial, sans-serif;
-  cursor: pointer;
-}
-
 .start-petition-form-cell {
   &.label {
     width: 40%;
@@ -1790,10 +1780,6 @@ a.tag {
     &.empty {
       display: none;
     }
-  }
-
-  .start-petition-form-cell-button {
-    margin: 0 0 30px;
   }
 
   .petition-updates .update-container {
