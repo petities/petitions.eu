@@ -57,11 +57,9 @@ class PetitionsControllerTest < ActionController::TestCase
             initiators: @petition.initiators,
             statement: @petition.statement,
             request: @petition.request,
-            office_id: 1
-          },
-          user: {
-            email: 'test@test.com', # user already exists
-            name: 'test'
+            office_id: 1,
+            petitioner_email: 'test@test.com', # user already exists
+            petitioner_name: 'test'
           }
         end
       end
@@ -86,11 +84,9 @@ class PetitionsControllerTest < ActionController::TestCase
             initiators: @petition.initiators,
             statement: @petition.statement,
             request: @petition.request,
-            office_id: 1
-          },
-          user: {
-            email: 'idonotexist@test.com',
-            name: 'nexttest'
+            office_id: 1,
+            petitioner_email: 'idonotexist@test.com',
+            petitioner_name: 'nexttest'
           }
         end
       end
