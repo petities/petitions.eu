@@ -25,7 +25,7 @@ ActiveAdmin.register PetitionTranslation do
       else
         f.input :petition
       end
-      f.input :locale
+      f.input :locale, as: :select, collection: I18n.available_locales
       f.input :name
       f.input :description
       f.input :initiators

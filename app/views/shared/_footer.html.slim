@@ -3,7 +3,7 @@ footer.footer
 
     aside.footer-news-list-wrapper
       h2.footer-content-title= t('footer.updates')
-      - cache [@news, homepage?] do
+      - cache [@news, homepage?, I18n.locale] do
         - if @news
           ul.footer-news-list
             - @news.offset(homepage? ? 2 : 0).each do |entry|
