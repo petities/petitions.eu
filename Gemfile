@@ -113,10 +113,8 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 4.8', '>= 4.8.0.341'
-gem 'rollbar', '~> 2.15', '>= 2.15.5'
-# track everything..
-# gem 'logstasher'
+gem 'newrelic_rpm', '~> 5.1', '>= 5.1.0.344'
+gem 'rollbar', '~> 2.16'
 
 gem 'rack-attack', '~> 5.0', '>= 5.0.1'
 

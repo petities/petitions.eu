@@ -137,6 +137,7 @@ class Petition < ActiveRecord::Base
   validates :initiators, presence: true
   validates :statement, presence: true
   validates :request, presence: true
+  validates :petitioner_email, format: { with: User.email_regexp }
 
   validates :subdomain, format: { with: /\A[A-Za-z0-9-]+\z/, allow_blank: true }
   validates :subdomain, uniqueness: { case_sensitive: false, allow_blank: true }

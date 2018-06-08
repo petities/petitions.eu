@@ -319,12 +319,11 @@ div.page
         h2.start-petition-form-cell-title= t('confirm.mailafriend.title')
         div.whitespace
 
-        = form_for InviteForm.new, url: petition_signature_invites_path(@petition, @signature.unique_key), remote: true, data: { type: :json } do |f|
+        = form_for InviteForm.new, url: petition_signature_invites_path(@petition, @signature.unique_key), remote: true, data: { type: :json, success: t('confirm.mailafriend.success'), failed: t('confirm.mailafriend.failed') } do |f|
 
-          = f.text_field(:mail,
-                {class: 'start-petition-form-cell-input',
-                 id: :input_share_email,
-                 placeholder: t('confirm.mailafriend.input', default: 'confirm.mailafriend.input')})
+          = f.text_field(:mail, class: 'start-petition-form-cell-input',
+                                id: :input_share_email,
+                                placeholder: t('confirm.mailafriend.input'))
 
           | &nbsp;
           div.petition-form-button.email-suggest-button id='didyoumean_input_share_email' style="display: none;"

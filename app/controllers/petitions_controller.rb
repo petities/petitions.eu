@@ -80,6 +80,11 @@ class PetitionsController < ApplicationController
   def new
     @petition = Petition.new
 
+    if user_signed_in?
+      @petition.petitioner_email = current_user.email
+      @petition.petitioner_name = current_user.name
+    end
+
     @exclude_list = []
 
     set_organisation_helper
@@ -100,43 +105,26 @@ class PetitionsController < ApplicationController
 
     @exclude_list = []
 
-
     if user_signed_in?
       owner = current_user
       # send welcome mail anyways..
-    else
-      user_params = params[:user]
+    elsif petition_params[:petitioner_email].present?
+      owner = User.find_by(email: petition_params[:petitioner_email])
 
-      if user_params[:email].present?
-        owner = User.where(email: user_params[:email]).first
+      unless owner
+        password = Devise.friendly_token(10)
 
-        unless owner
-          password = Devise.friendly_token(10)
-
-          owner = User.new(
-            email: user_params[:email],
-            name: user_params[:name],
-            password: password
-          )
-          owner.send(:generate_confirmation_token)
-          owner.skip_confirmation!
-          owner.skip_confirmation_notification!
-          owner.confirmed_at = nil
-          owner.save
-          # send welcome / password if needed
-        end
-
-        @petition.petitioner_name = owner.name
-        @petition.petitioner_email = owner.email
-      else
-        @missing_email = t('petition.missing_email')
-
-        respond_to do |format|
-          format.html { render :new, flash: { success: t('petition.missing_email') } }
-          format.json { render json: @petition.errors, status: :unprocessable_entity }
-        end
-
-        return
+        owner = User.new(
+          email: petition_params[:petitioner_email],
+          name: petition_params[:petitioner_name],
+          password: password
+        )
+        owner.send(:generate_confirmation_token)
+        owner.skip_confirmation!
+        owner.skip_confirmation_notification!
+        owner.confirmed_at = nil
+        owner.save
+        # send welcome / password if needed
       end
     end
 

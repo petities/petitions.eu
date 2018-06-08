@@ -12,16 +12,6 @@
       div.start-petition-form-cell.label.has_error_help
         p= t('start.form.cannot_edit_live_petition')
 
-  - if @missing_email
-
-    div.start-petition-form-row
-      div.start-petition-form-cell.input
-        div.start-petition-form-cell-title.has_error_help
-          = t('start.form.cannot_start_without_email')
-      div.start-petition-form-cell.label.has_error_help
-        p= t('start.form.we_need_to_know_identity')
-
-
   div.start-petition-form-row
     div.start-petition-form-cell.input
       div.start-petition-form-cell-title
@@ -150,19 +140,19 @@
       div.start-petition-form-cell.label
         p= t('start.form.subdomain.description')
 
-  - if !user_signed_in? && ['new', 'create'].include?(action_name)
+  - if ['new', 'create'].include?(action_name)
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.email.label')
-        = text_field_tag 'user[email]', '', class: 'start-petition-form-cell-input'
+        = f.text_field :petitioner_email, class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
         p= t('start.form.petitioner.email.description')
 
     div.start-petition-form-row
       div.start-petition-form-cell.input
         div.start-petition-form-cell-title= t('start.form.petitioner.name.label')
-        = text_field_tag 'user[name]', '', class: 'start-petition-form-cell-input'
+        = f.text_field :petitioner_name, class: 'start-petition-form-cell-input'
       div.start-petition-form-cell.label.empty
         p= t('start.form.petitioner.name.description')
 

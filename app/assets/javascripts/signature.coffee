@@ -122,24 +122,21 @@ $ ->
     $('.pledge_error').show()
   )
 
-  # sign email success..
+  # invite email success
   $('form#new_invite_form').on('ajax:success', (e, data, status, xhr) ->
     $('#success_share_email').show()
     $('#fail_share_email').hide()
     $('#input_share_email').val('')
-    $('#input_share_email').attr('placeholder', 'Thank you! Please invite more')
-    #$('#feedback').html('Well done!')
+    $('#input_share_email').attr('placeholder', $(this).data('success'))
   )
 
-  # sign email fail
+  # invite email fail
   $('form#new_invite_form').on('ajax:error', (e, data, status, xhr) ->
     $('#success_share_email').hide()
     $('#fail_share_email').show()
     $('#input_share_email').val('')
-    $('#input_share_email').attr('placeholder', 'Failed! Try again')
-    #$('#feedback').html('failed')
+    $('#input_share_email').attr('placeholder', $(this).data('failed'))
   )
-
 
 window.debugthis = []
 
