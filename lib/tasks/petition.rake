@@ -1,8 +1,8 @@
 namespace :petition do
-  desc 'fix signature counts'
-  task fix_signature_counts: :environment do
+  desc 'Update signatures cache'
+  task update_signatures_cache: :environment do
     Petition.find_each do |petition|
-      UpdateSignaturesCountJob.perform_later(petition)
+      UpdateSignaturesCacheJob.perform_later(petition)
     end
   end
 

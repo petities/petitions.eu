@@ -39,7 +39,7 @@ end
 # end
 
 every :day, at: '4am' do
-  rake 'petition:fix_signature_counts'
+  rake 'petition:update_signatures_cache'
 end
 
 # every :day, at:  '3am' do

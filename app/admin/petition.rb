@@ -62,7 +62,7 @@ ActiveAdmin.register Petition do
   end
 
   member_action :update_signature_count, method: :put do
-    UpdateSignaturesCountJob.perform_later(resource)
+    UpdateSignaturesCacheJob.perform_later(resource)
     redirect_to([:admin, resource], notice: t('active_admin.petitions.update_signature_count_requested'))
   end
 
