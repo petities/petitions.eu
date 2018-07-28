@@ -1,6 +1,6 @@
 # Recalculate the petitions signatures_count and last_confirmed_at attributes.
 class UpdateSignaturesCacheJob < ActiveJob::Base
-  queue_as :default
+  queue_as :low_priority
 
   def perform(petition)
     @petition = petition

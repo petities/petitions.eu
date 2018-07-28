@@ -103,6 +103,7 @@ class Petition < ActiveRecord::Base
     joins(:updates).where(newsitems: { show_on_petition: true })
                    .order('newsitems.created_at DESC')
   }
+  scope :past_date_projected, -> { where('date_projected < ?', Date.today) }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office

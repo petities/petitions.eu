@@ -14,7 +14,7 @@ ActiveAdmin.register_page 'Dashboard' do
       end
 
       column do
-        panel 'new petitions' do
+        panel t('active_admin.new_petitions') do
           ul do
             Petition.order(created_at: :desc).limit(20).map do |petition|
               li link_to(petition.name, admin_petition_path(petition))
@@ -24,5 +24,19 @@ ActiveAdmin.register_page 'Dashboard' do
         end
       end
     end
-  end # content
+    columns do
+      column do
+        panel t('active_admin.past_date_projected') do
+          table_for Petition.past_date_projected.limit(20) do
+            column :date_projected
+            column :name do |petition|
+              link_to(petition.name, admin_petition_path(petition))
+            end
+            column :signatures_count, :get_count
+            column :last_confirmed_at, :last_sig_update
+          end
+        end
+      end
+    end
+  end
 end

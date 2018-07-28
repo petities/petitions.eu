@@ -28,9 +28,8 @@ nl:
       labels:
         invisible: Onzichtbaar
     dashboard: Dashboard
-    dashboard_welcome:
-      call_to_action: Oproep
-      welcome: U bent ingelogd
+    new_petitions: Nieuwe petities
+    past_date_projected: Petities uit het verleden
     petitions:
       update_signature_count: "Cache ondertekeningen bijwerken"
       update_signature_count_requested: "Cache met aantal ondertekeningen wordt bijgewerkt."

@@ -26,9 +26,8 @@ en:
       labels:
         invisible: Invisble
     dashboard: Dashboard
-    dashboard_welcome:
-      call_to_action: Call to action
-      welcome: Welcome
+    new_petitions: New petitions
+    past_date_projected: Petitions past date projected
     petitions:
       update_signature_count: "Update cached signature count"
       update_signature_count_requested: "Signature count cache will be updated in a few moments."
