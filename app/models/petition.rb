@@ -95,6 +95,7 @@ class Petition < ActiveRecord::Base
   ].freeze
 
   scope :not_concept_or_staging, -> { where.not(status: ['concept', 'staging']) }
+  scope :staging,   -> { where(status: 'staging') }
   scope :live,      -> { where(status: 'live') }
   scope :big,       -> { order(signatures_count: :desc) }
   scope :active,    -> { order(active_rate_value: :desc) }
@@ -103,7 +104,9 @@ class Petition < ActiveRecord::Base
     joins(:updates).where(newsitems: { show_on_petition: true })
                    .order('newsitems.created_at DESC')
   }
-  scope :past_date_projected, -> { where('date_projected < ?', Date.today) }
+  scope :past_date_projected, -> {
+    live.where('date_projected < ?', Date.today).order(date_projected: :desc).limit(20)
+  }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office

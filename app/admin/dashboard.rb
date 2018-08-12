@@ -5,20 +5,24 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel t('desk.petition.allow_through') do
-          ul do
-            Petition.where(status: 'staging').map do |petition|
-              li link_to(petition.name, admin_petition_path(petition))
+          table_for Petition.staging do
+            column :name do |petition|
+              link_to(petition.name, admin_petition_path(petition))
             end
+            column :petitioner_name
+            column :updated_at
           end
         end
       end
 
       column do
         panel t('active_admin.new_petitions') do
-          ul do
-            Petition.order(created_at: :desc).limit(20).map do |petition|
-              li link_to(petition.name, admin_petition_path(petition))
-              # li petition.active_rate_value
+          table_for Petition.order(created_at: :desc).limit(20) do
+            column :name do |petition|
+              link_to(petition.name, admin_petition_path(petition))
+            end
+            column :status do |petition|
+              t("petition.states.#{petition.status}")
             end
           end
         end
@@ -27,7 +31,7 @@ ActiveAdmin.register_page 'Dashboard' do
     columns do
       column do
         panel t('active_admin.past_date_projected') do
-          table_for Petition.past_date_projected.limit(20) do
+          table_for Petition.past_date_projected do
             column :date_projected
             column :name do |petition|
               link_to(petition.name, admin_petition_path(petition))
