@@ -38,6 +38,10 @@ nl:
     status_tag:
       "yes": Ja
       "no": Nee
+    users:
+      account_usage: Accountinformatie
+      resend_confirmation_instructions: Verstuur bevestiging opnieuw
+      confirmation_instructions_resent: De e-mail ter bevestiging is opnieuw verzonden.
   activerecord:
     models:
       admin_user:

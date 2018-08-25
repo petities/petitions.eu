@@ -33,6 +33,10 @@ en:
       update_signature_count_requested: "Signature count cache will be updated in a few moments."
     signatures:
       batch_invisible: The selected signatures are now invisible.
+    users:
+      account_usage: Account usage
+      resend_confirmation_instructions: Resend confirmation instructions
+      confirmation_instructions_resent: Confirmation instructions have been sent.
   activerecord:
     models:
       petition: Petition

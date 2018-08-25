@@ -23,3 +23,6 @@ with_authlogic_password:
   encrypted_password: 41350a3a130bd99add9f4f99319432b513a51276c78369b5567eb1b343f2496e99ac30b98fff84273656639e2532a23fc1d0ea3efb1f92ac25a9fa5fcb995c21
   password_salt: 2yCb6ieuNWf6Myhn9zfF
   confirmed_at: 2014-08-14 20:53:32
+
+unconfirmed:
+  email: unconfirmed@example.com

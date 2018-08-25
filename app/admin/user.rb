@@ -22,18 +22,43 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :reset_password_sent_at
   filter :created_at
-  # filter :roles
+
+  action_item :resend_confirmation_instructions, only: :show do
+    link_to(t('active_admin.users.resend_confirmation_instructions'), resend_confirmation_instructions_admin_user_path(resource), method: :put) unless resource.confirmed?
+  end
+
+  member_action :resend_confirmation_instructions, method: :put do
+    resource.resend_confirmation_instructions
+    redirect_to([:admin, resource], notice: t('active_admin.users.confirmation_instructions_resent'))
+  end
 
   show do
-    attributes_table do
-      row :email
-      row :name
-      row :telephone
-      row :address
-      row :postalcode
-      row :city
-      row :birth_date
-      row :birth_city
+    columns do
+      column do
+        attributes_table do
+          row :email
+          row :name
+          row :telephone
+          row :address
+          row :postalcode
+          row :city
+          row :birth_date
+          row :birth_city
+        end
+      end
+      column do
+        attributes_table title: t('active_admin.users.account_usage') do
+          row :created_at
+          row :updated_at
+          row :confirmed_at
+          row :confirmation_sent_at unless resource.confirmed?
+          row :current_sign_in_at
+          row :current_sign_in_ip
+          row :last_sign_in_at
+          row :last_sign_in_ip
+          row :sign_in_count
+        end
+      end
     end
 
     panel 'user roles' do
