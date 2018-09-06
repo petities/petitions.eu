@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124193020) do
+ActiveRecord::Schema.define(version: 20180906162703) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20171124193020) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alt_label",           limit: 255
-    t.boolean  "upload_processing"
   end
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree

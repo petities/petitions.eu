@@ -116,9 +116,6 @@ GEM
     crass (1.0.4)
     dalli (2.7.8)
     debug_inspector (0.0.3)
-    delayed_paperclip (3.0.1)
-      activejob (>= 4.2)
-      paperclip (>= 3.3)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -448,7 +445,6 @@ DEPENDENCIES
   countries
   country_select
   dalli
-  delayed_paperclip (~> 3.0, >= 3.0.1)
   devise (~> 4.3)
   devise-i18n
   email_validator (~> 1.6)

@@ -12,7 +12,6 @@
 #  created_at          :datetime
 #  updated_at          :datetime
 #  alt_label           :string(255)
-#  upload_processing   :boolean
 #
 
 class Image < ActiveRecord::Base
@@ -32,8 +31,6 @@ class Image < ActiveRecord::Base
                     },
                     default_url: '/assets/:style/missing.png'
 
-  process_in_background :upload
-
   validates_with AttachmentContentTypeValidator,
                  attributes: :upload,
                  content_type: ['image/jpeg', 'image/png', 'image/gif']
@@ -41,4 +38,8 @@ class Image < ActiveRecord::Base
   validates_with AttachmentFileNameValidator,
                  attributes: :upload,
                  matches: [/png\Z/i, /jpe?g\Z/i, /gif\Z/i]
+
+  validates_with AttachmentSizeValidator,
+                 attributes: :upload,
+                 less_than: 10.megabytes
 end
