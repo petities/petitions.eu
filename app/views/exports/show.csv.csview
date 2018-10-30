@@ -1,14 +1,9 @@
-csv << ["#{Petition.model_name.human} #{@petition.name}"]
-csv << [t('show.signatures_count', count: @signatures.size)]
-csv << [""]
-
-csv << [
-  [:person_name, :person_city, :visible, :confirmed_at].collect { |field| Signature.human_attribute_name(field) }
-]
+csv << [:person_name, :person_function, :person_city, :visible, :confirmed_at].collect { |field| Signature.human_attribute_name(field) }
 
 @signatures.each do |signature|
   csv <<  [
             signature.person_name,
+            signature.person_function,
             signature.person_city,
             signature.visible.to_s,
             signature.confirmed_at.to_s
