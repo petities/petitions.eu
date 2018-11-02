@@ -47,7 +47,7 @@ class PetitionsController < ApplicationController
     petitions = Petition.live.joins(:translations)
                         .where('petition_translations.name like ?', "%#{@search}%")
                         .distinct
-                        .sort_by { |p| -(p.redis_active_rate) }
+                        .order("FIELD(petitions.id, #{Redis.current.zrevrange('active_rate', 0, -1).join(', ')})")
 
     @petitions = Kaminari.paginate_array(petitions).page(page).per(12)
   end
