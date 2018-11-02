@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180906162703) do
+ActiveRecord::Schema.define(version: 20181102173101) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20180906162703) do
   end
 
   add_index "petition_translations", ["locale"], name: "index_petition_translations_on_locale", using: :btree
+  add_index "petition_translations", ["name"], name: "index_petition_translations_on_name", using: :btree
   add_index "petition_translations", ["petition_id", "slug", "locale"], name: "index_petition_translations_on_petition_id_and_slug_and_locale", using: :btree
   add_index "petition_translations", ["petition_id"], name: "index_petition_translations_on_petition_id", using: :btree
 
