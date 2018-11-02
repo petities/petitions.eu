@@ -44,10 +44,10 @@ class PetitionsController < ApplicationController
     page = cleanup_page(params[:page])
 
     @search = params[:search]
-    @petitions = Petition.live.joins(:translations).distinct
-                         .order("FIELD(petitions.id, #{Redis.current.zrevrange('active_rate', 0, -1).join(', ')})")
-                         .page(page).per(12)
+    @petitions = Petition.live.joins(:translations).distinct.page(page).per(12)
 
+    ordered_petition_ids = Redis.current.zrevrange('active_rate', 0, -1)
+    @petitions = @petitions.order("FIELD(petitions.id, #{ordered_petition_ids.join(', ')})") if ordered_petition_ids.any?
     @petitions = @petitions.where('petition_translations.name like ?', "%#{@search}%") if @search.present?
   end
 
