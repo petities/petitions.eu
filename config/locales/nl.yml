@@ -120,6 +120,8 @@ nl:
               too_short: 'Namen zijn zelden zo kort'
               too_long: 'Namen zijn zelden zo lang'
               invalid: 'Dat ziet er niet uit als een voornaam (of initiaal) en achternaam'
+            person_born_at:
+              invalid_date: Voor deze petitie is het invullen van uw geboortedatum verplicht
             person_city:
               too_short: Woonplaatsen zijn zelden zo kort
               too_long: Woonplaatsen zijn zelden zo lang

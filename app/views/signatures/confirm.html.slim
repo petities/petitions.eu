@@ -133,6 +133,7 @@ div.page
             - minium_age = @signature.petition.active_petition_type.required_minimum_age || 9
             - newest_date = Date.today.year - minium_age
             = f.date_select :person_born_at, order: [:day, :month, :year], end_year: newest_date, start_year: 1920, prompt: { day: t('confirm.form.date.day'), month: t('confirm.form.date.month'), year: t('confirm.form.date.year') }
+            div.person_born_at_errors
           div.start-petition-form-cell.label
             p
               =<> t('confirm.form.born_at.description')

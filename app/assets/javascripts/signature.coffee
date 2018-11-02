@@ -22,23 +22,12 @@ Mailcheck.defaultDomains.push(
 Mailcheck.defaultTopLevelDomains.push('nl', 'be', 'eu', 'de')
 
 suggested = (element, sugestion) ->
-  #console.log(sugestion)
-  tip_id = '#didyoumean_' + element[0].id
-  #console.log(tip_id)
-  sugestion_id = '#suggest_' + element[0].id
-  #console.log(sugestion_id)
-  sugElement = $(sugestion_id)
-  sugElement.text sugestion.full
-  tipElement = $(tip_id)
-  tipElement.show()
+  $('#suggest_' + element[0].id).text sugestion.full
+  $('#didyoumean_' + element[0].id).show()
 
 empty = (elements, suggestion) ->
-  tip_id = '#didyoumean_' + elements[0].id
-  sugestion_id = '#suggest_' + elements[0].id
-  sugElement = $(sugestion_id)
-  $(sugestion_id).text ''
-  tipElement = $(tip_id)
-  tipElement.hide()
+  $('#suggest_' + elements[0].id).text ''
+  $('#didyoumean_' + elements[0].id).hide()
 
 # on focusing to the next form check the mail field
 # and do a suggestion
@@ -62,12 +51,7 @@ $ ->
     # empty suggestion box
     $(sugestion_id).html ''
     # hide the tip box
-    tip_id = '#didyoumean_' + input_id
-    #console.log(tip_id)
-    tipElement = $(tip_id)
-    tipElement.hide()
-
-
+    $('#didyoumean_' + input_id).hide()
 
 # confirmation error handling
 
@@ -82,23 +66,7 @@ $ ->
       $(this).removeClass('error')
   )
 
-  $('.edit_signature').submit( ->
-    nameRegex = /^.+( |\.).+$/
-    $nameField = $('#signature_person_name')
-    $errorsBlock = $('#confirm_form_errors')
-    # default result
-    result = true
-    #//clear erors block
-    #//$errorsBlock.html('')
-    #if !$nameField.val().match(nameRegex)
-    #  $nameField.addClass('error')
-    #  error_name = window.wrong_name_error || 'Name and Surname'
-    #  #//$errorsBlock.append(error_name)
-    #  #//$errorsBlock.append('Please enter correct Name and Surname.<br>')
-    #  result = false
-    return result
-
-  ).on('ajax:success', (e, data, status, xhr) ->
+  $('.edit_signature').on('ajax:success', (e, data, status, xhr) ->
     $('#confirm_success').show()
     $('#confirm_errors').hide()
     $('.edit_signature').clear_form_errors()
@@ -172,6 +140,10 @@ $.fn.render_form_errors = (model_name, errors) ->
     )
     input.addClass('has_error')
     input.parent().append('<div class="has_error_help">' + $.map(messages, (m) -> m.charAt(0).toUpperCase() + m.slice(1)).join('<br />') + '</div>')
+
+    if field == 'person_born_at'
+      $('div.person_born_at_errors').append('<div class="has_error_help">' + $.map(messages, (m) -> m.charAt(0).toUpperCase() + m.slice(1)).join('<br />') + '</div>')
+
   )
 
 # clear all error related classes and fields

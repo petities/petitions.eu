@@ -147,7 +147,6 @@ class SignaturesController < ApplicationController
       @action = t('confirm.form.action.add_details')
     end
     # add some javascript data to allow for data checking
-    @check_fields = []
     add_check_fields
   end
 
@@ -165,7 +164,9 @@ class SignaturesController < ApplicationController
       @check_fields.push(*new_fields)
     end
     @check_fields.push('person_country') if @signature.require_person_country?
-    @check_fields.push('person_born_at') if @signature.require_born_at?
+    @check_fields.push('person_born_at\(3i\)') if @signature.require_born_at?
+    @check_fields.push('person_born_at\(2i\)') if @signature.require_born_at?
+    @check_fields.push('person_born_at\(1i\)') if @signature.require_born_at?
   end
 
   # POST a signature update by user

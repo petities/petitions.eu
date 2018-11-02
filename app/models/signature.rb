@@ -94,6 +94,10 @@ class Signature < ActiveRecord::Base
                  on: :update,
                  if: :require_minimum_age?
 
+  validates_date :person_born_at,
+                 on: :update,
+                 if: :require_born_at?
+
   validates :person_birth_city,
             length: { in: 3..255 },
             on: :update,
