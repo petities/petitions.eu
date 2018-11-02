@@ -100,7 +100,6 @@ $ ->
 
   ).on('ajax:success', (e, data, status, xhr) ->
     $('#confirm_success').show()
-    $('#confirm_error_messages').html('')
     $('#confirm_errors').hide()
     $('.edit_signature').clear_form_errors()
   ).on('ajax:error', (e, data, status, xhr) ->
@@ -137,8 +136,6 @@ $ ->
     $('#input_share_email').val('')
     $('#input_share_email').attr('placeholder', $(this).data('failed'))
   )
-
-window.debugthis = []
 
 # obligatory fields show green
 $.fn.render_form_obligations = (model_name, fields) ->

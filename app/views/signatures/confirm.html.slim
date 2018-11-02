@@ -11,22 +11,6 @@ div.page
 
     = form_for @signature, url: @url, remote: true, data: { type: :json } do |f|
 
-      //show debug / error information
-      //- if Rails.env.development?
-      //  div.start-petition-form-row
-      //     div.start-petition-form-cell.input
-      //       div.start-petition-form-cell-title.form_errors
-      //       - @signature.errors.full_messages.each do |message|
-      //         div.message
-      //           = raw message
-      //     div.start-petition-form-cell.label
-      //       p
-      //         = @check_fields.to_json
-      //       p.error
-      //         = @error_fields.to_json
-      //       p
-      //         = @petition.active_petition_type.name
-
       div.start-petition-form-row
         div.start-petition-form-cell.input
           h2.start-petition-form-cell-title
@@ -48,7 +32,6 @@ div.page
           label= t('confirm.form.subscribe.label')
         div.start-petition-form-cell.label
           p= t('confirm.form.subscribe.description')
-
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
@@ -155,6 +138,29 @@ div.page
               =<> t('confirm.form.born_at.description')
               =<> minium_age
 
+      span.errors id="confirm_errors" style='display: none;'
+
+        div.start-petition-form-row
+          h2.start-petition-form-cell.input.error
+            = t('signature.confirm_errors')
+
+      span#confirm_success style='display: none;'
+
+        div.start-petition-form-row
+          h2.start-petition-form-cell.input
+            = t('signature.success')
+
+          div.start-petition-form-cell.label.empty
+            | &nbsp;
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          | &nbsp;
+          = f.submit @action, class: 'petition-form-button'
+
+        div.start-petition-form-cell.label.empty
+          | &nbsp;
+
       div.start-petition-form-row
           div.start-petition-form-cell.input
             = t('confirm.info.confirmed_at', confirmed_at: l(@signature.confirmed_at, format: :long))
@@ -169,58 +175,14 @@ div.page
       div.start-petition-form-row
         div.start-petition-form-cell.input
           | &nbsp;
-          = f.submit @action, class: 'petition-form-button'
-
         div.start-petition-form-cell.label.empty
           | &nbsp;
-
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          | &nbsp;
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
-
-
-
-      span.errors id="confirm_errors" style='display: none;'
-
-        div.start-petition-form-row
-          h2.start-petition-form-cell.input.error
-            = t('signature.confirm_errors')
-
-          div.start-petition-form-cell.label.empty
-            | &nbsp;
-            div id="confirm_error_messages"
-
-      span#confirm_success style='display: none;'
-
-        div.start-petition-form-row
-          h2.start-petition-form-cell.input
-            = t('signature.success')
-
-          div.start-petition-form-cell.label.empty
-            | &nbsp;
-
-
 div.page
   section.start-petition-form-container
     h1.petition-section-title
       = t('confirm.info.help_petition')
-    div
-      | &nbsp;
-    div
-      /= debug @pledge
 
     = form_for @pledge, url: petition_signature_pledge_confirm_path(@petition, @signature.unique_key), remote: true, data: { type: :json } do |pf|
-      div
-        | &nbsp;
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          h2.start-petition-form-cell-title
-            = t('confirm.info.help_petition')
-        div.start-petition-form-cell.label.empty
-          | &nbsp;
-
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
