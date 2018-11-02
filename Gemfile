@@ -114,6 +114,7 @@ end
 # Track errors in production
 gem 'newrelic_rpm', '~> 5.2', '>= 5.2.0.345'
 gem 'rollbar', '~> 2.16'
+gem 'scout_apm'
 
 gem 'rack-attack', '~> 5.0', '>= 5.0.1'
 
