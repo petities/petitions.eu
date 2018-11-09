@@ -9,7 +9,7 @@ div.social-bar
     a.share-button.twitter href="javascript:twitterShare('#{share_url}', '#{share_title}');"
       = fa_stacked_icon "twitter inverse", base: "circle", class: "fa-2x"
 
-    a.share-button.whatsapp.small-only href="whatsapp://send?text=#{share_title} #{share_url}"
+    a.share-button.whatsapp.small-only href="whatsapp://send?text=#{url_encode("#{share_title} #{share_url}")}"
       = fa_stacked_icon "whatsapp inverse", base: "circle", class: "fa-2x"
 
     a.share-button.linkedin href="javascript:lnShare('#{share_url}');"
