@@ -44,6 +44,15 @@ module Admin
       assert_redirected_to admin_signatures_path
     end
 
+    test 'should set batch to unsubscribe' do
+      post :batch_action, batch_action: 'unsubscribe', collection_selection: [@signature.id]
+      @signature.reload
+      assert_not @signature.subscribe?
+      assert_not @signature.more_information?
+      assert_equal I18n.t('active_admin.signatures.batch_unsubscribe'), flash[:notice]
+      assert_redirected_to admin_signatures_path
+    end
+
     private
 
     def initialize_signature

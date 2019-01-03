@@ -6,6 +6,7 @@ four:
   visible: 1
   special: 0
   subscribe: 1
+  more_information: 1
   signed_at: 2014-07-14 20:53:32
   confirmed_at: 2014-08-14 20:53:32
   confirmed: 1

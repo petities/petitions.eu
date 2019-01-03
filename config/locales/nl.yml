@@ -35,6 +35,7 @@ nl:
       update_signature_count_requested: "Cache met aantal ondertekeningen wordt bijgewerkt."
     signatures:
       batch_invisible: De ondertekeningen zijn nu onzichtbaar.
+      batch_unsubscribe: De ondertekeningen zijn nu uitgeschreven voor voortgangsberichten.
     status_tag:
       "yes": Ja
       "no": Nee

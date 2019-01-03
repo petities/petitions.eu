@@ -33,6 +33,7 @@ en:
       update_signature_count_requested: "Signature count cache will be updated in a few moments."
     signatures:
       batch_invisible: The selected signatures are now invisible.
+      batch_unsubscribe: The selected signatures have been unsubscribed.
     users:
       account_usage: Account usage
       resend_confirmation_instructions: Resend confirmation instructions

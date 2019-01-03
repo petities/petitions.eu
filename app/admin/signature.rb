@@ -10,6 +10,15 @@ ActiveAdmin.register Signature do
     redirect_to collection_path, notice: t('active_admin.signatures.batch_invisible')
   end
 
+  batch_action :unsubscribe do |ids|
+    batch_action_collection.find(ids).each do |signature|
+      signature.subscribe = false
+      signature.more_information = false
+      signature.save
+    end
+    redirect_to collection_path, notice: t('active_admin.signatures.batch_unsubscribe')
+  end
+
   index pagination_total: false do
     selectable_column
     id_column
