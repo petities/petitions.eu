@@ -107,6 +107,7 @@ class Petition < ActiveRecord::Base
   scope :past_date_projected, -> {
     live.where('date_projected < ?', Date.today).order(date_projected: :desc).limit(20)
   }
+  scope :searchable, -> { where(status: ['live', 'sign_elsewhere']) }
 
   belongs_to :owner, class_name: 'User'
   belongs_to :office
