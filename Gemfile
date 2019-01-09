@@ -123,7 +123,7 @@ gem 'codeclimate-test-reporter', group: :test, require: nil
 group :development do
   gem 'capistrano-bundler', '~> 1.3.0'
   gem 'capistrano-maintenance', '~> 1.2', require: false
-  gem 'capistrano-rails', '~> 1.3'
+  gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
   gem 'capistrano-sidekiq', '~> 1.0'
   gem 'capistrano3-unicorn', '~> 0.2.1'
