@@ -121,7 +121,7 @@ gem 'rack-attack', '~> 5.0', '>= 5.0.1'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
-  gem 'capistrano-bundler', '~> 1.3.0'
+  gem 'capistrano-bundler', '~> 1.5.0'
   gem 'capistrano-maintenance', '~> 1.2', require: false
   gem 'capistrano-rails', '~> 1.4'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
