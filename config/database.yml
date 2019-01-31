@@ -1,4 +1,4 @@
-# MySQL.  Versions 5.0+ are recommended.
+# MySQL. Versions 5.0 and up are supported.
 #
 # Install the MySQL driver
 #   gem install mysql2
@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: petition_app_development
+  database: petitions_eu_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: petition_app_test
+  database: petitions_eu_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -45,10 +45,10 @@ test:
 # You can use this database configuration with:
 #
 #   production:
-#     url: <%%= ENV['DATABASE_URL'] %>
+#     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
   <<: *default
-  database: petition_app_production
-  username: petition_app
-  password: <%%= ENV['PETITION_APP_DATABASE_PASSWORD'] %>
+  database: <%= ENV['PETITION_APP_DATABASE'] %>
+  username: <%= ENV['PETITION_APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['PETITION_APP_DATABASE_PASSWORD'] %>
