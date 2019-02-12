@@ -50,7 +50,8 @@ div.page
         = image_tag(@petition.image.upload.url(:listing), class: 'petition-intro-image') if @petition.image
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
-        div.petition-intro-info-counter= t('show.signatures_count', count: number_with_delimiter(@petition.get_count))
+        - if @petition.get_count.nonzero?
+          div.petition-intro-info-counter= t('show.signatures_count', count: number_with_delimiter(@petition.get_count))
         div.petition-intro-info-text
           p= markdown @petition.description
 
