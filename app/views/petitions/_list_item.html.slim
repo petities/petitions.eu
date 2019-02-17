@@ -16,7 +16,7 @@ div.petition-overview-info-container
     = link_to petition_path(petition) do
     = petition.name
   div.petitions-counter class=(petition.is_hot? ? 'hot-item' : '')
-    - if petition.get_count.nonzero?
+    - unless petition.get_count.zero?
       = number_with_delimiter(petition.get_count)
 
   - if petition.last_sig_update
