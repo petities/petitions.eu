@@ -18,7 +18,7 @@ gem 'rack-utf8_sanitizer'
 gem 'utf8-cleaner'
 
 # authentication
-gem 'devise', '~> 4.3'
+gem 'devise', '~> 4.6'
 gem 'devise-i18n'
 gem 'rolify'
 
