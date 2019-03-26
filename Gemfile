@@ -67,7 +67,7 @@ gem 'sprockets'
 gem 'sprockets-rails'
 
 # image file upload made easypeasy
-gem 'paperclip', '~> 5.2'
+gem 'paperclip', '~> 6.1'
 
 # execute jobs on the side..
 gem 'sidekiq'
