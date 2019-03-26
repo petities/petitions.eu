@@ -88,7 +88,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.2'
+gem 'sdoc', '~> 1.0.0'
 
 gem 'activeadmin', '~> 1.4'
 
