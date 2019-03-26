@@ -11,7 +11,7 @@ gem 'globalize-versioning'
 gem 'friendly_id'
 gem 'friendly_id-globalize'
 
-gem 'mysql2', '~> 0.4.10'
+gem 'mysql2', '~> 0.5.2'
 
 # legacy utf 8 issues..
 gem 'rack-utf8_sanitizer'
