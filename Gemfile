@@ -120,15 +120,6 @@ gem 'rack-attack', '~> 5.0', '>= 5.0.1'
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
-group :development do
-  gem 'capistrano-bundler', '~> 1.5.0'
-  gem 'capistrano-maintenance', '~> 1.2', require: false
-  gem 'capistrano-rails', '~> 1.4'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
-  gem 'capistrano-sidekiq', '~> 1.0'
-  gem 'capistrano3-unicorn', '~> 0.2.1'
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
