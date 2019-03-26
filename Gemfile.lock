@@ -255,7 +255,7 @@ GEM
     prawnto (0.1.1)
       prawn
       rails (>= 2.1)
-    pundit (1.1.0)
+    pundit (2.0.1)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
