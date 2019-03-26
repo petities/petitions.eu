@@ -17,9 +17,7 @@ Mailcheck.defaultDomains.push(
   'wxs.nl', 'xmsnet.nl', 'xs4all.nl', 'yahoo.co.uk', 'yahoo.com', 'yahoo.de',
   'yahoo.nl', 'zeelandnet.nl', 'zonnet.nl')
 
-# extend existing SLDs
-# Mailcheck.defaultSecondLevelDomains.push('domain', 'yetanotherdomain')
-Mailcheck.defaultTopLevelDomains.push('nl', 'be', 'eu', 'de')
+Mailcheck.defaultTopLevelDomains = ['com', 'net', 'org', 'be', 'de', 'eu', 'fr', 'nl', 'nu']
 
 suggested = (element, sugestion) ->
   $('#suggest_' + element[0].id).text sugestion.full

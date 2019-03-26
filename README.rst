@@ -28,7 +28,7 @@ README
 
 * Database creation
 
-  Create a database.yml in you config folder
+    rake db:create
 
 * Database initialization
 

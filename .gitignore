@@ -24,9 +24,8 @@ doc/app
 *~
 .DS_Store
 .byebug_history
+.bash_history
 
-config/database.yml
-config/secrets.yml
 public/system
 public/assets
 
