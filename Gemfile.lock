@@ -378,11 +378,10 @@ GEM
       timeliness (~> 0.3.7)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (2.2.1)
-      activemodel (>= 4.0)
-      binding_of_caller (>= 0.7.2)
-      railties (>= 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
+    web-console (3.3.0)
+      activemodel (>= 4.2)
+      debug_inspector
+      railties (>= 4.2)
     whenever (0.10.0)
       chronic (>= 0.6.3)
 
@@ -452,7 +451,7 @@ DEPENDENCIES
   unicorn
   utf8-cleaner
   validates_timeliness
-  web-console (~> 2.0)
+  web-console (~> 3.3)
   whenever
 
 BUNDLED WITH
