@@ -65,7 +65,7 @@ GEM
       thor (~> 0.19)
     browser (1.0.1)
     builder (3.2.3)
-    byebug (10.0.2)
+    byebug (11.0.1)
     chronic (0.10.2)
     climate_control (0.2.0)
     cocaine (0.5.8)
