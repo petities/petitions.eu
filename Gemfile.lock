@@ -228,7 +228,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.1.0)
-    newrelic_rpm (6.0.0.351)
+    newrelic_rpm (6.2.0.354)
     nokogiri (1.10.2)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -462,7 +462,7 @@ DEPENDENCIES
   kaminari-i18n
   memory_profiler
   mysql2 (~> 0.4.10)
-  newrelic_rpm (~> 6.0)
+  newrelic_rpm (~> 6.2)
   paper_trail
   paperclip (~> 5.2)
   prawn (~> 2.2, >= 2.2.2)
