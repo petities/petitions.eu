@@ -20,16 +20,16 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    activeadmin (1.1.0)
+    activeadmin (1.4.3)
       arbre (>= 1.1.1)
       coffee-rails
       formtastic (~> 3.1)
       formtastic_i18n
-      inherited_resources (~> 1.7)
-      jquery-rails
-      kaminari (>= 0.15, < 2.0)
-      railties (>= 4.2, < 5.2)
-      ransack (~> 1.3)
+      inherited_resources (>= 1.9.0)
+      jquery-rails (>= 4.2.0)
+      kaminari (>= 0.15)
+      railties (>= 4.2, < 5.3)
+      ransack (>= 1.8.7)
       sass (~> 3.1)
       sprockets (< 4.1)
     activejob (4.2.11.1)
@@ -179,10 +179,10 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     i18n_data (0.8.0)
-    inherited_resources (1.7.2)
-      actionpack (>= 3.2, < 5.2.x)
+    inherited_resources (1.9.0)
+      actionpack (>= 4.2, < 5.3)
       has_scope (~> 0.6)
-      railties (>= 3.2, < 5.2.x)
+      railties (>= 4.2, < 5.3)
       responders
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -245,8 +245,6 @@ GEM
     parser (2.5.3.0)
       ast (~> 2.4.0)
     pdf-core (0.7.0)
-    polyamorous (1.3.3)
-      activerecord (>= 3.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -300,12 +298,11 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.0)
     rake (12.3.2)
-    ransack (1.8.8)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
+    ransack (1.8.10)
+      actionpack (>= 3.0, < 5.2)
+      activerecord (>= 3.0, < 5.2)
+      activesupport (>= 3.0, < 5.2)
       i18n
-      polyamorous (~> 1.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -428,7 +425,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin (~> 1.1)
+  activeadmin (~> 1.4)
   autoprefixer-rails
   better_errors
   binding_of_caller
