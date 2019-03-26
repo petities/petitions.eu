@@ -227,8 +227,6 @@ GEM
       rails (>= 2.1)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
-    quiet_assets (1.1.0)
-      railties (>= 3.1, < 5.0)
     rack (1.6.11)
     rack-attack (5.4.2)
       rack (>= 1.0, < 3)
@@ -430,7 +428,6 @@ DEPENDENCIES
   prawn-table
   prawnto
   pundit
-  quiet_assets
   rack-attack (~> 5.4)
   rack-mini-profiler
   rack-utf8_sanitizer

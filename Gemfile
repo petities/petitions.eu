@@ -121,15 +121,18 @@ gem 'rack-attack', '~> 5.4'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger
-  # console
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'byebug'
-  gem 'quiet_assets'
-
   # create fake data
   gem 'faker'
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger
+  # console
+  gem 'byebug'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
