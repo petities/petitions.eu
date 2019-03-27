@@ -15,10 +15,8 @@ Rails.application.configure do
 
   config.action_controller.perform_caching = false
 
-  # config.cache_store = :mem_cache_store, "127.0.0.1"
-
   config.cache_store = :redis_store,
-                       'redis://localhost:6379/0/cache',
+                       'redis://redis:6379/0/cache',
                        { expires_in: 90.minutes }
 
   # Don't care if the mailer can't send.
@@ -50,7 +48,7 @@ Rails.application.configure do
 
   # Use Mailcatcher for local development
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: 'mailcatcher' }
+  config.action_mailer.smtp_settings = { address: 'mailhog', port: 1025 }
 
   # Devise user handling
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
