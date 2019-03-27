@@ -4,7 +4,7 @@ LABEL maintainer="Stichting Petities.nl <webmaster@petities.nl>"
 
 RUN apt-get update && \
     apt-get install -y nodejs && \
-    && rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 RUN groupadd -g 999 appuser && \
     useradd -r -u 999 -g appuser appuser -d /app
