@@ -15,6 +15,8 @@ RUN mkdir /app && chown 999:999 /app
 COPY Gemfile Gemfile.lock ./
 RUN chown appuser:appuser Gemfile Gemfile.lock
 
+COPY docker-entrypoint.sh /usr/local/bin/
+
 USER appuser
 WORKDIR /app
 
@@ -25,7 +27,7 @@ COPY . ./
 VOLUME /app
 EXPOSE 3000
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
 
