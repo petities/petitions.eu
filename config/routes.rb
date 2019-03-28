@@ -85,7 +85,6 @@ Rails.application.routes.draw do
 
   # dashboard statistics
   constraints admin_constraint do
-    mount RedisAnalytics::Dashboard::Engine => '/visits'
     mount Sidekiq::Web => '/sidekiq'
   end
 

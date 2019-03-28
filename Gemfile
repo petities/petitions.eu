@@ -74,8 +74,6 @@ gem 'sinatra', require: nil # sidekiq/web uses sinatra
 gem 'whenever', require: false
 
 gem 'redis-rails'
-# have some real time stats of our app
-gem 'redis_analytics' #:git => 'git@github.com:saturnine/redis_analytics.git'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
