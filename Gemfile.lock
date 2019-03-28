@@ -89,7 +89,6 @@ GEM
       countries (~> 2.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
-    dalli (2.7.10)
     debug_inspector (0.0.3)
     devise (4.6.2)
       bcrypt (~> 3.0)
@@ -399,7 +398,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2, >= 4.2.2)
   countries
   country_select
-  dalli
   devise (~> 4.6)
   devise-i18n
   email_validator (~> 1.6)
