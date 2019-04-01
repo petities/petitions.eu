@@ -5,6 +5,7 @@ class PetitionPolicy < ApplicationPolicy
 
   def update?
     return false unless user
+
     user.has_role?(:admin) ||
       user.has_role?(:admin, petition) || user.has_role?(:admin, office)
   end
@@ -22,7 +23,9 @@ class PetitionPolicy < ApplicationPolicy
   end
 
   def export?
-    user && (user.has_role?(:admin, petition) || user.has_role?(:admin))
+    return false unless user
+
+    user.has_role?(:admin, petition) || user.has_role?(:admin)
   end
 
   def invalid_attributes
