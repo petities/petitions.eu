@@ -177,7 +177,6 @@ GEM
     kaminari-i18n (0.5.0)
       kaminari
       rails
-    kgio (2.11.2)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -220,6 +219,7 @@ GEM
     prawnto (0.1.1)
       prawn
       rails (>= 2.1)
+    puma (3.12.1)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     rack (1.6.11)
@@ -261,7 +261,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (3.0.0)
-    raindrops (0.19.0)
     rake (12.3.2)
     ransack (1.8.10)
       actionpack (>= 3.0, < 5.2)
@@ -359,9 +358,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.5.0)
     unicode_utils (1.4.0)
-    unicorn (5.5.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
     utf8-cleaner (0.2.5)
       activesupport
     validates_timeliness (4.0.2)
@@ -415,6 +411,7 @@ DEPENDENCIES
   prawn (~> 2.2, >= 2.2.2)
   prawn-table
   prawnto
+  puma
   pundit
   rack-attack (~> 5.4)
   rack-mini-profiler
@@ -436,7 +433,6 @@ DEPENDENCIES
   sprockets-rails
   stackprof
   uglifier (~> 4.1)
-  unicorn
   utf8-cleaner
   validates_timeliness
   web-console (~> 3.3)

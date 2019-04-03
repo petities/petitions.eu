@@ -102,9 +102,7 @@ gem 'email_validator', '~> 1.6', require: 'email_validator/strict'
 
 gem 'has_secure_token', '~> 1.0'
 
-group :production do
-  gem 'unicorn'
-end
+gem 'puma'
 
 # Track errors in production
 gem 'newrelic_rpm', '~> 6.2'
