@@ -220,7 +220,7 @@ GEM
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     rack (1.6.11)
-    rack-attack (5.4.2)
+    rack-attack (6.0.0)
       rack (>= 1.0, < 3)
     rack-mini-profiler (1.0.2)
       rack (>= 1.2.0)
@@ -410,7 +410,7 @@ DEPENDENCIES
   prawnto
   puma
   pundit
-  rack-attack (~> 5.4)
+  rack-attack (~> 6.0)
   rack-mini-profiler
   rack-utf8_sanitizer
   rails (= 4.2.11.1)
