@@ -146,7 +146,11 @@ class Signature < ActiveRecord::Base
       # city count
       redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
-      RedisPetitionCounter.new(petition).increment if petition.is_live?
+      if petition.is_live?
+        counter = RedisPetitionCounter.new(petition)
+        counter.update(petition.signatures_count) unless counter.exists?
+        counter.increment
+      end
       # activity rating
       petition.update_active_rate!
     end
