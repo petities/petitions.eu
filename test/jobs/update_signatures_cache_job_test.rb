@@ -30,7 +30,7 @@ class UpdateSignaturesCacheJobTest < ActiveJob::TestCase
     assert_not_equal(last_confirmed_at, @petition.last_confirmed_at)
 
     UpdateSignaturesCacheJob.perform_now(@petition)
-    
+
     assert_equal(last_confirmed_at, last_confirmed_at)
   end
 end

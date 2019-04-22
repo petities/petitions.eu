@@ -143,8 +143,6 @@ class Signature < ActiveRecord::Base
       redis.incr("p-d-#{petition.id}-#{confirmed_at.year}-#{confirmed_at.month}-#{confirmed_at.day}")
       # size rating
       redis.zincrby('petition_size', 1, petition.id)
-      # city count
-      redis.zincrby("p-#{petition.id}-city", 1, person_city.downcase)
       # size count
       if petition.is_live?
         counter = RedisPetitionCounter.new(petition)

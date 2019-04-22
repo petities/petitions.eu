@@ -6,36 +6,6 @@ namespace :petition do
     end
   end
 
-  desc 'create redis signature CITY counts'
-  task set_redis_city_counts: :environment do
-    def city_counts(petition)
-      @signatures_count_by_city = petition.signatures.group_by(&:person_city)
-                                  .map { |group| [group[0], group[1].size] }
-                                  .select { |group| group[1] >= 20 }
-                                  .sort_by { |group| group[1] }
-    end
-
-    r = Redis.new
-
-    Petition.live.find_each do |petition|
-      r.del("p#{petition.id}_city")
-
-      city_counts(petition).each do |group|
-        city_name = group[0].downcase
-        count = group[1].to_i
-        r.zincrby("p#{petition.id}_city", count, city_name)
-      end
-    end
-  end
-
-  desc 'create redis summary graph'
-  task create_redis_month_counts: :environment do
-    # Petition.where(status: false).each_with_index do |petition, index|
-    #
-    # end
-  end
-
-
   desc 'create redis signature counts'
   task set_redis_signature_counts: :environment do
     require 'benchmark'
