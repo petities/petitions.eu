@@ -20,26 +20,7 @@ class SignaturesController < ApplicationController
   def index
     @all_signatures = @petition.signatures.limit(900)
 
-    # make redis!
     @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
-
-    # redis ranking!
-    # @signatures_count_by_city = @all_signatures.group_by(&:person_city)
-    #                             .map { |group| [group[0], group[1].size] }
-    #                             .select { |group| group[1] >= 50 }
-    #                             .sort_by { |group| group[1] }[0..9]
-
-    # @filtered_s_c_c = {}
-
-    # @signatures_count_by_city.each do |group|
-    #   city_name = group[0].downcase
-    #   if @filtered_s_c_c[city_name]
-    #     @filtered_s_c_c[city_name] += group[1].to_i
-    #   else
-    #     @filtered_s_c_c[city_name] = group[1].to_i
-    #   end
-    # end
-    # @sorted_city_count = @filtered_s_c_c.sort_by { |_city, count| -count }
 
     per_page = 100
 
