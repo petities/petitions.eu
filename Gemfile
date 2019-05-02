@@ -105,7 +105,7 @@ gem 'has_secure_token', '~> 1.0'
 gem 'puma'
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 6.2'
+gem 'newrelic_rpm', '~> 6.3'
 gem 'rollbar', '~> 2.19'
 
 gem 'rack-attack', '~> 6.0'
