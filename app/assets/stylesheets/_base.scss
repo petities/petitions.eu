@@ -189,6 +189,8 @@ h1 {
   margin: 0 0 12px;
   font: 300 44px/46px 'Open Sans', arial, sans-serif;
   color: $green;
+  hyphens: auto;
+
   &.petition-section-title {
     font: 300 44px/48px 'Open Sans', arial, sans-serif;
   }
@@ -199,6 +201,7 @@ h2 {
   font: 400 22px/24px 'Open Sans', arial, sans-serif;
   letter-spacing: 1.1px;
   color: $light-green;
+  hyphens: auto;
 }
 
 h3 {
