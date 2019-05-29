@@ -106,7 +106,7 @@ gem 'puma'
 
 # Track errors in production
 gem 'newrelic_rpm', '~> 6.4'
-gem 'rollbar', '~> 2.19'
+gem 'rollbar', '~> 2.20'
 
 gem 'rack-attack', '~> 6.0'
 
