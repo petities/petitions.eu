@@ -290,7 +290,7 @@ GEM
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
     rolify (5.2.0)
-    rollbar (2.19.4)
+    rollbar (2.20.0)
       multi_json
     sass (3.7.3)
       sass-listen (~> 4.0.0)
@@ -417,7 +417,7 @@ DEPENDENCIES
   redcarpet
   redis-rails
   rolify
-  rollbar (~> 2.19)
+  rollbar (~> 2.20)
   sass-rails (~> 5.0)
   sdoc (~> 1.0.0)
   sidekiq
