@@ -55,6 +55,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
 # Configure sidekiq
 set :sidekiq_config, 'config/sidekiq.yml'
 
+set :maintenance_template_path, 'app/views/maintenance/application.html.erb'
+
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do

@@ -1,8 +1,5 @@
 div.header-user-name
-  - if current_user
-    = current_user.email
-  - else
-    = t('my.petitioner')
+  = header_username(current_user)
 
 div.header-user-dropdown
 

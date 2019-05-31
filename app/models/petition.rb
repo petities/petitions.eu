@@ -128,6 +128,7 @@ class Petition < ActiveRecord::Base
   def get_count
     from_redis = RedisPetitionCounter.count(self)
     return from_redis unless from_redis.zero?
+
     signatures_count
   end
 
