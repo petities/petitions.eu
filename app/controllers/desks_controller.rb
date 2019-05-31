@@ -24,11 +24,7 @@ class DesksController < ApplicationController
 
     petitions_by_status @petitions
 
-    # @users = User.order(:email)
-    #
-    # @office_admins = User.with_role(:admin, @office)
-
-    @admins = Office.with_role(:admin, @office)
+    @admins = User.with_role(:admin, @office)
   end
 
   def show_not_logged_in

@@ -28,3 +28,9 @@ div.page.vervolg
       h2= t('desk.title_grey_2')
       p= t('desk.text_grey_2')
 
+    - if @admins.any?
+      div.side-article-container.whitespace
+        h2 = t("desk.general_desk_admins")
+        ul
+        - @admins.each do |admin|
+          li = admin.email
