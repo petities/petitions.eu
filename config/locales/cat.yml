@@ -1,0 +1,837 @@
+---
+cat:
+  Create:
+    newpetition: Start a petition
+  about:
+    donate: Donate and support Petities.nl
+    text: |
+      <p>Petities.nl and Petitions.eu belong to the stichting Petities.nl, on the web <a href="http://web.archive.org/web/20051017052754/http://petities.nl/">since 1 May 2005.</a> Our aim is to make it easier for Dutch citizens to sign or start a petition which should be answered. Since 16 June 2008 the recipients of petitions can open a desk in this website to receive and answer petitions.</p>&#13;
+      <p>&nbsp;</p>
+      <p>This service is made possible by professional volunteers, <a href="http://www.digitalepioniers.nl/projecten/Petities-nl/59">subsidies</a>, <a href="http://web.archive.org/web/20101209065053/http://www.burgerlink.nl/eparticipatie/instrumenten-eparticipatie/Petities-nl2.xml">temporary professional support</a> and donations. Petities.nl is recognised by the Dutch Tax Authority as <a href="http://www.belastingdienst.nl/wps/wcm/connect/bldcontenten/belastingdienst/business/other_subjects/public_benefit_organisations/">a Public Benefit Organisation</a>.</p>&#13;
+      <p>&nbsp;</p>
+      <p>The foundation is erected in February 2004 by ReindeR Rustema, Arjan Widlak and Michiel Leenaars and can be found in the register of the Chamber of Commerce <a href="https://server.db.kvk.nl/TST-BIN/ZS/ZSWWW01@?TYPE=NDNR&NDNR=34206249&NSDN=&submit=">with number 34206249</a>. The board now consists of ReindeR Rustema, Johan Kok, Liesbeth Dillo and Michiel Leenaars.</p>&#13;
+      <p>&nbsp;</p>
+      <p>Technically the site is made possible by the volunteers of the 'Open Domein' association. From them you can get a <a href="http://deds.nl">free e-mailadres without advertising with respect for your privacy</a>. Then you can also <a href="http://opendomein.nl/lidmaatschap/">become member (for €15 per year)</a> if you appreciate the technical support of this kind of internet projects.</p>&#13;
+      <p>&nbsp;</p>
+      <p>From 2011 onwards the hosting is done by internetprovider <a href="https://www.xs4all.nl/welcome-to-xs4all.htm">XS4ALL</a> because XS4ALL supports "initiatives aimed at the free exchange of information, democracy, privacy and the innovative use of the internet." The servers of Open Domein find shelter at XS4ALL because of that. The certificates for the secure communication with petities.nl are provided by <a href="https://www.xolphin.nl/Xolphin">Xolphin SSL Certificaten</a>. Error analytics and other insights we get through <a href="https://rollbar.com">Rollbar.com</a> who monitor our website. The number +31207854412 and the telephone exchange behind it by <a href="http://callvoip.nl/">CallVOIP</a>.</p>&#13;
+      <p>&nbsp;</p>
+      <p>Our annual report is available <a href="https://jaarverslag.petities.nl">in Dutch</a>.</p>&#13;
+      <p>&nbsp;</p>
+    title: About the 'stichting Petities.nl'
+  active: Active
+  active_admin:
+    batch_actions:
+      labels:
+        invisible: Invisble
+    dashboard: Dashboard
+    new_petitions: New petitions
+    past_date_projected: Petitions past date projected
+    petitions:
+      update_signature_count: "Update cached signature count"
+      update_signature_count_requested: "Signature count cache will be updated in a few moments."
+    signatures:
+      batch_invisible: The selected signatures are now invisible.
+      batch_unsubscribe: The selected signatures have been unsubscribed.
+    users:
+      account_usage: Account usage
+      resend_confirmation_instructions: Resend confirmation instructions
+      confirmation_instructions_resent: Confirmation instructions have been sent.
+  activerecord:
+    models:
+      petition: Petition
+    attributes:
+      signature:
+        person_name: Name
+        person_city: City
+        person_function: Posició de treball o situació
+        confirmed: Confirmat
+        confirmed_at: Confirmat el
+      image:
+        _destroy: Remove this image
+    errors:
+      models:
+        petition:
+          attributes:
+            base:
+              will_not_destroy_that_much_signatures: 'Will not destroy petitions with > 100 signatures'
+        signature:
+          attributes:
+            person_name:
+              too_short: 'Names are rarely that short'
+              too_long: 'Names are rarely that long'
+              invalid: 'Does not look like a name (or initial) and surname'
+            person_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
+            person_street:
+              too_short: 'Street names are rarely that short'
+              too_long: 'Street names are rarely that long'
+            person_street_number:
+              not_a_integer: 'That is not or not only a number'
+              not_a_number: 'That is not or not only a number'
+            person_street_number_suffix:
+              too_short: 'Number suffixes are rarely that short'
+              too_long: 'Number suffixes are rarely that long'
+            person_birth_city:
+              too_short: 'Place names are rarely that short'
+              too_long: 'Place names are rarely that long'
+  admin:
+    sorting: Sorting
+  all:
+    count:
+      one: "1 petition"
+      other: "%{count} petitions"
+    title: All petitions
+  sort_options:
+    active: Active petitions
+    all: All
+    answered: Answered
+    biggest: Biggest petitions
+    concluded: Concluded
+    newest: New petitions
+    open: Open for signing
+    rejected: Rejected
+    sign_elsewhere: Sign elsewhere
+    signquick: Sign last minute
+    title: 'Sort on: '
+    withdrawn: Withdrawn
+  anonymous: Anonymous
+  confirm:
+    form:
+      action:
+        add_details: Actualitzar la meva signatura
+        confirm: Confirm
+        confirm_and_save: Confirm and save
+        pledge: I pledge to help
+        send_email: Send the invitation
+        update: Actualitzar la meva signatura
+      bigbrother: També hem rebut aquesta informació seva. Aquesta informació continua sent la vostra propietat.
+      birth_country:
+        description: The Dutch nationality is required for this sort of petition.
+      born_at:
+        description: You might be too young for this kind of petition. It will be checked.
+        label: Born at
+      city:
+        description: "City where you were born, not required."
+        label: City of birth
+      country:
+        description: Dutch citizens abroad can sign.
+        label: Country were you currently live
+      date:
+        day: choose day
+        month: choose month
+        year: choose year
+      function:
+        description: "En aquesta casella pot omplir el la seva posició de treball, la seva professió o la seva relació amb la petició per fer-ho públic, però no és necessari."
+        label: Function or situation
+      form:
+        update_information: updated
+      influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with a specific proposal.
+      influencelabel: Do you have influence? Are you a(n)...
+      invite_info:
+        description: El vostre municipi busca ciutadans que vulguin ajudar a resoldre problemes. Pot acceptar, ignorar o aturar les invitacions del municipi.
+        label: El meu municipi pot convidar-me, com a màxim 6 vegades l''any
+      location:
+        description: "Localitat de residència en el moment de firmar. Només és visible al póblic si ho desitja."
+        label: Localitat de residència
+      money:
+        1: € 1
+        5: € 5
+        10: € 10
+        25: € 25
+        50: € 50
+      name:
+        description: Firmi com a minim amb el cognom i inicial del nom.
+        label: Nom i cognom
+      pledge:
+        asseenontv: known person who gets recognised
+        carpooler: give a ride to a meeting
+        copywriter: write press releases, newsletters or op-eds
+        communicator: answer e-mails and phone calls
+        employer: employer with many employees
+        experienced: tell experiences to a journalist
+        expert: expert
+        host: host a meeting
+        mediatrained: talk on radio or television
+        ngomember: member of a relevant organisation
+        organiser: organise a meeting
+        other: something else...
+        partymember: member of a political party
+        performer: attract attention
+        publicspeaker: speak in public
+        researcher: do research
+        withreaders: writer with many readers
+      postal_code:
+        description: Only the recipient of the petition and the recipient can see your address. To verify it.
+        label: Postal code
+      see_your_signature: View your signature in the list
+      skillslabel: Do you have special skill? Are you able to...
+      skills_offer_description: The lead petitioner might need your special skills. You might be able to help. You will receive an e-mail with a specific proposal.
+      street:
+        description: The address where you officially live today is required for this sort of petition. You can find it on mail from the government.
+        label: Street
+      street_number:
+        description: Your address will never be public.
+        label: Street number
+      street_number_suffix:
+        suffixlabel: Suffix
+      subscribe:
+        description: Rebrà correus electrònics del peticionari referent a la petició. Sempre pot cancel·lar la subscripció. La resposta a la petició la rebrà sempre.
+        label: "Sí, manteniu-me informat sobre el progrés d'aquesta petició"
+      update_information: Update your information
+      visible:
+        description: Una signatura visible al públic es pot trobar a través dels cercadors, per exemple mitjançant el seu nom.
+        privacylabel: Si, mostra el meu nom i localitat de recidència sota la petició
+    info:
+      browser: 'El seu browser: %{browser}'
+      check_information: 'Aquí pot corregir les seves dades  '
+      donate_petition: Donate
+      confirmed_at: 'Confirmat el: %{confirmed_at}'
+      help_petition: Help the petition
+      how_much: How much would you like to contribute?
+      how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
+      ip: 'Your IP-aLa seva adreça IP: %{ip}'
+      petition_signature_url: You can copy and paste this link to your signature. To send or publish for example.
+      share:
+        on_facebook: Share on Facebook
+        on_facebook_description: Share this petition on Facebook
+        on_twitter: Share on Twitter
+        on_twitter_description: Share this petition on Twitter
+      share_petition: Share the petition
+      your_email: Your email
+      your_signature: See your signature in the list
+    mailafriend:
+      description: Invite only people you know and who might sign.
+      failed: Failed! Try again
+      input: Enter (another) e-mail address
+      label: 'Preview:'
+      title: Invite others
+      success: Thank you! Please invite more
+    not_found:
+      title: Your signature was not found
+      explanation: Your signature cannot be confirmed. We could not find a signature with this link.
+      action_requested: We kindly request you to re-sign the petition. If you signed the petition before, you will receive a new e-mail that lets you edit your existing signature.
+      contact_us_html: We apologise for the inconvenience. If you have any questions, please feel free to <a href="%{contact_path}">contact us</a>.
+    title: Moltes gràcies per confirmar la seva signatura!
+  contact:
+    mail:
+      remote_ip: IP
+      browser: Browser
+    title: Contact Stichting petities.nl
+    form:
+      name:
+        label: Your name
+        description: Your name, preferably like you use it to sign a petition.
+      mail:
+        label: Your email address
+        description: We use your email address only to reply.
+      text:
+        label: Your message
+        description: Your message to Stichting Petities.nl. We will send you a copy of your message.
+      subject:
+        label: The subject
+        description: The subject of your message. For example, the name of the petition you are writing about.
+      submit: Send
+    thanks:
+      title: Your message is sent to webmaster@petities.nl with a copy for you.
+      description_html: "<p>Thank you for your message.</p>&nbsp;<p> If you do not receive a copy you probably made a mistake in your address. Sometimes we can not reply if this is the case.</p>&nbsp;<p>Nearly daily we go into our mailbox for about an hour to answer as many e-mails as possible.</p>&nbsp;<p> If you are in a hurry, please leave a voicemail. This arrives in our regular mailbox and gets priority. We always answer by e-mail.</p>"
+  contact_mailer:
+    webmaster_message:
+      subject: Message from petities.nl
+      intro: This message was sent using the contact form on petities.nl
+  description: Description
+  desk:
+    general_desk_admins: Petition desk accounts
+    intro: A petition desk is where you can file your petition on this website. You can always ask the civil servant who moderates your petition for help. If there is no desk then Petities.nl will open your petition and we can help you with the hand over.
+    petition:
+      allow_through: Allow through
+      answer: Answer
+      answered: Answered
+      draft: Not yet finished
+      signable: Signable
+      withdrawn: Withdrawn
+    text_blue: Via petities.nl kunt u contact krijgen met betrokken burgers. Bij het bevestigen van een ondertekening kunnen burgers aangeven uitgenodigd te willen worden voor participatie in beleid.
+    text_green: Onze ervaring sinds 2005 kunnen we met een workshop op maat met u delen.
+    text_grey: Wilt u de zekerheid dat we altijd te bellen zijn voor hulp? Slechts €50 per jaar.
+    text_grey_2: De ondertekeningen in onze database, de petities, de onderwerpen, de trends, dit kunnen we allemaal voor u analyseren.
+    title: Petitieloketten
+    title_blue: Betrokken burgers in de aanbieding!
+    title_green: Workshops
+    title_grey: 24/7 ondersteuning
+    title_grey_2: Analyses
+  donate:
+    text: "<p>Your donation is most appreciated by <a href=\"../about\">us</a>. You can:</p>\n<p>&nbsp;</p>\n<ul>\n  <li>transfer it to Rabobank account NL14RABO0324616899 from stichting Petities.nl in Amsterdam, the Netherlands (bank identification code RABONL2U)</li>\n  <li><a href=\"https://www.geef.nl/donatiemodule/taal:en/doel:petities-nl/land:NL/mobile:false/forceer:true\">by creditcard through Geef.nl</a></li> \n  <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">\n    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">\n    <input type=\"hidden\" name=\"hosted_button_id\" value=\"RXPC48TRFCARN\">\n    <li><input type=\"image\" src=\"%{paypal_image}\" border=\"0\" name=\"submit\" alt=\"Donate\"> to webmaster@petities.nl through Paypal.</li>\n  </form>       \n</ul>\n <p>&nbsp;</p>\n<p>Thank you!</p>\n<p>&nbsp;</p>"
+    more: "<p>You can also donate time. For example by searching for news about petitions on our site. E-mail your findings to us and we will ask the lead petitioner to update the petition. </p><p>&nbsp;</p><p>Also when you find spelling, language or translation mistakes on our site we would appreciate it tremendously if you e-mail it to us.<p>&nbsp;</p><a href=\"https://github.com/petities\">You can also improve our software</a> by finding mistakes or improvements by yourself or choose something from our wishlist.</p><p>&nbsp;</p></p>"
+    title: Donate
+  edit:
+    petition:
+      add_news: Add news
+      edit_details_button: Edit the details
+      edit_petition: Edit the petition
+      edit_text: Edit the text
+      newer_version: Newer version
+      newest_version: Petition version
+      no_signatures_yet: No signatures yet
+      of: out of
+      older_version: Older version
+      sign_page: Show the petition
+      status:
+        explanation: Once your petition text is ready, you give it to the moderator to open it for signing. After the closing date the petition can not be signed. To close or prolong the petition you need to change the date. Closed petitions need to be handed over to the recipient. Then we wait for an answer.
+      updated: Petition is updated
+      version: version
+      write_news: Write an update
+  errors:
+    messages:
+      empty: This field is empty but should contain text.
+      incorrect: Some fields are filled incorrectly. Check them out and try again.
+      not_saved: Not saved
+      too_long: What you wrote does not fit. You can ask for an exception if you really need more space.
+  footer:
+    address: Address
+    contact: Contact
+    donate: Donate and support Petities.nl
+    hosting: Hosting sponsored by
+    menu:
+      about: About Petities.nl
+      desks: Petition desks
+      form: Contact form
+      help: Help
+      manage: Manage your petitions
+      petitions: Petitions
+      privacy: Your privacy
+      support: Support us
+      updates: Updates
+      start_petition: Start a petition
+    updates: News
+  header:
+    new: Start a petition
+    search: Search in petitions
+  help:
+    aftersigning:
+      - answer: Sign by entering your name and e-mail address and confirm your signature from the e-mail you receive. On the page where you confirm, you can invite others to sign. You can send invitations by e-mail or use social media. On the same page you can also indicate you would like to help or donate.
+        title: How can I support a petition more?
+      - answer: Unfortunately, we require one e-mail address per signature to make it easy for the majority. No need for a password and each signature is connected to a person who can read e-mail. The way out is to either sign on paper and send/e-mail this to the lead petitioner or get an (extra) e-mail address. You can get an e-mail address for free from Open Domein, the organisation which also hosts this website. More details solutions in our <a href="https://handboek.petities.nl">handbook</a>.
+        title: We share an e-mail address or my friends do not have e-mail. Can we sign only once?
+      - answer: Sign a petition again with the same e-mail address as you have used before and and we send you the confirm e-mail with the link to the personal page. Follow this link and you change your name or description. You can also always hide or modify your name or description and you can change your other settings.
+        title: Did I already sign a certain petition?
+    aftersigning_item: After signing
+    changesig:
+      descr: "<p>You can always change or hide your signature. Easily, by following the same link again we sent you to confirm your signature. You will find the options on the page that will appear.</p><p>&nbsp;</p><p>Did you lose that e-mail? Just sign again and you get a copy.</p>"
+      title: Change your signature
+    general:
+      - answer: Petities.nl aims to overcome the usual shortcomings of online petitions, we ask&#58;<br>&#149; to address each petition to a recipient in the position to change matters as requested<br>&#149; to have a petitioner responsible as a spokesperson and contact about the petition; no anonymous petitions without someone responsible<br>&#149; petitions to deal with the public interest, no consumer issues<br>&#149; for constructive petitions by requiring a sender and clear observation and demand<br>&#149; preventing spam for signatories.<br>In general we want to enable and improve the constitutional right to petition.
+        title: Online petitions are pointless I am told. Why is Petities.nl different?
+      - answer: You can not sign anonymously. You can sign without showing your name publicly. When you sign you should tick a checkbox to allow your name to be shown publicly. When you do not allow this, only three persons can see your name&#58;<br>&#149; The recipient of the petition, usually the government.<br>&#149; The petitioner, who manages the petition.<br>&#149; Petities.nl, who manages the website. You can always tick or empty this checkbox.
+        title: Why are anonymous signatures allowed?
+      - answer: Those who receive your petition are handed a list of signatures to verify. Hypothetically a politician or civil servant might contact you personally when they expect you can give a valuable insight on the petition. Practically they only talk to the petitioner, as spokesperson for all signatories. The recipient of a petition can not send a mailing to all signatories, because this is prohibited by the <a href="https://www.cbpweb.nl/">dataprotection law</a>. After all, our database is not created for that purpose and therefore the data can not be used for it. The webmaster and systeemadministrator of petities.nl have access to all this data. The Petities.nl Foundation aims for distinction from competing action sites with reliability and neutrality. We operate under Dutch legislation on servers in the Netherlands from a non-profit organisation which is not for sale. Unused data is actively deleted (storing no data is always the safest policy). The lead petitioner only has access to the name-function-place data for the hand over. Included are the 'anonymous' signatories, not publicly visible on the website. This list may not be published (protected by the dataprotection act) and may only be handed over to be verified. And to impress of course! Elected representatives know how difficult it is to voluntarily make someone sign for something...
+        title: Who gets to see my data?
+    general_items: General questions
+    handbook:
+      descr: The <a href="https://handboek.petities.nl/wiki/Hoofdpagina/en">Handbook Petitions</a> has extra tricks and tips based on our experiences since 2005. Mostly in Dutch.
+      title: Petition Handbook
+    opinionpiece:
+      descr: A petition gets most signatures from allies who are already convinced by the need for change. But most are not! If they know about the petition at all. With opinion piece in the newspaper or online you can both inform and convince people. This text is usually more pleasant to read than a petition.</p><p>&nbsp;</p><p>To write such a piece is not difficult&#58; it is all about the opinion supported by arguments. Send your piece to a newspaper or a website accepting contributions from others. You can also write an opinion piece to draw attention to someone else's petition. Do not forget the call to sign the petition!
+      title: More signatures with an opinion piece
+    petition:
+      update:
+        help: Summarise
+        descr: "You can easily style your text with words between asterisks. For example for a word in *italics* or **bold**."
+        descr2: "You can even make [a link.](https://handboek.petities.nl/wiki/markdown/)"
+        descr3: |
+            <p>In the <a href="https://handboek.petities.nl/wiki/markdown/">handbook</a> you can find an overview of style options.</p>
+        descr4: "Make sure the title summarizes the news you want to spread. The first and second sentence is what everyone will see, what follows is optional."
+        links: Include links
+        markdown: Use styling
+        tips: See the handbook
+    title: Help
+    whilesigning:
+      - answer: When a petition is closed for signing the button to sign does not appear under a petition. A petition closes before the hand over and then awaits an answer. You could contact the lead petitioner to add your signature if the petition is not formally handed over.
+        title: Why can I not sign a certain petition?
+      - answer: It can happen you signed with an e-mail address you can not access (anymore). You notice this when you do not receive the confirmation e-mail within some 15 minutes after signing. Also requesting that e-mail again does not work, because it goes to an address where you can not read it. No problem, just sign again with your information but with the correct, working address.
+        title: I used the wrong e-mail address to sign, what to do?
+      - answer: Yes, you sign anonymously by default. The recipient of the petition and the lead petitioner can see who (your name and self description) signed from where. Only if you opted in for showing your name on the web it appears under the petition. You can reverse this by yourself anytime but it might already be archived by others in the meantime.
+        title: Can I sign without my name publicly on the web?
+      - answer: awaiting translation
+        title: Ik ben het niet exact eens met petitie. Kan ik een extra conditie opgeven bij mijn ondertekening?
+      - answer: awaiting translation
+        title: Hoe kan ik aan een petitie persoonlijk commentaar toevoegen?
+    whilesigning_item: While signing
+    writingpetition:
+      - answer: awaiting translation
+        title: Waarom moet ik als petitionaris extra links opgeven?
+      - answer: awaiting translation
+        title: Ik heb geen discussieforum, waar moet ik naar linken in mijn petitie?
+      - answer: awaiting translation
+        title: Waarom mogen petities over een product of bedrijf niet?
+      - answer: awaiting translation
+        title: Aan wie adresseer ik een petitie?
+      - answer: awaiting translation
+        title: Ik wil informatie over mijn petitie op mijn website, hoe doe ik dat?
+    writingpetition_item: While writing a petition
+  index:
+    all: All petitions
+    more: Show more petitions
+    read: Read more...
+  listing: Listing
+  login:
+    email:
+      description: The e-mailaddress you used to start your petition is also your username.
+      label: E-mail address
+    flash:
+      success: You can now login with your e-mail address and new password!
+    login: Log in
+    password:
+      description: When you began your petition you chose a password. If you did not, we sent you a password by e-mail.
+      label: Password
+    reset_link:
+      description: Do you not have or know your password anymore, ask a link by e-mail to set a new one.
+      label: Send password reset link
+  logout: Logout
+  manage:
+    title: My petitions
+  my:
+    activeadmin: Manage data
+    create_newsupdate: Write update
+    desk: Petition desk
+    mailpreviews: Preview default mails
+    petitioner: 'You, the petitioner'
+    petitions: My petitions
+    profile: My profile
+    startanother: Start another petition
+    visits: Visitor statistics
+    sidekiq: Tasks queue
+  moderation:
+    pending: Your petition opens after you confirm this e-mail
+  name: Name
+  password:
+    change: Change your password
+    confirm: Confirm your new password
+    forgot: Reset your password
+    descr: Do you not know which e-mail address you used or do you not have access to it? Contact us.
+    new: Your new password
+    save: Save new password
+    send: Send me the password link
+    wisdom:
+      'We recommend using a <a href="https://en.wikipedia.org/wiki/List_of_password_managers">password manager</a> to generate and store passwords. For example 1Password or LastPass.'
+  petition:
+    Edit: Edit
+    Enable: Enable
+    Show: Show
+    add_custom_translation: Add custom translation
+    add_translations: Add translations
+    add_translations_dialect: Add translations dialect
+    add_translations_later: Add translations later
+    add_translations_link_instruction: Add translations link instruction
+    another_possible_action: Another possible action
+    available_languages: "Available in:"
+    closed: Closed
+    completed: Completed
+    created: Your new petition is now created
+    csv: Save in CSV
+    current_news_is: The news
+    current_state_is: The petition is
+    current_translations: Current translations
+    details:
+      edit:
+        your_name: Your public name
+        your_email: Your public email
+        your_number: Your public number
+        your_organisation: Your organisation
+        link_url: http://
+        link_text: Link text
+        reference_field: The reference number for the petition
+      form:
+        answer_date_label: When the petition will be answered
+        due_date_label: When the petition is due
+        link1: Link to the campaign page for this petition
+        link1_text: Description of that page
+        link2: Another webpage about this petition
+        link2_text: Description of that page
+        link3: Another webpage about this petition
+        link3_text: Description of that page
+        public_email: E-mail address for this petition
+        public_name: Your public name
+        public_organisation: The organisation behind the petition
+        reference_field: The reference number for the petition
+        submit: Update these details
+        telephone: The number where anyone can call you
+        title: Edit your personal information
+      public_email: 'You can change your e-mail address into one for this petition. This address appears in e-mails to (potential) signatories.'
+      public_name: Your name appears under the petition and in e-mails sent to signatories. When you use a pseudonym less people will trust the petition.
+      telephone: Journalists, signatories who want to help, and the recipient of the petition might want to call you. When someone asks us, we give them this number.
+      public_organisation: If you are organised in any way, you can mention the name of your collective here.
+      due_date: The date on which the petition will close and handed over can always be changed by you. With a date in the past the petition closes.
+      answer_date: The recipient should indicate how long the answer will take.
+      reference_field: The recipient always gives you a reference. With a reference it is easy to find it and it exists as a received document.
+      links: 'You can supply up to three links to your petition, starting with http:// or https://. When there are new developments you can write a news update containing links.'
+    draft: Draft
+    edit_state: Edit state
+    editing: Editing
+    editors: Editors
+    flash:
+      not_found: We could not find the petition you requested. You might want to try using the search feature.
+    help:
+      description: Description
+      finish: Finish
+      initiators: Initiators
+      link: Link
+      link_text: Link text
+      organisation: Organisation
+      petitioner:
+        email: Email
+        name: Name
+      request: Request
+      save: Save
+      statement: Statement
+      subdomain: Subdomain
+      title: Title
+    in_treatment: In treatment
+    language: Language
+    live_version: Live version
+    minimum_age: Minimum age
+    new: New
+    news: 'There is news!'
+    newer_version: Newer version
+    newest: Newest
+    notranslations: Notranslations
+    older_version: Older version
+    oldest: Oldest
+    optional: Optional
+    other_language_options: 'Translating possible into:'
+    pdf: Save as PDF
+    signable: Signable
+    state:
+      not_yet_finished: Not yet finished
+    step:
+      description: Description
+      notice: Notice
+      petitioner: Petitioner
+      request: Request
+      target: Target
+      we: We
+    steps: Steps
+    status:
+      flash:
+        concept: Not yet finished
+        live: Signable
+        in_treatment: In treatment
+        in_process: In process
+        closed: Answered
+        success: Petition was successfully updated
+        your_petition_awaiting_moderation: 'Your petition awaits moderation. This takes up to a day. If you are in a hurry, leave us a voicemail on +31 20 7854412.'
+        petition_is_live: The petition is now open to collect signatures. The petitioner receives an e-mail about this.
+    the_next_logical_action: The next logical action
+    title: Title
+    update:
+      success: Petition was successfully updated.
+    user_email: User email
+    version: Version
+    states:
+      completed: Is answered
+      concept: Concept
+      in_process: In process
+      live: Live
+      not_processed: Not processed
+      orphaned: Orphaned
+      rejected: Rejected
+      sign_elsewhere: Not signable here
+      staging: Staging
+      to_process: To process
+      withdrawn: Withdrawn
+  petitioner:
+    awaiting_answer: Awaiting answer
+    awaiting_moderation: Awaiting moderation
+    drafts: Drafts
+    signable: Signable
+    text_blue: You can e-mail the signatories. Send us a text at webmaster@petities.nl and we take care of the distribution.
+    text_green: Signatories can pledge to donate to the petition. You could for example hire a lobbyist, lawyer or other specialist. You can ask us by e-mail how much is promised.
+    text_grey: Signatories might want to help you. After confirming their signature they can indicated what they can  Are you looking for a certain skill or would you like to know what people promised? Just drop us a mail.
+    text_grey_2: Your petition needs to be handed over by you on the due date. You can change the date if needed. You can always ask our assistance.
+    title_blue: Progress e-mails
+    title_green: Donations
+    title_grey: Help from signatories
+    title_grey_2: Be aware of the due date
+  petitions:
+    title: Support a petition or start your own petition
+  place: Localitat de residència
+  pledge:
+    feedback:
+      description: Or would you like to help in another way?
+      placeholder: Something else...
+    thank_you: Thank you!
+    failed: Oops! Some input in the form is wrong!
+  privacy:
+    text: |
+      <p><b>Cookies</b></p>
+      <p>&nbsp;</p>
+      <p>Petities.nl only uses <a href="https://en.wikipedia.org/wiki/HTTP_cookie">cookies</a> during your visit. The website is accessible to all and can be visited anonymously. We record the internet adresses the website is served to. We use this information only to improve the website.</p>
+      <p>&nbsp;</p>
+      <p><b>Your personal data</b></p>
+      <p>&nbsp;</p>
+      <p>As <a href="http://wetten.overheid.nl/BWBR0011468/">the law (in Dutch)</a> prescribes, all personal data are only purposefully used; for the purpose you have supplied them: the recipient of a petition gets a copy of the list of signatories to verify or to get an overview of their constituency. In case of a normal petition these are your name, function and place. When extra legal requirements apply, also your street, postal code, date of birth and citizenship. For example in case of citizen’s initiative or referendum request. Nobody gets to see your e-mail address.</p>
+      <p>&nbsp;</p>
+      <p>When you sign, technical details are stored about your internet address and your browser. We show these for you to verify.</p>
+      <p>&nbsp;</p>
+      <p><b>Your public profile</b></p>
+      <p>&nbsp;</p>
+      <p>On the website we show your name, function and place when you make this choice. By default you sign anonymously and your data do not show. In that case we delete your personal data from the database once the petition is answered. We keep some impersonal details: timestamp of your signature, which petition, your place and function. Make sure you do not include personal details in your place (like your address) or in your function (like the name of your company).</p>
+      <p>&nbsp;</p>
+      <p>If you indicated your public support to a petition your name, place of residence and title/description remain in the database to be served on the web. When you change your mind, you can always change this. Follow the link to your personal page you can find in our e-mails.</p>
+      <p>&nbsp;</p>
+      <p><b>Copied by others</b></p>
+      <p>&nbsp;</p>
+      <p>We ask the search engines to ignore the list of signatures for a petition, but on the page of the petition there are a dozen signatures you might be in. If you end up in the search results like this and you change your signature to invisible, it might take up to a week to disappear from the search results.</p>
+      <p>&nbsp;</p>
+      <p>Every quarter the Royal Library makes a copy of the entire site to keep for historians for example. In the Royal Library in The Hague you can consult these copies.</p>
+      <p>&nbsp;</p>
+      <p><b>E-mail from us</b></p>
+      <p>&nbsp;</p>
+      <p>When you e-mail the webmaster your e-mail address is only used for correspondence regarding that question, complaint or remark. You do not receive impersonal information (like a newsletter), unless you <a href="http://service.opendomein.nl/mailman/listinfo/nieuws/">subscribe yourself to the newsletter.</a></p>
+      <p>&nbsp;</p>
+      <p>When you sign a petition, you will always receive three e-mails from webmaster@petities.nl:</p>
+      <ol>
+        <li>to confirm your signature, within minutes up to a day after your signature</li>
+        <li>to announce the closing and hand over of the petition, weeks or months after your signature</li>
+        <li>to let you know the result of the petition, within six weeks after the hand over of the petition.</li>
+      </ol>
+      <p>&nbsp;</p>
+      <p>If you do not confirm you receive two reminders. One week after your sign and when the petition is about to close.</p>
+      <p>&nbsp;</p>
+      <p>On top of that, the petitioner can have petities.nl e-mail about the progress to those who indicated willingness to receive such e-mails. You can indicate you do not want this by following the link from the e-mail, with which you confirmed your signature. You can find the link to your personal page also in every e-mail from us.</p>
+      <p>&nbsp;</p>
+      <p>When you pledge help to a petition the petitioner might send you e-mail about this.</p>
+      <p>&nbsp;</p>
+      <p>You can also indicate to receive e-mail from your municipality. In these e-mails the municipality invites you to contribute your ideas. Also these e-mails you can always stop.</p>
+    title: Your privacy
+  profile:
+    address: Address
+    birth_date: Date of birth
+    city: Woonplaats
+    edit_details_button: Edit my information
+    edit_your_information: Edit your information
+    email: E-mail
+    details:
+      fakename: Your name should be known to us, but you can choose yourself how the outside world sees you.
+      privacy: Data about your last session to check if it was really you.
+      title: Explanation
+      your_profile: 'This information is only visible to us. Use the e-mail address and telephone number where we can (always) reach you. Not some temporary address you create for a petition.'
+    last_ip: Last internet address
+    last_login: Last login
+    postalcode: Postal code
+    real_email: Your e-mail
+    real_name: Your name
+    roles: 'Responsible for the petitions:'
+    phone: 'Telephone number(s)'
+    submit: Update profile
+    title: Your personal information
+    your_city: Your place of residence
+    your_email: Your email
+    your_name: Your real name please
+    your_postalcode: Your postal code
+    your_telephone: Your telephone number
+    your_street_and_number: Your street and house number
+  pundit:
+    default: 'You cannot perform this action.'
+    petition_policy:
+      edit?: You can now add a translation of the petition
+      create?: Translation added!
+  request: Request
+  search:
+    found: "%{results_size} petitions found for '%{search_term}'"
+    title: Petitions
+  show:
+    history: History
+    overview:
+      addressed: Addressed
+      addressee: 'Addressed to:'
+      all_owners:
+        one: Petitioner
+        other: Petitioners
+      answer_end_date: 'Answer expected:'
+      desk: 'Petition desk:'
+      end_date: 'Closing date:'
+      location: 'In:'
+      organisation: 'Organisation:'
+      petitioners: 'Lead petitioner:'
+      reference: 'Reference:'
+      status:
+        closed: Closed
+        draft: Draft
+        in_treatment: In treatment
+        completed: Answered
+        indication: 'Status:'
+        orphaned: Orphaned
+        sign_elsewhere: Sign elsewhere
+        signable: Signable
+        staging: Waiting for moderator
+        withdrawn: Withdrawn
+      title: Details
+      website: 'Website:'
+    petition:
+      answer: The answer
+      answer_title: Subject
+      news: News
+      observe: observe
+      request: and request
+      share_this: This is a good moment to share the link to the petitions from the bar below. After confirmation you can enter e-mail addresses to send invitations to others through us.
+      status:
+        label: Current status
+        will_be_signable: We have send you an e-mail from webmaster@petities.nl. To continue with your petition you must follow the link in it.
+        was_signable: This petition is not open to collect signatures.
+      target: From
+      text: The answer
+      title: Petition
+      we: We
+    petitioner:
+      real_name: Name
+      real_telephone: Telephone
+      real_email: E-mail
+    sign:
+      form:
+        checkbox: Yes, publish my name and place of residence visibly below the petition.
+        email:
+          label: Email address
+          placeholder: username@something.something
+        error: We're sorry, something went wrong while saving signature. Would you like to retry?
+        errors:
+          email: Please enter a correct e-mail address. Something is wrong with this one.
+          name: Please enter your name and surname. Or an initial and your surname.
+        name:
+          label: Name
+          placeholder: Initial and surname at least
+        residence:
+          label: Place of residence
+          placeholder: Where you live now, at the time of signing
+        submit: I sign this petition
+        submitting: Saving your signature...
+        success_html: Gràcies per firmar. Ara és important confirmar la seva signatura. A l'adreça de correu electrònic <span class="confirm_email"></span> rebrà un correu electrònic de webmaster@petities.nl "confirma la teva signatura si et plau”. Si no podeu trobar el correu electrònic mireu també la bústia de junkmail/spam. Sense la confirmació, la vostra signatura no compta.
+      note_html: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our <a href="/privacy">privacy statement</a>.
+      title: Sign this petition
+    signatures:
+      more: Load more signatures
+      title: Signatures
+      to_all: To all signatures
+    signatures_count:
+      one: "%{count} signature"
+      other: "%{count} signatures"
+  signature:
+    confirm: Confirm
+    confirm_errors: 'Some required information is missing, your signature is not saved yet...'
+    dear: Benvolgut, benvolguda
+    did_you_mean: Did you mean
+    failed_send: Failed
+    help:
+      city: City
+      email: E-mail
+      instructions: Instructions
+      name: Name
+      subscribe: Subscribe
+      visible: Visible
+    linkinstruction: Follow below link to confirm
+    success: 'Your information is saved, thank you.'
+    success_send: Invitation sent! One more perhaps?
+    promote: Show on top of the list?
+    thanks: Thanks
+  signatures:
+    popular_cities: Popular places
+    link: Link
+    notify: Notify
+    petitioner_instructions: You can see anonymous signatures because you are logged in
+    sign: Sign this petition
+    title: Signatures
+  signnow: Sign now
+  site_title: Petities.nl
+  start:
+    form:
+      addressed:
+        description: A petition is always addressed to a decision maker. Do not address a petition to a single organisation (like tv-stations), unless there are no alternatives. Ask webmaster@petities.nl if an organisation is missing in this list.
+        label: Addressed to
+      cannot_edit_live_petition: You cannot edit a live petition
+      cannot_start_without_email: You cannot start a petition without providing your email
+      finalize: Pass to moderator
+      release: Open the petition
+      image:
+        description: Add the image for the petition. Make sure it is in the common landscape format (4 wide:3 high), not square (4:4) or portrait (3:4). Be careful with copyrights. The safest is to take a picture yourself or find a free one using search.creativecommons.org for example.
+        label: Petition image
+      name:
+        description: The name of petition needs to be short because it shows up in listings of petitions, as subject in e-mails, as chat message and as title of the petition page. Max 80 characters.
+        label: Title of the petition
+        placeholder: 80 characters for the title
+      observe:
+        description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
+        label: Observe
+        placeholder: '450 characters with the reason(s) for the petition'
+      petitioner:
+        email:
+          description: The e-mail address you would like to use to manage your petition.
+          label: Your e-mail address
+        finalize:
+          finalize_description: 'Ready, open this petition for signing!'
+        name:
+          description: A petition should have a (legal) person responsible for the petition and the spokesperson. Signatories write to you, journalists call you and politicians receive your petition. If you do not want your name to appear publicly like this, you can change how it appears before the petition opens.
+          label: Your name and surname
+        organisation:
+          description: Optional. An organisation reassures signatories that you are not the only one to take responsibility.
+          label: Organisation
+        password:
+          description: If you do not enter a password we will give you a good one.
+          label: Desired password
+        update:
+          update_description: Save improvements.
+      petition_type:
+        description: As moderator, set the appropriate type of petition with consequences for the requirements for signatures.
+        label: Petition type
+      request:
+        description: Your request should not be too detailed, because the execution is in the hands of other. Only indicate the desired direction. Write what is important for most signatories, not just a few. Max 450 characters.
+        label: And request
+        placeholder: 450 characters for what the petition asks
+      short_description:
+        description: With this text you attract signatures. It appears in invitations by e-mail, in petition listings and on other places. Use the most important keywords, but be brief. For details there is space under the petition. Max 300 characters.
+        label: Short description
+        placeholder: 300 characters for a short description
+      status:
+        description: As moderator, change the status of the petition. For example, open a petition for signing.
+        label: Status
+      submit: Submit petition
+      subdomain:
+        description: As moderator, choose the shortest possible, yet descriptive, subdomain for the petition.
+        label: Subdomain
+      update: Update
+      we:
+        description: You describe here who you think will sign. Do not exclude signatories. Max 100 characters.
+        label: We
+        placeholder: 100 characters to describe the signatories
+    overview: 'A petition consists of three parts: from who, about what, what do you want? All you fill in can be changed until the petition is signed.'
+    title: Start a petition
+  statement: Statement
+  survey:
+    answers: This petition is not handed over. We asked $signatures met pledge=1$ signatories wether the petition could close and $survey-results$ opted for the following.
+    request_is_met: the request of the petition has been met without a hand over
+    too_late: the petition came too late, the request can not be realised anymore
+    situation: the situation has changed, the petition should change too
+    no_majority: there is no political support for it
+    different: we should continue differently, not (now) with a petition
+    personal: peronally I can not run the petition (too busy, not my think)
+    other_answers: 'something else, being:'
+  update:
+    created: News update created
+    label:
+      text: Your news update about the petition
+      title: Title of this update
+      select_office: Select petition desk
+      show_on_homepage: Show on news of petities.nl
+      show_on_petition: Show on petition (above the sign form)
+      publish_to_signatures: Publish via mail to all signatures
+      publish_review: The news will be reviewed before publishing
+      show_on_office: Show on petition desk
+    news_updates: Updates
+    no_news_yet: No news about this petition yet.
+    read_more: 'Read more...'
+    updated: News update updated
+    title: A new petition update
+  updates:
+    title: Updates
+    rss:
+      title: Petities.nl newsitems
+      description: Newsitems published on petities.nl
+  when: When

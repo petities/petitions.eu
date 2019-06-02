@@ -54,7 +54,8 @@ class SignatureMailer < ApplicationMailer
 
     @confirm_url = url_for(controller: 'signatures',
                            action: 'confirm',
-                           signature_id: @signature.unique_key)
+                           signature_id: @signature.unique_key,
+                           locale: I18n.locale)
 
     subject = t('mail.confirm.signature.subject', petition_name: @petition.name)
 
@@ -68,7 +69,8 @@ class SignatureMailer < ApplicationMailer
     @confirm_url = url_for(
       controller: 'signatures',
       action: 'confirm',
-      signature_id: @signature.unique_key)
+      signature_id: @signature.unique_key,
+      locale: I18n.locale)
 
     name = @signature.petition.name if @signature.petition.present?
 
