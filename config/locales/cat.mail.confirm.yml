@@ -1,0 +1,211 @@
+en:
+  mail:
+    confirm:
+      signature:
+        ask_petitioner: "Do you have questions about this petition? Please contact the lead petitioner through: %{petitionermail}"
+        ask_petitioner_html: 'Do you have questions about this petition? Please contact the lead petitioner through: <a href="mail_to:%{petitionermail}">%{petitionermail}</a>'
+        linkinstruction: 'Casi has signat la petició  "%{petition}"!
+
+
+%{date}
+
+
+%{name}
+
+
+%{email}
+
+
+No vol signar? O no és vostè el que ha firmat? Llavors no ho confirmi i cancel·lem automàticament aquest intent.
+
+
+Si vol firmar, confirmi la seva signatura entrant en aquest enllaç::
+    
+
+%{confirm_url}
+
+
+Si apareix una pàgina amb el nom i el lloc de residència anteriors, vol dir que heu confirmat!
+
+
+Vostè compta com a signant des de’l moment de la confirmació.
+
+
+En aquesta pàgina, podeu canviar les vostres dades.
+
+Moltes gràcies!
+
+
+
+
+EXPLICACIÓ
+
+
+Després de la confirmació, sempre pot tornar a actualitzar les seves dades o convidar a altres persones. Té la possibilitat de triar fer visible el seu nom o firmar anonimament.
+També pot optar més tard per canviar la visibilitat del seu nom. Per això és important que guardi aquest correu electrònic.
+
+
+Aquest correu electrònic és confidencial, ja que només %{name} amb adreça %{email} pot confirmar la signatura. No reenvieu aquest missatge i no divulgui
+l''enllaç que és exclusiu per vostè, per evitar que altres visitin la seva pàgina de confirmació i canviin les dades. Per tant,
+  només utilitzeu la pàgina de confirmació per enviar invitacions a altres persones.
+
+
+Per obtenir ajuda sobre l''ús de la nostra web, consulteu: https://petities.nl/help
+'
+        linkinstruction_html: '<p>Casi has signat la petició "%{petition}"!</p>
+
+
+<p>%{date}</p>
+
+
+<p>%{name}</p>
+
+
+<p>%{email}</p>
+
+
+<p>Would you rather not sign or this is not you? Just ignore this attempt and we will delete it automatically.</p>
+
+
+<p>Otherwise, please confirm your signature now by following this link:</p>
+
+
+<p>%{confirm_url}</p>
+
+
+<p>When a page appears with your name and place you have confirmed.</p>
+
+
+<p>Until that moment, you do not yet count as signatory.</p>
+
+
+<p>On that page you can correct your name if needed or collaborate.</p>
+
+
+<p>Thank you.</p>
+
+
+
+
+<b>EXPLANATION</b>
+
+
+<p>After your confirmation you can always return to update your information or invite others to sign. Your name will be public when you opt in 
+for this. There you can also choose to show, or no longer show, your name later on. It is therefore good to keep this message. 
+</p>
+
+
+<p>This e-mail is confidential because only %{name} with address %{email} may confirm the signature. Do not send this message to others
+and do not publish it with the unique link which is only for you. If others can visit the confirmation page they can overwrite your name. 
+Therfore use the confirmation page to send invitations.</p>
+
+
+For help to use this website see <a href="https://petities.nl/help">https://petities.nl/help</a>
+'
+        petition: 'THE PETITION
+
+
+<a href="%{petition_url}">%{petition_url}</a>
+
+
+%{intro}
+
+
+We
+
+
+%{we}
+
+
+observe
+
+
+%{observe}
+
+
+request
+
+
+%{request}
+
+
+END
+'
+        petition_html: '<p><b>THE PETITION</b></p>
+
+<p><a href="%{petition_url}">%{petition_url}</a></p>
+
+
+<p>%{intro}</p>
+
+<p>We</p>
+
+<p>%{we}</p>
+
+<p>observe</p>
+
+<p>%{observe}</p>
+
+<p>request</p>
+
+<p>%{request}</p>
+
+<p><b>END</b></p>
+'
+        subject: 'Confirma la teva signatura si et plau per la petició "%{petition_name}"'
+        subject_reminder: 'Recorda''t: confirma la teva signatura si et plau per la petició "%{petition_name}"'
+        reminder_mail: '
+Last week you signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}.
+You received an e-mail about this already.
+
+
+Is this your e-mail address and name? Then please confirm your signature by following this link:
+
+
+%{confirm_url}
+
+
+Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes.
+
+
+If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or
+tablet. You can also try it through another network. Some employers and certain software block access to our website because
+of controversial political content. If you are at work for example, try it at home. If you are at home, try it outdoors on your
+phone.
+'
+        reminder_mail_html: '
+<p>Last week you signed the petition "%{petition}" with the e-mail address %{email} and the name %{name} on %{date}.
+You received an e-mail about this already.</p>
+
+<p>Is this your e-mail address and name? Then please confirm your signature by following this link:</p>
+
+<p>%{confirm_url}</p>
+
+<p>Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes.</p>
+
+<p>If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or
+tablet. You can also try it through another network. Some employers and certain software block access to our website because
+of controversial political content. If you are at work for example, try it at home. If you are at home, try it outdoors on your
+phone.</p>
+'
+      signoff: 'Best regards,
+
+
+Petities.nl Foundation
+
+
+SUPPORT PETITIES.NL
+
+
+With your donation (money or time) our website improves. See https://petities.nl/donate voor details.
+'
+      signoff_html: '<p>Best regards,<br><br>
+
+Petities.nl Foundation</p>
+
+
+<p><b>SUPPORT PETITIES.NL</b></p>
+
+
+<p>With your donation (money or time) our website improves. See <a href="https://petities.nl/donate">https://petities.nl/donate</a> voor details.</p>
+'
