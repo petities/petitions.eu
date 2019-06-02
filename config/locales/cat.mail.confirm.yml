@@ -1,4 +1,4 @@
-en:
+cat:
   mail:
     confirm:
       signature:
@@ -20,7 +20,7 @@ No vol signar? O no és vostè el que ha firmat? Llavors no ho confirmi i cancel
 
 
 Si vol firmar, confirmi la seva signatura entrant en aquest enllaç::
-    
+
 
 %{confirm_url}
 
@@ -90,13 +90,13 @@ Per obtenir ajuda sobre l''ús de la nostra web, consulteu: https://petities.nl/
 <b>EXPLANATION</b>
 
 
-<p>After your confirmation you can always return to update your information or invite others to sign. Your name will be public when you opt in 
-for this. There you can also choose to show, or no longer show, your name later on. It is therefore good to keep this message. 
+<p>After your confirmation you can always return to update your information or invite others to sign. Your name will be public when you opt in
+for this. There you can also choose to show, or no longer show, your name later on. It is therefore good to keep this message.
 </p>
 
 
 <p>This e-mail is confidential because only %{name} with address %{email} may confirm the signature. Do not send this message to others
-and do not publish it with the unique link which is only for you. If others can visit the confirmation page they can overwrite your name. 
+and do not publish it with the unique link which is only for you. If others can visit the confirmation page they can overwrite your name.
 Therfore use the confirmation page to send invitations.</p>
 
 
