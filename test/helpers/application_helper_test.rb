@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
   include ApplicationHelper
+  include TestInDutchHelper
 
   test 'header_username with name' do
     user_with_name = User.new(name: 'John Doe', email: 'j.doe@example.com')
