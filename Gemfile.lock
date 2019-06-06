@@ -180,9 +180,8 @@ GEM
       has_scope (~> 0.6)
       railties (>= 3.2, < 5.2.x)
       responders
-    jbuilder (2.7.0)
+    jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -452,7 +451,7 @@ DEPENDENCIES
   has_secure_token (~> 1.0)
   i18n-country-translations
   i18n-tasks
-  jbuilder (~> 2.7)
+  jbuilder (~> 2.9)
   jquery-rails
   kaminari
   kaminari-i18n
