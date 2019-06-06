@@ -28,9 +28,6 @@ gem 'validates_timeliness'
 # roles management
 gem 'pundit'
 
-# cache
-gem 'dalli'
-
 # minimal template language
 gem 'slim'
 
