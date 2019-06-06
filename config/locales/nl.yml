@@ -815,7 +815,7 @@ nl:
       finalize: Geef aan moderator
       release: Open de petitie
       image:
-        description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden met bijvoorbeeld search.opencultuurdata.nl.
+        description: Voeg het plaatje bij de petitie toe. Let erop dat het in het gebruikelijke landschapsformaat voor foto’s is (4 breed:3 hoog), dus niet vierkant (4:4) of portret (3:4). Denk ook aan de auteursrechten. Het veiligst is zelf een foto te maken of een rechtenvrije te vinden.
         label: Petitie-plaatje
       name:
         description: De naam van de petitie moet kort zijn omdat die verschijnt in overzichten van petities, als onderwerp in e-mails, als kort chatberichtje en als titel boven de petitie. Maximaal 80 karakters.
