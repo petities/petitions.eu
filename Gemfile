@@ -87,7 +87,7 @@ gem 'jbuilder', '~> 2.9'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.2'
 
-gem 'activeadmin', '~> 1.1'
+gem 'activeadmin', '~> 1.4'
 
 # bootstrap
 # gem 'bootstrap-sass', '~> 3.2.0'
