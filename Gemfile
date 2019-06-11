@@ -110,7 +110,7 @@ end
 
 # Track errors in production
 gem 'newrelic_rpm', '~> 6.4'
-gem 'rollbar', '~> 2.16'
+gem 'rollbar', '~> 2.20'
 
 gem 'rack-attack', '~> 5.0', '>= 5.0.1'
 
