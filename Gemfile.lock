@@ -404,7 +404,7 @@ GEM
       activemodel (>= 4.2)
       debug_inspector
       railties (>= 4.2)
-    whenever (0.11.0)
+    whenever (1.0.0)
       chronic (>= 0.6.3)
 
 PLATFORMS
