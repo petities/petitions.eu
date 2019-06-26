@@ -273,7 +273,7 @@ nl:
       explanation: Helaas, uw ondertekening kan niet worden bevestigd. Met deze link werd geen ondertekening gevonden.
       action_requested: We willen u vragen de petitie opnieuw te ondertekenen. Wanneer u de petitie al eerder heeft ondertekend, ontvangt u een nieuwe e-mail waarmee u uw bestaande ondertekening kunt aanpassen.
       contact_us_html: Wanneer u vragen heeft, helpen we u via <a href="%{contact_path}">webmaster@petities.nl</a> graag verder. Onze excuses voor het ongemak.
-    title: Dank u wel voor het bevestigen van uw ondertekening!
+    title: Uw ondertekening is nu bevestigd. Dank u wel!
   contact:
     mail:
       remote_ip: IP
