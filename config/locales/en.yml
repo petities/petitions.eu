@@ -212,7 +212,7 @@ en:
       explanation: Your signature cannot be confirmed. We could not find a signature with this link.
       action_requested: We kindly request you to re-sign the petition. If you signed the petition before, you will receive a new e-mail that lets you edit your existing signature.
       contact_us_html: We apologise for the inconvenience. If you have any questions, please feel free to <a href="%{contact_path}">contact us</a>.
-    title: Thank you for the confirmation of your signature!
+    title: Your signature is now confirmed. Thank you!
   contact:
     mail:
       remote_ip: IP
