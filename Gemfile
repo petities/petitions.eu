@@ -107,7 +107,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 6.4'
+gem 'newrelic_rpm', '~> 6.5'
 gem 'rollbar', '~> 2.20'
 
 gem 'rack-attack', '~> 6.0'
