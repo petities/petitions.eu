@@ -73,7 +73,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (1.5.0)
+    capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
     capistrano-maintenance (1.2.1)
       capistrano (>= 3.0)
@@ -379,7 +379,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.19.0)
+    sshkit (1.19.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.12)
@@ -438,7 +438,7 @@ DEPENDENCIES
   binding_of_caller
   bourbon
   byebug
-  capistrano-bundler (~> 1.5.0)
+  capistrano-bundler (~> 1.6.0)
   capistrano-maintenance (~> 1.2)
   capistrano-rails (~> 1.4)
   capistrano-rbenv (~> 2.1)
