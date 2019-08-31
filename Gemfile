@@ -53,7 +53,7 @@ gem 'simple_form'
 gem 'i18n-tasks'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.1'
 # Use CoffeeScript for .coffee assets and views
