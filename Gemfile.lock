@@ -116,7 +116,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.8.1)
+    devise-i18n (1.8.2)
       devise (>= 4.6)
     docile (1.1.5)
     email_validator (1.6.0)
