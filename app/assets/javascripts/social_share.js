@@ -1,7 +1,6 @@
-// FACEBOOK
+// Facebook
 function fbShare (url, title) {
-  openShareWindow('https://www.facebook.com/sharer.php?s=100&p[title]=' + encodeURIComponent(title) + '&p[url]=' + encodeURIComponent(url), 520, 350);
-}
+  openShareWindow('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(url)'?t=' + encodeURIComponent(title)'}, 520, 350);
 
 // Twitter
 function twitterShare (url, title){
