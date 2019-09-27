@@ -98,7 +98,7 @@ gem 'countries'
 gem 'country_select'
 
 # Validate e-mail addresses
-gem 'email_validator', '~> 1.6', require: 'email_validator/strict'
+gem 'email_validator', '~> 2.0', require: 'email_validator/strict'
 
 gem 'has_secure_token', '~> 1.0'
 
