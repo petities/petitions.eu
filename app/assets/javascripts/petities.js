@@ -20,7 +20,7 @@ function initChart (elem) {
       }]
     },
     chartOptions
-  )
+  );
 }
 
 $.fn.select_org_menu = function() {
@@ -166,11 +166,11 @@ $(document).ready(function(){
 
   $('[data-behavior~=load-remote]').each(function() {
     $(this).load($(this).data('url'));
-  })
+  });
 
   $('[data-behavior~=load-footer-news]').each(function() {
     $(this).load('/updates/footer');
-  })
+  });
 
   $('[data-behavior~=load-more-signatures]').click(function() {
     var url = $('.petition-signatures-container').data('url');

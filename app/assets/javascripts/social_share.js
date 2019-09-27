@@ -1,6 +1,7 @@
 // Facebook
 function fbShare (url, title) {
-  openShareWindow('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(url)'?t=' + encodeURIComponent(title)'}, 520, 350);
+  openShareWindow('https://www.facebook.com/sharer.php?u=' + encodeURIComponent(url) + '?t=' + encodeURIComponent(title), 520, 350);
+}
 
 // Twitter
 function twitterShare (url, title){
@@ -21,9 +22,9 @@ $(function() {
       $('.share-button-url').parent().remove();
     } else {
       $this.addClass('share-button-url-visible');
-      $this.after('<div class="center"><input type="text" class="share-button-url" readonly="" value="' + this.href + '"></div>')
+      $this.after('<div class="center"><input type="text" class="share-button-url" readonly="" value="' + this.href + '"></div>');
       $('.share-button-url').select();
-    };
+    }
   });
 });
 
