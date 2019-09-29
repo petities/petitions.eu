@@ -1,0 +1,27 @@
+/**
+ *	UPDATES
+ */
+
+.update-container {
+  border-top: 1px solid $light-grey;
+  margin-bottom: 20px;
+}
+
+.update {
+  padding: 25px 0 5px;
+  border-bottom: 1px solid $light-grey;
+
+  p {
+    margin-bottom: 15px;
+  }
+}
+
+.update-date {
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.update img {
+  max-width: 100%;
+}

@@ -1,0 +1,99 @@
+/**
+ *	FOOTER
+ */
+
+.footer {
+  background: #6f6e6d;
+  color: #fff;
+}
+
+.footer-content {
+  display: flex;
+  width: $page-width;
+  margin: 0 auto;
+  padding: 20px;
+
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.footer-news-list-wrapper {
+  display: inline-block;
+  flex: 1;
+  vertical-align: top;
+  margin: 0 1% 0 0;
+}
+
+.footer-content-title {
+  font: 700 15px/21px 'Open Sans', arial, sans-serif;
+  color: #fff;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.footer-news-list-item a {
+  color: #fff;
+}
+
+.footer-content-block {
+  display: inline-block;
+  flex: 1;
+  vertical-align: top;
+  margin: 0 0 0 1%;
+}
+
+.footer-content-menu-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%;
+}
+
+.footer-content-menu-container {
+  margin: 0 0 70px;
+}
+
+.footer-content-menu-part {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+}
+
+.footer-content-menu-item a {
+  font: 700 15px/21px 'Open Sans', arial, sans-serif;
+  color: #fff;
+}
+
+.footer-content-contactblock {
+  display: inline-block;
+  vertical-align: top;
+  width: 39%;
+}
+
+.footer-content-contactblock-section.top {
+  margin: 0 0 53px;
+}
+
+.donate-button {
+  width: 100%;
+  padding: 3% 8%;
+  border: 0;
+  background: $button-color;
+  color: #fff;
+  font: 400 18px/28px 'Open Sans', arial, sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background: $button-hover-color;
+  }
+}
+
+.footer-sponsor-bar {
+  padding: 25px 0 75px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 32px;
+  text-transform: uppercase;
+}

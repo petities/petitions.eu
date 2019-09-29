@@ -1,0 +1,102 @@
+/**
+ *	PAGE
+ */
+
+.page {
+  width: $page-width;
+  margin: 50px auto 50px;
+  padding: 0 20px;
+  &.top {
+    margin: 40px auto;
+    border-bottom: 1px solid $light-grey;
+  }
+  &.vervolg {
+    display: flex;
+  }
+}
+
+.search-container {
+  width: 500px;
+  margin: 0 auto 35px;
+  background: #ECEDEC;
+}
+
+input[type="text"].search-container-input {
+  float: left;
+  width: 424px;
+  padding: 10px 17px;
+  font: 300 16px/22px 'Open Sans', arial, sans-serif;
+  background: transparent;
+  border: none;
+}
+
+.search-container-button {
+  float: right;
+  height: 42px;
+  width: 42px;
+  border: 0;
+  background: $button-color asset-url('search.png') 9px 8px no-repeat;
+  cursor: pointer;
+  &:hover {
+    background-position: 9px -42px;
+    background-color: #8cc362;
+  }
+}
+
+.search-container.vervolg {
+  float: right;
+  width: auto;
+  margin: 10px 0 0;
+  .search-container-input {
+    width: 235px;
+  }
+}
+
+.page-left {
+  float: left;
+  width: 48%;
+}
+
+.page-right {
+  float: right;
+  width: 48%;
+}
+
+.vervolg-main {
+  display: inline-block;
+  vertical-align: top;
+  width: 57%;
+  font: 400 18px/28px 'Open Sans', arial, sans-serif;
+}
+
+.vervolg-side {
+  display: inline-block;
+  vertical-align: top;
+  width: 35%;
+  margin: 0 0 0 8%;
+  h2 {
+    text-transform: none;
+    font: 300 22px/24px 'Open Sans', arial, sans-serif;
+    color: $green;
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 3%;
+  border: 0;
+  background: $button-color;
+  color: $base-background-color;
+  font: 400 18px/28px 'Open Sans', arial, sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background: $button-hover-color;
+    color: $base-background-color;
+  }
+}
+
+.button-aside {
+  background-clip: padding-box;
+  margin-left: 20px;
+}

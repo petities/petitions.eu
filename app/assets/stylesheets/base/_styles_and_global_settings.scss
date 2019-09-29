@@ -1,0 +1,62 @@
+/**
+ *	STYLES AND GLOBAL SETTINGS
+ */
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font: 400 16px/24px 'Open Sans', arial, sans-serif;
+  color: #000;
+  background: $base-background-color;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font: 300 44px/46px 'Open Sans', arial, sans-serif;
+  color: $green;
+  hyphens: auto;
+
+  &.petition-section-title {
+    font: 300 44px/48px 'Open Sans', arial, sans-serif;
+  }
+}
+
+h2 {
+  margin: 0 0 8px;
+  font: 400 22px/24px 'Open Sans', arial, sans-serif;
+  letter-spacing: 1.1px;
+  color: $light-green;
+  hyphens: auto;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font: 400 20px/24px 'Open Sans', arial, sans-serif;
+  color: #111;
+}
+
+h4 {
+  margin: 0 0 8px;
+  font: 600 18px/24px 'Open Sans', arial, sans-serif;
+  color: #111;
+}
+
+h5, h6 {
+  font: 13px/18px arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $dark-blue;
+
+  &:hover {
+    color: darken($dark-blue, 10%);
+  }
+}
+
+.center {
+  text-align: center;
+}

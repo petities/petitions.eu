@@ -1,0 +1,171 @@
+/**
+ *	RESET & SPECS
+ */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0px;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+address {
+  font-style: normal;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+q {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
+
+  th {
+    padding: 10px;
+    vertical-align: top;
+    text-align: left;
+    border-top: 1px solid $light-grey;
+  }
+
+  td {
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid $light-grey;
+  }
+
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 5px 0;
+  padding: 0;
+}
+
+select {
+  padding: 2px;
+  vertical-align: middle;
+}
+
+:focus {
+  outline: none;
+}
+
+input {
+  &[type='button'] {
+    width: auto;
+    overflow: visible;
+  }
+  &[type='text'], &[type='email'], &[type='password'] {
+    font: 400 14px/14px 'Open Sans', arial, sans-serif;
+    color: #000;
+    resize: vertical;
+  }
+}
+
+textarea {
+  font: 400 14px/22px 'Open Sans', arial, sans-serif;
+  color: #000;
+  resize: vertical;
+}
+
+nav ul {
+  margin: 0;
+  list-style: none;
+}
+
+ul {
+  list-style-image: asset-url('blue-arrow-right.png');
+  margin: 0 0 0 20px;
+}
+
+ol {
+  list-style-type: decimal;
+  margin: 0 0 0 20px;
+}
+
+li {
+  margin: 0 0 0px;
+}
+
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder {
+  font-style: italic;
+  color: #444;
+}
+
+.clearfix {
+  display: block;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.whitespace {
+  margin: 0 0 20px;
+}
+
+.border-top {
+  border-top: 1px solid #ddd;
+}

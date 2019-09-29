@@ -1,0 +1,80 @@
+/**
+ *	EDIT
+ */
+
+.edit {
+  position: relative;
+  display: none;
+}
+
+.petition-edit-button {
+  width: 245px;
+  margin: 0 auto;
+  padding: 8px;
+  box-sizing: border-box;
+  font: 400 17px/28px 'Open Sans', arial, sans-serif;
+  color: $base-background-color;
+  border: 0;
+  background: $button-color;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background: $button-hover-color;
+  }
+
+  a {
+    color: $base-background-color;
+  }
+}
+
+.petition-edit-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  background: $button-color asset-url('x.png') 0 0 no-repeat;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $light-blue;
+  }
+}
+
+.petition-signature-edit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 11px;
+}
+
+.petition-signature-edit-button {
+  display: inline-block;
+  height: 13px;
+  width: 13px;
+  margin: 0 5px 0 0;
+  background: #aaa asset-url('edit-buttons.gif') 0 0 no-repeat;
+  cursor: pointer;
+
+  &.star {
+    width: 15px;
+    background-position: 0 0;
+    opacity: 0.4;
+  }
+
+  &.hide {
+    width: 17px;
+    background-position: -28px 0;
+    opacity: 0.4;
+  }
+
+  &.clear {
+    width: 13px;
+    background-position: -61px 0;
+  }
+
+  &:hover, &.active {
+    opacity: 1;
+  }
+}

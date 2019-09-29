@@ -1,7 +1,20 @@
 @import "bourbon";
 @import "font-awesome";
 @import 'variables';
-@import 'base';
+
+// From the original base.css
+@import 'base/reset_and_specs';
+@import 'base/styles_and_global_settings';
+@import 'base/page';
+@import 'base/header';
+@import 'base/main';
+@import 'base/updates';
+@import 'base/sidebar';
+@import 'base/tags';
+@import 'base/footer';
+@import 'base/edit';
+@import 'base/media_queries';
+
 @import 'forms';
 @import 'fixes';
 @import "fonts";
