@@ -13,7 +13,7 @@
   padding: 8px;
   box-sizing: border-box;
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
-  color: $base-background-color;
+  color: $button-text-color;
   border: 0;
   background: $button-color;
   text-align: center;
@@ -24,7 +24,7 @@
   }
 
   a {
-    color: $base-background-color;
+    color: $button-text-color;
   }
 }
 

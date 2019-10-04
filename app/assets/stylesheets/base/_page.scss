@@ -34,12 +34,17 @@ input[type="text"].search-container-input {
   float: right;
   height: 42px;
   width: 42px;
+  line-height: 42px;
   border: 0;
-  background: $button-color asset-url('search.png') 9px 8px no-repeat;
+  background-color: $button-color;
+  color: $button-text-color;
+  font-size: 150%;
+  text-align: center;
   cursor: pointer;
+
   &:hover {
     background-position: 9px -42px;
-    background-color: #8cc362;
+    background-color: $button-hover-color;
   }
 }
 
@@ -86,13 +91,13 @@ input[type="text"].search-container-input {
   padding: 10px 3%;
   border: 0;
   background: $button-color;
-  color: $base-background-color;
+  color: $button-text-color;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
 
   &:hover {
     background: $button-hover-color;
-    color: $base-background-color;
+    color: $button-text-color;
   }
 }
 

@@ -80,12 +80,12 @@
   padding: 3% 8%;
   border: 0;
   background: $button-color;
-  color: #fff;
+  color: $button-text-color;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
 
   &:hover {
-    color: #fff;
+    color: $button-text-color;
     background: $button-hover-color;
   }
 }

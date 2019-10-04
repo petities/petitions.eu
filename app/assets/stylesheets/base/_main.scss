@@ -12,8 +12,6 @@
   border-bottom: 1px solid #ccc;
 }
 
-.petitions-list-container {}
-
 .petitions-list-item {
   padding: 17px 0 11px;
   border-bottom: 1px solid #ccc;
@@ -214,7 +212,7 @@
   margin: 0 0 10px;
   padding: 8px 2%;
   font: 400 17px/28px 'Open Sans', arial, sans-serif;
-  color: #fff;
+  color: $button-text-color;
   border: 0;
   background: $button-color;
   text-align: center;
@@ -514,7 +512,7 @@ span.signature-time {
   border: 0;
   margin-bottom: 25px;
   background: $button-color;
-  color: #fff;
+  color: $button-text-color;
   font: 400 18px/28px 'Open Sans', arial, sans-serif;
   cursor: pointer;
 }
@@ -594,8 +592,6 @@ span.signature-time {
     color: #000;
   }
 }
-
-.petition-overview-info-counter {}
 
 .petition-overview-info-time {
   float: right;

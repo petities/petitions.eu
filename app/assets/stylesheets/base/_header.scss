@@ -71,14 +71,14 @@
   display: block;
   padding: 12px 40px 15px;
   font: 400 30px/30px 'Open Sans', arial, sans-serif;
-  color: $base-background-color;
+  color: $button-text-color;
   text-align: center;
   background: $button-color;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    color: $base-background-color;
+    color: $button-text-color;
     background: $button-hover-color;
   }
 }
@@ -107,10 +107,14 @@
 
 .header-search-toggle {
   float: right;
-  height: 43px;
-  width: 43px;
+  height: 42px;
+  width: 42px;
+  line-height: 42px;
   margin: 10px 0 0;
-  background: $button-color asset-url("search.png") no-repeat scroll 9px 8px;
+  background-color: $button-color;
+  color: $button-text-color;
+  font-size: 150%;
+  text-align: center;
   cursor: pointer;
   display: none;
 }
@@ -118,16 +122,16 @@
 .header-user-wrapper {
   position: relative;
   float: right;
-  height: 43px;
+  height: 42px;
   margin: 10px 17px 0 0;
   font: 400 15px/23px 'Open Sans',arial,sans-serif;
   background: $button-color asset-url('beheer-icon.png') right center no-repeat;
-  color: #fff;
+  color: $button-text-color;
   cursor: pointer;
   z-index: 99;
 
   &:hover {
-    background: #8cc362 asset-url('beheer-icon.png') right center no-repeat;
+    background: $button-hover-color asset-url('beheer-icon.png') right center no-repeat;
   }
 }
 
@@ -137,7 +141,7 @@
 
 .header-user-dropdown {
   position: absolute;
-  top: 43px;
+  top: 42px;
   left: 0;
   width: 100%;
   display: none;
@@ -147,16 +151,17 @@
   display: block;
   padding: 5px 10px;
   background: $button-color;
-  color: #fff;
+  color: $button-text-color;
 
   &:hover {
-    background: #8cc362;
+    background: $button-hover-color;
+    color: $button-text-color;
   }
 }
 
 .header-user-wrapper:hover .header-user-dropdown {
   display: block;
-  background: #8cc362;
+  background: $button-hover-color;
 }
 
 .header-languages-container {
@@ -174,7 +179,7 @@
   background: $button-color asset-url('flags.gif') 0 0 no-repeat;
 
   &:hover {
-    background: #8cc362 asset-url('flags.gif') 0 0 no-repeat;
+    background: $button-hover-color asset-url('flags.gif') 0 0 no-repeat;
   }
 }
 
@@ -211,10 +216,10 @@
   }
 
   &.nl:hover {
-    background: #8cc362 asset-url('flags.gif') 0 0 no-repeat;
+    background: $button-hover-color asset-url('flags.gif') 0 0 no-repeat;
   }
 
   &.en:hover {
-    background: #8cc362 asset-url('flags.gif') 0 -42px no-repeat;
+    background: $button-hover-color asset-url('flags.gif') 0 -42px no-repeat;
   }
 }

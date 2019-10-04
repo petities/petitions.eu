@@ -30,8 +30,10 @@ header.header
         = form_tag(search_petitions_path(locale: I18n.locale), method: :get, role: "search") do
           = text_field_tag :search, params[:search], class: "search-container-input", placeholder: t('header.search')
           = hidden_field_tag :locale, I18n.locale
-          input.search-container-button type="submit" value=""
+          button.search-container-button type="submit"
+            i.fa.fa-search
       div.header-search-toggle
+        i.fa.fa-search
 
       div.header-user-wrapper
         = render partial: 'shared/userbox'
