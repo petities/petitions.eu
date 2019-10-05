@@ -1,20 +1,3 @@
-# == Schema Information
-#
-# Table name: petition_translations
-#
-#  id          :integer          not null, primary key
-#  petition_id :integer          not null
-#  locale      :string(255)      not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  name        :string(255)
-#  description :text(65535)
-#  initiators  :text(65535)
-#  statement   :text(65535)
-#  request     :text(65535)
-#  slug        :string(255)
-#
-
 class PetitionTranslation < ActiveRecord::Base
   belongs_to :petition
   # has_many :petitions

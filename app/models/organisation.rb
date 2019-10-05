@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: organisations
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  kind       :string(255)
-#  code       :string(5)
-#  region     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  visible    :boolean
-#
-
 class Organisation < ActiveRecord::Base
   scope :district,       -> { where(kind: 'district') }
   scope :collective,     -> { where(kind: 'collective') }
