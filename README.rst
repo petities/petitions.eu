@@ -17,7 +17,7 @@ README
    :target: https://semaphoreci.com/petities/petitions-eu
    :alt: Build Status
 
-* Ruby version 2.4.7
+* Ruby version 2.4.9
 
 * System dependencies
 
@@ -32,9 +32,7 @@ README
 
 * Database initialization
 
-    rake db:migrate
-
-    rake db:seed
+    rake db:setup
 
 * How to run the test suite
 
