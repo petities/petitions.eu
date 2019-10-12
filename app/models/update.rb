@@ -1,15 +1,14 @@
 class Update < ActiveRecord::Base
   self.table_name = 'newsitems'
 
+  before_validation :fill_date
+
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   default_scope { order('created_at DESC') }
 
   scope :show_on_home, -> { where(show_on_home: true) }
-
-  # review
-  # publish
 
   belongs_to :petition
   belongs_to :office
@@ -19,7 +18,9 @@ class Update < ActiveRecord::Base
   validates :title, presence: true
   validates :text, presence: true
 
-  before_save :fill_date
+  def slug_candidates
+    [:title, [:title, :date]]
+  end
 
   private
 
