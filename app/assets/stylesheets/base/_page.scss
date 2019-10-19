@@ -17,6 +17,7 @@
 
 .search-container {
   width: 500px;
+  height: 42px;
   margin: 0 auto 35px;
   background: #ECEDEC;
 }
@@ -43,7 +44,6 @@ input[type="text"].search-container-input {
   cursor: pointer;
 
   &:hover {
-    background-position: 9px -42px;
     background-color: $button-hover-color;
   }
 }

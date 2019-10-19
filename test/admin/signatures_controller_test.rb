@@ -53,6 +53,16 @@ module Admin
       assert_redirected_to admin_signatures_path
     end
 
+    test 'should set batch to invisible and unsubscribe' do
+      post :batch_action, batch_action: 'disable_all', collection_selection: [@signature.id]
+      @signature.reload
+      assert_not @signature.visible?
+      assert_not @signature.subscribe?
+      assert_not @signature.more_information?
+      assert_equal I18n.t('active_admin.signatures.batch_disable_all'), flash[:notice]
+      assert_redirected_to admin_signatures_path
+    end
+
     private
 
     def initialize_signature

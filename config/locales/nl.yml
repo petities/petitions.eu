@@ -25,6 +25,8 @@ nl:
     batch_actions:
       labels:
         invisible: Onzichtbaar
+        disable_all: Onzichtbaar en afmelden
+        unsubscribe: Afmelden
     dashboard: Dashboard
     new_petitions: Nieuwe petities
     past_date_projected: Petities uit het verleden
@@ -34,6 +36,7 @@ nl:
     signatures:
       batch_invisible: De ondertekeningen zijn nu onzichtbaar.
       batch_unsubscribe: De ondertekeningen zijn nu uitgeschreven voor voortgangsberichten.
+      batch_disable_all: De ondertekeningen zijn nu onzichtbaar en uitgeschreven voor voortgangsberichten.
     status_tag:
       "yes": Ja
       "no": Nee

@@ -47,6 +47,7 @@ select.is_obligated {
 
 .start-petition-form-cell-input.error,
 div.field_with_errors .start-petition-form-cell-input,
+div.field_with_errors .petition-edit-input,
 .petition-form-textfield.error {
   border: $form-error-border;
 }

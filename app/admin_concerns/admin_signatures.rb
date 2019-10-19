@@ -11,6 +11,7 @@ module AdminSignatures
   ].freeze
 
   def self.included(dsl)
+    dsl.actions :all, except: [:new]
     dsl.filter :petition_id
 
     dsl.filter :person_name

@@ -23,6 +23,7 @@ en:
     batch_actions:
       labels:
         invisible: Invisble
+        disable_all: Invisble and unsubscribe
     dashboard: Dashboard
     new_petitions: New petitions
     past_date_projected: Petitions past date projected
@@ -32,6 +33,7 @@ en:
     signatures:
       batch_invisible: The selected signatures are now invisible.
       batch_unsubscribe: The selected signatures have been unsubscribed.
+      batch_disable_all: The selected signatures are now invisible and have been unsubscribed.
     users:
       account_usage: Account usage
       resend_confirmation_instructions: Resend confirmation instructions

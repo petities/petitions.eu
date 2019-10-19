@@ -19,6 +19,16 @@ ActiveAdmin.register Signature do
     redirect_to collection_path, notice: t('active_admin.signatures.batch_unsubscribe')
   end
 
+  batch_action :disable_all do |ids|
+    batch_action_collection.find(ids).each do |signature|
+      signature.visible = false
+      signature.subscribe = false
+      signature.more_information = false
+      signature.save
+    end
+    redirect_to collection_path, notice: t('active_admin.signatures.batch_disable_all')
+  end
+
   index pagination_total: false do
     selectable_column
     id_column
