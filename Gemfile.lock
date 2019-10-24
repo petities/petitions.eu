@@ -108,7 +108,7 @@ GEM
     country_select (4.0.0)
       countries (~> 3.0)
       sort_alphabetical (~> 1.0)
-    crass (1.0.4)
+    crass (1.0.5)
     debug_inspector (0.0.3)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -199,7 +199,7 @@ GEM
       kaminari
       rails
     kgio (2.11.2)
-    loofah (2.3.0)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
