@@ -127,7 +127,7 @@ GEM
     faker (2.2.1)
       i18n (>= 0.8)
     fast_stack (0.2.0)
-    ffi (1.11.1)
+    ffi (1.11.2)
     flamegraph (0.9.5)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
