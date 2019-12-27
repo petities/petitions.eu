@@ -41,5 +41,16 @@ module AdminSignatures
     dsl.filter :visible
 
     dsl.filter :last_reminder_send_at
+
+    dsl.sidebar :unique_key, only: [:show, :edit] do
+      para do
+        form do
+          input type: :text,
+                value: signature_confirm_url(resource.unique_key),
+                readonly: true,
+                'data-behavior': :selectable
+        end
+      end
+    end
   end
 end

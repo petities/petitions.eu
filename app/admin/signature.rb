@@ -42,17 +42,6 @@ ActiveAdmin.register Signature do
     actions
   end
 
-  sidebar :unique_key, only: [:show, :edit] do
-    para do
-      form do
-        input type: :text,
-              value: signature_confirm_url(resource.unique_key),
-              readonly: true,
-              'data-behavior': :selectable
-      end
-    end
-  end
-
   form do |f|
     f.inputs 'Signature Details' do
       f.input :person_name

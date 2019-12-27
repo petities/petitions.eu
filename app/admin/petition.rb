@@ -13,7 +13,7 @@ ActiveAdmin.register Petition do
                 :number_of_newsletters_sent, :cached_slug, :last_confirmed_at,
                 :status, :manager_id, :show_twitter, :show_history, :show_map,
                 :twitter_query, :lat_lng, :lat_lng_sw, :lat_lng_ne,
-                :special_count, :display_more_information,
+                :special_count, :display_donations, :display_more_information,
                 :display_signature_person_citizen,
                 :display_signature_full_address, :archived, :petition_type_id,
                 :display_person_born_at, :display_person_birth_city,
@@ -35,6 +35,71 @@ ActiveAdmin.register Petition do
     column :signatures_count
     column :created_at
     column :updated_at
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :subdomain
+      row :description
+      row :initiators
+      row :statement
+      row :request
+      row :date_projected
+      row :office
+      row :organisation
+      row :organisation_name
+      row :petitioner_organisation
+      row :petitioner_birth_date
+      row :petitioner_birth_city
+      row :petitioner_name
+      row :petitioner_address
+      row :petitioner_postalcode
+      row :petitioner_city
+      row :petitioner_email
+      row :petitioner_telephone
+      row :maps_query
+      row :organisation_kind
+      row :link1
+      row :link2
+      row :link3
+      row :link1_text
+      row :link2_text
+      row :link3_text
+      row :site1
+      row :site1_text
+      row :number_of_signatures_on_paper
+      row :number_of_newsletters_sent
+      row :created_at
+      row :updated_at
+      row :last_confirmed_at
+      row :status
+      row :manager
+      row :show_twitter
+      row :show_history
+      row :show_map
+      row :twitter_query
+      row :lat_lng
+      row :lat_lng_sw
+      row :lat_lng_ne
+      row :display_donations
+      row :display_more_information
+      row :display_signature_person_citizen
+      row :display_signature_full_address
+      row :archived
+      row :petition_type
+      row :display_person_born_at
+      row :display_person_birth_city
+      row :locale_list
+      row :active_rate_value
+      row :owner
+      row :owner_Type
+      row :slug
+      row :reference_field
+      row :answer_due_date
+    end
+    active_admin_comments
   end
 
   filter :name
