@@ -54,8 +54,6 @@ class PetitionsController < ApplicationController
   def set_petition_vars
     @page = cleanup_page(params[:page])
 
-    @chart_data, @chart_labels = @petition.redis_history_chart_json(20)
-
     @updates = @petition.updates.page(@page).per(3)
   end
 

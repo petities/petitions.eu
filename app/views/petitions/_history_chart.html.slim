@@ -1,25 +1,28 @@
 
 div#history_chart.petition-details.history
   h2.petition-section-title= t('show.history')
-  javascript:
-    $(document).ready(function(){
-      var ctx = $("#chartContainer")[0].getContext("2d");
-      var data = {
-        labels: #{raw @chart_labels},
-        datasets: [{
-          fillColor: "#96c79f",
-          data: #{raw @chart_data}
-        }]
-      };
-      var myBarChart = new Chart(ctx).Bar(data, {
-        showTooltips: true,
-        animation: true,
-        showScale: true,
-        scaleShowGridLines : false,
-        barShowStroke : false,
-        barValueSpacing: 1,
-        tooltipFillColor: "#fff",
-        tooltipFontColor: "#000",
+  - cache [@petition, 'recent_signatures_graph', I18n.locale], expires_in: 5.minutes do
+    - chart_data, chart_labels = @petition.redis_history_chart_json(20)
+
+    javascript:
+      $(document).ready(function(){
+        var ctx = $("#chartContainer")[0].getContext("2d");
+        var data = {
+          labels: #{raw chart_labels},
+          datasets: [{
+            fillColor: "#96c79f",
+            data: #{raw chart_data}
+          }]
+        };
+        var myBarChart = new Chart(ctx).Bar(data, {
+          showTooltips: true,
+          animation: true,
+          showScale: true,
+          scaleShowGridLines : false,
+          barShowStroke : false,
+          barValueSpacing: 1,
+          tooltipFillColor: "#fff",
+          tooltipFontColor: "#000",
+        });
       });
-    });
-  canvas id="chartContainer" style="height:275px; width:100%;"
+    canvas id="chartContainer" style="height:275px; width:100%;"
