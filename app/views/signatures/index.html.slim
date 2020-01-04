@@ -38,29 +38,31 @@ div.page.signatures
 
   aside.petition-signatures-side
     div.petition-signatures-side-float
+      - cache [@petition, 'total_signatures_graph', I18n.locale], expires_in: 5.minutes do
+        - chart_data, chart_labels = @petition.redis_history_chart_json(200)
 
-      javascript:
-        $(document).ready(function(){
-          var ctx = $("#chartContainer")[0].getContext("2d");
-          var data = {
-            labels: #{raw @chart_labels},
-            datasets: [{
-              fillColor: "#96c79f",
-              data: #{raw @chart_data}
-            }]
-          };
-          var myBarChart = new Chart(ctx).Bar(data, {
-            showTooltips: true,
-            animation: true,
-            showScale: true,
-            scaleShowGridLines : false,
-            scaleFontSize: 8,
-            barShowStroke : false,
-            barValueSpacing: 1,
-            tooltipFillColor: "#fff",
-            tooltipFontColor: "#000",
+        javascript:
+          $(document).ready(function(){
+            var ctx = $("#chartContainer")[0].getContext("2d");
+            var data = {
+              labels: #{raw chart_labels},
+              datasets: [{
+                fillColor: "#96c79f",
+                data: #{raw chart_data}
+              }]
+            };
+            var myBarChart = new Chart(ctx).Bar(data, {
+              showTooltips: true,
+              animation: true,
+              showScale: true,
+              scaleShowGridLines : false,
+              scaleFontSize: 8,
+              barShowStroke : false,
+              barValueSpacing: 1,
+              tooltipFillColor: "#fff",
+              tooltipFontColor: "#000",
+            });
           });
-        });
 
       div.whitespace style="padding:5px; background-color: #bcf9c7;"
         canvas#chartContainer style="height:175px; width:100%;"

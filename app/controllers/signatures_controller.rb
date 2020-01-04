@@ -20,8 +20,6 @@ class SignaturesController < ApplicationController
   def index
     @all_signatures = @petition.signatures.limit(900)
 
-    @chart_data, @chart_labels = @petition.redis_history_chart_json(200)
-
     per_page = 100
 
     @page = if params[:page].to_i > 0
