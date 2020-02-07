@@ -175,38 +175,17 @@ class Petition < ActiveRecord::Base
     updates.find_by(show_on_petition: true)
   end
 
-  def redis_history_chart_json(hist = 10)
-    start = Time.now - hist.day
-
-    if created_at and start < created_at
-      start = created_at
-    end
-
-    day_counts = []
-    labels = []
-
-    d = start
-
-    hist.times do
-      key = "p-d-#{id}-#{d.year}-#{d.month}-#{d.day}"
-      c = redis.get(key) || 0
-      c = c.to_i
-      day_counts.push(c)
-
-      labels.push("#{d.year}-#{d.month}-#{d.day}")
-
-      if d > Time.zone.now.beginning_of_day
-        break
-      end
-      d = d + 1.day
-    end
+  def redis_history_chart_json(size)
+    labels = ((Date.today - size)..Date.today).collect(&:to_s)
+    keys = labels.collect { |day| "p-d-#{id}-#{day}" }
+    counts = redis.mget(keys).collect(&:to_i)
 
     if labels.size > 20
       factor = (labels.size / 20.0).ceil
       labels = labels.map.with_index { |l, i| i % factor == 0 ? l : '' }
     end
 
-    [day_counts, labels]
+    [counts, labels]
   end
 
   def links
@@ -307,12 +286,14 @@ class Petition < ActiveRecord::Base
 
   def restrict_destroy_with_signatures
     return if signatures.count < 100 && new_signatures.count < 100
+
     errors.add(:base, :will_not_destroy_that_much_signatures)
     false # or throw(:abort) in Rails 5.
   end
 
   def send_status_mail
     return unless status_changed? && persisted?
+
     PetitionStatusMail.new(self).call
   end
 

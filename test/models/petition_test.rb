@@ -61,4 +61,28 @@ class PetitionTest < ActiveSupport::TestCase
       assert_equal @petition.errors[:base], ['Petitie kan niet verwijderd worden omdat er meer dan 100 ondertekeningen zijn']
     end
   end
+
+  test 'should redis_history_chart_json return counts per day' do
+    redis = Redis.current
+    @petition.created_at = 14.days.ago
+
+    # prepare, set the values in redis
+    days = []
+    counts = []
+    size = 10
+    ((Date.today - size)..Date.yesterday).each do |day|
+      value = Random.rand(1000)
+      days << day.to_s
+      counts << value
+      redis.set("p-d-#{@petition.id}-#{day}", value)
+    end
+
+    petition_counts, petition_days = @petition.redis_history_chart_json(size)
+
+    assert_equal petition_counts.size, size
+    assert_equal petition_days.size, size
+
+    assert_equal petition_counts, counts
+    assert_equal petition_days, days
+  end
 end
