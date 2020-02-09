@@ -74,14 +74,10 @@ $(document).ready(function(){
   // improve error handling and showing here.
   $('.new_petition, .edit_petition').submit(function(){
 
-    var success = true;
-
     $('.errors').html('');
     $('.errors-note').hide();
 
-    if(!success){ $('.errors-note').show();}
-
-    return success;
+    return true;
   });
 
   $("#petition_organisation_kind").change(function () {
