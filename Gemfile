@@ -110,6 +110,7 @@ end
 gem 'newrelic_rpm', '~> 6.7'
 gem 'rollbar', '~> 2.22'
 
+gem 'invisible_captcha', '~> 1.0'
 gem 'rack-attack', '~> 6.2'
 
 # Use CodeClimate and Semaphore CI for testing
@@ -143,6 +144,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug'
   gem 'quiet_assets'
+
+  gem 'mocha'
 
   # create fake data
   gem 'faker'
