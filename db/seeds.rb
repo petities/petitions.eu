@@ -9,4 +9,5 @@
 
 Office.find_or_create_by(email: 'nederland@petities.nl') do |office|
   office.name = 'Petitieloket Nederland'
+  office.hidden = false
 end
