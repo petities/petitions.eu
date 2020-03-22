@@ -1,4 +1,6 @@
 class SignaturesController < ApplicationController
+  invisible_captcha only: [:create]
+
   include FindPetition
 
   protect_from_forgery except: :index

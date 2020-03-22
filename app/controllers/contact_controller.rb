@@ -1,4 +1,6 @@
 class ContactController < ApplicationController
+  invisible_captcha only: [:create]
+
   def new
     @contact_form = ContactForm.new
   end

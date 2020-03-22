@@ -4,6 +4,7 @@ div.page
     h1.petition-section-title= t('contact.title')
 
     = form_for @contact_form, url: contact_path do |f|
+      = invisible_captcha
       div.start-petition-form-row
         div.start-petition-form-cell.input
           div.start-petition-form-cell-title
