@@ -38,12 +38,11 @@ div.page
           = link_to(t('edit.petition.edit_petition'), edit_petition_path(@petition))
       div.whitespace
 
-  div
-    - if @updates.any? && @updates.first.created_at > 10.days.ago
+  - if @updates.any? && @updates.first.created_at > 10.days.ago
+    div.whitespace
       = link_to t('petition.news'), '#petitionnews', class: 'button'
-      p &nbsp;
 
-  - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
+  - cache [@petition, @petition.get_count, Globalize.locale.to_s, 'intro'] do
 
     section class=(@petition.image ? 'petition-intro-container' : 'petition-intro-container-noimage')
       div.petition-intro-image-container
@@ -55,8 +54,9 @@ div.page
         div.petition-intro-info-text
           p= markdown @petition.description
 
-    section.petition-container
-      div.petition-text-wrapper
+  section.petition-container
+    div.petition-text-wrapper
+      - cache [@petition, @petition.get_count, Globalize.locale.to_s, 'text'] do
         h2.petition-section-title= t('show.petition.title')
         div.petition-text
           h3= t('show.petition.we')
@@ -70,26 +70,26 @@ div.page
           h3= t('show.petition.request')
           = markdown @petition.request
 
+    div.petition-form-wrapper
 
-      div.petition-form-wrapper
-
-        - if @answer
+      - if @answer
+        - cache [@petition, @petition.get_count, Globalize.locale.to_s, @answer] do
           h2.petition-section-title= t('show.petition.answer')
           div.petition-text.petition-answer
             h3= markdown @answer.title
             = markdown @answer.text
             p &nbsp;
 
-        - if @petition.status == 'live'
-          = render partial: 'signform'
-        - else
-            div.petition-text
-              h3= t('show.petition.status.label')
-              - if @petition.concept?
-                = t('show.petition.status.will_be_signable')
-              - else
-                = t('show.petition.status.was_signable')
-              p &nbsp;
+      - if @petition.status == 'live'
+        = render partial: 'signform'
+      - else
+          div.petition-text
+            h3= t('show.petition.status.label')
+            - if @petition.concept?
+              = t('show.petition.status.will_be_signable')
+            - else
+              = t('show.petition.status.was_signable')
+            p &nbsp;
 
   section.petition-details-container
     = render partial: 'detailbox'
