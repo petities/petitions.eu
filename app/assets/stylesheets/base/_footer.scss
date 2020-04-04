@@ -63,6 +63,10 @@
 .footer-content-menu-item a {
   font: 700 15px/21px 'Open Sans', arial, sans-serif;
   color: #fff;
+
+  &:hover {
+    color: darken(#fff, 10%);
+  }
 }
 
 .footer-content-contactblock {
@@ -94,6 +98,14 @@
   padding: 25px 0 75px;
   text-align: center;
   font-size: 12px;
-  line-height: 32px;
+  line-height: 18px;
   text-transform: uppercase;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: darken(#fff, 10%);
+    }
+  }
 }
