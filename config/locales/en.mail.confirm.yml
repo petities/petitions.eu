@@ -166,8 +166,7 @@ Is this your e-mail address and name? Then please confirm your signature by foll
 %{confirm_url}
 
 
-Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes.
-
+Otherwise you can ignore this and we will automatically delete your name and e-mail address in three weeks time.
 
 If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or
 tablet. You can also try it through another network. Some employers and certain software block access to our website because
@@ -182,7 +181,7 @@ You received an e-mail about this already.</p>
 
 <p>%{confirm_url}</p>
 
-<p>Otherwise you can ignore this and we will automatically delete your name and e-mail address when the petition closes.</p>
+<p>Otherwise you can ignore this and we will automatically delete your name and e-mail address in three weeks time.</p>
 
 <p>If you have technical difficulties confirming your signature, try to open the link above on another computer, telephone or
 tablet. You can also try it through another network. Some employers and certain software block access to our website because

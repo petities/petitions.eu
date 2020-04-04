@@ -42,14 +42,14 @@ Dank u wel.
 TOELICHTING
 
 
-Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen. Als u ervoor kiest is uw naam 
-publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of juist niet meer zichtbaar te maken. Daarom is het goed 
+Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen. Als u ervoor kiest is uw naam
+publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of juist niet meer zichtbaar te maken. Daarom is het goed
 deze e-mail te bewaren.
 
 
 Deze e-mail is vertrouwelijk omdat alleen %{name} met adres %{email} de ondertekening mag bevestigen. Stuurt u dit bericht niet door
 en maak het niet openbaar met de unieke link die alleen voor u is. Want als anderen uw bevestigingspagina bezoeken, dan kunnen ze uw
-gegevens overschrijven. Gebruik daarom de bevestigingspagina om uitnodigingen te versturen. 
+gegevens overschrijven. Gebruik daarom de bevestigingspagina om uitnodigingen te versturen.
 
 
 Voor hulp bij het gebruik van onze website zie https://petities.nl/help
@@ -86,8 +86,8 @@ Voor hulp bij het gebruik van onze website zie https://petities.nl/help
 <p><b>TOELICHTING</b><p>
 
 
-<p>Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen. Als u ervoor kiest is uw naam 
-publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of juist niet meer zichtbaar te maken. Daarom is het goed 
+<p>Na uw bevestiging kunt u altijd terugkomen om uw gegevens bij te werken of om anderen uit te nodigen. Als u ervoor kiest is uw naam
+publiekelijk zichtbaar. U kunt er ook later voor kiezen om uw naam zichtbaar of juist niet meer zichtbaar te maken. Daarom is het goed
 deze e-mail te bewaren.</p>
 
 
@@ -162,7 +162,7 @@ Is dit uw e-mailadres en naam? Bevestig dan alstublieft door deze link te volgen
 %{confirm_url}
 
 
-Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch als de petitie sluit.
+Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch over drie weken.
 
 
 Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bovenstaande link eens te openen op een andere
@@ -179,7 +179,7 @@ U heeft er al een e-mail over ontvangen.</p>
 
 <p>%{confirm_url}</p>
 
-<p>Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch als de petitie sluit.</p>
+<p>Anders kunt u dit negeren en wissen wij uw naam en e-mailadres automatisch over drie weken.</p>
 
 <p>Heeft u technische problemen bij het bevestigen van uw ondertekening, probeer bovenstaande link eens te openen op een andere
 computer, telefoon of tablet. U kunt het ook proberen via een ander netwerk. Sommige werkgevers en bepaalde software blokkeren
