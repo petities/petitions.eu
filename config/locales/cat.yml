@@ -13,7 +13,7 @@ cat:
       <p>&nbsp;</p>
       <p>Technically the site is made possible by the volunteers of the 'Open Domein' association. From them you can get a <a href="http://deds.nl">free e-mailadres without advertising with respect for your privacy</a>. Then you can also <a href="http://opendomein.nl/lidmaatschap/">become member (for €15 per year)</a> if you appreciate the technical support of this kind of internet projects.</p>&#13;
       <p>&nbsp;</p>
-      <p>From 2011 onwards the hosting is done by internetprovider <a href="https://www.xs4all.nl/welcome-to-xs4all.htm">XS4ALL</a> because XS4ALL supports "initiatives aimed at the free exchange of information, democracy, privacy and the innovative use of the internet." The servers of Open Domein find shelter at XS4ALL because of that. The certificates for the secure communication with petities.nl are provided by <a href="https://www.xolphin.nl/Xolphin">Xolphin SSL Certificaten</a>. Error analytics and other insights we get through <a href="https://rollbar.com">Rollbar.com</a> who monitor our website. The number +31207854412 and the telephone exchange behind it by <a href="http://callvoip.nl/">CallVOIP</a>.</p>&#13;
+      <p>The certificates for the secure communication with petities.nl are provided by <a href="https://www.xolphin.nl/Xolphin">Xolphin SSL Certificaten</a>. Error analytics and other insights we get through <a href="https://rollbar.com">Rollbar.com</a> who monitor our website. The number +31207854412 and the telephone exchange behind it by <a href="http://callvoip.nl/">CallVOIP</a>.</p>&#13;
       <p>&nbsp;</p>
       <p>Our annual report is available <a href="https://jaarverslag.petities.nl">in Dutch</a>.</p>&#13;
       <p>&nbsp;</p>
@@ -811,7 +811,7 @@ cat:
     situation: the situation has changed, the petition should change too
     no_majority: there is no political support for it
     different: we should continue differently, not (now) with a petition
-    personal: peronally I can not run the petition (too busy, not my think)
+    personal: personally I can not run the petition (too busy, not my think)
     other_answers: 'something else, being:'
   update:
     created: News update created
@@ -821,8 +821,6 @@ cat:
       select_office: Select petition desk
       show_on_homepage: Show on news of petities.nl
       show_on_petition: Show on petition (above the sign form)
-      publish_to_signatures: Publish via mail to all signatures
-      publish_review: The news will be reviewed before publishing
       show_on_office: Show on petition desk
     news_updates: Updates
     no_news_yet: No news about this petition yet.
