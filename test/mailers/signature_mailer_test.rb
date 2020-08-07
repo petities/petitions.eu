@@ -10,7 +10,7 @@ class SignatureMailerTest < ActionMailer::TestCase
   test 'handed_over_signatories_mail' do
     mail = SignatureMailer.handed_over_signatories_mail(@signature)
 
-    assert_equal 'De petitie "test1," is overhandigd!', mail.subject
+    assert_equal 'De petitie "De eerste petitie om mee te testen" is overhandigd!', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
 
@@ -20,7 +20,7 @@ class SignatureMailerTest < ActionMailer::TestCase
     answer = updates(:one)
     mail = SignatureMailer.inform_user_of_answer_mail(@signature, answer)
 
-    assert_equal 'Het eindresultaat voor de petitie "test1,"', mail.subject
+    assert_equal 'Het eindresultaat voor de petitie "De eerste petitie om mee te testen"', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
 
@@ -30,7 +30,7 @@ class SignatureMailerTest < ActionMailer::TestCase
     update = updates(:one)
     mail = SignatureMailer.inform_user_of_news_update_mail(@signature, update)
 
-    assert_equal 'Petitie "test1,", voortgangsbericht', mail.subject
+    assert_equal 'Petitie "De eerste petitie om mee te testen", voortgangsbericht', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
   end
@@ -38,7 +38,7 @@ class SignatureMailerTest < ActionMailer::TestCase
   test 'sig_confirmation_mail' do
     mail = SignatureMailer.sig_confirmation_mail(@signature)
 
-    assert_equal 'Bevestig alstublieft uw ondertekening voor de petitie "test1," (vertrouwelijk, stuur niet door)', mail.subject
+    assert_equal 'Bevestig alstublieft uw ondertekening voor de petitie "De eerste petitie om mee te testen" (vertrouwelijk, stuur niet door)', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
 
@@ -49,7 +49,7 @@ class SignatureMailerTest < ActionMailer::TestCase
   test 'sig_reminder_confirm_mail' do
     mail = SignatureMailer.sig_reminder_confirm_mail(@signature)
 
-    assert_equal 'Herinnering: bevestig alstublieft uw ondertekening voor de petitie "test1," (vertrouwelijk, stuur niet door)', mail.subject
+    assert_equal 'Herinnering: bevestig alstublieft uw ondertekening voor de petitie "De eerste petitie om mee te testen" (vertrouwelijk, stuur niet door)', mail.subject
     assert_equal ['test31@gmail.com'], mail.to
     assert_equal ['webmaster@petities.nl'], mail.from
 

@@ -1,21 +1,19 @@
 one:
   petition: one
-  locale: en
-  name: test1,
-  description: description:1,
-  request: request:,
-  statement: statement,
-  initiators: :initiators
-  slug: testsubdomain
-
+  locale: nl
+  name: De eerste petitie om mee te testen
+  description: description
+  request: request
+  statement: statement
+  initiators: initiators
+  slug: testslug
 
 two:
   petition: two
   locale: en
-  name: test1,
+  name: The Second Petition to Test
   description: description:1,
   request: request:,
   statement: statement,
   initiators: :initiators
   slug: test_alkmaar
-
