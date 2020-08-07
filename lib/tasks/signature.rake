@@ -20,9 +20,8 @@ namespace :signature do
                     .where(last_reminder_sent_at: nil).limit(100)
 
     Rails.logger.debug("new_reminders #{new_reminders.size}")
-    # send the first reminder
+    # send the reminder
     new_reminders.find_each do |new_signature|
-      Rails.logger.debug new_signature.person_email
       new_signature.send_reminder_mail
     end
   end
