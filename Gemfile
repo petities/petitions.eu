@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11.1'
+gem 'rails', '4.2.11.3'
 gem 'rails-i18n'
 
 gem 'paper_trail'
@@ -13,7 +13,7 @@ gem 'friendly_id-globalize'
 
 gem 'mysql2', '~> 0.5.2'
 
-# legacy utf 8 issues..
+# legacy utf8 issues..
 gem 'rack-utf8_sanitizer'
 gem 'utf8-cleaner'
 
