@@ -17,7 +17,7 @@ README
    :target: https://semaphoreci.com/petities/petitions-eu
    :alt: Build Status
 
-* Ruby version 2.4.9
+* Ruby version 2.4.10
 
 * System dependencies
 
