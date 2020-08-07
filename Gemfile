@@ -5,7 +5,7 @@ gem 'rails', '4.2.11.3'
 gem 'rails-i18n'
 
 gem 'paper_trail'
-gem 'globalize', '~> 5.1.0'
+gem 'globalize', '~> 5.3.0'
 gem 'globalize-versioning'
 # friendly slugs..
 gem 'friendly_id'
