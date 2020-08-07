@@ -13,7 +13,7 @@ class PetitionsHelperTest < ActionView::TestCase
 
   test 'petition_share_url without subdomain' do
     @petition.subdomain = nil
-    assert_equal petition_share_url(@petition), 'http://test.host/petitions/testsubdomain'
+    assert_equal petition_share_url(@petition), 'http://test.host/petitions/testslug'
   end
 
   test 'petition_status_options' do

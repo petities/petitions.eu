@@ -1,14 +1,7 @@
 one:
-  name: test1
-  description: description
   office: amsterdam
-  request: request
   petitioner_email: test@test.nl
   petitioner_name: test11
-  initiators: initiators
-  statement: statement
-  request: request
-  slug: testslug
   date_projected: <%= 2.months.from_now.to_date %>
   petition_type: netherlands
   subdomain: testsubdomain
