@@ -6,6 +6,9 @@ ActiveAdmin.register Newsletter do
   filter :published
   filter :date
 
+  # Remove create button on index page, as petition_id is always required
+  config.action_items.delete_at(0)
+
   index do
     selectable_column
     id_column
