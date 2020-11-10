@@ -35,13 +35,13 @@ div.page
       div class="petition-editbutton-container"
 
           h2
-          - if @petition.next_version
+          - if @petition.paper_trail.next_version
             div.petition-editbutton.pull-left
-              =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.next_version.version.index} if @petition.next_version.version))
+              =<> link_to t('edit.petition.newer_version'), edit_petition_path(@petition, ({version: @petition.paper_trail.next_version.version.index} if @petition.paper_trail.next_version.version))
 
-          - if @petition.previous_version
+          - if @petition.paper_trail.previous_version
             div.petition-editbutton.pull-right
-              =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.previous_version.version.index})
+              =<> link_to t('edit.petition.older_version'), edit_petition_path(@petition, {version: @petition.paper_trail.previous_version.version.index})
 
   section class="petition-intro-container edit"
     div.petition-edit-close-button onclick=="$(this).parent('.edit').hide(); $('#introContainer').show();"
