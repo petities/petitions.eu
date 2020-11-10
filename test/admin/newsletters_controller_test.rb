@@ -10,6 +10,12 @@ module Admin
     test 'should get index' do
       get :index
       assert_response :success
+      assert_select 'div.action_items', ''
+    end
+
+    test 'should get new' do
+      get :new
+      assert_response :success
     end
 
     test 'should get show' do
