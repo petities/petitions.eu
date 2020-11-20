@@ -60,6 +60,16 @@ Find out which translation keys are unused
 
     I18n-tasks unused
 
-I don't know what this does..
+Create the first users
+######################
 
-    I18n-tasks remove-unused
+The AdminUser is used for access to ActiveAdmin. To create the first one:
+
+* start a console: ``bundle exec rails c``
+* create the AdminUser: ``AdminUser.create(email: 'admin@example.com', password: 'password')``
+
+The User is used for the application itself. To create the first one:
+
+* start a console: ``bundle exec rails c``
+* create the AdminUser: ``user = User.create(email: 'admin@example.com', password: 'password', confirmed_at: DateTime.now)``
+* apply the ``:admin`` role to the newly created user: ``user.add_role(:admin)``
