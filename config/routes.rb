@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/donate', to: 'donations#index'
+
   patch '/special_signature/:id', to: 'signatures#special_update', as: :special_signature
 
   get '/contact', to: 'contact#new', as: :contact
