@@ -107,7 +107,7 @@ group :production do
 end
 
 # Track errors in production
-gem 'newrelic_rpm', '~> 6.7'
+gem 'newrelic_rpm', '~> 6.15'
 gem 'rollbar', '~> 2.22'
 
 gem 'invisible_captcha', '~> 1.0'
