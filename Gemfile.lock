@@ -257,7 +257,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack-utf8_sanitizer (1.6.0)
+    rack-utf8_sanitizer (1.7.0)
       rack (>= 1.0, < 3.0)
     rails (4.2.11.3)
       actionmailer (= 4.2.11.3)
