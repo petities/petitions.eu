@@ -6,6 +6,15 @@ namespace :petition do
     end
   end
 
+  # Recalculate signature counter cache in Redis for live petitions. Remove the
+  # counter cache for closed petitions.
+  desc 'Update redis signature cache'
+  task update_redis_signature_cache: :environment do
+    Petition.find_each do |petition|
+      UpdateRedisSignatureCacheJob.perform_later(petition)
+    end
+  end
+
   desc 'create redis signature counts'
   task set_redis_signature_counts: :environment do
     require 'benchmark'
