@@ -31,5 +31,4 @@ class UpdateSignaturesCacheJob < ActiveJob::Base
       petition.update_column(:last_confirmed_at, last_confirmed_at)
     end
   end
-
 end
