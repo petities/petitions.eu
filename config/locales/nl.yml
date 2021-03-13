@@ -253,7 +253,7 @@ nl:
       donate_petition: Doneer
       help_petition: Help de petitie
       how_much: Hoeveel zou u bij willen dragen?
-      how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of journalist. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
+      how_much_description: Als er een specialist ingehuurd moet worden om de petitie vooruit te helpen. Bijvoorbeeld een lobbyist, jurist of tekstschrijver. Pas bij ruim voldoende toezeggingen en een uitgewerkt voorstel vragen we u het over te maken.
       ip: 'Uw IP-adres: %{ip}'
       petition_signature_url: Deze link naar uw ondertekening kunt u kopieer-plakken. Bijvoorbeeld om te versturen of ergens te publiceren.
       share:

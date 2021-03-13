@@ -191,7 +191,7 @@ en:
       confirmed_at: 'Confirmed at: %{confirmed_at}'
       help_petition: Help the petition
       how_much: How much would you like to contribute?
-      how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or journalist. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
+      how_much_description: For when a specialist needs to be hired to further this petition. For example a lobbyist, lawyer or copywriter. Only when there is a largely sufficient number of pledges and a detailed proposal we will ask you to transfer money.
       ip: 'Your IP-address: %{ip}'
       petition_signature_url: You can copy and paste this link to your signature. To send or publish for example.
       share:
