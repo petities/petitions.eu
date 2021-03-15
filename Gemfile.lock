@@ -134,7 +134,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
-    friendly_id (5.3.0)
+    friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     friendly_id-globalize (1.0.0.alpha3)
       friendly_id (>= 5.2.0, < 6.0)
