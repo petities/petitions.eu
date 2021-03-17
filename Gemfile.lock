@@ -398,7 +398,7 @@ GEM
     unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    utf8-cleaner (0.2.5)
+    utf8-cleaner (1.0.0)
       activesupport
     validates_timeliness (4.1.1)
       timeliness (>= 0.3.10, < 1)
