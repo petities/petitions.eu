@@ -774,8 +774,8 @@ nl:
       title: Ondertekeningen
       to_all: Naar alle ondertekeningen
     signatures_count:
-      one: "%{count} ondertekening"
-      other: "%{count} ondertekeningen"
+      one: "%{display} ondertekening"
+      other: "%{display} ondertekeningen"
   signature:
     confirm: Bevestig
     confirm_errors: 'Er ontbreekt wat verplichte informatie, uw ondertekening is nog niet bewaard'
