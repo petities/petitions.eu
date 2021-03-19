@@ -50,7 +50,7 @@ div.page
       div.petition-intro-info-container
         h1.petition-intro-info-title= @petition.name
         - unless @petition.get_count.zero?
-          div.petition-intro-info-counter= t('show.signatures_count', count: number_with_delimiter(@petition.get_count))
+          div.petition-intro-info-counter= t('show.signatures_count', display: number_with_delimiter(@petition.get_count), count: @petition.get_count)
         div.petition-intro-info-text
           p= markdown @petition.description
 
