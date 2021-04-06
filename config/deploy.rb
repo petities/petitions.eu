@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.11.0'
+lock '~> 3.16.0'
 
 set :application, 'petitions.eu'
 set :repo_url, 'git@github.com:petities/petitions.eu.git'
