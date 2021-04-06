@@ -52,7 +52,7 @@ GEM
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (6.0.4)
-    ast (2.4.1)
+    ast (2.4.2)
     autoprefixer-rails (9.7.3)
       execjs
     bcrypt (3.1.13)
@@ -234,7 +234,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    parser (2.7.1.4)
+    parser (3.0.1.0)
       ast (~> 2.4.1)
     pdf-core (0.7.0)
     prawn (2.2.2)
