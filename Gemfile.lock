@@ -388,7 +388,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    timeliness (0.4.3)
+    timeliness (0.4.4)
     ttfunk (1.5.1)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
