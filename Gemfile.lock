@@ -401,7 +401,7 @@ GEM
       raindrops (~> 0.7)
     utf8-cleaner (1.0.0)
       activesupport
-    validates_timeliness (4.1.1)
+    validates_timeliness (5.0.0)
       timeliness (>= 0.3.10, < 1)
     warden (1.2.7)
       rack (>= 1.0)
