@@ -19,7 +19,7 @@ class RedisPetitionCounter
   end
 
   def exists?
-    redis.exists(key)
+    redis.exists?(key)
   end
 
   def increment

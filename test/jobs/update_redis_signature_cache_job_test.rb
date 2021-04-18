@@ -21,7 +21,7 @@ class UpdateRedisSignatureCacheJobTest < ActiveJob::TestCase
 
     UpdateRedisSignatureCacheJob.perform_now(@petition)
 
-    redis_counter = Redis.current.exists("p#{@petition.id}-count")
+    redis_counter = Redis.current.exists?("p#{@petition.id}-count")
     assert_equal(redis_counter, false)
   end
 end
