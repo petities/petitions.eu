@@ -396,7 +396,6 @@ en:
     petitions: My petitions
     profile: My profile
     startanother: Start another petition
-    visits: Visitor statistics
     sidekiq: Tasks queue
   moderation:
     pending: Your petition opens after you confirm this e-mail
