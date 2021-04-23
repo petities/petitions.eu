@@ -6,6 +6,7 @@ set :repo_url, 'git@github.com:petities/petitions.eu.git'
 
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_custom_path, -> { '/srv/petitions.eu/.rbenv' }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -13,7 +14,7 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/projects/petitions.eu/#{fetch(:stage)}/"
+set :deploy_to, "/srv/petitions.eu/#{fetch(:stage)}/"
 
 # Defaults to [:web]
 set :assets_roles, [:web, :app]
