@@ -1,4 +1,4 @@
-class Signature < ActiveRecord::Base
+class Signature < ApplicationRecord
   include StripWhitespace
   strip_whitespace :person_city, :person_email, :person_function, :person_name, :person_street_number
 

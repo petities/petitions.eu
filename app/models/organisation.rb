@@ -1,4 +1,4 @@
-class Organisation < ActiveRecord::Base
+class Organisation < ApplicationRecord
   scope :district,       -> { where(kind: 'district') }
   scope :collective,     -> { where(kind: 'collective') }
   scope :water_county,   -> { where(kind: 'water_county') }

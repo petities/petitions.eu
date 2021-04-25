@@ -1,4 +1,4 @@
-class PetitionType < ActiveRecord::Base
+class PetitionType < ApplicationRecord
   has_many :petitions
   has_many :offices
 

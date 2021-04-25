@@ -1,4 +1,4 @@
-class Pledge < ActiveRecord::Base
+class Pledge < ApplicationRecord
   extend ActionView::Helpers::TranslationHelper
 
   belongs_to :petition

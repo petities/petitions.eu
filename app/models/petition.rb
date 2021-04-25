@@ -1,6 +1,6 @@
 Globalize.fallbacks = { en: [:en, :nl], nl: [:nl, :en] }
 
-class Petition < ActiveRecord::Base
+class Petition < ApplicationRecord
   translates :name, :description, :initiators,
              :statement, :request, :slug,
              fallbacks_for_empty_translations: true,

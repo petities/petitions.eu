@@ -1,4 +1,4 @@
-class Update < ActiveRecord::Base
+class Update < ApplicationRecord
   self.table_name = 'newsitems'
 
   before_validation :fill_date

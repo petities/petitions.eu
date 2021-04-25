@@ -1,4 +1,4 @@
-class Newsletter < ActiveRecord::Base
+class Newsletter < ApplicationRecord
   belongs_to :petition, required: true
 
   validates :date, :number, :text, presence: true

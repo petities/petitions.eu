@@ -1,4 +1,4 @@
-class PetitionTranslation < ActiveRecord::Base
+class PetitionTranslation < ApplicationRecord
   belongs_to :petition
   # has_many :petitions
   # has_many :offices

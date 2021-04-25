@@ -1,5 +1,5 @@
 # Keep track of petition tasks  and emails send etc etc.
-class TaskStatus < ActiveRecord::Base
+class TaskStatus < ApplicationRecord
   # is it time to execute task?
   def should_execute?(time_ago, max_count)
     # do we already hit our max?

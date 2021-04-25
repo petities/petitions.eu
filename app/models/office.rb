@@ -1,4 +1,4 @@
-class Office < ActiveRecord::Base
+class Office < ApplicationRecord
   default_scope { order('name ASC') }
 
   resourcify

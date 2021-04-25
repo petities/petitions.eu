@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   belongs_to :imageable, polymorphic: true
 
   validates :alt_label, length: { maximum: 255 }, allow_blank: true
