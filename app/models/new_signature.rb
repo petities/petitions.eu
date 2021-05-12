@@ -36,6 +36,6 @@ class NewSignature < Signature
       reminders_sent: reminders_sent.to_i + 1,
       last_reminder_sent_at: Time.zone.now
     )
-    SignatureMailer.sig_reminder_confirm_mail(self).deliver_later
+    SignatureReminderJob.perform_later(self).deliver_later
   end
 end
