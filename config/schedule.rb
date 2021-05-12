@@ -18,7 +18,7 @@ every :day, at: '1am' do
 end
 
 # send a reminder to confirm petition
-every 10.minutes do
+every 15.minutes do
   rake 'signature:send_reminder'
 end
 

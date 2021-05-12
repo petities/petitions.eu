@@ -7,7 +7,7 @@ require 'capistrano/deploy'
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
-# Inlcude whenever
+# Include whenever
 require 'whenever/capistrano'
 
 # Include tasks from other gems included in your Gemfile
