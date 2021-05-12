@@ -445,7 +445,6 @@ DEPENDENCIES
   mocha
   mysql2 (= 0.5.2)
   newrelic_rpm (~> 6.15)
-  nokogiri (= 1.10.10)
   paper_trail
   paperclip (~> 6.1)
   prawn (~> 2.2, >= 2.2.2)
