@@ -13,15 +13,11 @@ namespace :signature do
 
   desc 'Send reminder to confirm signature'
   task send_reminder: :environment do
-    Rails.logger = ActiveSupport::Logger.new('log/send_reminders.log')
+    ids = NewSignature.where('created_at < ?', 7.days.ago)
+                      .where(last_reminder_sent_at: nil).limit(100).pluck(:id)
 
-    new_reminders = NewSignature
-                    .where('created_at < ?', 7.days.ago)
-                    .where(last_reminder_sent_at: nil).limit(100)
-
-    Rails.logger.debug("new_reminders #{new_reminders.size}")
-    # send the reminder
-    new_reminders.find_each do |new_signature|
+    ids.each do |new_signature_id|
+      new_signature = NewSignature.find(new_signature_id)
       new_signature.send_reminder_mail
     end
   end
