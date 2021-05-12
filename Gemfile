@@ -35,7 +35,7 @@ gem 'slim'
 gem 'redcarpet'
 
 # pdf format templates
-gem 'prawn', '~> 2.2', '>= 2.2.2'
+gem 'prawn', '~> 2.4'
 gem 'prawn-table'
 gem 'prawnto'
 
