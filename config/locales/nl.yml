@@ -193,8 +193,8 @@ nl:
       influence_description: Zet het liefst onder 'functie' wat meer over uzelf. De petitionaris zou u om hulp kunnen vragen. U ontvangt dan een e-mail met een concreet voorstel.
       influencelabel: Heeft u invloed? Bent u een...
       invite_info:
-        description: Uw gemeente zoekt burgers die mee willen helpen problemen op te lossen. U kunt de uitnodigingen van de gemeente accepteren, negeren of stoppen.
-        label: "Mijn gemeente mag mij uitnodigen, maximaal 6 keer per jaar"
+        description: Burgers kunnen meedenken en meepraten om zo problemen in de gemeente op te lossen. Online of tijdens bijeenkomsten. U kunt de uitnodigingen accepteren, negeren of stoppen.
+        label: "Over mijn gemeente wil ik uitnodigingen ontvangen"
       location:
         description: Waar u op het moment van ondertekenen woont. Alleen zichtbaar voor de wereld als u daarvoor kiest.
         label: Woonplaats

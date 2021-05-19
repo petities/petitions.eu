@@ -131,8 +131,8 @@ en:
       influence_description: Preferably write a bit about yourself under 'function'. The lead petitioner might ask you for help. You will then receive an e-mail with a specific proposal.
       influencelabel: Do you have influence? Are you a(n)...
       invite_info:
-        description: Your municipality is looking for citizens to help solve issues. Sign up for this and you can accept, ignore or sign off from the invitations.
-        label: My municipality may send me up to 6 invitations per year
+        description: Citizens can help cooperate to solve issues locally. Online or during meetings. Sign up for this and you can accept, ignore or sign off from the invitations.
+        label: I would like to receive invitations about my municipality
       location:
         description: "Where you currently live, visible to the world if you choose."
         label: Place
