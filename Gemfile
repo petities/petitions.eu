@@ -109,7 +109,7 @@ gem 'newrelic_rpm', '~> 6.15'
 gem 'rollbar', '~> 3.1'
 
 gem 'invisible_captcha', '~> 1.0'
-gem 'rack-attack', '~> 6.2'
+gem 'rack-attack', '~> 6.5'
 
 # Use CodeClimate and Semaphore CI for testing
 gem 'codeclimate-test-reporter', group: :test, require: nil
