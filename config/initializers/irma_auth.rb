@@ -59,6 +59,11 @@ module Devise
         user, err = user_from_jwt params[:user][:irma_email]
 
         if !user.nil? and err.nil?
+          # confirm user, if they aren't already;  we must do this before
+          # running 'succes! user' lest the user is not considered active
+          # for authentication.
+          user.confirm unless user.confirmed?
+
           success! user
         else
           if err.nil?
