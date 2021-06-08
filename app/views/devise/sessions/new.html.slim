@@ -42,3 +42,18 @@ div.page
             = link_to t('login.reset_link.label'), new_user_password_path
         div.start-petition-form-cell.label.empty
           = t('login.reset_link.description')
+
+      div.start-petition-form-row
+        div.start-petition-form-cell.input
+          div.petition-form-button [ 
+              id='login_with_irma' 
+              data-irma-jwt="#{ irma_jwt_create }"
+              data-irma-url="#{ Rails.configuration.irma_server_url }"
+          ]
+            = t('login.irma.button')
+        div.start-petition-form-cell.label.empty
+          == t('login.irma.description')
+
+      = f.hidden_field :irma_email
+
+      

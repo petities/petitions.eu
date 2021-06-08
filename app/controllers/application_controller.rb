@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
     @news = Update.show_on_home.limit(6) if request.get?
   end
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   # redirect users..
   def after_sign_in_path_for(resource)
     stored_location_for(resource) ||
@@ -34,6 +36,13 @@ class ApplicationController < ActionController::Base
       format.xml  { head :not_found }
       format.any  { head :not_found }
     end
+  end
+
+  protected
+  # Make devise (the authentication framework) accept the :irma_email parameter.
+  #  (See https://github.com/heartcombo/devise#strong-parameters.)
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:irma_email])
   end
 
   private

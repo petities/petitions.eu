@@ -378,6 +378,9 @@ en:
     flash:
       success: You can now login with your e-mail address and new password!
     login: Log in
+    irma:
+      button: Log in with IRMA
+      description: You can also log in by revealing your email address with the <a href="https://irma.app">IRMA app</a>.
     password:
       description: When you began your petition you chose a password. If you did not, we sent you a password by e-mail.
       label: Password
