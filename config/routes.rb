@@ -101,4 +101,7 @@ Rails.application.routes.draw do
 
   get '/petitie/:id',         to: 'petitions#show'
   get '/resolve/:subdomain',  to: 'petitions#show'
+
+  # For IRMA login
+  get '/irma-login-jwt', to: 'irma#login_jwt'
 end

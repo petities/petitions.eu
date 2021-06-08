@@ -45,10 +45,11 @@ div.page
 
       div.start-petition-form-row
         div.start-petition-form-cell.input
+          / For on-click, see:  irma_login.coffee
           div.petition-form-button [ 
-              id='login_with_irma' 
-              data-irma-jwt="#{ irma_jwt_create }"
-              data-irma-url="#{ Rails.configuration.irma_server_url }"
+              id='login_with_irma'
+              data-irma-server-url="#{ Rails.configuration.irma_server_url }"
+              data-irma-debug=( Rails.env.development? )
           ]
             = t('login.irma.button')
         div.start-petition-form-cell.label.empty
