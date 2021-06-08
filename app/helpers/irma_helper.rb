@@ -6,7 +6,8 @@ module IrmaHelper
   def irma_jwt_create
     # Creates a signed IRMA request in the form of a JSON web token (JWT)
     # to disclose the user's email address.
-
+    Irma.assert
+    
     return Irma::JWT::Create(:HS256, 
           Base64.urlsafe_decode64(Rails.configuration.irma_request_hmac_key), {
       :sub => "verification_request",

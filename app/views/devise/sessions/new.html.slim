@@ -43,18 +43,17 @@ div.page
         div.start-petition-form-cell.label.empty
           = t('login.reset_link.description')
 
-      div.start-petition-form-row
-        div.start-petition-form-cell.input
-          / For on-click, see:  irma_login.coffee
-          div.petition-form-button [ 
-              id='login_with_irma'
-              data-irma-server-url="#{ Rails.configuration.irma_server_url }"
-              data-irma-debug=( Rails.env.development? )
-          ]
-            = t('login.irma.button')
-        div.start-petition-form-cell.label.empty
-          == t('login.irma.description')
+      - if Irma.enabled?
+        div.start-petition-form-row
+          div.start-petition-form-cell.input
+            / For on-click, see:  irma_login.coffee
+            div.petition-form-button [ 
+                id='login_with_irma'
+                data-irma-server-url="#{ Rails.configuration.irma_server_url }"
+                data-irma-debug=( Rails.env.development? )
+            ]
+              = t('login.irma.button')
+          div.start-petition-form-cell.label.empty
+            == t('login.irma.description')
 
-      = f.hidden_field :irma_email
-
-      
+        = f.hidden_field :irma_email

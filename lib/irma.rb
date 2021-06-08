@@ -3,6 +3,14 @@ require 'json'
 require 'openssl'
 
 module Irma
+  def self.enabled?
+    return Rails.configuration.irma
+  end
+
+  def self.assert
+    raise "IRMA support not yet configured" if not enabled?
+  end
+
   module JWT
     ALGS = [ :HS256, :RS256 ]
 

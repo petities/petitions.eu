@@ -54,6 +54,8 @@ module Devise
       end
 
       def authenticate!
+        Irma.assert
+
         user, err = user_from_jwt params[:user][:irma_email]
 
         if !user.nil? and err.nil?
@@ -70,6 +72,7 @@ module Devise
   end
 end
 
+# It would be better to only add the irma_auth strategy when Irma.enabled?,
+# but unfortunately, Rails.configuration is not yet loaded here.
 Warden::Strategies.add(:irma_auth, Devise::Strategies::IrmaAuth)
-
 
