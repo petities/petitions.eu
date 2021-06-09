@@ -16,39 +16,38 @@ module Devise
         disclosure = Irma::JWT.Open(jwt, 
           Rails.configuration.irma_server_public_key)
 
-        return nil, "Invalid (signature on) disclosure JWT" if disclosure.nil? 
+        return nil, :irma_jwt_signature if disclosure.nil? 
         
         # check expiry
         exp = disclosure["exp"] 
-        return nil, "Expired disclosure JWT" \
+        return nil, :irma_jwt_exp \
           unless (exp.is_a? Integer) and exp > Time.now.to_i
 
         # we do not when  disclosure["iat"] lies in the future,
         # because it might with clock drift, and so on.
 
-        return nil, "Invalid JWT issuer" \
+        return nil, :irma_jwt_issuer \
           unless disclosure["iss"]=="irmaserver"
-        return nil, "Invalud JWT subject" \
+        return nil, :irma_jwt_subject \
           unless disclosure["sub"]=="disclosing_result"
-        return nil, "Invalid JWT status" \
+        return nil, :irma_jwt_status \
           unless disclosure["status"]=="DONE"
-        return nil, "Invalid JWT disclosure type"\
+        return nil, :irma_jwt_type \
           unless disclosure["type"]=="disclosing"
-        return nil, "Invalid JWT proof status"\
+        return nil, :irma_jwt_proof_status \
           unless disclosure["proofStatus"]=="VALID"
         
         emailAttr = disclosure.dig("disclosed", 0, 0)
         
-        return nil, "No attribute in disclosure" if emailAttr.nil?
-        return nil, "Invalid attribute status" \
+        return nil, :irma_missing if emailAttr.nil?
+        return nil, :irma_status \
           unless emailAttr["status"]=="PRESENT"
-        return nil, "Disclosed attribute is not a: " + 
-          Rails.configuration.irma_email_attr  \
+        return nil, :irma_type \
           unless emailAttr["id"]==Rails.configuration.irma_email_attr
 
         email = emailAttr["rawvalue"]
 
-        return nil, "Blank email" if email.blank?
+        return nil, :irma_blank_email if email.blank?
 
         return User.find_by_email(email), nil
       end
@@ -58,19 +57,17 @@ module Devise
 
         user, err = user_from_jwt params[:user][:irma_email]
 
-        if !user.nil? and err.nil?
+        if !err.nil?
+          fail! err
+        elsif user.nil?
+          fail! :irma_invalid_email
+        else
           # confirm user, if they aren't already;  we must do this before
           # running 'succes! user' lest the user is not considered active
           # for authentication.
           user.confirm unless user.confirmed?
 
           success! user
-        else
-          if err.nil?
-            fail! "Failed to log in with IRMA:  unknown email"
-          else
-            fail! "Failed to log in with IRMA: " + err
-          end
         end
       end
     end
