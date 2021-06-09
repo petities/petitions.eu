@@ -2,7 +2,7 @@ require 'devise/strategies/authenticatable'
 
 # Adds authentication via an IRMA JWT in params[:user][:irma_email]
 #
-# based on  https://gist.github.com/r00k/906356
+# based in part on  https://gist.github.com/r00k/906356
 module Devise
   module Strategies
     class IrmaAuth < Authenticatable
@@ -66,6 +66,12 @@ module Devise
           # running 'succes! user' lest the user is not considered active
           # for authentication.
           user.confirm unless user.confirmed?
+
+          # Make sure the user is remembered when the "Remember me" checkbox
+          # is ticked.  The default database authentication uses this method
+          # call as well, see:  
+          #   https://github.com/heartcombo/devise/blob/c82e4cf47b02002b2fd7ca31d441cf1043fc634c/lib/devise/strategies/database_authenticatable.rb#L14
+          remember_me(user)
 
           success! user
         end
