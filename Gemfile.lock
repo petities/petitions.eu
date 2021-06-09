@@ -118,7 +118,7 @@ GEM
     devise-i18n (1.8.2)
       devise (>= 4.6)
     docile (1.1.5)
-    email_validator (1.6.0)
+    email_validator (2.2.3)
       activemodel
     erubi (1.10.0)
     erubis (2.7.0)
@@ -425,7 +425,7 @@ DEPENDENCIES
   country_select
   devise (~> 4.7)
   devise-i18n
-  email_validator (~> 1.6)
+  email_validator (~> 2.2)
   faker
   fast_stack
   flamegraph
