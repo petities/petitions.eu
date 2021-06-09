@@ -766,6 +766,7 @@ nl:
         submit: Ik onderteken deze petitie
         submitting: Bezig met opslaan...
         success_html: Dank u wel. Nu is het belangrijk uw ondertekening te bevestigen. Op e-mailadres <span class="confirm_email"></span> ontvangt u een e-mail van webmaster@petities.nl met "Bevestig alstublieft" in de onderwerp-regel. Kijk ook in uw spam/reclame-postbus als u de e-mail niet kunt vinden. Zonder bevestiging telt uw ondertekening niet mee.
+        petition_contribution_note: We gaan ook lobbyen met hulp van IkLobby! Maak het mogelijk met een bijdrage.
       note_html: We e-mailen u een link waarmee u uw ondertekening kunt bevestigen. Uw gegevens worden niet doorgespeeld aan derden en blijven bij de Stichting Petities.nl. Meer hierover leest u in onze <a href="/privacy">privacyverklaring</a>.
       title: Ondertekenen
     signatures:

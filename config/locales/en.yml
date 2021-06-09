@@ -702,6 +702,7 @@ en:
         submit: I sign this petition
         submitting: Saving your signature...
         success_html: Thank you. It is now important to confirm your signature. On address <span class="confirm_email"></span> you will receive an e-mail from webmaster@petities.nl with "Please confirm" in the subject line. Also check your spam mailbox if you can not find it. Without confirmation your signature does not count.
+        petition_contribution_note: With the help of IkLobby we will start a lobby! Make it possible with a contribution.
       note_html: We e-mail you a link to confirm your signature. Your data will not be shared with third parties and remains with the Stichting Petities.nl. Your name and place of residence will only appear if you choose this. Read more about this in our <a href="/privacy">privacy statement</a>.
       title: Sign this petition
     signatures:

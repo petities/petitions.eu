@@ -128,6 +128,10 @@ $(document).ready(function(){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
       $('.petition-details-container').hide();
+      if (data.petition.display_donations) {
+        $('.donate-widget').show();
+        $('.petition-contribution-note').show();
+      }
       // console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
       $('.petition-error-sign-note').show();
