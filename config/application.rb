@@ -41,33 +41,26 @@ module PetitionApp
     config.irma_email_attr = "pbdf.sidn-pbdf.email.email"
 
     # You must run an irma server behind a publically accessible URL:
-    config.irma_server_url = "https://your-irma.server/irma-api-prefix"
-
-    # The IRMA server url must be https for the IRMA app to accept.  
-    # To achieve this it might be easiest to run irma server without https 
-    # at your-irma.server, and have a http server like lighttpd 
-    # add https by proxy, by adding to  /etc/lighttpd/lighttpd.conf:
-    #
-    # $HTTP["host"] == "your-irma.server" {
-    #   $HTTP["url"] =~ "^/irma-api-prefix/" {
-    #     proxy.server = ( "" => ( ( "host" => "127.0.0.1",
-    #                                "port" => "8088" ) ) )
-    #   }
-    # }
+    config.irma_server_url = "https://irma.petities.nl"
     
     # Requests directed towards the IRMA server are signed using HMAC.
-    config.irma_requestor = "petities"
+    config.irma_requestor = "petities.nl"
     config.irma_request_hmac_key = "Q8K1H8KUw7gbwqXCscOtw6rDniAuwqzDhwkuw6rDqMKH"
     # And responses from the IRMA server are signed using RSA.
     config.irma_server_public_key = <<~END_OF_KEY 
       -----BEGIN PUBLIC KEY-----
-      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA19I/wHqplFBk5Dr8+T04
-      er462JCWTO6gaG2xm5SPPKfJ8/o1Ia2sxLAafi8hVJc50qk3oFmouqYKwTk/V9/J
-      tjtgL5gYWunDP1fd72XUZZf1+EYviytgFns3zbgGiqPBHIZCnzSlJTbRqjspJTLB
-      YbFhvx6rdSlQxj5gkAZwo70ZSXAzZn+Uym90yp+vn013lPTM5wx6d0bTprsmQsyR
-      BQfHNs0AyA04wfSJ46HS7QfcOuBwDgW4j7vwcn8hnCSIirEmL8PsXF+ivG7T9OO1
-      J39JY21NJzeQx3/bu0gFlhDf0zXPF1tyBAekbvJEN1SdQlwl6R02YR/Xq2wnK+bL
-      UwIDAQAB
+      MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA+UT9iuCxNHkKe9PCdL0s
+      Gn+sHPvdMFyRLa+Ho/AYrOzOzdf/gF08EoyDmexYXX6Xcm1DW8i+JrihVHiXZ9Ny
+      Zm9pNb3WIR2PGOloWVSmYALwWIsb3gvsnpWNtxu563uHNBMkzIyys8DBr0UYuk/F
+      208bFFOf/Tbb+X+hUSkLvuJOHgNnl186IFBLwlejzJemTiD+15katashLo3Tp3WV
+      kiLUo5CF4/mCHvKKPtBnUAlkt8uzbJ/7LG1Kc7rK1H9Gg8ar4AfIu5vE75/1wo2L
+      l75MMWw6zWCNt6VBUD+rLg9Vo65A+jqrGtggD7zFm7zhc7OniT4We3nZaqWOFd8j
+      b3bW86mgQB/5Qd4S0Cq/LdLw7Gi+jZ4sY7saSmTmrYwnkK60ApodK1PmIKyk0qUL
+      reY0ecovQdXeVCG74aGC3fulTXkuVlVxxRchjh06P6nyVNEHKtKmdrO1oAxXLC+P
+      61/B+JvMigprricVHabttd3ArwXFx63jijvuRaI/wK7JEWhSjiONc8CES4+u/fLm
+      IOn22MXzFT7cSbPkQ/9Rbvv1O8P1DYVSJuuRAGJ5JFnjz6phJ8MgIVU0VGgLixNb
+      i1ruQJFH8FUiP6wyyqJ7/XYh3xx4y9/0LSUX52VcIBUzDRe6O2guihcf4WSOVbzD
+      qcHA5hRXJw9KCluxWzSyMiUCAwEAAQ==
       -----END PUBLIC KEY-----
       END_OF_KEY
 
