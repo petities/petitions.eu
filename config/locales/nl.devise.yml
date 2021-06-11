@@ -17,6 +17,18 @@ nl:
       timeout: Uw sessie is verlopen, meld u opnieuw aan om door te gaan.
       unauthenticated: U dient u aan te melden of in te schrijven om door te gaan.
       unconfirmed: U dient eerst uw account te bevestigen.
+      irma_invalid_email: Onbekend e-mailadres
+      irma_blank_email: Het IRMA e-mailattribuut is leeg
+      irma_type: Het IRMA-attribuut heeft het verkeerde type
+      irma_status: Het IRMA-attribuut heeft de verkeerde status
+      irma_missing: Geen IRMA-attribuut vrijgegeven
+      irma_jwt_proof_status: 'Ongeldig bericht van de IRMA-server: verkeerde bewijsstatus'
+      irma_jwt_status: 'Ongeldig bericht van de IRMA-server: verkeerde status'
+      irma_jwt_type: 'Ongeldig bericht van de IRMA-server: verkeerd type'
+      irma_jwt_subject: 'Ongeldig bericht van de IRMA-server: verkeerd onderwerp'
+      irma_jwt_issuer: 'Ongeldig bericht van de IRMA-server: verkeerde uitgever'
+      irma_jwt_expired: 'Ongeldig bericht van de IRMA-server: verlopen'
+      irma_jwt_signature: 'Ongeldig bericht van de IRMA-server: ongeldige ondertekening'
     mailer:
       confirmation_instructions:
         action: Bevestig mijn account

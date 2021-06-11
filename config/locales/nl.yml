@@ -440,6 +440,9 @@ nl:
     flash:
       success: U kunt nu inloggen met uw e-mailadres en nieuwe wachtwoord!
     login: Inloggen
+    irma:
+      button: Inloggen met IRMA
+      description: U kunt ook inloggen door uw e-mailadres aan ons te tonen met de <a href="https://irma.app">IRMA app</a>.
     password:
       description: U koos zelf een wachtwoord toen u uw petitie maakte. Deed u dat niet, dan kreeg u een wachtwoord van ons per e-mail.
       label: Wachtwoord

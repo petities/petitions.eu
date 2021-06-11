@@ -18,4 +18,6 @@ class User < ApplicationRecord
     self.password = password
     true
   end
+
+  attr_accessor :irma_email
 end

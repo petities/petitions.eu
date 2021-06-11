@@ -21,4 +21,6 @@
 //= require petities
 //= require social_share
 //= require signature
+//= require irma
+//= require irma_login
 // require_tree .
