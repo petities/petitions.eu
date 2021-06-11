@@ -9,7 +9,7 @@ module IrmaHelper
     Irma.assert
     
     return Irma::JWT::Create(:HS256, 
-          Base64.urlsafe_decode64(Rails.configuration.irma_request_hmac_key), {
+          Base64.decode64(Rails.configuration.irma_request_hmac_key), {
       :sub => "verification_request",
       :iss => Rails.configuration.irma_requestor,
       :iat => Time.now.to_i,
