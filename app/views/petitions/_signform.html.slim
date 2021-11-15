@@ -8,13 +8,14 @@ div.petition-success-sign-note.hidden
   p
     =<> t('show.sign.form.success_html')
 
-div.petition-contribution-note.hidden style="margin: 20px 0;"
-  p
-    =<> t('show.sign.form.petition_contribution_note')
+  - if @petition.display_donations?
+    div.petition-contribution-note style="margin: 20px 0;"
+      p
+        =<> t('show.sign.form.petition_contribution_note')
 
-div.donate-widget.hidden
-  div class="widget" id=@petition.slug value="donation-widget" data-slug=@petition.slug data-lang="nl" data-success_url="" data-fail_url="" data-card="show" style="margin: auto !important;"
-  script src="https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js" type="text/javascript"
+    div.donate-widget
+      div class="widget" id=@petition.slug value="donation-widget" data-slug=@petition.slug data-lang="nl" data-success_url="" data-fail_url="" data-card="show" style="margin: auto !important;"
+      script src="https://res.cloudinary.com/dxhaja5tz/raw/upload/script_main.js" type="text/javascript"
 
 div.petition-form-float-wrapper
   h2.petition-section-title= t('show.sign.title')

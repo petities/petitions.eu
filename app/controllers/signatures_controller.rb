@@ -74,7 +74,7 @@ class SignaturesController < ApplicationController
       # send confirmation mail again
       @signature.send(:send_confirmation_mail)
       respond_to do |format|
-        format.js { render json: { status: 'ok', petition: @petition } }
+        format.js { render json: { status: 'ok' } }
       end
       # DONE!
       return
@@ -89,7 +89,7 @@ class SignaturesController < ApplicationController
     # respond to json request
     respond_to do |format|
       if @signature.save
-        format.js { render json: { status: 'ok', petition: @petition } }
+        format.js { render json: { status: 'ok' } }
       else
         format.js { render json: @signature.errors, status: :unprocessable_entity }
       end
