@@ -1,13 +1,12 @@
 require 'test_helper'
 
-class SubDomainTest < ActionDispatch::IntegrationTest
+class SubdomainTest < ActionDispatch::IntegrationTest
   fixtures :all
 
   test 'bad subdomain' do
     host! 'idonotexist.test.host'
     assert_recognizes({ controller: 'subdomains', action: 'show' }, 'http://idontexist.test.host')
-    get '/'
-    assert_response :not_found
+    assert_raise(ActionController::RoutingError) { get '/' }
   end
 
   test 'office amsterdam subdomain' do
