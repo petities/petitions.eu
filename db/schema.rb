@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191005074530) do
+ActiveRecord::Schema.define(version: 20211115215658) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(version: 20191005074530) do
     t.string   "lat_lng_sw",                       limit: 255
     t.string   "lat_lng_ne",                       limit: 255
     t.integer  "special_count",                    limit: 4,     default: 0,     null: false
-    t.boolean  "display_donations",                              default: true,  null: false
+    t.boolean  "display_donations",                              default: false, null: false
     t.boolean  "display_more_information"
     t.boolean  "display_signature_person_citizen",               default: false
     t.boolean  "display_signature_full_address",                 default: false

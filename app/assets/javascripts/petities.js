@@ -128,10 +128,8 @@ $(document).ready(function(){
       $('.petition-form-float-wrapper').hide();
       $('.petition-success-sign-note').show();
       $('.petition-details-container').hide();
-      // console.log(xhr);
     }).on('ajax:error',function(e, xhr, status, error){
       $('.petition-error-sign-note').show();
-      // console.log(xhr);
     });
 
 
