@@ -30,4 +30,12 @@ Groningen | 583.635
 Drenthe | 488.505'
     assert_match '<table>', markdown(text).strip
   end
+
+  test 'markdown should render footnotes' do
+    text = 'This is a test[^1] string.
+
+[^1]: test: a procedure for checking quality.'
+    assert_match '<sup id="fnref1">', markdown(text).strip
+    assert_match '<div class="footnotes">', markdown(text).strip
+  end
 end
