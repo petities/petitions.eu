@@ -5,7 +5,8 @@ module MarkdownHelper
       fenced_code_blocks: false,
       disable_indented_code_blocks: true,
       strikethrough: true,
-      tables: true
+      tables: true,
+      footnotes: true
     )
     renderer.render(text.to_s).html_safe if text
   end
@@ -22,5 +23,7 @@ end
 Slim::Embedded.options[:markdown] = {
   fenced_code_blocks: false,
   disable_indented_code_blocks: true,
-  strikethrough: true
+  strikethrough: true,
+  tables: true,
+  footnotes: true
 }
