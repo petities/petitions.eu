@@ -27,8 +27,10 @@ Rollbar.configure do |config|
   # 'ignore' will cause the exception to not be reported at all.
   # config.exception_level_filters.merge!('MyCriticalException' => 'critical')
   config.exception_level_filters.merge!(
+    'ActionDispatch::ParamsParser::ParseError' => 'ignore',
     'ActiveRecord::RecordNotFound' => 'ignore',
     'AbstractController::ActionNotFound' => 'ignore',
+    'ActionController::RedirectBackError' => 'ignore',
     'ActionController::RoutingError' => 'ignore',
     'ActionController::UnknownFormat' => 'ignore'
   )
