@@ -168,7 +168,7 @@ GEM
       has_scope (~> 0.6)
       railties (>= 4.2, < 5.3)
       responders
-    invisible_captcha (1.0.1)
+    invisible_captcha (1.1.0)
       rails (>= 4.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -426,7 +426,7 @@ DEPENDENCIES
   has_secure_token (~> 1.0)
   i18n-country-translations
   i18n-tasks
-  invisible_captcha (~> 1.0)
+  invisible_captcha (~> 1.1)
   jbuilder (~> 2.9)
   jquery-rails
   kaminari
