@@ -47,4 +47,5 @@ jobs:
         RAILS_ENV: test
       run: |
         bundle exec rake db:setup
+        bundle exec cap test # to test capistrano syntax
         bundle exec rake
