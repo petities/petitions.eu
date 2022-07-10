@@ -350,7 +350,7 @@ GEM
       tilt (>= 2.0.6, < 2.1)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
-    spring (2.1.1)
+    spring (4.0.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
