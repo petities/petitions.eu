@@ -91,7 +91,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.10)
     connection_pool (2.2.3)
     countries (3.0.1)
       i18n_data (~> 0.10.0)
@@ -206,7 +206,7 @@ GEM
       rake
     mini_mime (1.1.0)
     mini_portile2 (2.4.0)
-    minitest (5.14.4)
+    minitest (5.16.2)
     mocha (1.12.0)
     mysql2 (0.5.2)
     net-scp (3.0.0)
@@ -236,7 +236,7 @@ GEM
     prawnto (0.1.1)
       prawn
       rails (>= 2.1)
-    pundit (2.1.0)
+    pundit (2.2.0)
       activesupport (>= 3.0.0)
     rack (1.6.13)
     rack-attack (6.2.1)
