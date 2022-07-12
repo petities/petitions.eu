@@ -284,7 +284,7 @@ GEM
       activerecord (>= 3.0, < 5.2)
       activesupport (>= 3.0, < 5.2)
       i18n
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.1)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     redcarpet (3.5.1)
