@@ -108,8 +108,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.8.2)
-      devise (>= 4.6)
+    devise-i18n (1.9.4)
+      devise (>= 4.7.1)
     docile (1.1.5)
     email_validator (1.6.0)
       activemodel
