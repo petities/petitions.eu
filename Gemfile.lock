@@ -102,7 +102,7 @@ GEM
       sort_alphabetical (~> 1.0)
     crass (1.0.6)
     debug_inspector (1.1.0)
-    devise (4.7.1)
+    devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -193,7 +193,7 @@ GEM
       kaminari
       rails
     kgio (2.11.4)
-    loofah (2.9.1)
+    loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -205,16 +205,17 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.0)
-    mini_portile2 (2.4.0)
-    minitest (5.14.4)
+    mini_portile2 (2.8.0)
+    minitest (5.16.2)
     mocha (1.12.0)
     mysql2 (0.5.2)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     newrelic_rpm (6.15.0)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.13.7)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
@@ -238,6 +239,7 @@ GEM
       rails (>= 2.1)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
+    racc (1.6.0)
     rack (1.6.13)
     rack-attack (6.2.1)
       rack (>= 1.0, < 3)
@@ -412,7 +414,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2, >= 4.2.2)
   countries
   country_select
-  devise (~> 4.7)
+  devise (~> 4.8)
   devise-i18n
   email_validator (~> 1.6)
   faker
