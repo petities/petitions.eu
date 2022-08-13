@@ -111,7 +111,7 @@ GEM
     devise-i18n (1.9.4)
       devise (>= 4.7.1)
     docile (1.1.5)
-    email_validator (1.6.0)
+    email_validator (2.2.3)
       activemodel
     erubi (1.10.0)
     erubis (2.7.0)
@@ -206,7 +206,7 @@ GEM
       rake
     mini_mime (1.1.0)
     mini_portile2 (2.4.0)
-    minitest (5.14.4)
+    minitest (5.16.2)
     mocha (1.12.0)
     mysql2 (0.5.2)
     net-scp (3.0.0)
@@ -414,7 +414,7 @@ DEPENDENCIES
   country_select
   devise (~> 4.8)
   devise-i18n
-  email_validator (~> 1.6)
+  email_validator (~> 2.2)
   faker
   fast_stack
   flamegraph
