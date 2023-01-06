@@ -13,6 +13,6 @@ class PagesTest < ActionDispatch::IntegrationTest
   test 'redirect of donations' do
     get '/donate'
     assert_response :redirect
-    assert_redirected_to 'https://betaalverzoek.rabobank.nl/betaalverzoek/?id=rDI_dpAhQGalApzWyB8DPQ'
+    assert_redirected_to 'https://betaalverzoek.rabobank.nl/betaalverzoek/?id=MX3AG14USwamtfVmuwZxng'
   end
 end
