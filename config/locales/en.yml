@@ -668,7 +668,7 @@ en:
       answer: The answer
       answer_title: Subject
       news: News
-      observe: observe
+      observe: 'establish that:'
       request: and request
       share_this: This is a good moment to share the link to the petitions from the bar below. After confirmation you can enter e-mail addresses to send invitations to others through us.
       status:
@@ -757,7 +757,7 @@ en:
         placeholder: 80 characters for the title
       observe:
         description: The observation you write should attract as many signatures as possible. Leave out what could be a reason for some to not sign. Do not include matters not directly involved. Max 450 characters.
-        label: Observe
+        label: 'Establish that'
         placeholder: '450 characters with the reason(s) for the petition'
       petitioner:
         email:
