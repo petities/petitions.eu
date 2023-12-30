@@ -114,7 +114,7 @@ Wij,
 %{we}
 
 
-constateren
+constateren dat:
 
 
 %{observe}
@@ -139,7 +139,7 @@ EINDE
 
 <p>%{we}</p>
 
-<p>constateren</p>
+<p>constateren dat:</p>
 
 <p>%{observe}</p>
 

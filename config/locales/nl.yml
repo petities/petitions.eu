@@ -732,7 +732,7 @@ nl:
       answer: Het antwoord
       answer_title: Onderwerp
       news: Nieuws
-      observe: constateren
+      observe: 'constateren dat:'
       request: en verzoeken
       share_this: Dit is een goed moment om de link naar de petitie te delen vanuit de balk hieronder. Na het bevestigen kunt u door e-mailadressen in te voeren uitnodigingen via ons versturen.
       status:
@@ -821,7 +821,7 @@ nl:
         placeholder: 80 tekens voor de titel
       observe:
         description: Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
-        label: Constateren
+        label: 'Constateren dat'
         placeholder: '450 tekens voor de reden(s) van de petitie'
       petitioner:
         email:
