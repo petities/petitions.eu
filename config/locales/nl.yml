@@ -821,7 +821,7 @@ nl:
         placeholder: 80 tekens voor de titel
       observe:
         description: Met de constatering die u hier beschrijft moeten zoveel mogelijk ondertekenaars het eens kunnen zijn. Laat weg wat een reden voor sommigen zou kunnen zijn om niet te tekenen. Haal geen zaken erbij die er niet direct mee te maken hebben. Maximaal 450 karakters.
-        label: 'Constateren dat'
+        label: 'constateren dat:'
         placeholder: '450 tekens voor de reden(s) van de petitie'
       petitioner:
         email:
@@ -845,7 +845,7 @@ nl:
         label: Petitietype
       request:
         description: Wat u eist moet niet te gedetailleerd zijn, want de uitvoering is in handen van anderen. Geef alleen de gewenste richting aan. Schrijf alleen op wat voor alle ondertekenaars belangrijk is, niet wat alleen voor een minderheid belangrijk is. Maximaal 450 karakters.
-        label: En verzoeken
+        label: en verzoeken
         placeholder: 450 tekens voor wat de petitie vraagt
       short_description:
         description: Hiermee werft u meer ondertekenaars. Deze tekst verschijnt in uitnodigingen per e-mail en in de overzichten van petities. Verwerk de belangrijkste steekwoorden erin, maar hou het kort. Voor de details is er ruimte op een andere plek naast de petitie. Maximaal 300 karakters.
