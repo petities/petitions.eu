@@ -128,7 +128,7 @@ class PetitionMailer < ApplicationMailer
 
     I18n.with_locale(tld) do
       subject = t('mail.petition.confirm.subject', petition_name: petition.name)
-      mail(to: @user.email, bcc: 'webmaster@petities.nl', subject: subject)
+      mail(to: @user.email, subject: subject)
     end
   end
 
