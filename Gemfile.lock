@@ -226,8 +226,9 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    parser (3.0.1.0)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
+      racc
     pdf-core (0.7.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
@@ -239,6 +240,7 @@ GEM
       rails (>= 2.1)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
+    racc (1.7.3)
     rack (1.6.13)
     rack-attack (6.4.0)
       rack (>= 1.0, < 3)
